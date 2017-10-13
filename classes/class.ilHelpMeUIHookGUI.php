@@ -45,17 +45,24 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	function getHTML($a_comp, $a_part, $a_par = array()) {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 
-			$html = "";
-
 			$tpl = $this->pl->getTemplate("menu_support_button.html", true, true);
 
 			iljQueryUtil::initjQuery();
 			ilModalGUI::initJS();
-			$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
-			$this->tpl->addOnLoadCode("il.HelpMe.init();");
 
-			$tpl->setCurrentBlock("linkBlock");
+			$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
+
+			$modal = ilModalGUI::getInstance();
+			$modal->setType(ilModalGUI::TYPE_LARGE);
+			$modal->setHeading($this->txt("srsu_support"));
+			$modal->setId("il_help_me_modal");
+
+			$tpl->setCurrentBlock("il_help_me_button");
 			$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
+			$tpl->setVariable("SUPPORT_LINK", $this->ctrl->getLinkTargetByClass([ "ilUIPluginRouterGUI", "ilHelpMeGUI" ], "addSupport", "", true));
+
+			$tpl->setCurrentBlock("il_help_me_modal");
+			$tpl->setVariable("SUPPORT_MODAL", $modal->getHTML());
 
 			$html = $tpl->get();
 

@@ -1,47 +1,15 @@
-if (typeof il === "undefined") {
-	var il = {};
-}
+$(function () {
+	$("#il_help_me_button").click(function () {
+		var $elem = $(this);
+		var url = $elem.attr("href");
 
-il.HelpMe = (function () {
-	var $button, modal;
+		$.get(url, function (response) {
+			var $modal = $("#il_help_me_modal");
 
-	return {
-		init: function () {
-			$button = $("#il_help_me_button");
-
-			$button.click(onClick);
-		}
-	};
-
-	function onClick(e) {
-		// Prevent link
-		e.preventDefault();
-
-		modal = il.Modal.dialogue({
-			id: "il_help_me_modal",
-			show: true,
-			header: il.Language.txt("srsu_support"),
-			body: "Text",
-			buttons: {
-				"submit": {
-					id: "",
-					type: "button",
-					label: il.Language.txt("srsu_submit"),
-					callback: onSubmit
-				},
-				"cancel": {
-					id: "",
-					type: "button",
-					label: il.Language.txt("srsu_cancel"),
-					callback: function () {
-						modal.hide();
-					}
-				}
-			}
+			$modal.find(".modal-body").html(response);
+			$modal.modal("show");
 		});
-	}
 
-	function onSubmit(e) {
-		alert();
-	}
-})();
+		return false;
+	});
+});
