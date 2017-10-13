@@ -1,6 +1,8 @@
 <?php
 require_once "Services/UIComponent/classes/class.ilUIHookPluginGUI.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/EnrolMembers/classes/class.ilEnrolMembersAccess.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
+require_once "Services/jQuery/classes/class.iljQueryUtil.php";
+require_once "Services/UIComponent/Modal/classes/class.ilModalGUI.php";
 
 /**
  * HelpMe UIHook-GUI
@@ -11,28 +13,54 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 * @var ilCtrl
 	 */
 	protected $ctrl;
+	/**
+	 * @var ilHelpMeUIHookGUI
+	 */
+	protected $pl;
+	/**
+	 * @var ilTemplate
+	 */
+	protected $tpl;
 
 
 	function __construct() {
 		/**
 		 * var ilCtrl $ilCtrl
+		 * var ilTemplate $tpl
 		 */
 
-		global $ilCtrl;
+		global $ilCtrl, $tpl;
 
 		$this->ctrl = $ilCtrl;
+		$this->pl = ilHelpMePlugin::getInstance();
+		$this->tpl = $tpl;
 	}
 
 
 	/**
-	 * Modify GUI objects, before they generate ouput
-	 *
-	 * @param string $a_comp component
-	 * @param string $a_part string that identifies the part of the UI that is handled
-	 * @param array  $a_par  array of parameters (depend on $a_comp and $a_part)
+	 * @param string $a_comp
+	 * @param string $a_part
+	 * @param array  $a_par
 	 */
-	function modifyGUI($a_comp, $a_part, $a_par = array()) {
+	function getHTML($a_comp, $a_part, $a_par = array()) {
+		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 
+			$html = "";
+
+			$tpl = $this->pl->getTemplate("menu_support_button.html", true, true);
+
+			iljQueryUtil::initjQuery();
+			ilModalGUI::initJS();
+			$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
+			$this->tpl->addOnLoadCode("il.HelpMe.init();");
+
+			$tpl->setCurrentBlock("linkBlock");
+			$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
+
+			$html = $tpl->get();
+
+			return [ "mode" => ilUIHookPluginGUI::PREPEND, "html" => $html ];
+		}
 	}
 
 
