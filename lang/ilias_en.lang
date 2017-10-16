@@ -4,7 +4,7 @@ srsu_email_address#:#Email address
 srsu_info#:#Info text
 srsu_priority#:#Priority
 srsu_recipient#:#Form recipient
-srsu_role#:#Role
+srsu_roles#:#Roles
 srsu_send_email#:#Send an email
 srsu_support#:#Support
 srsu_update#:#Update

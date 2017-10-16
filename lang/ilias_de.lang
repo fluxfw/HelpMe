@@ -4,7 +4,7 @@ srsu_email_address#:#E-Mail Adresse
 srsu_info#:#Infotext
 srsu_priority#:#Dringlichkeit
 srsu_recipient#:#Formularempfänger
-srsu_role#:#Rolle
+srsu_roles#:#Rollen
 srsu_send_email#:#E-Mail senden
 srsu_support#:#Support
 srsu_update#:#Aktualisieren

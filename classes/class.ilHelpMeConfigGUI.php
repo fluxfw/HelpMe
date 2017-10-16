@@ -98,11 +98,11 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$info->setRequired(true);
 		$form->addItem($info);
 
-		$priority = new ilTextAreaInputGUI($this->txt("srsu_priority"), "srsu_priority");
-		$priority->setRequired(true);
-		$form->addItem($priority);
+		$priorities = new ilTextAreaInputGUI($this->txt("srsu_priorities"), "srsu_priorities");
+		$priorities->setRequired(true);
+		$form->addItem($priorities);
 
-		$roles = new ilMultiSelectInputGUI($this->txt("srsu_role"), "srsu_role");
+		$roles = new ilMultiSelectInputGUI($this->txt("srsu_roles"), "srsu_roles");
 		$roles->setRequired(true);
 		$form->addItem($roles);
 
@@ -133,8 +133,8 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$recipient = $form->getInput("srsu_recipient");
 		$send_email_address = $form->getInput("srsu_send_email_address");
 		$info = $form->getInput("srsu_info");
-		$priority = $form->getInput("srsu_priority");
-		$role = $form->getInput("srsu_role");
+		$priorities = $form->getInput("srsu_priorities");
+		$roles = $form->getInput("srsu_roles");
 
 		$this->tpl->setContent($form->getHTML());
 	}
