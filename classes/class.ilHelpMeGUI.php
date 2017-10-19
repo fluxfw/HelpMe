@@ -6,6 +6,8 @@ require_once "Services/Form/classes/class.ilTextInputGUI.php";
 require_once "Services/Form/classes/class.ilEMailInputGUI.php";
 require_once "Services/Form/classes/class.ilSelectInputGUI.php";
 require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeSupport.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipient.php";
 
 /**
  * HelpMe GUI
@@ -74,7 +76,7 @@ class ilHelpMeGUI {
 	 * @return ilPropertyFormGUI
 	 */
 	protected function getSupportForm() {
-		$conf = $this->pl->getConfig();
+		$config = $this->pl->getConfig();
 		$configPriorities = $this->pl->getConfigPrioritiesArray();
 
 		$form = new ilPropertyFormGUI();
@@ -88,7 +90,7 @@ class ilHelpMeGUI {
 		$form->setShowTopButtons(false);
 
 		$form->setTitle($this->txt("srsu_support"));
-		$form->setDescription($conf->getInfo());
+		$form->setDescription($config->getInfo());
 
 		$title = new ilTextInputGUI($this->txt("srsu_title"), "srsu_title");
 		$title->setRequired(true);
@@ -150,18 +152,39 @@ class ilHelpMeGUI {
 			return;
 		}
 
+		$config = $this->pl->getConfig();
+		$configPriorities = $this->pl->getConfigPriorities();
+
+		$support = new ilHelpMeSupport();
+
 		$title = $form->getInput("srsu_title");
+		$support->setTitle($title);
+
 		$email = $form->getInput("srsu_email");
+		$support->setEmail($email);
+
 		$phone = $form->getInput("srsu_phone");
-		$priority = $form->getInput("srsu_priority");
-		$description = $form->getInput("srsu_description");
-		$reproduce_steps = $form->getInput("srsu_reproduce_steps");
+		$support->setPhone($phone);
 
-		$conf = $this->pl->getConfig();
-
-		switch ($conf->getRecipient()) {
-			default:
+		$priority_id = $form->getInput("srsu_priority");
+		foreach ($configPriorities as $priority) {
+			if ($priority->getId() === $priority_id) {
+				$support->setPriority($priority);
 				break;
+			}
+		}
+
+		$description = $form->getInput("srsu_description");
+		$support->setDescription($description);
+
+		$reproduce_steps = $form->getInput("srsu_reproduce_steps");
+		$support->setReproduceSteps($reproduce_steps);
+
+		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
+		if ($recipient->sendSupport()) {
+
+		} else {
+
 		}
 
 		$this->showForm($form);

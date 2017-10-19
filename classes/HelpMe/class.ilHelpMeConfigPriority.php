@@ -3,7 +3,7 @@
 require_once "Services/ActiveRecord/class.ActiveRecord.php";
 
 /**
- * HelpMe active record
+ * Config active record
  */
 class ilHelpMeConfigPriority extends ActiveRecord {
 

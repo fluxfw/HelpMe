@@ -89,27 +89,22 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		 * @var ilHelpMeConfigPriority[] $configPriorities
 		 */
 
-		$configPriorities = ilHelpMeConfigPriority::getArray();
+		$configPriorities = ilHelpMeConfigPriority::get();
 
 		return $configPriorities;
 	}
 
 
 	/**
-	 * @return string[]
+	 * @return array
 	 */
 	function getConfigPrioritiesArray() {
-		/**
-		 * @var string[] $priorities
-		 */
+		$configPriorities = $this->getConfigPriorities();
 
-		$priorities = array_map(function ($configPriority) {
-			/**
-			 * @var ilHelpMeConfigPriority $configPriority
-			 */
-
-			return $configPriority->getPriority();
-		}, ilHelpMeConfigPriority::get());
+		$priorities = [];
+		foreach ($configPriorities as $configPriority) {
+			$priorities[$configPriority->getId()] = $configPriority->getPriority();
+		}
 
 		return $priorities;
 	}
@@ -122,13 +117,54 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		ilHelpMeConfigPriority::truncateDB();
 
 		foreach ($priorities as $priority) {
-			/**
-			 * @var string $priority
-			 */
-
 			$configPriority = new ilHelpMeConfigPriority();
 			$configPriority->setPriority($priority);
 			$configPriority->create();
+		}
+	}
+
+
+	/**
+	 * @return ilHelpMeConfigRole[]
+	 */
+	function getConfigRoles() {
+		/**
+		 * @var ilHelpMeConfigRole[] $configRoles
+		 */
+
+		$configRoles = ilHelpMeConfigRole::get();
+
+		return $configRoles;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	function getConfigRolesArray() {
+		$configRoles = $this->getConfigRoles();
+
+		$roles = [];
+		foreach ($configRoles as $configRole) {
+			$roles[$configRole->getId()] = $configRole->getRoleId();
+		}
+
+		return $roles;
+	}
+
+
+	/**
+	 * @param int[] $roles
+	 */
+	function setConfigRolesArray($roles) {
+		ilHelpMeConfigRole::truncateDB();
+
+		foreach ($roles as $role_id) {
+			if ($role_id !== "") { // fix select all
+				$configRole = new ilHelpMeConfigRole();
+				$configRole->setRoleId($role_id);
+				$configRole->create();
+			}
 		}
 	}
 
@@ -150,60 +186,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		}
 
 		return $roles;
-	}
-
-
-	/**
-	 * @return ilHelpMeConfigRole[]
-	 */
-	function getConfigRoles() {
-		/**
-		 * @var ilHelpMeConfigRole[] $configRoles
-		 */
-
-		$configRoles = ilHelpMeConfigRole::get();
-
-		return $configRoles;
-	}
-
-
-	/**
-	 * @return int[]
-	 */
-	function getConfigRolesArray() {
-		/**
-		 * @var int[] $roles
-		 */
-
-		$roles = array_map(function ($configRole) {
-			/**
-			 * @var ilHelpMeConfigRole $configRole
-			 */
-
-			return $configRole->getRoleId();
-		}, ilHelpMeConfigRole::get());
-
-		return $roles;
-	}
-
-
-	/**
-	 * @param int[] $roles
-	 */
-	function setConfigRolesArray($roles) {
-		ilHelpMeConfigRole::truncateDB();
-
-		foreach ($roles as $role_id) {
-			/**
-			 * @var int $role_id
-			 */
-
-			if ($role_id !== "") { // fix select all
-				$configRole = new ilHelpMeConfigRole();
-				$configRole->setRoleId($role_id);
-				$configRole->create();
-			}
-		}
 	}
 
 

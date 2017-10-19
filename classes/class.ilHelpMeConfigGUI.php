@@ -11,7 +11,7 @@ require_once "Services/Form/classes/class.ilMultiSelectInputGUI.php";
 require_once "Services/Utilities/classes/class.ilUtil.php";
 
 /**
- *
+ * HelpMe Config GUI
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
@@ -76,7 +76,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$form->setTitle($this->txt("srsu_configuration"));
 
-		$form->addCommandButton("updateConfigure", $this->txt("srsu_update"));
+		$form->addCommandButton("updateConfigure", $this->txt("srsu_save"));
 
 		$recipient = new ilRadioGroupInputGUI($this->txt("srsu_recipient"), "srsu_recipient");
 		$recipient->setRequired(true);
@@ -102,16 +102,16 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$form->addItem($recipient);
 
-		$info = new ilTextAreaInputGUI($this->txt("srsu_info"), "srsu_info");
-		$info->setRequired(true);
-		$info->setValue($config->getInfo());
-		$form->addItem($info);
-
 		$priorities = new ilTextInputGUI($this->txt("srsu_priorities"), "srsu_priorities");
 		$priorities->setMulti(true);
 		$priorities->setRequired(true);
 		$priorities->setValue($configPriorities);
 		$form->addItem($priorities);
+
+		$info = new ilTextAreaInputGUI($this->txt("srsu_info"), "srsu_info");
+		$info->setRequired(true);
+		$info->setValue($config->getInfo());
+		$form->addItem($info);
 
 		$roles = new ilMultiSelectInputGUI($this->txt("srsu_roles"), "srsu_roles");
 		$roles->setRequired(true);
@@ -152,18 +152,21 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 			return;
 		}
 
-		$recipient = $form->getInput("srsu_recipient");
-		$send_email_address = $form->getInput("srsu_send_email_address");
-		$info = $form->getInput("srsu_info");
-		$priorities = $form->getInput("srsu_priorities");
-		$roles = $form->getInput("srsu_roles");
-
 		$config = $this->pl->getConfig();
 
+		$recipient = $form->getInput("srsu_recipient");
 		$config->setRecipient($recipient);
+
+		$send_email_address = $form->getInput("srsu_send_email_address");
 		$config->setSendEmailAddress($send_email_address);
-		$config->setInfo($info);
+
+		$priorities = $form->getInput("srsu_priorities");
 		$this->pl->setConfigPrioritiesArray($priorities);
+
+		$info = $form->getInput("srsu_info");
+		$config->setInfo($info);
+
+		$roles = $form->getInput("srsu_roles");
 		$this->pl->setConfigRolesArray($roles);
 
 		$config->update();
