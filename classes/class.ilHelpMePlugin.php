@@ -111,23 +111,22 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	/**
-	 *
 	 * @return array
 	 */
 	function getRoles() {
 		/**
 		 * @var ilRbacReview $rbacreview
-		 * @var int[]        $globalRoles
+		 * @var array        $global_roles
 		 * @var array        $roles
 		 */
 
 		global $rbacreview;
 
-		$globalRoles = $rbacreview->getGlobalRoles();
+		$global_roles = $rbacreview->getRolesForIDs($rbacreview->getGlobalRoles(), false);
 
 		$roles = [];
-		foreach ($globalRoles as $role_id) {
-			$roles[$role_id] = ilObjRole::_lookupTitle($role_id);
+		foreach ($global_roles as $global_role) {
+			$roles[$global_role["rol_id"]] = $global_role["title"];
 		}
 
 		return $roles;
@@ -174,14 +173,42 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	function setConfigRolesArray($roles) {
 		ilHelpMeConfigRole::truncateDB();
 
-		foreach ($roles as $role) {
+		foreach ($roles as $role_id) {
 			/**
-			 * @var int $role
+			 * @var int $role_id
 			 */
 
-			$configRole = new ilHelpMeConfigRole();
-			$configRole->setRoleId($role);
-			$configRole->create();
+			if ($role_id !== "") { // fix select all
+				$configRole = new ilHelpMeConfigRole();
+				$configRole->setRoleId($role_id);
+				$configRole->create();
+			}
 		}
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	function currentUserHasRole() {
+		/**
+		 * @var ilObjUser    $ilUser
+		 * @var ilRbacReview $rbacreview
+		 */
+
+		global $ilUser, $rbacreview;
+
+		$user_id = $ilUser->getId();
+
+		$user_roles = $rbacreview->getRolesByFilter(0, $user_id);
+		$config_roles = $this->getConfigRolesArray();
+
+		foreach ($user_roles as $user_role) {
+			if (array_search($user_role["rol_id"], $config_roles) !== false) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

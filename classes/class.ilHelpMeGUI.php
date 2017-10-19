@@ -41,6 +41,10 @@ class ilHelpMeGUI {
 	 *
 	 */
 	function executeCommand() {
+		if (!$this->pl->currentUserHasRole()) {
+			die();
+		}
+
 		$cmd = $this->ctrl->getCmd();
 
 		switch ($cmd) {

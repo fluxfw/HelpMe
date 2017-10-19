@@ -44,31 +44,38 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 */
 	function getHTML($a_comp, $a_part, $a_par = array()) {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
+			if ($this->pl->currentUserHasRole()) {
 
-			$tpl = $this->pl->getTemplate("menu_support_button.html", true, true);
+				$tpl = $this->pl->getTemplate("menu_support_button.html", true, true);
 
-			iljQueryUtil::initjQuery();
-			$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
+				iljQueryUtil::initjQuery();
+				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
 
-			$tpl->setCurrentBlock("il_help_me_button");
-			$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
-			$tpl->setVariable("SUPPORT_LINK", $this->ctrl->getLinkTargetByClass([ "ilUIPluginRouterGUI", "ilHelpMeGUI" ], "addSupport", "", true));
-			$html = $tpl->get();
+				$tpl->setCurrentBlock("il_help_me_button");
+				$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
+				$tpl->setVariable("SUPPORT_LINK", $this->ctrl->getLinkTargetByClass([
+					"ilUIPluginRouterGUI",
+					"ilHelpMeGUI"
+				], "addSupport", "", true));
+				$html = $tpl->get();
 
-			return [ "mode" => ilUIHookPluginGUI::PREPEND, "html" => $html ];
+				return [ "mode" => ilUIHookPluginGUI::PREPEND, "html" => $html ];
+			}
 		}
 
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
-			ilModalGUI::initJS();
+			if ($this->pl->currentUserHasRole()) {
+				ilModalGUI::initJS();
 
-			$modal = ilModalGUI::getInstance();
-			$modal->setType(ilModalGUI::TYPE_LARGE);
-			$modal->setHeading($this->txt("srsu_support"));
-			$modal->setId("il_help_me_modal");
+				$modal = ilModalGUI::getInstance();
+				$modal->setType(ilModalGUI::TYPE_LARGE);
+				$modal->setHeading($this->txt("srsu_support"));
+				$modal->setId("il_help_me_modal");
 
-			$html = $modal->getHTML();
+				$html = $modal->getHTML();
 
-			return [ "mode" => ilUIHookPluginGUI::APPEND, "html" => $html ];
+				return [ "mode" => ilUIHookPluginGUI::APPEND, "html" => $html ];
+			}
 		}
 	}
 

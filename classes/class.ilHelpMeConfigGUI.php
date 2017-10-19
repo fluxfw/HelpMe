@@ -113,9 +113,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$form->addItem($priorities);
 
 		$roles = new ilMultiSelectInputGUI($this->txt("srsu_roles"), "srsu_roles");
-		//$roles->setRequired(true);
+		$roles->setRequired(true);
 		$roles->setOptions($allRoles);
 		$roles->setValue($configRoles);
+		$roles->enableSelectAll(true);
 		$form->addItem($roles);
 
 		return $form;
