@@ -1,10 +1,11 @@
 srsu_configuration#:#Konfiguration
+srsu_configuration_saved#:#Konfiguration gespeichert
 srsu_create_jira_ticket#:#Jira-Ticket erstellen
 srsu_email_address#:#E-Mail Adresse
 srsu_info#:#Infotext
-srsu_priority#:#Dringlichkeit
+srsu_priorities#:#Prioritäten
 srsu_recipient#:#Formularempfänger
 srsu_roles#:#Rollen
-srsu_send_email#:#E-Mail senden
+srsu_send_email#:#Per E-Mail senden
 srsu_support#:#Support
 srsu_update#:#Aktualisieren

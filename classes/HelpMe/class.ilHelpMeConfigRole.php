@@ -5,9 +5,9 @@ require_once "Services/ActiveRecord/class.ActiveRecord.php";
 /**
  * HelpMe active record
  */
-class ilHelpMeConfigPriorities extends ActiveRecord {
+class ilHelpMeConfigRole extends ActiveRecord {
 
-	const TABLE_NAME = "ui_uihk_srsu_prio";
+	const TABLE_NAME = "ui_uihk_srsu_roles";
 
 
 	/**
@@ -28,46 +28,47 @@ class ilHelpMeConfigPriorities extends ActiveRecord {
 	 * @con_is_primary  true
 	 * @con_sequence    true
 	 */
-	protected $priority_id;
+	protected $id;
 	/**
-	 * @var string
+	 * @var int
 	 *
 	 * @con_has_field   true
-	 * @con_fieldtype   text
+	 * @con_fieldtype   integer
+	 * @con_length      8
 	 * @con_is_notnull  true
 	 * @con_is_unique   true
 	 */
-	protected $priority;
+	protected $role_id;
 
 
 	/**
 	 * @return int
 	 */
-	public function getPriorityId() {
-		return $this->priority_id;
+	public function getId() {
+		return $this->id;
 	}
 
 
 	/**
-	 * @param int $priority_id
+	 * @param int $id
 	 */
-	public function setPriorityId($priority_id) {
-		$this->priority_id = $priority_id;
+	public function setId($id) {
+		$this->id = $id;
 	}
 
 
 	/**
-	 * @return string
+	 * @return int
 	 */
-	public function getPriority() {
-		return $this->priority;
+	public function getRoleId() {
+		return $this->role_id;
 	}
 
 
 	/**
-	 * @param string $priority
+	 * @param int $role_id
 	 */
-	public function setPriority($priority) {
-		$this->priority = $priority;
+	public function setRoleId($role_id) {
+		$this->role_id = $role_id;
 	}
 }

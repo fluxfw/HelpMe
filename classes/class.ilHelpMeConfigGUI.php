@@ -7,6 +7,7 @@ require_once "Services/Form/classes/class.ilRadioOption.php";
 require_once "Services/Form/classes/class.ilTextInputGUI.php";
 require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 require_once "Services/Form/classes/class.ilMultiSelectInputGUI.php";
+require_once "Services/Utilities/classes/class.ilUtil.php";
 
 /**
  *
@@ -63,6 +64,11 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 * @return ilPropertyFormGUI
 	 */
 	protected function getConfigurationForm() {
+		$config = $this->pl->getConfig();
+		$configPriorities = $this->pl->getConfigPrioritiesArray();
+		$allRoles = $this->pl->getRoles();
+		$configRoles = $this->pl->getConfigRolesArray();
+
 		$form = new ilPropertyFormGUI();
 
 		$form->setFormAction($this->ctrl->getFormAction($this));
@@ -76,10 +82,11 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$recipient_email = new ilRadioOption();
 		$recipient_email->setTitle($this->txt("srsu_send_email"));
-		$recipient_email->setValue("send_mail");
+		$recipient_email->setValue("send_email");
 
 		$send_email_address = new ilTextInputGUI($this->txt("srsu_email_address"), "srsu_send_email_address");
 		$send_email_address->setRequired(true);
+		$send_email_address->setValue($config->getSendEmailAddress());
 		$recipient_email->addSubItem($send_email_address);
 
 		$recipient->addOption($recipient_email);
@@ -90,20 +97,25 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$recipient_jira->setValue("create_jira_ticket");
 		$recipient->addOption($recipient_jira);
 
-		$recipient->setValue("send_mail");
+		$recipient->setValue($config->getRecipient());
 
 		$form->addItem($recipient);
 
 		$info = new ilTextAreaInputGUI($this->txt("srsu_info"), "srsu_info");
 		$info->setRequired(true);
+		$info->setValue($config->getInfo());
 		$form->addItem($info);
 
-		$priorities = new ilTextAreaInputGUI($this->txt("srsu_priorities"), "srsu_priorities");
+		$priorities = new ilTextInputGUI($this->txt("srsu_priorities"), "srsu_priorities");
+		$priorities->setMulti(true);
 		$priorities->setRequired(true);
+		$priorities->setValue($configPriorities);
 		$form->addItem($priorities);
 
 		$roles = new ilMultiSelectInputGUI($this->txt("srsu_roles"), "srsu_roles");
-		$roles->setRequired(true);
+		//$roles->setRequired(true);
+		$roles->setOptions($allRoles);
+		$roles->setValue($configRoles);
 		$form->addItem($roles);
 
 		return $form;
@@ -120,6 +132,9 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	}
 
 
+	/**
+	 *
+	 */
 	protected function updateConfigure() {
 		$form = $this->getConfigurationForm();
 		$form->setValuesByPost();
@@ -135,6 +150,18 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$info = $form->getInput("srsu_info");
 		$priorities = $form->getInput("srsu_priorities");
 		$roles = $form->getInput("srsu_roles");
+
+		$config = $this->pl->getConfig();
+
+		$config->setRecipient($recipient);
+		$config->setSendEmailAddress($send_email_address);
+		$config->setInfo($info);
+		$this->pl->setConfigPrioritiesArray($priorities);
+		$this->pl->setConfigRolesArray($roles);
+
+		$config->update();
+
+		ilUtil::sendSuccess($this->txt("srsu_configuration_saved"));
 
 		$this->tpl->setContent($form->getHTML());
 	}

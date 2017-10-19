@@ -1,8 +1,9 @@
 srsu_configuration#:#Configuration
+srsu_configuration_saved#:#Configuration saved
 srsu_create_jira_ticket#:#Create a Jira ticket
 srsu_email_address#:#Email address
 srsu_info#:#Info text
-srsu_priority#:#Priority
+srsu_priorities#:#Priorities
 srsu_recipient#:#Form recipient
 srsu_roles#:#Roles
 srsu_send_email#:#Send an email
