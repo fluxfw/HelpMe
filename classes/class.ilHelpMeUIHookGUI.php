@@ -3,6 +3,8 @@ require_once "Services/UIComponent/classes/class.ilUIHookPluginGUI.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 require_once "Services/jQuery/classes/class.iljQueryUtil.php";
 require_once "Services/UIComponent/Modal/classes/class.ilModalGUI.php";
+require_once "Services/UIComponent/Button/classes/class.ilSubmitButton.php";
+require_once "Services/UIComponent/Button/classes/class.ilButton.php";
 
 /**
  * HelpMe UIHook-GUI
@@ -70,6 +72,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				$modal = ilModalGUI::getInstance();
 				$modal->setType(ilModalGUI::TYPE_LARGE);
 				$modal->setHeading($this->txt("srsu_support"));
+
 				$modal->setId("il_help_me_modal");
 
 				$html = $modal->getHTML();

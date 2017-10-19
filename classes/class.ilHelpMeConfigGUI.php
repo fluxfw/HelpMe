@@ -5,6 +5,7 @@ require_once "Services/Form/classes/class.ilPropertyFormGUI.php";
 require_once "Services/Form/classes/class.ilRadioGroupInputGUI.php";
 require_once "Services/Form/classes/class.ilRadioOption.php";
 require_once "Services/Form/classes/class.ilTextInputGUI.php";
+require_once "Services/Form/classes/class.ilEMailInputGUI.php";
 require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 require_once "Services/Form/classes/class.ilMultiSelectInputGUI.php";
 require_once "Services/Utilities/classes/class.ilUtil.php";
@@ -84,7 +85,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$recipient_email->setTitle($this->txt("srsu_send_email"));
 		$recipient_email->setValue("send_email");
 
-		$send_email_address = new ilTextInputGUI($this->txt("srsu_email_address"), "srsu_send_email_address");
+		$send_email_address = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_send_email_address");
 		$send_email_address->setRequired(true);
 		$send_email_address->setValue($config->getSendEmailAddress());
 		$recipient_email->addSubItem($send_email_address);
@@ -123,13 +124,18 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	}
 
 
+	protected function showForm($form) {
+		$this->tpl->setContent($form->getHTML());
+	}
+
+
 	/**
 	 *
 	 */
 	protected function configure() {
 		$form = $this->getConfigurationForm();
 
-		$this->tpl->setContent($form->getHTML());
+		$this->showForm($form);
 	}
 
 
@@ -141,7 +147,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$form->setValuesByPost();
 
 		if (!$form->checkInput()) {
-			$this->tpl->setContent($form->getHTML());
+			$this->showForm($form);
 
 			return;
 		}
@@ -164,7 +170,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		ilUtil::sendSuccess($this->txt("srsu_configuration_saved"));
 
-		$this->tpl->setContent($form->getHTML());
+		$this->showForm($form);
 	}
 
 

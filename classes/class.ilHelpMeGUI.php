@@ -1,6 +1,11 @@
 <?php
 
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
+require_once "Services/Form/classes/class.ilPropertyFormGUI.php";
+require_once "Services/Form/classes/class.ilTextInputGUI.php";
+require_once "Services/Form/classes/class.ilEMailInputGUI.php";
+require_once "Services/Form/classes/class.ilSelectInputGUI.php";
+require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 
 /**
  * HelpMe GUI
@@ -21,19 +26,25 @@ class ilHelpMeGUI {
 	 * @var ilTemplate
 	 */
 	protected $tpl;
+	/**
+	 * @var ilObjUser
+	 */
+	protected $usr;
 
 
 	function __construct() {
 		/**
 		 * @var ilCtrl     $ilCtrl
+		 * @var ilObjUser  $ilUser
 		 * @var ilTemplate $tpl
 		 */
 
-		global $ilCtrl, $tpl;
+		global $ilCtrl, $ilUser, $tpl;
 
 		$this->ctrl = $ilCtrl;
 		$this->pl = ilHelpMePlugin::getInstance();
 		$this->tpl = $tpl;
+		$this->usr = $ilUser;
 	}
 
 
@@ -49,6 +60,7 @@ class ilHelpMeGUI {
 
 		switch ($cmd) {
 			case "addSupport":
+			case "newSupport":
 				$this->{$cmd}();
 				break;
 
@@ -58,8 +70,58 @@ class ilHelpMeGUI {
 	}
 
 
-	protected function addSupport() {
-		$html = "<h1>Test</h1>";
+	/**
+	 * @return ilPropertyFormGUI
+	 */
+	protected function getSupportForm() {
+		$conf = $this->pl->getConfig();
+		$configPriorities = $this->pl->getConfigPrioritiesArray();
+
+		$form = new ilPropertyFormGUI();
+
+		$form->setFormAction($this->ctrl->getFormAction($this, "", "", true));
+
+		$form->addCommandButton("newSupport", $this->txt("srsu_submit"), "il_help_me_submit");
+		$form->addCommandButton("", $this->txt("srsu_cancel"), "il_help_me_cancel");
+
+		$form->setId("il_help_me_form");
+		$form->setShowTopButtons(false);
+
+		$form->setTitle($this->txt("srsu_support"));
+		$form->setDescription($conf->getInfo());
+
+		$title = new ilTextInputGUI($this->txt("srsu_title"), "srsu_title");
+		$title->setRequired(true);
+		$form->addItem($title);
+
+		$email = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_email");
+		$email->setRequired(true);
+		$email->setValue($this->usr->getEmail());
+		$form->addItem($email);
+
+		$phone = new ilTextInputGUI($this->txt("srsu_phone"), "srsu_phone");
+		$phone->setRequired(true);
+		$form->addItem($phone);
+
+		$priority = new ilSelectInputGUI($this->txt("srsu_priority"), "srsu_priority");
+		$priority->setRequired(true);
+		$priority->setOptions($configPriorities);
+		$form->addItem($priority);
+
+		$description = new ilTextAreaInputGUI($this->txt("srsu_description"), "srsu_description");
+		$description->setRequired(true);
+		$form->addItem($description);
+
+		$reproduce_steps = new ilTextAreaInputGUI($this->txt("srsu_reproduce_steps"), "srsu_reproduce_steps");
+		$reproduce_steps->setRequired(true);
+		$form->addItem($reproduce_steps);
+
+		return $form;
+	}
+
+
+	protected function showForm($form) {
+		$html = $form->getHTML();
 
 		if ($this->ctrl->isAsynch()) {
 			echo $html;
@@ -68,6 +130,41 @@ class ilHelpMeGUI {
 		} else {
 			$this->tpl->setContent($html);
 		}
+	}
+
+
+	protected function addSupport() {
+		$form = $this->getSupportForm();
+
+		$this->showForm($form);
+	}
+
+
+	protected function newSupport() {
+		$form = $this->getSupportForm();
+		$form->setValuesByPost();
+
+		if (!$form->checkInput()) {
+			$this->showForm($form);
+
+			return;
+		}
+
+		$title = $form->getInput("srsu_title");
+		$email = $form->getInput("srsu_email");
+		$phone = $form->getInput("srsu_phone");
+		$priority = $form->getInput("srsu_priority");
+		$description = $form->getInput("srsu_description");
+		$reproduce_steps = $form->getInput("srsu_reproduce_steps");
+
+		$conf = $this->pl->getConfig();
+
+		switch ($conf->getRecipient()) {
+			default:
+				break;
+		}
+
+		$this->showForm($form);
 	}
 
 

@@ -1,11 +1,18 @@
+srsu_cancel#:#Cancel
 srsu_configuration#:#Configuration
 srsu_configuration_saved#:#Configuration saved
 srsu_create_jira_ticket#:#Create a Jira ticket
+srsu_description#:#Description
 srsu_email_address#:#Email address
 srsu_info#:#Info text
+srsu_phone#:#Phone
+srsu_priority#:#Priority
 srsu_priorities#:#Priorities
 srsu_recipient#:#Form recipient
+srsu_reproduce_steps#:#Steps to Reproduce
 srsu_roles#:#Roles
 srsu_send_email#:#Send an email
+srsu_submit#:#Submit
 srsu_support#:#Support
+srsu_title#:#Title
 srsu_update#:#Update

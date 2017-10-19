@@ -15,6 +15,14 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @var ilHelpMePlugin
 	 */
 	protected static $cache;
+	/**
+	 * @var ilRbacReview
+	 */
+	protected $rbacreview;
+	/**
+	 * @var ilObjUser
+	 */
+	protected $usr;
 
 
 	/**
@@ -31,6 +39,21 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 	function getPluginName() {
 		return "HelpMe";
+	}
+
+
+	public function __construct() {
+		/**
+		 * @var ilObjUser    $ilUser
+		 * @var ilRbacReview $rbacreview
+		 */
+
+		parent::__construct();
+
+		global $ilUser, $rbacreview;
+
+		$this->rbacreview = $rbacreview;
+		$this->usr = $ilUser;
 	}
 
 
@@ -115,14 +138,11 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 */
 	function getRoles() {
 		/**
-		 * @var ilRbacReview $rbacreview
-		 * @var array        $global_roles
-		 * @var array        $roles
+		 * @var array $global_roles
+		 * @var array $roles
 		 */
 
-		global $rbacreview;
-
-		$global_roles = $rbacreview->getRolesForIDs($rbacreview->getGlobalRoles(), false);
+		$global_roles = $this->rbacreview->getRolesForIDs($this->rbacreview->getGlobalRoles(), false);
 
 		$roles = [];
 		foreach ($global_roles as $global_role) {
@@ -191,16 +211,9 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @return bool
 	 */
 	function currentUserHasRole() {
-		/**
-		 * @var ilObjUser    $ilUser
-		 * @var ilRbacReview $rbacreview
-		 */
+		$user_id = $this->usr->getId();
 
-		global $ilUser, $rbacreview;
-
-		$user_id = $ilUser->getId();
-
-		$user_roles = $rbacreview->getRolesByFilter(0, $user_id);
+		$user_roles = $this->rbacreview->getRolesByFilter(0, $user_id);
 		$config_roles = $this->getConfigRolesArray();
 
 		foreach ($user_roles as $user_role) {
