@@ -8,6 +8,7 @@ require_once "Services/Form/classes/class.ilSelectInputGUI.php";
 require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeSupport.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipient.php";
+require_once "Services/Form/classes/class.ilFileInputGUI.php";
 
 /**
  * HelpMe GUI
@@ -118,6 +119,11 @@ class ilHelpMeGUI {
 		$reproduce_steps->setRequired(true);
 		$form->addItem($reproduce_steps);
 
+		$screenshot = new ilFileInputGUI($this->txt("srsu_screenshot"), "srsu_screenshot");
+		$screenshot->setRequired(false);
+		$screenshot->setSuffixes([ "jpg", "png" ]);
+		$form->addItem($screenshot);
+
 		return $form;
 	}
 
@@ -179,6 +185,11 @@ class ilHelpMeGUI {
 
 		$reproduce_steps = $form->getInput("srsu_reproduce_steps");
 		$support->setReproduceSteps($reproduce_steps);
+
+		$screenshot = $form->getInput("srsu_screenshot");
+		if ($screenshot["tmp_name"] != "") {
+			$support->addScreenshot($screenshot);
+		}
 
 		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
 		if ($recipient->sendSupport()) {

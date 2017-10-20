@@ -30,9 +30,17 @@ $(document).ready(function () {
 	function submit() {
 		var post_url = $form.attr("action");
 
-		var data = $form.serialize() + "&" + $submit.prop("name") + "=Submit";
+		var data = new FormData($form[0]); // Supports file upload
+		data.append($submit.prop("name"), $submit.val()); // Send submit button with cmd
 
-		$.post(post_url, data, show);
+		$.ajax({
+			type: "post",
+			url: post_url,
+			contentType: false,
+			processData: false,
+			data: data,
+			success: show
+		});
 
 		return false;
 	}

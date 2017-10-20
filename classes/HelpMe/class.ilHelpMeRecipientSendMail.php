@@ -1,7 +1,7 @@
 <?php
 
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipient.php";
-require_once "Services/Mail/classes/class.ilMail.php";
+require_once "Services/Mail/classes/class.ilMimeMail.php";
 
 /**
  * Send support email
@@ -9,19 +9,11 @@ require_once "Services/Mail/classes/class.ilMail.php";
 class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 
 	/**
-	 * @var ilMail
-	 */
-	protected $mail;
-
-
-	/**
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */
 	function __construct($support, $config) {
 		parent::__construct($support, $config);
-
-		$this->mail = new ilMail(ANONYMOUS_USER_ID);
 	}
 
 
@@ -39,9 +31,21 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	function sendEmail() {
-		$errors = $this->mail->sendMail($this->config->getSendEmailAddress(), NULL, NULL, $this->support->getSubject(), $this->support->getBody(), [], [ "system" ], false);
+		$mailer = new ilMimeMail();
 
-		return (sizeof($errors) === 0);
+		$mailer->To($this->config->getSendEmailAddress());
+
+		$mailer->Subject($this->support->getSubject());
+
+		$mailer->Body($this->support->getBody());
+
+		foreach ($this->support->getScreenshots() as $screenshot) {
+			$mailer->Attach($screenshot["tmp_name"], $screenshot["type"], "attachment", $screenshot["name"]);
+		}
+
+		$mailer->Send();
+
+		return true; // TODO: check error
 	}
 
 
@@ -51,9 +55,20 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	function sendConfirmationMail() {
-		$errors = $this->mail->sendMail($this->support->getEmail(), NULL, NULL, $this->pl->txt("srsu_confirmation") . ": "
-			. $this->support->getSubject(), $this->support->getBody(), [], [ "system" ], false);
+		$mailer = new ilMimeMail();
 
-		return (sizeof($errors) === 0);
+		$mailer->To($this->support->getEmail());
+
+		$mailer->Subject($this->pl->txt("srsu_confirmation") . ": " . $this->support->getSubject());
+
+		$mailer->Body($this->support->getBody());
+
+		foreach ($this->support->getScreenshots() as $screenshot) {
+			$mailer->Attach($screenshot["tmp_name"], $screenshot["type"], "attachment", $screenshot["name"]);
+		}
+
+		$mailer->Send();
+
+		return true; // TODO: check error
 	}
 }

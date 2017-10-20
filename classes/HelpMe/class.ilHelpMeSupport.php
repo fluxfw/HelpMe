@@ -32,6 +32,10 @@ class ilHelpMeSupport {
 	 */
 	protected $reproduce_steps;
 	/**
+	 * @var array[]
+	 */
+	protected $screenshots = [];
+	/**
 	 * @var ilHelpMeUIHookGUI
 	 */
 	protected $pl;
@@ -71,6 +75,16 @@ class ilHelpMeSupport {
 		}, $fields));
 
 		return $body;
+	}
+
+
+	/**
+	 * Add screenshot from post file upload
+	 *
+	 * @param array $screenshot
+	 */
+	function addScreenshot($screenshot) {
+		$this->screenshots[] = $screenshot;
 	}
 
 
@@ -167,5 +181,21 @@ class ilHelpMeSupport {
 	 */
 	public function setReproduceSteps($reproduce_steps) {
 		$this->reproduce_steps = $reproduce_steps;
+	}
+
+
+	/**
+	 * @return array[]
+	 */
+	public function getScreenshots() {
+		return $this->screenshots;
+	}
+
+
+	/**
+	 * @param array[] $screenshot
+	 */
+	public function setScreenshots($screenshots) {
+		$this->screenshots = $screenshots;
 	}
 }
