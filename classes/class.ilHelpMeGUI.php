@@ -77,7 +77,6 @@ class ilHelpMeGUI {
 	 * @return ilPropertyFormGUI
 	 */
 	protected function getSupportForm() {
-		$config = $this->pl->getConfig();
 		$configPriorities = $this->pl->getConfigPrioritiesArray();
 
 		$form = new ilPropertyFormGUI();
@@ -89,9 +88,6 @@ class ilHelpMeGUI {
 
 		$form->setId("il_help_me_form");
 		$form->setShowTopButtons(false);
-
-		$form->setTitle($this->txt("srsu_support"));
-		$form->setDescription($config->getInfo());
 
 		$title = new ilTextInputGUI($this->txt("srsu_title"), "srsu_title");
 		$title->setRequired(true);
@@ -128,8 +124,44 @@ class ilHelpMeGUI {
 	}
 
 
-	protected function showForm($form) {
-		$html = $form->getHTML();
+	/**
+	 * @return ilPropertyFormGUI
+	 */
+	protected function getSuccessForm() {
+		$form = new ilPropertyFormGUI();
+
+		$form->setFormAction($this->ctrl->getFormAction($this, "", "", true));
+
+		$form->addCommandButton("", $this->txt("srsu_close"), "il_help_me_cancel");
+
+		$form->setId("il_help_me_form");
+		$form->setShowTopButtons(false);
+
+		return $form;
+	}
+
+
+	/**
+	 * @param string|null       $message
+	 * @param ilPropertyFormGUI $form
+	 */
+	protected function show($message, $form) {
+		$config = $this->pl->getConfig();
+
+		$tpl = $this->pl->getTemplate("il_help_me_modal.html", true, true);
+
+		$tpl->setCurrentBlock("il_help_me_info");
+		$tpl->setVariable("INFO", $config->getInfo());
+
+		if ($message !== NULL) {
+			$tpl->setCurrentBlock("il_help_me_message");
+			$tpl->setVariable("MESSAGE", $message);
+		}
+
+		$tpl->setCurrentBlock("il_help_me_form");
+		$tpl->setVariable("FORM", $form->getHTML());
+
+		$html = $tpl->get();
 
 		if ($this->ctrl->isAsynch()) {
 			echo $html;
@@ -142,18 +174,22 @@ class ilHelpMeGUI {
 
 
 	protected function addSupport() {
+		$message = NULL;
+
 		$form = $this->getSupportForm();
 
-		$this->showForm($form);
+		$this->show($message, $form);
 	}
 
 
 	protected function newSupport() {
+		$message = NULL;
+
 		$form = $this->getSupportForm();
 		$form->setValuesByPost();
 
 		if (!$form->checkInput()) {
-			$this->showForm($form);
+			$this->show($message, $form);
 
 			return;
 		}
@@ -193,12 +229,14 @@ class ilHelpMeGUI {
 
 		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
 		if ($recipient->sendSupport()) {
+			$message = $this->tpl->getMessageHTML($this->txt("srsu_sent_success"), "success");
 
+			$form = $this->getSuccessForm();
 		} else {
-
+			$message = $this->tpl->getMessageHTML($this->txt("srsu_sent_failure"), "failure");
 		}
 
-		$this->showForm($form);
+		$this->show($message, $form);
 	}
 
 

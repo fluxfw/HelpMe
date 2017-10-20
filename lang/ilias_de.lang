@@ -1,4 +1,5 @@
 srsu_cancel#:#Abbrechen
+srsu_close#:#Schliessen
 srsu_configuration#:#Konfiguration
 srsu_configuration_saved#:#Konfiguration gespeichert
 srsu_confirmation#:#Bestätigung
@@ -15,6 +16,8 @@ srsu_roles#:#Rollen
 srsu_save#:#Speichern
 srsu_screenshot#:#Screenshot
 srsu_send_email#:#Per E-Mail senden
+srsu_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden!
+srsu_sent_success#:#Vielen Dank für Ihre Support-Anfrage! Eine Bestätigungs-E-Mail wurde an Sie geschickt!
 srsu_submit#:#Senden
 srsu_support#:#Support
 srsu_title#:#Titel

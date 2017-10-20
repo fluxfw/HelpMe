@@ -48,7 +48,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if ($this->pl->currentUserHasRole()) {
 
-				$tpl = $this->pl->getTemplate("menu_support_button.html", true, true);
+				$tpl = $this->pl->getTemplate("il_help_me_button.html", true, true);
 
 				iljQueryUtil::initjQuery();
 				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");

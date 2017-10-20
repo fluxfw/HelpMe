@@ -62,17 +62,28 @@ class ilHelpMeSupport {
 	 * @return string
 	 */
 	function getBody() {
-		$fields = [];
-		$fields[] = [ "srsu_title", $this->title ];
-		$fields[] = [ "srsu_email_address", $this->email ];
-		$fields[] = [ "srsu_phone", $this->phone ];
-		$fields[] = [ "srsu_priority", $this->priority->getPriority() ];
-		$fields[] = [ "srsu_description", $this->description ];
-		$fields[] = [ "srsu_reproduce_steps", $this->reproduce_steps ];
+		$tpl = $this->pl->getTemplate("il_help_me_email_body.html", true, true);
 
-		$body = implode("<br><br>", array_map(function ($field) {
-			return "<h2>" . ilUtil::prepareFormOutput($this->pl->txt($field[0])) . "</h2>" . ilUtil::prepareFormOutput($field[1]);
-		}, $fields));
+		$titles = [
+			"srsu_title" => $this->title,
+			"srsu_email_address" => $this->email,
+			"srsu_phone" => $this->phone,
+			"srsu_priority" => $this->priority->getPriority(),
+			"srsu_description" => $this->description,
+			"srsu_reproduce_steps" => $this->reproduce_steps
+		];
+
+		foreach ($titles as $title => $txt) {
+			$tpl->setCurrentBlock("il_help_me_email_body");
+
+			$tpl->setVariable("TITLE", $this->pl->txt($title));
+
+			$tpl->setVariable("TXT", $txt);
+
+			$tpl->parseCurrentBlock();
+		};
+
+		$body = $tpl->get();
 
 		return $body;
 	}
