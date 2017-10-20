@@ -15,6 +15,7 @@ srsu_reproduce_steps#:#Steps to Reproduce
 srsu_roles#:#Roles
 srsu_save#:#Save
 srsu_screenshot#:#Screenshot
+srsu_screenshot_current_page#:#Take screenshot of current page
 srsu_send_email#:#Send an email
 srsu_sent_failure#:#Sorry, your support request could not be sent!
 srsu_sent_success#:#Thank you for your support request! A confirmation email has been sent to you!

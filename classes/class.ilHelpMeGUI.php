@@ -59,6 +59,8 @@ class ilHelpMeGUI {
 			die();
 		}
 
+		$this->tpl->getStandardTemplate();
+
 		$cmd = $this->ctrl->getCmd();
 
 		switch ($cmd) {
@@ -83,6 +85,7 @@ class ilHelpMeGUI {
 
 		$form->setFormAction($this->ctrl->getFormAction($this, "", "", true));
 
+		$form->addCommandButton("", $this->txt("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
 		$form->addCommandButton("newSupport", $this->txt("srsu_submit"), "il_help_me_submit");
 		$form->addCommandButton("", $this->txt("srsu_cancel"), "il_help_me_cancel");
 

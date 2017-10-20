@@ -15,6 +15,7 @@ srsu_reproduce_steps#:#Schritte zum Reproduzieren
 srsu_roles#:#Rollen
 srsu_save#:#Speichern
 srsu_screenshot#:#Screenshot
+srsu_screenshot_current_page#:#Screenshot der aktuellen Seite erstellen
 srsu_send_email#:#Per E-Mail senden
 srsu_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden!
 srsu_sent_success#:#Vielen Dank für Ihre Support-Anfrage! Eine Bestätigungs-E-Mail wurde an Sie geschickt!
