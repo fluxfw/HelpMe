@@ -24,6 +24,8 @@ $(document).ready(function () {
 		$form.submit(submit);
 		$cancel.click(cancel);
 
+		il.Form.init(); // TODO: Fix multiple listeners set
+
 		$modal.modal("show");
 	}
 

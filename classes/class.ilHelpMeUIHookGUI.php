@@ -51,6 +51,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				$tpl = $this->pl->getTemplate("il_help_me_button.html", true, true);
 
 				iljQueryUtil::initjQuery();
+				$this->tpl->addJavaScript("Services/Form/js/Form.js");
 				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
