@@ -15,6 +15,10 @@ abstract class ilHelpMeRecipient {
 	 * @var ilHelpMeConfig
 	 */
 	protected $config;
+	/**
+	 * @var ilHelpMeUIHookGUI
+	 */
+	protected $pl;
 
 
 	/**
@@ -44,6 +48,8 @@ abstract class ilHelpMeRecipient {
 	protected function __construct($support, $config) {
 		$this->support = $support;
 		$this->config = $config;
+
+		$this->pl = ilHelpMePlugin::getInstance();
 	}
 
 

@@ -1,6 +1,7 @@
 srsu_cancel#:#Cancel
 srsu_configuration#:#Configuration
 srsu_configuration_saved#:#Configuration saved
+srsu_confirmation#:#Confirmation
 srsu_create_jira_ticket#:#Create a Jira ticket
 srsu_description#:#Description
 srsu_email_address#:#Email address

@@ -1,5 +1,7 @@
 <?php
 
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
+
 /**
  * Support data
  */
@@ -29,6 +31,47 @@ class ilHelpMeSupport {
 	 * @var string
 	 */
 	protected $reproduce_steps;
+	/**
+	 * @var ilHelpMeUIHookGUI
+	 */
+	protected $pl;
+
+
+	public function __construct() {
+		$this->pl = ilHelpMePlugin::getInstance();
+	}
+
+
+	/**
+	 * Generate email subject
+	 *
+	 * @return string
+	 */
+	function getSubject() {
+		return $this->priority->getPriority() . " - " . $this->title;
+	}
+
+
+	/**
+	 * Generate email body
+	 *
+	 * @return string
+	 */
+	function getBody() {
+		$fields = [];
+		$fields[] = [ "srsu_title", $this->title ];
+		$fields[] = [ "srsu_email_address", $this->email ];
+		$fields[] = [ "srsu_phone", $this->phone ];
+		$fields[] = [ "srsu_priority", $this->priority->getPriority() ];
+		$fields[] = [ "srsu_description", $this->description ];
+		$fields[] = [ "srsu_reproduce_steps", $this->reproduce_steps ];
+
+		$body = implode("<br><br>", array_map(function ($field) {
+			return "<h2>" . ilUtil::prepareFormOutput($this->pl->txt($field[0])) . "</h2>" . ilUtil::prepareFormOutput($field[1]);
+		}, $fields));
+
+		return $body;
+	}
 
 
 	/**

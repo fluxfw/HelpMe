@@ -199,7 +199,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		$config_roles = $this->getConfigRolesArray();
 
 		foreach ($user_roles as $user_role) {
-			if (array_search($user_role["rol_id"], $config_roles) !== false) {
+			if (in_array($user_role["rol_id"], $config_roles)) {
 				return true;
 			}
 		}
