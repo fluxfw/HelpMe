@@ -59,8 +59,6 @@ class ilHelpMeGUI {
 			die();
 		}
 
-		$this->tpl->getStandardTemplate();
-
 		$cmd = $this->ctrl->getCmd();
 
 		switch ($cmd) {

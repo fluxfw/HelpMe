@@ -206,4 +206,23 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 		return false;
 	}
+
+
+	protected function beforeUninstall() {
+		/**
+		 * @var ilDB $ilDB
+		 */
+
+		global $ilDB;
+
+		if (ilHelpMeConfig::tableExists()) {
+			$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME);
+		}
+		if (ilHelpMeConfigPriority::tableExists()) {
+			$ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME);
+		}
+		if (ilHelpMeConfigRole::tableExists()) {
+			$ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME);
+		}
+	}
 }
