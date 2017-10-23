@@ -7,6 +7,11 @@ srsu_create_jira_ticket#:#Create a Jira ticket
 srsu_description#:#Description
 srsu_email_address#:#Email address
 srsu_info#:#Info text
+srsu_jira_domain#:#Jira domain name
+srsu_jira_password#:#Jira password
+srsu_jira_project_key#:#Jira project key
+srsu_jira_project_type#:#Jira project type
+srsu_jira_username#:#Jira username
 srsu_phone#:#Phone
 srsu_priority#:#Priority
 srsu_priorities#:#Priorities

@@ -1,6 +1,8 @@
 <?php
 
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipientSendMail.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipientCreateJiraTicket.php";
+require_once "Services/Mail/classes/class.ilMimeMail.php";
 
 /**
  * Support recipient
@@ -34,6 +36,10 @@ abstract class ilHelpMeRecipient {
 				return new ilHelpMeRecipientSendMail($support, $config);
 				break;
 
+			case "create_jira_ticket":
+				return new ilHelpMeRecipientCreateJiraTicket($support, $config);
+				break;
+
 			default:
 				return NULL;
 				break;
@@ -54,9 +60,35 @@ abstract class ilHelpMeRecipient {
 
 
 	/**
+	 * Send confirmation email
+	 *
 	 * @return bool
 	 */
-	abstract function sendSupport();
+	function sendConfirmationMail() {
+		$mailer = new ilMimeMail();
+
+		$mailer->To($this->support->getEmail());
+
+		$mailer->Subject($this->pl->txt("srsu_confirmation") . ": " . $this->support->getSubject());
+
+		$mailer->Body($this->support->getBody());
+
+		foreach ($this->support->getScreenshots() as $screenshot) {
+			$mailer->Attach($screenshot["tmp_name"], $screenshot["type"], "attachment", $screenshot["name"]);
+		}
+
+		$mailer->Send();
+
+		return true; // TODO: check error
+	}
+
+
+	/**
+	 * Send support to recipient
+	 *
+	 * @return bool
+	 */
+	abstract function sendSupportToRecipient();
 
 
 	/**

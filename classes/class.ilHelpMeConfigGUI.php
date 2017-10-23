@@ -8,6 +8,7 @@ require_once "Services/Form/classes/class.ilTextInputGUI.php";
 require_once "Services/Form/classes/class.ilEMailInputGUI.php";
 require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 require_once "Services/Form/classes/class.ilMultiSelectInputGUI.php";
+require_once "Services/Form/classes/class.ilPasswordInputGUI.php";
 require_once "Services/Utilities/classes/class.ilUtil.php";
 
 /**
@@ -94,8 +95,34 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$recipient_jira = new ilRadioOption();
 		$recipient_jira->setTitle($this->txt("srsu_create_jira_ticket"));
-		$recipient_jira->setDisabled(true);
 		$recipient_jira->setValue("create_jira_ticket");
+
+		$jira_domain = new ilTextInputGUI($this->txt("srsu_jira_domain"), "srsu_jira_domain");
+		$jira_domain->setRequired(true);
+		$jira_domain->setValue($config->getJiraDomain());
+		$recipient_jira->addSubItem($jira_domain);
+
+		$jira_project_key = new ilTextInputGUI($this->txt("srsu_jira_project_key"), "srsu_jira_project_key");
+		$jira_project_key->setRequired(true);
+		$jira_project_key->setValue($config->getJiraProjectKey());
+		$recipient_jira->addSubItem($jira_project_key);
+
+		$jira_project_type = new ilTextInputGUI($this->txt("srsu_jira_project_type"), "srsu_jira_project_type");
+		$jira_project_type->setRequired(true);
+		$jira_project_type->setValue($config->getJiraProjectType());
+		$recipient_jira->addSubItem($jira_project_type);
+
+		$jira_username = new ilTextInputGUI($this->txt("srsu_jira_username"), "srsu_jira_username");
+		$jira_username->setRequired(true);
+		$jira_username->setValue($config->getJiraUsername());
+		$recipient_jira->addSubItem($jira_username);
+
+		$jira_password = new ilPasswordInputGUI($this->txt("srsu_jira_password"), "srsu_jira_password");
+		$jira_password->setRetype(false);
+		$jira_password->setRequired(true);
+		$jira_password->setValue($config->getJiraPassword());
+		$recipient_jira->addSubItem($jira_password);
+
 		$recipient->addOption($recipient_jira);
 
 		$recipient->setValue($config->getRecipient());
@@ -162,6 +189,21 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$send_email_address = $form->getInput("srsu_send_email_address");
 		$config->setSendEmailAddress($send_email_address);
+
+		$jira_domain = $form->getInput("srsu_jira_domain");
+		$config->setJiraDomain($jira_domain);
+
+		$jira_project_key = $form->getInput("srsu_jira_project_key");
+		$config->setJiraProjectKey($jira_project_key);
+
+		$jira_project_type = $form->getInput("srsu_jira_project_type");
+		$config->setJiraProjectType($jira_project_type);
+
+		$jira_username = $form->getInput("srsu_jira_username");
+		$config->setJiraUsername($jira_username);
+
+		$jira_password = $form->getInput("srsu_jira_password");
+		$config->setJiraPassword($jira_password);
 
 		$priorities = $form->getInput("srsu_priorities");
 		$this->pl->setConfigPrioritiesArray($priorities);

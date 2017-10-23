@@ -35,15 +35,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @con_fieldtype   text
 	 * @con_is_notnull  true
 	 */
-	protected $recipient;
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  false
-	 */
-	protected $send_email_address;
+	protected $recipient = "";
 	/**
 	 * @var string
 	 *
@@ -51,7 +43,56 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @con_fieldtype   text
 	 * @con_is_notnull  true
 	 */
-	protected $info;
+	protected $send_email_address = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
+	protected $jira_domain = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
+	protected $jira_project_key = "";
+	/**
+	 * @var int
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   integer
+	 * @con_length      8
+	 * @con_is_notnull  true
+	 */
+	protected $jira_project_type = 0;
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
+	protected $jira_username = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
+	protected $jira_password = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
+	protected $info = "";
 
 
 	/**
@@ -99,6 +140,86 @@ class ilHelpMeConfig extends ActiveRecord {
 	 */
 	public function setSendEmailAddress($send_email_address) {
 		$this->send_email_address = $send_email_address;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getJiraDomain() {
+		return $this->jira_domain;
+	}
+
+
+	/**
+	 * @param string $jira_domain
+	 */
+	public function setJiraDomain($jira_domain) {
+		$this->jira_domain = $jira_domain;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getJiraProjectKey() {
+		return $this->jira_project_key;
+	}
+
+
+	/**
+	 * @param string $jira_project_key
+	 */
+	public function setJiraProjectKey($jira_project_key) {
+		$this->jira_project_key = $jira_project_key;
+	}
+
+
+	/**
+	 * @return int
+	 */
+	public function getJiraProjectType() {
+		return $this->jira_project_type;
+	}
+
+
+	/**
+	 * @param int $jira_project_type
+	 */
+	public function setJiraProjectType($jira_project_type) {
+		$this->jira_project_type = $jira_project_type;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getJiraUsername() {
+		return $this->jira_username;
+	}
+
+
+	/**
+	 * @param string $jira_username
+	 */
+	public function setJiraUsername($jira_username) {
+		$this->jira_username = $jira_username;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getJiraPassword() {
+		return $this->jira_password;
+	}
+
+
+	/**
+	 * @param string $jira_password
+	 */
+	public function setJiraPassword($jira_password) {
+		$this->jira_password = $jira_password;
 	}
 
 

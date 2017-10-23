@@ -71,9 +71,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		} else {
 			$config = new ilHelpMeConfig();
 			$config->setId(1);
-			$config->setRecipient("send_email");
-			$config->setSendEmailAddress("");
-			$config->setInfo($this->txt("srsu_info"));
 			$config->create();
 		}
 

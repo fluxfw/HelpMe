@@ -229,7 +229,7 @@ class ilHelpMeGUI {
 		}
 
 		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
-		if ($recipient->sendSupport()) {
+		if ($recipient->sendSupportToRecipient()) {
 			$message = $this->tpl->getMessageHTML($this->txt("srsu_sent_success"), "success");
 
 			$form = $this->getSuccessForm();
