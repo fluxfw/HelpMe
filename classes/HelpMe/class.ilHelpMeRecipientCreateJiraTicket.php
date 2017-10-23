@@ -1,6 +1,7 @@
 <?php
 
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipient.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/JiraCurl/class.ilJiraCurl.php";
 
 /**
  * Create Jira ticket
@@ -8,11 +9,24 @@ require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/
 class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 
 	/**
+	 * @var ilJiraCurl
+	 */
+	protected $jiraCurl;
+
+
+	/**
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */
 	function __construct($support, $config) {
 		parent::__construct($support, $config);
+
+		$this->jiraCurl = new ilJiraCurl();
+		$this->jiraCurl->setJiraDomain($config->getJiraDomain());
+		$this->jiraCurl->setJiraAuthorization($config->getJiraAuthorization());
+		$this->jiraCurl->setJiraUsername($config->getJiraUsername());
+		$this->jiraCurl->setJiraPassword($config->getJiraPassword());
+		$this->jiraCurl->setJiraConsumerKey($config->getJiraConsumerKey());
 	}
 
 
@@ -32,6 +46,6 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket() {
-		return false;
+		return $this->jiraCurl->createJiraTicket($this->config->getJiraProjectKey(), $this->config->getJiraProjectType(), $this->support->getSubject(), $this->support->getBody());
 	}
 }

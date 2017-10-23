@@ -76,6 +76,14 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @con_fieldtype   text
 	 * @con_is_notnull  true
 	 */
+	protected $jira_authorization = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
 	protected $jira_username = "";
 	/**
 	 * @var string
@@ -85,6 +93,14 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @con_is_notnull  true
 	 */
 	protected $jira_password = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
+	protected $jira_consumer_key = "";
 	/**
 	 * @var string
 	 *
@@ -194,6 +210,22 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
+	public function getJiraAuthorization() {
+		return $this->jira_authorization;
+	}
+
+
+	/**
+	 * @param string $jira_authorization
+	 */
+	public function setJiraAuthorization($jira_authorization) {
+		$this->jira_authorization = $jira_authorization;
+	}
+
+
+	/**
+	 * @return string
+	 */
 	public function getJiraUsername() {
 		return $this->jira_username;
 	}
@@ -220,6 +252,22 @@ class ilHelpMeConfig extends ActiveRecord {
 	 */
 	public function setJiraPassword($jira_password) {
 		$this->jira_password = $jira_password;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getJiraConsumerKey() {
+		return $this->jira_consumer_key;
+	}
+
+
+	/**
+	 * @param string $jira_consumer_key
+	 */
+	public function setJiraConsumerKey($jira_consumer_key) {
+		$this->jira_consumer_key = $jira_consumer_key;
 	}
 
 

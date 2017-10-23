@@ -203,6 +203,9 @@ class ilHelpMeGUI {
 		$title = $form->getInput("srsu_title");
 		$support->setTitle($title);
 
+		$time = time();
+		$support->setTime($time);
+
 		$email = $form->getInput("srsu_email");
 		$support->setEmail($email);
 

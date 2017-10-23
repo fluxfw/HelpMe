@@ -1,6 +1,8 @@
 <?php
 
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
+require_once "Services/Calendar/classes/class.ilDateTime.php";
+require_once "Services/Calendar/classes/class.ilDatePresentation.php";
 
 /**
  * Support data
@@ -11,6 +13,10 @@ class ilHelpMeSupport {
 	 * @var string
 	 */
 	protected $title;
+	/**
+	 * @var int
+	 */
+	protected $time;
 	/**
 	 * @var string
 	 */
@@ -66,6 +72,7 @@ class ilHelpMeSupport {
 
 		$titles = [
 			"srsu_title" => $this->title,
+			"srsu_datetime" => $this->getFormatedTime(),
 			"srsu_email_address" => $this->email,
 			"srsu_phone" => $this->phone,
 			"srsu_priority" => $this->priority->getPriority(),
@@ -100,6 +107,26 @@ class ilHelpMeSupport {
 
 
 	/**
+	 * Format time
+	 *
+	 * @return string
+	 */
+	function getFormatedTime() {
+		// Save and restore old existing useRelativeDates
+		$useRelativeDates_ = ilDatePresentation::useRelativeDates();
+
+		ilDatePresentation::setUseRelativeDates(false);
+
+		$formated_time = ilDatePresentation::formatDate(new ilDateTime($this->time, IL_CAL_UNIX));
+
+		// Save and restore old existing useRelativeDates
+		ilDatePresentation::setUseRelativeDates($useRelativeDates_);
+
+		return $formated_time;
+	}
+
+
+	/**
 	 * @return string
 	 */
 	public function getTitle() {
@@ -112,6 +139,22 @@ class ilHelpMeSupport {
 	 */
 	public function setTitle($title) {
 		$this->title = $title;
+	}
+
+
+	/**
+	 * @return int
+	 */
+	public function getTime() {
+		return $this->time;
+	}
+
+
+	/**
+	 * @param int $time
+	 */
+	public function setTime($time) {
+		$this->time = $time;
 	}
 
 
@@ -204,7 +247,7 @@ class ilHelpMeSupport {
 
 
 	/**
-	 * @param array[] $screenshot
+	 * @param array[] $screenshots
 	 */
 	public function setScreenshots($screenshots) {
 		$this->screenshots = $screenshots;

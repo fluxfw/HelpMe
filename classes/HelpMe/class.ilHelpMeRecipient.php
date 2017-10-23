@@ -60,6 +60,14 @@ abstract class ilHelpMeRecipient {
 
 
 	/**
+	 * Send support to recipient
+	 *
+	 * @return bool
+	 */
+	abstract function sendSupportToRecipient();
+
+
+	/**
 	 * Send confirmation email
 	 *
 	 * @return bool
@@ -81,14 +89,6 @@ abstract class ilHelpMeRecipient {
 
 		return true; // TODO: check error
 	}
-
-
-	/**
-	 * Send support to recipient
-	 *
-	 * @return bool
-	 */
-	abstract function sendSupportToRecipient();
 
 
 	/**
