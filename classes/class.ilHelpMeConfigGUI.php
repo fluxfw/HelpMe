@@ -108,10 +108,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$jira_project_key->setValue($config->getJiraProjectKey());
 		$recipient_jira->addSubItem($jira_project_key);
 
-		$jira_project_type = new ilTextInputGUI($this->txt("srsu_jira_project_type"), "srsu_jira_project_type");
-		$jira_project_type->setRequired(true);
-		$jira_project_type->setValue($config->getJiraProjectType());
-		$recipient_jira->addSubItem($jira_project_type);
+		$jira_issue_type = new ilTextInputGUI($this->txt("srsu_jira_issue_type"), "srsu_jira_issue_type");
+		$jira_issue_type->setRequired(true);
+		$jira_issue_type->setValue($config->getJiraIssueType());
+		$recipient_jira->addSubItem($jira_issue_type);
 
 		// Jira authorization
 		$jira_authorization = new ilRadioGroupInputGUI($this->txt("srsu_jira_authorization"), "srsu_jira_authorization");
@@ -213,8 +213,8 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$jira_project_key = $form->getInput("srsu_jira_project_key");
 		$config->setJiraProjectKey($jira_project_key);
 
-		$jira_project_type = $form->getInput("srsu_jira_project_type");
-		$config->setJiraProjectType($jira_project_type);
+		$jira_issue_type = $form->getInput("srsu_jira_issue_type");
+		$config->setJiraIssueType($jira_issue_type);
 
 		$jira_authorization = $form->getInput("srsu_jira_authorization");
 		$config->setJiraAuthorization($jira_authorization);

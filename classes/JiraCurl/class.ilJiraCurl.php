@@ -92,14 +92,14 @@ class ilJiraCurl {
 
 
 	/**
-	 * Run Jira action
+	 * Jira request
 	 *
 	 * @param string $rest_url
 	 * @param array  $post_data
 	 *
 	 * @return bool
 	 */
-	function runAction($rest_url, $post_data) {
+	protected function doRequest($rest_url, $post_data) {
 		$curlConnection = NULL;
 
 		try {
@@ -126,13 +126,13 @@ class ilJiraCurl {
 	 * Create Jira ticket
 	 *
 	 * @param string $jira_project_key
-	 * @param int    $jira_project_type
+	 * @param string $jira_issue_type
 	 * @param string $summary
 	 * @param string $description
 	 *
 	 * @return bool
 	 */
-	function createJiraTicket($jira_project_key, $jira_project_type, $summary, $description) {
+	function createJiraTicket($jira_project_key, $jira_issue_type, $summary, $description) {
 		$data = [
 			"fields" => [
 				"project" => [
@@ -144,14 +144,13 @@ class ilJiraCurl {
 				"description" => $description,
 
 				"issuetype" => [
-					// "name" => $jira_project_type,
-					"name" => "Task",
+					"name" => $jira_issue_type,
 					"subtask" => false
 				]
 			]
 		];
 
-		return $this->runAction("/rest/api/2/issue", $data);
+		return $this->doRequest("/rest/api/2/issue", $data);
 	}
 
 

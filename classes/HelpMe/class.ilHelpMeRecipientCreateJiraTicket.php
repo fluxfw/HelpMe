@@ -46,6 +46,6 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket() {
-		return $this->jiraCurl->createJiraTicket($this->config->getJiraProjectKey(), $this->config->getJiraProjectType(), $this->support->getSubject(), $this->support->getBody());
+		return $this->jiraCurl->createJiraTicket($this->config->getJiraProjectKey(), $this->config->getJiraIssueType(), $this->support->getSubject(), $this->support->getBody());
 	}
 }

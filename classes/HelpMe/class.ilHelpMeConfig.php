@@ -61,14 +61,13 @@ class ilHelpMeConfig extends ActiveRecord {
 	 */
 	protected $jira_project_key = "";
 	/**
-	 * @var int
+	 * @var string
 	 *
 	 * @con_has_field   true
-	 * @con_fieldtype   integer
-	 * @con_length      8
+	 * @con_fieldtype   text
 	 * @con_is_notnull  true
 	 */
-	protected $jira_project_type = 0;
+	protected $jira_issue_type = "";
 	/**
 	 * @var string
 	 *
@@ -194,16 +193,16 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return int
 	 */
-	public function getJiraProjectType() {
-		return $this->jira_project_type;
+	public function getJiraIssueType() {
+		return $this->jira_issue_type;
 	}
 
 
 	/**
-	 * @param int $jira_project_type
+	 * @param int $jira_issue_type
 	 */
-	public function setJiraProjectType($jira_project_type) {
-		$this->jira_project_type = $jira_project_type;
+	public function setJiraIssueType($jira_issue_type) {
+		$this->jira_issue_type = $jira_issue_type;
 	}
 
 

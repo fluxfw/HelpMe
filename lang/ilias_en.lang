@@ -11,10 +11,10 @@ srsu_info#:#Info text
 srsu_jira_authorization#:#Jira authorization
 srsu_jira_consumer_key#:#Jira consumer key
 srsu_jira_domain#:#Jira domain name
+srsu_jira_issue_type#:#Jira issue type
 srsu_jira_oauth#:#oAuth
 srsu_jira_password#:#Jira password
 srsu_jira_project_key#:#Jira project key
-srsu_jira_project_type#:#Jira project type
 srsu_jira_username#:#Jira username
 srsu_jira_usernamepassword#:#Username & password
 srsu_phone#:#Phone
