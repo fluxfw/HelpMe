@@ -110,8 +110,6 @@ class ilJiraCurl {
 
 			$a = $curlConnection->exec();
 
-			$a;
-
 			return true;
 		} catch (Exception $ex) {
 			return false;
@@ -153,7 +151,7 @@ class ilJiraCurl {
 			]
 		];
 
-		return $this->runAction("/issue", $data);
+		return $this->runAction("/rest/api/2/issue", $data);
 	}
 
 
