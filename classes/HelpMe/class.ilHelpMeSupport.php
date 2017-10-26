@@ -10,13 +10,21 @@ require_once "Services/Calendar/classes/class.ilDateTime.php";
 class ilHelpMeSupport {
 
 	/**
+	 * @var int
+	 */
+	protected $time;
+	/**
 	 * @var string
 	 */
 	protected $title;
 	/**
-	 * @var int
+	 * @var string
 	 */
-	protected $time;
+	protected $name;
+	/**
+	 * @var string
+	 */
+	protected $login;
 	/**
 	 * @var string
 	 */
@@ -72,12 +80,14 @@ class ilHelpMeSupport {
 
 		$titles = [
 			"srsu_title" => $this->title,
-			"srsu_datetime" => $this->getFormatedTime(),
+			"srsu_name" => $this->name,
+			"srsu_login" => $this->login,
 			"srsu_email_address" => $this->email,
 			"srsu_phone" => $this->phone,
 			"srsu_priority" => $this->priority->getPriority(),
 			"srsu_description" => $this->description,
-			"srsu_reproduce_steps" => $this->reproduce_steps
+			"srsu_reproduce_steps" => $this->reproduce_steps,
+			"srsu_datetime" => $this->getFormatedTime()
 		];
 
 		foreach ($titles as $title => $txt) {
@@ -127,6 +137,22 @@ class ilHelpMeSupport {
 
 
 	/**
+	 * @return int
+	 */
+	public function getTime() {
+		return $this->time;
+	}
+
+
+	/**
+	 * @param int $time
+	 */
+	public function setTime($time) {
+		$this->time = $time;
+	}
+
+
+	/**
 	 * @return string
 	 */
 	public function getTitle() {
@@ -143,18 +169,34 @@ class ilHelpMeSupport {
 
 
 	/**
-	 * @return int
+	 * @return string
 	 */
-	public function getTime() {
-		return $this->time;
+	public function getName() {
+		return $this->name;
 	}
 
 
 	/**
-	 * @param int $time
+	 * @param string $name
 	 */
-	public function setTime($time) {
-		$this->time = $time;
+	public function setName($name) {
+		$this->name = $name;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getLogin() {
+		return $this->login;
+	}
+
+
+	/**
+	 * @param string $login
+	 */
+	public function setLogin($login) {
+		$this->login = $login;
 	}
 
 

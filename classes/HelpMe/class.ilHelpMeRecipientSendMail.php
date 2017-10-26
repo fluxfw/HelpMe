@@ -36,7 +36,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 		try {
 			$mailer = new ilMimeMail();
 
-			$mailer->From([ $this->support->getEmail(), "Name" ]);
+			$mailer->From([ $this->support->getEmail(), $this->support->getName() ]);
 
 			$mailer->To($this->config->getSendEmailAddress());
 

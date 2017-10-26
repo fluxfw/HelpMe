@@ -19,6 +19,8 @@ srsu_jira_private_key#:#Jira-Private-Key
 srsu_jira_project_key#:#Jira-Projekt-Key
 srsu_jira_username#:#Jira-Benutzername
 srsu_jira_usernamepassword#:#Benutzername & Passwort
+srsu_login#:#Login
+srsu_name#:#Name
 srsu_phone#:#Telefon
 srsu_please_select#:#bitte wählen
 srsu_priority#:#Dringlichkeit

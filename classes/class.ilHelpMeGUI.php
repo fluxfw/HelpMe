@@ -9,6 +9,7 @@ require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeSupport.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipient.php";
 require_once "Services/Form/classes/class.ilFileInputGUI.php";
+require_once "Services/Form/classes/class.ilNonEditableValueGUI.php";
 
 /**
  * HelpMe GUI
@@ -93,6 +94,14 @@ class ilHelpMeGUI {
 		$title = new ilTextInputGUI($this->txt("srsu_title"), "srsu_title");
 		$title->setRequired(true);
 		$form->addItem($title);
+
+		$name = new ilNonEditableValueGUI($this->txt("srsu_name"));
+		$name->setValue($this->usr->getFullname());
+		$form->addItem($name);
+
+		$login = new ilNonEditableValueGUI($this->txt("srsu_login"));
+		$login->setValue($this->usr->getLogin());
+		$form->addItem($login);
 
 		$email = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_email");
 		$email->setRequired(true);
@@ -200,11 +209,17 @@ class ilHelpMeGUI {
 
 		$support = new ilHelpMeSupport();
 
+		$time = time();
+		$support->setTime($time);
+
 		$title = $form->getInput("srsu_title");
 		$support->setTitle($title);
 
-		$time = time();
-		$support->setTime($time);
+		$name = $this->usr->getFullname();
+		$support->setName($name);
+
+		$login = $this->usr->getLogin();
+		$support->setLogin($login);
 
 		$email = $form->getInput("srsu_email");
 		$support->setEmail($email);
