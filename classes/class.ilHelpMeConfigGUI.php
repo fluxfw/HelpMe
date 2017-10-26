@@ -163,6 +163,8 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		// Info text
 		$info = new ilTextAreaInputGUI($this->txt("srsu_info"), "srsu_info");
 		$info->setRequired(true);
+		$info->setUseRte(true);
+		$info->setRteTagSet("extended");
 		$info->setValue($config->getInfo());
 		$form->addItem($info);
 
