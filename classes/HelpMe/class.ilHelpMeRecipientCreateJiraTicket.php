@@ -12,6 +12,10 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @var ilJiraCurl
 	 */
 	protected $jiraCurl;
+	/**
+	 * @var string
+	 */
+	protected $issue_key;
 
 
 	/**
@@ -22,11 +26,17 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 		parent::__construct($support, $config);
 
 		$this->jiraCurl = new ilJiraCurl();
+
 		$this->jiraCurl->setJiraDomain($config->getJiraDomain());
+
 		$this->jiraCurl->setJiraAuthorization($config->getJiraAuthorization());
+
 		$this->jiraCurl->setJiraUsername($config->getJiraUsername());
 		$this->jiraCurl->setJiraPassword($config->getJiraPassword());
+
 		$this->jiraCurl->setJiraConsumerKey($config->getJiraConsumerKey());
+		$this->jiraCurl->setJiraPrivateKey($config->getJiraPrivateKey());
+		$this->jiraCurl->setJiraAccessToken($config->getJiraAccessToken());
 	}
 
 
@@ -36,7 +46,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	function sendSupportToRecipient() {
-		return ($this->createJiraTicket() && $this->sendConfirmationMail());
+		return ($this->createJiraTicket() && $this->addScreenshoots() && $this->sendConfirmationMail());
 	}
 
 
@@ -46,6 +56,30 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket() {
-		return $this->jiraCurl->createJiraTicket($this->config->getJiraProjectKey(), $this->config->getJiraIssueType(), $this->support->getSubject(), $this->support->getBody());
+		$issue_key = $this->jiraCurl->createJiraTicket($this->config->getJiraProjectKey(), $this->config->getJiraIssueType(), $this->support->getSubject(), $this->support->getBody());
+
+		if ($issue_key === false) {
+			return false;
+		}
+
+		$this->issue_key = $issue_key;
+
+		return true;
+	}
+
+
+	/**
+	 * Add screenshots to Jira ticket
+	 *
+	 * @return bool
+	 */
+	protected function addScreenshoots() {
+		foreach ($this->support->getScreenshots() as $screenshot) {
+			if (!$this->jiraCurl->addAttachmentToIssue($this->issue_key, $screenshot["name"], $screenshot["type"], $screenshot["tmp_name"])) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 }

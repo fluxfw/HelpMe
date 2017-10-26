@@ -143,6 +143,16 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$jira_consumer_key->setValue($config->getJiraConsumerKey());
 		$jira_oauth->addSubItem($jira_consumer_key);
 
+		$jira_private_key = new ilTextAreaInputGUI($this->txt("srsu_jira_private_key"), "srsu_jira_private_key");
+		$jira_private_key->setRequired(true);
+		$jira_private_key->setValue($config->getJiraPrivateKey());
+		$jira_oauth->addSubItem($jira_private_key);
+
+		$jira_access_token = new ilTextInputGUI($this->txt("srsu_jira_access_token"), "srsu_jira_access_token");
+		$jira_access_token->setRequired(true);
+		$jira_access_token->setValue($config->getJiraAccessToken());
+		$jira_oauth->addSubItem($jira_access_token);
+
 		// Priorities
 		$priorities = new ilTextInputGUI($this->txt("srsu_priorities"), "srsu_priorities");
 		$priorities->setMulti(true);
@@ -227,6 +237,12 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$jira_consumer_key = $form->getInput("srsu_jira_consumer_key");
 		$config->setJiraConsumerKey($jira_consumer_key);
+
+		$jira_private_key = $form->getInput("srsu_jira_private_key");
+		$config->setJiraPrivateKey($jira_private_key);
+
+		$jira_access_token = $form->getInput("srsu_jira_access_token");
+		$config->setJiraAccessToken($jira_access_token);
 
 		$priorities = $form->getInput("srsu_priorities");
 		$this->pl->setConfigPrioritiesArray($priorities);

@@ -107,6 +107,22 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @con_fieldtype   text
 	 * @con_is_notnull  true
 	 */
+	protected $jira_private_key = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
+	protected $jira_access_token = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field   true
+	 * @con_fieldtype   text
+	 * @con_is_notnull  true
+	 */
 	protected $info = "";
 
 
@@ -191,7 +207,7 @@ class ilHelpMeConfig extends ActiveRecord {
 
 
 	/**
-	 * @return int
+	 * @return string
 	 */
 	public function getJiraIssueType() {
 		return $this->jira_issue_type;
@@ -199,7 +215,7 @@ class ilHelpMeConfig extends ActiveRecord {
 
 
 	/**
-	 * @param int $jira_issue_type
+	 * @param string $jira_issue_type
 	 */
 	public function setJiraIssueType($jira_issue_type) {
 		$this->jira_issue_type = $jira_issue_type;
@@ -267,6 +283,38 @@ class ilHelpMeConfig extends ActiveRecord {
 	 */
 	public function setJiraConsumerKey($jira_consumer_key) {
 		$this->jira_consumer_key = $jira_consumer_key;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getJiraPrivateKey() {
+		return $this->jira_private_key;
+	}
+
+
+	/**
+	 * @param string $jira_private_key
+	 */
+	public function setJiraPrivateKey($jira_private_key) {
+		$this->jira_private_key = $jira_private_key;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getJiraAccessToken() {
+		return $this->jira_access_token;
+	}
+
+
+	/**
+	 * @param string $jira_access_token
+	 */
+	public function setJiraAccessToken($jira_access_token) {
+		$this->jira_access_token = $jira_access_token;
 	}
 
 

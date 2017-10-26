@@ -33,20 +33,24 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	function sendEmail() {
-		$mailer = new ilMimeMail();
+		try {
+			$mailer = new ilMimeMail();
 
-		$mailer->To($this->config->getSendEmailAddress());
+			$mailer->To($this->config->getSendEmailAddress());
 
-		$mailer->Subject($this->support->getSubject());
+			$mailer->Subject($this->support->getSubject());
 
-		$mailer->Body($this->support->getBody());
+			$mailer->Body($this->support->getBody());
 
-		foreach ($this->support->getScreenshots() as $screenshot) {
-			$mailer->Attach($screenshot["tmp_name"], $screenshot["type"], "attachment", $screenshot["name"]);
+			foreach ($this->support->getScreenshots() as $screenshot) {
+				$mailer->Attach($screenshot["tmp_name"], $screenshot["type"], "attachment", $screenshot["name"]);
+			}
+
+			$mailer->Send();
+
+			return true;
+		} catch (Exception $ex) {
+			return false;
 		}
-
-		$mailer->Send();
-
-		return true; // TODO: check error
 	}
 }
