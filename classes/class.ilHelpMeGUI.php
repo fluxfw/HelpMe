@@ -113,7 +113,7 @@ class ilHelpMeGUI {
 		$form->addItem($description);
 
 		$reproduce_steps = new ilTextAreaInputGUI($this->txt("srsu_reproduce_steps"), "srsu_reproduce_steps");
-		$reproduce_steps->setRequired(true);
+		$reproduce_steps->setRequired(false);
 		$form->addItem($reproduce_steps);
 
 		$screenshot = new ilFileInputGUI($this->txt("srsu_screenshot"), "srsu_screenshot");
