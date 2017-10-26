@@ -20,6 +20,7 @@ srsu_jira_project_key#:#Jira project key
 srsu_jira_username#:#Jira username
 srsu_jira_usernamepassword#:#Username & password
 srsu_phone#:#Phone
+srsu_please_select#:#please select
 srsu_priority#:#Priority
 srsu_priorities#:#Priorities
 srsu_recipient#:#Form recipient

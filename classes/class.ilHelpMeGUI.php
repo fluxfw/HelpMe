@@ -77,7 +77,7 @@ class ilHelpMeGUI {
 	 * @return ilPropertyFormGUI
 	 */
 	protected function getSupportForm() {
-		$configPriorities = $this->pl->getConfigPrioritiesArray();
+		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + $this->pl->getConfigPrioritiesArray();
 
 		$form = new ilPropertyFormGUI();
 
