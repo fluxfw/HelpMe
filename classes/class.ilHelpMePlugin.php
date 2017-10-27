@@ -232,18 +232,12 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 		global $ilDB;
 
-		$this->deactivate();
-
 		$ilDB->manipulate("DELETE FROM il_plugin WHERE plugin_id=" . $ilDB->quote("srsu"));
 
-		if (ilHelpMeConfig::tableExists()) {
-			$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME);
-		}
-		if (ilHelpMeConfigPriority::tableExists()) {
-			$ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME);
-		}
-		if (ilHelpMeConfigRole::tableExists()) {
-			$ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME);
-		}
+		$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME);
+
+		$ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME);
+
+		$ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME);
 	}
 }
