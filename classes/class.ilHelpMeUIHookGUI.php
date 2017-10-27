@@ -47,12 +47,12 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	function getHTML($a_comp, $a_part, $a_par = array()) {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if ($this->pl->currentUserHasRole()) {
-
+				// Support button
 				$tpl = $this->pl->getTemplate("il_help_me_button.html", true, true);
 
 				iljQueryUtil::initjQuery();
 				$this->tpl->addJavaScript("Services/Form/js/Form.js");
-				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/html2canvas.min.js");
+				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/lib/html2canvas.min.js");
 				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
@@ -69,6 +69,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
 			if ($this->pl->currentUserHasRole()) {
+				// Modal
 				ilModalGUI::initJS();
 
 				$modal = ilModalGUI::getInstance();
@@ -91,6 +92,6 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 * @return string
 	 */
 	protected function txt($a_var) {
-		return $this->getPluginObject()->txt($a_var);
+		return $this->pl->txt($a_var);
 	}
 }

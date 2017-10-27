@@ -146,6 +146,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$jira_private_key = new ilTextAreaInputGUI($this->txt("srsu_jira_private_key"), "srsu_jira_private_key");
 		$jira_private_key->setRequired(true);
+		$jira_private_key->setInfo("PEM formatted RSA private key");
 		$jira_private_key->setValue($config->getJiraPrivateKey());
 		$jira_oauth->addSubItem($jira_private_key);
 
@@ -172,6 +173,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		// Roles
 		$roles = new ilMultiSelectInputGUI($this->txt("srsu_roles"), "srsu_roles");
 		$roles->setRequired(true);
+		$roles->setInfo($this->txt("srsu_roles_description"));
 		$roles->setOptions($allRoles);
 		$roles->setValue($configRoles);
 		$roles->enableSelectAll(true);

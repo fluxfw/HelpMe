@@ -28,6 +28,7 @@ srsu_priorities#:#Priorities
 srsu_recipient#:#Form recipient
 srsu_reproduce_steps#:#Steps to Reproduce
 srsu_roles#:#Roles
+srsu_roles_description#:#Show support for selected roles only
 srsu_save#:#Save
 srsu_screenshot#:#Screenshot
 srsu_screenshot_current_page#:#Take screenshot of current page

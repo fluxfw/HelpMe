@@ -28,6 +28,7 @@ srsu_priorities#:#Dringlichkeiten
 srsu_recipient#:#Formularempfänger
 srsu_reproduce_steps#:#Schritte zum Reproduzieren
 srsu_roles#:#Rollen
+srsu_roles_description#:#Support nur für die ausgewählten Rollen anzeigen
 srsu_save#:#Speichern
 srsu_screenshot#:#Screenshot
 srsu_screenshot_current_page#:#Screenshot der aktuellen Seite erstellen
