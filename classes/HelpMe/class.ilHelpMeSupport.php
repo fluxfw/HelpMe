@@ -77,12 +77,14 @@ class ilHelpMeSupport {
 	/**
 	 * Generate email body
 	 *
+	 * @param string $template email|jira
+	 *
 	 * @return string
 	 */
-	function getBody() {
-		$tpl = $this->pl->getTemplate("il_help_me_email_body.html", true, true);
+	function getBody($template) {
+		$tpl = $this->pl->getTemplate("il_help_me_" . $template . "_body.html", true, true);
 
-		$titles = [
+		$fields = [
 			"srsu_title" => $this->title,
 			"srsu_name" => $this->name,
 			"srsu_login" => $this->login,
@@ -95,8 +97,8 @@ class ilHelpMeSupport {
 			"srsu_datetime" => $this->getFormatedTime()
 		];
 
-		foreach ($titles as $title => $txt) {
-			$tpl->setCurrentBlock("il_help_me_email_body");
+		foreach ($fields as $title => $txt) {
+			$tpl->setCurrentBlock("il_help_me_body");
 
 			$tpl->setVariable("TITLE", $this->pl->txt($title));
 

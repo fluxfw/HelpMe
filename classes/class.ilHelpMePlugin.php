@@ -212,7 +212,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	/**
 	 * Get browser infos
 	 *
-	 * @return string
+	 * @return string "Browser Version / System Version"
 	 */
 	function getBrowserInfos() {
 		$browser = new Browser();

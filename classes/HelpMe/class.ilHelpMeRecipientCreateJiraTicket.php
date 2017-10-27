@@ -56,7 +56,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket() {
-		$issue_key = $this->jiraCurl->createJiraTicket($this->config->getJiraProjectKey(), $this->config->getJiraIssueType(), $this->support->getSubject(), $this->support->getBody());
+		$issue_key = $this->jiraCurl->createJiraIssueTicket($this->config->getJiraProjectKey(), $this->config->getJiraIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
 
 		if ($issue_key === false) {
 			return false;

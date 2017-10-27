@@ -50,16 +50,14 @@ class ilJiraCurl {
 	 * @return ilCurlConnection
 	 */
 	protected function initCurlConnection($url, $headers) {
-
-
 		$curlConnection = new ilCurlConnection();
 
 		$curlConnection->init();
 
 		$curlConnection->setOpt(CURLOPT_RETURNTRANSFER, true);
-		$curlConnection->setOpt(CURLOPT_VERBOSE, 1);
-		$curlConnection->setOpt(CURLOPT_SSL_VERIFYPEER, 0);
-		$curlConnection->setOpt(CURLOPT_SSL_VERIFYHOST, 0);
+		$curlConnection->setOpt(CURLOPT_VERBOSE, true);
+		$curlConnection->setOpt(CURLOPT_SSL_VERIFYPEER, false);
+		$curlConnection->setOpt(CURLOPT_SSL_VERIFYHOST, false);
 		$curlConnection->setOpt(CURLOPT_POST, true);
 		$curlConnection->setOpt(CURLOPT_URL, $url);
 
@@ -69,7 +67,7 @@ class ilJiraCurl {
 				break;
 
 			case "oauth":
-				$nonce = sha1(uniqid(rand(), true));
+				$nonce = sha1(uniqid("", true) . $url);
 				$signature_method = "RSA-SHA1";
 				$timestamp = time();
 
@@ -145,7 +143,7 @@ class ilJiraCurl {
 
 			return $result;
 		} catch (Exception $ex) {
-			// Curl-Error
+			// Curl-Error!
 			return false;
 		} finally {
 			// Close Curl connection
@@ -158,16 +156,16 @@ class ilJiraCurl {
 
 
 	/**
-	 * Create Jira ticket
+	 * Create Jira issue ticket
 	 *
 	 * @param string $jira_project_key
 	 * @param string $jira_issue_type
 	 * @param string $summary
 	 * @param string $description
 	 *
-	 * @return string|bool
+	 * @return string|bool Issue-Key
 	 */
-	function createJiraTicket($jira_project_key, $jira_issue_type, $summary, $description) {
+	function createJiraIssueTicket($jira_project_key, $jira_issue_type, $summary, $description) {
 		$headers = [
 			"Accept" => "application/json",
 			"Content-Type" => "application/json"
@@ -192,7 +190,7 @@ class ilJiraCurl {
 
 		$result = $this->doRequest("/rest/api/2/issue", $headers, json_encode($data));
 
-		if ($result === false) {
+		if ($result === false || !isset($result["key"])) {
 			return false;
 		}
 
