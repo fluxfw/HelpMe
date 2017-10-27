@@ -58,7 +58,6 @@ class ilJiraCurl {
 		$curlConnection->setOpt(CURLOPT_VERBOSE, true);
 		$curlConnection->setOpt(CURLOPT_SSL_VERIFYPEER, false);
 		$curlConnection->setOpt(CURLOPT_SSL_VERIFYHOST, false);
-		$curlConnection->setOpt(CURLOPT_POST, true);
 		$curlConnection->setOpt(CURLOPT_URL, $url);
 
 		switch ($this->jira_authorization) {
@@ -97,7 +96,7 @@ class ilJiraCurl {
 				$o_auth["oauth_signature"] = $signature;
 
 				$headers["Authorization"] = "OAuth " . implode(", ", array_map(function ($key, $value) {
-						return ($key . '="' . $value . '"');
+						return (urlencode($key) . '="' . urlencode($value) . '"');
 					}, array_keys($o_auth), $o_auth));
 				break;
 
@@ -124,7 +123,7 @@ class ilJiraCurl {
 	 *
 	 * @return array|bool
 	 */
-	protected function doRequest($rest_url, $headers, $post_data) {
+	protected function doRequest($rest_url, $headers, $post_data = NULL) {
 		$url = $this->jira_domain . $rest_url;
 
 		$curlConnection = NULL;
@@ -132,7 +131,10 @@ class ilJiraCurl {
 		try {
 			$curlConnection = $this->initCurlConnection($url, $headers);
 
-			$curlConnection->setOpt(CURLOPT_POSTFIELDS, $post_data);
+			if ($post_data !== NULL) {
+				$curlConnection->setOpt(CURLOPT_POST, true);
+				$curlConnection->setOpt(CURLOPT_POSTFIELDS, $post_data);
+			}
 
 			$result = $curlConnection->exec();
 
@@ -212,6 +214,7 @@ class ilJiraCurl {
 	 */
 	function addAttachmentToIssue($issue_key, $attachement_name, $attachement_mime, $attachement_path) {
 		$headers = [
+			"Accept" => "application/json",
 			"X-Atlassian-Token" => "nocheck"
 		];
 

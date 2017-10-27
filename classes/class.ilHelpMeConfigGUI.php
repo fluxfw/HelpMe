@@ -110,6 +110,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$jira_issue_type = new ilTextInputGUI($this->txt("srsu_jira_issue_type"), "srsu_jira_issue_type");
 		$jira_issue_type->setRequired(true);
+		$jira_issue_type->setInfo("Task, Bug, ...");
 		$jira_issue_type->setValue($config->getJiraIssueType());
 		$recipient_jira->addSubItem($jira_issue_type);
 
