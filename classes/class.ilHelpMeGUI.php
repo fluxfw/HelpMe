@@ -125,6 +125,10 @@ class ilHelpMeGUI {
 		$reproduce_steps->setRequired(false);
 		$form->addItem($reproduce_steps);
 
+		$system_infos = new ilNonEditableValueGUI($this->txt("srsu_system_infos"));
+		$system_infos->setValue($this->pl->getBrowserInfos());
+		$form->addItem($system_infos);
+
 		$screenshot = new ilFileInputGUI($this->txt("srsu_screenshot"), "srsu_screenshot");
 		$screenshot->setRequired(false);
 		$screenshot->setSuffixes([ "jpg", "png" ]);
@@ -240,6 +244,9 @@ class ilHelpMeGUI {
 
 		$reproduce_steps = $form->getInput("srsu_reproduce_steps");
 		$support->setReproduceSteps($reproduce_steps);
+
+		$system_infos = $this->pl->getBrowserInfos();
+		$support->setSystemInfos($system_infos);
 
 		$screenshot = $form->getInput("srsu_screenshot");
 		if ($screenshot["tmp_name"] != "") {

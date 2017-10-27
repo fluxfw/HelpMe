@@ -46,6 +46,10 @@ class ilHelpMeSupport {
 	 */
 	protected $reproduce_steps;
 	/**
+	 * @var string
+	 */
+	protected $system_infos;
+	/**
 	 * @var array[]
 	 */
 	protected $screenshots = [];
@@ -87,6 +91,7 @@ class ilHelpMeSupport {
 			"srsu_priority" => $this->priority->getPriority(),
 			"srsu_description" => $this->description,
 			"srsu_reproduce_steps" => $this->reproduce_steps,
+			"srsu_system_infos" => $this->system_infos,
 			"srsu_datetime" => $this->getFormatedTime()
 		];
 
@@ -277,6 +282,22 @@ class ilHelpMeSupport {
 	 */
 	public function setReproduceSteps($reproduce_steps) {
 		$this->reproduce_steps = $reproduce_steps;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getSystemInfos() {
+		return $this->system_infos;
+	}
+
+
+	/**
+	 * @param string $system_infos
+	 */
+	public function setSystemInfos($system_infos) {
+		$this->system_infos = $system_infos;
 	}
 
 

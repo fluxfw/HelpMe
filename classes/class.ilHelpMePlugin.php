@@ -5,6 +5,10 @@ require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigPriority.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigRole.php";
 require_once "Services/AccessControl/classes/class.ilObjRole.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/lib/BrowserDetector/vendor/autoload.php";
+
+use Sinergi\BrowserDetector\Browser;
+use Sinergi\BrowserDetector\Os;
 
 /**
  * HelpMe Plugin
@@ -202,6 +206,22 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		}
 
 		return false;
+	}
+
+
+	/**
+	 * Get browser infos
+	 *
+	 * @return string
+	 */
+	function getBrowserInfos() {
+		$browser = new Browser();
+		$os = new Os();
+
+		$infos = $browser->getName() . (($browser->getVersion() !== Browser::UNKNOWN) ? " " . $browser->getVersion() : "") . " / " . $os->getName()
+			. (($os->getVersion() !== Os::UNKNOWN) ? " " . $os->getVersion() : "");
+
+		return $infos;
 	}
 
 
