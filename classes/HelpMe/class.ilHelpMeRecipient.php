@@ -9,6 +9,8 @@ require_once "Services/Mail/classes/class.ilMimeMail.php";
  */
 abstract class ilHelpMeRecipient {
 
+	const SEND_EMAIL = "send_email";
+	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	/**
 	 * @var ilHelpMeSupport
 	 */
@@ -32,11 +34,11 @@ abstract class ilHelpMeRecipient {
 	 */
 	static function getRecipient($recipient, $support, $config) {
 		switch ($recipient) {
-			case "send_email":
+			case self::SEND_EMAIL:
 				return new ilHelpMeRecipientSendMail($support, $config);
 				break;
 
-			case "create_jira_ticket":
+			case self::CREATE_JIRA_TICKET:
 				return new ilHelpMeRecipientCreateJiraTicket($support, $config);
 				break;
 

@@ -5,6 +5,8 @@ require_once "Services/jQuery/classes/class.iljQueryUtil.php";
 require_once "Services/UIComponent/Modal/classes/class.ilModalGUI.php";
 require_once "Services/UIComponent/Button/classes/class.ilSubmitButton.php";
 require_once "Services/UIComponent/Button/classes/class.ilButton.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMeGUI.php";
+require_once "Services/UIComponent/classes/class.ilUIPluginRouterGUI.php";
 
 /**
  * HelpMe UIHook-GUI
@@ -58,9 +60,9 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				$tpl->setCurrentBlock("il_help_me_button");
 				$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
 				$tpl->setVariable("SUPPORT_LINK", $this->ctrl->getLinkTargetByClass([
-					"ilUIPluginRouterGUI",
-					"ilHelpMeGUI"
-				], "addSupport", "", true));
+					ilUIPluginRouterGUI::class,
+					ilHelpMeGUI::class
+				], ilHelpMeGUI::CMD_ADD_SUPPORT, "", true));
 				$html = $tpl->get();
 
 				return [ "mode" => ilUIHookPluginGUI::PREPEND, "html" => $html ];

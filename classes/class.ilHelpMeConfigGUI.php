@@ -10,12 +10,16 @@ require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 require_once "Services/Form/classes/class.ilMultiSelectInputGUI.php";
 require_once "Services/Form/classes/class.ilPasswordInputGUI.php";
 require_once "Services/Utilities/classes/class.ilUtil.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipient.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/JiraCurl/class.ilJiraCurl.php";
 
 /**
  * HelpMe Config GUI
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
+	const CMD_CONFIGURE = "configure";
+	const CMD_UPDATE_CONFIGURE = "updateConfigure";
 	/**
 	 * @var ilCtrl
 	 */
@@ -50,8 +54,8 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 */
 	function performCommand($cmd) {
 		switch ($cmd) {
-			case "configure":
-			case "updateConfigure":
+			case self::CMD_CONFIGURE:
+			case self::CMD_UPDATE_CONFIGURE:
 				$this->$cmd();
 				break;
 
@@ -77,7 +81,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$form->setTitle($this->txt("srsu_configuration"));
 
-		$form->addCommandButton("updateConfigure", $this->txt("srsu_save"));
+		$form->addCommandButton(self::CMD_UPDATE_CONFIGURE, $this->txt("srsu_save"));
 
 		// Recipient
 		$recipient = new ilRadioGroupInputGUI($this->txt("srsu_recipient"), "srsu_recipient");
@@ -86,7 +90,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$form->addItem($recipient);
 
 		// Send email
-		$recipient_email = new ilRadioOption($this->txt("srsu_send_email"), "send_email");
+		$recipient_email = new ilRadioOption($this->txt("srsu_send_email"), ilHelpMeRecipient::SEND_EMAIL);
 		$recipient->addOption($recipient_email);
 
 		$send_email_address = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_send_email_address");
@@ -95,7 +99,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$recipient_email->addSubItem($send_email_address);
 
 		// Create Jira ticket
-		$recipient_jira = new ilRadioOption($this->txt("srsu_create_jira_ticket"), "create_jira_ticket");
+		$recipient_jira = new ilRadioOption($this->txt("srsu_create_jira_ticket"), ilHelpMeRecipient::CREATE_JIRA_TICKET);
 		$recipient->addOption($recipient_jira);
 
 		$jira_domain = new ilTextInputGUI($this->txt("srsu_jira_domain"), "srsu_jira_domain");
@@ -121,7 +125,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$recipient_jira->addSubItem($jira_authorization);
 
 		// Username & Password
-		$jira_authorization_userpassword = new ilRadioOption($this->txt("srsu_jira_usernamepassword"), "usernamepassword");
+		$jira_authorization_userpassword = new ilRadioOption($this->txt("srsu_jira_usernamepassword"), ilJiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
 		$jira_authorization->addOption($jira_authorization_userpassword);
 
 		$jira_username = new ilTextInputGUI($this->txt("srsu_jira_username"), "srsu_jira_username");
@@ -136,7 +140,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$jira_authorization_userpassword->addSubItem($jira_password);
 
 		// oAuth
-		$jira_oauth = new ilRadioOption($this->txt("srsu_jira_oauth"), "oauth");
+		$jira_oauth = new ilRadioOption($this->txt("srsu_jira_oauth"), ilJiraCurl::AUTHORIZATION_OAUTH);
 		$jira_authorization->addOption($jira_oauth);
 
 		$jira_consumer_key = new ilTextInputGUI($this->txt("srsu_jira_consumer_key"), "srsu_jira_consumer_key");

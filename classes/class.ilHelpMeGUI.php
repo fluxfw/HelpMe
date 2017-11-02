@@ -18,6 +18,8 @@ require_once "Services/Form/classes/class.ilNonEditableValueGUI.php";
  */
 class ilHelpMeGUI {
 
+	const CMD_ADD_SUPPORT = "addSupport";
+	const CMD_NEW_SUPPORT = "newSupport";
 	/**
 	 * @var ilCtrl
 	 */
@@ -63,8 +65,8 @@ class ilHelpMeGUI {
 		$cmd = $this->ctrl->getCmd();
 
 		switch ($cmd) {
-			case "addSupport":
-			case "newSupport":
+			case self::CMD_ADD_SUPPORT:
+			case self::CMD_NEW_SUPPORT:
 				$this->{$cmd}();
 				break;
 
@@ -85,7 +87,7 @@ class ilHelpMeGUI {
 		$form->setFormAction($this->ctrl->getFormAction($this, "", "", true));
 
 		$form->addCommandButton("", $this->txt("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
-		$form->addCommandButton("newSupport", $this->txt("srsu_submit"), "il_help_me_submit");
+		$form->addCommandButton(self::CMD_NEW_SUPPORT, $this->txt("srsu_submit"), "il_help_me_submit");
 		$form->addCommandButton("", $this->txt("srsu_cancel"), "il_help_me_cancel");
 
 		$form->setId("il_help_me_form");

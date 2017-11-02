@@ -7,6 +7,8 @@ require_once "Services/WebServices/Curl/classes/class.ilCurlConnection.php";
  */
 class ilJiraCurl {
 
+	const AUTHORIZATION_USERNAMEPASSWORD = "usernamepassword";
+	const AUTHORIZATION_OAUTH = "oauth";
 	/**
 	 * @var string
 	 */
@@ -61,11 +63,11 @@ class ilJiraCurl {
 		$curlConnection->setOpt(CURLOPT_URL, $url);
 
 		switch ($this->jira_authorization) {
-			case "usernamepassword":
+			case self::AUTHORIZATION_USERNAMEPASSWORD:
 				$curlConnection->setOpt(CURLOPT_USERPWD, $this->jira_username . ":" . $this->jira_password);
 				break;
 
-			case "oauth":
+			case self::AUTHORIZATION_OAUTH:
 				$nonce = sha1(uniqid("", true) . $url);
 				$signature_method = "RSA-SHA1";
 				$timestamp = time();
