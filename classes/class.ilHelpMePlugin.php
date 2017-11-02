@@ -15,6 +15,7 @@ use Sinergi\BrowserDetector\Os;
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
+	const ID = "srsu";
 	/**
 	 * @var ilHelpMePlugin
 	 */
@@ -232,7 +233,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 		global $ilDB;
 
-		$ilDB->manipulate("DELETE FROM il_plugin WHERE plugin_id=" . $ilDB->quote("srsu"));
+		$ilDB->manipulate("DELETE FROM il_plugin WHERE plugin_id=" . $ilDB->quote(self::ID));
 
 		$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME);
 
