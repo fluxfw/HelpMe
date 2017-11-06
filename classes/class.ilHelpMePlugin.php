@@ -235,10 +235,10 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 		$ilDB->manipulate("DELETE FROM il_plugin WHERE plugin_id=" . $ilDB->quote(self::ID));
 
-		$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME);
+		$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME, false);
 
-		$ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME);
+		$ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
 
-		$ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME);
+		$ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
 	}
 }
