@@ -5,7 +5,9 @@
 	require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigRole.php";
 
 	ilHelpMeConfig::updateDB();
+
 	ilHelpMeConfigPriority::updateDB();
+
 	ilHelpMeConfigRole::updateDB();
 ?>
 <#2>
@@ -15,6 +17,8 @@
 	require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigRole.php";
 
 	ilHelpMeConfig::updateDB();
+
 	ilHelpMeConfigPriority::updateDB();
+
 	ilHelpMeConfigRole::updateDB();
 ?>
