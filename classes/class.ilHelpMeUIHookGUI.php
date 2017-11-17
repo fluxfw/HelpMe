@@ -54,8 +54,8 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				iljQueryUtil::initjQuery();
 				$this->tpl->addJavaScript("Services/Form/js/Form.js");
-				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/lib/html2canvas.min.js");
-				$this->tpl->addJavaScript("Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/js/ilHelpMe.js");
+				$this->tpl->addJavaScript($this->pl->getDirectory() . "/lib/html2canvas.min.js");
+				$this->tpl->addJavaScript($this->pl->getDirectory() . "/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
 				$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
