@@ -15,11 +15,25 @@ use Sinergi\BrowserDetector\Os;
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
-	const ID = "srsu";
 	/**
 	 * @var ilHelpMePlugin
 	 */
-	protected static $cache;
+	protected static $instance = NULL;
+
+
+	/**
+	 * @return ilHelpMePlugin
+	 */
+	static function getInstance() {
+		if (self::$instance === NULL) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+
+	const ID = "srsu";
 	/**
 	 * @var ilRbacReview
 	 */
@@ -28,18 +42,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @var ilObjUser
 	 */
 	protected $usr;
-
-
-	/**
-	 * @return ilHelpMePlugin
-	 */
-	static function getInstance() {
-		if (!isset(self::$cache)) {
-			self::$cache = new self();
-		}
-
-		return self::$cache;
-	}
 
 
 	function getPluginName() {
