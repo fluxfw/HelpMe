@@ -223,18 +223,14 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	protected function beforeUninstall() {
-		/**
-		 * @var ilDB $ilDB
-		 */
+		$db = $this->dic->database();
 
-		global $ilDB;
+		$db->dropTable(ilHelpMeConfig::TABLE_NAME, false);
 
-		$ilDB->manipulate("DELETE FROM il_plugin WHERE plugin_id=" . $ilDB->quote(self::ID));
+		$db->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
 
-		$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME, false);
+		$db->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
 
-		$ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
-
-		$ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
+		return true;
 	}
 }
