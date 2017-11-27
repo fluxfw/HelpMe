@@ -67,6 +67,8 @@ class ilHelpMeGUI {
 	protected function getSupportForm() {
 		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + $this->pl->getConfigPrioritiesArray();
 
+		$user = $this->dic->user();
+
 		$form = new ilPropertyFormGUI();
 
 		$form->setFormAction($this->dic->ctrl()->getFormAction($this, "", "", true));
@@ -83,16 +85,16 @@ class ilHelpMeGUI {
 		$form->addItem($title);
 
 		$name = new ilNonEditableValueGUI($this->txt("srsu_name"));
-		$name->setValue($this->dic->user()->getFullname());
+		$name->setValue($user->getFullname());
 		$form->addItem($name);
 
 		$login = new ilNonEditableValueGUI($this->txt("srsu_login"));
-		$login->setValue($this->dic->user()->getLogin());
+		$login->setValue($user->getLogin());
 		$form->addItem($login);
 
 		$email = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_email");
 		$email->setRequired(true);
-		$email->setValue($this->dic->user()->getEmail());
+		$email->setValue($user->getEmail());
 		$form->addItem($email);
 
 		$phone = new ilTextInputGUI($this->txt("srsu_phone"), "srsu_phone");
@@ -198,6 +200,8 @@ class ilHelpMeGUI {
 		$config = $this->pl->getConfig();
 		$configPriorities = $this->pl->getConfigPriorities();
 
+		$user = $this->dic->user();
+
 		$support = new ilHelpMeSupport();
 
 		$time = time();
@@ -206,10 +210,10 @@ class ilHelpMeGUI {
 		$title = $form->getInput("srsu_title");
 		$support->setTitle($title);
 
-		$name = $this->dic->user()->getFullname();
+		$name = $user->getFullname();
 		$support->setName($name);
 
-		$login = $this->dic->user()->getLogin();
+		$login = $user->getLogin();
 		$support->setLogin($login);
 
 		$email = $form->getInput("srsu_email");
