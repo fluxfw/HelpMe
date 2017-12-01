@@ -35,9 +35,17 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 	const ID = "srsu";
 	/**
-	 * @var \ILIAS\DI\Container
+	 * @var ilDB
 	 */
-	protected $dic;
+	protected $db;
+	/**
+	 * @var ilRbacReview
+	 */
+	protected $rbacreview;
+	/**
+	 * @var ilObjUser
+	 */
+	protected $usr;
 
 
 	public function __construct() {
@@ -45,7 +53,9 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 		global $DIC;
 
-		$this->dic = $DIC;
+		$this->db = $DIC->database();
+		$this->rbacreview = $DIC->rbac()->review();
+		$this->usr = $DIC->user();
 	}
 
 
@@ -172,9 +182,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		 * @var array $roles
 		 */
 
-		$rbacreview = $this->dic->rbac()->review();
-
-		$global_roles = $rbacreview->getRolesForIDs($rbacreview->getGlobalRoles(), false);
+		$global_roles = $this->rbacreview->getRolesForIDs($this->rbacreview->getGlobalRoles(), false);
 
 		$roles = [];
 		foreach ($global_roles as $global_role) {
@@ -189,11 +197,9 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @return bool
 	 */
 	function currentUserHasRole() {
-		$rbacreview = $this->dic->rbac()->review();
+		$user_id = $this->usr->getId();
 
-		$user_id = $this->dic->user()->getId();
-
-		$user_roles = $rbacreview->getRolesByFilter(0, $user_id);
+		$user_roles = $this->rbacreview->getRolesByFilter(0, $user_id);
 		$config_roles = $this->getConfigRolesArray();
 
 		foreach ($user_roles as $user_role) {
@@ -223,13 +229,11 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	protected function beforeUninstall() {
-		$db = $this->dic->database();
+		$this->db->dropTable(ilHelpMeConfig::TABLE_NAME, false);
 
-		$db->dropTable(ilHelpMeConfig::TABLE_NAME, false);
+		$this->db->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
 
-		$db->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
-
-		$db->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
+		$this->db->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
 
 		return true;
 	}

@@ -21,21 +21,25 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	const CMD_CONFIGURE = "configure";
 	const CMD_UPDATE_CONFIGURE = "updateConfigure";
 	/**
-	 * @var \ILIAS\DI\Container
+	 * @var ilCtrl
 	 */
-	protected $dic;
+	protected $ctrl;
 	/**
 	 * @var ilHelpMeUIHookGUI
 	 */
 	protected $pl;
+	/**
+	 * @var ilTemplate
+	 */
+	protected $tpl;
 
 
 	function __construct() {
 		global $DIC;
 
-		$this->dic = $DIC;
-
+		$this->ctrl = $DIC->ctrl();
 		$this->pl = ilHelpMePlugin::getInstance();
+		$this->tpl = $DIC->ui()->mainTemplate();
 	}
 
 
@@ -68,7 +72,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$form = new ilPropertyFormGUI();
 
-		$form->setFormAction($this->dic->ctrl()->getFormAction($this));
+		$form->setFormAction($this->ctrl->getFormAction($this));
 
 		$form->setTitle($this->txt("srsu_configuration"));
 
@@ -182,7 +186,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 * @param string $html
 	 */
 	protected function show($html) {
-		$this->dic->ui()->mainTemplate()->setContent($html);
+		$this->tpl->setContent($html);
 	}
 
 

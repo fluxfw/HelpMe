@@ -21,21 +21,30 @@ class ilHelpMeGUI {
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
 	/**
-	 * @var \ILIAS\DI\Container
+	 * @var ilCtrl
 	 */
-	protected $dic;
+	protected $ctrl;
 	/**
 	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
+	/**
+	 * @var ilTemplate
+	 */
+	protected $tpl;
+	/**
+	 * @var ilObjUser
+	 */
+	protected $usr;
 
 
 	function __construct() {
 		global $DIC;
 
-		$this->dic = $DIC;
-
+		$this->ctrl = $DIC->ctrl();
 		$this->pl = ilHelpMePlugin::getInstance();
+		$this->tpl = $DIC->ui()->mainTemplate();
+		$this->usr = $DIC->user();
 	}
 
 
@@ -47,7 +56,7 @@ class ilHelpMeGUI {
 			die();
 		}
 
-		$cmd = $this->dic->ctrl()->getCmd();
+		$cmd = $this->ctrl->getCmd();
 
 		switch ($cmd) {
 			case self::CMD_ADD_SUPPORT:
@@ -67,11 +76,9 @@ class ilHelpMeGUI {
 	protected function getSupportForm() {
 		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + $this->pl->getConfigPrioritiesArray();
 
-		$user = $this->dic->user();
-
 		$form = new ilPropertyFormGUI();
 
-		$form->setFormAction($this->dic->ctrl()->getFormAction($this, "", "", true));
+		$form->setFormAction($this->ctrl->getFormAction($this, "", "", true));
 
 		$form->addCommandButton("", $this->txt("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
 		$form->addCommandButton(self::CMD_NEW_SUPPORT, $this->txt("srsu_submit"), "il_help_me_submit");
@@ -85,16 +92,16 @@ class ilHelpMeGUI {
 		$form->addItem($title);
 
 		$name = new ilNonEditableValueGUI($this->txt("srsu_name"));
-		$name->setValue($user->getFullname());
+		$name->setValue($this->usr->getFullname());
 		$form->addItem($name);
 
 		$login = new ilNonEditableValueGUI($this->txt("srsu_login"));
-		$login->setValue($user->getLogin());
+		$login->setValue($this->usr->getLogin());
 		$form->addItem($login);
 
 		$email = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_email");
 		$email->setRequired(true);
-		$email->setValue($user->getEmail());
+		$email->setValue($this->usr->getEmail());
 		$form->addItem($email);
 
 		$phone = new ilTextInputGUI($this->txt("srsu_phone"), "srsu_phone");
@@ -133,7 +140,7 @@ class ilHelpMeGUI {
 	protected function getSuccessForm() {
 		$form = new ilPropertyFormGUI();
 
-		$form->setFormAction($this->dic->ctrl()->getFormAction($this, "", "", true));
+		$form->setFormAction($this->ctrl->getFormAction($this, "", "", true));
 
 		$form->addCommandButton("", $this->txt("srsu_close"), "il_help_me_cancel");
 
@@ -166,12 +173,12 @@ class ilHelpMeGUI {
 
 		$html = $tpl->get();
 
-		if ($this->dic->ctrl()->isAsynch()) {
+		if ($this->ctrl->isAsynch()) {
 			echo $html;
 
 			exit();
 		} else {
-			$this->dic->ui()->mainTemplate()->setContent($html);
+			$this->tpl->setContent($html);
 		}
 	}
 
@@ -200,8 +207,6 @@ class ilHelpMeGUI {
 		$config = $this->pl->getConfig();
 		$configPriorities = $this->pl->getConfigPriorities();
 
-		$user = $this->dic->user();
-
 		$support = new ilHelpMeSupport();
 
 		$time = time();
@@ -210,10 +215,10 @@ class ilHelpMeGUI {
 		$title = $form->getInput("srsu_title");
 		$support->setTitle($title);
 
-		$name = $user->getFullname();
+		$name = $this->usr->getFullname();
 		$support->setName($name);
 
-		$login = $user->getLogin();
+		$login = $this->usr->getLogin();
 		$support->setLogin($login);
 
 		$email = $form->getInput("srsu_email");
@@ -246,11 +251,11 @@ class ilHelpMeGUI {
 
 		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
 		if ($recipient->sendSupportToRecipient()) {
-			$message = $this->dic->ui()->mainTemplate()->getMessageHTML($this->txt("srsu_sent_success"), "success");
+			$message = $this->tpl->getMessageHTML($this->txt("srsu_sent_success"), "success");
 
 			$form = $this->getSuccessForm();
 		} else {
-			$message = $this->dic->ui()->mainTemplate()->getMessageHTML($this->txt("srsu_sent_failure"), "failure");
+			$message = $this->tpl->getMessageHTML($this->txt("srsu_sent_failure"), "failure");
 		}
 
 		$this->show($message, $form);
