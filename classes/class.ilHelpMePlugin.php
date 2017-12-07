@@ -73,7 +73,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		 */
 
 		$config = ilHelpMeConfig::get();
-		if (sizeof($config) > 0) {
+		if (count($config) > 0) {
 			$config = $config[1];
 		} else {
 			$config = new ilHelpMeConfig();
