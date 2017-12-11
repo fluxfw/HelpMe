@@ -56,15 +56,21 @@ class ilHelpMeGUI {
 			die();
 		}
 
-		$cmd = $this->ctrl->getCmd();
+		$next_class = $this->ctrl->getNextClass($this);
 
-		switch ($cmd) {
-			case self::CMD_ADD_SUPPORT:
-			case self::CMD_NEW_SUPPORT:
-				$this->{$cmd}();
-				break;
-
+		switch ($next_class) {
 			default:
+				$cmd = $this->ctrl->getCmd();
+
+				switch ($cmd) {
+					case self::CMD_ADD_SUPPORT:
+					case self::CMD_NEW_SUPPORT:
+						$this->{$cmd}();
+						break;
+
+					default:
+						break;
+				}
 				break;
 		}
 	}

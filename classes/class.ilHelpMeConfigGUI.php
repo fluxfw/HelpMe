@@ -48,13 +48,19 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 * @param string $cmd
 	 */
 	function performCommand($cmd) {
-		switch ($cmd) {
-			case self::CMD_CONFIGURE:
-			case self::CMD_UPDATE_CONFIGURE:
-				$this->$cmd();
-				break;
+		$next_class = $this->ctrl->getNextClass($this);
 
+		switch ($next_class) {
 			default:
+				switch ($cmd) {
+					case self::CMD_CONFIGURE:
+					case self::CMD_UPDATE_CONFIGURE:
+						$this->$cmd();
+						break;
+
+					default:
+						break;
+				}
 				break;
 		}
 	}
