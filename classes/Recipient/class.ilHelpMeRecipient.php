@@ -1,8 +1,9 @@
 <?php
 
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipientSendMail.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipientCreateJiraTicket.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipientSendMail.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipientCreateJiraTicket.php";
 require_once "Services/Mail/classes/class.ilMimeMail.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 
 /**
  * Support recipient
@@ -54,6 +55,8 @@ abstract class ilHelpMeRecipient {
 	 * @param ilHelpMeConfig  $config
 	 */
 	protected function __construct($support, $config) {
+		global $DIC;
+
 		$this->support = $support;
 		$this->config = $config;
 
@@ -77,6 +80,15 @@ abstract class ilHelpMeRecipient {
 	function sendConfirmationMail() {
 		try {
 			$mailer = new ilMimeMail();
+
+			if (ILIAS_VERSION_NUMERIC >= "5.3") {
+				global $DIC;
+
+				/** @var ilMailMimeSenderFactory $senderFactory */
+				$senderFactory = $DIC["mail.mime.sender.factory"];
+
+				$mailer->From($senderFactory->system());
+			}
 
 			$mailer->To($this->support->getEmail());
 

@@ -1,9 +1,9 @@
 <?php
 
 require_once "Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfig.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigPriority.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigRole.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfig.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfigPriority.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfigRole.php";
 require_once "Services/AccessControl/classes/class.ilObjRole.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/lib/BrowserDetector/vendor/autoload.php";
 

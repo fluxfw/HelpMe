@@ -65,6 +65,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
 			if ($this->pl->currentUserHasRole()) {
 				// Modal
+				// TODO Fix after first configure currentUserHasRole false because not yet set
 				ilModalGUI::initJS();
 
 				$modal = ilModalGUI::getInstance();

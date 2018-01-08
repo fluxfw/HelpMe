@@ -10,8 +10,9 @@ require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
 require_once "Services/Form/classes/class.ilMultiSelectInputGUI.php";
 require_once "Services/Form/classes/class.ilPasswordInputGUI.php";
 require_once "Services/Utilities/classes/class.ilUtil.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeRecipient.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipient.php";
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/JiraCurl/class.ilJiraCurl.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 
 /**
  * HelpMe Config GUI
