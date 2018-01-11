@@ -55,8 +55,6 @@ abstract class ilHelpMeRecipient {
 	 * @param ilHelpMeConfig  $config
 	 */
 	protected function __construct($support, $config) {
-		global $DIC;
-
 		$this->support = $support;
 		$this->config = $config;
 
