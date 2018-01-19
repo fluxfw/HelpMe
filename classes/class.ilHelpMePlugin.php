@@ -1,10 +1,14 @@
 <?php
 
 require_once "Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfig.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigPriority.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/HelpMe/class.ilHelpMeConfigRole.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfig.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfigPriority.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfigRole.php";
 require_once "Services/AccessControl/classes/class.ilObjRole.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/lib/BrowserDetector/vendor/autoload.php";
+
+use Sinergi\BrowserDetector\Browser;
+use Sinergi\BrowserDetector\Os;
 
 /**
  * HelpMe Plugin
@@ -14,7 +18,26 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	/**
 	 * @var ilHelpMePlugin
 	 */
-	protected static $cache;
+	protected static $instance = NULL;
+
+
+	/**
+	 * @return ilHelpMePlugin
+	 */
+	static function getInstance() {
+		if (self::$instance === NULL) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+
+	const ID = "srsu";
+	/**
+	 * @var ilDB
+	 */
+	protected $db;
 	/**
 	 * @var ilRbacReview
 	 */
@@ -25,35 +48,19 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	protected $usr;
 
 
-	/**
-	 * @return ilHelpMePlugin
-	 */
-	static function getInstance() {
-		if (!isset(self::$cache)) {
-			self::$cache = new self();
-		}
+	public function __construct() {
+		parent::__construct();
 
-		return self::$cache;
+		global $DIC;
+
+		$this->db = $DIC->database();
+		$this->rbacreview = $DIC->rbac()->review();
+		$this->usr = $DIC->user();
 	}
 
 
 	function getPluginName() {
 		return "HelpMe";
-	}
-
-
-	public function __construct() {
-		/**
-		 * @var ilObjUser    $ilUser
-		 * @var ilRbacReview $rbacreview
-		 */
-
-		parent::__construct();
-
-		global $ilUser, $rbacreview;
-
-		$this->rbacreview = $rbacreview;
-		$this->usr = $ilUser;
 	}
 
 
@@ -66,14 +73,11 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		 */
 
 		$config = ilHelpMeConfig::get();
-		if (sizeof($config) > 0) {
+		if (count($config) > 0) {
 			$config = $config[1];
 		} else {
 			$config = new ilHelpMeConfig();
 			$config->setId(1);
-			$config->setRecipient("send_email");
-			$config->setSendEmailAddress("");
-			$config->setInfo($this->txt("srsu_info"));
 			$config->create();
 		}
 
@@ -208,25 +212,29 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	}
 
 
+	/**
+	 * Get browser infos
+	 *
+	 * @return string "Browser Version / System Version"
+	 */
+	function getBrowserInfos() {
+		$browser = new Browser();
+		$os = new Os();
+
+		$infos = $browser->getName() . (($browser->getVersion() !== Browser::UNKNOWN) ? " " . $browser->getVersion() : "") . " / " . $os->getName()
+			. (($os->getVersion() !== Os::UNKNOWN) ? " " . $os->getVersion() : "");
+
+		return $infos;
+	}
+
+
 	protected function beforeUninstall() {
-		/**
-		 * @var ilDB $ilDB
-		 */
+		$this->db->dropTable(ilHelpMeConfig::TABLE_NAME, false);
 
-		global $ilDB;
+		$this->db->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
 
-		$this->deactivate();
+		$this->db->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
 
-		$ilDB->manipulate("DELETE FROM il_plugin WHERE plugin_id=" . $ilDB->quote("srsu"));
-
-		if (ilHelpMeConfig::tableExists()) {
-			$ilDB->dropTable(ilHelpMeConfig::TABLE_NAME);
-		}
-		if (ilHelpMeConfigPriority::tableExists()) {
-			$ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME);
-		}
-		if (ilHelpMeConfigRole::tableExists()) {
-			$ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME);
-		}
+		return true;
 	}
 }

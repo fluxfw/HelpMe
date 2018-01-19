@@ -74,9 +74,15 @@ $(document).ready(function () {
 		// Hide modal on the screenshot
 		$modal.css("visibility", "hidden");
 		$(".modal-backdrop").css("visibility", "hidden");
+		$("body").css("overflow", "visible"); // Fix transparent not visible area from modal
 
-		html2canvas(document.body, {
+		html2canvas($("html")[0], {
 			onrendered: function (canvas) {
+				// Restore modal
+				$modal.css("visibility", "");
+				$(".modal-backdrop").css("visibility", "");
+				$("body").css("overflow", "");
+
 				// Convert canvas screenshot to png blob for file upload
 				canvas.toBlob(function (blob) {
 					page_screenshot = blob;
@@ -85,9 +91,6 @@ $(document).ready(function () {
 
 					$screenshot.parent().parent().next().val("Screenshot.png"); // Custom file select label
 				}, "image/png");
-
-				$modal.css("visibility", "");
-				$(".modal-backdrop").css("visibility", "");
 			}
 		});
 

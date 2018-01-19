@@ -4,15 +4,31 @@ srsu_configuration#:#Configuration
 srsu_configuration_saved#:#Configuration saved
 srsu_confirmation#:#Confirmation
 srsu_create_jira_ticket#:#Create a Jira ticket
+srsu_datetime#:#Date & time
 srsu_description#:#Description
 srsu_email_address#:#Email address
 srsu_info#:#Info text
+srsu_jira_access_token#:#Jira access token
+srsu_jira_authorization#:#Jira authorization
+srsu_jira_consumer_key#:#Jira consumer key
+srsu_jira_domain#:#Jira domain name
+srsu_jira_issue_type#:#Jira issue type
+srsu_jira_oauth#:#oAuth
+srsu_jira_password#:#Jira password
+srsu_jira_private_key#:#Jira private key
+srsu_jira_project_key#:#Jira project key
+srsu_jira_username#:#Jira username
+srsu_jira_usernamepassword#:#Username & password
+srsu_login#:#Login
+srsu_name#:#Name
 srsu_phone#:#Phone
+srsu_please_select#:#please select
 srsu_priority#:#Priority
 srsu_priorities#:#Priorities
 srsu_recipient#:#Form recipient
 srsu_reproduce_steps#:#Steps to Reproduce
 srsu_roles#:#Roles
+srsu_roles_description#:#Show support for selected roles only
 srsu_save#:#Save
 srsu_screenshot#:#Screenshot
 srsu_screenshot_current_page#:#Take screenshot of current page
@@ -21,4 +37,5 @@ srsu_sent_failure#:#Sorry, your support request could not be sent!
 srsu_sent_success#:#Thank you for your support request! A confirmation email has been sent to you!
 srsu_submit#:#Submit
 srsu_support#:#Support
+srsu_system_infos#:#System-Infos
 srsu_title#:#Title
