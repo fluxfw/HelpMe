@@ -19,6 +19,27 @@ class ilHelpMeConfig extends ActiveRecord {
 
 
 	/**
+	 * @return ilHelpMeConfig
+	 */
+	static function getConfig() {
+		/**
+		 * @var ilHelpMeConfig $config
+		 */
+
+		$config = self::get();
+		if (count($config) > 0) {
+			$config = $config[1];
+		} else {
+			$config = new self();
+			$config->setId(1);
+			$config->create();
+		}
+
+		return $config;
+	}
+
+
+	/**
 	 * @var int
 	 *
 	 * @con_has_field   true
