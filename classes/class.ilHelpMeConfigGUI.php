@@ -72,10 +72,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 * @return ilPropertyFormGUI
 	 */
 	protected function getConfigurationForm() {
-		$config = $this->pl->getConfig();
-		$configPriorities = $this->pl->getConfigPrioritiesArray();
-		$allRoles = $this->pl->getRoles();
-		$configRoles = $this->pl->getConfigRolesArray();
+		$config = ilHelpMeConfig::getConfig();
+		$configPriorities = ilHelpMeConfigPriority::getConfigPrioritiesArray();
+		$allRoles = ilHelpMeConfigRole::getAllRoles();
+		$configRoles = ilHelpMeConfigRole::getConfigRolesArray();
 
 		$form = new ilPropertyFormGUI();
 
@@ -220,7 +220,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 			return;
 		}
 
-		$config = $this->pl->getConfig();
+		$config = ilHelpMeConfig::getConfig();
 
 		$recipient = $form->getInput("srsu_recipient");
 		$config->setRecipient($recipient);
@@ -256,13 +256,13 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$config->setJiraAccessToken($jira_access_token);
 
 		$priorities = $form->getInput("srsu_priorities");
-		$this->pl->setConfigPrioritiesArray($priorities);
+		ilHelpMeConfigPriority::setConfigPrioritiesArray($priorities);
 
 		$info = $form->getInput("srsu_info");
 		$config->setInfo($info);
 
 		$roles = $form->getInput("srsu_roles");
-		$this->pl->setConfigRolesArray($roles);
+		ilHelpMeConfigRole::setConfigRolesArray($roles);
 
 		$config->update();
 

@@ -53,7 +53,7 @@ class ilHelpMeGUI {
 	 *
 	 */
 	function executeCommand() {
-		if (!$this->pl->currentUserHasRole()) {
+		if (!ilHelpMeConfigRole::currentUserHasRole()) {
 			die();
 		}
 
@@ -81,7 +81,7 @@ class ilHelpMeGUI {
 	 * @return ilPropertyFormGUI
 	 */
 	protected function getSupportForm() {
-		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + $this->pl->getConfigPrioritiesArray();
+		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + ilHelpMeConfigPriority::getConfigPrioritiesArray();
 
 		$form = new ilPropertyFormGUI();
 
@@ -163,7 +163,7 @@ class ilHelpMeGUI {
 	 * @param ilPropertyFormGUI $form
 	 */
 	protected function show($message, $form) {
-		$config = $this->pl->getConfig();
+		$config = ilHelpMeConfig::getConfig();
 
 		$tpl = $this->pl->getTemplate("il_help_me_modal.html", true, true);
 
@@ -211,8 +211,8 @@ class ilHelpMeGUI {
 			return;
 		}
 
-		$config = $this->pl->getConfig();
-		$configPriorities = $this->pl->getConfigPriorities();
+		$config = ilHelpMeConfig::getConfig();
+		$configPriorities = ilHelpMeConfigPriority::getConfigPriorities();
 
 		$support = new ilHelpMeSupport();
 

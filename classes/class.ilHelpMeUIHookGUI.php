@@ -40,7 +40,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		global $DIC;
 
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
-			if ($this->pl->currentUserHasRole()) {
+			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Support button
 				$tpl = $this->pl->getTemplate("il_help_me_button.html", true, true);
 
@@ -63,7 +63,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		}
 
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
-			if ($this->pl->currentUserHasRole()) {
+			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Modal
 				// TODO Fix after first configure currentUserHasRole false because not yet set
 				ilModalGUI::initJS();

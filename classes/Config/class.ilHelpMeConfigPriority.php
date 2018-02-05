@@ -19,6 +19,49 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 
 
 	/**
+	 * @return ilHelpMeConfigPriority[]
+	 */
+	static function getConfigPriorities() {
+		/**
+		 * @var ilHelpMeConfigPriority[] $configPriorities
+		 */
+
+		$configPriorities = self::get();
+
+		return $configPriorities;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	static function getConfigPrioritiesArray() {
+		$configPriorities = self::getConfigPriorities();
+
+		$priorities = [];
+		foreach ($configPriorities as $configPriority) {
+			$priorities[$configPriority->getId()] = $configPriority->getPriority();
+		}
+
+		return $priorities;
+	}
+
+
+	/**
+	 * @param string[] $priorities
+	 */
+	static function setConfigPrioritiesArray($priorities) {
+		self::truncateDB();
+
+		foreach ($priorities as $priority) {
+			$configPriority = new self();
+			$configPriority->setPriority($priority);
+			$configPriority->create();
+		}
+	}
+
+
+	/**
 	 * @var int
 	 *
 	 * @con_has_field   true
