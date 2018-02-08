@@ -79,6 +79,8 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				return [ "mode" => ilUIHookPluginGUI::APPEND, "html" => $html ];
 			}
 		}
+
+		return [ "mode" => ilUIHookPluginGUI::KEEP, "html" => "" ];
 	}
 
 
