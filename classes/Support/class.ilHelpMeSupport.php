@@ -1,9 +1,7 @@
 <?php
 
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 require_once "Services/Calendar/classes/class.ilDatePresentation.php";
 require_once "Services/Calendar/classes/class.ilDateTime.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 
 /**
  * Support data
