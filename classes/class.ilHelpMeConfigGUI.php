@@ -1,16 +1,6 @@
 <?php
 
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
-require_once "Services/Component/classes/class.ilPluginConfigGUI.php";
-require_once "Services/Form/classes/class.ilPropertyFormGUI.php";
-require_once "Services/Form/classes/class.ilRadioGroupInputGUI.php";
-require_once "Services/Form/classes/class.ilRadioOption.php";
-require_once "Services/Form/classes/class.ilTextInputGUI.php";
-require_once "Services/Form/classes/class.ilEMailInputGUI.php";
-require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
-require_once "Services/Form/classes/class.ilMultiSelectInputGUI.php";
-require_once "Services/Form/classes/class.ilPasswordInputGUI.php";
-require_once "Services/Utilities/classes/class.ilUtil.php";
 
 /**
  * HelpMe Config GUI

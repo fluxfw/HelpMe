@@ -1,7 +1,5 @@
 <?php
 
-require_once "Services/WebServices/Curl/classes/class.ilCurlConnection.php";
-
 /**
  * Jira Curl connection
  */

@@ -1,8 +1,5 @@
 <?php
 
-require_once "Services/Calendar/classes/class.ilDatePresentation.php";
-require_once "Services/Calendar/classes/class.ilDateTime.php";
-
 /**
  * Support data
  */

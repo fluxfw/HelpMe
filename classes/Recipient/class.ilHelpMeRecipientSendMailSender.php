@@ -1,8 +1,5 @@
 <?php
 
-require_once "Services/Mail/classes/Mime/Sender/class.ilMailMimeSenderUser.php";
-require_once "Services/User/classes/class.ilObjUser.php";
-
 /**
  * Send email with reply name and email in ILIAS 5.3
  */
