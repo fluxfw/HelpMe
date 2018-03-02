@@ -1,16 +1,13 @@
 <?php
 
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
 require_once "Services/Form/classes/class.ilPropertyFormGUI.php";
 require_once "Services/Form/classes/class.ilTextInputGUI.php";
 require_once "Services/Form/classes/class.ilEMailInputGUI.php";
 require_once "Services/Form/classes/class.ilSelectInputGUI.php";
 require_once "Services/Form/classes/class.ilTextAreaInputGUI.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Support/class.ilHelpMeSupport.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipient.php";
 require_once "Services/Form/classes/class.ilFileInputGUI.php";
 require_once "Services/Form/classes/class.ilNonEditableValueGUI.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 
 /**
  * HelpMe GUI

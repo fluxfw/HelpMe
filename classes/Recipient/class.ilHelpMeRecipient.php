@@ -1,9 +1,6 @@
 <?php
 
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipientSendMail.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipientCreateJiraTicket.php";
 require_once "Services/Mail/classes/class.ilMimeMail.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 
 /**
  * Support recipient

@@ -1,6 +1,5 @@
 <?php
 
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipient.php";
 require_once "Services/Mail/classes/class.ilMimeMail.php";
 
 /**
@@ -37,8 +36,6 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 			$mailer = new ilMimeMail();
 
 			if (ILIAS_VERSION_NUMERIC >= "5.3") {
-				require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipientSendMailSender.php";
-
 				$mailer->From(new ilHelpMeRecipientSendMailSender($this->support));
 			} else {
 				$mailer->From([ $this->support->getEmail(), $this->support->getName() ]);

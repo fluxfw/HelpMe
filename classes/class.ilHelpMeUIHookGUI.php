@@ -1,11 +1,8 @@
 <?php
+require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
 require_once "Services/UIComponent/classes/class.ilUIHookPluginGUI.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMePlugin.php";
 require_once "Services/jQuery/classes/class.iljQueryUtil.php";
 require_once "Services/UIComponent/Modal/classes/class.ilModalGUI.php";
-require_once "Services/UIComponent/Button/classes/class.ilSubmitButton.php";
-require_once "Services/UIComponent/Button/classes/class.ilButton.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/class.ilHelpMeGUI.php";
 require_once "Services/UIComponent/classes/class.ilUIPluginRouterGUI.php";
 
 /**

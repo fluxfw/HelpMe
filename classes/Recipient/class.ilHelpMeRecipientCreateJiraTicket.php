@@ -1,8 +1,5 @@
 <?php
 
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Recipient/class.ilHelpMeRecipient.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/JiraCurl/class.ilJiraCurl.php";
-
 /**
  * Create Jira ticket
  */

@@ -1,8 +1,6 @@
 <#1>
 <?php
-	require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfig.php";
-	require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfigPriority.php";
-	require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/classes/Config/class.ilHelpMeConfigRole.php";
+	require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
 
 	ilHelpMeConfig::updateDB();
 
