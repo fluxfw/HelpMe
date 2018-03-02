@@ -76,22 +76,20 @@ $(document).ready(function () {
 		$(".modal-backdrop").css("visibility", "hidden");
 		$("body").css("overflow", "visible"); // Fix transparent not visible area from modal
 
-		html2canvas($("html")[0], {
-			onrendered: function (canvas) {
-				// Restore modal
-				$modal.css("visibility", "");
-				$(".modal-backdrop").css("visibility", "");
-				$("body").css("overflow", "");
+		html2canvas($("html")[0]).then(function (canvas) {
+			// Restore modal
+			$modal.css("visibility", "");
+			$(".modal-backdrop").css("visibility", "");
+			$("body").css("overflow", "");
 
-				// Convert canvas screenshot to png blob for file upload
-				canvas.toBlob(function (blob) {
-					page_screenshot = blob;
+			// Convert canvas screenshot to png blob for file upload
+			canvas.toBlob(function (blob) {
+				page_screenshot = blob;
 
-					$screenshot.val(""); // Remove selected file
+				$screenshot.val(""); // Remove selected file
 
-					$screenshot.parent().parent().next().val("Screenshot.png"); // Custom file select label
-				}, "image/png");
-			}
+				$screenshot.parent().parent().next().val("Screenshot.png"); // Custom file select label
+			}, "image/png");
 		});
 
 		return false;
