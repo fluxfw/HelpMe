@@ -1,9 +1,5 @@
 <?php
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
-require_once "Services/UIComponent/classes/class.ilUIHookPluginGUI.php";
-require_once "Services/jQuery/classes/class.iljQueryUtil.php";
-require_once "Services/UIComponent/Modal/classes/class.ilModalGUI.php";
-require_once "Services/UIComponent/classes/class.ilUIPluginRouterGUI.php";
 
 /**
  * HelpMe UIHook-GUI

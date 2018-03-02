@@ -1,7 +1,5 @@
 <?php
 
-require_once "Services/Mail/classes/class.ilMimeMail.php";
-
 /**
  * Send support email
  */
