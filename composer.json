@@ -1,10 +1,15 @@
 {
-    "autoload": {
-        "classmap": ["classes/"]
-    },
-    "config": {
-        "optimize-autoloader": true,
-        "sort-packages": true,
-        "classmap-authoritative": true
-    }
+  "require": {
+    "sinergi/browser-detector": "^6.1"
+  },
+  "autoload": {
+    "classmap": [
+      "classes/"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "classmap-authoritative": true
+  }
 }

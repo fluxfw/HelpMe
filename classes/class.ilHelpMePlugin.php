@@ -2,7 +2,6 @@
 
 require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
 require_once "Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php";
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/lib/BrowserDetector/vendor/autoload.php";
 
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
