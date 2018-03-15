@@ -1,5 +1,5 @@
 <?php
-require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
+require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
  * HelpMe UIHook-GUI
