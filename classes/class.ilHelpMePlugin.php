@@ -9,6 +9,8 @@ use Sinergi\BrowserDetector\Os;
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
+	const PLUGIN_ID = "srsu";
+	const PLUGIN_NAME = "HelpMe";
 	/**
 	 * @var ilHelpMePlugin
 	 */
@@ -27,7 +29,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	}
 
 
-	const ID = "srsu";
 	/**
 	 * @var ilDB
 	 */
@@ -44,7 +45,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	function getPluginName() {
-		return "HelpMe";
+		return self::PLUGIN_NAME;
 	}
 
 
