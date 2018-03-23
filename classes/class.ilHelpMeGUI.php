@@ -154,7 +154,7 @@ class ilHelpMeGUI {
 	protected function show($message, $form) {
 		$config = ilHelpMeConfig::getConfig();
 
-		$tpl = $this->pl->getTemplate("il_help_me_modal.html", true, true);
+		$tpl = $this->pl->getTemplate("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
 		$tpl->setVariable("INFO", $config->getInfo());
