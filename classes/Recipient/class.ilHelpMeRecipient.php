@@ -28,7 +28,7 @@ abstract class ilHelpMeRecipient {
 	 *
 	 * @return ilHelpMeRecipient|null
 	 */
-	static function getRecipient($recipient, $support, $config) {
+	static function getRecipient($recipient, ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
 				return new ilHelpMeRecipientSendMail($support, $config);
@@ -49,7 +49,7 @@ abstract class ilHelpMeRecipient {
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */
-	protected function __construct($support, $config) {
+	protected function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		$this->support = $support;
 		$this->config = $config;
 
