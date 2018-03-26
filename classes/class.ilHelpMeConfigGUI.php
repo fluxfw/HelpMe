@@ -13,7 +13,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 */
 	protected $ctrl;
 	/**
-	 * @var ilHelpMeUIHookGUI
+	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
 	/**

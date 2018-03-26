@@ -16,7 +16,7 @@ abstract class ilHelpMeRecipient {
 	 */
 	protected $config;
 	/**
-	 * @var ilHelpMeUIHookGUI
+	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
 
