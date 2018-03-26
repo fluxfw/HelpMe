@@ -25,7 +25,7 @@ return array(
     'ilEMailInputGUI' => $baseDir . '/../../../../../../../Services/Form/classes/class.ilEMailInputGUI.php',
     'ilFileInputGUI' => $baseDir . '/../../../../../../../Services/Form/classes/class.ilFileInputGUI.php',
     'ilHelpMeConfig' => $baseDir . '/classes/Config/class.ilHelpMeConfig.php',
-    'ilHelpMeConfigFormGUI' => $baseDir . '/classes/class.ilHelpMeConfigFormGUI.php',
+    'ilHelpMeConfigFormGUI' => $baseDir . '/classes/Config/class.ilHelpMeConfigFormGUI.php',
     'ilHelpMeConfigGUI' => $baseDir . '/classes/class.ilHelpMeConfigGUI.php',
     'ilHelpMeConfigPriority' => $baseDir . '/classes/Config/class.ilHelpMeConfigPriority.php',
     'ilHelpMeConfigRole' => $baseDir . '/classes/Config/class.ilHelpMeConfigRole.php',
