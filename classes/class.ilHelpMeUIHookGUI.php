@@ -35,7 +35,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Support button
-				$tpl = $this->pl->getTemplate("il_help_me_button.html", true, true);
+				$tpl = $this->pl->getTemplate("il_help_me_button.html");
 
 				$main_tpl = $DIC->ui()->mainTemplate();
 				iljQueryUtil::initjQuery();

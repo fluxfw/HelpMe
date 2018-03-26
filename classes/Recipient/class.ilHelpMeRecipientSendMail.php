@@ -9,7 +9,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */
-	function __construct($support, $config) {
+	function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		parent::__construct($support, $config);
 	}
 

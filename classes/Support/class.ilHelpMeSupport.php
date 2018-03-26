@@ -78,7 +78,7 @@ class ilHelpMeSupport {
 	 * @return string
 	 */
 	function getBody($template) {
-		$tpl = $this->pl->getTemplate("il_help_me_" . $template . "_body.html", true, true);
+		$tpl = $this->pl->getTemplate("il_help_me_" . $template . "_body.html");
 
 		$fields = [
 			"srsu_title" => $this->title,

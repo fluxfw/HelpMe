@@ -1,14 +1,13 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use Sinergi\BrowserDetector\Browser;
-use Sinergi\BrowserDetector\Os;
-
 /**
  * HelpMe Plugin
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
+	const PLUGIN_ID = "srsu";
+	const PLUGIN_NAME = "HelpMe";
 	/**
 	 * @var ilHelpMePlugin
 	 */
@@ -27,7 +26,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	}
 
 
-	const ID = "srsu";
 	/**
 	 * @var ilDB
 	 */
@@ -44,23 +42,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	function getPluginName() {
-		return "HelpMe";
-	}
-
-
-	/**
-	 * Get browser infos
-	 *
-	 * @return string "Browser Version / System Version"
-	 */
-	function getBrowserInfos() {
-		$browser = new Browser();
-		$os = new Os();
-
-		$infos = $browser->getName() . (($browser->getVersion() !== Browser::UNKNOWN) ? " " . $browser->getVersion() : "") . " / " . $os->getName()
-			. (($os->getVersion() !== Os::UNKNOWN) ? " " . $os->getVersion() : "");
-
-		return $infos;
+		return self::PLUGIN_NAME;
 	}
 
 
