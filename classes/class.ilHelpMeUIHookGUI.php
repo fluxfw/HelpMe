@@ -11,7 +11,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 */
 	protected $ctrl;
 	/**
-	 * @var ilHelpMeUIHookGUI
+	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
 

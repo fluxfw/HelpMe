@@ -50,7 +50,7 @@ class ilHelpMeSupport {
 	 */
 	protected $screenshots = [];
 	/**
-	 * @var ilHelpMeUIHookGUI
+	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
 
