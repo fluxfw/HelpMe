@@ -94,11 +94,11 @@ class ilHelpMeConfigRole extends ActiveRecord {
 		$rbacreview = $DIC->rbac()->review();
 		$user_id = $DIC->user()->getId();
 
-		$user_roles = $rbacreview->getRolesByFilter(0, $user_id);
+		$user_roles = $rbacreview->assignedGlobalRoles($user_id);
 		$config_roles = self::getConfigRolesArray();
 
 		foreach ($user_roles as $user_role) {
-			if (in_array($user_role["rol_id"], $config_roles)) {
+			if (in_array($user_role, $config_roles)) {
 				return true;
 			}
 		}
