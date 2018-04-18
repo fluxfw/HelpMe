@@ -37,6 +37,9 @@ class ilJiraCurl {
 	protected $jira_access_token;
 
 
+	/**
+	 *
+	 */
 	public function __construct() {
 	}
 
@@ -121,7 +124,7 @@ class ilJiraCurl {
 	 * @param array  $headers
 	 * @param mixed  $post_data
 	 *
-	 * @return array|bool
+	 * @return array|false
 	 */
 	protected function doRequest($rest_url, $headers, $post_data = NULL) {
 		$url = $this->jira_domain . $rest_url;
@@ -165,9 +168,9 @@ class ilJiraCurl {
 	 * @param string $summary
 	 * @param string $description
 	 *
-	 * @return string|bool Issue-Key
+	 * @return string|false Issue-Key
 	 */
-	function createJiraIssueTicket($jira_project_key, $jira_issue_type, $summary, $description) {
+	public function createJiraIssueTicket($jira_project_key, $jira_issue_type, $summary, $description) {
 		$headers = [
 			"Accept" => "application/json",
 			"Content-Type" => "application/json"
@@ -212,7 +215,7 @@ class ilJiraCurl {
 	 *
 	 * @return bool
 	 */
-	function addAttachmentToIssue($issue_key, $attachement_name, $attachement_mime, $attachement_path) {
+	public function addAttachmentToIssue($issue_key, $attachement_name, $attachement_mime, $attachement_path) {
 		$headers = [
 			"Accept" => "application/json",
 			"X-Atlassian-Token" => "nocheck"

@@ -9,7 +9,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */
-	function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
+	public function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		parent::__construct($support, $config);
 	}
 
@@ -19,7 +19,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	function sendSupportToRecipient() {
+	public function sendSupportToRecipient() {
 		return ($this->sendEmail() && $this->sendConfirmationMail());
 	}
 
@@ -29,7 +29,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	function sendEmail() {
+	public function sendEmail() {
 		try {
 			$mailer = new ilMimeMail();
 

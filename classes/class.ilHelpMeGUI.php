@@ -28,7 +28,10 @@ class ilHelpMeGUI {
 	protected $usr;
 
 
-	function __construct() {
+	/**
+	 *
+	 */
+	public function __construct() {
 		global $DIC;
 
 		$this->ctrl = $DIC->ctrl();
@@ -41,7 +44,7 @@ class ilHelpMeGUI {
 	/**
 	 *
 	 */
-	function executeCommand() {
+	public function executeCommand() {
 		if (!ilHelpMeConfigRole::currentUserHasRole()) {
 			die();
 		}
@@ -72,8 +75,6 @@ class ilHelpMeGUI {
 	protected function getSupportForm() {
 		$form = new ilHelpMeSupportFormGUI($this);
 
-		$form->setForm();
-
 		return $form;
 	}
 
@@ -83,8 +84,6 @@ class ilHelpMeGUI {
 	 */
 	protected function getSuccessForm() {
 		$form = new ilHelpMeSuccessFormGUI($this);
-
-		$form->setForm();
 
 		return $form;
 	}
@@ -122,6 +121,9 @@ class ilHelpMeGUI {
 	}
 
 
+	/**
+	 *
+	 */
 	protected function addSupport() {
 		$message = NULL;
 
@@ -131,6 +133,9 @@ class ilHelpMeGUI {
 	}
 
 
+	/**
+	 *
+	 */
 	protected function newSupport() {
 		$message = NULL;
 

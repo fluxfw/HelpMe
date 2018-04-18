@@ -22,7 +22,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	protected $tpl;
 
 
-	function __construct() {
+	/**
+	 *
+	 */
+	public function __construct() {
 		global $DIC;
 
 		$this->ctrl = $DIC->ctrl();
@@ -35,7 +38,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 *
 	 * @param string $cmd
 	 */
-	function performCommand($cmd) {
+	public function performCommand($cmd) {
 		$next_class = $this->ctrl->getNextClass($this);
 
 		switch ($next_class) {
@@ -60,8 +63,6 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 */
 	protected function getConfigurationForm() {
 		$form = new ilHelpMeConfigFormGUI($this);
-
-		$form->setForm();
 
 		return $form;
 	}

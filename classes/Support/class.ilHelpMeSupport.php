@@ -55,6 +55,9 @@ class ilHelpMeSupport {
 	protected $pl;
 
 
+	/**
+	 *
+	 */
 	public function __construct() {
 		$this->pl = ilHelpMePlugin::getInstance();
 	}
@@ -65,7 +68,7 @@ class ilHelpMeSupport {
 	 *
 	 * @return string
 	 */
-	function getSubject() {
+	public function getSubject() {
 		return $this->priority->getPriority() . " - " . $this->title;
 	}
 
@@ -77,7 +80,7 @@ class ilHelpMeSupport {
 	 *
 	 * @return string
 	 */
-	function getBody($template) {
+	public function getBody($template) {
 		$tpl = $this->pl->getTemplate("il_help_me_" . $template . "_body.html");
 
 		$fields = [
@@ -114,7 +117,7 @@ class ilHelpMeSupport {
 	 *
 	 * @param array $screenshot
 	 */
-	function addScreenshot($screenshot) {
+	public function addScreenshot($screenshot) {
 		$this->screenshots[] = $screenshot;
 	}
 
@@ -124,7 +127,7 @@ class ilHelpMeSupport {
 	 *
 	 * @return string
 	 */
-	function getFormatedTime() {
+	public function getFormatedTime() {
 		// Save and restore old existing useRelativeDates
 		$useRelativeDates_ = ilDatePresentation::useRelativeDates();
 

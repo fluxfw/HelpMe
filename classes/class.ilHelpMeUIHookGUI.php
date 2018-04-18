@@ -16,7 +16,10 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	protected $pl;
 
 
-	function __construct() {
+	/**
+	 *
+	 */
+	public function __construct() {
 		global $DIC;
 
 		$this->ctrl = $DIC->ctrl();
@@ -28,8 +31,10 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 * @param string $a_comp
 	 * @param string $a_part
 	 * @param array  $a_par
+	 *
+	 * @return array
 	 */
-	function getHTML($a_comp, $a_part, $a_par = []) {
+	public function getHTML($a_comp, $a_part, $a_par = []) {
 		global $DIC;
 
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
@@ -58,7 +63,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
 			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Modal
-				// TODO Fix after first configure currentUserHasRole false because not yet set
+				// TODO Fix after first configure currentUserHasRole false because not yet set, only after this
 				ilModalGUI::initJS();
 
 				$modal = ilModalGUI::getInstance();
