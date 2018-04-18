@@ -11,7 +11,16 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	static function returnDbTableName() {
+	public function getConnectorContainerName() {
+		return self::TABLE_NAME;
+	}
+
+
+	/**
+	 * @return string
+	 * @deprecated
+	 */
+	public static function returnDbTableName() {
 		return self::TABLE_NAME;
 	}
 
@@ -19,7 +28,7 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	/**
 	 * @return ilHelpMeConfigPriority[]
 	 */
-	static function getConfigPriorities() {
+	public static function getConfigPriorities() {
 		/**
 		 * @var ilHelpMeConfigPriority[] $configPriorities
 		 */
@@ -33,7 +42,7 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	/**
 	 * @return array
 	 */
-	static function getConfigPrioritiesArray() {
+	public static function getConfigPrioritiesArray() {
 		$configPriorities = self::getConfigPriorities();
 
 		$priorities = [];
@@ -48,13 +57,13 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	/**
 	 * @param string[] $priorities
 	 */
-	static function setConfigPrioritiesArray($priorities) {
+	public static function setConfigPrioritiesArray($priorities) {
 		self::truncateDB();
 
 		foreach ($priorities as $priority) {
 			$configPriority = new self();
 			$configPriority->setPriority($priority);
-			$configPriority->create();
+			$configPriority->store();
 		}
 	}
 
@@ -79,6 +88,39 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	 * @con_is_unique   true
 	 */
 	protected $priority;
+
+
+	/**
+	 * @param string $field_name
+	 *
+	 * @return mixed|null
+	 */
+	public function sleep($field_name) {
+		$field_value = $this->{$field_name};
+
+		switch ($field_name) {
+			default:
+				return NULL;
+		}
+	}
+
+
+	/**
+	 * @param string $field_name
+	 * @param mixed  $field_value
+	 *
+	 * @return mixed|null
+	 */
+	public function wakeUp($field_name, $field_value) {
+		switch ($field_name) {
+			case "id":
+				return intval($field_value);
+				break;
+
+			default:
+				return NULL;
+		}
+	}
 
 
 	/**

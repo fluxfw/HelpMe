@@ -28,7 +28,7 @@ abstract class ilHelpMeRecipient {
 	 *
 	 * @return ilHelpMeRecipient|null
 	 */
-	static function getRecipient($recipient, ilHelpMeSupport $support, ilHelpMeConfig $config) {
+	public static function getRecipient($recipient, ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
 				return new ilHelpMeRecipientSendMail($support, $config);
@@ -62,7 +62,7 @@ abstract class ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	abstract function sendSupportToRecipient();
+	public abstract function sendSupportToRecipient();
 
 
 	/**
@@ -70,7 +70,7 @@ abstract class ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	function sendConfirmationMail() {
+	public function sendConfirmationMail() {
 		try {
 			$mailer = new ilMimeMail();
 

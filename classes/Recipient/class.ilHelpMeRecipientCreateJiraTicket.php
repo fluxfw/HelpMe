@@ -19,7 +19,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */
-	function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
+	public function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		parent::__construct($support, $config);
 
 		$this->jiraCurl = new ilJiraCurl();
@@ -42,7 +42,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	function sendSupportToRecipient() {
+	public function sendSupportToRecipient() {
 		return ($this->createJiraTicket() && $this->addScreenshoots() && $this->sendConfirmationMail());
 	}
 

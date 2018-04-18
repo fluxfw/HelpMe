@@ -29,7 +29,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	/**
 	 * @param ilHelpMeGUI $parent
 	 */
-	function __construct(ilHelpMeGUI $parent) {
+	public function __construct(ilHelpMeGUI $parent) {
 		parent::__construct();
 
 		global $DIC;
@@ -38,10 +38,15 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 		$this->parent = $parent;
 		$this->pl = ilHelpMePlugin::getInstance();
 		$this->usr = $DIC->user();
+
+		$this->setForm();
 	}
 
 
-	function setForm() {
+	/**
+	 *
+	 */
+	protected function setForm() {
 		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + ilHelpMeConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction($this->ctrl->getFormAction($this->parent, "", "", true));
@@ -101,7 +106,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	/**
 	 * @return ilHelpMeSupport
 	 */
-	function getSupport() {
+	public function getSupport() {
 		$configPriorities = ilHelpMeConfigPriority::getConfigPriorities();
 
 		$support = new ilHelpMeSupport();
@@ -124,7 +129,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 		$phone = $this->getInput("srsu_phone");
 		$support->setPhone($phone);
 
-		$priority_id = $this->getInput("srsu_priority");
+		$priority_id = (int)$this->getInput("srsu_priority");
 		foreach ($configPriorities as $priority) {
 			if ($priority->getId() === $priority_id) {
 				$support->setPriority($priority);

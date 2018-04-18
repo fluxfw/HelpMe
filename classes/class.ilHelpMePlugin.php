@@ -17,7 +17,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	/**
 	 * @return ilHelpMePlugin
 	 */
-	static function getInstance() {
+	public static function getInstance() {
 		if (self::$instance === NULL) {
 			self::$instance = new self();
 		}
@@ -32,6 +32,9 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	protected $db;
 
 
+	/**
+	 *
+	 */
 	public function __construct() {
 		parent::__construct();
 
@@ -41,16 +44,20 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	}
 
 
-	function getPluginName() {
+	/**
+	 * @return string
+	 */
+	public function getPluginName() {
 		return self::PLUGIN_NAME;
 	}
 
 
+	/**
+	 * @return bool
+	 */
 	protected function beforeUninstall() {
 		$this->db->dropTable(ilHelpMeConfig::TABLE_NAME, false);
-
 		$this->db->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
-
 		$this->db->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
 
 		return true;

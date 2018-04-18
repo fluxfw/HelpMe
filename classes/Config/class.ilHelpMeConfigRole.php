@@ -11,7 +11,16 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	static function returnDbTableName() {
+	public function getConnectorContainerName() {
+		return self::TABLE_NAME;
+	}
+
+
+	/**
+	 * @return string
+	 * @deprecated
+	 */
+	public static function returnDbTableName() {
 		return self::TABLE_NAME;
 	}
 
@@ -19,7 +28,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return ilHelpMeConfigRole[]
 	 */
-	static function getConfigRoles() {
+	public static function getConfigRoles() {
 		/**
 		 * @var ilHelpMeConfigRole[] $configRoles
 		 */
@@ -33,7 +42,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return array
 	 */
-	static function getConfigRolesArray() {
+	public static function getConfigRolesArray() {
 		$configRoles = self::getConfigRoles();
 
 		$roles = [];
@@ -48,14 +57,14 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @param int[] $roles
 	 */
-	static function setConfigRolesArray($roles) {
+	public static function setConfigRolesArray($roles) {
 		self::truncateDB();
 
 		foreach ($roles as $role_id) {
 			if ($role_id !== "") { // fix select all
 				$configRole = new self();
 				$configRole->setRoleId($role_id);
-				$configRole->create();
+				$configRole->store();
 			}
 		}
 	}
@@ -64,7 +73,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return array
 	 */
-	static function getAllRoles() {
+	public static function getAllRoles() {
 		global $DIC;
 
 		$rbacreview = $DIC->rbac()->review();
@@ -88,7 +97,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return bool
 	 */
-	static function currentUserHasRole() {
+	public static function currentUserHasRole() {
 		global $DIC;
 
 		$rbacreview = $DIC->rbac()->review();
@@ -128,6 +137,40 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	 * @con_is_unique   true
 	 */
 	protected $role_id;
+
+
+	/**
+	 * @param string $field_name
+	 *
+	 * @return mixed|null
+	 */
+	public function sleep($field_name) {
+		$field_value = $this->{$field_name};
+
+		switch ($field_name) {
+			default:
+				return NULL;
+		}
+	}
+
+
+	/**
+	 * @param string $field_name
+	 * @param mixed  $field_value
+	 *
+	 * @return mixed|null
+	 */
+	public function wakeUp($field_name, $field_value) {
+		switch ($field_name) {
+			case "id":
+			case "role_id":
+				return intval($field_value);
+				break;
+
+			default:
+				return NULL;
+		}
+	}
 
 
 	/**

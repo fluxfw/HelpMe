@@ -11,7 +11,16 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	static function returnDbTableName() {
+	public function getConnectorContainerName() {
+		return self::TABLE_NAME;
+	}
+
+
+	/**
+	 * @return string
+	 * @deprecated
+	 */
+	public static function returnDbTableName() {
 		return self::TABLE_NAME;
 	}
 
@@ -19,7 +28,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return ilHelpMeConfig
 	 */
-	static function getConfig() {
+	public static function getConfig() {
 		/**
 		 * @var ilHelpMeConfig $config
 		 */
@@ -30,7 +39,7 @@ class ilHelpMeConfig extends ActiveRecord {
 		} else {
 			$config = new self();
 			$config->setId(1);
-			$config->create();
+			$config->store();
 		}
 
 		return $config;
@@ -143,6 +152,39 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @con_is_notnull  true
 	 */
 	protected $info = "";
+
+
+	/**
+	 * @param string $field_name
+	 *
+	 * @return mixed|null
+	 */
+	public function sleep($field_name) {
+		$field_value = $this->{$field_name};
+
+		switch ($field_name) {
+			default:
+				return NULL;
+		}
+	}
+
+
+	/**
+	 * @param string $field_name
+	 * @param mixed  $field_value
+	 *
+	 * @return mixed|null
+	 */
+	public function wakeUp($field_name, $field_value) {
+		switch ($field_name) {
+			case "id":
+				return intval($field_value);
+				break;
+
+			default:
+				return NULL;
+		}
+	}
 
 
 	/**

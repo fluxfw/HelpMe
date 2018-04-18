@@ -8,6 +8,9 @@ $(document).ready(function () {
 
 	$button.click(click);
 
+	/**
+	 * @returns {boolean}
+	 */
 	function click() {
 		var get_url = $button.attr("href");
 
@@ -16,6 +19,9 @@ $(document).ready(function () {
 		return false;
 	}
 
+	/**
+	 * @param {string} html
+	 */
 	function show(html) {
 		$modal.find(".modal-body").html(html);
 
@@ -36,11 +42,14 @@ $(document).ready(function () {
 		});
 		$page_screenshot.click(pageScreenshot);
 
-		il.Form.init(); // TODO: Fix multiple listeners set
+		il.Form.init(); // TODO: Fix may multiple listeners set
 
 		$modal.modal("show");
 	}
 
+	/**
+	 * @returns {boolean}
+	 */
 	function submit() {
 		var post_url = $form.attr("action");
 
@@ -64,12 +73,18 @@ $(document).ready(function () {
 		return false;
 	}
 
+	/**
+	 * @returns {boolean}
+	 */
 	function cancel() {
 		$modal.modal("hide");
 
 		return false;
 	}
 
+	/**
+	 * @returns {boolean}
+	 */
 	function pageScreenshot() {
 		// Hide modal on the screenshot
 		$modal.css("visibility", "hidden");

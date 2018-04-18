@@ -8,7 +8,7 @@ class ilHelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
 	/**
 	 * @param ilHelpMeSupport $support
 	 */
-	function __construct(ilHelpMeSupport $support) {
+	public function __construct(ilHelpMeSupport $support) {
 		global $DIC;
 
 		$user = new ilObjUser();

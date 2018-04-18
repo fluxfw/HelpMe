@@ -26,7 +26,7 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 	/**
 	 * @param ilHelpMeConfigGUI $parent
 	 */
-	function __construct(ilHelpMeConfigGUI $parent) {
+	public function __construct(ilHelpMeConfigGUI $parent) {
 		parent::__construct();
 
 		global $DIC;
@@ -35,10 +35,15 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$this->ctrl = $DIC->ctrl();
 		$this->parent = $parent;
 		$this->pl = ilHelpMePlugin::getInstance();
+
+		$this->setForm();
 	}
 
 
-	function setForm() {
+	/**
+	 *
+	 */
+	protected function setForm() {
 		$configPriorities = ilHelpMeConfigPriority::getConfigPrioritiesArray();
 		$allRoles = ilHelpMeConfigRole::getAllRoles();
 		$configRoles = ilHelpMeConfigRole::getConfigRolesArray();
@@ -151,7 +156,10 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 	}
 
 
-	function updateConfig() {
+	/**
+	 *
+	 */
+	public function updateConfig() {
 		$recipient = $this->getInput("srsu_recipient");
 		$this->config->setRecipient($recipient);
 
@@ -194,7 +202,7 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$roles = $this->getInput("srsu_roles");
 		ilHelpMeConfigRole::setConfigRolesArray($roles);
 
-		$this->config->update();
+		$this->config->store();
 	}
 
 
