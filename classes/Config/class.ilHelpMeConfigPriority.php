@@ -5,7 +5,7 @@
  */
 class ilHelpMeConfigPriority extends ActiveRecord {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	const TABLE_NAME = "ui_uihk_srsu_prio";
 
 

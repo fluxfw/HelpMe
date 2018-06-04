@@ -2,10 +2,12 @@
 
 /**
  * Support recipient
+ *
+ * @property ilHelpMePlugin $pl
  */
 abstract class ilHelpMeRecipient {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	/**
@@ -16,10 +18,6 @@ abstract class ilHelpMeRecipient {
 	 * @var ilHelpMeConfig
 	 */
 	protected $config;
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
 
 
 	/**
@@ -53,8 +51,6 @@ abstract class ilHelpMeRecipient {
 	protected function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		$this->support = $support;
 		$this->config = $config;
-
-		$this->pl = ilHelpMePlugin::getInstance();
 	}
 
 

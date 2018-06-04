@@ -5,18 +5,16 @@ use Sinergi\BrowserDetector\Os;
 
 /**
  * HelpMe Support Form GUI
+ *
+ * @property ilHelpMePlugin $pl
  */
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	/**
 	 * @var ilHelpMeGUI
 	 */
 	protected $parent;
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
 
 
 	/**
@@ -26,7 +24,6 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 		parent::__construct();
 
 		$this->parent = $parent;
-		$this->pl = ilHelpMePlugin::getInstance();
 
 		$this->setForm();
 	}

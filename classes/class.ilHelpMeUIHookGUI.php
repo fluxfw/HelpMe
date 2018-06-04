@@ -3,21 +3,19 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
  * HelpMe UIHook-GUI
+ *
+ * @property ilHelpMePlugin $pl
  */
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
-	use \srag\DICTrait;
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
+	use \srag\DIC;
 
 
 	/**
 	 *
 	 */
 	public function __construct() {
-		$this->pl = ilHelpMePlugin::getInstance();
+
 	}
 
 

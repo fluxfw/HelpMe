@@ -6,7 +6,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
 	/**

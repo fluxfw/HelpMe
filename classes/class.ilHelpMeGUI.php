@@ -5,23 +5,21 @@ require_once __DIR__ . "/../vendor/autoload.php";
  * HelpMe GUI
  *
  * @ilCtrl_isCalledBy ilHelpMeGUI: ilUIPluginRouterGUI
+ *
+ * @property ilHelpMePlugin $pl
  */
 class ilHelpMeGUI {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
 
 
 	/**
 	 *
 	 */
 	public function __construct() {
-		$this->pl = ilHelpMePlugin::getInstance();
+
 	}
 
 

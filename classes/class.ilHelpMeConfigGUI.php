@@ -3,23 +3,21 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
  * HelpMe Config GUI
+ *
+ * @property ilHelpMePlugin $pl
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	const CMD_CONFIGURE = "configure";
 	const CMD_UPDATE_CONFIGURE = "updateConfigure";
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
 
 
 	/**
 	 *
 	 */
 	public function __construct() {
-		$this->pl = ilHelpMePlugin::getInstance();
+
 	}
 
 

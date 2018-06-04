@@ -5,7 +5,7 @@
   "autoload": {
     "classmap": [
       "classes/",
-      "../../../../Libraries/DICTrait",
+      "../../../../Libraries/DICTrait/classes",
       "../../../../../../../Services/ActiveRecord/class.ActiveRecord.php",
       "../../../../../../../Services/Calendar/classes/class.ilDatePresentation.php",
       "../../../../../../../Services/Calendar/classes/class.ilDateTime.php",

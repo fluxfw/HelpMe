@@ -2,10 +2,12 @@
 
 /**
  * HelpMe Config Form GUI
+ *
+ * @property ilHelpMePlugin $pl
  */
 class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	/**
 	 * @var ilHelpMeConfig
 	 */
@@ -14,10 +16,6 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 	 * @var ilHelpMeConfigGUI
 	 */
 	protected $parent;
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
 
 
 	/**
@@ -28,7 +26,6 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
 		$this->config = ilHelpMeConfig::getConfig();
 		$this->parent = $parent;
-		$this->pl = ilHelpMePlugin::getInstance();
 
 		$this->setForm();
 	}

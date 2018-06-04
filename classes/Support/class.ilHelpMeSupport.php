@@ -2,10 +2,12 @@
 
 /**
  * Support data
+ *
+ * @property ilHelpMePlugin $pl
  */
 class ilHelpMeSupport {
 
-	use \srag\DICTrait;
+	use \srag\DIC;
 	/**
 	 * @var int
 	 */
@@ -50,17 +52,13 @@ class ilHelpMeSupport {
 	 * @var array[]
 	 */
 	protected $screenshots = [];
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
 
 
 	/**
 	 *
 	 */
 	public function __construct() {
-		$this->pl = ilHelpMePlugin::getInstance();
+
 	}
 
 
