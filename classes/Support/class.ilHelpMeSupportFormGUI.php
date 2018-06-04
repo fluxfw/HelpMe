@@ -8,10 +8,7 @@ use Sinergi\BrowserDetector\Os;
  */
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
-	/**
-	 * @var ilCtrl
-	 */
-	protected $ctrl;
+	use \srag\DICTrait;
 	/**
 	 * @var ilHelpMeGUI
 	 */
@@ -20,10 +17,6 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
-	/**
-	 * @var ilObjUser
-	 */
-	protected $usr;
 
 
 	/**
@@ -32,12 +25,8 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	public function __construct(ilHelpMeGUI $parent) {
 		parent::__construct();
 
-		global $DIC;
-
-		$this->ctrl = $DIC->ctrl();
 		$this->parent = $parent;
 		$this->pl = ilHelpMePlugin::getInstance();
-		$this->usr = $DIC->user();
 
 		$this->setForm();
 	}
@@ -49,7 +38,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	protected function setForm() {
 		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + ilHelpMeConfigPriority::getConfigPrioritiesArray();
 
-		$this->setFormAction($this->ctrl->getFormAction($this->parent, "", "", true));
+		$this->setFormAction($this->ilCtrl->getFormAction($this->parent, "", "", true));
 
 		$this->addCommandButton("", $this->txt("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
 		$this->addCommandButton(ilHelpMeGUI::CMD_NEW_SUPPORT, $this->txt("srsu_submit"), "il_help_me_submit");
@@ -63,16 +52,16 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 		$this->addItem($title);
 
 		$name = new ilNonEditableValueGUI($this->txt("srsu_name"));
-		$name->setValue($this->usr->getFullname());
+		$name->setValue($this->ilUser->getFullname());
 		$this->addItem($name);
 
 		$login = new ilNonEditableValueGUI($this->txt("srsu_login"));
-		$login->setValue($this->usr->getLogin());
+		$login->setValue($this->ilUser->getLogin());
 		$this->addItem($login);
 
 		$email = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_email");
 		$email->setRequired(true);
-		$email->setValue($this->usr->getEmail());
+		$email->setValue($this->ilUser->getEmail());
 		$this->addItem($email);
 
 		$phone = new ilTextInputGUI($this->txt("srsu_phone"), "srsu_phone");
@@ -117,10 +106,10 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 		$title = $this->getInput("srsu_title");
 		$support->setTitle($title);
 
-		$name = $this->usr->getFullname();
+		$name = $this->ilUser->getFullname();
 		$support->setName($name);
 
-		$login = $this->usr->getLogin();
+		$login = $this->ilUser->getLogin();
 		$support->setLogin($login);
 
 		$email = $this->getInput("srsu_email");

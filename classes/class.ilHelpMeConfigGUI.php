@@ -6,31 +6,20 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
+	use \srag\DICTrait;
 	const CMD_CONFIGURE = "configure";
 	const CMD_UPDATE_CONFIGURE = "updateConfigure";
-	/**
-	 * @var ilCtrl
-	 */
-	protected $ctrl;
 	/**
 	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
-	/**
-	 * @var ilTemplate
-	 */
-	protected $tpl;
 
 
 	/**
 	 *
 	 */
 	public function __construct() {
-		global $DIC;
-
-		$this->ctrl = $DIC->ctrl();
 		$this->pl = ilHelpMePlugin::getInstance();
-		$this->tpl = $DIC->ui()->mainTemplate();
 	}
 
 
@@ -39,7 +28,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 * @param string $cmd
 	 */
 	public function performCommand($cmd) {
-		$next_class = $this->ctrl->getNextClass($this);
+		$next_class = $this->ilCtrl->getNextClass($this);
 
 		switch ($next_class) {
 			default:

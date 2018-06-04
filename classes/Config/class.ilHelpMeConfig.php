@@ -5,6 +5,7 @@
  */
 class ilHelpMeConfig extends ActiveRecord {
 
+	use \srag\DICTrait;
 	const TABLE_NAME = "ui_uihk_srsu_config";
 
 

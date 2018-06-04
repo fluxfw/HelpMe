@@ -5,6 +5,7 @@
  */
 abstract class ilHelpMeRecipient {
 
+	use \srag\DICTrait;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	/**
@@ -75,10 +76,8 @@ abstract class ilHelpMeRecipient {
 			$mailer = new ilMimeMail();
 
 			if (ILIAS_VERSION_NUMERIC >= "5.3") {
-				global $DIC;
-
 				/** @var ilMailMimeSenderFactory $senderFactory */
-				$senderFactory = $DIC["mail.mime.sender.factory"];
+				$senderFactory = $this->{"mail.mime.sender.factory"};
 
 				$mailer->From($senderFactory->system());
 			}

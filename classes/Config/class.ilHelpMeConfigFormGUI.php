@@ -5,14 +5,11 @@
  */
 class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
+	use \srag\DICTrait;
 	/**
 	 * @var ilHelpMeConfig
 	 */
 	protected $config;
-	/**
-	 * @var ilCtrl
-	 */
-	protected $ctrl;
 	/**
 	 * @var ilHelpMeConfigGUI
 	 */
@@ -29,10 +26,7 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 	public function __construct(ilHelpMeConfigGUI $parent) {
 		parent::__construct();
 
-		global $DIC;
-
 		$this->config = ilHelpMeConfig::getConfig();
-		$this->ctrl = $DIC->ctrl();
 		$this->parent = $parent;
 		$this->pl = ilHelpMePlugin::getInstance();
 
@@ -48,7 +42,7 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$allRoles = ilHelpMeConfigRole::getAllRoles();
 		$configRoles = ilHelpMeConfigRole::getConfigRolesArray();
 
-		$this->setFormAction($this->ctrl->getFormAction($this->parent));
+		$this->setFormAction($this->ilCtrl->getFormAction($this->parent));
 
 		$this->setTitle($this->txt("srsu_configuration"));
 

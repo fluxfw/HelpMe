@@ -5,16 +5,17 @@
  */
 class ilHelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
 
+	use \srag\DICTrait;
+
+
 	/**
 	 * @param ilHelpMeSupport $support
 	 */
 	public function __construct(ilHelpMeSupport $support) {
-		global $DIC;
-
 		$user = new ilObjUser();
 		$user->fullname = $support->getName();
 		$user->setEmail($support->getEmail());
 
-		parent::__construct($DIC->settings(), $user);
+		parent::__construct($this->ilSetting, $user);
 	}
 }

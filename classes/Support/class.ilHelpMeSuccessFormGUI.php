@@ -5,10 +5,7 @@
  */
 class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
-	/**
-	 * @var ilCtrl
-	 */
-	protected $ctrl;
+	use \srag\DICTrait;
 	/**
 	 * @var ilHelpMeGUI
 	 */
@@ -22,12 +19,9 @@ class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 	/**
 	 * @param ilHelpMeGUI $parent
 	 */
-	public 	function __construct(ilHelpMeGUI $parent) {
+	public function __construct(ilHelpMeGUI $parent) {
 		parent::__construct();
 
-		global $DIC;
-
-		$this->ctrl = $DIC->ctrl();
 		$this->parent = $parent;
 		$this->pl = ilHelpMePlugin::getInstance();
 
@@ -39,7 +33,7 @@ class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function setForm() {
-		$this->setFormAction($this->ctrl->getFormAction($this->parent, "", "", true));
+		$this->setFormAction($this->ilCtrl->getFormAction($this->parent, "", "", true));
 
 		$this->addCommandButton("", $this->txt("srsu_close"), "il_help_me_cancel");
 

@@ -8,36 +8,20 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMeGUI {
 
+	use \srag\DICTrait;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
-	/**
-	 * @var ilCtrl
-	 */
-	protected $ctrl;
 	/**
 	 * @var ilHelpMePlugin
 	 */
 	protected $pl;
-	/**
-	 * @var ilTemplate
-	 */
-	protected $tpl;
-	/**
-	 * @var ilObjUser
-	 */
-	protected $usr;
 
 
 	/**
 	 *
 	 */
 	public function __construct() {
-		global $DIC;
-
-		$this->ctrl = $DIC->ctrl();
 		$this->pl = ilHelpMePlugin::getInstance();
-		$this->tpl = $DIC->ui()->mainTemplate();
-		$this->usr = $DIC->user();
 	}
 
 
@@ -49,11 +33,11 @@ class ilHelpMeGUI {
 			die();
 		}
 
-		$next_class = $this->ctrl->getNextClass($this);
+		$next_class = $this->ilCtrl->getNextClass($this);
 
 		switch ($next_class) {
 			default:
-				$cmd = $this->ctrl->getCmd();
+				$cmd = $this->ilCtrl->getCmd();
 
 				switch ($cmd) {
 					case self::CMD_ADD_SUPPORT:
@@ -111,7 +95,7 @@ class ilHelpMeGUI {
 
 		$html = $tpl->get();
 
-		if ($this->ctrl->isAsynch()) {
+		if ($this->ilCtrl->isAsynch()) {
 			echo $html;
 
 			exit();

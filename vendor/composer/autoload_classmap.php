@@ -59,4 +59,6 @@ return array(
     'ilUserInterfaceHookPlugin' => $baseDir . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
     'ilUtil' => $baseDir . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
     'iljQueryUtil' => $baseDir . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
+    'srag\\DICStatic' => $baseDir . '/../../../../Libraries/DICTrait/DICStatic.php',
+    'srag\\DICTrait' => $baseDir . '/../../../../Libraries/DICTrait/DICTrait.php',
 );

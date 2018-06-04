@@ -6,10 +6,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
-	/**
-	 * @var ilCtrl
-	 */
-	protected $ctrl;
+	use \srag\DICTrait;
 	/**
 	 * @var ilHelpMePlugin
 	 */
@@ -20,9 +17,6 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 *
 	 */
 	public function __construct() {
-		global $DIC;
-
-		$this->ctrl = $DIC->ctrl();
 		$this->pl = ilHelpMePlugin::getInstance();
 	}
 
@@ -35,22 +29,19 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 * @return array
 	 */
 	public function getHTML($a_comp, $a_part, $a_par = []) {
-		global $DIC;
-
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Support button
 				$tpl = $this->pl->getTemplate("il_help_me_button.html");
 
-				$main_tpl = $DIC->ui()->mainTemplate();
 				iljQueryUtil::initjQuery();
-				$main_tpl->addJavaScript("Services/Form/js/Form.js");
-				$main_tpl->addJavaScript($this->pl->getDirectory() . "/lib/html2canvas.min.js");
-				$main_tpl->addJavaScript($this->pl->getDirectory() . "/js/ilHelpMe.js");
+				$this->tpl->addJavaScript("Services/Form/js/Form.js");
+				$this->tpl->addJavaScript($this->pl->getDirectory() . "/lib/html2canvas.min.js");
+				$this->tpl->addJavaScript($this->pl->getDirectory() . "/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
 				$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
-				$tpl->setVariable("SUPPORT_LINK", $this->ctrl->getLinkTargetByClass([
+				$tpl->setVariable("SUPPORT_LINK", $this->ilCtrl->getLinkTargetByClass([
 					ilUIPluginRouterGUI::class,
 					ilHelpMeGUI::class
 				], ilHelpMeGUI::CMD_ADD_SUPPORT, "", true));

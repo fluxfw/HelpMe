@@ -5,6 +5,7 @@
  */
 class ilHelpMeSupport {
 
+	use \srag\DICTrait;
 	/**
 	 * @var int
 	 */

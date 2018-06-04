@@ -6,6 +6,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
+	use \srag\DICTrait;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
 	/**
@@ -27,20 +28,10 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	/**
-	 * @var ilDB
-	 */
-	protected $db;
-
-
-	/**
 	 *
 	 */
 	public function __construct() {
 		parent::__construct();
-
-		global $DIC;
-
-		$this->db = $DIC->database();
 	}
 
 
@@ -56,9 +47,9 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @return bool
 	 */
 	protected function beforeUninstall() {
-		$this->db->dropTable(ilHelpMeConfig::TABLE_NAME, false);
-		$this->db->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
-		$this->db->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
+		$this->ilDB->dropTable(ilHelpMeConfig::TABLE_NAME, false);
+		$this->ilDB->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
+		$this->ilDB->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
 
 		return true;
 	}
