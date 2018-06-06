@@ -1,11 +1,17 @@
 {
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../../../../Libraries/DICTrait"
+    }
+  ],
   "require": {
-    "sinergi/browser-detector": "^6.1"
+    "sinergi/browser-detector": "^6.1",
+    "srag/DICTrait": "^0.1"
   },
   "autoload": {
     "classmap": [
       "classes/",
-      "../../../../Libraries/DICTrait/classes",
       "../../../../../../../Services/ActiveRecord/class.ActiveRecord.php",
       "../../../../../../../Services/Calendar/classes/class.ilDatePresentation.php",
       "../../../../../../../Services/Calendar/classes/class.ilDateTime.php",

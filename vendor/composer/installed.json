@@ -49,5 +49,44 @@
             "operating system",
             "os"
         ]
+    },
+    {
+        "name": "srag/DICTrait",
+        "version": "0.1.0",
+        "version_normalized": "0.1.0.0",
+        "dist": {
+            "type": "path",
+            "url": "../../../../Libraries/DICTrait",
+            "reference": "96fe999847d32c1dfbd4e58b4639cbb210d1ef88",
+            "shasum": null
+        },
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "classmap": [
+                "classes/"
+            ]
+        },
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "srag",
+                "email": "support@studer-raimann.ch",
+                "homepage": "https://studer-raimann.ch",
+                "role": "Developer"
+            }
+        ],
+        "description": "Use all $DIC properties dynamic in your class",
+        "homepage": "https://github.com/studer-raimann/DICTrait",
+        "keywords": [
+            "DIC",
+            "ILIAS",
+            "Trait"
+        ],
+        "support": {
+            "email": "support@studer-raimann.ch"
+        }
     }
 ]

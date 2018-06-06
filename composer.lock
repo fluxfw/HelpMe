@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2bf0137d4eb1abbba76260ced5abfe93",
+    "content-hash": "ea9d1c94324341a4267d58d42fd721d3",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -54,6 +54,43 @@
                 "os"
             ],
             "time": "2016-12-28T16:31:30+00:00"
+        },
+        {
+            "name": "srag/DICTrait",
+            "version": "0.1.0",
+            "dist": {
+                "type": "path",
+                "url": "../../../../Libraries/DICTrait",
+                "reference": "96fe999847d32c1dfbd4e58b4639cbb210d1ef88",
+                "shasum": null
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "classes/"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "srag",
+                    "email": "support@studer-raimann.ch",
+                    "homepage": "https://studer-raimann.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use all $DIC properties dynamic in your class",
+            "homepage": "https://github.com/studer-raimann/DICTrait",
+            "keywords": [
+                "DIC",
+                "ILIAS",
+                "Trait"
+            ],
+            "support": {
+                "email": "support@studer-raimann.ch"
+            }
         }
     ],
     "packages-dev": [],
