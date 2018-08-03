@@ -2,7 +2,7 @@
   "repositories": [
     {
       "type": "path",
-      "url": "../../../../Libraries/DICTrait"
+      "url": "../../../../Libraries/DIC"
     }
   ],
   "require": {

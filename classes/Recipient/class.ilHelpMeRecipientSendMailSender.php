@@ -5,7 +5,7 @@
  */
 class ilHelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 
 
 	/**
@@ -16,6 +16,6 @@ class ilHelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
 		$user->fullname = $support->getName();
 		$user->setEmail($support->getEmail());
 
-		parent::__construct($this->ilSetting, $user);
+		parent::__construct(self::dic()->settings(), $user);
 	}
 }

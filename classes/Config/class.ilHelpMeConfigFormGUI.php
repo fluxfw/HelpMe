@@ -7,7 +7,7 @@
  */
 class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 	/**
 	 * @var ilHelpMeConfig
 	 */
@@ -39,7 +39,7 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$allRoles = ilHelpMeConfigRole::getAllRoles();
 		$configRoles = ilHelpMeConfigRole::getConfigRolesArray();
 
-		$this->setFormAction($this->ilCtrl->getFormAction($this->parent));
+		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
 
 		$this->setTitle($this->txt("srsu_configuration"));
 
@@ -198,11 +198,12 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * @param string $a_var
+	 * @param string $key
+	 * @param bool   $plugin
 	 *
 	 * @return string
 	 */
-	protected function txt($a_var) {
-		return $this->pl->txt($a_var);
+	protected function txt($key, $plugin = true) {
+		return self::dic()->txt($key, $plugin);
 	}
 }

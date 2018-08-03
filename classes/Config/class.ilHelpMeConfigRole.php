@@ -5,7 +5,7 @@
  */
 class ilHelpMeConfigRole extends ActiveRecord {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 	const TABLE_NAME = "ui_uihk_srsu_roles";
 
 

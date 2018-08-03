@@ -7,7 +7,7 @@
  */
 class ilHelpMeSupport {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 	/**
 	 * @var int
 	 */
@@ -80,7 +80,7 @@ class ilHelpMeSupport {
 	 * @return string
 	 */
 	public function getBody($template) {
-		$tpl = $this->pl->getTemplate("il_help_me_" . $template . "_body.html");
+		$tpl = self::dic()->getTemplate("il_help_me_" . $template . "_body.html");
 
 		$fields = [
 			"srsu_title" => $this->title,

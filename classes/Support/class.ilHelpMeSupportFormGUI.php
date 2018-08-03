@@ -10,7 +10,7 @@ use Sinergi\BrowserDetector\Os;
  */
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 	/**
 	 * @var ilHelpMeGUI
 	 */
@@ -35,7 +35,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	protected function setForm() {
 		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + ilHelpMeConfigPriority::getConfigPrioritiesArray();
 
-		$this->setFormAction($this->ilCtrl->getFormAction($this->parent, "", "", true));
+		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
 		$this->addCommandButton("", $this->txt("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
 		$this->addCommandButton(ilHelpMeGUI::CMD_NEW_SUPPORT, $this->txt("srsu_submit"), "il_help_me_submit");
@@ -49,16 +49,16 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 		$this->addItem($title);
 
 		$name = new ilNonEditableValueGUI($this->txt("srsu_name"));
-		$name->setValue($this->ilUser->getFullname());
+		$name->setValue(self::dic()->user()->getFullname());
 		$this->addItem($name);
 
 		$login = new ilNonEditableValueGUI($this->txt("srsu_login"));
-		$login->setValue($this->ilUser->getLogin());
+		$login->setValue(self::dic()->user()->getLogin());
 		$this->addItem($login);
 
 		$email = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_email");
 		$email->setRequired(true);
-		$email->setValue($this->ilUser->getEmail());
+		$email->setValue(self::dic()->user()->getEmail());
 		$this->addItem($email);
 
 		$phone = new ilTextInputGUI($this->txt("srsu_phone"), "srsu_phone");
@@ -103,10 +103,10 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 		$title = $this->getInput("srsu_title");
 		$support->setTitle($title);
 
-		$name = $this->ilUser->getFullname();
+		$name = self::dic()->user()->getFullname();
 		$support->setName($name);
 
-		$login = $this->ilUser->getLogin();
+		$login = self::dic()->user()->getLogin();
 		$support->setLogin($login);
 
 		$email = $this->getInput("srsu_email");
@@ -158,11 +158,12 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * @param string $a_var
+	 * @param string $key
+	 * @param bool   $plugin
 	 *
 	 * @return string
 	 */
-	protected function txt($a_var) {
-		return $this->pl->txt($a_var);
+	protected function txt($key, $plugin = true) {
+		return self::dic()->txt($key, $plugin);
 	}
 }

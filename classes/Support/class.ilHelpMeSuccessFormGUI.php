@@ -7,7 +7,7 @@
  */
 class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 	/**
 	 * @var ilHelpMeGUI
 	 */
@@ -30,7 +30,7 @@ class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function setForm() {
-		$this->setFormAction($this->ilCtrl->getFormAction($this->parent, "", "", true));
+		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
 		$this->addCommandButton("", $this->txt("srsu_close"), "il_help_me_cancel");
 
@@ -40,11 +40,12 @@ class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * @param string $a_var
+	 * @param string $key
+	 * @param bool   $plugin
 	 *
 	 * @return string
 	 */
-	protected function txt($a_var) {
-		return $this->pl->txt($a_var);
+	protected function txt($key, $plugin = true) {
+		return self::dic()->txt($key, $plugin);
 	}
 }

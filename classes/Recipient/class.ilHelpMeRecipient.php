@@ -7,7 +7,7 @@
  */
 abstract class ilHelpMeRecipient {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	/**

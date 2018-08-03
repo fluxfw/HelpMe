@@ -10,7 +10,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMeGUI {
 
-	use \srag\DIC;
+	use srag\DIC\DIC;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
 
@@ -31,11 +31,11 @@ class ilHelpMeGUI {
 			die();
 		}
 
-		$next_class = $this->ilCtrl->getNextClass($this);
+		$next_class = self::dic()->ctrl()->getNextClass($this);
 
 		switch ($next_class) {
 			default:
-				$cmd = $this->ilCtrl->getCmd();
+				$cmd = self::dic()->ctrl()->getCmd();
 
 				switch ($cmd) {
 					case self::CMD_ADD_SUPPORT:
@@ -75,10 +75,10 @@ class ilHelpMeGUI {
 	 * @param string|null       $message
 	 * @param ilPropertyFormGUI $form
 	 */
-	protected function show($message = NULL, ilPropertyFormGUI $form) {
+	protected function show($message, ilPropertyFormGUI $form) {
 		$config = ilHelpMeConfig::getConfig();
 
-		$tpl = $this->pl->getTemplate("il_help_me_modal.html");
+		$tpl = self::dic()->getTemplate("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
 		$tpl->setVariable("INFO", $config->getInfo());
@@ -93,12 +93,12 @@ class ilHelpMeGUI {
 
 		$html = $tpl->get();
 
-		if ($this->ilCtrl->isAsynch()) {
+		if (self::dic()->ctrl()->isAsynch()) {
 			echo $html;
 
 			exit();
 		} else {
-			$this->tpl->setContent($html);
+			self::dic()->tpl()->setContent($html);
 		}
 	}
 
@@ -135,11 +135,11 @@ class ilHelpMeGUI {
 
 		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
 		if ($recipient->sendSupportToRecipient()) {
-			$message = $this->tpl->getMessageHTML($this->txt("srsu_sent_success"), "success");
+			$message = self::dic()->tpl()->getMessageHTML($this->txt("srsu_sent_success"), "success");
 
 			$form = $this->getSuccessForm();
 		} else {
-			$message = $this->tpl->getMessageHTML($this->txt("srsu_sent_failure"), "failure");
+			$message = self::dic()->tpl()->getMessageHTML($this->txt("srsu_sent_failure"), "failure");
 		}
 
 		$this->show($message, $form);
@@ -147,11 +147,12 @@ class ilHelpMeGUI {
 
 
 	/**
-	 * @param string $a_var
+	 * @param string $key
+	 * @param bool   $plugin
 	 *
 	 * @return string
 	 */
-	protected function txt($a_var) {
-		return $this->pl->txt($a_var);
+	protected function txt($key, $plugin = true) {
+		return self::dic()->txt($key, $plugin);
 	}
 }
