@@ -45,7 +45,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				], ilHelpMeGUI::CMD_ADD_SUPPORT, "", true));
 				$html = $tpl->get();
 
-				return [ "mode" => ilUIHookPluginGUI::PREPEND, "html" => $html ];
+				return [ "mode" => self::PREPEND, "html" => $html ];
 			}
 		}
 
@@ -63,11 +63,11 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				$html = $modal->getHTML();
 
-				return [ "mode" => ilUIHookPluginGUI::APPEND, "html" => $html ];
+				return [ "mode" => self::APPEND, "html" => $html ];
 			}
 		}
 
-		return [ "mode" => ilUIHookPluginGUI::KEEP, "html" => "" ];
+		return [ "mode" => self::KEEP, "html" => "" ];
 	}
 
 
