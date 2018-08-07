@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "3df291c4d0a6784f98c50022897a2bc3",
+    "content-hash": "0667c566b67b86cff4cadc5dfb8f7bb1",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -61,13 +61,13 @@
             "dist": {
                 "type": "path",
                 "url": "../../../../Libraries/DIC",
-                "reference": "04d859e6925be082b169f8869196c89ffa7bfab9",
+                "reference": "1fd4dfc8141368e2e428f19ce6b099d1462daed0",
                 "shasum": null
             },
             "type": "library",
             "autoload": {
                 "classmap": [
-                    "classes/"
+                    "src/"
                 ]
             },
             "license": [
@@ -86,10 +86,14 @@
             "keywords": [
                 "DIC",
                 "ILIAS",
-                "Trait"
+                "Trait",
+                "globals"
             ],
             "support": {
                 "email": "support@studer-raimann.ch"
+            },
+            "transport-options": {
+                "symlink": false
             }
         }
     ],

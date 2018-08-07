@@ -57,14 +57,14 @@
         "dist": {
             "type": "path",
             "url": "../../../../Libraries/DIC",
-            "reference": "04d859e6925be082b169f8869196c89ffa7bfab9",
+            "reference": "1fd4dfc8141368e2e428f19ce6b099d1462daed0",
             "shasum": null
         },
         "type": "library",
         "installation-source": "dist",
         "autoload": {
             "classmap": [
-                "classes/"
+                "src/"
             ]
         },
         "license": [
@@ -83,10 +83,14 @@
         "keywords": [
             "DIC",
             "ILIAS",
-            "Trait"
+            "Trait",
+            "globals"
         ],
         "support": {
             "email": "support@studer-raimann.ch"
+        },
+        "transport-options": {
+            "symlink": false
         }
     }
 ]

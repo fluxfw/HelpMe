@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitafb6b6b2a7ff8933af8bc810d638ca06
+class ComposerStaticInitecd81504508fc60bb2aa81c22b5655f3
 {
     public static $prefixLengthsPsr4 = array (
         'S' => 
@@ -74,18 +74,21 @@ class ComposerStaticInitafb6b6b2a7ff8933af8bc810d638ca06
         'ilUserInterfaceHookPlugin' => __DIR__ . '/../..' . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
         'ilUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
         'iljQueryUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
-        'srag\\DIC\\ADIC' => __DIR__ . '/..' . '/srag/DIC/classes/ADIC.php',
-        'srag\\DIC\\DICCache' => __DIR__ . '/..' . '/srag/DIC/classes/DICCache.php',
-        'srag\\DIC\\LegacyDIC' => __DIR__ . '/..' . '/srag/DIC/classes/LegacyDIC.php',
-        'srag\\DIC\\NewDIC' => __DIR__ . '/..' . '/srag/DIC/classes/NewDIC.php',
+        'srag\\DIC\\ADIC' => __DIR__ . '/..' . '/srag/DIC/src/classes/ADIC.php',
+        'srag\\DIC\\DIC' => __DIR__ . '/..' . '/srag/DIC/src/traits/DIC.php',
+        'srag\\DIC\\DICCache' => __DIR__ . '/..' . '/srag/DIC/src/classes/DICCache.php',
+        'srag\\DIC\\DICException' => __DIR__ . '/..' . '/srag/DIC/src/exceptions/DICException.php',
+        'srag\\DIC\\IDIC' => __DIR__ . '/..' . '/srag/DIC/src/interfaces/IDIC.php',
+        'srag\\DIC\\LegacyDIC' => __DIR__ . '/..' . '/srag/DIC/src/classes/LegacyDIC.php',
+        'srag\\DIC\\NewDIC' => __DIR__ . '/..' . '/srag/DIC/src/classes/NewDIC.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitafb6b6b2a7ff8933af8bc810d638ca06::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitafb6b6b2a7ff8933af8bc810d638ca06::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitafb6b6b2a7ff8933af8bc810d638ca06::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitecd81504508fc60bb2aa81c22b5655f3::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitecd81504508fc60bb2aa81c22b5655f3::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitecd81504508fc60bb2aa81c22b5655f3::$classMap;
 
         }, null, ClassLoader::class);
     }
