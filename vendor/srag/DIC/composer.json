@@ -1,0 +1,36 @@
+{
+  "name": "srag/DIC",
+  "description": "Use all ILIAS globals in your class",
+  "version": "0.1.0",
+  "type": "library",
+  "keywords": [
+    "ILIAS",
+    "DIC",
+    "Trait",
+    "globals"
+  ],
+  "homepage": "https://git.studer-raimann.ch/ILIAS/Plugins/DIC",
+  "time": "",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "srag",
+      "email": "support@studer-raimann.ch",
+      "homepage": "https://studer-raimann.ch",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "support@studer-raimann.ch"
+  },
+  "autoload": {
+    "classmap": [
+      "src/"
+    ]
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true,
+    "classmap-authoritative": true
+  }
+}
