@@ -1,10 +1,16 @@
 {
   "repositories": [
     {
-      "type": "path",
-      "url": "../../../../Libraries/DIC",
-      "options": {
-        "symlink": false
+      "type": "package",
+      "package": {
+        "name": "srag/DIC",
+        "version": "0.1.0",
+        "type": "package",
+        "source": {
+          "url": "git@git.studer-raimann.ch:ILIAS/Plugins/DIC.git",
+          "type": "git",
+          "reference": "develop"
+        }
       }
     }
   ],

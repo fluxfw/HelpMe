@@ -59,11 +59,4 @@ return array(
     'ilUserInterfaceHookPlugin' => $baseDir . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
     'ilUtil' => $baseDir . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
     'iljQueryUtil' => $baseDir . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
-    'srag\\DIC\\ADIC' => $vendorDir . '/srag/DIC/src/classes/ADIC.php',
-    'srag\\DIC\\DIC' => $vendorDir . '/srag/DIC/src/traits/DIC.php',
-    'srag\\DIC\\DICCache' => $vendorDir . '/srag/DIC/src/classes/DICCache.php',
-    'srag\\DIC\\DICException' => $vendorDir . '/srag/DIC/src/exceptions/DICException.php',
-    'srag\\DIC\\IDIC' => $vendorDir . '/srag/DIC/src/interfaces/IDIC.php',
-    'srag\\DIC\\LegacyDIC' => $vendorDir . '/srag/DIC/src/classes/LegacyDIC.php',
-    'srag\\DIC\\NewDIC' => $vendorDir . '/srag/DIC/src/classes/NewDIC.php',
 );

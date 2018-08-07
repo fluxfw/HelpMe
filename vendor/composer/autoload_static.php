@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb53fd1aa6311e23b2b4ebe4310b3343b
+class ComposerStaticInit7d5ef025177239925f5140b9eec9dec2
 {
     public static $prefixLengthsPsr4 = array (
         'S' => 
@@ -74,21 +74,14 @@ class ComposerStaticInitb53fd1aa6311e23b2b4ebe4310b3343b
         'ilUserInterfaceHookPlugin' => __DIR__ . '/../..' . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
         'ilUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
         'iljQueryUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
-        'srag\\DIC\\ADIC' => __DIR__ . '/..' . '/srag/DIC/src/classes/ADIC.php',
-        'srag\\DIC\\DIC' => __DIR__ . '/..' . '/srag/DIC/src/traits/DIC.php',
-        'srag\\DIC\\DICCache' => __DIR__ . '/..' . '/srag/DIC/src/classes/DICCache.php',
-        'srag\\DIC\\DICException' => __DIR__ . '/..' . '/srag/DIC/src/exceptions/DICException.php',
-        'srag\\DIC\\IDIC' => __DIR__ . '/..' . '/srag/DIC/src/interfaces/IDIC.php',
-        'srag\\DIC\\LegacyDIC' => __DIR__ . '/..' . '/srag/DIC/src/classes/LegacyDIC.php',
-        'srag\\DIC\\NewDIC' => __DIR__ . '/..' . '/srag/DIC/src/classes/NewDIC.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb53fd1aa6311e23b2b4ebe4310b3343b::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb53fd1aa6311e23b2b4ebe4310b3343b::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitb53fd1aa6311e23b2b4ebe4310b3343b::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7d5ef025177239925f5140b9eec9dec2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7d5ef025177239925f5140b9eec9dec2::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit7d5ef025177239925f5140b9eec9dec2::$classMap;
 
         }, null, ClassLoader::class);
     }

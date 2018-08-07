@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0667c566b67b86cff4cadc5dfb8f7bb1",
+    "content-hash": "c5c3d14dcdc13b57b7dc3a492edb494d",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -58,43 +58,12 @@
         {
             "name": "srag/DIC",
             "version": "0.1.0",
-            "dist": {
-                "type": "path",
-                "url": "../../../../Libraries/DIC",
-                "reference": "1fd4dfc8141368e2e428f19ce6b099d1462daed0",
-                "shasum": null
+            "source": {
+                "type": "git",
+                "url": "git@git.studer-raimann.ch:ILIAS/Plugins/DIC.git",
+                "reference": "develop"
             },
-            "type": "library",
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "srag",
-                    "email": "support@studer-raimann.ch",
-                    "homepage": "https://studer-raimann.ch",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Use all ILIAS globals in your class",
-            "homepage": "https://git.studer-raimann.ch/ILIAS/Plugins/DIC",
-            "keywords": [
-                "DIC",
-                "ILIAS",
-                "Trait",
-                "globals"
-            ],
-            "support": {
-                "email": "support@studer-raimann.ch"
-            },
-            "transport-options": {
-                "symlink": false
-            }
+            "type": "package"
         }
     ],
     "packages-dev": [],

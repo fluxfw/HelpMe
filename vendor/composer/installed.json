@@ -54,43 +54,12 @@
         "name": "srag/DIC",
         "version": "0.1.0",
         "version_normalized": "0.1.0.0",
-        "dist": {
-            "type": "path",
-            "url": "../../../../Libraries/DIC",
-            "reference": "1fd4dfc8141368e2e428f19ce6b099d1462daed0",
-            "shasum": null
+        "source": {
+            "type": "git",
+            "url": "git@git.studer-raimann.ch:ILIAS/Plugins/DIC.git",
+            "reference": "develop"
         },
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "classmap": [
-                "src/"
-            ]
-        },
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "srag",
-                "email": "support@studer-raimann.ch",
-                "homepage": "https://studer-raimann.ch",
-                "role": "Developer"
-            }
-        ],
-        "description": "Use all ILIAS globals in your class",
-        "homepage": "https://git.studer-raimann.ch/ILIAS/Plugins/DIC",
-        "keywords": [
-            "DIC",
-            "ILIAS",
-            "Trait",
-            "globals"
-        ],
-        "support": {
-            "email": "support@studer-raimann.ch"
-        },
-        "transport-options": {
-            "symlink": false
-        }
+        "type": "package",
+        "installation-source": "source"
     }
 ]
