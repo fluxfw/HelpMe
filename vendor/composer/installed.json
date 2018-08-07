@@ -51,13 +51,13 @@
         ]
     },
     {
-        "name": "srag/DICTrait",
+        "name": "srag/DIC",
         "version": "0.1.0",
         "version_normalized": "0.1.0.0",
         "dist": {
             "type": "path",
-            "url": "../../../../Libraries/DICTrait",
-            "reference": "96fe999847d32c1dfbd4e58b4639cbb210d1ef88",
+            "url": "../../../../Libraries/DIC",
+            "reference": "04d859e6925be082b169f8869196c89ffa7bfab9",
             "shasum": null
         },
         "type": "library",
@@ -78,8 +78,8 @@
                 "role": "Developer"
             }
         ],
-        "description": "Use all $DIC properties dynamic in your class",
-        "homepage": "https://github.com/studer-raimann/DICTrait",
+        "description": "Use all ILIAS globals in your class",
+        "homepage": "https://git.studer-raimann.ch/ILIAS/Plugins/DIC",
         "keywords": [
             "DIC",
             "ILIAS",

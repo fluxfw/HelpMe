@@ -74,8 +74,10 @@ class ComposerStaticInitafb6b6b2a7ff8933af8bc810d638ca06
         'ilUserInterfaceHookPlugin' => __DIR__ . '/../..' . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
         'ilUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
         'iljQueryUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
-        'srag\\DIC' => __DIR__ . '/..' . '/srag/DICTrait/classes/DIC.php',
-        'srag\\DICStatic' => __DIR__ . '/..' . '/srag/DICTrait/classes/DICStatic.php',
+        'srag\\DIC\\ADIC' => __DIR__ . '/..' . '/srag/DIC/classes/ADIC.php',
+        'srag\\DIC\\DICCache' => __DIR__ . '/..' . '/srag/DIC/classes/DICCache.php',
+        'srag\\DIC\\LegacyDIC' => __DIR__ . '/..' . '/srag/DIC/classes/LegacyDIC.php',
+        'srag\\DIC\\NewDIC' => __DIR__ . '/..' . '/srag/DIC/classes/NewDIC.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

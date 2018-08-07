@@ -92,15 +92,4 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$this->show($form->getHTML());
 	}
-
-
-	/**
-	 * @param string $key
-	 * @param bool   $plugin
-	 *
-	 * @return string
-	 */
-	protected function txt($key, $plugin = true) {
-		return self::dic()->txt($key, $plugin);
-	}
 }

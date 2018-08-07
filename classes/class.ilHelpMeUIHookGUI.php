@@ -30,7 +30,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Support button
-				$tpl = self::dic()->getTemplate("il_help_me_button.html");
+				$tpl = $this->getTemplate("il_help_me_button.html");
 
 				iljQueryUtil::initjQuery();
 				self::dic()->tpl()->addJavaScript("Services/Form/js/Form.js");
@@ -52,7 +52,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
 			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Modal
-				// TODO Fix after first configure currentUserHasRole false because not yet set, only after this
+				// TODO: Fix after first configure currentUserHasRole false because not yet set, only after this
 				ilModalGUI::initJS();
 
 				$modal = ilModalGUI::getInstance();
@@ -68,16 +68,5 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		}
 
 		return [ "mode" => self::KEEP, "html" => "" ];
-	}
-
-
-	/**
-	 * @param string $key
-	 * @param bool   $plugin
-	 *
-	 * @return string
-	 */
-	protected function txt($key, $plugin = true) {
-		return self::dic()->txt($key, $plugin);
 	}
 }

@@ -195,15 +195,4 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
 		$this->config->store();
 	}
-
-
-	/**
-	 * @param string $key
-	 * @param bool   $plugin
-	 *
-	 * @return string
-	 */
-	protected function txt($key, $plugin = true) {
-		return self::dic()->txt($key, $plugin);
-	}
 }

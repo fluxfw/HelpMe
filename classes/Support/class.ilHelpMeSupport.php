@@ -80,7 +80,7 @@ class ilHelpMeSupport {
 	 * @return string
 	 */
 	public function getBody($template) {
-		$tpl = self::dic()->getTemplate("il_help_me_" . $template . "_body.html");
+		$tpl = $this->getTemplate("il_help_me_" . $template . "_body.html");
 
 		$fields = [
 			"srsu_title" => $this->title,

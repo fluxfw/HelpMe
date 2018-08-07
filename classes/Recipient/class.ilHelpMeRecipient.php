@@ -72,10 +72,7 @@ abstract class ilHelpMeRecipient {
 			$mailer = new ilMimeMail();
 
 			if (ILIAS_VERSION_NUMERIC >= "5.3") {
-				/** @var ilMailMimeSenderFactory $senderFactory */
-				$senderFactory = $this->{"mail.mime.sender.factory"};
-
-				$mailer->From($senderFactory->system());
+				$mailer->From(self::dic()->mailMimeSenderFactory()->system());
 			}
 
 			$mailer->To($this->support->getEmail());

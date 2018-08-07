@@ -78,7 +78,7 @@ class ilHelpMeGUI {
 	protected function show($message, ilPropertyFormGUI $form) {
 		$config = ilHelpMeConfig::getConfig();
 
-		$tpl = self::dic()->getTemplate("il_help_me_modal.html");
+		$tpl = $this->getTemplate("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
 		$tpl->setVariable("INFO", $config->getInfo());
@@ -135,7 +135,7 @@ class ilHelpMeGUI {
 
 		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
 		if ($recipient->sendSupportToRecipient()) {
-			$message = self::dic()->tpl()->getMessageHTML($this->txt("srsu_sent_success"), "success");
+			$message = self::dic()->tpl()->getMessageHTML($this->getTemplate("srsu_sent_success"), "success");
 
 			$form = $this->getSuccessForm();
 		} else {
@@ -143,16 +143,5 @@ class ilHelpMeGUI {
 		}
 
 		$this->show($message, $form);
-	}
-
-
-	/**
-	 * @param string $key
-	 * @param bool   $plugin
-	 *
-	 * @return string
-	 */
-	protected function txt($key, $plugin = true) {
-		return self::dic()->txt($key, $plugin);
 	}
 }
