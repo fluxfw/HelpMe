@@ -6,6 +6,7 @@
 class ilHelpMeConfigPriority extends ActiveRecord {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const TABLE_NAME = "ui_uihk_srsu_prio";
 
 

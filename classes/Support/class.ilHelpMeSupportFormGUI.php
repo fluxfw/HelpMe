@@ -11,6 +11,7 @@ use Sinergi\BrowserDetector\Os;
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var ilHelpMeGUI
 	 */
@@ -33,56 +34,56 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function setForm() {
-		$configPriorities = [ "" => "&lt;" . $this->txt("srsu_please_select") . "&gt;" ] + ilHelpMeConfigPriority::getConfigPrioritiesArray();
+		$configPriorities = [ "" => "&lt;" . self::t("srsu_please_select") . "&gt;" ] + ilHelpMeConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", $this->txt("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
-		$this->addCommandButton(ilHelpMeGUI::CMD_NEW_SUPPORT, $this->txt("srsu_submit"), "il_help_me_submit");
-		$this->addCommandButton("", $this->txt("srsu_cancel"), "il_help_me_cancel");
+		$this->addCommandButton("", self::t("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
+		$this->addCommandButton(ilHelpMeGUI::CMD_NEW_SUPPORT, self::t("srsu_submit"), "il_help_me_submit");
+		$this->addCommandButton("", self::t("srsu_cancel"), "il_help_me_cancel");
 
 		$this->setId("il_help_me_form");
 		$this->setShowTopButtons(false);
 
-		$title = new ilTextInputGUI($this->txt("srsu_title"), "srsu_title");
+		$title = new ilTextInputGUI(self::t("srsu_title"), "srsu_title");
 		$title->setRequired(true);
 		$this->addItem($title);
 
-		$name = new ilNonEditableValueGUI($this->txt("srsu_name"));
+		$name = new ilNonEditableValueGUI(self::t("srsu_name"));
 		$name->setValue(self::dic()->user()->getFullname());
 		$this->addItem($name);
 
-		$login = new ilNonEditableValueGUI($this->txt("srsu_login"));
+		$login = new ilNonEditableValueGUI(self::t("srsu_login"));
 		$login->setValue(self::dic()->user()->getLogin());
 		$this->addItem($login);
 
-		$email = new ilEMailInputGUI($this->txt("srsu_email_address"), "srsu_email");
+		$email = new ilEMailInputGUI(self::t("srsu_email_address"), "srsu_email");
 		$email->setRequired(true);
 		$email->setValue(self::dic()->user()->getEmail());
 		$this->addItem($email);
 
-		$phone = new ilTextInputGUI($this->txt("srsu_phone"), "srsu_phone");
+		$phone = new ilTextInputGUI(self::t("srsu_phone"), "srsu_phone");
 		$phone->setRequired(true);
 		$this->addItem($phone);
 
-		$priority = new ilSelectInputGUI($this->txt("srsu_priority"), "srsu_priority");
+		$priority = new ilSelectInputGUI(self::t("srsu_priority"), "srsu_priority");
 		$priority->setRequired(true);
 		$priority->setOptions($configPriorities);
 		$this->addItem($priority);
 
-		$description = new ilTextAreaInputGUI($this->txt("srsu_description"), "srsu_description");
+		$description = new ilTextAreaInputGUI(self::t("srsu_description"), "srsu_description");
 		$description->setRequired(true);
 		$this->addItem($description);
 
-		$reproduce_steps = new ilTextAreaInputGUI($this->txt("srsu_reproduce_steps"), "srsu_reproduce_steps");
+		$reproduce_steps = new ilTextAreaInputGUI(self::t("srsu_reproduce_steps"), "srsu_reproduce_steps");
 		$reproduce_steps->setRequired(false);
 		$this->addItem($reproduce_steps);
 
-		$system_infos = new ilNonEditableValueGUI($this->txt("srsu_system_infos"));
+		$system_infos = new ilNonEditableValueGUI(self::t("srsu_system_infos"));
 		$system_infos->setValue($this->getBrowserInfos());
 		$this->addItem($system_infos);
 
-		$screenshot = new ilFileInputGUI($this->txt("srsu_screenshot"), "srsu_screenshot");
+		$screenshot = new ilFileInputGUI(self::t("srsu_screenshot"), "srsu_screenshot");
 		$screenshot->setRequired(false);
 		$screenshot->setSuffixes([ "jpg", "png" ]);
 		$this->addItem($screenshot);

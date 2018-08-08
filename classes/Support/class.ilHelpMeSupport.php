@@ -8,6 +8,7 @@
 class ilHelpMeSupport {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var int
 	 */
@@ -80,7 +81,7 @@ class ilHelpMeSupport {
 	 * @return string
 	 */
 	public function getBody($template) {
-		$tpl = $this->getTemplate("il_help_me_" . $template . "_body.html");
+		$tpl = self::template("il_help_me_" . $template . "_body.html");
 
 		$fields = [
 			"srsu_title" => $this->title,
@@ -98,7 +99,7 @@ class ilHelpMeSupport {
 		foreach ($fields as $title => $txt) {
 			$tpl->setCurrentBlock("il_help_me_body");
 
-			$tpl->setVariable("TITLE", $this->pl->txt($title));
+			$tpl->setVariable("TITLE", self::t($title));
 
 			$tpl->setVariable("TXT", $txt);
 

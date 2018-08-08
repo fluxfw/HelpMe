@@ -6,6 +6,7 @@
 class ilHelpMeConfigRole extends ActiveRecord {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const TABLE_NAME = "ui_uihk_srsu_roles";
 
 
@@ -75,14 +76,12 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	 * @return array
 	 */
 	public static function getAllRoles() {
-		$DIC = \srag\DICStatic::getInstance();
-
 		/**
 		 * @var array $global_roles
 		 * @var array $roles
 		 */
 
-		$global_roles = $DIC->rbacreview->getRolesForIDs($DIC->rbacreview->getGlobalRoles(), false);
+		$global_roles = self::dic()->rbacreview()->getRolesForIDs(self::dic()->rbacreview()->getGlobalRoles(), false);
 
 		$roles = [];
 		foreach ($global_roles as $global_role) {
@@ -97,11 +96,9 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	 * @return bool
 	 */
 	public static function currentUserHasRole() {
-		$DIC = \srag\DICStatic::getInstance();
+		$user_id = self::dic()->user()->getId();
 
-		$user_id = $DIC->ilUser->getId();
-
-		$user_roles = $DIC->rbacreview->assignedGlobalRoles($user_id);
+		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
 		$config_roles = self::getConfigRolesArray();
 
 		foreach ($user_roles as $user_role) {

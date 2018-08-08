@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../vendor/srag/DIC/vendor/autoload.php";
 
 /**
  * HelpMe Plugin
@@ -7,6 +8,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = self::class;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
 	/**

@@ -6,6 +6,7 @@
 class ilJiraCurl {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const AUTHORIZATION_USERNAMEPASSWORD = "usernamepassword";
 	const AUTHORIZATION_OAUTH = "oauth";
 	/**

@@ -8,6 +8,7 @@
 class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var ilHelpMeGUI
 	 */
@@ -32,7 +33,7 @@ class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 	protected function setForm() {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", $this->txt("srsu_close"), "il_help_me_cancel");
+		$this->addCommandButton("", self::t("srsu_close"), "il_help_me_cancel");
 
 		$this->setId("il_help_me_form");
 		$this->setShowTopButtons(false);

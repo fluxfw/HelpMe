@@ -11,6 +11,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 class ilHelpMeGUI {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
 
@@ -78,7 +79,7 @@ class ilHelpMeGUI {
 	protected function show($message, ilPropertyFormGUI $form) {
 		$config = ilHelpMeConfig::getConfig();
 
-		$tpl = $this->getTemplate("il_help_me_modal.html");
+		$tpl = self::template("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
 		$tpl->setVariable("INFO", $config->getInfo());
@@ -135,11 +136,11 @@ class ilHelpMeGUI {
 
 		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
 		if ($recipient->sendSupportToRecipient()) {
-			$message = self::dic()->tpl()->getMessageHTML($this->getTemplate("srsu_sent_success"), "success");
+			$message = self::dic()->tpl()->getMessageHTML(self::t("srsu_sent_success"), "success");
 
 			$form = $this->getSuccessForm();
 		} else {
-			$message = self::dic()->tpl()->getMessageHTML($this->txt("srsu_sent_failure"), "failure");
+			$message = self::dic()->tpl()->getMessageHTML(self::t("srsu_sent_failure"), "failure");
 		}
 
 		$this->show($message, $form);

@@ -10,6 +10,7 @@ abstract class ilHelpMeRecipient {
 	use srag\DIC\DICTrait;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var ilHelpMeSupport
 	 */
@@ -77,7 +78,7 @@ abstract class ilHelpMeRecipient {
 
 			$mailer->To($this->support->getEmail());
 
-			$mailer->Subject($this->pl->txt("srsu_confirmation") . ": " . $this->support->getSubject());
+			$mailer->Subject(self::t("srsu_confirmation") . ": " . $this->support->getSubject());
 
 			$mailer->Body($this->support->getBody("email"));
 

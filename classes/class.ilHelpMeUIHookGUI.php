@@ -9,6 +9,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**
@@ -30,15 +31,15 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Support button
-				$tpl = $this->getTemplate("il_help_me_button.html");
+				$tpl = self::template("il_help_me_button.html");
 
 				iljQueryUtil::initjQuery();
 				self::dic()->tpl()->addJavaScript("Services/Form/js/Form.js");
-				self::dic()->tpl()->addJavaScript($this->pl->getDirectory() . "/lib/html2canvas.min.js");
-				self::dic()->tpl()->addJavaScript($this->pl->getDirectory() . "/js/ilHelpMe.js");
+				self::dic()->tpl()->addJavaScript(self::directory() . "/lib/html2canvas.min.js");
+				self::dic()->tpl()->addJavaScript(self::directory() . "/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
-				$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
+				$tpl->setVariable("SUPPORT_TXT", self::t("srsu_support"));
 				$tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
 					ilUIPluginRouterGUI::class,
 					ilHelpMeGUI::class
@@ -57,7 +58,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				$modal = ilModalGUI::getInstance();
 				$modal->setType(ilModalGUI::TYPE_LARGE);
-				$modal->setHeading($this->txt("srsu_support"));
+				$modal->setHeading(self::t("srsu_support"));
 
 				$modal->setId("il_help_me_modal");
 

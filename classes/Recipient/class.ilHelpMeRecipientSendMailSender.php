@@ -6,6 +6,7 @@
 class ilHelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**

@@ -9,6 +9,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 	use srag\DIC\DICTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_CONFIGURE = "configure";
 	const CMD_UPDATE_CONFIGURE = "updateConfigure";
 
@@ -88,7 +89,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$form->updateConfig();
 
-		ilUtil::sendSuccess($this->txt("srsu_configuration_saved"));
+		ilUtil::sendSuccess(self::t("srsu_configuration_saved"));
 
 		$this->show($form->getHTML());
 	}
