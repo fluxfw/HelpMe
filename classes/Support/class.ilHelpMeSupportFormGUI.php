@@ -10,7 +10,7 @@ use Sinergi\BrowserDetector\Os;
  */
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 	/**
 	 * @var ilHelpMeGUI
 	 */

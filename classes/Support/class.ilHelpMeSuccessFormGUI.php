@@ -7,7 +7,7 @@
  */
 class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 	/**
 	 * @var ilHelpMeGUI
 	 */

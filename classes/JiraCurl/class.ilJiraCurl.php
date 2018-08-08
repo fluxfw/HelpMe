@@ -5,7 +5,7 @@
  */
 class ilJiraCurl {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 	const AUTHORIZATION_USERNAMEPASSWORD = "usernamepassword";
 	const AUTHORIZATION_OAUTH = "oauth";
 	/**

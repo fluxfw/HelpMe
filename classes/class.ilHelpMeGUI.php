@@ -10,7 +10,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMeGUI {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
 

@@ -7,7 +7,7 @@
  */
 class ilHelpMeSupport {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 	/**
 	 * @var int
 	 */

@@ -8,7 +8,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 	const CMD_CONFIGURE = "configure";
 	const CMD_UPDATE_CONFIGURE = "updateConfigure";
 

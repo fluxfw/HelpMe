@@ -8,7 +8,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
  */
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 
 
 	/**

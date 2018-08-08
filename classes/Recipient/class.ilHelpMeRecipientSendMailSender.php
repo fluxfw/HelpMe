@@ -5,7 +5,7 @@
  */
 class ilHelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 
 
 	/**

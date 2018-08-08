@@ -7,7 +7,7 @@
  */
 class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
-	use srag\DIC\DIC;
+	use srag\DIC\DICTrait;
 	/**
 	 * @var ilHelpMeConfig
 	 */
