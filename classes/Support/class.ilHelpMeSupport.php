@@ -2,8 +2,6 @@
 
 /**
  * Support data
- *
- * @property ilHelpMePlugin $pl
  */
 class ilHelpMeSupport {
 

@@ -3,8 +3,6 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 /**
  * HelpMe Config GUI
- *
- * @property ilHelpMePlugin $pl
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 

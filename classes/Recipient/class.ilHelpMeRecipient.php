@@ -2,8 +2,6 @@
 
 /**
  * Support recipient
- *
- * @property ilHelpMePlugin $pl
  */
 abstract class ilHelpMeRecipient {
 

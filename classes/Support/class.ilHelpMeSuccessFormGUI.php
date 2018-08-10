@@ -2,8 +2,6 @@
 
 /**
  * HelpMe Success Form GUI
- *
- * @property ilHelpMePlugin $pl
  */
 class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 

@@ -2,8 +2,6 @@
 
 /**
  * HelpMe Config Form GUI
- *
- * @property ilHelpMePlugin $pl
  */
 class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 

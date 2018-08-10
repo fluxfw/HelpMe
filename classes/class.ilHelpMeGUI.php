@@ -5,8 +5,6 @@ require_once __DIR__ . "/../vendor/autoload.php";
  * HelpMe GUI
  *
  * @ilCtrl_isCalledBy ilHelpMeGUI: ilUIPluginRouterGUI
- *
- * @property ilHelpMePlugin $pl
  */
 class ilHelpMeGUI {
 

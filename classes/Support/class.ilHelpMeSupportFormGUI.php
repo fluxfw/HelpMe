@@ -5,8 +5,6 @@ use Sinergi\BrowserDetector\Os;
 
 /**
  * HelpMe Support Form GUI
- *
- * @property ilHelpMePlugin $pl
  */
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
