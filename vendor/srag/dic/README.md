@@ -16,7 +16,7 @@ git clone git@git.studer-raimann.ch:ILIAS/Plugins/DIC.git DIC
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/dic": "^0.1.1"
+  "srag/dic": "^0.1.2"
 },
 ```
 And run a `composer install`.

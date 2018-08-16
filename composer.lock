@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "017a8a4d67adb3125b2454cc13a11b59",
+    "content-hash": "685929a05cc244fa3ba372edcc82b22e",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -57,16 +57,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "02a9cf9dbdaa8b3eb75d7d3b9b5542aec8b6ba84"
+                "reference": "1c8f11103131bcaed8b330e4cf7e12f2ec3e7a51"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/02a9cf9dbdaa8b3eb75d7d3b9b5542aec8b6ba84",
-                "reference": "02a9cf9dbdaa8b3eb75d7d3b9b5542aec8b6ba84",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/1c8f11103131bcaed8b330e4cf7e12f2ec3e7a51",
+                "reference": "1c8f11103131bcaed8b330e4cf7e12f2ec3e7a51",
                 "shasum": ""
             },
             "type": "library",
@@ -77,7 +77,7 @@
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "MIT"
+                "GPL-3.0-only"
             ],
             "authors": [
                 {
@@ -95,7 +95,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2018-08-16T10:03:56+00:00"
+            "time": "2018-08-16T11:09:38+00:00"
         }
     ],
     "packages-dev": [],
