@@ -97,7 +97,7 @@ class ilHelpMeSupport {
 		foreach ($fields as $title => $txt) {
 			$tpl->setCurrentBlock("il_help_me_body");
 
-			$tpl->setVariable("TITLE", self::t($title));
+			$tpl->setVariable("TITLE", self::translate($title));
 
 			$tpl->setVariable("TXT", $txt);
 

@@ -87,7 +87,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 		$form->updateConfig();
 
-		ilUtil::sendSuccess(self::t("srsu_configuration_saved"));
+		ilUtil::sendSuccess(self::translate("srsu_configuration_saved"));
 
 		$this->show($form->getHTML());
 	}

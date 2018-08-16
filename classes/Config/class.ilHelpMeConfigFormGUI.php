@@ -40,95 +40,95 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
 
-		$this->setTitle(self::t("srsu_configuration"));
+		$this->setTitle(self::translate("srsu_configuration"));
 
-		$this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_CONFIGURE, self::t("srsu_save"));
+		$this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_CONFIGURE, self::translate("srsu_save"));
 
 		// Recipient
-		$recipient = new ilRadioGroupInputGUI(self::t("srsu_recipient"), "srsu_recipient");
+		$recipient = new ilRadioGroupInputGUI(self::translate("srsu_recipient"), "srsu_recipient");
 		$recipient->setRequired(true);
 		$recipient->setValue($this->config->getRecipient());
 		$this->addItem($recipient);
 
 		// Send email
-		$recipient_email = new ilRadioOption(self::t("srsu_send_email"), ilHelpMeRecipient::SEND_EMAIL);
+		$recipient_email = new ilRadioOption(self::translate("srsu_send_email"), ilHelpMeRecipient::SEND_EMAIL);
 		$recipient->addOption($recipient_email);
 
-		$send_email_address = new ilEMailInputGUI(self::t("srsu_email_address"), "srsu_send_email_address");
+		$send_email_address = new ilEMailInputGUI(self::translate("srsu_email_address"), "srsu_send_email_address");
 		$send_email_address->setRequired(true);
 		$send_email_address->setValue($this->config->getSendEmailAddress());
 		$recipient_email->addSubItem($send_email_address);
 
 		// Create Jira ticket
-		$recipient_jira = new ilRadioOption(self::t("srsu_create_jira_ticket"), ilHelpMeRecipient::CREATE_JIRA_TICKET);
+		$recipient_jira = new ilRadioOption(self::translate("srsu_create_jira_ticket"), ilHelpMeRecipient::CREATE_JIRA_TICKET);
 		$recipient->addOption($recipient_jira);
 
-		$jira_domain = new ilTextInputGUI(self::t("srsu_jira_domain"), "srsu_jira_domain");
+		$jira_domain = new ilTextInputGUI(self::translate("srsu_jira_domain"), "srsu_jira_domain");
 		$jira_domain->setRequired(true);
 		$jira_domain->setValue($this->config->getJiraDomain());
 		$recipient_jira->addSubItem($jira_domain);
 
-		$jira_project_key = new ilTextInputGUI(self::t("srsu_jira_project_key"), "srsu_jira_project_key");
+		$jira_project_key = new ilTextInputGUI(self::translate("srsu_jira_project_key"), "srsu_jira_project_key");
 		$jira_project_key->setRequired(true);
 		$jira_project_key->setValue($this->config->getJiraProjectKey());
 		$recipient_jira->addSubItem($jira_project_key);
 
-		$jira_issue_type = new ilTextInputGUI(self::t("srsu_jira_issue_type"), "srsu_jira_issue_type");
+		$jira_issue_type = new ilTextInputGUI(self::translate("srsu_jira_issue_type"), "srsu_jira_issue_type");
 		$jira_issue_type->setRequired(true);
 		$jira_issue_type->setInfo("Task, Bug, ...");
 		$jira_issue_type->setValue($this->config->getJiraIssueType());
 		$recipient_jira->addSubItem($jira_issue_type);
 
 		// Jira authorization
-		$jira_authorization = new ilRadioGroupInputGUI(self::t("srsu_jira_authorization"), "srsu_jira_authorization");
+		$jira_authorization = new ilRadioGroupInputGUI(self::translate("srsu_jira_authorization"), "srsu_jira_authorization");
 		$jira_authorization->setRequired(true);
 		$jira_authorization->setValue($this->config->getJiraAuthorization());
 		$recipient_jira->addSubItem($jira_authorization);
 
 		// Username & Password
-		$jira_authorization_userpassword = new ilRadioOption(self::t("srsu_jira_usernamepassword"), ilJiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
+		$jira_authorization_userpassword = new ilRadioOption(self::translate("srsu_jira_usernamepassword"), ilJiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
 		$jira_authorization->addOption($jira_authorization_userpassword);
 
-		$jira_username = new ilTextInputGUI(self::t("srsu_jira_username"), "srsu_jira_username");
+		$jira_username = new ilTextInputGUI(self::translate("srsu_jira_username"), "srsu_jira_username");
 		$jira_username->setRequired(true);
 		$jira_username->setValue($this->config->getJiraUsername());
 		$jira_authorization_userpassword->addSubItem($jira_username);
 
-		$jira_password = new ilPasswordInputGUI(self::t("srsu_jira_password"), "srsu_jira_password");
+		$jira_password = new ilPasswordInputGUI(self::translate("srsu_jira_password"), "srsu_jira_password");
 		$jira_password->setRequired(true);
 		$jira_password->setRetype(false);
 		$jira_password->setValue($this->config->getJiraPassword());
 		$jira_authorization_userpassword->addSubItem($jira_password);
 
 		// oAuth
-		$jira_oauth = new ilRadioOption(self::t("srsu_jira_oauth"), ilJiraCurl::AUTHORIZATION_OAUTH);
+		$jira_oauth = new ilRadioOption(self::translate("srsu_jira_oauth"), ilJiraCurl::AUTHORIZATION_OAUTH);
 		$jira_authorization->addOption($jira_oauth);
 
-		$jira_consumer_key = new ilTextInputGUI(self::t("srsu_jira_consumer_key"), "srsu_jira_consumer_key");
+		$jira_consumer_key = new ilTextInputGUI(self::translate("srsu_jira_consumer_key"), "srsu_jira_consumer_key");
 		$jira_consumer_key->setRequired(true);
 		$jira_consumer_key->setValue($this->config->getJiraConsumerKey());
 		$jira_oauth->addSubItem($jira_consumer_key);
 
-		$jira_private_key = new ilTextAreaInputGUI(self::t("srsu_jira_private_key"), "srsu_jira_private_key");
+		$jira_private_key = new ilTextAreaInputGUI(self::translate("srsu_jira_private_key"), "srsu_jira_private_key");
 		$jira_private_key->setRequired(true);
 		$jira_private_key->setInfo("PEM formatted RSA private key");
 		$jira_private_key->setValue($this->config->getJiraPrivateKey());
 		$jira_oauth->addSubItem($jira_private_key);
 
-		$jira_access_token = new ilTextInputGUI(self::t("srsu_jira_access_token"), "srsu_jira_access_token");
+		$jira_access_token = new ilTextInputGUI(self::translate("srsu_jira_access_token"), "srsu_jira_access_token");
 		$jira_access_token->setRequired(true);
 		$jira_access_token->setValue($this->config->getJiraAccessToken());
 		$jira_oauth->addSubItem($jira_access_token);
 
 		// Priorities
-		$priorities = new ilTextInputGUI(self::t("srsu_priorities"), "srsu_priorities");
+		$priorities = new ilTextInputGUI(self::translate("srsu_priorities"), "srsu_priorities");
 		$priorities->setMulti(true);
 		$priorities->setRequired(true);
 		$priorities->setValue($configPriorities);
 		$this->addItem($priorities);
 
 		// Info text
-		$info = new ilTextAreaInputGUI(self::t("srsu_info"), "srsu_info");
+		$info = new ilTextAreaInputGUI(self::translate("srsu_info"), "srsu_info");
 		$info->setRequired(true);
 		$info->setUseRte(true);
 		$info->setRteTagSet("extended");
@@ -136,9 +136,9 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$this->addItem($info);
 
 		// Roles
-		$roles = new ilMultiSelectInputGUI(self::t("srsu_roles"), "srsu_roles");
+		$roles = new ilMultiSelectInputGUI(self::translate("srsu_roles"), "srsu_roles");
 		$roles->setRequired(true);
-		$roles->setInfo(self::t("srsu_roles_description"));
+		$roles->setInfo(self::translate("srsu_roles_description"));
 		$roles->setOptions($allRoles);
 		$roles->setValue($configRoles);
 		$roles->enableSelectAll(true);

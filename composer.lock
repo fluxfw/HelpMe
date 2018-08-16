@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "c5c3d14dcdc13b57b7dc3a492edb494d",
+    "content-hash": "b77f03c77032ddbeefd98b7a6fceff23",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -56,20 +56,54 @@
             "time": "2016-12-28T16:31:30+00:00"
         },
         {
-            "name": "srag/DIC",
-            "version": "0.1.0",
+            "name": "srag/dic",
+            "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "git@git.studer-raimann.ch:ILIAS/Plugins/DIC.git",
-                "reference": "develop"
+                "url": "https://github.com/studer-raimann/DIC.git",
+                "reference": "6b06046815e86413b7c862e6cc7fecefcda76d37"
             },
-            "type": "package"
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/6b06046815e86413b7c862e6cc7fecefcda76d37",
+                "reference": "6b06046815e86413b7c862e6cc7fecefcda76d37",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "srag\\DIC\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "srag",
+                    "email": "support@studer-raimann.ch",
+                    "homepage": "https://studer-raimann.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Use all ILIAS globals in your class",
+            "homepage": "https://github.com/studer-raimann/DIC",
+            "keywords": [
+                "ILIAS",
+                "dic",
+                "globals",
+                "trait"
+            ],
+            "time": "2018-08-16T05:40:50+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "srag/dic": 20
+    },
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],

@@ -37,7 +37,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				self::dic()->tpl()->addJavaScript(self::directory() . "/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
-				$tpl->setVariable("SUPPORT_TXT", self::t("srsu_support"));
+				$tpl->setVariable("SUPPORT_TXT", self::translate("srsu_support"));
 				$tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
 					ilUIPluginRouterGUI::class,
 					ilHelpMeGUI::class
@@ -56,7 +56,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				$modal = ilModalGUI::getInstance();
 				$modal->setType(ilModalGUI::TYPE_LARGE);
-				$modal->setHeading(self::t("srsu_support"));
+				$modal->setHeading(self::translate("srsu_support"));
 
 				$modal->setId("il_help_me_modal");
 

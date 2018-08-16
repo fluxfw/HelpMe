@@ -4,9 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit8c0c965d85fc59ed1dea9c8caa0c2217
+class ComposerStaticInit8b1800009698c478c80528746cf1873b
 {
     public static $prefixLengthsPsr4 = array (
+        's' => 
+        array (
+            'srag\\DIC\\' => 9,
+        ),
         'S' => 
         array (
             'Sinergi\\BrowserDetector\\' => 24,
@@ -14,6 +18,10 @@ class ComposerStaticInit8c0c965d85fc59ed1dea9c8caa0c2217
     );
 
     public static $prefixDirsPsr4 = array (
+        'srag\\DIC\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/dic/src',
+        ),
         'Sinergi\\BrowserDetector\\' => 
         array (
             0 => __DIR__ . '/..' . '/sinergi/browser-detector/src',
@@ -74,14 +82,21 @@ class ComposerStaticInit8c0c965d85fc59ed1dea9c8caa0c2217
         'ilUserInterfaceHookPlugin' => __DIR__ . '/../..' . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
         'ilUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
         'iljQueryUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
+        'srag\\DIC\\AbstractDIC' => __DIR__ . '/..' . '/srag/dic/src/AbstractDIC.php',
+        'srag\\DIC\\DICCache' => __DIR__ . '/..' . '/srag/dic/src/DICCache.php',
+        'srag\\DIC\\DICException' => __DIR__ . '/..' . '/srag/dic/src/DICException.php',
+        'srag\\DIC\\DICInterface' => __DIR__ . '/..' . '/srag/dic/src/DICInterface.php',
+        'srag\\DIC\\DICTrait' => __DIR__ . '/..' . '/srag/dic/src/DICTrait.php',
+        'srag\\DIC\\LegacyDIC' => __DIR__ . '/..' . '/srag/dic/src/LegacyDIC.php',
+        'srag\\DIC\\NewDIC' => __DIR__ . '/..' . '/srag/dic/src/NewDIC.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit8c0c965d85fc59ed1dea9c8caa0c2217::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit8c0c965d85fc59ed1dea9c8caa0c2217::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit8c0c965d85fc59ed1dea9c8caa0c2217::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit8b1800009698c478c80528746cf1873b::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit8b1800009698c478c80528746cf1873b::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit8b1800009698c478c80528746cf1873b::$classMap;
 
         }, null, ClassLoader::class);
     }
