@@ -21,7 +21,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	public function sendSupportToRecipient() {
+	public function sendSupportToRecipient(): bool {
 		return ($this->sendEmail() && $this->sendConfirmationMail());
 	}
 
@@ -31,7 +31,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	public function sendEmail() {
+	protected function sendEmail(): bool {
 		try {
 			$mailer = new ilMimeMail();
 

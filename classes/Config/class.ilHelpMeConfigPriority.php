@@ -30,11 +30,11 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 
 
 	/**
-	 * @return ilHelpMeConfigPriority[]
+	 * @return self[]
 	 */
-	public static function getConfigPriorities() {
+	public static function getConfigPriorities(): array {
 		/**
-		 * @var ilHelpMeConfigPriority[] $configPriorities
+		 * @var self[] $configPriorities
 		 */
 
 		$configPriorities = self::get();
@@ -46,7 +46,7 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	/**
 	 * @return array
 	 */
-	public static function getConfigPrioritiesArray() {
+	public static function getConfigPrioritiesArray(): array {
 		$configPriorities = self::getConfigPriorities();
 
 		$priorities = [];
@@ -61,7 +61,7 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	/**
 	 * @param string[] $priorities
 	 */
-	public static function setConfigPrioritiesArray($priorities) {
+	public static function setConfigPrioritiesArray(array $priorities) {
 		self::truncateDB();
 
 		foreach ($priorities as $priority) {

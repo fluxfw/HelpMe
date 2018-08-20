@@ -27,7 +27,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 *
 	 * @return array
 	 */
-	public function getHTML($a_comp, $a_part, $a_par = []) {
+	public function getHTML($a_comp, $a_part, $a_par = []): array {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if (ilHelpMeConfigRole::currentUserHasRole()) {
 				// Support button

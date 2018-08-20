@@ -161,31 +161,31 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$this->config->setSendEmailAddress($send_email_address);
 
 		$jira_domain = $this->getInput("srsu_jira_domain");
-		$this->config->setJiraDomain($jira_domain);
+		$this->config->setJiraDomain($jira_domain ?? "");
 
 		$jira_project_key = $this->getInput("srsu_jira_project_key");
-		$this->config->setJiraProjectKey($jira_project_key);
+		$this->config->setJiraProjectKey($jira_project_key ?? "");
 
 		$jira_issue_type = $this->getInput("srsu_jira_issue_type");
-		$this->config->setJiraIssueType($jira_issue_type);
+		$this->config->setJiraIssueType($jira_issue_type ?? "");
 
 		$jira_authorization = $this->getInput("srsu_jira_authorization");
-		$this->config->setJiraAuthorization($jira_authorization);
+		$this->config->setJiraAuthorization($jira_authorization ?? "");
 
 		$jira_username = $this->getInput("srsu_jira_username");
-		$this->config->setJiraUsername($jira_username);
+		$this->config->setJiraUsername($jira_username ?? "");
 
 		$jira_password = $this->getInput("srsu_jira_password");
-		$this->config->setJiraPassword($jira_password);
+		$this->config->setJiraPassword($jira_password ?? "");
 
 		$jira_consumer_key = $this->getInput("srsu_jira_consumer_key");
-		$this->config->setJiraConsumerKey($jira_consumer_key);
+		$this->config->setJiraConsumerKey($jira_consumer_key ?? "");
 
 		$jira_private_key = $this->getInput("srsu_jira_private_key");
-		$this->config->setJiraPrivateKey($jira_private_key);
+		$this->config->setJiraPrivateKey($jira_private_key ?? "");
 
 		$jira_access_token = $this->getInput("srsu_jira_access_token");
-		$this->config->setJiraAccessToken($jira_access_token);
+		$this->config->setJiraAccessToken($jira_access_token ?? "");
 
 		$priorities = $this->getInput("srsu_priorities");
 		ilHelpMeConfigPriority::setConfigPrioritiesArray($priorities);

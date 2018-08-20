@@ -68,7 +68,7 @@ class ilHelpMeSupport {
 	 *
 	 * @return string
 	 */
-	public function getSubject() {
+	public function getSubject(): string {
 		return $this->priority->getPriority() . " - " . $this->title;
 	}
 
@@ -80,7 +80,7 @@ class ilHelpMeSupport {
 	 *
 	 * @return string
 	 */
-	public function getBody($template) {
+	public function getBody(string $template): string {
 		$tpl = self::template("il_help_me_" . $template . "_body.html");
 
 		$fields = [
@@ -117,7 +117,7 @@ class ilHelpMeSupport {
 	 *
 	 * @param array $screenshot
 	 */
-	public function addScreenshot($screenshot) {
+	public function addScreenshot(array $screenshot) {
 		$this->screenshots[] = $screenshot;
 	}
 
@@ -127,7 +127,7 @@ class ilHelpMeSupport {
 	 *
 	 * @return string
 	 */
-	public function getFormatedTime() {
+	public function getFormatedTime(): string {
 		// Save and restore old existing useRelativeDates
 		$useRelativeDates_ = ilDatePresentation::useRelativeDates();
 
@@ -145,7 +145,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return int
 	 */
-	public function getTime() {
+	public function getTime(): int {
 		return $this->time;
 	}
 
@@ -153,7 +153,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param int $time
 	 */
-	public function setTime($time) {
+	public function setTime(int $time) {
 		$this->time = $time;
 	}
 
@@ -161,7 +161,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getTitle() {
+	public function getTitle(): string {
 		return $this->title;
 	}
 
@@ -169,7 +169,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $title
 	 */
-	public function setTitle($title) {
+	public function setTitle(string $title) {
 		$this->title = $title;
 	}
 
@@ -177,7 +177,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getName() {
+	public function getName(): string {
 		return $this->name;
 	}
 
@@ -185,7 +185,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $name
 	 */
-	public function setName($name) {
+	public function setName(string $name) {
 		$this->name = $name;
 	}
 
@@ -193,7 +193,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getLogin() {
+	public function getLogin(): string {
 		return $this->login;
 	}
 
@@ -201,7 +201,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $login
 	 */
-	public function setLogin($login) {
+	public function setLogin(string $login) {
 		$this->login = $login;
 	}
 
@@ -209,7 +209,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getEmail() {
+	public function getEmail(): string {
 		return $this->email;
 	}
 
@@ -217,7 +217,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $email
 	 */
-	public function setEmail($email) {
+	public function setEmail(string $email) {
 		$this->email = $email;
 	}
 
@@ -225,7 +225,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getPhone() {
+	public function getPhone(): string {
 		return $this->phone;
 	}
 
@@ -233,7 +233,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $phone
 	 */
-	public function setPhone($phone) {
+	public function setPhone(string $phone) {
 		$this->phone = $phone;
 	}
 
@@ -241,7 +241,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return ilHelpMeConfigPriority
 	 */
-	public function getPriority() {
+	public function getPriority(): ilHelpMeConfigPriority {
 		return $this->priority;
 	}
 
@@ -249,7 +249,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param ilHelpMeConfigPriority $priority
 	 */
-	public function setPriority($priority) {
+	public function setPriority(ilHelpMeConfigPriority $priority) {
 		$this->priority = $priority;
 	}
 
@@ -257,7 +257,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getDescription() {
+	public function getDescription(): string {
 		return $this->description;
 	}
 
@@ -265,7 +265,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $description
 	 */
-	public function setDescription($description) {
+	public function setDescription(string $description) {
 		$this->description = $description;
 	}
 
@@ -273,7 +273,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getReproduceSteps() {
+	public function getReproduceSteps(): string {
 		return $this->reproduce_steps;
 	}
 
@@ -281,7 +281,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $reproduce_steps
 	 */
-	public function setReproduceSteps($reproduce_steps) {
+	public function setReproduceSteps(string $reproduce_steps) {
 		$this->reproduce_steps = $reproduce_steps;
 	}
 
@@ -289,7 +289,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return string
 	 */
-	public function getSystemInfos() {
+	public function getSystemInfos(): string {
 		return $this->system_infos;
 	}
 
@@ -297,7 +297,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param string $system_infos
 	 */
-	public function setSystemInfos($system_infos) {
+	public function setSystemInfos(string $system_infos) {
 		$this->system_infos = $system_infos;
 	}
 
@@ -305,7 +305,7 @@ class ilHelpMeSupport {
 	/**
 	 * @return array[]
 	 */
-	public function getScreenshots() {
+	public function getScreenshots(): array {
 		return $this->screenshots;
 	}
 
@@ -313,7 +313,7 @@ class ilHelpMeSupport {
 	/**
 	 * @param array[] $screenshots
 	 */
-	public function setScreenshots($screenshots) {
+	public function setScreenshots(array $screenshots) {
 		$this->screenshots = $screenshots;
 	}
 }

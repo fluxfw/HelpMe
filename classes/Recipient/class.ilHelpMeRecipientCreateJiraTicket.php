@@ -44,7 +44,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	public function sendSupportToRecipient() {
+	public function sendSupportToRecipient(): bool {
 		return ($this->createJiraTicket() && $this->addScreenshoots() && $this->sendConfirmationMail());
 	}
 
@@ -54,7 +54,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	protected function createJiraTicket() {
+	protected function createJiraTicket(): bool {
 		$issue_key = $this->jiraCurl->createJiraIssueTicket($this->config->getJiraProjectKey(), $this->config->getJiraIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
 
 		if ($issue_key === false) {
@@ -72,7 +72,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	protected function addScreenshoots() {
+	protected function addScreenshoots(): bool {
 		foreach ($this->support->getScreenshots() as $screenshot) {
 			if (!$this->jiraCurl->addAttachmentToIssue($this->issue_key, $screenshot["name"], $screenshot["type"], $screenshot["tmp_name"])) {
 				return false;

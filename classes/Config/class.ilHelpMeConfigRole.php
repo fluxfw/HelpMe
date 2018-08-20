@@ -15,7 +15,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getConnectorContainerName() {
+	public function getConnectorContainerName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -24,17 +24,17 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	 * @return string
 	 * @deprecated
 	 */
-	public static function returnDbTableName() {
+	public static function returnDbTableName(): string {
 		return self::TABLE_NAME;
 	}
 
 
 	/**
-	 * @return ilHelpMeConfigRole[]
+	 * @return self[]
 	 */
-	public static function getConfigRoles() {
+	public static function getConfigRoles(): array {
 		/**
-		 * @var ilHelpMeConfigRole[] $configRoles
+		 * @var self[] $configRoles
 		 */
 
 		$configRoles = self::get();
@@ -46,7 +46,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return array
 	 */
-	public static function getConfigRolesArray() {
+	public static function getConfigRolesArray(): array {
 		$configRoles = self::getConfigRoles();
 
 		$roles = [];
@@ -61,7 +61,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @param int[] $roles
 	 */
-	public static function setConfigRolesArray($roles) {
+	public static function setConfigRolesArray(array $roles) {
 		self::truncateDB();
 
 		foreach ($roles as $role_id) {
@@ -77,7 +77,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return array
 	 */
-	public static function getAllRoles() {
+	public static function getAllRoles(): array {
 		/**
 		 * @var array $global_roles
 		 * @var array $roles
@@ -97,7 +97,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return bool
 	 */
-	public static function currentUserHasRole() {
+	public static function currentUserHasRole(): bool {
 		$user_id = self::dic()->user()->getId();
 
 		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);

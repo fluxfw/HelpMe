@@ -15,7 +15,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getConnectorContainerName() {
+	public function getConnectorContainerName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -24,7 +24,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @return string
 	 * @deprecated
 	 */
-	public static function returnDbTableName() {
+	public static function returnDbTableName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -32,7 +32,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return self
 	 */
-	public static function getConfig() {
+	public static function getConfig(): self {
 		/**
 		 * @var self $config
 		 */
@@ -205,7 +205,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return int
 	 */
-	public function getId() {
+	public function getId(): int {
 		return $this->id;
 	}
 
@@ -213,7 +213,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param int $id
 	 */
-	public function setId($id) {
+	public function setId(int $id) {
 		$this->id = $id;
 	}
 
@@ -221,7 +221,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getRecipient() {
+	public function getRecipient(): string {
 		return $this->recipient;
 	}
 
@@ -229,7 +229,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $recipient
 	 */
-	public function setRecipient($recipient) {
+	public function setRecipient(string $recipient) {
 		$this->recipient = $recipient;
 	}
 
@@ -237,7 +237,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getSendEmailAddress() {
+	public function getSendEmailAddress(): string {
 		return $this->send_email_address;
 	}
 
@@ -245,7 +245,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $send_email_address
 	 */
-	public function setSendEmailAddress($send_email_address) {
+	public function setSendEmailAddress(string $send_email_address) {
 		$this->send_email_address = $send_email_address;
 	}
 
@@ -253,7 +253,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraDomain() {
+	public function getJiraDomain(): string {
 		return $this->jira_domain;
 	}
 
@@ -261,7 +261,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_domain
 	 */
-	public function setJiraDomain($jira_domain) {
+	public function setJiraDomain(string $jira_domain) {
 		$this->jira_domain = $jira_domain;
 	}
 
@@ -269,7 +269,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraProjectKey() {
+	public function getJiraProjectKey(): string {
 		return $this->jira_project_key;
 	}
 
@@ -277,7 +277,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_project_key
 	 */
-	public function setJiraProjectKey($jira_project_key) {
+	public function setJiraProjectKey(string $jira_project_key) {
 		$this->jira_project_key = $jira_project_key;
 	}
 
@@ -285,7 +285,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraIssueType() {
+	public function getJiraIssueType(): string {
 		return $this->jira_issue_type;
 	}
 
@@ -293,7 +293,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_issue_type
 	 */
-	public function setJiraIssueType($jira_issue_type) {
+	public function setJiraIssueType(string $jira_issue_type) {
 		$this->jira_issue_type = $jira_issue_type;
 	}
 
@@ -301,7 +301,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraAuthorization() {
+	public function getJiraAuthorization(): string {
 		return $this->jira_authorization;
 	}
 
@@ -309,7 +309,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_authorization
 	 */
-	public function setJiraAuthorization($jira_authorization) {
+	public function setJiraAuthorization(string $jira_authorization) {
 		$this->jira_authorization = $jira_authorization;
 	}
 
@@ -317,7 +317,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraUsername() {
+	public function getJiraUsername(): string {
 		return $this->jira_username;
 	}
 
@@ -325,7 +325,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_username
 	 */
-	public function setJiraUsername($jira_username) {
+	public function setJiraUsername(string $jira_username) {
 		$this->jira_username = $jira_username;
 	}
 
@@ -333,7 +333,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraPassword() {
+	public function getJiraPassword(): string {
 		return $this->jira_password;
 	}
 
@@ -341,7 +341,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_password
 	 */
-	public function setJiraPassword($jira_password) {
+	public function setJiraPassword(string $jira_password) {
 		$this->jira_password = $jira_password;
 	}
 
@@ -349,7 +349,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraConsumerKey() {
+	public function getJiraConsumerKey(): string {
 		return $this->jira_consumer_key;
 	}
 
@@ -357,7 +357,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_consumer_key
 	 */
-	public function setJiraConsumerKey($jira_consumer_key) {
+	public function setJiraConsumerKey(string $jira_consumer_key) {
 		$this->jira_consumer_key = $jira_consumer_key;
 	}
 
@@ -365,7 +365,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraPrivateKey() {
+	public function getJiraPrivateKey(): string {
 		return $this->jira_private_key;
 	}
 
@@ -373,7 +373,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_private_key
 	 */
-	public function setJiraPrivateKey($jira_private_key) {
+	public function setJiraPrivateKey(string $jira_private_key) {
 		$this->jira_private_key = $jira_private_key;
 	}
 
@@ -381,7 +381,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getJiraAccessToken() {
+	public function getJiraAccessToken(): string {
 		return $this->jira_access_token;
 	}
 
@@ -389,7 +389,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $jira_access_token
 	 */
-	public function setJiraAccessToken($jira_access_token) {
+	public function setJiraAccessToken(string $jira_access_token) {
 		$this->jira_access_token = $jira_access_token;
 	}
 
@@ -397,7 +397,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getInfo() {
+	public function getInfo(): string {
 		return $this->info;
 	}
 
@@ -405,7 +405,7 @@ class ilHelpMeConfig extends ActiveRecord {
 	/**
 	 * @param string $info
 	 */
-	public function setInfo($info) {
+	public function setInfo(string $info) {
 		$this->info = $info;
 	}
 }

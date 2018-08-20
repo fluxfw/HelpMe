@@ -94,7 +94,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	/**
 	 * @return ilHelpMeSupport
 	 */
-	public function getSupport() {
+	public function getSupport(): ilHelpMeSupport {
 		$configPriorities = ilHelpMeConfigPriority::getConfigPriorities();
 
 		$support = new ilHelpMeSupport();
@@ -148,7 +148,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	 *
 	 * @return string "Browser Version / System Version"
 	 */
-	protected function getBrowserInfos() {
+	protected function getBrowserInfos(): string {
 		$browser = new Browser();
 		$os = new Os();
 

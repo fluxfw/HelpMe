@@ -50,7 +50,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 *
 	 * @return ilHelpMeConfigFormGUI
 	 */
-	protected function getConfigurationForm() {
+	protected function getConfigurationForm(): ilHelpMeConfigFormGUI {
 		$form = new ilHelpMeConfigFormGUI($this);
 
 		return $form;
@@ -60,7 +60,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	/**
 	 * @param string $html
 	 */
-	protected function show($html) {
+	protected function show(string $html) {
 		self::output($html);
 	}
 

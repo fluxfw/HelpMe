@@ -56,7 +56,7 @@ class ilHelpMeGUI {
 	/**
 	 * @return ilHelpMeSupportFormGUI
 	 */
-	protected function getSupportForm() {
+	protected function getSupportForm(): ilHelpMeSupportFormGUI {
 		$form = new ilHelpMeSupportFormGUI($this);
 
 		return $form;
@@ -66,7 +66,7 @@ class ilHelpMeGUI {
 	/**
 	 * @return ilHelpMeSuccessFormGUI
 	 */
-	protected function getSuccessForm() {
+	protected function getSuccessForm(): ilHelpMeSuccessFormGUI {
 		$form = new ilHelpMeSuccessFormGUI($this);
 
 		return $form;

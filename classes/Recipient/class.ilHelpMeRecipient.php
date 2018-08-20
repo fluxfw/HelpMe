@@ -28,7 +28,7 @@ abstract class ilHelpMeRecipient {
 	 *
 	 * @return ilHelpMeRecipient|null
 	 */
-	public static function getRecipient($recipient, ilHelpMeSupport $support, ilHelpMeConfig $config) {
+	public static function getRecipient(string $recipient, ilHelpMeSupport $support, ilHelpMeConfig $config) {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
 				return new ilHelpMeRecipientSendMail($support, $config);
@@ -62,7 +62,7 @@ abstract class ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	public abstract function sendSupportToRecipient();
+	public abstract function sendSupportToRecipient(): bool;
 
 
 	/**
@@ -70,7 +70,7 @@ abstract class ilHelpMeRecipient {
 	 *
 	 * @return bool
 	 */
-	public function sendConfirmationMail() {
+	protected function sendConfirmationMail(): bool {
 		try {
 			$mailer = new ilMimeMail();
 
@@ -100,7 +100,7 @@ abstract class ilHelpMeRecipient {
 	/**
 	 * @return ilHelpMeSupport
 	 */
-	public function getSupport() {
+	public function getSupport(): ilHelpMeSupport {
 		return $this->support;
 	}
 
@@ -108,7 +108,7 @@ abstract class ilHelpMeRecipient {
 	/**
 	 * @param ilHelpMeSupport $support
 	 */
-	public function setSupport($support) {
+	public function setSupport(ilHelpMeSupport $support) {
 		$this->support = $support;
 	}
 
@@ -116,7 +116,7 @@ abstract class ilHelpMeRecipient {
 	/**
 	 * @return ilHelpMeConfig
 	 */
-	public function getConfig() {
+	public function getConfig(): ilHelpMeConfig {
 		return $this->config;
 	}
 
@@ -124,7 +124,7 @@ abstract class ilHelpMeRecipient {
 	/**
 	 * @param ilHelpMeConfig $config
 	 */
-	public function setConfig($config) {
+	public function setConfig(ilHelpMeConfig $config) {
 		$this->config = $config;
 	}
 }
