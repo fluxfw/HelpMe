@@ -11,7 +11,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
 	/**
-	 * @var self
+	 * @var self|null
 	 */
 	protected static $instance = NULL;
 
