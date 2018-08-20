@@ -30,11 +30,11 @@ class ilHelpMeConfig extends ActiveRecord {
 
 
 	/**
-	 * @return ilHelpMeConfig
+	 * @return self
 	 */
 	public static function getConfig() {
 		/**
-		 * @var ilHelpMeConfig $config
+		 * @var self $config
 		 */
 
 		$config = self::get();
