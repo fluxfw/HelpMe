@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Create Jira ticket
+ * Class ilHelpMeRecipientCreateJiraTicket
  */
 class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 
@@ -16,6 +16,8 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 
 
 	/**
+	 * ilHelpMeRecipientCreateJiraTicket constructor
+	 *
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */

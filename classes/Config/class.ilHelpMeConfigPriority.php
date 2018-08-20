@@ -1,11 +1,13 @@
 <?php
 
+use srag\DIC\DICTrait;
+
 /**
- * Config active record
+ * Class ilHelpMeConfigPriority
  */
 class ilHelpMeConfigPriority extends ActiveRecord {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const TABLE_NAME = "ui_uihk_srsu_prio";
 
@@ -90,6 +92,17 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 	 * @con_is_unique   true
 	 */
 	protected $priority;
+
+
+	/**
+	 * ilHelpMeConfigPriority constructor
+	 *
+	 * @param int              $primary_key_value
+	 * @param arConnector|null $connector
+	 */
+	public function __construct($primary_key_value = 0, arConnector $connector = NULL) {
+		parent::__construct($primary_key_value, $connector);
+	}
 
 
 	/**

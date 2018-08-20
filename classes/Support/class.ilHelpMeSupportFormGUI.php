@@ -2,13 +2,14 @@
 
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
+use srag\DIC\DICTrait;
 
 /**
- * HelpMe Support Form GUI
+ * Class ilHelpMeSupportFormGUI
  */
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var ilHelpMeGUI
@@ -17,6 +18,8 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
 
 	/**
+	 * ilHelpMeSupportFormGUI constructor
+	 *
 	 * @param ilHelpMeGUI $parent
 	 */
 	public function __construct(ilHelpMeGUI $parent) {

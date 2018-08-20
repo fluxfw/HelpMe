@@ -1,11 +1,13 @@
 <?php
 
+use srag\DIC\DICTrait;
+
 /**
- * Config active record
+ * Class ilHelpMeConfig
  */
 class ilHelpMeConfig extends ActiveRecord {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const TABLE_NAME = "ui_uihk_srsu_config";
 
@@ -154,6 +156,17 @@ class ilHelpMeConfig extends ActiveRecord {
 	 * @con_is_notnull  true
 	 */
 	protected $info = "";
+
+
+	/**
+	 * ilHelpMeConfig constructor
+	 *
+	 * @param int              $primary_key_value
+	 * @param arConnector|null $connector
+	 */
+	public function __construct($primary_key_value = 0, arConnector $connector = NULL) {
+		parent::__construct($primary_key_value, $connector);
+	}
 
 
 	/**

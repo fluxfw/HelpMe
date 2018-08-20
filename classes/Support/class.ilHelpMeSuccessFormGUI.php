@@ -1,11 +1,13 @@
 <?php
 
+use srag\DIC\DICTrait;
+
 /**
- * HelpMe Success Form GUI
+ * Class ilHelpMeSuccessFormGUI
  */
 class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var ilHelpMeGUI
@@ -14,6 +16,8 @@ class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
 
 	/**
+	 * ilHelpMeSuccessFormGUI constructor
+	 *
 	 * @param ilHelpMeGUI $parent
 	 */
 	public function __construct(ilHelpMeGUI $parent) {

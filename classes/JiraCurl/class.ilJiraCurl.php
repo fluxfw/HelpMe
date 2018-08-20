@@ -1,11 +1,13 @@
 <?php
 
+use srag\DIC\DICTrait;
+
 /**
- * Jira Curl connection
+ * Class ilJiraCurl
  */
 class ilJiraCurl {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const AUTHORIZATION_USERNAMEPASSWORD = "usernamepassword";
 	const AUTHORIZATION_OAUTH = "oauth";
@@ -40,7 +42,7 @@ class ilJiraCurl {
 
 
 	/**
-	 *
+	 * ilJiraCurl constructor
 	 */
 	public function __construct() {
 	}

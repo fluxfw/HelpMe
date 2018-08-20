@@ -1,21 +1,24 @@
 <?php
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\DIC\DICTrait;
+
 /**
- * HelpMe GUI
+ * Class ilHelpMeGUI
  *
  * @ilCtrl_isCalledBy ilHelpMeGUI: ilUIPluginRouterGUI
  */
 class ilHelpMeGUI {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
 
 
 	/**
-	 *
+	 * ilHelpMeGUI constructor
 	 */
 	public function __construct() {
 
@@ -32,7 +35,7 @@ class ilHelpMeGUI {
 
 		$next_class = self::dic()->ctrl()->getNextClass($this);
 
-		switch ($next_class) {
+		switch (strtolower($next_class)) {
 			default:
 				$cmd = self::dic()->ctrl()->getCmd();
 
@@ -90,15 +93,7 @@ class ilHelpMeGUI {
 		$tpl->setCurrentBlock("il_help_me_form");
 		$tpl->setVariable("FORM", $form->getHTML());
 
-		$html = $tpl->get();
-
-		if (self::dic()->ctrl()->isAsynch()) {
-			echo $html;
-
-			exit();
-		} else {
-			self::dic()->tpl()->setContent($html);
-		}
+		self::output($tpl);
 	}
 
 

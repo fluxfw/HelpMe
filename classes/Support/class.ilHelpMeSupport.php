@@ -1,11 +1,13 @@
 <?php
 
+use srag\DIC\DICTrait;
+
 /**
- * Support data
+ * Class ilHelpMeSupport
  */
 class ilHelpMeSupport {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var int
@@ -54,7 +56,7 @@ class ilHelpMeSupport {
 
 
 	/**
-	 *
+	 * ilHelpMeSupport constructor
 	 */
 	public function __construct() {
 

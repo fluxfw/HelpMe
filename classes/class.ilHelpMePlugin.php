@@ -1,12 +1,14 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\DIC\DICTrait;
+
 /**
- * HelpMe Plugin
+ * Class ilHelpMePlugin
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = self::class;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
@@ -29,7 +31,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	/**
-	 *
+	 * ilHelpMePlugin constructor
 	 */
 	public function __construct() {
 		parent::__construct();

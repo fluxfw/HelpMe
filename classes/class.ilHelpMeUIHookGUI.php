@@ -1,17 +1,19 @@
 <?php
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\DIC\DICTrait;
+
 /**
- * HelpMe UIHook-GUI
+ * Class ilHelpMeUIHookGUI
  */
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**
-	 *
+	 * ilHelpMeUIHookGUI constructor
 	 */
 	public function __construct() {
 

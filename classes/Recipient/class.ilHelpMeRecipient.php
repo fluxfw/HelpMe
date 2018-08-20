@@ -1,11 +1,13 @@
 <?php
 
+use srag\DIC\DICTrait;
+
 /**
- * Support recipient
+ * Class ilHelpMeRecipient
  */
 abstract class ilHelpMeRecipient {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
@@ -44,6 +46,8 @@ abstract class ilHelpMeRecipient {
 
 
 	/**
+	 * ilHelpMeRecipient constructor
+	 *
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */

@@ -1,11 +1,13 @@
 <?php
 
 /**
- * Send support email
+ * Class ilHelpMeRecipientSendMail
  */
 class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 
 	/**
+	 * ilHelpMeRecipientSendMail constructor
+	 *
 	 * @param ilHelpMeSupport $support
 	 * @param ilHelpMeConfig  $config
 	 */

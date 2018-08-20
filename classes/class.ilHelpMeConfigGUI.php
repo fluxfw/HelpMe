@@ -1,19 +1,22 @@
 <?php
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\DIC\DICTrait;
+
 /**
- * HelpMe Config GUI
+ * Class ilHelpMeConfigGUI
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
-	use srag\DIC\DICTrait;
+	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_CONFIGURE = "configure";
 	const CMD_UPDATE_CONFIGURE = "updateConfigure";
 
 
 	/**
-	 *
+	 * ilHelpMeConfigGUI constructor
 	 */
 	public function __construct() {
 
@@ -27,7 +30,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	public function performCommand($cmd) {
 		$next_class = self::dic()->ctrl()->getNextClass($this);
 
-		switch ($next_class) {
+		switch (strtolower($next_class)) {
 			default:
 				switch ($cmd) {
 					case self::CMD_CONFIGURE:
@@ -58,7 +61,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 * @param string $html
 	 */
 	protected function show($html) {
-		self::dic()->tpl()->setContent($html);
+		self::output($html);
 	}
 
 
