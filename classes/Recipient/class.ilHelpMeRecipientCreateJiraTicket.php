@@ -8,7 +8,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	/**
 	 * @var ilJiraCurl
 	 */
-	protected $jiraCurl;
+	protected $jira_curl;
 	/**
 	 * @var string
 	 */
@@ -19,23 +19,22 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * ilHelpMeRecipientCreateJiraTicket constructor
 	 *
 	 * @param ilHelpMeSupport $support
-	 * @param ilHelpMeConfig  $config
 	 */
-	public function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
-		parent::__construct($support, $config);
+	public function __construct(ilHelpMeSupport $support) {
+		parent::__construct($support);
 
-		$this->jiraCurl = new ilJiraCurl();
+		$this->jira_curl = new ilJiraCurl();
 
-		$this->jiraCurl->setJiraDomain($config->getJiraDomain());
+		$this->jira_curl->setJiraDomain(ilHelpMeConfig::getJiraDomain());
 
-		$this->jiraCurl->setJiraAuthorization($config->getJiraAuthorization());
+		$this->jira_curl->setJiraAuthorization(ilHelpMeConfig::getJiraAuthorization());
 
-		$this->jiraCurl->setJiraUsername($config->getJiraUsername());
-		$this->jiraCurl->setJiraPassword($config->getJiraPassword());
+		$this->jira_curl->setJiraUsername(ilHelpMeConfig::getJiraUsername());
+		$this->jira_curl->setJiraPassword(ilHelpMeConfig::getJiraPassword());
 
-		$this->jiraCurl->setJiraConsumerKey($config->getJiraConsumerKey());
-		$this->jiraCurl->setJiraPrivateKey($config->getJiraPrivateKey());
-		$this->jiraCurl->setJiraAccessToken($config->getJiraAccessToken());
+		$this->jira_curl->setJiraConsumerKey(ilHelpMeConfig::getJiraConsumerKey());
+		$this->jira_curl->setJiraPrivateKey(ilHelpMeConfig::getJiraPrivateKey());
+		$this->jira_curl->setJiraAccessToken(ilHelpMeConfig::getJiraAccessToken());
 	}
 
 
@@ -55,7 +54,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket(): bool {
-		$issue_key = $this->jiraCurl->createJiraIssueTicket($this->config->getJiraProjectKey(), $this->config->getJiraIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
+		$issue_key = $this->jira_curl->createJiraIssueTicket(ilHelpMeConfig::getJiraProjectKey(), ilHelpMeConfig::getJiraIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
 
 		if ($issue_key === false) {
 			return false;
@@ -74,7 +73,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	 */
 	protected function addScreenshoots(): bool {
 		foreach ($this->support->getScreenshots() as $screenshot) {
-			if (!$this->jiraCurl->addAttachmentToIssue($this->issue_key, $screenshot["name"], $screenshot["type"], $screenshot["tmp_name"])) {
+			if (!$this->jira_curl->addAttachmentToIssue($this->issue_key, $screenshot["name"], $screenshot["type"], $screenshot["tmp_name"])) {
 				return false;
 			}
 		}

@@ -8,8 +8,8 @@ use srag\DIC\DICTrait;
 class ilHelpMeConfigPriority extends ActiveRecord {
 
 	use DICTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const TABLE_NAME = "ui_uihk_srsu_prio";
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**
@@ -22,6 +22,7 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 
 	/**
 	 * @return string
+	 *
 	 * @deprecated
 	 */
 	public static function returnDbTableName() {

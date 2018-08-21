@@ -1,411 +1,216 @@
 <?php
 
-use srag\DIC\DICTrait;
+use srag\ActiveRecordConfig\ActiveRecordConfig;
 
 /**
  * Class ilHelpMeConfig
  */
-class ilHelpMeConfig extends ActiveRecord {
+class ilHelpMeConfig extends ActiveRecordConfig {
 
-	use DICTrait;
+	const TABLE_NAME = "ui_uihk_srsu_config_n";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const TABLE_NAME = "ui_uihk_srsu_config";
+	const KEY_INFO = "info";
+	const KEY_JIRA_ACCESS_TOKEN = "jira_access_token";
+	const KEY_JIRA_AUTHORIZATION = "jira_authorization";
+	const KEY_JIRA_CONSUMER_KEY = "jira_consumer_key";
+	const KEY_JIRA_DOMAIN = "jira_domain";
+	const KEY_JIRA_ISSUE_TYPE = "jira_issue_type";
+	const KEY_JIRA_PASSWORD = "jira_password";
+	const KEY_JIRA_PRIVATE_KEY = "jira_private_key";
+	const KEY_JIRA_PROJECT_KEY = "jira_project_key";
+	const KEY_JIRA_USERNAME = "jira_username";
+	const KEY_RECIPIENT = "recipient";
+	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
 
 
 	/**
 	 * @return string
 	 */
-	public function getConnectorContainerName(): string {
-		return self::TABLE_NAME;
-	}
-
-
-	/**
-	 * @return string
-	 * @deprecated
-	 */
-	public static function returnDbTableName(): string {
-		return self::TABLE_NAME;
-	}
-
-
-	/**
-	 * @return self
-	 */
-	public static function getConfig(): self {
-		/**
-		 * @var self $config
-		 */
-
-		$config = self::get();
-		if (count($config) > 0) {
-			$config = $config[1];
-		} else {
-			$config = new self();
-			$config->setId(1);
-			$config->store();
-		}
-
-		return $config;
-	}
-
-
-	/**
-	 * @var int
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   integer
-	 * @con_length      8
-	 * @con_is_notnull  true
-	 * @con_is_primary  true
-	 */
-	protected $id;
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $recipient = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $send_email_address = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_domain = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_project_key = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_issue_type = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_authorization = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_username = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_password = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_consumer_key = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_private_key = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $jira_access_token = "";
-	/**
-	 * @var string
-	 *
-	 * @con_has_field   true
-	 * @con_fieldtype   text
-	 * @con_is_notnull  true
-	 */
-	protected $info = "";
-
-
-	/**
-	 * ilHelpMeConfig constructor
-	 *
-	 * @param int              $primary_key_value
-	 * @param arConnector|null $connector
-	 */
-	public function __construct($primary_key_value = 0, arConnector $connector = NULL) {
-		parent::__construct($primary_key_value, $connector);
-	}
-
-
-	/**
-	 * @param string $field_name
-	 *
-	 * @return mixed|null
-	 */
-	public function sleep($field_name) {
-		$field_value = $this->{$field_name};
-
-		switch ($field_name) {
-			default:
-				return NULL;
-		}
-	}
-
-
-	/**
-	 * @param string $field_name
-	 * @param mixed  $field_value
-	 *
-	 * @return mixed|null
-	 */
-	public function wakeUp($field_name, $field_value) {
-		switch ($field_name) {
-			case "id":
-				return intval($field_value);
-				break;
-
-			default:
-				return NULL;
-		}
-	}
-
-
-	/**
-	 * @return int
-	 */
-	public function getId(): int {
-		return $this->id;
-	}
-
-
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id) {
-		$this->id = $id;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getRecipient(): string {
-		return $this->recipient;
-	}
-
-
-	/**
-	 * @param string $recipient
-	 */
-	public function setRecipient(string $recipient) {
-		$this->recipient = $recipient;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getSendEmailAddress(): string {
-		return $this->send_email_address;
-	}
-
-
-	/**
-	 * @param string $send_email_address
-	 */
-	public function setSendEmailAddress(string $send_email_address) {
-		$this->send_email_address = $send_email_address;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraDomain(): string {
-		return $this->jira_domain;
-	}
-
-
-	/**
-	 * @param string $jira_domain
-	 */
-	public function setJiraDomain(string $jira_domain) {
-		$this->jira_domain = $jira_domain;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraProjectKey(): string {
-		return $this->jira_project_key;
-	}
-
-
-	/**
-	 * @param string $jira_project_key
-	 */
-	public function setJiraProjectKey(string $jira_project_key) {
-		$this->jira_project_key = $jira_project_key;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraIssueType(): string {
-		return $this->jira_issue_type;
-	}
-
-
-	/**
-	 * @param string $jira_issue_type
-	 */
-	public function setJiraIssueType(string $jira_issue_type) {
-		$this->jira_issue_type = $jira_issue_type;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraAuthorization(): string {
-		return $this->jira_authorization;
-	}
-
-
-	/**
-	 * @param string $jira_authorization
-	 */
-	public function setJiraAuthorization(string $jira_authorization) {
-		$this->jira_authorization = $jira_authorization;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraUsername(): string {
-		return $this->jira_username;
-	}
-
-
-	/**
-	 * @param string $jira_username
-	 */
-	public function setJiraUsername(string $jira_username) {
-		$this->jira_username = $jira_username;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraPassword(): string {
-		return $this->jira_password;
-	}
-
-
-	/**
-	 * @param string $jira_password
-	 */
-	public function setJiraPassword(string $jira_password) {
-		$this->jira_password = $jira_password;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraConsumerKey(): string {
-		return $this->jira_consumer_key;
-	}
-
-
-	/**
-	 * @param string $jira_consumer_key
-	 */
-	public function setJiraConsumerKey(string $jira_consumer_key) {
-		$this->jira_consumer_key = $jira_consumer_key;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraPrivateKey(): string {
-		return $this->jira_private_key;
-	}
-
-
-	/**
-	 * @param string $jira_private_key
-	 */
-	public function setJiraPrivateKey(string $jira_private_key) {
-		$this->jira_private_key = $jira_private_key;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getJiraAccessToken(): string {
-		return $this->jira_access_token;
-	}
-
-
-	/**
-	 * @param string $jira_access_token
-	 */
-	public function setJiraAccessToken(string $jira_access_token) {
-		$this->jira_access_token = $jira_access_token;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getInfo(): string {
-		return $this->info;
+	public static function getInfo(): string {
+		return self::getStringValue(self::KEY_INFO);
 	}
 
 
 	/**
 	 * @param string $info
 	 */
-	public function setInfo(string $info) {
-		$this->info = $info;
+	public static function setInfo(string $info) {
+		self::setStringValue(self::KEY_INFO, $info);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraAccessToken(): string {
+		return self::getStringValue(self::KEY_JIRA_ACCESS_TOKEN);
+	}
+
+
+	/**
+	 * @param string $jira_access_token
+	 */
+	public static function setJiraAccessToken(string $jira_access_token) {
+		self::setStringValue(self::KEY_JIRA_ACCESS_TOKEN, $jira_access_token);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraAuthorization(): string {
+		return self::getStringValue(self::KEY_JIRA_AUTHORIZATION);
+	}
+
+
+	/**
+	 * @param string $jira_authorization
+	 */
+	public static function setJiraAuthorization(string $jira_authorization) {
+		self::setStringValue(self::KEY_JIRA_AUTHORIZATION, $jira_authorization);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraConsumerKey(): string {
+		return self::getStringValue(self::KEY_JIRA_CONSUMER_KEY);
+	}
+
+
+	/**
+	 * @param string $jira_consumer_key
+	 */
+	public static function setJiraConsumerKey(string $jira_consumer_key) {
+		self::setStringValue(self::KEY_JIRA_CONSUMER_KEY, $jira_consumer_key);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraDomain(): string {
+		return self::getStringValue(self::KEY_JIRA_DOMAIN);
+	}
+
+
+	/**
+	 * @param string $jira_domain
+	 */
+	public static function setJiraDomain(string $jira_domain) {
+		self::setStringValue(self::KEY_JIRA_DOMAIN, $jira_domain);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraIssueType(): string {
+		return self::getStringValue(self::KEY_JIRA_ISSUE_TYPE);
+	}
+
+
+	/**
+	 * @param string $jira_issue_type
+	 */
+	public static function setJiraIssueType(string $jira_issue_type) {
+		self::setStringValue(self::KEY_JIRA_ISSUE_TYPE, $jira_issue_type);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraPassword(): string {
+		return self::getStringValue(self::KEY_JIRA_PASSWORD);
+	}
+
+
+	/**
+	 * @param string $jira_password
+	 */
+	public static function setJiraPassword(string $jira_password) {
+		self::setStringValue(self::KEY_JIRA_PASSWORD, $jira_password);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraPrivateKey(): string {
+		return self::getStringValue(self::KEY_JIRA_PRIVATE_KEY);
+	}
+
+
+	/**
+	 * @param string $jira_private_key
+	 */
+	public static function setJiraPrivateKey(string $jira_private_key) {
+		self::setStringValue(self::KEY_JIRA_PRIVATE_KEY, $jira_private_key);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraProjectKey(): string {
+		return self::getStringValue(self::KEY_JIRA_PROJECT_KEY);
+	}
+
+
+	/**
+	 * @param string $jira_project_key
+	 */
+	public static function setJiraProjectKey(string $jira_project_key) {
+		self::setStringValue(self::KEY_JIRA_PROJECT_KEY, $jira_project_key);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getJiraUsername(): string {
+		return self::getStringValue(self::KEY_JIRA_USERNAME);
+	}
+
+
+	/**
+	 * @param string $jira_username
+	 */
+	public static function setJiraUsername(string $jira_username) {
+		self::setStringValue(self::KEY_JIRA_USERNAME, $jira_username);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getRecipient(): string {
+		return self::getStringValue(self::KEY_RECIPIENT);
+	}
+
+
+	/**
+	 * @param string $recipient
+	 */
+	public static function setRecipient(string $recipient) {
+		self::setStringValue(self::KEY_RECIPIENT, $recipient);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public static function getSendEmailAddress(): string {
+		return self::getStringValue(self::KEY_SEND_EMAIL_ADDRESS);
+	}
+
+
+	/**
+	 * @param string $send_email_address
+	 */
+	public static function setSendEmailAddress(string $send_email_address) {
+		self::setStringValue(self::KEY_SEND_EMAIL_ADDRESS, $send_email_address);
 	}
 }

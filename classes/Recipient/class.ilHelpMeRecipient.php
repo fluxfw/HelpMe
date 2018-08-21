@@ -15,27 +15,22 @@ abstract class ilHelpMeRecipient {
 	 * @var ilHelpMeSupport
 	 */
 	protected $support;
-	/**
-	 * @var ilHelpMeConfig
-	 */
-	protected $config;
 
 
 	/**
 	 * @param string          $recipient
 	 * @param ilHelpMeSupport $support
-	 * @param ilHelpMeConfig  $config
 	 *
 	 * @return ilHelpMeRecipient|null
 	 */
-	public static function getRecipient(string $recipient, ilHelpMeSupport $support, ilHelpMeConfig $config) {
+	public static function getRecipient(string $recipient, ilHelpMeSupport $support) {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
-				return new ilHelpMeRecipientSendMail($support, $config);
+				return new ilHelpMeRecipientSendMail($support);
 				break;
 
 			case self::CREATE_JIRA_TICKET:
-				return new ilHelpMeRecipientCreateJiraTicket($support, $config);
+				return new ilHelpMeRecipientCreateJiraTicket($support);
 				break;
 
 			default:
@@ -49,11 +44,9 @@ abstract class ilHelpMeRecipient {
 	 * ilHelpMeRecipient constructor
 	 *
 	 * @param ilHelpMeSupport $support
-	 * @param ilHelpMeConfig  $config
 	 */
-	protected function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
+	protected function __construct(ilHelpMeSupport $support) {
 		$this->support = $support;
-		$this->config = $config;
 	}
 
 
@@ -110,21 +103,5 @@ abstract class ilHelpMeRecipient {
 	 */
 	public function setSupport(ilHelpMeSupport $support) {
 		$this->support = $support;
-	}
-
-
-	/**
-	 * @return ilHelpMeConfig
-	 */
-	public function getConfig(): ilHelpMeConfig {
-		return $this->config;
-	}
-
-
-	/**
-	 * @param ilHelpMeConfig $config
-	 */
-	public function setConfig(ilHelpMeConfig $config) {
-		$this->config = $config;
 	}
 }

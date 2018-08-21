@@ -78,12 +78,10 @@ class ilHelpMeGUI {
 	 * @param ilPropertyFormGUI $form
 	 */
 	protected function show($message, ilPropertyFormGUI $form) {
-		$config = ilHelpMeConfig::getConfig();
-
 		$tpl = self::template("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
-		$tpl->setVariable("INFO", $config->getInfo());
+		$tpl->setVariable("INFO", ilHelpMeConfig::getInfo());
 
 		if ($message !== NULL) {
 			$tpl->setCurrentBlock("il_help_me_message");
@@ -125,9 +123,8 @@ class ilHelpMeGUI {
 		}
 
 		$support = $form->getSupport();
-		$config = ilHelpMeConfig::getConfig();
 
-		$recipient = ilHelpMeRecipient::getRecipient($config->getRecipient(), $support, $config);
+		$recipient = ilHelpMeRecipient::getRecipient(ilHelpMeConfig::getRecipient(), $support);
 		if ($recipient->sendSupportToRecipient()) {
 			$message = self::dic()->tpl()->getMessageHTML(self::translate("srsu_sent_success"), "success");
 

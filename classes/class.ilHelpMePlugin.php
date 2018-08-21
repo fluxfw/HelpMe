@@ -50,6 +50,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @return bool
 	 */
 	protected function beforeUninstall(): bool {
+		self::dic()->database()->dropTable(ilHelpMeConfigOld::TABLE_NAME, false);
 		self::dic()->database()->dropTable(ilHelpMeConfig::TABLE_NAME, false);
 		self::dic()->database()->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
 		self::dic()->database()->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);

@@ -8,8 +8,8 @@ use srag\DIC\DICTrait;
 class ilHelpMeConfigRole extends ActiveRecord {
 
 	use DICTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const TABLE_NAME = "ui_uihk_srsu_roles";
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**
@@ -22,6 +22,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 
 	/**
 	 * @return string
+	 *
 	 * @deprecated
 	 */
 	public static function returnDbTableName(): string {

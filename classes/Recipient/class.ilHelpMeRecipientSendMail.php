@@ -9,10 +9,9 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 	 * ilHelpMeRecipientSendMail constructor
 	 *
 	 * @param ilHelpMeSupport $support
-	 * @param ilHelpMeConfig  $config
 	 */
-	public function __construct(ilHelpMeSupport $support, ilHelpMeConfig $config) {
-		parent::__construct($support, $config);
+	public function __construct(ilHelpMeSupport $support) {
+		parent::__construct($support);
 	}
 
 
@@ -41,7 +40,7 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 				$mailer->From([ $this->support->getEmail(), $this->support->getName() ]);
 			}
 
-			$mailer->To($this->config->getSendEmailAddress());
+			$mailer->To(ilHelpMeConfig::getSendEmailAddress());
 
 			$mailer->Subject($this->support->getSubject());
 
