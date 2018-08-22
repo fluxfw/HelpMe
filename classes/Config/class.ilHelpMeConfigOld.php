@@ -16,6 +16,11 @@ class ilHelpMeConfigOld extends ActiveRecord {
 	 * @deprecated
 	 */
 	const TABLE_NAME = "ui_uihk_srsu_config";
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
