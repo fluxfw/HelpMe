@@ -60,7 +60,7 @@ return array(
     'ilUserInterfaceHookPlugin' => $baseDir . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
     'ilUtil' => $baseDir . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
     'iljQueryUtil' => $baseDir . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
-    'srag\\ActiveRecordConfig\\ilActiveRecordConfig' => $baseDir . '/classes/Config/class.ilActiveRecordConfig.php',
+    'srag\\ActiveRecordConfig\\ActiveRecordConfig' => $vendorDir . '/srag/activerecordconfig/src/class.ActiveRecordConfig.php',
     'srag\\DIC\\AbstractDIC' => $vendorDir . '/srag/dic/src/AbstractDIC.php',
     'srag\\DIC\\DICCache' => $vendorDir . '/srag/dic/src/DICCache.php',
     'srag\\DIC\\DICException' => $vendorDir . '/srag/dic/src/DICException.php',

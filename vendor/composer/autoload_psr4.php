@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'srag\\DIC\\' => array($vendorDir . '/srag/dic/src'),
+    'srag\\ActiveRecordConfig\\' => array($vendorDir . '/srag/activerecordconfig/src'),
     'Sinergi\\BrowserDetector\\' => array($vendorDir . '/sinergi/browser-detector/src'),
 );

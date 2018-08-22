@@ -10,6 +10,7 @@ class ComposerStaticInit113e74f3e91c8a824618069737b967ea
         's' => 
         array (
             'srag\\DIC\\' => 9,
+            'srag\\ActiveRecordConfig\\' => 24,
         ),
         'S' => 
         array (
@@ -21,6 +22,10 @@ class ComposerStaticInit113e74f3e91c8a824618069737b967ea
         'srag\\DIC\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
+        ),
+        'srag\\ActiveRecordConfig\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
         ),
         'Sinergi\\BrowserDetector\\' => 
         array (
@@ -83,7 +88,7 @@ class ComposerStaticInit113e74f3e91c8a824618069737b967ea
         'ilUserInterfaceHookPlugin' => __DIR__ . '/../..' . '/../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php',
         'ilUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/Utilities/classes/class.ilUtil.php',
         'iljQueryUtil' => __DIR__ . '/../..' . '/../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php',
-        'srag\\ActiveRecordConfig\\ilActiveRecordConfig' => __DIR__ . '/../..' . '/classes/Config/class.ilActiveRecordConfig.php',
+        'srag\\ActiveRecordConfig\\ActiveRecordConfig' => __DIR__ . '/..' . '/srag/activerecordconfig/src/class.ActiveRecordConfig.php',
         'srag\\DIC\\AbstractDIC' => __DIR__ . '/..' . '/srag/dic/src/AbstractDIC.php',
         'srag\\DIC\\DICCache' => __DIR__ . '/..' . '/srag/dic/src/DICCache.php',
         'srag\\DIC\\DICException' => __DIR__ . '/..' . '/srag/dic/src/DICException.php',
