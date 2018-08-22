@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "0305eb2b9114f7eab18a10d0e9ba92ec",
+    "content-hash": "b65d5deb3e329aa49771980fc97da8ef",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -57,16 +57,16 @@
         },
         {
             "name": "srag/activerecordconfig",
-            "version": "0.2.0",
+            "version": "0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "8c0354ba0a3d0e9bf4d0a344e70f1a18099565d2"
+                "reference": "8536b09464941f78d59a8e410bf64fe6dd0f427f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/8c0354ba0a3d0e9bf4d0a344e70f1a18099565d2",
-                "reference": "8c0354ba0a3d0e9bf4d0a344e70f1a18099565d2",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/8536b09464941f78d59a8e410bf64fe6dd0f427f",
+                "reference": "8536b09464941f78d59a8e410bf64fe6dd0f427f",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2018-08-22T06:11:29+00:00"
+            "time": "2018-08-22T07:20:58+00:00"
         },
         {
             "name": "srag/dic",
