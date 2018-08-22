@@ -9,9 +9,9 @@ use srag\DIC\DICTrait;
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 	use DICTrait;
-	const PLUGIN_CLASS_NAME = self::class;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
+	const PLUGIN_CLASS_NAME = self::class;
 	/**
 	 * @var self|null
 	 */
