@@ -1,9 +1,16 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Config;
+
+use ActiveRecord;
+use arConnector;
+use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 
 /**
  * Class ilHelpMeConfigPriority
+ *
+ * @package srag\Plugins\HelpMe\Config
  */
 class ilHelpMeConfigPriority extends ActiveRecord {
 

@@ -4,11 +4,12 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit113e74f3e91c8a824618069737b967ea
+class ComposerStaticInit4f1e9b662900f5fc8b995c40c14b958a
 {
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
+            'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\DIC\\' => 9,
             'srag\\ActiveRecordConfig\\' => 24,
         ),
@@ -19,6 +20,10 @@ class ComposerStaticInit113e74f3e91c8a824618069737b967ea
     );
 
     public static $prefixDirsPsr4 = array (
+        'srag\\Plugins\\HelpMe\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'srag\\DIC\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
@@ -52,23 +57,10 @@ class ComposerStaticInit113e74f3e91c8a824618069737b967ea
         'ilDateTime' => __DIR__ . '/../..' . '/../../../../../../../Services/Calendar/classes/class.ilDateTime.php',
         'ilEMailInputGUI' => __DIR__ . '/../..' . '/../../../../../../../Services/Form/classes/class.ilEMailInputGUI.php',
         'ilFileInputGUI' => __DIR__ . '/../..' . '/../../../../../../../Services/Form/classes/class.ilFileInputGUI.php',
-        'ilHelpMeConfig' => __DIR__ . '/../..' . '/classes/Config/class.ilHelpMeConfig.php',
-        'ilHelpMeConfigFormGUI' => __DIR__ . '/../..' . '/classes/Config/class.ilHelpMeConfigFormGUI.php',
         'ilHelpMeConfigGUI' => __DIR__ . '/../..' . '/classes/class.ilHelpMeConfigGUI.php',
-        'ilHelpMeConfigOld' => __DIR__ . '/../..' . '/classes/Config/class.ilHelpMeConfigOld.php',
-        'ilHelpMeConfigPriority' => __DIR__ . '/../..' . '/classes/Config/class.ilHelpMeConfigPriority.php',
-        'ilHelpMeConfigRole' => __DIR__ . '/../..' . '/classes/Config/class.ilHelpMeConfigRole.php',
         'ilHelpMeGUI' => __DIR__ . '/../..' . '/classes/class.ilHelpMeGUI.php',
         'ilHelpMePlugin' => __DIR__ . '/../..' . '/classes/class.ilHelpMePlugin.php',
-        'ilHelpMeRecipient' => __DIR__ . '/../..' . '/classes/Recipient/class.ilHelpMeRecipient.php',
-        'ilHelpMeRecipientCreateJiraTicket' => __DIR__ . '/../..' . '/classes/Recipient/class.ilHelpMeRecipientCreateJiraTicket.php',
-        'ilHelpMeRecipientSendMail' => __DIR__ . '/../..' . '/classes/Recipient/class.ilHelpMeRecipientSendMail.php',
-        'ilHelpMeRecipientSendMailSender' => __DIR__ . '/../..' . '/classes/Recipient/class.ilHelpMeRecipientSendMailSender.php',
-        'ilHelpMeSuccessFormGUI' => __DIR__ . '/../..' . '/classes/Support/class.ilHelpMeSuccessFormGUI.php',
-        'ilHelpMeSupport' => __DIR__ . '/../..' . '/classes/Support/class.ilHelpMeSupport.php',
-        'ilHelpMeSupportFormGUI' => __DIR__ . '/../..' . '/classes/Support/class.ilHelpMeSupportFormGUI.php',
         'ilHelpMeUIHookGUI' => __DIR__ . '/../..' . '/classes/class.ilHelpMeUIHookGUI.php',
-        'ilJiraCurl' => __DIR__ . '/../..' . '/classes/JiraCurl/class.ilJiraCurl.php',
         'ilMailMimeSenderUser' => __DIR__ . '/../..' . '/../../../../../../../Services/Mail/classes/Mime/Sender/class.ilMailMimeSenderUser.php',
         'ilMimeMail' => __DIR__ . '/../..' . '/../../../../../../../Services/Mail/classes/class.ilMimeMail.php',
         'ilModalGUI' => __DIR__ . '/../..' . '/../../../../../../../Services/UIComponent/Modal/classes/class.ilModalGUI.php',
@@ -96,14 +88,27 @@ class ComposerStaticInit113e74f3e91c8a824618069737b967ea
         'srag\\DIC\\DICTrait' => __DIR__ . '/..' . '/srag/dic/src/DICTrait.php',
         'srag\\DIC\\LegacyDIC' => __DIR__ . '/..' . '/srag/dic/src/LegacyDIC.php',
         'srag\\DIC\\NewDIC' => __DIR__ . '/..' . '/srag/dic/src/NewDIC.php',
+        'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfig' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfig.php',
+        'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigFormGUI' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigFormGUI.php',
+        'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigOld' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigOld.php',
+        'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigPriority' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigPriority.php',
+        'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigRole' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigRole.php',
+        'srag\\Plugins\\HelpMe\\Jira\\ilJiraCurl' => __DIR__ . '/../..' . '/src/Jira/class.ilJiraCurl.php',
+        'srag\\Plugins\\HelpMe\\Recipient\\ilHelpMeRecipient' => __DIR__ . '/../..' . '/src/Recipient/class.ilHelpMeRecipient.php',
+        'srag\\Plugins\\HelpMe\\Recipient\\ilHelpMeRecipientCreateJiraTicket' => __DIR__ . '/../..' . '/src/Recipient/class.ilHelpMeRecipientCreateJiraTicket.php',
+        'srag\\Plugins\\HelpMe\\Recipient\\ilHelpMeRecipientSendMail' => __DIR__ . '/../..' . '/src/Recipient/class.ilHelpMeRecipientSendMail.php',
+        'srag\\Plugins\\HelpMe\\Recipient\\ilHelpMeRecipientSendMailSender' => __DIR__ . '/../..' . '/src/Recipient/class.ilHelpMeRecipientSendMailSender.php',
+        'srag\\Plugins\\HelpMe\\Support\\ilHelpMeSuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/class.ilHelpMeSuccessFormGUI.php',
+        'srag\\Plugins\\HelpMe\\Support\\ilHelpMeSupport' => __DIR__ . '/../..' . '/src/Support/class.ilHelpMeSupport.php',
+        'srag\\Plugins\\HelpMe\\Support\\ilHelpMeSupportFormGUI' => __DIR__ . '/../..' . '/src/Support/class.ilHelpMeSupportFormGUI.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit113e74f3e91c8a824618069737b967ea::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit113e74f3e91c8a824618069737b967ea::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit113e74f3e91c8a824618069737b967ea::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit4f1e9b662900f5fc8b995c40c14b958a::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit4f1e9b662900f5fc8b995c40c14b958a::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit4f1e9b662900f5fc8b995c40c14b958a::$classMap;
 
         }, null, ClassLoader::class);
     }

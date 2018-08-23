@@ -5,6 +5,9 @@
     "srag/dic": "^0.2.1"
   },
   "autoload": {
+    "psr-4": {
+      "srag\\Plugins\\HelpMe\\": "src/"
+    },
     "classmap": [
       "classes/",
       "../../../../../../../Services/ActiveRecord/class.ActiveRecord.php",

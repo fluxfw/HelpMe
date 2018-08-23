@@ -1,7 +1,9 @@
 <?php
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Config\ilHelpMeConfigRole;
 
 /**
  * Class ilHelpMeUIHookGUI

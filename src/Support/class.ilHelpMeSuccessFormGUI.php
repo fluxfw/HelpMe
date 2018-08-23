@@ -1,9 +1,16 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Support;
+
+use ilHelpMeGUI;
+use ilHelpMePlugin;
+use ilPropertyFormGUI;
 use srag\DIC\DICTrait;
 
 /**
  * Class ilHelpMeSuccessFormGUI
+ *
+ * @package srag\Plugins\HelpMe\Support
  */
 class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 

@@ -1,9 +1,17 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Support;
+
+use ilDatePresentation;
+use ilDateTime;
+use ilHelpMePlugin;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Config\ilHelpMeConfigPriority;
 
 /**
  * Class ilHelpMeSupport
+ *
+ * @package srag\Plugins\HelpMe\Support
  */
 class ilHelpMeSupport {
 

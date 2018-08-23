@@ -1,9 +1,25 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Config;
+
+use ilEMailInputGUI;
+use ilHelpMeConfigGUI;
+use ilHelpMePlugin;
+use ilMultiSelectInputGUI;
+use ilPasswordInputGUI;
+use ilPropertyFormGUI;
+use ilRadioGroupInputGUI;
+use ilRadioOption;
+use ilTextAreaInputGUI;
+use ilTextInputGUI;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Jira\ilJiraCurl;
+use srag\Plugins\HelpMe\Recipient\ilHelpMeRecipient;
 
 /**
  * Class ilHelpMeConfigFormGUI
+ *
+ * @package srag\Plugins\HelpMe\Config
  */
 class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 

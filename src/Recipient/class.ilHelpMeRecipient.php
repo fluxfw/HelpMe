@@ -1,9 +1,17 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Recipient;
+
+use Exception;
+use ilHelpMePlugin;
+use ilMimeMail;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
 
 /**
  * Class ilHelpMeRecipient
+ *
+ * @package srag\Plugins\HelpMe\Recipient
  */
 abstract class ilHelpMeRecipient {
 

@@ -1,9 +1,14 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Config;
+
+use ilHelpMePlugin;
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 
 /**
  * Class ilHelpMeConfig
+ *
+ * @package srag\Plugins\HelpMe\Config
  */
 class ilHelpMeConfig extends ActiveRecordConfig {
 

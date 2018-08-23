@@ -1,13 +1,20 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Recipient;
+
+use ilHelpMePlugin;
+use ilMailMimeSenderUser;
+use ilObjUser;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
 
 /**
  * Class ilHelpMeRecipientSendMailSender
  *
  * Send email with reply name and email in ILIAS 5.3
  *
- * @since ILIAS 5.3
+ * @package srag\Plugins\HelpMe\Recipient
+ * @since   ILIAS 5.3
  */
 class ilHelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
 

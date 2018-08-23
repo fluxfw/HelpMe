@@ -1,31 +1,31 @@
 <#1>
 <?php
-ilHelpMeConfig::updateDB();
+\srag\Plugins\HelpMe\Config\ilHelpMeConfig::updateDB();
 
-ilHelpMeConfigPriority::updateDB();
+\srag\Plugins\HelpMe\Config\ilHelpMeConfigPriority::updateDB();
 
-ilHelpMeConfigRole::updateDB();
+\srag\Plugins\HelpMe\Config\ilHelpMeConfigRole::updateDB();
 ?>
 <#2>
 <?php
-ilHelpMeConfig::updateDB();
+\srag\Plugins\HelpMe\Config\ilHelpMeConfig::updateDB();
 
-if (\srag\DIC\DICCache::dic()->database()->tableExists(ilHelpMeConfigOld::TABLE_NAME)) {
-	$config = ilHelpMeConfigOld::getConfig();
+if (\srag\DIC\DICCache::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ilHelpMeConfigOld::TABLE_NAME)) {
+	$config = \srag\Plugins\HelpMe\Config\ilHelpMeConfigOld::getConfig();
 
-	ilHelpMeConfig::setInfo($config->getInfo());
-	ilHelpMeConfig::setJiraAccessToken($config->getJiraAccessToken());
-	ilHelpMeConfig::setJiraAuthorization($config->getJiraAuthorization());
-	ilHelpMeConfig::setJiraConsumerKey($config->getJiraConsumerKey());
-	ilHelpMeConfig::setJiraDomain($config->getJiraDomain());
-	ilHelpMeConfig::setJiraIssueType($config->getJiraIssueType());
-	ilHelpMeConfig::setJiraPassword($config->getJiraPassword());
-	ilHelpMeConfig::setJiraPrivateKey($config->getJiraPrivateKey());
-	ilHelpMeConfig::setJiraProjectKey($config->getJiraProjectKey());
-	ilHelpMeConfig::setJiraUsername($config->getJiraUsername());
-	ilHelpMeConfig::setRecipient($config->getRecipient());
-	ilHelpMeConfig::setSendEmailAddress($config->getSendEmailAddress());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setInfo($config->getInfo());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraAccessToken($config->getJiraAccessToken());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraAuthorization($config->getJiraAuthorization());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraConsumerKey($config->getJiraConsumerKey());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraDomain($config->getJiraDomain());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraIssueType($config->getJiraIssueType());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraPassword($config->getJiraPassword());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraPrivateKey($config->getJiraPrivateKey());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraProjectKey($config->getJiraProjectKey());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setJiraUsername($config->getJiraUsername());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setRecipient($config->getRecipient());
+	\srag\Plugins\HelpMe\Config\ilHelpMeConfig::setSendEmailAddress($config->getSendEmailAddress());
 
-	\srag\DIC\DICCache::dic()->database()->dropTable(ilHelpMeConfigOld::TABLE_NAME);
+	\srag\DIC\DICCache::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ilHelpMeConfigOld::TABLE_NAME);
 }
 ?>

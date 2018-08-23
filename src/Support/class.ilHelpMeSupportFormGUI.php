@@ -1,11 +1,25 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Support;
+
+use ilEMailInputGUI;
+use ilFileInputGUI;
+use ilHelpMeGUI;
+use ilHelpMePlugin;
+use ilNonEditableValueGUI;
+use ilPropertyFormGUI;
+use ilSelectInputGUI;
+use ilTextAreaInputGUI;
+use ilTextInputGUI;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Config\ilHelpMeConfigPriority;
 
 /**
  * Class ilHelpMeSupportFormGUI
+ *
+ * @package srag\Plugins\HelpMe\Support
  */
 class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 

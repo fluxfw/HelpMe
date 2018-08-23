@@ -3,6 +3,11 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Config\ilHelpMeConfig;
+use srag\Plugins\HelpMe\Config\ilHelpMeConfigRole;
+use srag\Plugins\HelpMe\Recipient\ilHelpMeRecipient;
+use srag\Plugins\HelpMe\Support\ilHelpMeSuccessFormGUI;
+use srag\Plugins\HelpMe\Support\ilHelpMeSupportFormGUI;
 
 /**
  * Class ilHelpMeGUI

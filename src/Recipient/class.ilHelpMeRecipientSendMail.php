@@ -1,7 +1,16 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Recipient;
+
+use Exception;
+use ilMimeMail;
+use srag\Plugins\HelpMe\Config\ilHelpMeConfig;
+use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
+
 /**
  * Class ilHelpMeRecipientSendMail
+ *
+ * @package srag\Plugins\HelpMe\Recipient
  */
 class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 

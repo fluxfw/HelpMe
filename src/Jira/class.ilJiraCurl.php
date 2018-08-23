@@ -1,9 +1,17 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Jira;
+
+use CURLFile;
+use Exception;
+use ilCurlConnection;
+use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 
 /**
  * Class ilJiraCurl
+ *
+ * @package srag\Plugins\HelpMe\Jira
  */
 class ilJiraCurl {
 

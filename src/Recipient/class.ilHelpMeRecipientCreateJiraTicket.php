@@ -1,7 +1,15 @@
 <?php
 
+namespace srag\Plugins\HelpMe\Recipient;
+
+use srag\Plugins\HelpMe\Config\ilHelpMeConfig;
+use srag\Plugins\HelpMe\Jira\ilJiraCurl;
+use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
+
 /**
  * Class ilHelpMeRecipientCreateJiraTicket
+ *
+ * @package srag\Plugins\HelpMe\Recipient
  */
 class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 
