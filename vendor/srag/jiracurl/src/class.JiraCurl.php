@@ -136,9 +136,9 @@ class JiraCurl {
 	/**
 	 * Jira request
 	 *
-	 * @param       $rest_url
-	 * @param array $headers
-	 * @param mixed $post_data
+	 * @param string $rest_url
+	 * @param array  $headers
+	 * @param mixed  $post_data
 	 *
 	 * @return array|false
 	 */
@@ -179,10 +179,10 @@ class JiraCurl {
 	/**
 	 * Create Jira issue ticket
 	 *
-	 * @param $jira_project_key
-	 * @param $jira_issue_type
-	 * @param $summary
-	 * @param $description
+	 * @param string $jira_project_key
+	 * @param string $jira_issue_type
+	 * @param string $summary
+	 * @param string $description
 	 *
 	 * @return string|false Issue-Key
 	 */
@@ -224,10 +224,10 @@ class JiraCurl {
 	/**
 	 * Add attachement to issue ticket
 	 *
-	 * @param $issue_key
-	 * @param $attachement_name
-	 * @param $attachement_mime
-	 * @param $attachement_path
+	 * @param string $issue_key
+	 * @param string $attachement_name
+	 * @param string $attachement_mime
+	 * @param string $attachement_path
 	 *
 	 * @return bool
 	 */
@@ -256,7 +256,7 @@ class JiraCurl {
 
 
 	/**
-	 * @param $jira_domain
+	 * @param string $jira_domain
 	 */
 	public function setJiraDomain($jira_domain) {
 		$this->jira_domain = $jira_domain;
@@ -272,7 +272,7 @@ class JiraCurl {
 
 
 	/**
-	 * @param $jira_authorization
+	 * @param string $jira_authorization
 	 */
 	public function setJiraAuthorization($jira_authorization) {
 		$this->jira_authorization = $jira_authorization;
@@ -288,7 +288,7 @@ class JiraCurl {
 
 
 	/**
-	 * @param $jira_username
+	 * @param string $jira_username
 	 */
 	public function setJiraUsername($jira_username) {
 		$this->jira_username = $jira_username;
@@ -304,7 +304,7 @@ class JiraCurl {
 
 
 	/**
-	 * @param $jira_password
+	 * @param string $jira_password
 	 */
 	public function setJiraPassword($jira_password) {
 		$this->jira_password = $jira_password;
@@ -320,7 +320,7 @@ class JiraCurl {
 
 
 	/**
-	 * @param $jira_consumer_key
+	 * @param string $jira_consumer_key
 	 */
 	public function setJiraConsumerKey($jira_consumer_key) {
 		$this->jira_consumer_key = $jira_consumer_key;
@@ -336,7 +336,7 @@ class JiraCurl {
 
 
 	/**
-	 * @param $jira_private_key
+	 * @param string $jira_private_key
 	 */
 	public function setJiraPrivateKey($jira_private_key) {
 		$this->jira_private_key = $jira_private_key;
@@ -352,7 +352,7 @@ class JiraCurl {
 
 
 	/**
-	 * @param $jira_access_token
+	 * @param string $jira_access_token
 	 */
 	public function setJiraAccessToken($jira_access_token) {
 		$this->jira_access_token = $jira_access_token;
