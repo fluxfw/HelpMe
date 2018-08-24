@@ -4,12 +4,13 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit679e4855aab9cb5de530fa63a2ce4632
+class ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f
 {
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
             'srag\\Plugins\\HelpMe\\' => 20,
+            'srag\\JiraCurl\\' => 14,
             'srag\\DIC\\' => 9,
             'srag\\ActiveRecordConfig\\' => 24,
         ),
@@ -23,6 +24,10 @@ class ComposerStaticInit679e4855aab9cb5de530fa63a2ce4632
         'srag\\Plugins\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
+        ),
+        'srag\\JiraCurl\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
         'srag\\DIC\\' => 
         array (
@@ -88,12 +93,12 @@ class ComposerStaticInit679e4855aab9cb5de530fa63a2ce4632
         'srag\\DIC\\DICTrait' => __DIR__ . '/..' . '/srag/dic/src/DICTrait.php',
         'srag\\DIC\\LegacyDIC' => __DIR__ . '/..' . '/srag/dic/src/LegacyDIC.php',
         'srag\\DIC\\NewDIC' => __DIR__ . '/..' . '/srag/dic/src/NewDIC.php',
+        'srag\\JiraCurl\\JiraCurl' => __DIR__ . '/..' . '/srag/jiracurl/src/class.JiraCurl.php',
         'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfig' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfig.php',
         'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigFormGUI' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigFormGUI.php',
         'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigOld' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigOld.php',
         'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigPriority' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigPriority.php',
         'srag\\Plugins\\HelpMe\\Config\\ilHelpMeConfigRole' => __DIR__ . '/../..' . '/src/Config/class.ilHelpMeConfigRole.php',
-        'srag\\Plugins\\HelpMe\\Jira\\ilJiraCurl' => __DIR__ . '/../..' . '/src/Jira/class.ilJiraCurl.php',
         'srag\\Plugins\\HelpMe\\Recipient\\ilHelpMeRecipient' => __DIR__ . '/../..' . '/src/Recipient/class.ilHelpMeRecipient.php',
         'srag\\Plugins\\HelpMe\\Recipient\\ilHelpMeRecipientCreateJiraTicket' => __DIR__ . '/../..' . '/src/Recipient/class.ilHelpMeRecipientCreateJiraTicket.php',
         'srag\\Plugins\\HelpMe\\Recipient\\ilHelpMeRecipientSendMail' => __DIR__ . '/../..' . '/src/Recipient/class.ilHelpMeRecipientSendMail.php',
@@ -106,9 +111,9 @@ class ComposerStaticInit679e4855aab9cb5de530fa63a2ce4632
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit679e4855aab9cb5de530fa63a2ce4632::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit679e4855aab9cb5de530fa63a2ce4632::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit679e4855aab9cb5de530fa63a2ce4632::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f::$classMap;
 
         }, null, ClassLoader::class);
     }

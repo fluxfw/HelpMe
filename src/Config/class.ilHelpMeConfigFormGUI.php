@@ -13,7 +13,7 @@ use ilRadioOption;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Jira\ilJiraCurl;
+use srag\JiraCurl\JiraCurl;
 use srag\Plugins\HelpMe\Recipient\ilHelpMeRecipient;
 
 /**
@@ -101,7 +101,7 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$recipient_jira->addSubItem($jira_authorization);
 
 		// Username & Password
-		$jira_authorization_userpassword = new ilRadioOption(self::translate("srsu_jira_usernamepassword"), ilJiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
+		$jira_authorization_userpassword = new ilRadioOption(self::translate("srsu_jira_usernamepassword"), JiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
 		$jira_authorization->addOption($jira_authorization_userpassword);
 
 		$jira_username = new ilTextInputGUI(self::translate("srsu_jira_username"), "srsu_jira_username");
@@ -116,7 +116,7 @@ class ilHelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$jira_authorization_userpassword->addSubItem($jira_password);
 
 		// oAuth
-		$jira_oauth = new ilRadioOption(self::translate("srsu_jira_oauth"), ilJiraCurl::AUTHORIZATION_OAUTH);
+		$jira_oauth = new ilRadioOption(self::translate("srsu_jira_oauth"), JiraCurl::AUTHORIZATION_OAUTH);
 		$jira_authorization->addOption($jira_oauth);
 
 		$jira_consumer_key = new ilTextInputGUI(self::translate("srsu_jira_consumer_key"), "srsu_jira_consumer_key");

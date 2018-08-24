@@ -2,8 +2,8 @@
 
 namespace srag\Plugins\HelpMe\Recipient;
 
+use srag\JiraCurl\JiraCurl;
 use srag\Plugins\HelpMe\Config\ilHelpMeConfig;
-use srag\Plugins\HelpMe\Jira\ilJiraCurl;
 use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
 
 /**
@@ -14,7 +14,7 @@ use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
 class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 
 	/**
-	 * @var ilJiraCurl
+	 * @var JiraCurl
 	 */
 	protected $jira_curl;
 	/**
@@ -31,7 +31,7 @@ class ilHelpMeRecipientCreateJiraTicket extends ilHelpMeRecipient {
 	public function __construct(ilHelpMeSupport $support) {
 		parent::__construct($support);
 
-		$this->jira_curl = new ilJiraCurl();
+		$this->jira_curl = new JiraCurl();
 
 		$this->jira_curl->setJiraDomain(ilHelpMeConfig::getJiraDomain());
 

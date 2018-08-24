@@ -1,56 +1,59 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Jira;
+namespace srag\JiraCurl;
 
 use CURLFile;
 use Exception;
 use ilCurlConnection;
-use ilHelpMePlugin;
-use srag\DIC\DICTrait;
+use ilCurlConnectionException;
 
 /**
- * Class ilJiraCurl
+ * Class JiraCurl
  *
- * @package srag\Plugins\HelpMe\Jira
+ * @package srag\JiraCurl
  */
-class ilJiraCurl {
+class JiraCurl {
 
-	use DICTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+	/**
+	 * @var string
+	 */
 	const AUTHORIZATION_USERNAMEPASSWORD = "usernamepassword";
+	/**
+	 * @var string
+	 */
 	const AUTHORIZATION_OAUTH = "oauth";
 	/**
 	 * @var string
 	 */
-	protected $jira_domain;
+	protected $jira_domain = "";
 	/**
 	 * @var string
 	 */
-	protected $jira_authorization;
+	protected $jira_authorization = "";
 	/**
 	 * @var string
 	 */
-	protected $jira_username;
+	protected $jira_username = "";
 	/**
 	 * @var string
 	 */
-	protected $jira_password;
+	protected $jira_password = "";
 	/**
 	 * @var string
 	 */
-	protected $jira_consumer_key;
+	protected $jira_consumer_key = "";
 	/**
 	 * @var string
 	 */
-	protected $jira_private_key;
+	protected $jira_private_key = "";
 	/**
 	 * @var string
 	 */
-	protected $jira_access_token;
+	protected $jira_access_token = "";
 
 
 	/**
-	 * ilJiraCurl constructor
+	 * JiraCurl constructor
 	 */
 	public function __construct() {
 	}
@@ -63,8 +66,9 @@ class ilJiraCurl {
 	 * @param array  $headers
 	 *
 	 * @return ilCurlConnection
+	 * @throws ilCurlConnectionException
 	 */
-	protected function initCurlConnection(string $url, array $headers): ilCurlConnection {
+	protected function initCurlConnection($url, array $headers) {
 		$curlConnection = new ilCurlConnection();
 
 		$curlConnection->init();
@@ -132,13 +136,13 @@ class ilJiraCurl {
 	/**
 	 * Jira request
 	 *
-	 * @param string $rest_url
-	 * @param array  $headers
-	 * @param mixed  $post_data
+	 * @param       $rest_url
+	 * @param array $headers
+	 * @param mixed $post_data
 	 *
 	 * @return array|false
 	 */
-	protected function doRequest(string $rest_url, array $headers, $post_data = NULL) {
+	protected function doRequest($rest_url, array $headers, $post_data = NULL) {
 		$url = $this->jira_domain . $rest_url;
 
 		$curlConnection = NULL;
@@ -175,14 +179,14 @@ class ilJiraCurl {
 	/**
 	 * Create Jira issue ticket
 	 *
-	 * @param string $jira_project_key
-	 * @param string $jira_issue_type
-	 * @param string $summary
-	 * @param string $description
+	 * @param $jira_project_key
+	 * @param $jira_issue_type
+	 * @param $summary
+	 * @param $description
 	 *
 	 * @return string|false Issue-Key
 	 */
-	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description) {
+	public function createJiraIssueTicket($jira_project_key, $jira_issue_type, $summary, $description) {
 		$headers = [
 			"Accept" => "application/json",
 			"Content-Type" => "application/json"
@@ -220,14 +224,14 @@ class ilJiraCurl {
 	/**
 	 * Add attachement to issue ticket
 	 *
-	 * @param string $issue_key
-	 * @param string $attachement_name
-	 * @param string $attachement_mime
-	 * @param string $attachement_path
+	 * @param $issue_key
+	 * @param $attachement_name
+	 * @param $attachement_mime
+	 * @param $attachement_path
 	 *
 	 * @return bool
 	 */
-	public function addAttachmentToIssue(string $issue_key, string $attachement_name, string $attachement_mime, string $attachement_path): bool {
+	public function addAttachmentToIssue($issue_key, $attachement_name, $attachement_mime, $attachement_path) {
 		$headers = [
 			"Accept" => "application/json",
 			"X-Atlassian-Token" => "nocheck"
@@ -246,15 +250,15 @@ class ilJiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraDomain(): string {
+	public function getJiraDomain() {
 		return $this->jira_domain;
 	}
 
 
 	/**
-	 * @param string $jira_domain
+	 * @param $jira_domain
 	 */
-	public function setJiraDomain(string $jira_domain) {
+	public function setJiraDomain($jira_domain) {
 		$this->jira_domain = $jira_domain;
 	}
 
@@ -262,15 +266,15 @@ class ilJiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraAuthorization(): string {
+	public function getJiraAuthorization() {
 		return $this->jira_authorization;
 	}
 
 
 	/**
-	 * @param string $jira_authorization
+	 * @param $jira_authorization
 	 */
-	public function setJiraAuthorization(string $jira_authorization) {
+	public function setJiraAuthorization($jira_authorization) {
 		$this->jira_authorization = $jira_authorization;
 	}
 
@@ -278,15 +282,15 @@ class ilJiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraUsername(): string {
+	public function getJiraUsername() {
 		return $this->jira_username;
 	}
 
 
 	/**
-	 * @param string $jira_username
+	 * @param $jira_username
 	 */
-	public function setJiraUsername(string $jira_username) {
+	public function setJiraUsername($jira_username) {
 		$this->jira_username = $jira_username;
 	}
 
@@ -294,15 +298,15 @@ class ilJiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraPassword(): string {
+	public function getJiraPassword() {
 		return $this->jira_password;
 	}
 
 
 	/**
-	 * @param string $jira_password
+	 * @param $jira_password
 	 */
-	public function setJiraPassword(string $jira_password) {
+	public function setJiraPassword($jira_password) {
 		$this->jira_password = $jira_password;
 	}
 
@@ -310,15 +314,15 @@ class ilJiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraConsumerKey(): string {
+	public function getJiraConsumerKey() {
 		return $this->jira_consumer_key;
 	}
 
 
 	/**
-	 * @param string $jira_consumer_key
+	 * @param $jira_consumer_key
 	 */
-	public function setJiraConsumerKey(string $jira_consumer_key) {
+	public function setJiraConsumerKey($jira_consumer_key) {
 		$this->jira_consumer_key = $jira_consumer_key;
 	}
 
@@ -326,15 +330,15 @@ class ilJiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraPrivateKey(): string {
+	public function getJiraPrivateKey() {
 		return $this->jira_private_key;
 	}
 
 
 	/**
-	 * @param string $jira_private_key
+	 * @param $jira_private_key
 	 */
-	public function setJiraPrivateKey(string $jira_private_key) {
+	public function setJiraPrivateKey($jira_private_key) {
 		$this->jira_private_key = $jira_private_key;
 	}
 
@@ -342,15 +346,15 @@ class ilJiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraAccessToken(): string {
+	public function getJiraAccessToken() {
 		return $this->jira_access_token;
 	}
 
 
 	/**
-	 * @param string $jira_access_token
+	 * @param $jira_access_token
 	 */
-	public function setJiraAccessToken(string $jira_access_token) {
+	public function setJiraAccessToken($jira_access_token) {
 		$this->jira_access_token = $jira_access_token;
 	}
 }

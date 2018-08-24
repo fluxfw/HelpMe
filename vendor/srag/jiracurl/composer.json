@@ -1,0 +1,30 @@
+{
+  "name": "srag/jiracurl",
+  "description": "Connect to Jira via Curl",
+  "version": "0.1.0",
+  "type": "library",
+  "keywords": [
+    "ILIAS",
+    "Jira",
+    "Curl"
+  ],
+  "homepage": "https://github.com/studer-raimann/JiraCurl",
+  "time": "",
+  "license": "GPL-3.0-only",
+  "authors": [
+    {
+      "name": "srag",
+      "email": "support@studer-raimann.ch",
+      "homepage": "https://studer-raimann.ch",
+      "role": "Developer"
+    }
+  ],
+  "support": {
+    "email": "support@studer-raimann.ch"
+  },
+  "autoload": {
+    "psr-4": {
+      "srag\\JiraCurl\\": "src/"
+    }
+  }
+}
