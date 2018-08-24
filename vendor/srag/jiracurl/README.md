@@ -16,7 +16,7 @@ git clone git@git.studer-raimann.ch:ILIAS/Plugins/JiraCurl.git JiraCurl
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/jiracurl": "^0.1.1"
+  "srag/jiracurl": "^0.1.2"
 },
 ```
 And run a `composer install`.

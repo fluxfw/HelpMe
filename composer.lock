@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ae90368c65e93976a4a550d1e1549e63",
+    "content-hash": "5a05d185722f60b3a410154985cd48c5",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -57,16 +57,16 @@
         },
         {
             "name": "srag/activerecordconfig",
-            "version": "0.4.4",
+            "version": "0.4.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "9ca270bcd7fd813cfad2efbe7a580c4bc4438e3c"
+                "reference": "41d7f22d5069a78f94545d45a4f68923b85dd969"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/9ca270bcd7fd813cfad2efbe7a580c4bc4438e3c",
-                "reference": "9ca270bcd7fd813cfad2efbe7a580c4bc4438e3c",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/41d7f22d5069a78f94545d45a4f68923b85dd969",
+                "reference": "41d7f22d5069a78f94545d45a4f68923b85dd969",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2018-08-24T05:20:59+00:00"
+            "time": "2018-08-24T07:01:53+00:00"
         },
         {
             "name": "srag/dic",
@@ -143,16 +143,16 @@
         },
         {
             "name": "srag/jiracurl",
-            "version": "0.1.1",
+            "version": "0.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "8bd5df034ba70089038ecc1d91b480d6006238ce"
+                "reference": "d1a912432501c79c92581bbe01573ec9d7e812f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/8bd5df034ba70089038ecc1d91b480d6006238ce",
-                "reference": "8bd5df034ba70089038ecc1d91b480d6006238ce",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/d1a912432501c79c92581bbe01573ec9d7e812f0",
+                "reference": "d1a912432501c79c92581bbe01573ec9d7e812f0",
                 "shasum": ""
             },
             "type": "library",
@@ -180,7 +180,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2018-08-24T06:14:52+00:00"
+            "time": "2018-08-24T07:01:16+00:00"
         }
     ],
     "packages-dev": [],
