@@ -4,22 +4,22 @@ namespace srag\Plugins\HelpMe\Recipient;
 
 use Exception;
 use ilMimeMail;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfig;
-use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
+use srag\Plugins\HelpMe\Config\HelpMeConfig;
+use srag\Plugins\HelpMe\Support\HelpMeSupport;
 
 /**
- * Class ilHelpMeRecipientSendMail
+ * Class HelpMeRecipientSendMail
  *
  * @package srag\Plugins\HelpMe\Recipient
  */
-class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
+class HelpMeRecipientSendMail extends HelpMeRecipient {
 
 	/**
-	 * ilHelpMeRecipientSendMail constructor
+	 * HelpMeRecipientSendMail constructor
 	 *
-	 * @param ilHelpMeSupport $support
+	 * @param HelpMeSupport $support
 	 */
-	public function __construct(ilHelpMeSupport $support) {
+	public function __construct(HelpMeSupport $support) {
 		parent::__construct($support);
 	}
 
@@ -44,12 +44,12 @@ class ilHelpMeRecipientSendMail extends ilHelpMeRecipient {
 			$mailer = new ilMimeMail();
 
 			if (ILIAS_VERSION_NUMERIC >= "5.3") {
-				$mailer->From(new ilHelpMeRecipientSendMailSender($this->support));
+				$mailer->From(new HelpMeRecipientSendMailSender($this->support));
 			} else {
 				$mailer->From([ $this->support->getEmail(), $this->support->getName() ]);
 			}
 
-			$mailer->To(ilHelpMeConfig::getSendEmailAddress());
+			$mailer->To(HelpMeConfig::getSendEmailAddress());
 
 			$mailer->Subject($this->support->getSubject());
 

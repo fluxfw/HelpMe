@@ -8,11 +8,11 @@ use ilPropertyFormGUI;
 use srag\DIC\DICTrait;
 
 /**
- * Class ilHelpMeSuccessFormGUI
+ * Class HelpMeSuccessFormGUI
  *
  * @package srag\Plugins\HelpMe\Support
  */
-class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
+class HelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
@@ -23,7 +23,7 @@ class ilHelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * ilHelpMeSuccessFormGUI constructor
+	 * HelpMeSuccessFormGUI constructor
 	 *
 	 * @param ilHelpMeGUI $parent
 	 */

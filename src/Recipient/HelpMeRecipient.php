@@ -6,39 +6,39 @@ use Exception;
 use ilHelpMePlugin;
 use ilMimeMail;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Support\ilHelpMeSupport;
+use srag\Plugins\HelpMe\Support\HelpMeSupport;
 
 /**
- * Class ilHelpMeRecipient
+ * Class HelpMeRecipient
  *
  * @package srag\Plugins\HelpMe\Recipient
  */
-abstract class ilHelpMeRecipient {
+abstract class HelpMeRecipient {
 
 	use DICTrait;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
-	 * @var ilHelpMeSupport
+	 * @var HelpMeSupport
 	 */
 	protected $support;
 
 
 	/**
-	 * @param string          $recipient
-	 * @param ilHelpMeSupport $support
+	 * @param string        $recipient
+	 * @param HelpMeSupport $support
 	 *
-	 * @return ilHelpMeRecipient|null
+	 * @return HelpMeRecipient|null
 	 */
-	public static function getRecipient(string $recipient, ilHelpMeSupport $support) {
+	public static function getRecipient(string $recipient, HelpMeSupport $support) {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
-				return new ilHelpMeRecipientSendMail($support);
+				return new HelpMeRecipientSendMail($support);
 				break;
 
 			case self::CREATE_JIRA_TICKET:
-				return new ilHelpMeRecipientCreateJiraTicket($support);
+				return new HelpMeRecipientCreateJiraTicket($support);
 				break;
 
 			default:
@@ -49,11 +49,11 @@ abstract class ilHelpMeRecipient {
 
 
 	/**
-	 * ilHelpMeRecipient constructor
+	 * HelpMeRecipient constructor
 	 *
-	 * @param ilHelpMeSupport $support
+	 * @param HelpMeSupport $support
 	 */
-	protected function __construct(ilHelpMeSupport $support) {
+	protected function __construct(HelpMeSupport $support) {
 		$this->support = $support;
 	}
 
@@ -99,17 +99,17 @@ abstract class ilHelpMeRecipient {
 
 
 	/**
-	 * @return ilHelpMeSupport
+	 * @return HelpMeSupport
 	 */
-	public function getSupport(): ilHelpMeSupport {
+	public function getSupport(): HelpMeSupport {
 		return $this->support;
 	}
 
 
 	/**
-	 * @param ilHelpMeSupport $support
+	 * @param HelpMeSupport $support
 	 */
-	public function setSupport(ilHelpMeSupport $support) {
+	public function setSupport(HelpMeSupport $support) {
 		$this->support = $support;
 	}
 }

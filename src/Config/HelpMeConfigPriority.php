@@ -8,11 +8,11 @@ use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 
 /**
- * Class ilHelpMeConfigPriority
+ * Class HelpMeConfigPriority
  *
  * @package srag\Plugins\HelpMe\Config
  */
-class ilHelpMeConfigPriority extends ActiveRecord {
+class HelpMeConfigPriority extends ActiveRecord {
 
 	use DICTrait;
 	const TABLE_NAME = "ui_uihk_srsu_prio";
@@ -103,7 +103,7 @@ class ilHelpMeConfigPriority extends ActiveRecord {
 
 
 	/**
-	 * ilHelpMeConfigPriority constructor
+	 * HelpMeConfigPriority constructor
 	 *
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector

@@ -14,14 +14,14 @@ use ilTextInputGUI;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfigPriority;
+use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
 
 /**
- * Class ilHelpMeSupportFormGUI
+ * Class HelpMeSupportFormGUI
  *
  * @package srag\Plugins\HelpMe\Support
  */
-class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
+class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
@@ -32,7 +32,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * ilHelpMeSupportFormGUI constructor
+	 * HelpMeSupportFormGUI constructor
 	 *
 	 * @param ilHelpMeGUI $parent
 	 */
@@ -49,7 +49,7 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function setForm() {
-		$configPriorities = [ "" => "&lt;" . self::translate("srsu_please_select") . "&gt;" ] + ilHelpMeConfigPriority::getConfigPrioritiesArray();
+		$configPriorities = [ "" => "&lt;" . self::translate("srsu_please_select") . "&gt;" ] + HelpMeConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
@@ -106,12 +106,12 @@ class ilHelpMeSupportFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * @return ilHelpMeSupport
+	 * @return HelpMeSupport
 	 */
-	public function getSupport(): ilHelpMeSupport {
-		$configPriorities = ilHelpMeConfigPriority::getConfigPriorities();
+	public function getSupport(): HelpMeSupport {
+		$configPriorities = HelpMeConfigPriority::getConfigPriorities();
 
-		$support = new ilHelpMeSupport();
+		$support = new HelpMeSupport();
 
 		$time = time();
 		$support->setTime($time);

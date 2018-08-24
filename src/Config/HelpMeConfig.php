@@ -6,11 +6,11 @@ use ilHelpMePlugin;
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 
 /**
- * Class ilHelpMeConfig
+ * Class HelpMeConfig
  *
  * @package srag\Plugins\HelpMe\Config
  */
-class ilHelpMeConfig extends ActiveRecordConfig {
+class HelpMeConfig extends ActiveRecordConfig {
 
 	const TABLE_NAME = "ui_uihk_srsu_config_n";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;

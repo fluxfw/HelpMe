@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfigFormGUI;
+use srag\Plugins\HelpMe\Config\HelpMeConfigFormGUI;
 
 /**
  * Class ilHelpMeConfigGUI
@@ -49,10 +49,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 
 	/**
 	 *
-	 * @return ilHelpMeConfigFormGUI
+	 * @return HelpMeConfigFormGUI
 	 */
-	protected function getConfigurationForm(): ilHelpMeConfigFormGUI {
-		$form = new ilHelpMeConfigFormGUI($this);
+	protected function getConfigurationForm(): HelpMeConfigFormGUI {
+		$form = new HelpMeConfigFormGUI($this);
 
 		return $form;
 	}

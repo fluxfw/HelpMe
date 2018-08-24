@@ -8,13 +8,13 @@ use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 
 /**
- * Class ilHelpMeConfigOld
+ * Class HelpMeConfigOld
  *
  * @package srag\Plugins\HelpMe\Config
  *
  * @deprecated
  */
-class ilHelpMeConfigOld extends ActiveRecord {
+class HelpMeConfigOld extends ActiveRecord {
 
 	use DICTrait;
 	/**
@@ -209,7 +209,7 @@ class ilHelpMeConfigOld extends ActiveRecord {
 
 
 	/**
-	 * ilHelpMeConfigOld constructor
+	 * HelpMeConfigOld constructor
 	 *
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector

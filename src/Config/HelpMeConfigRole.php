@@ -7,11 +7,11 @@ use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 
 /**
- * Class ilHelpMeConfigRole
+ * Class HelpMeConfigRole
  *
  * @package srag\Plugins\HelpMe\Config
  */
-class ilHelpMeConfigRole extends ActiveRecord {
+class HelpMeConfigRole extends ActiveRecord {
 
 	use DICTrait;
 	const TABLE_NAME = "ui_uihk_srsu_roles";
@@ -159,7 +159,7 @@ class ilHelpMeConfigRole extends ActiveRecord {
 
 
 	/**
-	 * ilHelpMeConfigRole constructor
+	 * HelpMeConfigRole constructor
 	 *
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector

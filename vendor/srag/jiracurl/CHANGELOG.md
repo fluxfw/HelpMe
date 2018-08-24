@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.1.3]
+- Require ilCurlConnection hint
+
 ## [0.1.2]
 - PSR-4
 

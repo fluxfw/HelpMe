@@ -3,11 +3,11 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfig;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfigRole;
-use srag\Plugins\HelpMe\Recipient\ilHelpMeRecipient;
-use srag\Plugins\HelpMe\Support\ilHelpMeSuccessFormGUI;
-use srag\Plugins\HelpMe\Support\ilHelpMeSupportFormGUI;
+use srag\Plugins\HelpMe\Config\HelpMeConfig;
+use srag\Plugins\HelpMe\Config\HelpMeConfigRole;
+use srag\Plugins\HelpMe\Recipient\HelpMeRecipient;
+use srag\Plugins\HelpMe\Support\HelpMeSuccessFormGUI;
+use srag\Plugins\HelpMe\Support\HelpMeSupportFormGUI;
 
 /**
  * Class ilHelpMeGUI
@@ -34,7 +34,7 @@ class ilHelpMeGUI {
 	 *
 	 */
 	public function executeCommand() {
-		if (!ilHelpMeConfigRole::currentUserHasRole()) {
+		if (!HelpMeConfigRole::currentUserHasRole()) {
 			die();
 		}
 
@@ -59,20 +59,20 @@ class ilHelpMeGUI {
 
 
 	/**
-	 * @return ilHelpMeSupportFormGUI
+	 * @return HelpMeSupportFormGUI
 	 */
-	protected function getSupportForm(): ilHelpMeSupportFormGUI {
-		$form = new ilHelpMeSupportFormGUI($this);
+	protected function getSupportForm(): HelpMeSupportFormGUI {
+		$form = new HelpMeSupportFormGUI($this);
 
 		return $form;
 	}
 
 
 	/**
-	 * @return ilHelpMeSuccessFormGUI
+	 * @return HelpMeSuccessFormGUI
 	 */
-	protected function getSuccessForm(): ilHelpMeSuccessFormGUI {
-		$form = new ilHelpMeSuccessFormGUI($this);
+	protected function getSuccessForm(): HelpMeSuccessFormGUI {
+		$form = new HelpMeSuccessFormGUI($this);
 
 		return $form;
 	}
@@ -86,7 +86,7 @@ class ilHelpMeGUI {
 		$tpl = self::template("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
-		$tpl->setVariable("INFO", ilHelpMeConfig::getInfo());
+		$tpl->setVariable("INFO", HelpMeConfig::getInfo());
 
 		if ($message !== NULL) {
 			$tpl->setCurrentBlock("il_help_me_message");
@@ -129,7 +129,7 @@ class ilHelpMeGUI {
 
 		$support = $form->getSupport();
 
-		$recipient = ilHelpMeRecipient::getRecipient(ilHelpMeConfig::getRecipient(), $support);
+		$recipient = HelpMeRecipient::getRecipient(HelpMeConfig::getRecipient(), $support);
 		if ($recipient->sendSupportToRecipient()) {
 			$message = self::dic()->tpl()->getMessageHTML(self::translate("srsu_sent_success"), "success");
 

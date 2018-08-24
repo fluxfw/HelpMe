@@ -3,10 +3,10 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfig;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfigOld;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfigPriority;
-use srag\Plugins\HelpMe\Config\ilHelpMeConfigRole;
+use srag\Plugins\HelpMe\Config\HelpMeConfig;
+use srag\Plugins\HelpMe\Config\HelpMeConfigOld;
+use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
+use srag\Plugins\HelpMe\Config\HelpMeConfigRole;
 
 /**
  * Class ilHelpMePlugin
@@ -55,10 +55,10 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @return bool
 	 */
 	protected function beforeUninstall(): bool {
-		self::dic()->database()->dropTable(ilHelpMeConfigOld::TABLE_NAME, false);
-		self::dic()->database()->dropTable(ilHelpMeConfig::TABLE_NAME, false);
-		self::dic()->database()->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
-		self::dic()->database()->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
+		self::dic()->database()->dropTable(HelpMeConfigOld::TABLE_NAME, false);
+		self::dic()->database()->dropTable(HelpMeConfig::TABLE_NAME, false);
+		self::dic()->database()->dropTable(HelpMeConfigPriority::TABLE_NAME, false);
+		self::dic()->database()->dropTable(HelpMeConfigRole::TABLE_NAME, false);
 
 		return true;
 	}

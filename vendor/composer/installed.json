@@ -52,23 +52,23 @@
     },
     {
         "name": "srag/activerecordconfig",
-        "version": "0.4.5",
-        "version_normalized": "0.4.5.0",
+        "version": "0.4.6",
+        "version_normalized": "0.4.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-            "reference": "41d7f22d5069a78f94545d45a4f68923b85dd969"
+            "reference": "c191bcba6f56f6784575433bac7b48605fda973f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/41d7f22d5069a78f94545d45a4f68923b85dd969",
-            "reference": "41d7f22d5069a78f94545d45a4f68923b85dd969",
+            "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/c191bcba6f56f6784575433bac7b48605fda973f",
+            "reference": "c191bcba6f56f6784575433bac7b48605fda973f",
             "shasum": ""
         },
         "require": {
             "srag/dic": "^0.2.2"
         },
-        "time": "2018-08-24T07:01:53+00:00",
+        "time": "2018-08-24T10:51:09+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -142,20 +142,20 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "0.1.2",
-        "version_normalized": "0.1.2.0",
+        "version": "0.1.3",
+        "version_normalized": "0.1.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "d1a912432501c79c92581bbe01573ec9d7e812f0"
+            "reference": "57b24c58aeec895df43ffcbd7424eda37992b4a1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/d1a912432501c79c92581bbe01573ec9d7e812f0",
-            "reference": "d1a912432501c79c92581bbe01573ec9d7e812f0",
+            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/57b24c58aeec895df43ffcbd7424eda37992b4a1",
+            "reference": "57b24c58aeec895df43ffcbd7424eda37992b4a1",
             "shasum": ""
         },
-        "time": "2018-08-24T07:01:16+00:00",
+        "time": "2018-08-24T10:53:54+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
