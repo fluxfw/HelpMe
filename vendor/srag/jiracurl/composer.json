@@ -1,7 +1,7 @@
 {
   "name": "srag/jiracurl",
   "description": "Connect to Jira via Curl",
-  "version": "0.1.3",
+  "version": "0.1.5",
   "type": "library",
   "keywords": [
     "ILIAS",
@@ -14,13 +14,13 @@
   "authors": [
     {
       "name": "srag",
-      "email": "support@studer-raimann.ch",
+      "email": "support-custom1@studer-raimann.ch",
       "homepage": "https://studer-raimann.ch",
       "role": "Developer"
     }
   ],
   "support": {
-    "email": "support@studer-raimann.ch"
+    "email": "support-custom1@studer-raimann.ch"
   },
   "autoload": {
     "psr-4": {

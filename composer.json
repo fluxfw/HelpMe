@@ -1,9 +1,9 @@
 {
   "require": {
     "sinergi/browser-detector": "^6.1.2",
-    "srag/activerecordconfig": "^0.5.1",
-    "srag/dic": "^0.2.2",
-    "srag/jiracurl": "^0.1.3"
+    "srag/activerecordconfig": "^0.5.2",
+    "srag/dic": "^0.2.3",
+    "srag/jiracurl": "^0.1.5"
   },
   "autoload": {
     "psr-4": {
