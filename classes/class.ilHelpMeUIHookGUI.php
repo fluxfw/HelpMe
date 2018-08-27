@@ -56,6 +56,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 			if (HelpMeConfigRole::currentUserHasRole()) {
 				// Modal
 				// TODO: Fix after first configure currentUserHasRole false because not yet set, only after this
+				// TODO: Modal UIServices
 				ilModalGUI::initJS();
 
 				$modal = ilModalGUI::getInstance();
