@@ -1,5 +1,6 @@
 {
   "require": {
+    "php": "^7.0",
     "sinergi/browser-detector": "^6.1.2",
     "srag/activerecordconfig": "^0.5.2",
     "srag/dic": "^0.2.3",
