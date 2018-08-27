@@ -1,4 +1,15 @@
 {
+  "name": "srag/plugins/helpme",
+  "description": "",
+  "version": "2.1.0",
+  "keywords": [
+    "ILIAS",
+    "Plugin"
+  ],
+  "license": "GPL-3.0-only",
+  "contributors": [
+    "srag <support-custom1@studer-raimann.ch> (https://studer-raimann.ch)"
+  ],
   "dependencies": {
     "html2canvas": "^1.0.0-alpha.12"
   },
