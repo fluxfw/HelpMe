@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d79bcdfecc9184e23154a5454a3116cb",
+    "content-hash": "216bc2306822b1a491f03306f70d2487",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -147,17 +147,21 @@
         },
         {
             "name": "srag/jiracurl",
-            "version": "0.1.5",
+            "version": "0.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "dd19a6d9dad300da37101dbc55ed57bec0d53459"
+                "reference": "aa50e3e5de4e473cb1b179521a613d1b7a57f8c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/dd19a6d9dad300da37101dbc55ed57bec0d53459",
-                "reference": "dd19a6d9dad300da37101dbc55ed57bec0d53459",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/aa50e3e5de4e473cb1b179521a613d1b7a57f8c8",
+                "reference": "aa50e3e5de4e473cb1b179521a613d1b7a57f8c8",
                 "shasum": ""
+            },
+            "require": {
+                "php": "^5.6 || ^7.0",
+                "srag/dic": "^0.3.0"
             },
             "type": "library",
             "autoload": {
@@ -184,7 +188,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2018-08-27T08:59:02+00:00"
+            "time": "2018-08-28T09:17:30+00:00"
         }
     ],
     "packages-dev": [],

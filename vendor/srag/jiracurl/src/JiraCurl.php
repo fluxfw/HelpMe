@@ -6,6 +6,7 @@ use CURLFile;
 use Exception;
 use ilCurlConnection;
 use ilCurlConnectionException;
+use srag\DIC\DICTrait;
 
 /**
  * Class JiraCurl
@@ -14,6 +15,7 @@ use ilCurlConnectionException;
  */
 class JiraCurl {
 
+	use DICTrait;
 	/**
 	 * @var string
 	 */

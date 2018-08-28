@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.1.6]
+- Use latest DIC
+
 ## [0.1.5]
 - Adjustment suggestions
 
