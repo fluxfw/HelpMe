@@ -10,7 +10,7 @@
 <?php
 \srag\Plugins\HelpMe\Config\HelpMeConfig::updateDB();
 
-if (\srag\DIC\DICCache::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\HelpMeConfigOld::TABLE_NAME)) {
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\HelpMeConfigOld::TABLE_NAME)) {
 	$config = \srag\Plugins\HelpMe\Config\HelpMeConfigOld::getConfig();
 
 	\srag\Plugins\HelpMe\Config\HelpMeConfig::setInfo($config->getInfo());
@@ -26,6 +26,6 @@ if (\srag\DIC\DICCache::dic()->database()->tableExists(\srag\Plugins\HelpMe\Conf
 	\srag\Plugins\HelpMe\Config\HelpMeConfig::setRecipient($config->getRecipient());
 	\srag\Plugins\HelpMe\Config\HelpMeConfig::setSendEmailAddress($config->getSendEmailAddress());
 
-	\srag\DIC\DICCache::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\HelpMeConfigOld::TABLE_NAME);
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\HelpMeConfigOld::TABLE_NAME);
 }
 ?>

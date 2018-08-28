@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.1.7]
+- DICStatic
+
 ## [0.1.6]
 - Use latest DIC
 

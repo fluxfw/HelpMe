@@ -22,9 +22,9 @@
   "require": {
     "php": "^7.0",
     "sinergi/browser-detector": "^6.1.2",
-    "srag/activerecordconfig": "^0.5.3",
-    "srag/dic": "^0.3.0",
-    "srag/jiracurl": "^0.1.6"
+    "srag/activerecordconfig": "^0.5.4",
+    "srag/dic": "^0.4.0",
+    "srag/jiracurl": "^0.1.7"
   },
   "autoload": {
     "psr-4": {

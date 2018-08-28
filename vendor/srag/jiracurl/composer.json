@@ -1,7 +1,7 @@
 {
   "name": "srag/jiracurl",
   "description": "Connect to Jira via Curl",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "type": "library",
   "keywords": [
     "ILIAS",
@@ -23,7 +23,7 @@
   },
   "require": {
     "php": "^5.6 || ^7.0",
-    "srag/dic": "^0.3.0"
+    "srag/dic": "^0.4.0"
   },
   "autoload": {
     "psr-4": {
