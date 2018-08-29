@@ -55,11 +55,39 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 * @return bool
 	 */
 	protected function beforeUninstall(): bool {
+		$uninstall_remove_data = HelpMeConfig::getUninstallRemoveData();
+
+		if ($uninstall_remove_data === NULL) {
+			HelpMeRemoveDataConfirm::saveParameterByClass();
+
+			self::dic()->ctrl()->redirectByClass([
+				ilUIPluginRouterGUI::class,
+				HelpMeRemoveDataConfirm::class
+			], HelpMeRemoveDataConfirm::CMD_CONFIRM_REMOVE_DATA);
+
+			return false;
+		}
+
+		$uninstall_remove_data = boolval($uninstall_remove_data);
+
+		if ($uninstall_remove_data) {
+			$this->removeData();
+		} else {
+			// Ask again if reinstalled
+			HelpMeConfig::deleteUninstallRemoveData();
+		}
+
+		return true;
+	}
+
+
+	/**
+	 *
+	 */
+	protected function removeData() {
 		self::dic()->database()->dropTable(HelpMeConfigOld::TABLE_NAME, false);
 		self::dic()->database()->dropTable(HelpMeConfig::TABLE_NAME, false);
 		self::dic()->database()->dropTable(HelpMeConfigPriority::TABLE_NAME, false);
 		self::dic()->database()->dropTable(HelpMeConfigRole::TABLE_NAME, false);
-
-		return true;
 	}
 }

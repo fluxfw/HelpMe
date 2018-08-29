@@ -26,7 +26,8 @@ class HelpMeConfig extends ActiveRecordConfig {
 	const KEY_JIRA_USERNAME = "jira_username";
 	const KEY_RECIPIENT = "recipient";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
-
+	const KEY_UNINSTALL_REMOVE_DATA = "uninstall_remove_data";
+	const DEFAULT_UNINSTALL_REMOVE_DATA = NULL;
 
 	/**
 	 * @return string
@@ -217,5 +218,28 @@ class HelpMeConfig extends ActiveRecordConfig {
 	 */
 	public static function setSendEmailAddress(string $send_email_address) {
 		self::setStringValue(self::KEY_SEND_EMAIL_ADDRESS, $send_email_address);
+	}
+
+	/**
+	 * @return bool|null
+	 */
+	public static function getUninstallRemoveData() {
+		return self::getXValue(self::KEY_UNINSTALL_REMOVE_DATA, self::DEFAULT_UNINSTALL_REMOVE_DATA);
+	}
+
+
+	/**
+	 * @param bool|null $uninstall_remove_data
+	 */
+	public static function setUninstallRemoveData($uninstall_remove_data) {
+		self::setXValue(self::KEY_UNINSTALL_REMOVE_DATA, $uninstall_remove_data);
+	}
+
+
+	/**
+	 *
+	 */
+	public static function deleteUninstallRemoveData() {
+		self::deleteName(self::KEY_UNINSTALL_REMOVE_DATA);
 	}
 }

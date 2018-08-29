@@ -39,3 +39,10 @@ srsu_submit#:#Submit
 srsu_support#:#Support
 srsu_system_infos#:#System-Infos
 srsu_title#:#Title
+srsu_uninstall_confirm_remove_data#:#Do you want to remove the HelpMe data as well? At most, you just want to disable the HelpMe plugin?
+srsu_uninstall_deactivate#:#Just deactivate HelpMe plugin
+srsu_uninstall_data#:#HelpMe data
+srsu_uninstall_keep_data#:#Keep HelpMe data
+srsu_uninstall_msg_kept_data#:#The HelpMe data was kept!
+srsu_uninstall_msg_removed_data#:#The HelpMe data was also removed!
+srsu_uninstall_remove_data#:#Remove HelpMe data
