@@ -6,7 +6,7 @@ Use all ILIAS globals in your class
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/dic": "^0.5.1"
+  "srag/dic": ">=0.1.0"
 },
 ```
 And run a `composer install`.

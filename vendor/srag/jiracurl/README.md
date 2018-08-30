@@ -6,7 +6,7 @@ Connect to Jira via Curl
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/jiracurl": "^0.1.9"
+  "srag/jiracurl": ">=0.1.0"
 },
 ```
 

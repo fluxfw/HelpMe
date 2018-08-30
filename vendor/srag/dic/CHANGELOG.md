@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.2]
+- Use always latest version of DIC
+
 ## [0.5.1]
 - Supports output ilConfirmationGUI
 

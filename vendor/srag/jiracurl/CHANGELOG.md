@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.1.10]
+- Use always latest version of JiraCurl
+
 ## [0.1.9]
 - Use latest DIC
 
