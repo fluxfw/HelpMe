@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "f60db872efb718ecbbbdbe7cabd357a6",
+    "content-hash": "c7bf0c141ece7458df763b96e64dd091",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -57,21 +57,21 @@
         },
         {
             "name": "srag/activerecordconfig",
-            "version": "0.5.4",
+            "version": "0.5.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "0e9b1cb38a09c0349504c4f9c61797ab1c601c8f"
+                "reference": "7e225130658b5ba41ca1f2c9408ef6405b29faba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/0e9b1cb38a09c0349504c4f9c61797ab1c601c8f",
-                "reference": "0e9b1cb38a09c0349504c4f9c61797ab1c601c8f",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/7e225130658b5ba41ca1f2c9408ef6405b29faba",
+                "reference": "7e225130658b5ba41ca1f2c9408ef6405b29faba",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
-                "srag/dic": "^0.4.0"
+                "srag/dic": "^0.5.1"
             },
             "type": "library",
             "autoload": {
@@ -98,20 +98,20 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2018-08-28T09:51:27+00:00"
+            "time": "2018-08-30T11:52:34+00:00"
         },
         {
             "name": "srag/dic",
-            "version": "0.4.0",
+            "version": "0.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "add33e5c5cc3a8ea7bf433719f320d8910d71bc2"
+                "reference": "424e38538cc054ecb0fe1927d53b8e6ff92b1841"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/add33e5c5cc3a8ea7bf433719f320d8910d71bc2",
-                "reference": "add33e5c5cc3a8ea7bf433719f320d8910d71bc2",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/424e38538cc054ecb0fe1927d53b8e6ff92b1841",
+                "reference": "424e38538cc054ecb0fe1927d53b8e6ff92b1841",
                 "shasum": ""
             },
             "require": {
@@ -143,25 +143,25 @@
                 "globals",
                 "trait"
             ],
-            "time": "2018-08-28T09:49:32+00:00"
+            "time": "2018-08-30T11:47:45+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "0.1.7",
+            "version": "0.1.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "6aa9843eba23626d0db98dea68bdaaf14b86da3e"
+                "reference": "64e5730ef0881e6f8c7a09dfcd8f0a28676557f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/6aa9843eba23626d0db98dea68bdaaf14b86da3e",
-                "reference": "6aa9843eba23626d0db98dea68bdaaf14b86da3e",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/64e5730ef0881e6f8c7a09dfcd8f0a28676557f4",
+                "reference": "64e5730ef0881e6f8c7a09dfcd8f0a28676557f4",
                 "shasum": ""
             },
             "require": {
                 "php": "^5.6 || ^7.0",
-                "srag/dic": "^0.4.0"
+                "srag/dic": "^0.5.1"
             },
             "type": "library",
             "autoload": {
@@ -188,7 +188,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2018-08-28T09:54:56+00:00"
+            "time": "2018-08-30T11:50:45+00:00"
         }
     ],
     "packages-dev": [],

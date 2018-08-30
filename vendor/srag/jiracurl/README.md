@@ -1,22 +1,12 @@
 Connect to Jira via Curl
 
-### Install
-For development you should install this library like follow:
-
-Start at your ILIAS root directory 
-```bash
-mkdir -p Customizing/global/plugins/Libraries/  
-cd Customizing/global/plugins/Libraries/  
-git clone git@git.studer-raimann.ch:ILIAS/Plugins/JiraCurl.git JiraCurl
-```
-
 ### Usage
 
 #### Composer
 First add the follow to your `composer.json` file:
 ```json
 "require": {
-  "srag/jiracurl": "^0.1.6"
+  "srag/jiracurl": "^0.1.9"
 },
 ```
 
@@ -39,3 +29,13 @@ Hint: Because of multiple autoloaders of plugins, it could be, that different ve
 * Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LJIRACURL
 * Bug reports under https://jira.studer-raimann.ch/projects/LJIRACURL
 * For external developers please send an email to support-custom1@studer-raimann.ch
+
+### Development
+If you want development in this library you should install this library like follow:
+
+Start at your ILIAS root directory 
+```bash
+mkdir -p Customizing/global/plugins/Libraries/  
+cd Customizing/global/plugins/Libraries/  
+git clone git@git.studer-raimann.ch:ILIAS/Plugins/JiraCurl.git JiraCurl
+```

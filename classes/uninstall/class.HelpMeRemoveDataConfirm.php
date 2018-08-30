@@ -128,7 +128,7 @@ class HelpMeRemoveDataConfirm {
 		$confirmation->addButton(self::translate("srsu_uninstall_deactivate"), self::CMD_DEACTIVATE);
 		$confirmation->setCancel(self::translate("srsu_cancel"), self::CMD_CANCEL);
 
-		self::output($confirmation->getHTML());
+		self::output($confirmation);
 	}
 
 
