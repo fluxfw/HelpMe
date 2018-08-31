@@ -232,7 +232,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param bool $uninstall_removes_data
 	 */
-	public static function setUninstallRemovesData($uninstall_removes_data) {
+	public static function setUninstallRemovesData(bool $uninstall_removes_data) {
 		self::setBooleanValue(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA, $uninstall_removes_data);
 	}
 
