@@ -2,21 +2,22 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Config\HelpMeConfig;
 use srag\Plugins\HelpMe\Config\HelpMeConfigOld;
 use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
 use srag\Plugins\HelpMe\Config\HelpMeConfigRole;
+use srag\RemovePluginDataConfirm\PluginUninstallTrait;
 
 /**
  * Class ilHelpMePlugin
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
-	use DICTrait;
+	use PluginUninstallTrait;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
 	const PLUGIN_CLASS_NAME = self::class;
+	const REMOVE_PLUGIN_DATA_CONFIRM_CLASS_NAME = HelpMeRemoveDataConfirm::class;
 	/**
 	 * @var self|null
 	 */
@@ -52,39 +53,9 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	/**
-	 * @return bool
+	 * @inheritdoc
 	 */
-	protected function beforeUninstall(): bool {
-		$uninstall_remove_data = HelpMeConfig::getUninstallRemoveData();
-
-		if ($uninstall_remove_data === NULL) {
-			HelpMeRemoveDataConfirm::saveParameterByClass();
-
-			self::dic()->ctrl()->redirectByClass([
-				ilUIPluginRouterGUI::class,
-				HelpMeRemoveDataConfirm::class
-			], HelpMeRemoveDataConfirm::CMD_CONFIRM_REMOVE_DATA);
-
-			return false;
-		}
-
-		$uninstall_remove_data = boolval($uninstall_remove_data);
-
-		if ($uninstall_remove_data) {
-			$this->removeData();
-		} else {
-			// Ask again if reinstalled
-			HelpMeConfig::deleteUninstallRemoveData();
-		}
-
-		return true;
-	}
-
-
-	/**
-	 *
-	 */
-	protected function removeData() {
+	protected function deleteData() {
 		self::dic()->database()->dropTable(HelpMeConfigOld::TABLE_NAME, false);
 		self::dic()->database()->dropTable(HelpMeConfig::TABLE_NAME, false);
 		self::dic()->database()->dropTable(HelpMeConfigPriority::TABLE_NAME, false);

@@ -70,4 +70,9 @@ return array(
     'srag\\Plugins\\HelpMe\\Support\\HelpMeSuccessFormGUI' => $baseDir . '/src/Support/HelpMeSuccessFormGUI.php',
     'srag\\Plugins\\HelpMe\\Support\\HelpMeSupport' => $baseDir . '/src/Support/HelpMeSupport.php',
     'srag\\Plugins\\HelpMe\\Support\\HelpMeSupportFormGUI' => $baseDir . '/src/Support/HelpMeSupportFormGUI.php',
+    'srag\\RemovePluginDataConfirm\\AbstractPluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
+    'srag\\RemovePluginDataConfirm\\AbstractRemovePluginDataConfirm' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',
+    'srag\\RemovePluginDataConfirm\\PluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/PluginUninstallTrait.php',
+    'srag\\RemovePluginDataConfirm\\RemovePluginDataConfirmException' => $vendorDir . '/srag/removeplugindataconfirm/src/RemovePluginDataConfirmException.php',
+    'srag\\RemovePluginDataConfirm\\RepositoryObjectPluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/RepositoryObjectPluginUninstallTrait.php',
 );

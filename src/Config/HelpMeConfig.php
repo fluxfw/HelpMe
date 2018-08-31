@@ -2,6 +2,7 @@
 
 namespace srag\Plugins\HelpMe\Config;
 
+use HelpMeRemoveDataConfirm;
 use ilHelpMePlugin;
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 
@@ -26,8 +27,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	const KEY_JIRA_USERNAME = "jira_username";
 	const KEY_RECIPIENT = "recipient";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
-	const KEY_UNINSTALL_REMOVE_DATA = "uninstall_remove_data";
-	const DEFAULT_UNINSTALL_REMOVE_DATA = NULL;
+
 
 	/**
 	 * @return string
@@ -220,26 +220,27 @@ class HelpMeConfig extends ActiveRecordConfig {
 		self::setStringValue(self::KEY_SEND_EMAIL_ADDRESS, $send_email_address);
 	}
 
+
 	/**
 	 * @return bool|null
 	 */
-	public static function getUninstallRemoveData() {
-		return self::getXValue(self::KEY_UNINSTALL_REMOVE_DATA, self::DEFAULT_UNINSTALL_REMOVE_DATA);
+	public static function getUninstallRemovesData() {
+		return self::getXValue(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA, HelpMeRemoveDataConfirm::DEFAULT_UNINSTALL_REMOVES_DATA);
 	}
 
 
 	/**
-	 * @param bool|null $uninstall_remove_data
+	 * @param bool $uninstall_removes_data
 	 */
-	public static function setUninstallRemoveData($uninstall_remove_data) {
-		self::setXValue(self::KEY_UNINSTALL_REMOVE_DATA, $uninstall_remove_data);
+	public static function setUninstallRemovesData($uninstall_removes_data) {
+		self::setBooleanValue(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA, $uninstall_removes_data);
 	}
 
 
 	/**
 	 *
 	 */
-	public static function deleteUninstallRemoveData() {
-		self::deleteName(self::KEY_UNINSTALL_REMOVE_DATA);
+	public static function removeUninstallRemovesData() {
+		self::removeName(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA);
 	}
 }

@@ -9,6 +9,7 @@ class ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
+            'srag\\RemovePluginDataConfirm\\' => 29,
             'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\JiraCurl\\' => 14,
             'srag\\DIC\\' => 9,
@@ -21,6 +22,10 @@ class ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f
     );
 
     public static $prefixDirsPsr4 = array (
+        'srag\\RemovePluginDataConfirm\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src',
+        ),
         'srag\\Plugins\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
@@ -108,6 +113,11 @@ class ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f
         'srag\\Plugins\\HelpMe\\Support\\HelpMeSuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/HelpMeSuccessFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\HelpMeSupport' => __DIR__ . '/../..' . '/src/Support/HelpMeSupport.php',
         'srag\\Plugins\\HelpMe\\Support\\HelpMeSupportFormGUI' => __DIR__ . '/../..' . '/src/Support/HelpMeSupportFormGUI.php',
+        'srag\\RemovePluginDataConfirm\\AbstractPluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
+        'srag\\RemovePluginDataConfirm\\AbstractRemovePluginDataConfirm' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',
+        'srag\\RemovePluginDataConfirm\\PluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/PluginUninstallTrait.php',
+        'srag\\RemovePluginDataConfirm\\RemovePluginDataConfirmException' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/RemovePluginDataConfirmException.php',
+        'srag\\RemovePluginDataConfirm\\RepositoryObjectPluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/RepositoryObjectPluginUninstallTrait.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

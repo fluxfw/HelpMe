@@ -39,10 +39,11 @@ srsu_submit#:#Senden
 srsu_support#:#Support
 srsu_system_infos#:#System-Infos
 srsu_title#:#Titel
-srsu_uninstall_confirm_remove_data#:#Möchten Sie die HelpMe-Daten auch entfernen? Allenfalls möchten Sie das HelpMe-Plugin nur deaktivieren?
-srsu_uninstall_deactivate#:#HelpMe-Plugin nur deaktivieren
-srsu_uninstall_data#:#HelpMe-Daten
-srsu_uninstall_keep_data#:#HelpMe-Daten behalten
-srsu_uninstall_msg_kept_data#:#Die HelpMe-Daten wurden behalten!
-srsu_uninstall_msg_removed_data#:#Die HelpMe-Daten wurden auch entfernt!
-srsu_uninstall_remove_data#:#Entferne HelpMe-Daten
+removeplugindataconfirm_cancel#:#Abbrechen
+removeplugindataconfirm_confirm_remove_data#:#Möchten Sie die %1$s-Daten auch entfernen? Allenfalls möchten Sie das %1$s-Plugin nur deaktivieren?
+removeplugindataconfirm_deactivate#:#%1$s-Plugin nur deaktivieren
+removeplugindataconfirm_data#:#%1$s-Daten
+removeplugindataconfirm_keep_data#:#%1$s-Daten behalten
+removeplugindataconfirm_msg_kept_data#:#Die %1$s-Daten wurden behalten!
+removeplugindataconfirm_msg_removed_data#:#Die %1$s-Daten wurden auch entfernt!
+removeplugindataconfirm_remove_data#:#Entferne %1$s-Daten
