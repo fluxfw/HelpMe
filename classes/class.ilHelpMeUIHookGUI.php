@@ -33,15 +33,15 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
 			if (HelpMeConfigRole::currentUserHasRole()) {
 				// Support button
-				$tpl = self::template("il_help_me_button.html");
+				$tpl = self::plugin()->template("il_help_me_button.html");
 
 				iljQueryUtil::initjQuery();
 				self::dic()->template()->addJavaScript("Services/Form/js/Form.js");
-				self::dic()->template()->addJavaScript(self::directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
-				self::dic()->template()->addJavaScript(self::directory() . "/js/ilHelpMe.js");
+				self::dic()->template()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
+				self::dic()->template()->addJavaScript(self::plugin()->directory() . "/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
-				$tpl->setVariable("SUPPORT_TXT", self::translate("srsu_support"));
+				$tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("srsu_support"));
 				$tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
 					ilUIPluginRouterGUI::class,
 					ilHelpMeGUI::class
@@ -61,7 +61,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				$modal = ilModalGUI::getInstance();
 				$modal->setType(ilModalGUI::TYPE_LARGE);
-				$modal->setHeading(self::translate("srsu_support"));
+				$modal->setHeading(self::plugin()->translate("srsu_support"));
 
 				$modal->setId("il_help_me_modal");
 

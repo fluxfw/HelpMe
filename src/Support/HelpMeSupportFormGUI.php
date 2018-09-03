@@ -49,56 +49,56 @@ class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function setForm() {
-		$configPriorities = [ "" => "&lt;" . self::translate("srsu_please_select") . "&gt;" ] + HelpMeConfigPriority::getConfigPrioritiesArray();
+		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("srsu_please_select") . "&gt;" ] + HelpMeConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", self::translate("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
-		$this->addCommandButton(ilHelpMeGUI::CMD_NEW_SUPPORT, self::translate("srsu_submit"), "il_help_me_submit");
-		$this->addCommandButton("", self::translate("srsu_cancel"), "il_help_me_cancel");
+		$this->addCommandButton("", self::plugin()->translate("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
+		$this->addCommandButton(ilHelpMeGUI::CMD_NEW_SUPPORT, self::plugin()->translate("srsu_submit"), "il_help_me_submit");
+		$this->addCommandButton("", self::plugin()->translate("srsu_cancel"), "il_help_me_cancel");
 
 		$this->setId("il_help_me_form");
 		$this->setShowTopButtons(false);
 
-		$title = new ilTextInputGUI(self::translate("srsu_title"), "srsu_title");
+		$title = new ilTextInputGUI(self::plugin()->translate("srsu_title"), "srsu_title");
 		$title->setRequired(true);
 		$this->addItem($title);
 
-		$name = new ilNonEditableValueGUI(self::translate("srsu_name"));
+		$name = new ilNonEditableValueGUI(self::plugin()->translate("srsu_name"));
 		$name->setValue(self::dic()->user()->getFullname());
 		$this->addItem($name);
 
-		$login = new ilNonEditableValueGUI(self::translate("srsu_login"));
+		$login = new ilNonEditableValueGUI(self::plugin()->translate("srsu_login"));
 		$login->setValue(self::dic()->user()->getLogin());
 		$this->addItem($login);
 
-		$email = new ilEMailInputGUI(self::translate("srsu_email_address"), "srsu_email");
+		$email = new ilEMailInputGUI(self::plugin()->translate("srsu_email_address"), "srsu_email");
 		$email->setRequired(true);
 		$email->setValue(self::dic()->user()->getEmail());
 		$this->addItem($email);
 
-		$phone = new ilTextInputGUI(self::translate("srsu_phone"), "srsu_phone");
+		$phone = new ilTextInputGUI(self::plugin()->translate("srsu_phone"), "srsu_phone");
 		$phone->setRequired(true);
 		$this->addItem($phone);
 
-		$priority = new ilSelectInputGUI(self::translate("srsu_priority"), "srsu_priority");
+		$priority = new ilSelectInputGUI(self::plugin()->translate("srsu_priority"), "srsu_priority");
 		$priority->setRequired(true);
 		$priority->setOptions($configPriorities);
 		$this->addItem($priority);
 
-		$description = new ilTextAreaInputGUI(self::translate("srsu_description"), "srsu_description");
+		$description = new ilTextAreaInputGUI(self::plugin()->translate("srsu_description"), "srsu_description");
 		$description->setRequired(true);
 		$this->addItem($description);
 
-		$reproduce_steps = new ilTextAreaInputGUI(self::translate("srsu_reproduce_steps"), "srsu_reproduce_steps");
+		$reproduce_steps = new ilTextAreaInputGUI(self::plugin()->translate("srsu_reproduce_steps"), "srsu_reproduce_steps");
 		$reproduce_steps->setRequired(false);
 		$this->addItem($reproduce_steps);
 
-		$system_infos = new ilNonEditableValueGUI(self::translate("srsu_system_infos"));
+		$system_infos = new ilNonEditableValueGUI(self::plugin()->translate("srsu_system_infos"));
 		$system_infos->setValue($this->getBrowserInfos());
 		$this->addItem($system_infos);
 
-		$screenshot = new ilFileInputGUI(self::translate("srsu_screenshot"), "srsu_screenshot");
+		$screenshot = new ilFileInputGUI(self::plugin()->translate("srsu_screenshot"), "srsu_screenshot");
 		$screenshot->setRequired(false);
 		$screenshot->setSuffixes([ "jpg", "png" ]);
 		$this->addItem($screenshot);

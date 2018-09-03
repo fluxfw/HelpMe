@@ -42,7 +42,7 @@ class HelpMeSuccessFormGUI extends ilPropertyFormGUI {
 	protected function setForm() {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", self::translate("srsu_close"), "il_help_me_cancel");
+		$this->addCommandButton("", self::plugin()->translate("srsu_close"), "il_help_me_cancel");
 
 		$this->setId("il_help_me_form");
 		$this->setShowTopButtons(false);

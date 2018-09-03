@@ -89,7 +89,7 @@ class HelpMeSupport {
 	 * @return string
 	 */
 	public function getBody(string $template): string {
-		$tpl = self::template("il_help_me_" . $template . "_body.html");
+		$tpl = self::plugin()->template("il_help_me_" . $template . "_body.html");
 
 		$fields = [
 			"srsu_title" => $this->title,
@@ -107,7 +107,7 @@ class HelpMeSupport {
 		foreach ($fields as $title => $txt) {
 			$tpl->setCurrentBlock("il_help_me_body");
 
-			$tpl->setVariable("TITLE", self::translate($title));
+			$tpl->setVariable("TITLE", self::plugin()->translate($title));
 
 			$tpl->setVariable("TXT", $txt);
 

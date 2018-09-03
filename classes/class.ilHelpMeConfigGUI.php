@@ -64,7 +64,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	protected function configure() {
 		$form = $this->getConfigurationForm();
 
-		self::output($form);
+		self::plugin()->output($form);
 	}
 
 
@@ -76,15 +76,15 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 		$form->setValuesByPost();
 
 		if (!$form->checkInput()) {
-			self::output($form);
+			self::plugin()->output($form);
 
 			return;
 		}
 
 		$form->updateConfig();
 
-		ilUtil::sendSuccess(self::translate("srsu_configuration_saved"));
+		ilUtil::sendSuccess(self::plugin()->translate("srsu_configuration_saved"));
 
-		self::output($form);
+		self::plugin()->output($form);
 	}
 }

@@ -81,7 +81,7 @@ abstract class HelpMeRecipient {
 
 			$mailer->To($this->support->getEmail());
 
-			$mailer->Subject(self::translate("srsu_confirmation") . ": " . $this->support->getSubject());
+			$mailer->Subject(self::plugin()->translate("srsu_confirmation") . ": " . $this->support->getSubject());
 
 			$mailer->Body($this->support->getBody("email"));
 
