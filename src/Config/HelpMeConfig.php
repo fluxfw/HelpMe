@@ -40,7 +40,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $info
 	 */
-	public static function setInfo(string $info) {
+	public static function setInfo(string $info)/*: void*/ {
 		self::setStringValue(self::KEY_INFO, $info);
 	}
 
@@ -56,7 +56,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_access_token
 	 */
-	public static function setJiraAccessToken(string $jira_access_token) {
+	public static function setJiraAccessToken(string $jira_access_token)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_ACCESS_TOKEN, $jira_access_token);
 	}
 
@@ -72,7 +72,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_authorization
 	 */
-	public static function setJiraAuthorization(string $jira_authorization) {
+	public static function setJiraAuthorization(string $jira_authorization)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_AUTHORIZATION, $jira_authorization);
 	}
 
@@ -88,7 +88,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_consumer_key
 	 */
-	public static function setJiraConsumerKey(string $jira_consumer_key) {
+	public static function setJiraConsumerKey(string $jira_consumer_key)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_CONSUMER_KEY, $jira_consumer_key);
 	}
 
@@ -104,7 +104,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_domain
 	 */
-	public static function setJiraDomain(string $jira_domain) {
+	public static function setJiraDomain(string $jira_domain)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_DOMAIN, $jira_domain);
 	}
 
@@ -120,7 +120,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_issue_type
 	 */
-	public static function setJiraIssueType(string $jira_issue_type) {
+	public static function setJiraIssueType(string $jira_issue_type)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_ISSUE_TYPE, $jira_issue_type);
 	}
 
@@ -136,7 +136,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_password
 	 */
-	public static function setJiraPassword(string $jira_password) {
+	public static function setJiraPassword(string $jira_password)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_PASSWORD, $jira_password);
 	}
 
@@ -152,7 +152,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_private_key
 	 */
-	public static function setJiraPrivateKey(string $jira_private_key) {
+	public static function setJiraPrivateKey(string $jira_private_key)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_PRIVATE_KEY, $jira_private_key);
 	}
 
@@ -168,7 +168,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_project_key
 	 */
-	public static function setJiraProjectKey(string $jira_project_key) {
+	public static function setJiraProjectKey(string $jira_project_key)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_PROJECT_KEY, $jira_project_key);
 	}
 
@@ -184,7 +184,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $jira_username
 	 */
-	public static function setJiraUsername(string $jira_username) {
+	public static function setJiraUsername(string $jira_username)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_USERNAME, $jira_username);
 	}
 
@@ -200,7 +200,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $recipient
 	 */
-	public static function setRecipient(string $recipient) {
+	public static function setRecipient(string $recipient)/*: void*/ {
 		self::setStringValue(self::KEY_RECIPIENT, $recipient);
 	}
 
@@ -216,7 +216,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param string $send_email_address
 	 */
-	public static function setSendEmailAddress(string $send_email_address) {
+	public static function setSendEmailAddress(string $send_email_address)/*: void*/ {
 		self::setStringValue(self::KEY_SEND_EMAIL_ADDRESS, $send_email_address);
 	}
 
@@ -224,7 +224,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @return bool|null
 	 */
-	public static function getUninstallRemovesData() {
+	public static function getUninstallRemovesData()/*: ?bool*/ {
 		return self::getXValue(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA, HelpMeRemoveDataConfirm::DEFAULT_UNINSTALL_REMOVES_DATA);
 	}
 
@@ -232,7 +232,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 * @param bool $uninstall_removes_data
 	 */
-	public static function setUninstallRemovesData(bool $uninstall_removes_data) {
+	public static function setUninstallRemovesData(bool $uninstall_removes_data)/*: void*/ {
 		self::setBooleanValue(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA, $uninstall_removes_data);
 	}
 
@@ -240,7 +240,7 @@ class HelpMeConfig extends ActiveRecordConfig {
 	/**
 	 *
 	 */
-	public static function removeUninstallRemovesData() {
+	public static function removeUninstallRemovesData()/*: void*/ {
 		self::removeName(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA);
 	}
 }

@@ -25,9 +25,7 @@ class HelpMeRecipientSendMail extends HelpMeRecipient {
 
 
 	/**
-	 * Send support to recipient
-	 *
-	 * @return bool
+	 * @inheritdoc
 	 */
 	public function sendSupportToRecipient(): bool {
 		return ($this->sendEmail() && $this->sendConfirmationMail());

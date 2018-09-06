@@ -1,6 +1,7 @@
 <?php
 
 namespace srag\Plugins\HelpMe\Config;
+
 use ActiveRecord;
 use arConnector;
 use ilHelpMePlugin;
@@ -68,7 +69,7 @@ class HelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @param int[] $roles
 	 */
-	public static function setConfigRolesArray(array $roles) {
+	public static function setConfigRolesArray(array $roles)/*: void*/ {
 		self::truncateDB();
 
 		foreach ($roles as $role_id) {
@@ -144,21 +145,6 @@ class HelpMeConfigRole extends ActiveRecord {
 
 
 	/**
-	 * @param string $field_name
-	 *
-	 * @return mixed|null
-	 */
-	public function sleep($field_name) {
-		$field_value = $this->{$field_name};
-
-		switch ($field_name) {
-			default:
-				return NULL;
-		}
-	}
-
-
-	/**
 	 * HelpMeConfigRole constructor
 	 *
 	 * @param int              $primary_key_value
@@ -171,11 +157,28 @@ class HelpMeConfigRole extends ActiveRecord {
 
 	/**
 	 * @param string $field_name
+	 *
+	 * @return mixed|null
+	 */
+	public function sleep(/*string*/
+		$field_name) {
+		$field_value = $this->{$field_name};
+
+		switch ($field_name) {
+			default:
+				return NULL;
+		}
+	}
+
+
+	/**
+	 * @param string $field_name
 	 * @param mixed  $field_value
 	 *
 	 * @return mixed|null
 	 */
-	public function wakeUp($field_name, $field_value) {
+	public function wakeUp(/*string*/
+		$field_name, $field_value) {
 		switch ($field_name) {
 			case "id":
 			case "role_id":
@@ -191,7 +194,7 @@ class HelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return int
 	 */
-	public function getId() {
+	public function getId(): int {
 		return $this->id;
 	}
 
@@ -199,7 +202,7 @@ class HelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @param int $id
 	 */
-	public function setId($id) {
+	public function setId(int $id)/*: void*/ {
 		$this->id = $id;
 	}
 
@@ -207,7 +210,7 @@ class HelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return int
 	 */
-	public function getRoleId() {
+	public function getRoleId(): int {
 		return $this->role_id;
 	}
 
@@ -215,7 +218,7 @@ class HelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @param int $role_id
 	 */
-	public function setRoleId($role_id) {
+	public function setRoleId(int $role_id)/*: void*/ {
 		$this->role_id = $role_id;
 	}
 }

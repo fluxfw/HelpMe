@@ -125,7 +125,7 @@ class HelpMeSupport {
 	 *
 	 * @param array $screenshot
 	 */
-	public function addScreenshot(array $screenshot) {
+	public function addScreenshot(array $screenshot)/*: void*/ {
 		$this->screenshots[] = $screenshot;
 	}
 
@@ -161,7 +161,7 @@ class HelpMeSupport {
 	/**
 	 * @param int $time
 	 */
-	public function setTime(int $time) {
+	public function setTime(int $time)/*: void*/ {
 		$this->time = $time;
 	}
 
@@ -177,7 +177,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $title
 	 */
-	public function setTitle(string $title) {
+	public function setTitle(string $title)/*: void*/ {
 		$this->title = $title;
 	}
 
@@ -193,7 +193,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $name
 	 */
-	public function setName(string $name) {
+	public function setName(string $name)/*: void*/ {
 		$this->name = $name;
 	}
 
@@ -209,7 +209,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $login
 	 */
-	public function setLogin(string $login) {
+	public function setLogin(string $login)/*: void*/ {
 		$this->login = $login;
 	}
 
@@ -225,7 +225,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $email
 	 */
-	public function setEmail(string $email) {
+	public function setEmail(string $email)/*: void*/ {
 		$this->email = $email;
 	}
 
@@ -241,7 +241,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $phone
 	 */
-	public function setPhone(string $phone) {
+	public function setPhone(string $phone)/*: void*/ {
 		$this->phone = $phone;
 	}
 
@@ -257,7 +257,7 @@ class HelpMeSupport {
 	/**
 	 * @param HelpMeConfigPriority $priority
 	 */
-	public function setPriority(HelpMeConfigPriority $priority) {
+	public function setPriority(HelpMeConfigPriority $priority)/*: void*/ {
 		$this->priority = $priority;
 	}
 
@@ -273,7 +273,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $description
 	 */
-	public function setDescription(string $description) {
+	public function setDescription(string $description)/*: void*/ {
 		$this->description = $description;
 	}
 
@@ -289,7 +289,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $reproduce_steps
 	 */
-	public function setReproduceSteps(string $reproduce_steps) {
+	public function setReproduceSteps(string $reproduce_steps)/*: void*/ {
 		$this->reproduce_steps = $reproduce_steps;
 	}
 
@@ -305,7 +305,7 @@ class HelpMeSupport {
 	/**
 	 * @param string $system_infos
 	 */
-	public function setSystemInfos(string $system_infos) {
+	public function setSystemInfos(string $system_infos)/*: void*/ {
 		$this->system_infos = $system_infos;
 	}
 
@@ -321,7 +321,7 @@ class HelpMeSupport {
 	/**
 	 * @param array[] $screenshots
 	 */
-	public function setScreenshots(array $screenshots) {
+	public function setScreenshots(array $screenshots)/*: void*/ {
 		$this->screenshots = $screenshots;
 	}
 }

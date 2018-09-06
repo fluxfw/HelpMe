@@ -28,7 +28,8 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	 *
 	 * @param string $cmd
 	 */
-	public function performCommand($cmd) {
+	public function performCommand(/*string*/
+		$cmd)/*: void*/ {
 		$next_class = self::dic()->ctrl()->getNextClass($this);
 
 		switch (strtolower($next_class)) {
@@ -61,7 +62,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	/**
 	 *
 	 */
-	protected function configure() {
+	protected function configure()/*: void*/ {
 		$form = $this->getConfigurationForm();
 
 		self::plugin()->output($form);
@@ -71,7 +72,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 	/**
 	 *
 	 */
-	protected function updateConfigure() {
+	protected function updateConfigure()/*: void*/ {
 		$form = $this->getConfigurationForm();
 		$form->setValuesByPost();
 

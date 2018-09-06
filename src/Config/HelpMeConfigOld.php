@@ -228,7 +228,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function sleep($field_name) {
+	public function sleep(/*string*/$field_name) {
 		$field_value = $this->{$field_name};
 
 		switch ($field_name) {
@@ -246,7 +246,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function wakeUp($field_name, $field_value) {
+	public function wakeUp(/*string*/$field_name, $field_value) {
 		switch ($field_name) {
 			case "id":
 				return intval($field_value);
@@ -273,7 +273,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setId(int $id) {
+	public function setId(int $id)/*: void*/ {
 		$this->id = $id;
 	}
 
@@ -293,7 +293,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setRecipient(string $recipient) {
+	public function setRecipient(string $recipient)/*: void*/ {
 		$this->recipient = $recipient;
 	}
 
@@ -313,7 +313,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setSendEmailAddress(string $send_email_address) {
+	public function setSendEmailAddress(string $send_email_address)/*: void*/ {
 		$this->send_email_address = $send_email_address;
 	}
 
@@ -333,7 +333,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraDomain(string $jira_domain) {
+	public function setJiraDomain(string $jira_domain)/*: void*/ {
 		$this->jira_domain = $jira_domain;
 	}
 
@@ -353,7 +353,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraProjectKey(string $jira_project_key) {
+	public function setJiraProjectKey(string $jira_project_key)/*: void*/ {
 		$this->jira_project_key = $jira_project_key;
 	}
 
@@ -373,7 +373,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraIssueType(string $jira_issue_type) {
+	public function setJiraIssueType(string $jira_issue_type)/*: void*/ {
 		$this->jira_issue_type = $jira_issue_type;
 	}
 
@@ -393,7 +393,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraAuthorization(string $jira_authorization) {
+	public function setJiraAuthorization(string $jira_authorization)/*: void*/ {
 		$this->jira_authorization = $jira_authorization;
 	}
 
@@ -413,7 +413,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraUsername(string $jira_username) {
+	public function setJiraUsername(string $jira_username)/*: void*/ {
 		$this->jira_username = $jira_username;
 	}
 
@@ -433,7 +433,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraPassword(string $jira_password) {
+	public function setJiraPassword(string $jira_password)/*: void*/ {
 		$this->jira_password = $jira_password;
 	}
 
@@ -453,7 +453,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraConsumerKey(string $jira_consumer_key) {
+	public function setJiraConsumerKey(string $jira_consumer_key)/*: void*/ {
 		$this->jira_consumer_key = $jira_consumer_key;
 	}
 
@@ -473,7 +473,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraPrivateKey(string $jira_private_key) {
+	public function setJiraPrivateKey(string $jira_private_key)/*: void*/ {
 		$this->jira_private_key = $jira_private_key;
 	}
 
@@ -493,7 +493,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setJiraAccessToken(string $jira_access_token) {
+	public function setJiraAccessToken(string $jira_access_token)/*: void*/ {
 		$this->jira_access_token = $jira_access_token;
 	}
 
@@ -513,7 +513,7 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function setInfo(string $info) {
+	public function setInfo(string $info)/*: void*/ {
 		$this->info = $info;
 	}
 }

@@ -33,7 +33,7 @@ class ilHelpMeGUI {
 	/**
 	 *
 	 */
-	public function executeCommand() {
+	public function executeCommand()/*: void*/ {
 		if (!HelpMeConfigRole::currentUserHasRole()) {
 			die();
 		}
@@ -82,7 +82,8 @@ class ilHelpMeGUI {
 	 * @param string|null       $message
 	 * @param ilPropertyFormGUI $form
 	 */
-	protected function show($message, ilPropertyFormGUI $form) {
+	protected function show(/*?string*/
+		$message, ilPropertyFormGUI $form)/*: void*/ {
 		$tpl = self::plugin()->template("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
@@ -103,7 +104,7 @@ class ilHelpMeGUI {
 	/**
 	 *
 	 */
-	protected function addSupport() {
+	protected function addSupport()/*: void*/ {
 		$message = NULL;
 
 		$form = $this->getSupportForm();
@@ -115,7 +116,7 @@ class ilHelpMeGUI {
 	/**
 	 *
 	 */
-	protected function newSupport() {
+	protected function newSupport()/*: void*/ {
 		$message = NULL;
 
 		$form = $this->getSupportForm();

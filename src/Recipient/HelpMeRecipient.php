@@ -31,7 +31,7 @@ abstract class HelpMeRecipient {
 	 *
 	 * @return HelpMeRecipient|null
 	 */
-	public static function getRecipient(string $recipient, HelpMeSupport $support) {
+	public static function getRecipient(string $recipient, HelpMeSupport $support)/*: ?HelpMeRecipient*/ {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
 				return new HelpMeRecipientSendMail($support);
@@ -109,7 +109,7 @@ abstract class HelpMeRecipient {
 	/**
 	 * @param HelpMeSupport $support
 	 */
-	public function setSupport(HelpMeSupport $support) {
+	public function setSupport(HelpMeSupport $support)/*: void*/ {
 		$this->support = $support;
 	}
 }

@@ -48,7 +48,7 @@ class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 	/**
 	 *
 	 */
-	protected function setForm() {
+	protected function setForm()/*: void*/ {
 		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("srsu_please_select") . "&gt;" ] + HelpMeConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));

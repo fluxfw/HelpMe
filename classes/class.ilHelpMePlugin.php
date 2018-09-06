@@ -55,7 +55,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	/**
 	 * @inheritdoc
 	 */
-	protected function deleteData() {
+	protected function deleteData()/*: void*/ {
 		self::dic()->database()->dropTable(HelpMeConfigOld::TABLE_NAME, false);
 		self::dic()->database()->dropTable(HelpMeConfig::TABLE_NAME, false);
 		self::dic()->database()->dropTable(HelpMeConfigPriority::TABLE_NAME, false);

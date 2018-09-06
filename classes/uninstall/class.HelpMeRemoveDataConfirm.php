@@ -10,7 +10,7 @@ use srag\RemovePluginDataConfirm\AbstractRemovePluginDataConfirm;
  *
  * @ilCtrl_isCalledBy HelpMeRemoveDataConfirm: ilUIPluginRouterGUI
  */
-class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm  {
+class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm {
 
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
@@ -18,15 +18,7 @@ class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm  {
 	/**
 	 * @inheritdoc
 	 */
-	public function removeUninstallRemovesData() {
-		HelpMeConfig::removeUninstallRemovesData();
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	public function getUninstallRemovesData() {
+	public function getUninstallRemovesData()/*: ?bool*/ {
 		return HelpMeConfig::getUninstallRemovesData();
 	}
 
@@ -34,7 +26,16 @@ class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm  {
 	/**
 	 * @inheritdoc
 	 */
-	public function setUninstallRemovesData($uninstall_removes_data) {
+	public function setUninstallRemovesData(/*bool*/
+		$uninstall_removes_data)/*: void*/ {
 		HelpMeConfig::setUninstallRemovesData($uninstall_removes_data);
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function removeUninstallRemovesData()/*: void*/ {
+		HelpMeConfig::removeUninstallRemovesData();
 	}
 }

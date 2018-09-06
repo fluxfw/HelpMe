@@ -48,7 +48,7 @@ class HelpMeConfigFormGUI extends ilPropertyFormGUI {
 	/**
 	 *
 	 */
-	protected function setForm() {
+	protected function setForm()/*: void*/ {
 		$configPriorities = HelpMeConfigPriority::getConfigPrioritiesArray();
 		$allRoles = HelpMeConfigRole::getAllRoles();
 		$configRoles = HelpMeConfigRole::getConfigRolesArray();
@@ -101,7 +101,8 @@ class HelpMeConfigFormGUI extends ilPropertyFormGUI {
 		$recipient_jira->addSubItem($jira_authorization);
 
 		// Username & Password
-		$jira_authorization_userpassword = new ilRadioOption(self::plugin()->translate("srsu_jira_usernamepassword"), JiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
+		$jira_authorization_userpassword = new ilRadioOption(self::plugin()
+			->translate("srsu_jira_usernamepassword"), JiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
 		$jira_authorization->addOption($jira_authorization_userpassword);
 
 		$jira_username = new ilTextInputGUI(self::plugin()->translate("srsu_jira_username"), "srsu_jira_username");
@@ -164,7 +165,7 @@ class HelpMeConfigFormGUI extends ilPropertyFormGUI {
 	/**
 	 *
 	 */
-	public function updateConfig() {
+	public function updateConfig()/*: void*/ {
 		$recipient = $this->getInput("srsu_recipient");
 		HelpMeConfig::setRecipient($recipient);
 

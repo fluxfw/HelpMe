@@ -47,9 +47,7 @@ class HelpMeRecipientCreateJiraTicket extends HelpMeRecipient {
 
 
 	/**
-	 * Send support to recipient
-	 *
-	 * @return bool
+	 * @inheritdoc
 	 */
 	public function sendSupportToRecipient(): bool {
 		return ($this->createJiraTicket() && $this->addScreenshoots() && $this->sendConfirmationMail());
