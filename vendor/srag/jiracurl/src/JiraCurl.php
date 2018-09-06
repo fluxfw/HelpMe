@@ -70,7 +70,7 @@ class JiraCurl {
 	 * @return ilCurlConnection
 	 * @throws ilCurlConnectionException
 	 */
-	protected function initCurlConnection($url, array $headers) {
+	protected function initCurlConnection(string $url, array $headers): ilCurlConnection {
 		$curlConnection = new ilCurlConnection();
 
 		$curlConnection->init();
@@ -142,9 +142,9 @@ class JiraCurl {
 	 * @param array  $headers
 	 * @param mixed  $post_data
 	 *
-	 * @return array|false
+	 * @return array|null
 	 */
-	protected function doRequest($rest_url, array $headers, $post_data = NULL) {
+	protected function doRequest(string $rest_url, array $headers, $post_data = NULL)/*: ?array*/ {
 		$url = $this->jira_domain . $rest_url;
 
 		$curlConnection = NULL;
@@ -161,13 +161,13 @@ class JiraCurl {
 
 			$result = json_decode($result, true);
 			if (!is_array($result)) {
-				return false;
+				return NULL;
 			}
 
 			return $result;
 		} catch (Exception $ex) {
 			// Curl-Error!
-			return false;
+			return NULL;
 		} finally {
 			// Close Curl connection
 			if ($curlConnection !== NULL) {
@@ -186,9 +186,9 @@ class JiraCurl {
 	 * @param string $summary
 	 * @param string $description
 	 *
-	 * @return string|false Issue-Key
+	 * @return string|null Issue-Key
 	 */
-	public function createJiraIssueTicket($jira_project_key, $jira_issue_type, $summary, $description) {
+	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description)/*: ?string*/ {
 		$headers = [
 			"Accept" => "application/json",
 			"Content-Type" => "application/json"
@@ -213,8 +213,8 @@ class JiraCurl {
 
 		$result = $this->doRequest("/rest/api/2/issue", $headers, json_encode($data));
 
-		if ($result === false || !isset($result["key"])) {
-			return false;
+		if ($result === NULL || !isset($result["key"])) {
+			return NULL;
 		}
 
 		$issue_key = $result["key"];
@@ -233,7 +233,7 @@ class JiraCurl {
 	 *
 	 * @return bool
 	 */
-	public function addAttachmentToIssue($issue_key, $attachement_name, $attachement_mime, $attachement_path) {
+	public function addAttachmentToIssue(string $issue_key, string $attachement_name, string $attachement_mime, string $attachement_path): bool {
 		$headers = [
 			"Accept" => "application/json",
 			"X-Atlassian-Token" => "nocheck"
@@ -245,14 +245,14 @@ class JiraCurl {
 
 		$result = $this->doRequest("/rest/api/2/issue/" . $issue_key . "/attachments", $headers, $data);
 
-		return ($result !== false);
+		return ($result !== NULL);
 	}
 
 
 	/**
 	 * @return string
 	 */
-	public function getJiraDomain() {
+	public function getJiraDomain(): string {
 		return $this->jira_domain;
 	}
 
@@ -260,7 +260,7 @@ class JiraCurl {
 	/**
 	 * @param string $jira_domain
 	 */
-	public function setJiraDomain($jira_domain) {
+	public function setJiraDomain(string $jira_domain)/*: void*/ {
 		$this->jira_domain = $jira_domain;
 	}
 
@@ -268,7 +268,7 @@ class JiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraAuthorization() {
+	public function getJiraAuthorization(): string {
 		return $this->jira_authorization;
 	}
 
@@ -276,7 +276,7 @@ class JiraCurl {
 	/**
 	 * @param string $jira_authorization
 	 */
-	public function setJiraAuthorization($jira_authorization) {
+	public function setJiraAuthorization(string $jira_authorization)/*: void*/ {
 		$this->jira_authorization = $jira_authorization;
 	}
 
@@ -284,7 +284,7 @@ class JiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraUsername() {
+	public function getJiraUsername(): string {
 		return $this->jira_username;
 	}
 
@@ -292,7 +292,7 @@ class JiraCurl {
 	/**
 	 * @param string $jira_username
 	 */
-	public function setJiraUsername($jira_username) {
+	public function setJiraUsername(string $jira_username)/*: void*/ {
 		$this->jira_username = $jira_username;
 	}
 
@@ -300,7 +300,7 @@ class JiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraPassword() {
+	public function getJiraPassword(): string {
 		return $this->jira_password;
 	}
 
@@ -308,7 +308,7 @@ class JiraCurl {
 	/**
 	 * @param string $jira_password
 	 */
-	public function setJiraPassword($jira_password) {
+	public function setJiraPassword(string $jira_password)/*: void*/ {
 		$this->jira_password = $jira_password;
 	}
 
@@ -316,7 +316,7 @@ class JiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraConsumerKey() {
+	public function getJiraConsumerKey(): string {
 		return $this->jira_consumer_key;
 	}
 
@@ -324,7 +324,7 @@ class JiraCurl {
 	/**
 	 * @param string $jira_consumer_key
 	 */
-	public function setJiraConsumerKey($jira_consumer_key) {
+	public function setJiraConsumerKey(string $jira_consumer_key)/*: void*/ {
 		$this->jira_consumer_key = $jira_consumer_key;
 	}
 
@@ -332,7 +332,7 @@ class JiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraPrivateKey() {
+	public function getJiraPrivateKey(): string {
 		return $this->jira_private_key;
 	}
 
@@ -340,7 +340,7 @@ class JiraCurl {
 	/**
 	 * @param string $jira_private_key
 	 */
-	public function setJiraPrivateKey($jira_private_key) {
+	public function setJiraPrivateKey(string $jira_private_key)/*: void*/ {
 		$this->jira_private_key = $jira_private_key;
 	}
 
@@ -348,7 +348,7 @@ class JiraCurl {
 	/**
 	 * @return string
 	 */
-	public function getJiraAccessToken() {
+	public function getJiraAccessToken(): string {
 		return $this->jira_access_token;
 	}
 
@@ -356,7 +356,7 @@ class JiraCurl {
 	/**
 	 * @param string $jira_access_token
 	 */
-	public function setJiraAccessToken($jira_access_token) {
+	public function setJiraAccessToken(string $jira_access_token)/*: void*/ {
 		$this->jira_access_token = $jira_access_token;
 	}
 }

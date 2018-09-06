@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.0]
+- PHP7 and PHP7.1 comments
+
+## [0.1.11]
+- PHP min version
+
 ## [0.1.10]
 - Use always latest version of JiraCurl
 
