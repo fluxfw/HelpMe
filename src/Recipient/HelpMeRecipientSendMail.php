@@ -11,6 +11,7 @@ use srag\Plugins\HelpMe\Support\HelpMeSupport;
  * Class HelpMeRecipientSendMail
  *
  * @package srag\Plugins\HelpMe\Recipient
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeRecipientSendMail extends HelpMeRecipient {
 

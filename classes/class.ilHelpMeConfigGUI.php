@@ -7,6 +7,8 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigFormGUI;
 
 /**
  * Class ilHelpMeConfigGUI
+ *
+ * @author studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI {
 

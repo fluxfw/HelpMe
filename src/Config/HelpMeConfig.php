@@ -10,6 +10,7 @@ use srag\ActiveRecordConfig\ActiveRecordConfig;
  * Class HelpMeConfig
  *
  * @package srag\Plugins\HelpMe\Config
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeConfig extends ActiveRecordConfig {
 

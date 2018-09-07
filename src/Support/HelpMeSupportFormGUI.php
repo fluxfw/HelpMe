@@ -20,6 +20,7 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
  * Class HelpMeSupportFormGUI
  *
  * @package srag\Plugins\HelpMe\Support
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 
@@ -49,7 +50,8 @@ class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function setForm()/*: void*/ {
-		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("srsu_please_select") . "&gt;" ] + HelpMeConfigPriority::getConfigPrioritiesArray();
+		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("srsu_please_select") . "&gt;" ]
+			+ HelpMeConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 

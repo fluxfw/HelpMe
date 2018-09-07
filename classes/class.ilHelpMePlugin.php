@@ -10,6 +10,8 @@ use srag\RemovePluginDataConfirm\PluginUninstallTrait;
 
 /**
  * Class ilHelpMePlugin
+ *
+ * @author studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 

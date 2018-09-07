@@ -20,6 +20,7 @@ use srag\Plugins\HelpMe\Recipient\HelpMeRecipient;
  * Class HelpMeConfigFormGUI
  *
  * @package srag\Plugins\HelpMe\Config
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeConfigFormGUI extends ilPropertyFormGUI {
 

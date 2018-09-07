@@ -11,6 +11,7 @@ use srag\DIC\DICTrait;
  * Class HelpMeConfigRole
  *
  * @package srag\Plugins\HelpMe\Config
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeConfigRole extends ActiveRecord {
 
@@ -150,7 +151,9 @@ class HelpMeConfigRole extends ActiveRecord {
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector
 	 */
-	public function __construct(/*int*/$primary_key_value = 0, /*?*/arConnector $connector = NULL) {
+	public function __construct(/*int*/
+		$primary_key_value = 0, /*?*/
+		arConnector $connector = NULL) {
 		parent::__construct($primary_key_value, $connector);
 	}
 

@@ -8,6 +8,8 @@ use srag\RemovePluginDataConfirm\AbstractRemovePluginDataConfirm;
 /**
  * Class HelpMeRemoveDataConfirm
  *
+ * @author            studer + raimann ag <support-custom1@studer-raimann.ch>
+ *
  * @ilCtrl_isCalledBy HelpMeRemoveDataConfirm: ilUIPluginRouterGUI
  */
 class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm {

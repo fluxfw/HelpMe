@@ -11,6 +11,7 @@ use srag\DIC\DICTrait;
  * Class HelpMeConfigOld
  *
  * @package srag\Plugins\HelpMe\Config
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  *
  * @deprecated
  */
@@ -216,7 +217,9 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function __construct(/*int*/$primary_key_value = 0, /*?*/arConnector $connector = NULL) {
+	public function __construct(/*int*/
+		$primary_key_value = 0, /*?*/
+		arConnector $connector = NULL) {
 		parent::__construct($primary_key_value, $connector);
 	}
 
@@ -228,7 +231,8 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function sleep(/*string*/$field_name) {
+	public function sleep(/*string*/
+		$field_name) {
 		$field_value = $this->{$field_name};
 
 		switch ($field_name) {
@@ -246,7 +250,8 @@ class HelpMeConfigOld extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public function wakeUp(/*string*/$field_name, $field_value) {
+	public function wakeUp(/*string*/
+		$field_name, $field_value) {
 		switch ($field_name) {
 			case "id":
 				return intval($field_value);

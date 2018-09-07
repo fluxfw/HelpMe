@@ -12,6 +12,7 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
  * Class HelpMeSupport
  *
  * @package srag\Plugins\HelpMe\Support
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeSupport {
 

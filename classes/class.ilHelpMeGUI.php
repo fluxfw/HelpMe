@@ -12,6 +12,8 @@ use srag\Plugins\HelpMe\Support\HelpMeSupportFormGUI;
 /**
  * Class ilHelpMeGUI
  *
+ * @author            studer + raimann ag <support-custom1@studer-raimann.ch>
+ *
  * @ilCtrl_isCalledBy ilHelpMeGUI: ilUIPluginRouterGUI
  */
 class ilHelpMeGUI {
