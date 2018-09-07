@@ -12,6 +12,7 @@ use srag\Plugins\HelpMe\Support\HelpMeSupport;
  * Class HelpMeRecipient
  *
  * @package srag\Plugins\HelpMe\Recipient
+ *
  * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 abstract class HelpMeRecipient {

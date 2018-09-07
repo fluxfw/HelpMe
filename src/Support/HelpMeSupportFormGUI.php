@@ -20,6 +20,7 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
  * Class HelpMeSupportFormGUI
  *
  * @package srag\Plugins\HelpMe\Support
+ *
  * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeSupportFormGUI extends ilPropertyFormGUI {

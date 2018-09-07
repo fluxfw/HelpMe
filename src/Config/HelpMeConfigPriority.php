@@ -11,6 +11,7 @@ use srag\DIC\DICTrait;
  * Class HelpMeConfigPriority
  *
  * @package srag\Plugins\HelpMe\Config
+ *
  * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeConfigPriority extends ActiveRecord {

@@ -11,6 +11,7 @@ use srag\DIC\DICTrait;
  * Class HelpMeSuccessFormGUI
  *
  * @package srag\Plugins\HelpMe\Support
+ *
  * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class HelpMeSuccessFormGUI extends ilPropertyFormGUI {
