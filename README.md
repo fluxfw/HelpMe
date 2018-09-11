@@ -24,5 +24,5 @@ If yout want use the Jira recipient with oAuth authorization you can find a guid
 Please use it for further development!
 
 ### Contact
-info@studer-raimann.ch
+support-custom1@studer-raimann.ch
 https://studer-raimann.ch
