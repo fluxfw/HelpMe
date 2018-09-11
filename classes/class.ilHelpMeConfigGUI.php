@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use srag\DIC\DICTrait;
+use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
 use srag\Plugins\HelpMe\Config\HelpMeConfigFormGUI;
 
 /**
@@ -10,84 +10,8 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigFormGUI;
  *
  * @author studer + raimann ag <support-custom1@studer-raimann.ch>
  */
-class ilHelpMeConfigGUI extends ilPluginConfigGUI {
+class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
-	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const CMD_CONFIGURE = "configure";
-	const CMD_UPDATE_CONFIGURE = "updateConfigure";
-
-
-	/**
-	 * ilHelpMeConfigGUI constructor
-	 */
-	public function __construct() {
-
-	}
-
-
-	/**
-	 *
-	 * @param string $cmd
-	 */
-	public function performCommand(/*string*/
-		$cmd)/*: void*/ {
-		$next_class = self::dic()->ctrl()->getNextClass($this);
-
-		switch (strtolower($next_class)) {
-			default:
-				switch ($cmd) {
-					case self::CMD_CONFIGURE:
-					case self::CMD_UPDATE_CONFIGURE:
-						$this->$cmd();
-						break;
-
-					default:
-						break;
-				}
-				break;
-		}
-	}
-
-
-	/**
-	 *
-	 * @return HelpMeConfigFormGUI
-	 */
-	protected function getConfigurationForm(): HelpMeConfigFormGUI {
-		$form = new HelpMeConfigFormGUI($this);
-
-		return $form;
-	}
-
-
-	/**
-	 *
-	 */
-	protected function configure()/*: void*/ {
-		$form = $this->getConfigurationForm();
-
-		self::plugin()->output($form);
-	}
-
-
-	/**
-	 *
-	 */
-	protected function updateConfigure()/*: void*/ {
-		$form = $this->getConfigurationForm();
-		$form->setValuesByPost();
-
-		if (!$form->checkInput()) {
-			self::plugin()->output($form);
-
-			return;
-		}
-
-		$form->updateConfig();
-
-		ilUtil::sendSuccess(self::plugin()->translate("srsu_configuration_saved"));
-
-		self::plugin()->output($form);
-	}
+	const CONFIG_FORM_GUI_CLASS_NAME = HelpMeConfigFormGUI::class;
 }

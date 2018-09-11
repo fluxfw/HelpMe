@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.8.9]
+- Added dependencies to readme
+
+## [0.8.8]
+- Add `@author` to classes
+
 ## [0.8.7]
 - Fix output
 
@@ -95,4 +101,3 @@
 
 ## [0.1.0]
 - First version
-

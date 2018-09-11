@@ -149,8 +149,10 @@ Please avoid to store in variables or class variables.
 - Use also `__DIR__` for `Customizing/..` and use relative paths from your class perspective (Except in `dbupdate.php`)
 - Try to avoid use `$pl`
 
-#### Requirements
-This library should works with every ILIAS version provided the features are supported.
+### Dependencies
+* None
+
+Please use it for further development!
 
 ### Adjustment suggestions
 * Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/DIC/tree/develop

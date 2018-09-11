@@ -8,6 +8,8 @@ use ilException;
  * Class RemovePluginDataConfirmException
  *
  * @package srag\RemovePluginDataConfirm
+ *
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class RemovePluginDataConfirmException extends ilException {
 

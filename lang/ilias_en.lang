@@ -1,7 +1,5 @@
 srsu_cancel#:#Cancel
 srsu_close#:#Close
-srsu_configuration#:#Configuration
-srsu_configuration_saved#:#Configuration saved
 srsu_confirmation#:#Confirmation
 srsu_create_jira_ticket#:#Create a Jira ticket
 srsu_datetime#:#Date & time
@@ -39,6 +37,9 @@ srsu_submit#:#Submit
 srsu_support#:#Support
 srsu_system_infos#:#System-Infos
 srsu_title#:#Title
+activerecordconfig_configuration#:#Configuration
+activerecordconfig_configuration_saved#:#Configuration saved
+activerecordconfig_save#:#Save
 removeplugindataconfirm_cancel#:#Cancel
 removeplugindataconfirm_confirm_remove_data#:#Do you want to remove the %1$s data as well? At most, you just want to disable the %1$s plugin?
 removeplugindataconfirm_deactivate#:#Just deactivate %1$s plugin

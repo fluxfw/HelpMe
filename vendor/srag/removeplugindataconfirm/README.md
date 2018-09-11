@@ -60,6 +60,8 @@ use srag\RemovePluginDataConfirm\AbstractRemovePluginDataConfirm;
 /**
  * Class XRemoveDataConfirm
  *
+ * @author            studer + raimann ag <support-custom1@studer-raimann.ch>
+ *
  * @ilCtrl_isCalledBy XRemoveDataConfirm: ilUIPluginRouterGUI
  */
 class XRemoveDataConfirm extends AbstractRemovePluginDataConfirm {
@@ -157,6 +159,10 @@ If you want to use this library, but don't want to confirm to remove data, you c
 const REMOVE_PLUGIN_DATA_CONFIRM = false;
 //...
 ```
+### Dependencies
+* [srag/dic](https://packagist.org/packages/srag/dic)
+
+Please use it for further development!
 
 ### Adjustment suggestions
 * Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/RemovePluginDataConfirm/tree/develop

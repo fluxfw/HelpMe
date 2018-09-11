@@ -1,7 +1,5 @@
 srsu_cancel#:#Abbrechen
 srsu_close#:#Schliessen
-srsu_configuration#:#Konfiguration
-srsu_configuration_saved#:#Konfiguration gespeichert
 srsu_confirmation#:#Bestätigung
 srsu_create_jira_ticket#:#Jira-Ticket erstellen
 srsu_datetime#:#Datum & Zeit
@@ -39,6 +37,9 @@ srsu_submit#:#Senden
 srsu_support#:#Support
 srsu_system_infos#:#System-Infos
 srsu_title#:#Titel
+activerecordconfig_configuration#:#Konfiguration
+activerecordconfig_configuration_saved#:#Konfiguration gespeichert
+activerecordconfig_save#:#Speichern
 removeplugindataconfirm_cancel#:#Abbrechen
 removeplugindataconfirm_confirm_remove_data#:#Möchten Sie die %1$s-Daten auch entfernen? Allenfalls möchten Sie das %1$s-Plugin nur deaktivieren?
 removeplugindataconfirm_deactivate#:#%1$s-Plugin nur deaktivieren

@@ -12,6 +12,8 @@ use srag\DIC\DICTrait;
  * Class AbstractRemovePluginDataConfirm
  *
  * @package srag\RemovePluginDataConfirm
+ *
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 abstract class AbstractRemovePluginDataConfirm {
 

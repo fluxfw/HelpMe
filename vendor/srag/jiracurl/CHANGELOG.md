@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.2.2]
+- Added dependencies to readme
+
+## [0.2.1]
+- Add `@author` to classes
+
 ## [0.2.0]
 - PHP7 and PHP7.1 comments
 
@@ -38,4 +44,3 @@
 
 ## [0.1.0]
 - First version
-

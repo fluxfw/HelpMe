@@ -3,16 +3,14 @@
 namespace srag\Plugins\HelpMe\Config;
 
 use ilEMailInputGUI;
-use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilMultiSelectInputGUI;
 use ilPasswordInputGUI;
-use ilPropertyFormGUI;
 use ilRadioGroupInputGUI;
 use ilRadioOption;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use srag\DIC\DICTrait;
+use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
 use srag\JiraCurl\JiraCurl;
 use srag\Plugins\HelpMe\Recipient\HelpMeRecipient;
 
@@ -23,43 +21,20 @@ use srag\Plugins\HelpMe\Recipient\HelpMeRecipient;
  *
  * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
-class HelpMeConfigFormGUI extends ilPropertyFormGUI {
+class HelpMeConfigFormGUI extends ActiveRecordConfigFormGUI {
 
-	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	/**
-	 * @var ilHelpMeConfigGUI
-	 */
-	protected $parent;
 
 
 	/**
-	 * HelpMeConfigFormGUI constructor
-	 *
-	 * @param ilHelpMeConfigGUI $parent
-	 */
-	public function __construct(ilHelpMeConfigGUI $parent) {
-		parent::__construct();
-
-		$this->parent = $parent;
-
-		$this->setForm();
-	}
-
-
-	/**
-	 *
+	 * @inheritdoc
 	 */
 	protected function setForm()/*: void*/ {
+		parent::setForm();
+
 		$configPriorities = HelpMeConfigPriority::getConfigPrioritiesArray();
 		$allRoles = HelpMeConfigRole::getAllRoles();
 		$configRoles = HelpMeConfigRole::getConfigRolesArray();
-
-		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
-
-		$this->setTitle(self::plugin()->translate("srsu_configuration"));
-
-		$this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_CONFIGURE, self::plugin()->translate("srsu_save"));
 
 		// Recipient
 		$recipient = new ilRadioGroupInputGUI(self::plugin()->translate("srsu_recipient"), "srsu_recipient");
@@ -165,7 +140,7 @@ class HelpMeConfigFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 *
+	 * @inheritdoc
 	 */
 	public function updateConfig()/*: void*/ {
 		$recipient = $this->getInput("srsu_recipient");

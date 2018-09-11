@@ -12,6 +12,8 @@ use srag\DIC\DICTrait;
  * Class JiraCurl
  *
  * @package srag\JiraCurl
+ *
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 class JiraCurl {
 

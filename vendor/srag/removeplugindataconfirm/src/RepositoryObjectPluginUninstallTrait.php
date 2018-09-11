@@ -6,6 +6,8 @@ namespace srag\RemovePluginDataConfirm;
  * Trait RepositoryObjectPluginUninstallTrait
  *
  * @package srag\RemovePluginDataConfirm
+ *
+ * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
  */
 trait RepositoryObjectPluginUninstallTrait {
 

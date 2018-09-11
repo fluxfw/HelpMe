@@ -24,6 +24,11 @@ If you deliver your plugin, the plugin has it's own copy of this library and the
 
 Hint: Because of multiple autoloaders of plugins, it could be, that different versions of this library exists and suddenly your plugin use an old version of an other plugin! So you should keep up to date your plugin with `composer update`.
 
+### Dependencies
+* [srag/dic](https://packagist.org/packages/srag/dic)
+
+Please use it for further development!
+
 ### Adjustment suggestions
 * Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/JiraCurl/tree/develop
 * Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LJIRACURL
