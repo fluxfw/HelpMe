@@ -23,6 +23,8 @@ If yout want use the Jira recipient with oAuth authorization you can find a guid
 
 Please use it for further development!
 
-### Contact
-support-custom1@studer-raimann.ch
-https://studer-raimann.ch
+### Adjustment suggestions
+* Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/HelpMe/tree/develop
+* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/PLHM
+* Bug reports under https://jira.studer-raimann.ch/projects/PLHM
+* For external users please send an email to support-custom1@studer-raimann.ch
