@@ -8,7 +8,7 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigRole;
 /**
  * Class ilHelpMeUIHookGUI
  *
- * @author studer + raimann ag <support-custom1@studer-raimann.ch>
+ * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 

@@ -12,7 +12,7 @@ use srag\Plugins\HelpMe\Support\HelpMeSupport;
  *
  * @package srag\Plugins\HelpMe\Recipient
  *
- * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
+ * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class HelpMeRecipientSendMail extends HelpMeRecipient {
 

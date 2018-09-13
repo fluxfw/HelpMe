@@ -21,7 +21,7 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
  *
  * @package srag\Plugins\HelpMe\Support
  *
- * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
+ * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 
