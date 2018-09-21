@@ -60,10 +60,5 @@
       "../../../../../../../Services/Utilities/classes/class.ilUtil.php",
       "../../../../../../../Services/WebServices/Curl/classes/class.ilCurlConnection.php"
     ]
-  },
-  "config": {
-    "optimize-autoloader": true,
-    "sort-packages": true,
-    "classmap-authoritative": true
   }
 }
