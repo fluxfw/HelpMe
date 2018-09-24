@@ -1,8 +1,7 @@
 {
   "name": "srag/plugins/helpme",
   "description": "",
-  "version": "2.2.0",
-  "type": "library",
+  "type": "project",
   "keywords": [
     "ILIAS",
     "Plugin"
