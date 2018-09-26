@@ -34,14 +34,14 @@ class HelpMeSuccessFormGUI extends ilPropertyFormGUI {
 
 		$this->parent = $parent;
 
-		$this->setForm();
+		$this->initForm();
 	}
 
 
 	/**
 	 *
 	 */
-	protected function setForm()/*: void*/ {
+	protected function initForm()/*: void*/ {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
 		$this->addCommandButton("", self::plugin()->translate("srsu_close"), "il_help_me_cancel");
