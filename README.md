@@ -5,7 +5,7 @@ Start at your ILIAS root directory
 ```bash
 mkdir -p Customizing/global/plugins/Services/UIComponent/UserInterfaceHook
 cd Customizing/global/plugins/Services/UIComponent/UserInterfaceHook
-git clone git@git.studer-raimann.ch:ILIAS/Plugins/HelpMe.git HelpMe
+git clone -b develop git@git.studer-raimann.ch:ILIAS/Plugins/HelpMe.git HelpMe
 ```
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
