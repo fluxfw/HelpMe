@@ -1,7 +1,7 @@
 {
   "name": "srag/jiracurl",
   "description": "Connect to Jira via Curl",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "type": "library",
   "keywords": [
     "ILIAS",
@@ -12,7 +12,7 @@
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "srag",
+      "name": "studer + raimann ag - Team Custom 1",
       "email": "support-custom1@studer-raimann.ch",
       "homepage": "https://studer-raimann.ch",
       "role": "Developer"

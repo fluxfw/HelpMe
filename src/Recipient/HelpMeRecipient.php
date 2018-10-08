@@ -77,7 +77,7 @@ abstract class HelpMeRecipient {
 		try {
 			$mailer = new ilMimeMail();
 
-			if (ILIAS_VERSION_NUMERIC >= "5.3") {
+			if (self::version()->is53()) {
 				$mailer->From(self::dic()->mailMimeSenderFactory()->system());
 			}
 

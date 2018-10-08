@@ -105,6 +105,8 @@ class ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f
         'srag\\DIC\\Exception\\DICException' => __DIR__ . '/..' . '/srag/dic/src/Exception/DICException.php',
         'srag\\DIC\\Plugin\\Plugin' => __DIR__ . '/..' . '/srag/dic/src/Plugin/Plugin.php',
         'srag\\DIC\\Plugin\\PluginInterface' => __DIR__ . '/..' . '/srag/dic/src/Plugin/PluginInterface.php',
+        'srag\\DIC\\Version\\Version' => __DIR__ . '/..' . '/srag/dic/src/Version/Version.php',
+        'srag\\DIC\\Version\\VersionInterface' => __DIR__ . '/..' . '/srag/dic/src/Version/VersionInterface.php',
         'srag\\JiraCurl\\JiraCurl' => __DIR__ . '/..' . '/srag/jiracurl/src/JiraCurl.php',
         'srag\\Plugins\\HelpMe\\Config\\HelpMeConfig' => __DIR__ . '/../..' . '/src/Config/HelpMeConfig.php',
         'srag\\Plugins\\HelpMe\\Config\\HelpMeConfigFormGUI' => __DIR__ . '/../..' . '/src/Config/HelpMeConfigFormGUI.php',

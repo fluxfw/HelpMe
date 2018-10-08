@@ -43,7 +43,7 @@ class HelpMeRecipientSendMail extends HelpMeRecipient {
 		try {
 			$mailer = new ilMimeMail();
 
-			if (ILIAS_VERSION_NUMERIC >= "5.3") {
+			if (self::version()->is53()) {
 				$mailer->From(new HelpMeRecipientSendMailSender($this->support));
 			} else {
 				$mailer->From([ $this->support->getEmail(), $this->support->getName() ]);

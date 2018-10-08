@@ -41,9 +41,9 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				$tpl = self::plugin()->template("il_help_me_button.html");
 
 				iljQueryUtil::initjQuery();
-				self::dic()->template()->addJavaScript("Services/Form/js/Form.js");
-				self::dic()->template()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
-				self::dic()->template()->addJavaScript(self::plugin()->directory() . "/js/ilHelpMe.js");
+				self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
+				self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
+				self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/ilHelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
 				$tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("srsu_support"));

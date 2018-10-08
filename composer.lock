@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1f54ba040f99843d1757833953066fcd",
+    "content-hash": "558e849d1e7dbeea8499cec4542aa5d3",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -57,16 +57,16 @@
         },
         {
             "name": "srag/activerecordconfig",
-            "version": "0.6.2",
+            "version": "0.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "908147cd788d6ba610bbd1f902d1f461a1257a8b"
+                "reference": "c67b5662ce36645a44ecb1491780cefbb14f935e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/908147cd788d6ba610bbd1f902d1f461a1257a8b",
-                "reference": "908147cd788d6ba610bbd1f902d1f461a1257a8b",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/c67b5662ce36645a44ecb1491780cefbb14f935e",
+                "reference": "c67b5662ce36645a44ecb1491780cefbb14f935e",
                 "shasum": ""
             },
             "require": {
@@ -85,7 +85,7 @@
             ],
             "authors": [
                 {
-                    "name": "srag",
+                    "name": "studer + raimann ag - Team Custom 1",
                     "email": "support-custom1@studer-raimann.ch",
                     "homepage": "https://studer-raimann.ch",
                     "role": "Developer"
@@ -98,20 +98,20 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2018-09-11T06:23:54+00:00"
+            "time": "2018-09-17T09:03:25+00:00"
         },
         {
             "name": "srag/dic",
-            "version": "0.8.9",
+            "version": "v0.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "ce959fbe5aaa350489bdd7a01dfcddfe61fe1e84"
+                "reference": "532a63051b3884df753e12fa57e7efa7c56509c0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/ce959fbe5aaa350489bdd7a01dfcddfe61fe1e84",
-                "reference": "ce959fbe5aaa350489bdd7a01dfcddfe61fe1e84",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/532a63051b3884df753e12fa57e7efa7c56509c0",
+                "reference": "532a63051b3884df753e12fa57e7efa7c56509c0",
                 "shasum": ""
             },
             "require": {
@@ -129,7 +129,7 @@
             ],
             "authors": [
                 {
-                    "name": "srag",
+                    "name": "studer + raimann ag - Team Custom 1",
                     "email": "support-custom1@studer-raimann.ch",
                     "homepage": "https://studer-raimann.ch",
                     "role": "Developer"
@@ -143,20 +143,20 @@
                 "globals",
                 "trait"
             ],
-            "time": "2018-09-10T06:42:03+00:00"
+            "time": "2018-10-08T12:47:05+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "0.2.2",
+            "version": "0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "40ba80b980de3987612ca3318971cebd6c168375"
+                "reference": "a8a0070a541135672a46ede0a7a63b626bf9b51d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/40ba80b980de3987612ca3318971cebd6c168375",
-                "reference": "40ba80b980de3987612ca3318971cebd6c168375",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/a8a0070a541135672a46ede0a7a63b626bf9b51d",
+                "reference": "a8a0070a541135672a46ede0a7a63b626bf9b51d",
                 "shasum": ""
             },
             "require": {
@@ -175,7 +175,7 @@
             ],
             "authors": [
                 {
-                    "name": "srag",
+                    "name": "studer + raimann ag - Team Custom 1",
                     "email": "support-custom1@studer-raimann.ch",
                     "homepage": "https://studer-raimann.ch",
                     "role": "Developer"
@@ -188,20 +188,20 @@
                 "curl",
                 "jira"
             ],
-            "time": "2018-09-10T06:42:13+00:00"
+            "time": "2018-09-17T09:05:14+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
-            "version": "0.2.4",
+            "version": "0.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RemovePluginDataConfirm.git",
-                "reference": "ab7328365402c4a09905c69a5b60e9e0630594bc"
+                "reference": "911c0ff316181c3efdf9068cf1cc2eb0e5ed6c8f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/ab7328365402c4a09905c69a5b60e9e0630594bc",
-                "reference": "ab7328365402c4a09905c69a5b60e9e0630594bc",
+                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/911c0ff316181c3efdf9068cf1cc2eb0e5ed6c8f",
+                "reference": "911c0ff316181c3efdf9068cf1cc2eb0e5ed6c8f",
                 "shasum": ""
             },
             "require": {
@@ -220,7 +220,7 @@
             ],
             "authors": [
                 {
-                    "name": "srag",
+                    "name": "studer + raimann ag - Team Custom 1",
                     "email": "support-custom1@studer-raimann.ch",
                     "homepage": "https://studer-raimann.ch",
                     "role": "Developer"
@@ -235,7 +235,7 @@
                 "plugin",
                 "uninstall"
             ],
-            "time": "2018-09-10T06:42:48+00:00"
+            "time": "2018-09-17T09:07:15+00:00"
         }
     ],
     "packages-dev": [],

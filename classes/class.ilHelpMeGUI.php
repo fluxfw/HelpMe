@@ -134,11 +134,11 @@ class ilHelpMeGUI {
 
 		$recipient = HelpMeRecipient::getRecipient(HelpMeConfig::getRecipient(), $support);
 		if ($recipient->sendSupportToRecipient()) {
-			$message = self::dic()->template()->getMessageHTML(self::plugin()->translate("srsu_sent_success"), "success");
+			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("srsu_sent_success"), "success");
 
 			$form = $this->getSuccessForm();
 		} else {
-			$message = self::dic()->template()->getMessageHTML(self::plugin()->translate("srsu_sent_failure"), "failure");
+			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("srsu_sent_failure"), "failure");
 		}
 
 		$this->show($message, $form);

@@ -62,6 +62,8 @@ return array(
     'srag\\DIC\\Exception\\DICException' => $vendorDir . '/srag/dic/src/Exception/DICException.php',
     'srag\\DIC\\Plugin\\Plugin' => $vendorDir . '/srag/dic/src/Plugin/Plugin.php',
     'srag\\DIC\\Plugin\\PluginInterface' => $vendorDir . '/srag/dic/src/Plugin/PluginInterface.php',
+    'srag\\DIC\\Version\\Version' => $vendorDir . '/srag/dic/src/Version/Version.php',
+    'srag\\DIC\\Version\\VersionInterface' => $vendorDir . '/srag/dic/src/Version/VersionInterface.php',
     'srag\\JiraCurl\\JiraCurl' => $vendorDir . '/srag/jiracurl/src/JiraCurl.php',
     'srag\\Plugins\\HelpMe\\Config\\HelpMeConfig' => $baseDir . '/src/Config/HelpMeConfig.php',
     'srag\\Plugins\\HelpMe\\Config\\HelpMeConfigFormGUI' => $baseDir . '/src/Config/HelpMeConfigFormGUI.php',

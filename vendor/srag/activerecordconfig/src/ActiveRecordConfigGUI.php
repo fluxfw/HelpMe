@@ -12,9 +12,9 @@ use srag\DIC\DICTrait;
  *
  * @package srag\ActiveRecordConfig
  *
- * @author  studer + raimann ag <support-custom1@studer-raimann.ch>
+ * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ActiveRecordConfigGUI extends ilPluginConfigGUI {
+abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 	use DICTrait;
 	/**
@@ -91,7 +91,9 @@ class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 
 	/**
-	 *
+	 * @throws ActiveRecordConfigException Your class needs to implement the CONFIG_FORM_GUI_CLASS_NAME constant!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not exists!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI!
 	 */
 	protected function configure()/*: void*/ {
 		$form = $this->getConfigurationForm();
@@ -101,7 +103,9 @@ class ActiveRecordConfigGUI extends ilPluginConfigGUI {
 
 
 	/**
-	 *
+	 * @throws ActiveRecordConfigException Your class needs to implement the CONFIG_FORM_GUI_CLASS_NAME constant!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not exists!
+	 * @throws ActiveRecordConfigException Class $config_form_gui_class_name not extends ActiveRecordConfigFormGUI!
 	 */
 	protected function updateConfigure()/*: void*/ {
 		$form = $this->getConfigurationForm();
