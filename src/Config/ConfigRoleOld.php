@@ -9,22 +9,36 @@ use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
- * Class ConfigRole
+ * Class ConfigRoleOld
  *
  * @package srag\Plugins\HelpMe\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated
  */
-class ConfigRole extends ActiveRecord {
+class ConfigRoleOld extends ActiveRecord {
 
 	use DICTrait;
 	use HelpMeTrait;
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const TABLE_NAME = "ui_uihk_srsu_roles";
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**
 	 * @return string
+	 *
+	 * @deprecated
 	 */
 	public function getConnectorContainerName(): string {
 		return self::TABLE_NAME;
@@ -43,6 +57,8 @@ class ConfigRole extends ActiveRecord {
 
 	/**
 	 * @return self[]
+	 *
+	 * @deprecated
 	 */
 	public static function getConfigRoles(): array {
 		/**
@@ -57,6 +73,8 @@ class ConfigRole extends ActiveRecord {
 
 	/**
 	 * @return array
+	 *
+	 * @deprecated
 	 */
 	public static function getConfigRolesArray(): array {
 		$configRoles = self::getConfigRoles();
@@ -72,6 +90,8 @@ class ConfigRole extends ActiveRecord {
 
 	/**
 	 * @param int[] $roles
+	 *
+	 * @deprecated
 	 */
 	public static function setConfigRolesArray(array $roles)/*: void*/ {
 		self::truncateDB();
@@ -95,6 +115,8 @@ class ConfigRole extends ActiveRecord {
 	 * @con_is_notnull  true
 	 * @con_is_primary  true
 	 * @con_sequence    true
+	 *
+	 * @deprecated
 	 */
 	protected $id;
 	/**
@@ -105,15 +127,19 @@ class ConfigRole extends ActiveRecord {
 	 * @con_length      8
 	 * @con_is_notnull  true
 	 * @con_is_unique   true
+	 *
+	 * @deprecated
 	 */
 	protected $role_id;
 
 
 	/**
-	 * ConfigRole constructor
+	 * ConfigRoleOld constructor
 	 *
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector
+	 *
+	 * @deprecated
 	 */
 	public function __construct(/*int*/
 		$primary_key_value = 0, /*?*/
@@ -126,6 +152,8 @@ class ConfigRole extends ActiveRecord {
 	 * @param string $field_name
 	 *
 	 * @return mixed|null
+	 *
+	 * @deprecated
 	 */
 	public function sleep(/*string*/
 		$field_name) {
@@ -143,6 +171,8 @@ class ConfigRole extends ActiveRecord {
 	 * @param mixed  $field_value
 	 *
 	 * @return mixed|null
+	 *
+	 * @deprecated
 	 */
 	public function wakeUp(/*string*/
 		$field_name, $field_value) {
@@ -160,6 +190,8 @@ class ConfigRole extends ActiveRecord {
 
 	/**
 	 * @return int
+	 *
+	 * @deprecated
 	 */
 	public function getId(): int {
 		return $this->id;
@@ -168,6 +200,8 @@ class ConfigRole extends ActiveRecord {
 
 	/**
 	 * @param int $id
+	 *
+	 * @deprecated
 	 */
 	public function setId(int $id)/*: void*/ {
 		$this->id = $id;
@@ -176,6 +210,8 @@ class ConfigRole extends ActiveRecord {
 
 	/**
 	 * @return int
+	 *
+	 * @deprecated
 	 */
 	public function getRoleId(): int {
 		return $this->role_id;
@@ -184,6 +220,8 @@ class ConfigRole extends ActiveRecord {
 
 	/**
 	 * @param int $role_id
+	 *
+	 * @deprecated
 	 */
 	public function setRoleId(int $role_id)/*: void*/ {
 		$this->role_id = $role_id;

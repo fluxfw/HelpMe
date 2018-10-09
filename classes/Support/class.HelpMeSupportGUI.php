@@ -4,7 +4,6 @@ require_once __DIR__ . "/../../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
-use srag\Plugins\HelpMe\Config\ConfigRole;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\SuccessFormGUI;
 use srag\Plugins\HelpMe\Support\SupportFormGUI;

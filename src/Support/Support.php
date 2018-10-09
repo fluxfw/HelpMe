@@ -7,7 +7,6 @@ use ilDatePresentation;
 use ilDateTime;
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ConfigPriority;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -47,7 +46,7 @@ class Support {
 	 */
 	protected $phone;
 	/**
-	 * @var ConfigPriority
+	 * @var string
 	 */
 	protected $priority;
 	/**
@@ -82,7 +81,7 @@ class Support {
 	 * @return string
 	 */
 	public function getSubject(): string {
-		return $this->priority->getPriority() . " - " . $this->title;
+		return $this->priority . " - " . $this->title;
 	}
 
 
@@ -102,7 +101,7 @@ class Support {
 			"login" => $this->login,
 			"email_address" => $this->email,
 			"phone" => $this->phone,
-			"priority" => $this->priority->getPriority(),
+			"priority" => $this->priority,
 			"description" => $this->description,
 			"reproduce_steps" => $this->reproduce_steps,
 			"system_infos" => $this->system_infos,
@@ -252,17 +251,17 @@ class Support {
 
 
 	/**
-	 * @return ConfigPriority
+	 * @return string
 	 */
-	public function getPriority(): ConfigPriority {
+	public function getPriority(): string {
 		return $this->priority;
 	}
 
 
 	/**
-	 * @param ConfigPriority $priority
+	 * @param string $priority
 	 */
-	public function setPriority(ConfigPriority $priority)/*: void*/ {
+	public function setPriority(string $priority)/*: void*/ {
 		$this->priority = $priority;
 	}
 

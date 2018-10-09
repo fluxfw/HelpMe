@@ -4,8 +4,8 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigOld;
-use srag\Plugins\HelpMe\Config\ConfigPriority;
-use srag\Plugins\HelpMe\Config\ConfigRole;
+use srag\Plugins\HelpMe\Config\ConfigPriorityOld;
+use srag\Plugins\HelpMe\Config\ConfigRoleOld;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\PluginUninstallTrait;
 
@@ -62,7 +62,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	protected function deleteData()/*: void*/ {
 		self::dic()->database()->dropTable(ConfigOld::TABLE_NAME, false);
 		self::dic()->database()->dropTable(Config::TABLE_NAME, false);
-		self::dic()->database()->dropTable(ConfigPriority::TABLE_NAME, false);
-		self::dic()->database()->dropTable(ConfigRole::TABLE_NAME, false);
+		self::dic()->database()->dropTable(ConfigPriorityOld::TABLE_NAME, false);
+		self::dic()->database()->dropTable(ConfigRoleOld::TABLE_NAME, false);
 	}
 }

@@ -35,9 +35,9 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	protected function setForm()/*: void*/ {
 		parent::setForm();
 
-		$configPriorities = ConfigPriority::getConfigPrioritiesArray();
+		$configPriorities = Config::getPriorities();
 		$allRoles = self::access()->getAllRoles();
-		$configRoles = ConfigRole::getConfigRolesArray();
+		$configRoles = Config::getRoles();
 
 		// Recipient
 		$recipient = new ilRadioGroupInputGUI(self::plugin()->translate("recipient", ilHelpMeConfigGUI::LANG_MODULE_CONFIG), "srsu_recipient");
@@ -190,12 +190,12 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 		Config::setJiraAccessToken($jira_access_token ?? "");
 
 		$priorities = $this->getInput("srsu_priorities");
-		ConfigPriority::setConfigPrioritiesArray($priorities);
+		Config::setPriorities($priorities);
 
 		$info = $this->getInput("srsu_info");
 		Config::setInfo($info);
 
 		$roles = $this->getInput("srsu_roles");
-		ConfigRole::setConfigRolesArray($roles);
+		Config::setRoles($roles);
 	}
 }

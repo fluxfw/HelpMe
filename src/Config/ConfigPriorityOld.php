@@ -9,22 +9,36 @@ use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
- * Class ConfigPriority
+ * Class ConfigPriorityOld
  *
  * @package srag\Plugins\HelpMe\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ *
+ * @deprecated
  */
-class ConfigPriority extends ActiveRecord {
+class ConfigPriorityOld extends ActiveRecord {
 
 	use DICTrait;
 	use HelpMeTrait;
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const TABLE_NAME = "ui_uihk_srsu_prio";
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**
 	 * @return string
+	 *
+	 * @deprecated
 	 */
 	public function getConnectorContainerName(): string {
 		return self::TABLE_NAME;
@@ -43,6 +57,8 @@ class ConfigPriority extends ActiveRecord {
 
 	/**
 	 * @return self[]
+	 *
+	 * @deprecated
 	 */
 	public static function getConfigPriorities(): array {
 		/**
@@ -57,6 +73,8 @@ class ConfigPriority extends ActiveRecord {
 
 	/**
 	 * @return array
+	 *
+	 * @deprecated
 	 */
 	public static function getConfigPrioritiesArray(): array {
 		$configPriorities = self::getConfigPriorities();
@@ -72,6 +90,8 @@ class ConfigPriority extends ActiveRecord {
 
 	/**
 	 * @param string[] $priorities
+	 *
+	 * @deprecated
 	 */
 	public static function setConfigPrioritiesArray(array $priorities)/*: void*/ {
 		self::truncateDB();
@@ -93,6 +113,8 @@ class ConfigPriority extends ActiveRecord {
 	 * @con_is_notnull  true
 	 * @con_is_primary  true
 	 * @con_sequence    true
+	 *
+	 * @deprecated
 	 */
 	protected $id;
 	/**
@@ -102,15 +124,19 @@ class ConfigPriority extends ActiveRecord {
 	 * @con_fieldtype   text
 	 * @con_is_notnull  true
 	 * @con_is_unique   true
+	 *
+	 * @deprecated
 	 */
 	protected $priority;
 
 
 	/**
-	 * ConfigPriority constructor
+	 * ConfigPriorityOld constructor
 	 *
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector
+	 *
+	 * @deprecated
 	 */
 	public function __construct(/*int*/
 		$primary_key_value = 0, /*?*/
@@ -123,6 +149,8 @@ class ConfigPriority extends ActiveRecord {
 	 * @param string $field_name
 	 *
 	 * @return mixed|null
+	 *
+	 * @deprecated
 	 */
 	public function sleep(/*string*/
 		$field_name) {
@@ -140,6 +168,8 @@ class ConfigPriority extends ActiveRecord {
 	 * @param mixed  $field_value
 	 *
 	 * @return mixed|null
+	 *
+	 * @deprecated
 	 */
 	public function wakeUp(/*string*/
 		$field_name, $field_value) {
@@ -156,6 +186,8 @@ class ConfigPriority extends ActiveRecord {
 
 	/**
 	 * @return int
+	 *
+	 * @deprecated
 	 */
 	public function getId(): int {
 		return $this->id;
@@ -164,6 +196,8 @@ class ConfigPriority extends ActiveRecord {
 
 	/**
 	 * @param int $id
+	 *
+	 * @deprecated
 	 */
 	public function setId(int $id)/*: void*/ {
 		$this->id = $id;
@@ -172,6 +206,8 @@ class ConfigPriority extends ActiveRecord {
 
 	/**
 	 * @return string
+	 *
+	 * @deprecated
 	 */
 	public function getPriority(): string {
 		return $this->priority;
@@ -180,6 +216,8 @@ class ConfigPriority extends ActiveRecord {
 
 	/**
 	 * @param string $priority
+	 *
+	 * @deprecated
 	 */
 	public function setPriority(string $priority)/*: void*/ {
 		$this->priority = $priority;

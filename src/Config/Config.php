@@ -29,7 +29,9 @@ class Config extends ActiveRecordConfig {
 	const KEY_JIRA_PRIVATE_KEY = "jira_private_key";
 	const KEY_JIRA_PROJECT_KEY = "jira_project_key";
 	const KEY_JIRA_USERNAME = "jira_username";
+	const KEY_PRIORITIES = "priorities";
 	const KEY_RECIPIENT = "recipient";
+	const KEY_ROLES = "roles";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
 	const DEFAULT_INFO = "";
 	const DEFAULT_JIRA_ACCESS_TOKEN = "";
@@ -40,7 +42,9 @@ class Config extends ActiveRecordConfig {
 	const DEFAULT_JIRA_PASSWORD = "";
 	const DEFAULT_JIRA_PRIVATE_KEY = "";
 	const DEFAULT_JIRA_PROJECT_KEY = "";
+	const DEFAULT_ROLES = [];
 	const DEFAULT_JIRA_USERNAME = "";
+	const DEFAULT_PRIORITY = [];
 	const DEFAULT_RECIPIENT = "";
 	const DEFAULT_SEND_EMAIL_ADDRESS = "";
 
@@ -206,6 +210,22 @@ class Config extends ActiveRecordConfig {
 
 
 	/**
+	 * @return array
+	 */
+	public static function getPriorities(): array {
+		return self::getJsonValue(self::KEY_PRIORITIES, true, self::DEFAULT_PRIORITY);
+	}
+
+
+	/**
+	 * @param array $priorities
+	 */
+	public static function setPriorities(array $priorities)/*: void*/ {
+		self::setJsonValue(self::KEY_PRIORITIES, $priorities);
+	}
+
+
+	/**
 	 * @return string
 	 */
 	public static function getRecipient(): string {
@@ -218,6 +238,22 @@ class Config extends ActiveRecordConfig {
 	 */
 	public static function setRecipient(string $recipient)/*: void*/ {
 		self::setStringValue(self::KEY_RECIPIENT, $recipient);
+	}
+
+
+	/**
+	 * @return array
+	 */
+	public static function getRoles(): array {
+		return self::getJsonValue(self::KEY_ROLES, true, self::DEFAULT_ROLES);
+	}
+
+
+	/**
+	 * @param array $roles
+	 */
+	public static function setRoles(array $roles)/*: void*/ {
+		self::setJsonValue(self::KEY_ROLES, $roles);
 	}
 
 

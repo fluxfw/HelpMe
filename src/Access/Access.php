@@ -4,7 +4,8 @@ namespace srag\Plugins\HelpMe\Access;
 
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ConfigRole;
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigRoleOld;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -52,7 +53,7 @@ final class Access {
 		$user_id = self::dic()->user()->getId();
 
 		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
-		$config_roles = ConfigRole::getConfigRolesArray();
+		$config_roles = Config::getRoles();
 
 		foreach ($user_roles as $user_role) {
 			if (in_array($user_role, $config_roles)) {

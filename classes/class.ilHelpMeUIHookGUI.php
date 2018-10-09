@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ConfigRole;
+use srag\Plugins\HelpMe\Config\ConfigRoleOld;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**

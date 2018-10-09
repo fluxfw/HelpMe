@@ -14,7 +14,7 @@ use ilTextInputGUI;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\ConfigPriority;
+use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -54,7 +54,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	 */
 	protected function initForm()/*: void*/ {
 		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;" ]
-			+ ConfigPriority::getConfigPrioritiesArray();
+			+ Config::getPriorities();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
@@ -117,7 +117,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	 * @return Support
 	 */
 	public function getSupport(): Support {
-		$configPriorities = ConfigPriority::getConfigPriorities();
+		$configPriorities = Config::getPriorities();
 
 		$support = new Support();
 
@@ -140,8 +140,8 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$support->setPhone($phone);
 
 		$priority_id = (int)$this->getInput("srsu_priority");
-		foreach ($configPriorities as $priority) {
-			if ($priority->getId() === $priority_id) {
+		foreach ($configPriorities as $id => $priority) {
+			if ($id === $priority_id) {
 				$support->setPriority($priority);
 				break;
 			}

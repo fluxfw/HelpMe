@@ -1,16 +1,14 @@
 <#1>
 <?php
 \srag\Plugins\HelpMe\Config\Config::updateDB();
-
-\srag\Plugins\HelpMe\Config\ConfigPriority::updateDB();
-
-\srag\Plugins\HelpMe\Config\ConfigRole::updateDB();
 ?>
 <#2>
 <?php
 \srag\Plugins\HelpMe\Config\Config::updateDB();
 
 if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME)) {
+	\srag\Plugins\HelpMe\Config\ConfigOld::updateDB();
+
 	$config_old = \srag\Plugins\HelpMe\Config\ConfigOld::getConfig();
 
 	\srag\Plugins\HelpMe\Config\Config::setInfo($config_old->getInfo());
@@ -27,5 +25,25 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Con
 	\srag\Plugins\HelpMe\Config\Config::setSendEmailAddress($config_old->getSendEmailAddress());
 
 	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME);
+}
+?>
+<#3>
+<?php
+\srag\Plugins\HelpMe\Config\Config::updateDB();
+
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME)) {
+	\srag\Plugins\HelpMe\Config\ConfigPriorityOld::updateDB();
+
+	\srag\Plugins\HelpMe\Config\Config::setPriorities(array_values(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::getConfigPrioritiesArray()));
+
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME);
+}
+
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME)) {
+	\srag\Plugins\HelpMe\Config\ConfigRoleOld::updateDB();
+
+	\srag\Plugins\HelpMe\Config\Config::setRoles(array_values(\srag\Plugins\HelpMe\Config\ConfigRoleOld::getConfigRolesArray()));
+
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME);
 }
 ?>
