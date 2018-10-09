@@ -4,6 +4,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigRole;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class ilHelpMeUIHookGUI
@@ -13,6 +14,7 @@ use srag\Plugins\HelpMe\Config\ConfigRole;
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 	use DICTrait;
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
@@ -36,7 +38,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		$a_part, /*array*/
 		$a_par = []): array {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
-			if (ConfigRole::currentUserHasRole()) {
+			if (self::access()->currentUserHasRole()) {
 				// Support button
 				$tpl = self::plugin()->template("il_help_me_button.html");
 
@@ -58,7 +60,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		}
 
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
-			if (ConfigRole::currentUserHasRole()) {
+			if (self::access()->currentUserHasRole()) {
 				// Modal
 				// TODO: Fix after first configure currentUserHasRole false because not yet set, only after this
 				// TODO: Modal UIServices

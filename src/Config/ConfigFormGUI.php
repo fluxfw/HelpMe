@@ -14,6 +14,7 @@ use ilTextInputGUI;
 use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
 use srag\JiraCurl\JiraCurl;
 use srag\Plugins\HelpMe\Recipient\Recipient;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class ConfigFormGUI
@@ -24,6 +25,7 @@ use srag\Plugins\HelpMe\Recipient\Recipient;
  */
 class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
@@ -34,7 +36,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 		parent::setForm();
 
 		$configPriorities = ConfigPriority::getConfigPrioritiesArray();
-		$allRoles = ConfigRole::getAllRoles();
+		$allRoles = self::access()->getAllRoles();
 		$configRoles = ConfigRole::getConfigRolesArray();
 
 		// Recipient

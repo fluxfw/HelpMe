@@ -6,6 +6,7 @@ use ActiveRecord;
 use arConnector;
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class ConfigOld
@@ -19,6 +20,7 @@ use srag\DIC\DICTrait;
 class ConfigOld extends ActiveRecord {
 
 	use DICTrait;
+	use HelpMeTrait;
 	/**
 	 * @var string
 	 *

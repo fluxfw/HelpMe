@@ -6,6 +6,7 @@ use HelpMeSupportGUI;
 use ilHelpMePlugin;
 use ilPropertyFormGUI;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class SuccessFormGUI
@@ -17,6 +18,7 @@ use srag\DIC\DICTrait;
 class SuccessFormGUI extends ilPropertyFormGUI {
 
 	use DICTrait;
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var HelpMeSupportGUI

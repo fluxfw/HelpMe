@@ -5,6 +5,7 @@ namespace srag\Plugins\HelpMe\Config;
 use HelpMeRemoveDataConfirm;
 use ilHelpMePlugin;
 use srag\ActiveRecordConfig\ActiveRecordConfig;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class Config
@@ -15,6 +16,7 @@ use srag\ActiveRecordConfig\ActiveRecordConfig;
  */
 class Config extends ActiveRecordConfig {
 
+	use HelpMeTrait;
 	const TABLE_NAME = "ui_uihk_srsu_config_n";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const KEY_INFO = "info";

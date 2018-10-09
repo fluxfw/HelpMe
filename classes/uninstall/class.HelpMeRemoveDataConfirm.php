@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../../vendor/autoload.php";
 
 use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\AbstractRemovePluginDataConfirm;
 
 /**
@@ -14,6 +15,7 @@ use srag\RemovePluginDataConfirm\AbstractRemovePluginDataConfirm;
  */
 class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm {
 
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 

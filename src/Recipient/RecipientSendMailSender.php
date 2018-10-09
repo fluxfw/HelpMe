@@ -7,6 +7,7 @@ use ilMailMimeSenderUser;
 use ilObjUser;
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Support\Support;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class RecipientSendMailSender
@@ -22,6 +23,7 @@ use srag\Plugins\HelpMe\Support\Support;
 class RecipientSendMailSender extends ilMailMimeSenderUser {
 
 	use DICTrait;
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 

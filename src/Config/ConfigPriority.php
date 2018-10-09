@@ -6,6 +6,7 @@ use ActiveRecord;
 use arConnector;
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class ConfigPriority
@@ -17,6 +18,7 @@ use srag\DIC\DICTrait;
 class ConfigPriority extends ActiveRecord {
 
 	use DICTrait;
+	use HelpMeTrait;
 	const TABLE_NAME = "ui_uihk_srsu_prio";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

@@ -8,6 +8,7 @@ use srag\Plugins\HelpMe\Config\ConfigRole;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\SuccessFormGUI;
 use srag\Plugins\HelpMe\Support\SupportFormGUI;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class HelpMeSupportGUI
@@ -19,6 +20,7 @@ use srag\Plugins\HelpMe\Support\SupportFormGUI;
 class HelpMeSupportGUI {
 
 	use DICTrait;
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
@@ -37,7 +39,7 @@ class HelpMeSupportGUI {
 	 *
 	 */
 	public function executeCommand()/*: void*/ {
-		if (!ConfigRole::currentUserHasRole()) {
+		if (!self::access()->currentUserHasRole()) {
 			die();
 		}
 

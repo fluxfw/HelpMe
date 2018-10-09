@@ -8,6 +8,7 @@ use ilDateTime;
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigPriority;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class Support
@@ -19,6 +20,7 @@ use srag\Plugins\HelpMe\Config\ConfigPriority;
 class Support {
 
 	use DICTrait;
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var int

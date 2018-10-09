@@ -6,6 +6,7 @@ use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigOld;
 use srag\Plugins\HelpMe\Config\ConfigPriority;
 use srag\Plugins\HelpMe\Config\ConfigRole;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\PluginUninstallTrait;
 
 /**
@@ -16,6 +17,7 @@ use srag\RemovePluginDataConfirm\PluginUninstallTrait;
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 	use PluginUninstallTrait;
+	use HelpMeTrait;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
 	const PLUGIN_CLASS_NAME = self::class;

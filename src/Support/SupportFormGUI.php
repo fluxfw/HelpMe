@@ -15,6 +15,7 @@ use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigPriority;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class SupportFormGUI
@@ -26,6 +27,7 @@ use srag\Plugins\HelpMe\Config\ConfigPriority;
 class SupportFormGUI extends ilPropertyFormGUI {
 
 	use DICTrait;
+	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var HelpMeSupportGUI
