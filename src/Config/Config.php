@@ -31,13 +31,25 @@ class Config extends ActiveRecordConfig {
 	const KEY_JIRA_USERNAME = "jira_username";
 	const KEY_RECIPIENT = "recipient";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
+	const DEFAULT_INFO = "";
+	const DEFAULT_JIRA_ACCESS_TOKEN = "";
+	const DEFAULT_JIRA_AUTHORIZATION = "";
+	const DEFAULT_JIRA_CONSUMER_KEY = "";
+	const DEFAULT_JIRA_DOMAIN = "";
+	const DEFAULT_JIRA_ISSUE_TYPE = "";
+	const DEFAULT_JIRA_PASSWORD = "";
+	const DEFAULT_JIRA_PRIVATE_KEY = "";
+	const DEFAULT_JIRA_PROJECT_KEY = "";
+	const DEFAULT_JIRA_USERNAME = "";
+	const DEFAULT_RECIPIENT = "";
+	const DEFAULT_SEND_EMAIL_ADDRESS = "";
 
 
 	/**
 	 * @return string
 	 */
 	public static function getInfo(): string {
-		return self::getStringValue(self::KEY_INFO);
+		return self::getStringValue(self::KEY_INFO, self::DEFAULT_INFO);
 	}
 
 
@@ -53,7 +65,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraAccessToken(): string {
-		return self::getStringValue(self::KEY_JIRA_ACCESS_TOKEN);
+		return self::getStringValue(self::KEY_JIRA_ACCESS_TOKEN, self::DEFAULT_JIRA_ACCESS_TOKEN);
 	}
 
 
@@ -69,7 +81,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraAuthorization(): string {
-		return self::getStringValue(self::KEY_JIRA_AUTHORIZATION);
+		return self::getStringValue(self::KEY_JIRA_AUTHORIZATION, self::DEFAULT_JIRA_AUTHORIZATION);
 	}
 
 
@@ -85,7 +97,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraConsumerKey(): string {
-		return self::getStringValue(self::KEY_JIRA_CONSUMER_KEY);
+		return self::getStringValue(self::KEY_JIRA_CONSUMER_KEY, self::DEFAULT_JIRA_CONSUMER_KEY);
 	}
 
 
@@ -101,7 +113,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraDomain(): string {
-		return self::getStringValue(self::KEY_JIRA_DOMAIN);
+		return self::getStringValue(self::KEY_JIRA_DOMAIN, self::DEFAULT_JIRA_DOMAIN);
 	}
 
 
@@ -117,7 +129,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraIssueType(): string {
-		return self::getStringValue(self::KEY_JIRA_ISSUE_TYPE);
+		return self::getStringValue(self::KEY_JIRA_ISSUE_TYPE, self::DEFAULT_JIRA_ISSUE_TYPE);
 	}
 
 
@@ -133,7 +145,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraPassword(): string {
-		return self::getStringValue(self::KEY_JIRA_PASSWORD);
+		return self::getStringValue(self::KEY_JIRA_PASSWORD, self::DEFAULT_JIRA_PASSWORD);
 	}
 
 
@@ -149,7 +161,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraPrivateKey(): string {
-		return self::getStringValue(self::KEY_JIRA_PRIVATE_KEY);
+		return self::getStringValue(self::KEY_JIRA_PRIVATE_KEY, self::DEFAULT_JIRA_PRIVATE_KEY);
 	}
 
 
@@ -165,7 +177,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraProjectKey(): string {
-		return self::getStringValue(self::KEY_JIRA_PROJECT_KEY);
+		return self::getStringValue(self::KEY_JIRA_PROJECT_KEY, self::DEFAULT_JIRA_PROJECT_KEY);
 	}
 
 
@@ -181,7 +193,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getJiraUsername(): string {
-		return self::getStringValue(self::KEY_JIRA_USERNAME);
+		return self::getStringValue(self::KEY_JIRA_USERNAME, self::DEFAULT_JIRA_USERNAME);
 	}
 
 
@@ -197,7 +209,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getRecipient(): string {
-		return self::getStringValue(self::KEY_RECIPIENT);
+		return self::getStringValue(self::KEY_RECIPIENT, self::DEFAULT_RECIPIENT);
 	}
 
 
@@ -213,7 +225,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string
 	 */
 	public static function getSendEmailAddress(): string {
-		return self::getStringValue(self::KEY_SEND_EMAIL_ADDRESS);
+		return self::getStringValue(self::KEY_SEND_EMAIL_ADDRESS, self::DEFAULT_SEND_EMAIL_ADDRESS);
 	}
 
 
