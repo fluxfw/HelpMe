@@ -50,8 +50,8 @@ class ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f
 
     public static $classMap = array (
         'ActiveRecord' => __DIR__ . '/../..' . '/../../../../../../../Services/ActiveRecord/class.ActiveRecord.php',
-        'HelpMeGUI' => __DIR__ . '/../..' . '/classes/GUI/class.HelpMeGUI.php',
         'HelpMeRemoveDataConfirm' => __DIR__ . '/../..' . '/classes/uninstall/class.HelpMeRemoveDataConfirm.php',
+        'HelpMeSupportGUI' => __DIR__ . '/../..' . '/classes/Support/class.HelpMeSupportGUI.php',
         'Sinergi\\BrowserDetector\\AcceptLanguage' => __DIR__ . '/..' . '/sinergi/browser-detector/src/AcceptLanguage.php',
         'Sinergi\\BrowserDetector\\Browser' => __DIR__ . '/..' . '/sinergi/browser-detector/src/Browser.php',
         'Sinergi\\BrowserDetector\\BrowserDetector' => __DIR__ . '/..' . '/sinergi/browser-detector/src/BrowserDetector.php',

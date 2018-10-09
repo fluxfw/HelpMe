@@ -7,8 +7,8 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'ActiveRecord' => $baseDir . '/../../../../../../../Services/ActiveRecord/class.ActiveRecord.php',
-    'HelpMeGUI' => $baseDir . '/classes/GUI/class.HelpMeGUI.php',
     'HelpMeRemoveDataConfirm' => $baseDir . '/classes/uninstall/class.HelpMeRemoveDataConfirm.php',
+    'HelpMeSupportGUI' => $baseDir . '/classes/Support/class.HelpMeSupportGUI.php',
     'Sinergi\\BrowserDetector\\AcceptLanguage' => $vendorDir . '/sinergi/browser-detector/src/AcceptLanguage.php',
     'Sinergi\\BrowserDetector\\Browser' => $vendorDir . '/sinergi/browser-detector/src/Browser.php',
     'Sinergi\\BrowserDetector\\BrowserDetector' => $vendorDir . '/sinergi/browser-detector/src/BrowserDetector.php',

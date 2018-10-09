@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
-use HelpMeGUI;
+use HelpMeSupportGUI;
 use ilHelpMePlugin;
 use ilPropertyFormGUI;
 use srag\DIC\DICTrait;
@@ -19,7 +19,7 @@ class SuccessFormGUI extends ilPropertyFormGUI {
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
-	 * @var HelpMeGUI
+	 * @var HelpMeSupportGUI
 	 */
 	protected $parent;
 
@@ -27,9 +27,9 @@ class SuccessFormGUI extends ilPropertyFormGUI {
 	/**
 	 * SuccessFormGUI constructor
 	 *
-	 * @param HelpMeGUI $parent
+	 * @param HelpMeSupportGUI $parent
 	 */
-	public function __construct(HelpMeGUI $parent) {
+	public function __construct(HelpMeSupportGUI $parent) {
 		parent::__construct();
 
 		$this->parent = $parent;
@@ -44,7 +44,7 @@ class SuccessFormGUI extends ilPropertyFormGUI {
 	protected function initForm()/*: void*/ {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", self::plugin()->translate("srsu_close"), "il_help_me_cancel");
+		$this->addCommandButton("", self::plugin()->translate("close", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_cancel");
 
 		$this->setId("il_help_me_form");
 		$this->setShowTopButtons(false);

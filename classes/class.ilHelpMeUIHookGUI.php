@@ -43,14 +43,14 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				iljQueryUtil::initjQuery();
 				self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
 				self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
-				self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/ilHelpMe.js");
+				self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/HelpMe.js");
 
 				$tpl->setCurrentBlock("il_help_me_button");
-				$tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("srsu_support"));
+				$tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 				$tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
 					ilUIPluginRouterGUI::class,
-					HelpMeGUI::class
-				], HelpMeGUI::CMD_ADD_SUPPORT, "", true));
+					HelpMeSupportGUI::class
+				], HelpMeSupportGUI::CMD_ADD_SUPPORT, "", true));
 				$html = $tpl->get();
 
 				return [ "mode" => self::PREPEND, "html" => $html ];
@@ -66,7 +66,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				$modal = ilModalGUI::getInstance();
 				$modal->setType(ilModalGUI::TYPE_LARGE);
-				$modal->setHeading(self::plugin()->translate("srsu_support"));
+				$modal->setHeading(self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 
 				$modal->setId("il_help_me_modal");
 

@@ -2,6 +2,7 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
+use HelpMeSupportGUI;
 use ilDatePresentation;
 use ilDateTime;
 use ilHelpMePlugin;
@@ -94,22 +95,22 @@ class Support {
 		$tpl = self::plugin()->template("il_help_me_" . $template . "_body.html");
 
 		$fields = [
-			"srsu_title" => $this->title,
-			"srsu_name" => $this->name,
-			"srsu_login" => $this->login,
-			"srsu_email_address" => $this->email,
-			"srsu_phone" => $this->phone,
-			"srsu_priority" => $this->priority->getPriority(),
-			"srsu_description" => $this->description,
-			"srsu_reproduce_steps" => $this->reproduce_steps,
-			"srsu_system_infos" => $this->system_infos,
-			"srsu_datetime" => $this->getFormatedTime()
+			"title" => $this->title,
+			"name" => $this->name,
+			"login" => $this->login,
+			"email_address" => $this->email,
+			"phone" => $this->phone,
+			"priority" => $this->priority->getPriority(),
+			"description" => $this->description,
+			"reproduce_steps" => $this->reproduce_steps,
+			"system_infos" => $this->system_infos,
+			"datetime" => $this->getFormatedTime()
 		];
 
 		foreach ($fields as $title => $txt) {
 			$tpl->setCurrentBlock("il_help_me_body");
 
-			$tpl->setVariable("TITLE", self::plugin()->translate($title));
+			$tpl->setVariable("TITLE", self::plugin()->translate($title, HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 
 			$tpl->setVariable("TXT", $txt);
 

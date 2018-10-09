@@ -1,45 +1,25 @@
-srsu_cancel#:#Cancel
-srsu_close#:#Close
-srsu_confirmation#:#Confirmation
-srsu_create_jira_ticket#:#Create a Jira ticket
-srsu_datetime#:#Date & time
-srsu_description#:#Description
-srsu_email_address#:#Email address
-srsu_info#:#Info text
-srsu_jira_access_token#:#Jira access token
-srsu_jira_authorization#:#Jira authorization
-srsu_jira_consumer_key#:#Jira consumer key
-srsu_jira_domain#:#Jira domain name
-srsu_jira_issue_type#:#Jira issue type
-srsu_jira_oauth#:#oAuth
-srsu_jira_password#:#Jira password
-srsu_jira_private_key#:#Jira private key
-srsu_jira_project_key#:#Jira project key
-srsu_jira_username#:#Jira username
-srsu_jira_usernamepassword#:#Username & password
-srsu_login#:#Login
-srsu_name#:#Name
-srsu_phone#:#Phone
-srsu_please_select#:#please select
-srsu_priority#:#Priority
-srsu_priorities#:#Priorities
-srsu_recipient#:#Form recipient
-srsu_reproduce_steps#:#Steps to Reproduce
-srsu_roles#:#Roles
-srsu_roles_description#:#Show support for selected roles only
-srsu_save#:#Save
-srsu_screenshot#:#Screenshot
-srsu_screenshot_current_page#:#Take screenshot of current page
-srsu_send_email#:#Send an email
-srsu_sent_failure#:#Sorry, your support request could not be sent!
-srsu_sent_success#:#Thank you for your support request! A confirmation email has been sent to you!
-srsu_submit#:#Submit
-srsu_support#:#Support
-srsu_system_infos#:#System-Infos
-srsu_title#:#Title
 activerecordconfig_configuration#:#Configuration
 activerecordconfig_configuration_saved#:#Configuration saved
 activerecordconfig_save#:#Save
+config_create_jira_ticket#:#Create a Jira ticket
+config_email_address#:#Email address
+config_info#:#Info text
+config_jira_access_token#:#Jira access token
+config_jira_authorization#:#Jira authorization
+config_jira_consumer_key#:#Jira consumer key
+config_jira_domain#:#Jira domain name
+config_jira_issue_type#:#Jira issue type
+config_jira_oauth#:#oAuth
+config_jira_password#:#Jira password
+config_jira_private_key#:#Jira private key
+config_jira_project_key#:#Jira project key
+config_jira_username#:#Jira username
+config_jira_usernamepassword#:#Username & password
+config_priorities#:#Priorities
+config_recipient#:#Form recipient
+config_roles#:#Roles
+config_roles_description#:#Show support for selected roles only
+config_send_email#:#Send an email
 removeplugindataconfirm_cancel#:#Cancel
 removeplugindataconfirm_confirm_remove_data#:#Do you want to remove the %1$s data as well? At most, you just want to disable the %1$s plugin?
 removeplugindataconfirm_deactivate#:#Just deactivate %1$s plugin
@@ -48,3 +28,23 @@ removeplugindataconfirm_keep_data#:#Keep %1$s data
 removeplugindataconfirm_msg_kept_data#:#The %1$s data was kept!
 removeplugindataconfirm_msg_removed_data#:#The %1$s data was also removed!
 removeplugindataconfirm_remove_data#:#Remove %1$s data
+support_cancel#:#Cancel
+support_close#:#Close
+support_confirmation#:#Confirmation
+support_datetime#:#Date & time
+support_description#:#Description
+support_email_address#:#Email address
+support_login#:#Login
+support_name#:#Name
+support_phone#:#Phone
+support_please_select#:#please select
+support_priority#:#Priority
+support_reproduce_steps#:#Steps to Reproduce
+support_screenshot#:#Screenshot
+support_screenshot_current_page#:#Take screenshot of current page
+support_sent_failure#:#Sorry, your support request could not be sent!
+support_sent_success#:#Thank you for your support request! A confirmation email has been sent to you!
+support_submit#:#Submit
+support_support#:#Support
+support_system_infos#:#System-Infos
+support_title#:#Title

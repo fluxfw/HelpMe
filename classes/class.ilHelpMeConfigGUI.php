@@ -14,4 +14,5 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CONFIG_FORM_GUI_CLASS_NAME = ConfigFormGUI::class;
+	const LANG_MODULE_CONFIG = "config";
 }

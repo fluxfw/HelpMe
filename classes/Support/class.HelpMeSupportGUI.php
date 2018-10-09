@@ -10,22 +10,23 @@ use srag\Plugins\HelpMe\Support\SuccessFormGUI;
 use srag\Plugins\HelpMe\Support\SupportFormGUI;
 
 /**
- * Class HelpMeGUI
+ * Class HelpMeSupportGUI
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy HelpMeGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy HelpMeSupportGUI: ilUIPluginRouterGUI
  */
-class HelpMeGUI {
+class HelpMeSupportGUI {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_ADD_SUPPORT = "addSupport";
 	const CMD_NEW_SUPPORT = "newSupport";
+	const LANG_MODULE_SUPPORT = "support";
 
 
 	/**
-	 * HelpMeGUI constructor
+	 * HelpMeSupportGUI constructor
 	 */
 	public function __construct() {
 
@@ -134,11 +135,11 @@ class HelpMeGUI {
 
 		$recipient = Recipient::getRecipient(Config::getRecipient(), $support);
 		if ($recipient->sendSupportToRecipient()) {
-			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("srsu_sent_success"), "success");
+			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
 
 			$form = $this->getSuccessForm();
 		} else {
-			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("srsu_sent_failure"), "failure");
+			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("sent_failure", self::LANG_MODULE_SUPPORT), "failure");
 		}
 
 		$this->show($message, $form);

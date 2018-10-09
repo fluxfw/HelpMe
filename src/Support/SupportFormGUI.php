@@ -2,9 +2,9 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
+use HelpMeSupportGUI;
 use ilEMailInputGUI;
 use ilFileInputGUI;
-use HelpMeGUI;
 use ilHelpMePlugin;
 use ilNonEditableValueGUI;
 use ilPropertyFormGUI;
@@ -28,7 +28,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
-	 * @var HelpMeGUI
+	 * @var HelpMeSupportGUI
 	 */
 	protected $parent;
 
@@ -36,9 +36,9 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	/**
 	 * SupportFormGUI constructor
 	 *
-	 * @param HelpMeGUI $parent
+	 * @param HelpMeSupportGUI $parent
 	 */
-	public function __construct(HelpMeGUI $parent) {
+	public function __construct(HelpMeSupportGUI $parent) {
 		parent::__construct();
 
 		$this->parent = $parent;
@@ -51,57 +51,60 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function initForm()/*: void*/ {
-		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("srsu_please_select") . "&gt;" ]
+		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;" ]
 			+ ConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", self::plugin()->translate("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
-		$this->addCommandButton(HelpMeGUI::CMD_NEW_SUPPORT, self::plugin()->translate("srsu_submit"), "il_help_me_submit");
-		$this->addCommandButton("", self::plugin()->translate("srsu_cancel"), "il_help_me_cancel");
+		$this->addCommandButton("", self::plugin()
+			->translate("screenshot_current_page", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_page_screenshot");
+		$this->addCommandButton(HelpMeSupportGUI::CMD_NEW_SUPPORT, self::plugin()
+			->translate("submit", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_submit");
+		$this->addCommandButton("", self::plugin()->translate("cancel", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_cancel");
 
 		$this->setId("il_help_me_form");
 		$this->setShowTopButtons(false);
 
-		$title = new ilTextInputGUI(self::plugin()->translate("srsu_title"), "srsu_title");
+		$title = new ilTextInputGUI(self::plugin()->translate("title", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_title");
 		$title->setRequired(true);
 		$this->addItem($title);
 
-		$name = new ilNonEditableValueGUI(self::plugin()->translate("srsu_name"));
+		$name = new ilNonEditableValueGUI(self::plugin()->translate("name", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 		$name->setValue(self::dic()->user()->getFullname());
 		$this->addItem($name);
 
-		$login = new ilNonEditableValueGUI(self::plugin()->translate("srsu_login"));
+		$login = new ilNonEditableValueGUI(self::plugin()->translate("login", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 		$login->setValue(self::dic()->user()->getLogin());
 		$this->addItem($login);
 
-		$email = new ilEMailInputGUI(self::plugin()->translate("srsu_email_address"), "srsu_email");
+		$email = new ilEMailInputGUI(self::plugin()->translate("email_address", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_email");
 		$email->setRequired(true);
 		$email->setValue(self::dic()->user()->getEmail());
 		$this->addItem($email);
 
-		$phone = new ilTextInputGUI(self::plugin()->translate("srsu_phone"), "srsu_phone");
+		$phone = new ilTextInputGUI(self::plugin()->translate("phone", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_phone");
 		$phone->setRequired(true);
 		$this->addItem($phone);
 
-		$priority = new ilSelectInputGUI(self::plugin()->translate("srsu_priority"), "srsu_priority");
+		$priority = new ilSelectInputGUI(self::plugin()->translate("priority", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_priority");
 		$priority->setRequired(true);
 		$priority->setOptions($configPriorities);
 		$this->addItem($priority);
 
-		$description = new ilTextAreaInputGUI(self::plugin()->translate("srsu_description"), "srsu_description");
+		$description = new ilTextAreaInputGUI(self::plugin()->translate("description", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_description");
 		$description->setRequired(true);
 		$this->addItem($description);
 
-		$reproduce_steps = new ilTextAreaInputGUI(self::plugin()->translate("srsu_reproduce_steps"), "srsu_reproduce_steps");
+		$reproduce_steps = new ilTextAreaInputGUI(self::plugin()
+			->translate("reproduce_steps", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_reproduce_steps");
 		$reproduce_steps->setRequired(false);
 		$this->addItem($reproduce_steps);
 
-		$system_infos = new ilNonEditableValueGUI(self::plugin()->translate("srsu_system_infos"));
+		$system_infos = new ilNonEditableValueGUI(self::plugin()->translate("system_infos", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 		$system_infos->setValue($this->getBrowserInfos());
 		$this->addItem($system_infos);
 
-		$screenshot = new ilFileInputGUI(self::plugin()->translate("srsu_screenshot"), "srsu_screenshot");
+		$screenshot = new ilFileInputGUI(self::plugin()->translate("screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_screenshot");
 		$screenshot->setRequired(false);
 		$screenshot->setSuffixes([ "jpg", "png" ]);
 		$this->addItem($screenshot);
