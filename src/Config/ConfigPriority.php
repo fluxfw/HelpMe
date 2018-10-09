@@ -8,16 +8,16 @@ use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 
 /**
- * Class HelpMeConfigRole
+ * Class ConfigPriority
  *
  * @package srag\Plugins\HelpMe\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeConfigRole extends ActiveRecord {
+class ConfigPriority extends ActiveRecord {
 
 	use DICTrait;
-	const TABLE_NAME = "ui_uihk_srsu_roles";
+	const TABLE_NAME = "ui_uihk_srsu_prio";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
@@ -42,84 +42,43 @@ class HelpMeConfigRole extends ActiveRecord {
 	/**
 	 * @return self[]
 	 */
-	public static function getConfigRoles(): array {
+	public static function getConfigPriorities(): array {
 		/**
-		 * @var self[] $configRoles
+		 * @var self[] $configPriorities
 		 */
 
-		$configRoles = self::get();
+		$configPriorities = self::get();
 
-		return $configRoles;
+		return $configPriorities;
 	}
 
 
 	/**
 	 * @return array
 	 */
-	public static function getConfigRolesArray(): array {
-		$configRoles = self::getConfigRoles();
+	public static function getConfigPrioritiesArray(): array {
+		$configPriorities = self::getConfigPriorities();
 
-		$roles = [];
-		foreach ($configRoles as $configRole) {
-			$roles[$configRole->getId()] = $configRole->getRoleId();
+		$priorities = [];
+		foreach ($configPriorities as $configPriority) {
+			$priorities[$configPriority->getId()] = $configPriority->getPriority();
 		}
 
-		return $roles;
+		return $priorities;
 	}
 
 
 	/**
-	 * @param int[] $roles
+	 * @param string[] $priorities
 	 */
-	public static function setConfigRolesArray(array $roles)/*: void*/ {
+	public static function setConfigPrioritiesArray(array $priorities)/*: void*/ {
 		self::truncateDB();
 
-		foreach ($roles as $role_id) {
-			if ($role_id !== "") { // fix select all
-				$configRole = new self();
-				$configRole->setRoleId($role_id);
-				$configRole->store();
-			}
+		foreach ($priorities as $priority) {
+			$configPriority = new self();
+			$configPriority->setPriority($priority);
+			$configPriority->store();
 		}
-	}
-
-
-	/**
-	 * @return array
-	 */
-	public static function getAllRoles(): array {
-		/**
-		 * @var array $global_roles
-		 * @var array $roles
-		 */
-
-		$global_roles = self::dic()->rbacreview()->getRolesForIDs(self::dic()->rbacreview()->getGlobalRoles(), false);
-
-		$roles = [];
-		foreach ($global_roles as $global_role) {
-			$roles[$global_role["rol_id"]] = $global_role["title"];
-		}
-
-		return $roles;
-	}
-
-
-	/**
-	 * @return bool
-	 */
-	public static function currentUserHasRole(): bool {
-		$user_id = self::dic()->user()->getId();
-
-		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
-		$config_roles = self::getConfigRolesArray();
-
-		foreach ($user_roles as $user_role) {
-			if (in_array($user_role, $config_roles)) {
-				return true;
-			}
-		}
-
-		return false;
 	}
 
 
@@ -135,19 +94,18 @@ class HelpMeConfigRole extends ActiveRecord {
 	 */
 	protected $id;
 	/**
-	 * @var int
+	 * @var string
 	 *
 	 * @con_has_field   true
-	 * @con_fieldtype   integer
-	 * @con_length      8
+	 * @con_fieldtype   text
 	 * @con_is_notnull  true
 	 * @con_is_unique   true
 	 */
-	protected $role_id;
+	protected $priority;
 
 
 	/**
-	 * HelpMeConfigRole constructor
+	 * ConfigPriority constructor
 	 *
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector
@@ -185,7 +143,6 @@ class HelpMeConfigRole extends ActiveRecord {
 		$field_name, $field_value) {
 		switch ($field_name) {
 			case "id":
-			case "role_id":
 				return intval($field_value);
 				break;
 
@@ -212,17 +169,17 @@ class HelpMeConfigRole extends ActiveRecord {
 
 
 	/**
-	 * @return int
+	 * @return string
 	 */
-	public function getRoleId(): int {
-		return $this->role_id;
+	public function getPriority(): string {
+		return $this->priority;
 	}
 
 
 	/**
-	 * @param int $role_id
+	 * @param string $priority
 	 */
-	public function setRoleId(int $role_id)/*: void*/ {
-		$this->role_id = $role_id;
+	public function setPriority(string $priority)/*: void*/ {
+		$this->priority = $priority;
 	}
 }

@@ -4,24 +4,24 @@ namespace srag\Plugins\HelpMe\Recipient;
 
 use Exception;
 use ilMimeMail;
-use srag\Plugins\HelpMe\Config\HelpMeConfig;
-use srag\Plugins\HelpMe\Support\HelpMeSupport;
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Support\Support;
 
 /**
- * Class HelpMeRecipientSendMail
+ * Class RecipientSendMail
  *
  * @package srag\Plugins\HelpMe\Recipient
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeRecipientSendMail extends HelpMeRecipient {
+class RecipientSendMail extends Recipient {
 
 	/**
-	 * HelpMeRecipientSendMail constructor
+	 * RecipientSendMail constructor
 	 *
-	 * @param HelpMeSupport $support
+	 * @param Support $support
 	 */
-	public function __construct(HelpMeSupport $support) {
+	public function __construct(Support $support) {
 		parent::__construct($support);
 	}
 
@@ -44,12 +44,12 @@ class HelpMeRecipientSendMail extends HelpMeRecipient {
 			$mailer = new ilMimeMail();
 
 			if (self::version()->is53()) {
-				$mailer->From(new HelpMeRecipientSendMailSender($this->support));
+				$mailer->From(new RecipientSendMailSender($this->support));
 			} else {
 				$mailer->From([ $this->support->getEmail(), $this->support->getName() ]);
 			}
 
-			$mailer->To(HelpMeConfig::getSendEmailAddress());
+			$mailer->To(Config::getSendEmailAddress());
 
 			$mailer->Subject($this->support->getSubject());
 

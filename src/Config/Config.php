@@ -7,13 +7,13 @@ use ilHelpMePlugin;
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 
 /**
- * Class HelpMeConfig
+ * Class Config
  *
  * @package srag\Plugins\HelpMe\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeConfig extends ActiveRecordConfig {
+class Config extends ActiveRecordConfig {
 
 	const TABLE_NAME = "ui_uihk_srsu_config_n";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;

@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
-use srag\Plugins\HelpMe\Config\HelpMeConfigFormGUI;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 
 /**
  * Class ilHelpMeConfigGUI
@@ -13,5 +13,5 @@ use srag\Plugins\HelpMe\Config\HelpMeConfigFormGUI;
 class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const CONFIG_FORM_GUI_CLASS_NAME = HelpMeConfigFormGUI::class;
+	const CONFIG_FORM_GUI_CLASS_NAME = ConfigFormGUI::class;
 }

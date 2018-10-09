@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
-use srag\Plugins\HelpMe\Config\HelpMeConfig;
+use srag\Plugins\HelpMe\Config\Config;
 use srag\RemovePluginDataConfirm\AbstractRemovePluginDataConfirm;
 
 /**
@@ -21,7 +21,7 @@ class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm {
 	 * @inheritdoc
 	 */
 	public function getUninstallRemovesData()/*: ?bool*/ {
-		return HelpMeConfig::getUninstallRemovesData();
+		return Config::getUninstallRemovesData();
 	}
 
 
@@ -30,7 +30,7 @@ class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm {
 	 */
 	public function setUninstallRemovesData(/*bool*/
 		$uninstall_removes_data)/*: void*/ {
-		HelpMeConfig::setUninstallRemovesData($uninstall_removes_data);
+		Config::setUninstallRemovesData($uninstall_removes_data);
 	}
 
 
@@ -38,6 +38,6 @@ class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm {
 	 * @inheritdoc
 	 */
 	public function removeUninstallRemovesData()/*: void*/ {
-		HelpMeConfig::removeUninstallRemovesData();
+		Config::removeUninstallRemovesData();
 	}
 }

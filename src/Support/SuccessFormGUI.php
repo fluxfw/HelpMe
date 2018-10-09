@@ -2,34 +2,34 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
-use ilHelpMeGUI;
+use HelpMeGUI;
 use ilHelpMePlugin;
 use ilPropertyFormGUI;
 use srag\DIC\DICTrait;
 
 /**
- * Class HelpMeSuccessFormGUI
+ * Class SuccessFormGUI
  *
  * @package srag\Plugins\HelpMe\Support
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeSuccessFormGUI extends ilPropertyFormGUI {
+class SuccessFormGUI extends ilPropertyFormGUI {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
-	 * @var ilHelpMeGUI
+	 * @var HelpMeGUI
 	 */
 	protected $parent;
 
 
 	/**
-	 * HelpMeSuccessFormGUI constructor
+	 * SuccessFormGUI constructor
 	 *
-	 * @param ilHelpMeGUI $parent
+	 * @param HelpMeGUI $parent
 	 */
-	public function __construct(ilHelpMeGUI $parent) {
+	public function __construct(HelpMeGUI $parent) {
 		parent::__construct();
 
 		$this->parent = $parent;

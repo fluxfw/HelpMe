@@ -6,41 +6,41 @@ use Exception;
 use ilHelpMePlugin;
 use ilMimeMail;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Support\HelpMeSupport;
+use srag\Plugins\HelpMe\Support\Support;
 
 /**
- * Class HelpMeRecipient
+ * Class Recipient
  *
  * @package srag\Plugins\HelpMe\Recipient
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-abstract class HelpMeRecipient {
+abstract class Recipient {
 
 	use DICTrait;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
-	 * @var HelpMeSupport
+	 * @var Support
 	 */
 	protected $support;
 
 
 	/**
-	 * @param string        $recipient
-	 * @param HelpMeSupport $support
+	 * @param string  $recipient
+	 * @param Support $support
 	 *
-	 * @return HelpMeRecipient|null
+	 * @return Recipient|null
 	 */
-	public static function getRecipient(string $recipient, HelpMeSupport $support)/*: ?HelpMeRecipient*/ {
+	public static function getRecipient(string $recipient, Support $support)/*: ?Recipient*/ {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
-				return new HelpMeRecipientSendMail($support);
+				return new RecipientSendMail($support);
 				break;
 
 			case self::CREATE_JIRA_TICKET:
-				return new HelpMeRecipientCreateJiraTicket($support);
+				return new RecipientCreateJiraTicket($support);
 				break;
 
 			default:
@@ -51,11 +51,11 @@ abstract class HelpMeRecipient {
 
 
 	/**
-	 * HelpMeRecipient constructor
+	 * Recipient constructor
 	 *
-	 * @param HelpMeSupport $support
+	 * @param Support $support
 	 */
-	protected function __construct(HelpMeSupport $support) {
+	protected function __construct(Support $support) {
 		$this->support = $support;
 	}
 
@@ -101,17 +101,17 @@ abstract class HelpMeRecipient {
 
 
 	/**
-	 * @return HelpMeSupport
+	 * @return Support
 	 */
-	public function getSupport(): HelpMeSupport {
+	public function getSupport(): Support {
 		return $this->support;
 	}
 
 
 	/**
-	 * @param HelpMeSupport $support
+	 * @param Support $support
 	 */
-	public function setSupport(HelpMeSupport $support)/*: void*/ {
+	public function setSupport(Support $support)/*: void*/ {
 		$this->support = $support;
 	}
 }

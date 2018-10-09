@@ -6,10 +6,10 @@ use ilHelpMePlugin;
 use ilMailMimeSenderUser;
 use ilObjUser;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Support\HelpMeSupport;
+use srag\Plugins\HelpMe\Support\Support;
 
 /**
- * Class HelpMeRecipientSendMailSender
+ * Class RecipientSendMailSender
  *
  * Send email with reply name and email in ILIAS 5.3
  *
@@ -19,18 +19,18 @@ use srag\Plugins\HelpMe\Support\HelpMeSupport;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeRecipientSendMailSender extends ilMailMimeSenderUser {
+class RecipientSendMailSender extends ilMailMimeSenderUser {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
 	/**
-	 * HelpMeRecipientSendMailSender constructor
+	 * RecipientSendMailSender constructor
 	 *
-	 * @param HelpMeSupport $support
+	 * @param Support $support
 	 */
-	public function __construct(HelpMeSupport $support) {
+	public function __construct(Support $support) {
 		$user = new ilObjUser();
 		$user->fullname = $support->getName();
 		$user->setEmail($support->getEmail());

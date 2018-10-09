@@ -3,20 +3,20 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\HelpMeConfig;
-use srag\Plugins\HelpMe\Config\HelpMeConfigRole;
-use srag\Plugins\HelpMe\Recipient\HelpMeRecipient;
-use srag\Plugins\HelpMe\Support\HelpMeSuccessFormGUI;
-use srag\Plugins\HelpMe\Support\HelpMeSupportFormGUI;
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigRole;
+use srag\Plugins\HelpMe\Recipient\Recipient;
+use srag\Plugins\HelpMe\Support\SuccessFormGUI;
+use srag\Plugins\HelpMe\Support\SupportFormGUI;
 
 /**
- * Class ilHelpMeGUI
+ * Class HelpMeGUI
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy ilHelpMeGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy HelpMeGUI: ilUIPluginRouterGUI
  */
-class ilHelpMeGUI {
+class HelpMeGUI {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
@@ -25,7 +25,7 @@ class ilHelpMeGUI {
 
 
 	/**
-	 * ilHelpMeGUI constructor
+	 * HelpMeGUI constructor
 	 */
 	public function __construct() {
 
@@ -36,7 +36,7 @@ class ilHelpMeGUI {
 	 *
 	 */
 	public function executeCommand()/*: void*/ {
-		if (!HelpMeConfigRole::currentUserHasRole()) {
+		if (!ConfigRole::currentUserHasRole()) {
 			die();
 		}
 
@@ -61,20 +61,20 @@ class ilHelpMeGUI {
 
 
 	/**
-	 * @return HelpMeSupportFormGUI
+	 * @return SupportFormGUI
 	 */
-	protected function getSupportForm(): HelpMeSupportFormGUI {
-		$form = new HelpMeSupportFormGUI($this);
+	protected function getSupportForm(): SupportFormGUI {
+		$form = new SupportFormGUI($this);
 
 		return $form;
 	}
 
 
 	/**
-	 * @return HelpMeSuccessFormGUI
+	 * @return SuccessFormGUI
 	 */
-	protected function getSuccessForm(): HelpMeSuccessFormGUI {
-		$form = new HelpMeSuccessFormGUI($this);
+	protected function getSuccessForm(): SuccessFormGUI {
+		$form = new SuccessFormGUI($this);
 
 		return $form;
 	}
@@ -89,7 +89,7 @@ class ilHelpMeGUI {
 		$tpl = self::plugin()->template("il_help_me_modal.html");
 
 		$tpl->setCurrentBlock("il_help_me_info");
-		$tpl->setVariable("INFO", HelpMeConfig::getInfo());
+		$tpl->setVariable("INFO", Config::getInfo());
 
 		if ($message !== NULL) {
 			$tpl->setCurrentBlock("il_help_me_message");
@@ -132,7 +132,7 @@ class ilHelpMeGUI {
 
 		$support = $form->getSupport();
 
-		$recipient = HelpMeRecipient::getRecipient(HelpMeConfig::getRecipient(), $support);
+		$recipient = Recipient::getRecipient(Config::getRecipient(), $support);
 		if ($recipient->sendSupportToRecipient()) {
 			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("srsu_sent_success"), "success");
 

@@ -8,7 +8,7 @@ use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 
 /**
- * Class HelpMeConfigOld
+ * Class ConfigOld
  *
  * @package srag\Plugins\HelpMe\Config
  *
@@ -16,7 +16,7 @@ use srag\DIC\DICTrait;
  *
  * @deprecated
  */
-class HelpMeConfigOld extends ActiveRecord {
+class ConfigOld extends ActiveRecord {
 
 	use DICTrait;
 	/**
@@ -211,7 +211,7 @@ class HelpMeConfigOld extends ActiveRecord {
 
 
 	/**
-	 * HelpMeConfigOld constructor
+	 * ConfigOld constructor
 	 *
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector

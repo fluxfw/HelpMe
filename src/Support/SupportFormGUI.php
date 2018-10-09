@@ -4,7 +4,7 @@ namespace srag\Plugins\HelpMe\Support;
 
 use ilEMailInputGUI;
 use ilFileInputGUI;
-use ilHelpMeGUI;
+use HelpMeGUI;
 use ilHelpMePlugin;
 use ilNonEditableValueGUI;
 use ilPropertyFormGUI;
@@ -14,31 +14,31 @@ use ilTextInputGUI;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
+use srag\Plugins\HelpMe\Config\ConfigPriority;
 
 /**
- * Class HelpMeSupportFormGUI
+ * Class SupportFormGUI
  *
  * @package srag\Plugins\HelpMe\Support
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeSupportFormGUI extends ilPropertyFormGUI {
+class SupportFormGUI extends ilPropertyFormGUI {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
-	 * @var ilHelpMeGUI
+	 * @var HelpMeGUI
 	 */
 	protected $parent;
 
 
 	/**
-	 * HelpMeSupportFormGUI constructor
+	 * SupportFormGUI constructor
 	 *
-	 * @param ilHelpMeGUI $parent
+	 * @param HelpMeGUI $parent
 	 */
-	public function __construct(ilHelpMeGUI $parent) {
+	public function __construct(HelpMeGUI $parent) {
 		parent::__construct();
 
 		$this->parent = $parent;
@@ -52,12 +52,12 @@ class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 	 */
 	protected function initForm()/*: void*/ {
 		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("srsu_please_select") . "&gt;" ]
-			+ HelpMeConfigPriority::getConfigPrioritiesArray();
+			+ ConfigPriority::getConfigPrioritiesArray();
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
 		$this->addCommandButton("", self::plugin()->translate("srsu_screenshot_current_page"), "il_help_me_page_screenshot");
-		$this->addCommandButton(ilHelpMeGUI::CMD_NEW_SUPPORT, self::plugin()->translate("srsu_submit"), "il_help_me_submit");
+		$this->addCommandButton(HelpMeGUI::CMD_NEW_SUPPORT, self::plugin()->translate("srsu_submit"), "il_help_me_submit");
 		$this->addCommandButton("", self::plugin()->translate("srsu_cancel"), "il_help_me_cancel");
 
 		$this->setId("il_help_me_form");
@@ -109,12 +109,12 @@ class HelpMeSupportFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 * @return HelpMeSupport
+	 * @return Support
 	 */
-	public function getSupport(): HelpMeSupport {
-		$configPriorities = HelpMeConfigPriority::getConfigPriorities();
+	public function getSupport(): Support {
+		$configPriorities = ConfigPriority::getConfigPriorities();
 
-		$support = new HelpMeSupport();
+		$support = new Support();
 
 		$time = time();
 		$support->setTime($time);

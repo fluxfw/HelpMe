@@ -6,16 +6,16 @@ use ilDatePresentation;
 use ilDateTime;
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\HelpMeConfigPriority;
+use srag\Plugins\HelpMe\Config\ConfigPriority;
 
 /**
- * Class HelpMeSupport
+ * Class Support
  *
  * @package srag\Plugins\HelpMe\Support
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeSupport {
+class Support {
 
 	use DICTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
@@ -44,7 +44,7 @@ class HelpMeSupport {
 	 */
 	protected $phone;
 	/**
-	 * @var HelpMeConfigPriority
+	 * @var ConfigPriority
 	 */
 	protected $priority;
 	/**
@@ -66,7 +66,7 @@ class HelpMeSupport {
 
 
 	/**
-	 * HelpMeSupport constructor
+	 * Support constructor
 	 */
 	public function __construct() {
 
@@ -249,17 +249,17 @@ class HelpMeSupport {
 
 
 	/**
-	 * @return HelpMeConfigPriority
+	 * @return ConfigPriority
 	 */
-	public function getPriority(): HelpMeConfigPriority {
+	public function getPriority(): ConfigPriority {
 		return $this->priority;
 	}
 
 
 	/**
-	 * @param HelpMeConfigPriority $priority
+	 * @param ConfigPriority $priority
 	 */
-	public function setPriority(HelpMeConfigPriority $priority)/*: void*/ {
+	public function setPriority(ConfigPriority $priority)/*: void*/ {
 		$this->priority = $priority;
 	}
 

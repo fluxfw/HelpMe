@@ -12,16 +12,16 @@ use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
 use srag\JiraCurl\JiraCurl;
-use srag\Plugins\HelpMe\Recipient\HelpMeRecipient;
+use srag\Plugins\HelpMe\Recipient\Recipient;
 
 /**
- * Class HelpMeConfigFormGUI
+ * Class ConfigFormGUI
  *
  * @package srag\Plugins\HelpMe\Config
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeConfigFormGUI extends ActiveRecordConfigFormGUI {
+class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
@@ -32,49 +32,49 @@ class HelpMeConfigFormGUI extends ActiveRecordConfigFormGUI {
 	protected function setForm()/*: void*/ {
 		parent::setForm();
 
-		$configPriorities = HelpMeConfigPriority::getConfigPrioritiesArray();
-		$allRoles = HelpMeConfigRole::getAllRoles();
-		$configRoles = HelpMeConfigRole::getConfigRolesArray();
+		$configPriorities = ConfigPriority::getConfigPrioritiesArray();
+		$allRoles = ConfigRole::getAllRoles();
+		$configRoles = ConfigRole::getConfigRolesArray();
 
 		// Recipient
 		$recipient = new ilRadioGroupInputGUI(self::plugin()->translate("srsu_recipient"), "srsu_recipient");
 		$recipient->setRequired(true);
-		$recipient->setValue(HelpMeConfig::getRecipient());
+		$recipient->setValue(Config::getRecipient());
 		$this->addItem($recipient);
 
 		// Send email
-		$recipient_email = new ilRadioOption(self::plugin()->translate("srsu_send_email"), HelpMeRecipient::SEND_EMAIL);
+		$recipient_email = new ilRadioOption(self::plugin()->translate("srsu_send_email"), Recipient::SEND_EMAIL);
 		$recipient->addOption($recipient_email);
 
 		$send_email_address = new ilEMailInputGUI(self::plugin()->translate("srsu_email_address"), "srsu_send_email_address");
 		$send_email_address->setRequired(true);
-		$send_email_address->setValue(HelpMeConfig::getSendEmailAddress());
+		$send_email_address->setValue(Config::getSendEmailAddress());
 		$recipient_email->addSubItem($send_email_address);
 
 		// Create Jira ticket
-		$recipient_jira = new ilRadioOption(self::plugin()->translate("srsu_create_jira_ticket"), HelpMeRecipient::CREATE_JIRA_TICKET);
+		$recipient_jira = new ilRadioOption(self::plugin()->translate("srsu_create_jira_ticket"), Recipient::CREATE_JIRA_TICKET);
 		$recipient->addOption($recipient_jira);
 
 		$jira_domain = new ilTextInputGUI(self::plugin()->translate("srsu_jira_domain"), "srsu_jira_domain");
 		$jira_domain->setRequired(true);
-		$jira_domain->setValue(HelpMeConfig::getJiraDomain());
+		$jira_domain->setValue(Config::getJiraDomain());
 		$recipient_jira->addSubItem($jira_domain);
 
 		$jira_project_key = new ilTextInputGUI(self::plugin()->translate("srsu_jira_project_key"), "srsu_jira_project_key");
 		$jira_project_key->setRequired(true);
-		$jira_project_key->setValue(HelpMeConfig::getJiraProjectKey());
+		$jira_project_key->setValue(Config::getJiraProjectKey());
 		$recipient_jira->addSubItem($jira_project_key);
 
 		$jira_issue_type = new ilTextInputGUI(self::plugin()->translate("srsu_jira_issue_type"), "srsu_jira_issue_type");
 		$jira_issue_type->setRequired(true);
 		$jira_issue_type->setInfo("Task, Bug, ...");
-		$jira_issue_type->setValue(HelpMeConfig::getJiraIssueType());
+		$jira_issue_type->setValue(Config::getJiraIssueType());
 		$recipient_jira->addSubItem($jira_issue_type);
 
 		// Jira authorization
 		$jira_authorization = new ilRadioGroupInputGUI(self::plugin()->translate("srsu_jira_authorization"), "srsu_jira_authorization");
 		$jira_authorization->setRequired(true);
-		$jira_authorization->setValue(HelpMeConfig::getJiraAuthorization());
+		$jira_authorization->setValue(Config::getJiraAuthorization());
 		$recipient_jira->addSubItem($jira_authorization);
 
 		// Username & Password
@@ -84,13 +84,13 @@ class HelpMeConfigFormGUI extends ActiveRecordConfigFormGUI {
 
 		$jira_username = new ilTextInputGUI(self::plugin()->translate("srsu_jira_username"), "srsu_jira_username");
 		$jira_username->setRequired(true);
-		$jira_username->setValue(HelpMeConfig::getJiraUsername());
+		$jira_username->setValue(Config::getJiraUsername());
 		$jira_authorization_userpassword->addSubItem($jira_username);
 
 		$jira_password = new ilPasswordInputGUI(self::plugin()->translate("srsu_jira_password"), "srsu_jira_password");
 		$jira_password->setRequired(true);
 		$jira_password->setRetype(false);
-		$jira_password->setValue(HelpMeConfig::getJiraPassword());
+		$jira_password->setValue(Config::getJiraPassword());
 		$jira_authorization_userpassword->addSubItem($jira_password);
 
 		// oAuth
@@ -99,18 +99,18 @@ class HelpMeConfigFormGUI extends ActiveRecordConfigFormGUI {
 
 		$jira_consumer_key = new ilTextInputGUI(self::plugin()->translate("srsu_jira_consumer_key"), "srsu_jira_consumer_key");
 		$jira_consumer_key->setRequired(true);
-		$jira_consumer_key->setValue(HelpMeConfig::getJiraConsumerKey());
+		$jira_consumer_key->setValue(Config::getJiraConsumerKey());
 		$jira_oauth->addSubItem($jira_consumer_key);
 
 		$jira_private_key = new ilTextAreaInputGUI(self::plugin()->translate("srsu_jira_private_key"), "srsu_jira_private_key");
 		$jira_private_key->setRequired(true);
 		$jira_private_key->setInfo("PEM formatted RSA private key");
-		$jira_private_key->setValue(HelpMeConfig::getJiraPrivateKey());
+		$jira_private_key->setValue(Config::getJiraPrivateKey());
 		$jira_oauth->addSubItem($jira_private_key);
 
 		$jira_access_token = new ilTextInputGUI(self::plugin()->translate("srsu_jira_access_token"), "srsu_jira_access_token");
 		$jira_access_token->setRequired(true);
-		$jira_access_token->setValue(HelpMeConfig::getJiraAccessToken());
+		$jira_access_token->setValue(Config::getJiraAccessToken());
 		$jira_oauth->addSubItem($jira_access_token);
 
 		// Priorities
@@ -125,7 +125,7 @@ class HelpMeConfigFormGUI extends ActiveRecordConfigFormGUI {
 		$info->setRequired(true);
 		$info->setUseRte(true);
 		$info->setRteTagSet("extended");
-		$info->setValue(HelpMeConfig::getInfo());
+		$info->setValue(Config::getInfo());
 		$this->addItem($info);
 
 		// Roles
@@ -144,45 +144,45 @@ class HelpMeConfigFormGUI extends ActiveRecordConfigFormGUI {
 	 */
 	public function updateConfig()/*: void*/ {
 		$recipient = $this->getInput("srsu_recipient");
-		HelpMeConfig::setRecipient($recipient);
+		Config::setRecipient($recipient);
 
 		$send_email_address = $this->getInput("srsu_send_email_address");
-		HelpMeConfig::setSendEmailAddress($send_email_address);
+		Config::setSendEmailAddress($send_email_address);
 
 		$jira_domain = $this->getInput("srsu_jira_domain");
-		HelpMeConfig::setJiraDomain($jira_domain ?? "");
+		Config::setJiraDomain($jira_domain ?? "");
 
 		$jira_project_key = $this->getInput("srsu_jira_project_key");
-		HelpMeConfig::setJiraProjectKey($jira_project_key ?? "");
+		Config::setJiraProjectKey($jira_project_key ?? "");
 
 		$jira_issue_type = $this->getInput("srsu_jira_issue_type");
-		HelpMeConfig::setJiraIssueType($jira_issue_type ?? "");
+		Config::setJiraIssueType($jira_issue_type ?? "");
 
 		$jira_authorization = $this->getInput("srsu_jira_authorization");
-		HelpMeConfig::setJiraAuthorization($jira_authorization ?? "");
+		Config::setJiraAuthorization($jira_authorization ?? "");
 
 		$jira_username = $this->getInput("srsu_jira_username");
-		HelpMeConfig::setJiraUsername($jira_username ?? "");
+		Config::setJiraUsername($jira_username ?? "");
 
 		$jira_password = $this->getInput("srsu_jira_password");
-		HelpMeConfig::setJiraPassword($jira_password ?? "");
+		Config::setJiraPassword($jira_password ?? "");
 
 		$jira_consumer_key = $this->getInput("srsu_jira_consumer_key");
-		HelpMeConfig::setJiraConsumerKey($jira_consumer_key ?? "");
+		Config::setJiraConsumerKey($jira_consumer_key ?? "");
 
 		$jira_private_key = $this->getInput("srsu_jira_private_key");
-		HelpMeConfig::setJiraPrivateKey($jira_private_key ?? "");
+		Config::setJiraPrivateKey($jira_private_key ?? "");
 
 		$jira_access_token = $this->getInput("srsu_jira_access_token");
-		HelpMeConfig::setJiraAccessToken($jira_access_token ?? "");
+		Config::setJiraAccessToken($jira_access_token ?? "");
 
 		$priorities = $this->getInput("srsu_priorities");
-		HelpMeConfigPriority::setConfigPrioritiesArray($priorities);
+		ConfigPriority::setConfigPrioritiesArray($priorities);
 
 		$info = $this->getInput("srsu_info");
-		HelpMeConfig::setInfo($info);
+		Config::setInfo($info);
 
 		$roles = $this->getInput("srsu_roles");
-		HelpMeConfigRole::setConfigRolesArray($roles);
+		ConfigRole::setConfigRolesArray($roles);
 	}
 }

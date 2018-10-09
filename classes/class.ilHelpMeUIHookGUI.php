@@ -3,7 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Config\HelpMeConfigRole;
+use srag\Plugins\HelpMe\Config\ConfigRole;
 
 /**
  * Class ilHelpMeUIHookGUI
@@ -36,7 +36,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		$a_part, /*array*/
 		$a_par = []): array {
 		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
-			if (HelpMeConfigRole::currentUserHasRole()) {
+			if (ConfigRole::currentUserHasRole()) {
 				// Support button
 				$tpl = self::plugin()->template("il_help_me_button.html");
 
@@ -49,8 +49,8 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				$tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("srsu_support"));
 				$tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
 					ilUIPluginRouterGUI::class,
-					ilHelpMeGUI::class
-				], ilHelpMeGUI::CMD_ADD_SUPPORT, "", true));
+					HelpMeGUI::class
+				], HelpMeGUI::CMD_ADD_SUPPORT, "", true));
 				$html = $tpl->get();
 
 				return [ "mode" => self::PREPEND, "html" => $html ];
@@ -58,7 +58,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		}
 
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
-			if (HelpMeConfigRole::currentUserHasRole()) {
+			if (ConfigRole::currentUserHasRole()) {
 				// Modal
 				// TODO: Fix after first configure currentUserHasRole false because not yet set, only after this
 				// TODO: Modal UIServices

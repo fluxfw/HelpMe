@@ -3,17 +3,17 @@
 namespace srag\Plugins\HelpMe\Recipient;
 
 use srag\JiraCurl\JiraCurl;
-use srag\Plugins\HelpMe\Config\HelpMeConfig;
-use srag\Plugins\HelpMe\Support\HelpMeSupport;
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Support\Support;
 
 /**
- * Class HelpMeRecipientCreateJiraTicket
+ * Class RecipientCreateJiraTicket
  *
  * @package srag\Plugins\HelpMe\Recipient
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class HelpMeRecipientCreateJiraTicket extends HelpMeRecipient {
+class RecipientCreateJiraTicket extends Recipient {
 
 	/**
 	 * @var JiraCurl
@@ -26,25 +26,25 @@ class HelpMeRecipientCreateJiraTicket extends HelpMeRecipient {
 
 
 	/**
-	 * HelpMeRecipientCreateJiraTicket constructor
+	 * RecipientCreateJiraTicket constructor
 	 *
-	 * @param HelpMeSupport $support
+	 * @param Support $support
 	 */
-	public function __construct(HelpMeSupport $support) {
+	public function __construct(Support $support) {
 		parent::__construct($support);
 
 		$this->jira_curl = new JiraCurl();
 
-		$this->jira_curl->setJiraDomain(HelpMeConfig::getJiraDomain());
+		$this->jira_curl->setJiraDomain(Config::getJiraDomain());
 
-		$this->jira_curl->setJiraAuthorization(HelpMeConfig::getJiraAuthorization());
+		$this->jira_curl->setJiraAuthorization(Config::getJiraAuthorization());
 
-		$this->jira_curl->setJiraUsername(HelpMeConfig::getJiraUsername());
-		$this->jira_curl->setJiraPassword(HelpMeConfig::getJiraPassword());
+		$this->jira_curl->setJiraUsername(Config::getJiraUsername());
+		$this->jira_curl->setJiraPassword(Config::getJiraPassword());
 
-		$this->jira_curl->setJiraConsumerKey(HelpMeConfig::getJiraConsumerKey());
-		$this->jira_curl->setJiraPrivateKey(HelpMeConfig::getJiraPrivateKey());
-		$this->jira_curl->setJiraAccessToken(HelpMeConfig::getJiraAccessToken());
+		$this->jira_curl->setJiraConsumerKey(Config::getJiraConsumerKey());
+		$this->jira_curl->setJiraPrivateKey(Config::getJiraPrivateKey());
+		$this->jira_curl->setJiraAccessToken(Config::getJiraAccessToken());
 	}
 
 
@@ -62,7 +62,7 @@ class HelpMeRecipientCreateJiraTicket extends HelpMeRecipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket(): bool {
-		$issue_key = $this->jira_curl->createJiraIssueTicket(HelpMeConfig::getJiraProjectKey(), HelpMeConfig::getJiraIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
+		$issue_key = $this->jira_curl->createJiraIssueTicket(Config::getJiraProjectKey(), Config::getJiraIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
 
 		if ($issue_key === NULL) {
 			return false;
