@@ -36,30 +36,41 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 		$a_comp, /*string*/
 		$a_part, /*array*/
 		$a_par = []): array {
-		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
+		if ($a_par["tpl_id"] === "Services/MainMenu/tpl.main_menu.html" && $a_part === "template_get") {
+
 			if (self::access()->currentUserHasRole()) {
-				// Support button
-				$tpl = self::plugin()->template("il_help_me_button.html");
 
-				iljQueryUtil::initjQuery();
-				self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
-				self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
-				self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/HelpMe.js");
+				$html = $a_par["html"];
 
-				$tpl->setCurrentBlock("il_help_me_button");
-				$tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
-				$tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
-					ilUIPluginRouterGUI::class,
-					HelpMeSupportGUI::class
-				], HelpMeSupportGUI::CMD_ADD_SUPPORT, "", true));
-				$html = $tpl->get();
+				$userlog_pos = stripos($html, '<li id="userlog" class="dropdown">');
+				if ($userlog_pos !== false) {
 
-				return [ "mode" => self::PREPEND, "html" => $html ];
+					// Support button
+					$tpl = self::plugin()->template("il_help_me_button.html");
+
+					iljQueryUtil::initjQuery();
+					self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
+					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
+					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/HelpMe.js");
+
+					$tpl->setCurrentBlock("il_help_me_button");
+					$tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+					$tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
+						ilUIPluginRouterGUI::class,
+						HelpMeSupportGUI::class
+					], HelpMeSupportGUI::CMD_ADD_SUPPORT, "", true));
+
+					$html = substr($html, 0, ($userlog_pos - 1)) . $tpl->get() . substr($html, $userlog_pos);
+
+					return [ "mode" => self::REPLACE, "html" => $html ];
+				}
 			}
 		}
 
 		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
+
 			if (self::access()->currentUserHasRole()) {
+
 				// Modal
 				// TODO: Fix after first configure currentUserHasRole false because not yet set, only after this
 				// TODO: Modal UIServices
