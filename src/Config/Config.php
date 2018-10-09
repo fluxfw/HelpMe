@@ -210,7 +210,7 @@ class Config extends ActiveRecordConfig {
 
 
 	/**
-	 * @return array
+	 * @return string[]
 	 */
 	public static function getPriorities(): array {
 		return self::getJsonValue(self::KEY_PRIORITIES, true, self::DEFAULT_PRIORITY);
@@ -218,7 +218,7 @@ class Config extends ActiveRecordConfig {
 
 
 	/**
-	 * @param array $priorities
+	 * @param string[] $priorities
 	 */
 	public static function setPriorities(array $priorities)/*: void*/ {
 		self::setJsonValue(self::KEY_PRIORITIES, $priorities);
@@ -242,7 +242,7 @@ class Config extends ActiveRecordConfig {
 
 
 	/**
-	 * @return array
+	 * @return int[]
 	 */
 	public static function getRoles(): array {
 		return self::getJsonValue(self::KEY_ROLES, true, self::DEFAULT_ROLES);
@@ -250,7 +250,7 @@ class Config extends ActiveRecordConfig {
 
 
 	/**
-	 * @param array $roles
+	 * @param int[] $roles
 	 */
 	public static function setRoles(array $roles)/*: void*/ {
 		self::setJsonValue(self::KEY_ROLES, $roles);

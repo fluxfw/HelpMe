@@ -197,6 +197,9 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 
 		$roles = $this->getInput("srsu_roles");
 		array_shift($roles);
+		$roles = array_map(function (string $role_id): int {
+			return intval($role_id);
+		}, $roles);
 		Config::setRoles($roles);
 	}
 }
