@@ -89,7 +89,7 @@ abstract class Recipient {
 			$mailer->Body($this->support->getBody("email"));
 
 			foreach ($this->support->getScreenshots() as $screenshot) {
-				$mailer->Attach($screenshot["tmp_name"], $screenshot["type"], "attachment", $screenshot["name"]);
+				$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
 			}
 
 			$mailer->Send();

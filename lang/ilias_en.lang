@@ -28,20 +28,23 @@ removeplugindataconfirm_keep_data#:#Keep %1$s data
 removeplugindataconfirm_msg_kept_data#:#The %1$s data was kept!
 removeplugindataconfirm_msg_removed_data#:#The %1$s data was also removed!
 removeplugindataconfirm_remove_data#:#Remove %1$s data
+support_add_page_screenshot#:#Take screenshot of current page
+support_add_screenshot#:#Add screenshot
 support_cancel#:#Cancel
 support_close#:#Close
 support_confirmation#:#Confirmation
 support_datetime#:#Date & time
+support_delete_screenshot#:#Delete screenshot
 support_description#:#Description
 support_email_address#:#Email address
 support_login#:#Login
 support_name#:#Name
+support_page_screenshot#:#Page_Screenshot
 support_phone#:#Phone
 support_please_select#:#please select
 support_priority#:#Priority
 support_reproduce_steps#:#Steps to Reproduce
-support_screenshot#:#Screenshot
-support_screenshot_current_page#:#Take screenshot of current page
+support_screenshots#:#Screenshots
 support_sent_failure#:#Sorry, your support request could not be sent!
 support_sent_success#:#Thank you for your support request! A confirmation email has been sent to you!
 support_submit#:#Submit

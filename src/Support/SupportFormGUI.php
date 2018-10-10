@@ -3,8 +3,8 @@
 namespace srag\Plugins\HelpMe\Support;
 
 use HelpMeSupportGUI;
+use ilCustomInputGUI;
 use ilEMailInputGUI;
-use ilFileInputGUI;
 use ilHelpMePlugin;
 use ilNonEditableValueGUI;
 use ilPropertyFormGUI;
@@ -58,8 +58,6 @@ class SupportFormGUI extends ilPropertyFormGUI {
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", self::plugin()
-			->translate("screenshot_current_page", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_page_screenshot");
 		$this->addCommandButton(HelpMeSupportGUI::CMD_NEW_SUPPORT, self::plugin()
 			->translate("submit", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_submit");
 		$this->addCommandButton("", self::plugin()->translate("cancel", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
@@ -106,9 +104,13 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$system_infos->setValue($this->getBrowserInfos());
 		$this->addItem($system_infos);
 
-		$screenshot = new ilFileInputGUI(self::plugin()->translate("screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_screenshot");
+		$screenshots_tpl = self::plugin()->template("helpme_screenshots.html");
+		$screenshots_tpl->setVariable("TXT_ADD_SCREENSHOT", self::plugin()->translate("add_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+		$screenshots_tpl->setVariable("TXT_ADD_PAGE_SCREENSHOT", self::plugin()
+			->translate("add_page_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+		$screenshot = new ilCustomInputGUI(self::plugin()->translate("screenshots", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_screenshots");
+		$screenshot->setHtml($screenshots_tpl->get());
 		$screenshot->setRequired(false);
-		$screenshot->setSuffixes([ "jpg", "png" ]);
 		$this->addItem($screenshot);
 	}
 
@@ -156,9 +158,15 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$system_infos = $this->getBrowserInfos();
 		$support->setSystemInfos($system_infos);
 
-		$screenshot = $this->getInput("srsu_screenshot");
-		if ($screenshot["tmp_name"] != "") {
-			$support->addScreenshot($screenshot);
+		if (!self::dic()->upload()->hasBeenProcessed()) {
+			self::dic()->upload()->process();
+		}
+		if (self::dic()->upload()->hasUploads()) {
+			$screenshots = self::dic()->upload()->getResults();
+
+			foreach ($screenshots as $screenshot) {
+				$support->addScreenshot($screenshot);
+			}
 		}
 
 		return $support;

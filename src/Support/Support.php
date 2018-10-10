@@ -6,6 +6,7 @@ use HelpMeSupportGUI;
 use ilDatePresentation;
 use ilDateTime;
 use ilHelpMePlugin;
+use ILIAS\FileUpload\DTO\UploadResult;
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -62,7 +63,7 @@ class Support {
 	 */
 	protected $system_infos;
 	/**
-	 * @var array[]
+	 * @var UploadResult[]
 	 */
 	protected $screenshots = [];
 
@@ -127,9 +128,9 @@ class Support {
 	/**
 	 * Add screenshot from post file upload
 	 *
-	 * @param array $screenshot
+	 * @param UploadResult $screenshot
 	 */
-	public function addScreenshot(array $screenshot)/*: void*/ {
+	public function addScreenshot(UploadResult $screenshot)/*: void*/ {
 		$this->screenshots[] = $screenshot;
 	}
 
@@ -315,7 +316,7 @@ class Support {
 
 
 	/**
-	 * @return array[]
+	 * @return UploadResult[]
 	 */
 	public function getScreenshots(): array {
 		return $this->screenshots;
@@ -323,7 +324,7 @@ class Support {
 
 
 	/**
-	 * @param array[] $screenshots
+	 * @param UploadResult[] $screenshots
 	 */
 	public function setScreenshots(array $screenshots)/*: void*/ {
 		$this->screenshots = $screenshots;

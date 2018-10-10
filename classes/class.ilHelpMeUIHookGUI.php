@@ -84,21 +84,28 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 					if ($helpme_js_pos !== false) {
 
 						$support_button_tpl = self::plugin()->template("helpme_support_button.html");
-						$support_button_tpl->setCurrentBlock("helpme_support_button");
-						$support_button_tpl->setVariable("SUPPORT_TXT", self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+						$support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 						$support_button_tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
 							ilUIPluginRouterGUI::class,
 							HelpMeSupportGUI::class
 						], HelpMeSupportGUI::CMD_ADD_SUPPORT, "", true));
+
+						$screenshot_tpl = self::plugin()->template("helpme_screenshot.html");
+						$screenshot_tpl->setVariable("TXT_DELETE_SCREENSHOT", self::plugin()
+							->translate("delete_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 
 						// TODO: Modal UIServices
 						$modal = ilModalGUI::getInstance();
 						$modal->setType(ilModalGUI::TYPE_LARGE);
 						$modal->setHeading(self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 
-						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>il.HelpMe.SUPPORT_BUTTON_TEMPLATE = '
-							. json_encode($support_button_tpl->get()) . '; il.HelpMe.MODAL_TEMPLATE = ' . json_encode($modal->getHTML())
-							. '; il.HelpMe.init();</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
+						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
+il.HelpMe.MODAL_TEMPLATE = ' . json_encode($modal->getHTML()) . ';
+il.HelpMe.PAGE_SCREENSHOT_NAME = ' . json_encode(self::plugin()->translate("page_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT)) . ';
+il.HelpMe.SCREENSHOT_TEMPLATE = ' . json_encode($screenshot_tpl->get()) . ';
+il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button_tpl->get()) . ';
+il.HelpMe.init();
+							</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
 
 						return [ "mode" => self::REPLACE, "html" => $html ];
 					}

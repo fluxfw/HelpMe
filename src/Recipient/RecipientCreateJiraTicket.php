@@ -81,7 +81,7 @@ class RecipientCreateJiraTicket extends Recipient {
 	 */
 	protected function addScreenshoots(): bool {
 		foreach ($this->support->getScreenshots() as $screenshot) {
-			if (!$this->jira_curl->addAttachmentToIssue($this->issue_key, $screenshot["name"], $screenshot["type"], $screenshot["tmp_name"])) {
+			if (!$this->jira_curl->addAttachmentToIssue($this->issue_key, $screenshot->getName(), $screenshot->getMimeType(), $screenshot->getPath())) {
 				return false;
 			}
 		}

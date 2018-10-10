@@ -8,13 +8,23 @@ il.HelpMe = {
 	IDS: [
 		"ilMMSearch",
 		"userlog"/*,
-		"mm_lang_sel"*/
+		"mm_lang_sel"*/ // TODO:
 	],
 
 	/**
 	 * @type {string}
 	 */
 	MODAL_TEMPLATE: "",
+
+	/**
+	 * @type {string}
+	 */
+	PAGE_SCREENSHOT_NAME: "",
+
+	/**
+	 * @type {string}
+	 */
+	SCREENSHOT_TEMPLATE: "",
 
 	/**
 	 * @type {string}
@@ -37,14 +47,70 @@ il.HelpMe = {
 	modal: null,
 
 	/**
-	 * @type {Blob|null}
+	 * @type {Blob[]}
 	 */
-	page_screenshot: null,
+	screenshots: [],
+
+	/**
+	 *
+	 */
+	addPageScreenshot: function () {
+		// Hide modal on the screenshot
+		this.modal.css("visibility", "hidden");
+		$(".modal-backdrop").css("visibility", "hidden");
+		$("body").css("overflow", "visible"); // Fix transparent not visible area from modal
+
+		html2canvas($("html")[0]).then(function (canvas) {
+
+			// Restore modal
+			this.modal.css("visibility", "");
+			$(".modal-backdrop").css("visibility", "");
+			$("body").css("overflow", "");
+
+			// Convert canvas screenshot to png blob for file upload
+			canvas.toBlob(function (screenshot) {
+				screenshot.lastModifiedDate = new Date();
+				screenshot.name = this.PAGE_SCREENSHOT_NAME + ".png";
+
+				this.screenshots.push(screenshot);
+
+				this.updateScreenshots();
+			}.bind(this), "image/png");
+		}.bind(this));
+	},
+
+	/**
+	 *
+	 */
+	addScreenshot: function () {
+		var $screenshot_file_input = $("#helpme_screenshot_file_input");
+
+		$screenshot_file_input.click();
+	},
+
+	/**
+	 *
+	 */
+	addScreenshotOnChange: function () {
+		var screenshot_file_input = $("#helpme_screenshot_file_input")[0];
+
+		if (screenshot_file_input.value !== "") {
+			Array.prototype.forEach.call(screenshot_file_input.files, function (screenshot) {
+				this.screenshots.push(screenshot);
+			}, this);
+
+			screenshot_file_input.value = "";
+
+			this.updateScreenshots();
+		}
+	},
 
 	/**
 	 * @returns {boolean}
 	 */
 	cancel: function () {
+		this.screenshots = [];
+
 		this.modal.modal("hide");
 
 		return false;
@@ -54,6 +120,8 @@ il.HelpMe = {
 	 * @returns {boolean}
 	 */
 	click: function () {
+		this.screenshots = []; // TODO: Correct handle cancel event
+
 		var get_url = this.button.attr("href");
 
 		$.get(get_url, this.show.bind(this));
@@ -62,11 +130,23 @@ il.HelpMe = {
 	},
 
 	/**
+	 * @param {File|Blob} screenshot
+	 */
+	deleteScreenshot: function (screenshot) {
+		var i = this.screenshots.indexOf(screenshot);
+
+		this.screenshots.splice(i, 1);
+
+		this.updateScreenshots();
+	},
+
+	/**
 	 *
 	 */
 	init: function () {
 		$(document).ready(function () {
 			this.initButton();
+
 			this.initModal();
 		}.bind(this));
 	},
@@ -89,7 +169,7 @@ il.HelpMe = {
 			}
 
 			return true;
-		}.bind(this));
+		}, this);
 
 		if (test) {
 			$("#ilTopBarNav").append(this.li);
@@ -102,50 +182,8 @@ il.HelpMe = {
 	initModal: function () {
 		this.modal = $(this.MODAL_TEMPLATE);
 
+		// TODO: Screenshot icons
 		$("body").append(this.modal);
-	},
-
-
-	/**
-	 * @param {jQuery} $screenshot
-	 *
-	 * @returns {boolean}
-	 */
-	pageScreenshot: function ($screenshot) {
-		// Hide modal on the screenshot
-		this.modal.css("visibility", "hidden");
-		$(".modal-backdrop").css("visibility", "hidden");
-		$("body").css("overflow", "visible"); // Fix transparent not visible area from modal
-
-		html2canvas($("html")[0]).then(function (canvas) {
-
-			// Restore modal
-			this.modal.css("visibility", "");
-			$(".modal-backdrop").css("visibility", "");
-			$("body").css("overflow", "");
-
-			// Convert canvas screenshot to png blob for file upload
-			canvas.toBlob(function (blob) {
-				this.page_screenshot = blob;
-
-				$screenshot.val(""); // Remove selected file
-
-				$screenshot.parent().parent().next().val("Screenshot.png"); // Custom file select label
-			}.bind(this), "image/png");
-		}.bind(this));
-
-		return false;
-	},
-
-	/**
-	 * @param {jQuery} $screenshot
-	 */
-	pageScreenshotClear: function ($screenshot) {
-		this.page_screenshot = null; // Remove page screenshot if a file is selected
-
-		if ($screenshot.val() === "") {
-			$("#srsu_screenshot").parent().parent().next().val(""); // Custom file select label
-		}
 	},
 
 	/**
@@ -157,15 +195,17 @@ il.HelpMe = {
 
 		var $form = $("#form_helpme_form");
 		var $cancel = $("#helpme_cancel");
-		var $screenshot = $("#srsu_screenshot");
-		var $page_screenshot = $("#helpme_page_screenshot");
+		var $add_screenshot = $("#helpme_add_screenshot");
+		var $add_page_screenshot = $("#helpme_add_page_screenshot");
+		var $screenshot_file_input = $("#helpme_screenshot_file_input");
 
 		$form.submit(this.submit.bind(this));
 		$cancel.click(this.cancel.bind(this));
-		$screenshot.change(this.pageScreenshotClear.bind(this, $screenshot));
-		$page_screenshot.click(this.pageScreenshot.bind(this, $screenshot));
+		$add_screenshot.click(this.addScreenshot.bind(this));
+		$add_page_screenshot.click(this.addPageScreenshot.bind(this));
+		$screenshot_file_input.change(this.addScreenshotOnChange.bind(this));
 
-		il.Form.init(); // TODO: Fix may multiple listeners set
+		this.updateScreenshots();
 
 		this.modal.modal("show");
 	},
@@ -179,13 +219,12 @@ il.HelpMe = {
 
 		var post_url = $form.attr("action");
 
-		var data = new FormData($form[0]); // Supports file upload
+		var data = new FormData($form[0]); // Supports files upload
 		data.append($submit.prop("name"), $submit.val()); // Send submit button with cmd
 
-		if (this.page_screenshot !== null) {
-			// Manually add page screenshot
-			data.append("srsu_screenshot", this.page_screenshot, "Screenshot.png");
-		}
+		this.screenshots.forEach(function (screenshot) {
+			data.append("srsu_screenshots[]", screenshot);
+		}, this);
 
 		$.ajax({
 			type: "post",
@@ -197,5 +236,26 @@ il.HelpMe = {
 		});
 
 		return false;
+	},
+
+	/**
+	 *
+	 */
+	updateScreenshots: function () {
+		var $screenshots = $("#helpme_screenshots");
+
+		$screenshots.empty();
+
+		this.screenshots.forEach(function (screenshot) {
+			var $screenshot = $(this.SCREENSHOT_TEMPLATE);
+			var $screenshot_name = $(".helpme_screenshot_name", $screenshot);
+			var $screenshot_delete = $(".helpme_screenshot_delete", $screenshot);
+
+			$screenshot_name.text(screenshot.name);
+
+			$screenshot_delete.click(this.deleteScreenshot.bind(this, screenshot));
+
+			$screenshots.append($screenshot);
+		}, this);
 	}
 };

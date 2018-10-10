@@ -1,6 +1,7 @@
 # Changelog
 
 ## [3.0.0]
+- Multiple screenshots upload support
 - Correctly works now on ILIAS public section
 - Refactoring
 
