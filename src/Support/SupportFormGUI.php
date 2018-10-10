@@ -59,12 +59,12 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
 		$this->addCommandButton("", self::plugin()
-			->translate("screenshot_current_page", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_page_screenshot");
+			->translate("screenshot_current_page", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_page_screenshot");
 		$this->addCommandButton(HelpMeSupportGUI::CMD_NEW_SUPPORT, self::plugin()
-			->translate("submit", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_submit");
-		$this->addCommandButton("", self::plugin()->translate("cancel", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_cancel");
+			->translate("submit", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_submit");
+		$this->addCommandButton("", self::plugin()->translate("cancel", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
 
-		$this->setId("il_help_me_form");
+		$this->setId("helpme_form");
 		$this->setShowTopButtons(false);
 
 		$title = new ilTextInputGUI(self::plugin()->translate("title", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_title");

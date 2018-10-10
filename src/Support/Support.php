@@ -93,7 +93,7 @@ class Support {
 	 * @return string
 	 */
 	public function getBody(string $template): string {
-		$tpl = self::plugin()->template("il_help_me_" . $template . "_body.html");
+		$tpl = self::plugin()->template("helpme_" . $template . "_body.html");
 
 		$fields = [
 			"title" => $this->title,
@@ -109,7 +109,7 @@ class Support {
 		];
 
 		foreach ($fields as $title => $txt) {
-			$tpl->setCurrentBlock("il_help_me_body");
+			$tpl->setCurrentBlock("helpme_body");
 
 			$tpl->setVariable("TITLE", self::plugin()->translate($title, HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 

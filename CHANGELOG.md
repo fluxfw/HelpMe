@@ -1,9 +1,7 @@
 # Changelog
 
-## [2.2.0]
-- Refactoring
-
-## [2.1.0]
+## [3.0.0]
+- Correctly works now on ILIAS public section
 - Refactoring
 
 ## [2.0.0]

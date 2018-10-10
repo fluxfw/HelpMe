@@ -5,7 +5,6 @@ namespace srag\Plugins\HelpMe\Access;
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
-use srag\Plugins\HelpMe\Config\ConfigRoleOld;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -51,6 +50,11 @@ final class Access {
 	 */
 	public function currentUserHasRole(): bool {
 		$user_id = self::dic()->user()->getId();
+
+		// Fix login screen
+		if ($user_id === 0 && boolval(self::dic()->settings()->get("pub_section"))) {
+			$user_id = ANONYMOUS_USER_ID;
+		}
 
 		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
 		$config_roles = Config::getRoles();

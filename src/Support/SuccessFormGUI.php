@@ -46,9 +46,9 @@ class SuccessFormGUI extends ilPropertyFormGUI {
 	protected function initForm()/*: void*/ {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
-		$this->addCommandButton("", self::plugin()->translate("close", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "il_help_me_cancel");
+		$this->addCommandButton("", self::plugin()->translate("close", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
 
-		$this->setId("il_help_me_form");
+		$this->setId("helpme_form");
 		$this->setShowTopButtons(false);
 	}
 }

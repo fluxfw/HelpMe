@@ -88,17 +88,17 @@ class HelpMeSupportGUI {
 	 */
 	protected function show(/*?string*/
 		$message, ilPropertyFormGUI $form)/*: void*/ {
-		$tpl = self::plugin()->template("il_help_me_modal.html");
+		$tpl = self::plugin()->template("helpme_modal.html");
 
-		$tpl->setCurrentBlock("il_help_me_info");
+		$tpl->setCurrentBlock("helpme_info");
 		$tpl->setVariable("INFO", Config::getInfo());
 
 		if ($message !== NULL) {
-			$tpl->setCurrentBlock("il_help_me_message");
+			$tpl->setCurrentBlock("helpme_message");
 			$tpl->setVariable("MESSAGE", $message);
 		}
 
-		$tpl->setCurrentBlock("il_help_me_form");
+		$tpl->setCurrentBlock("helpme_form");
 		$tpl->setVariable("FORM", $form->getHTML());
 
 		self::plugin()->output($tpl);
