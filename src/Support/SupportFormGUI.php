@@ -158,6 +158,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$system_infos = $this->getBrowserInfos();
 		$support->setSystemInfos($system_infos);
 
+		// TODO: Match by post var srsu_screenshots
 		if (!self::dic()->upload()->hasBeenProcessed()) {
 			self::dic()->upload()->process();
 		}
