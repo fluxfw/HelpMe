@@ -12,6 +12,7 @@ Update, activate and config the plugin in the ILIAS Plugin Administration
 If yout want use the Jira recipient with oAuth authorization you can find a guide to config your Jira installation: https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/
 
 ### Dependencies
+* PHP 7.0
 * [composer](https://getcomposer.org)
 * [npm](https://nodejs.org)
 * [html2canvas](https://www.npmjs.com/package/html2canvas)
