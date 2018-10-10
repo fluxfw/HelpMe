@@ -80,9 +80,7 @@ abstract class Recipient {
 		try {
 			$mailer = new ilMimeMail();
 
-			if (self::version()->is53()) {
-				$mailer->From(self::dic()->mailMimeSenderFactory()->system());
-			}
+			$mailer->From(self::dic()->mailMimeSenderFactory()->system());
 
 			$mailer->To($this->support->getEmail());
 

@@ -43,11 +43,7 @@ class RecipientSendMail extends Recipient {
 		try {
 			$mailer = new ilMimeMail();
 
-			if (self::version()->is53()) {
-				$mailer->From(new RecipientSendMailSender($this->support));
-			} else {
-				$mailer->From([ $this->support->getEmail(), $this->support->getName() ]);
-			}
+			$mailer->From(new RecipientSendMailSender($this->support));
 
 			$mailer->To(Config::getSendEmailAddress());
 
