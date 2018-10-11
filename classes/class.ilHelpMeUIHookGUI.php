@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Screenshot\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -61,6 +62,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
 
+					ScreenshotsInputGUI::initJS();
 					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/HelpMe.js", false);
 
 					// Fix some pages may not load Form.js
@@ -90,10 +92,6 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 							HelpMeSupportGUI::class
 						], HelpMeSupportGUI::CMD_ADD_SUPPORT, "", true));
 
-						$screenshot_tpl = self::plugin()->template("helpme_screenshot.html");
-						$screenshot_tpl->setVariable("TXT_DELETE_SCREENSHOT", self::plugin()
-							->translate("delete_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
-
 						// TODO: Modal UIServices
 						$modal = ilModalGUI::getInstance();
 						$modal->setType(ilModalGUI::TYPE_LARGE);
@@ -101,10 +99,9 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode($modal->getHTML()) . ';
-il.HelpMe.PAGE_SCREENSHOT_NAME = ' . json_encode(self::plugin()->translate("page_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT)) . ';
-il.HelpMe.SCREENSHOT_TEMPLATE = ' . json_encode($screenshot_tpl->get()) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button_tpl->get()) . ';
 il.HelpMe.init();
+' . ScreenshotsInputGUI::getJSOnLoadCode() . '
 							</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
 
 						return [ "mode" => self::REPLACE, "html" => $html ];

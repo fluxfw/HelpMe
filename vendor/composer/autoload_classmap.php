@@ -75,6 +75,7 @@ return array(
     'srag\\Plugins\\HelpMe\\Recipient\\RecipientCreateJiraTicket' => $baseDir . '/src/Recipient/RecipientCreateJiraTicket.php',
     'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMail' => $baseDir . '/src/Recipient/RecipientSendMail.php',
     'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMailSender' => $baseDir . '/src/Recipient/RecipientSendMailSender.php',
+    'srag\\Plugins\\HelpMe\\Screenshot\\ScreenshotsInputGUI' => $baseDir . '/src/Screenshots/ScreenshotsInputGUI.php',
     'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => $baseDir . '/src/Support/SuccessFormGUI.php',
     'srag\\Plugins\\HelpMe\\Support\\Support' => $baseDir . '/src/Support/Support.php',
     'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => $baseDir . '/src/Support/SupportFormGUI.php',

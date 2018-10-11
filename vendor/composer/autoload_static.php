@@ -118,6 +118,7 @@ class ComposerStaticInit42fa09a936c3d865da5123c7a1c8d53f
         'srag\\Plugins\\HelpMe\\Recipient\\RecipientCreateJiraTicket' => __DIR__ . '/../..' . '/src/Recipient/RecipientCreateJiraTicket.php',
         'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMail' => __DIR__ . '/../..' . '/src/Recipient/RecipientSendMail.php',
         'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMailSender' => __DIR__ . '/../..' . '/src/Recipient/RecipientSendMailSender.php',
+        'srag\\Plugins\\HelpMe\\Screenshot\\ScreenshotsInputGUI' => __DIR__ . '/../..' . '/src/Screenshots/ScreenshotsInputGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/SuccessFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Support' => __DIR__ . '/../..' . '/src/Support/Support.php',
         'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => __DIR__ . '/../..' . '/src/Support/SupportFormGUI.php',

@@ -3,7 +3,6 @@
 namespace srag\Plugins\HelpMe\Support;
 
 use HelpMeSupportGUI;
-use ilCustomInputGUI;
 use ilEMailInputGUI;
 use ilHelpMePlugin;
 use ilNonEditableValueGUI;
@@ -15,6 +14,7 @@ use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\DIC\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Screenshot\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -104,14 +104,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$system_infos->setValue($this->getBrowserInfos());
 		$this->addItem($system_infos);
 
-		$screenshots_tpl = self::plugin()->template("helpme_screenshots.html");
-		$screenshots_tpl->setVariable("TXT_ADD_SCREENSHOT", self::plugin()->translate("add_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
-		$screenshots_tpl->setVariable("TXT_ADD_PAGE_SCREENSHOT", self::plugin()
-			->translate("add_page_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
-		// TODO: Postname auf input-file und nicht auf das customhtmlfield.
-		// TODO: Ev. separate GUI-Klasse für Custom-Upload
-		$screenshot = new ilCustomInputGUI(self::plugin()->translate("screenshots", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_screenshots");
-		$screenshot->setHtml($screenshots_tpl->get());
+		$screenshot = new ScreenshotsInputGUI(self::plugin()->translate("screenshots", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_screenshots");
 		$screenshot->setRequired(false);
 		$this->addItem($screenshot);
 	}
@@ -160,16 +153,9 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$system_infos = $this->getBrowserInfos();
 		$support->setSystemInfos($system_infos);
 
-		// TODO: Match by post var srsu_screenshots
-		if (!self::dic()->upload()->hasBeenProcessed()) {
-			self::dic()->upload()->process();
-		}
-		if (self::dic()->upload()->hasUploads()) {
-			$screenshots = self::dic()->upload()->getResults();
-
-			foreach ($screenshots as $screenshot) {
-				$support->addScreenshot($screenshot);
-			}
+		$screenshots = $this->getItemByPostVar("srsu_screenshots")->getValue();
+		foreach ($screenshots as $screenshot) {
+			$support->addScreenshot($screenshot);
 		}
 
 		return $support;
