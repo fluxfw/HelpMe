@@ -108,6 +108,8 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$screenshots_tpl->setVariable("TXT_ADD_SCREENSHOT", self::plugin()->translate("add_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 		$screenshots_tpl->setVariable("TXT_ADD_PAGE_SCREENSHOT", self::plugin()
 			->translate("add_page_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+		// TODO: Postname auf input-file und nicht auf das customhtmlfield.
+		// TODO: Ev. separate GUI-Klasse für Custom-Upload
 		$screenshot = new ilCustomInputGUI(self::plugin()->translate("screenshots", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_screenshots");
 		$screenshot->setHtml($screenshots_tpl->get());
 		$screenshot->setRequired(false);

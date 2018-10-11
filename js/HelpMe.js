@@ -253,6 +253,8 @@ il.HelpMe = {
 
 			$screenshot_name.text(screenshot.name);
 
+			// TODO: May preview
+
 			$screenshot_delete.click(this.deleteScreenshot.bind(this, screenshot));
 
 			$screenshots.append($screenshot);
