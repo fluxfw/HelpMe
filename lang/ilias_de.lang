@@ -28,18 +28,18 @@ removeplugindataconfirm_keep_data#:#%1$s-Daten behalten
 removeplugindataconfirm_msg_kept_data#:#Die %1$s-Daten wurden behalten!
 removeplugindataconfirm_msg_removed_data#:#Die %1$s-Daten wurden auch entfernt!
 removeplugindataconfirm_remove_data#:#Entferne %1$s-Daten
-support_add_page_screenshot#:#Screenshot der aktuellen Seite erstellen
-support_add_screenshot#:#Screenshot hinzufügen
+screenshotsinputgui_page_screenshot#:#Page_Screenshot
+screenshotsinputgui_remove_screenshot#:#Screenshot entfernen
+screenshotsinputgui_take_page_screenshot#:#Screenshot der aktuellen Seite aufnehmen
+screenshotsinputgui_upload_screenshot#:#Screenshot hochladen
 support_cancel#:#Abbrechen
 support_close#:#Schliessen
 support_confirmation#:#Bestätigung
 support_datetime#:#Datum & Zeit
-support_delete_screenshot#:#Screenshot löschen
 support_description#:#Beschreibung
 support_email_address#:#E-Mail Adresse
 support_login#:#Login
 support_name#:#Name
-support_page_screenshot#:#Page_Screenshot
 support_phone#:#Telefon
 support_please_select#:#bitte wählen
 support_priority#:#Dringlichkeit

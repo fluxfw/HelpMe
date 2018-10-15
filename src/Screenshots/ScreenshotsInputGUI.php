@@ -2,14 +2,15 @@
 
 namespace srag\Plugins\HelpMe\Screenshot;
 
-use HelpMeSupportGUI;
 use ilFormException;
 use ilFormPropertyGUI;
-use ilHelpMePlugin;
 use ILIAS\FileUpload\DTO\ProcessingStatus;
 use ILIAS\FileUpload\DTO\UploadResult;
 use ilTemplate;
 use srag\DIC\DICTrait;
+use srag\DIC\Plugin\Plugin;
+use srag\DIC\Plugin\Pluginable;
+use srag\DIC\Plugin\PluginInterface;
 
 /**
  * Class ScreenshotsInputGUI
@@ -20,38 +21,22 @@ use srag\DIC\DICTrait;
  *
  * @since   ILIAS 5.3
  */
-class ScreenshotsInputGUI extends ilFormPropertyGUI {
+class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable {
 
 	use DICTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-
-
+	const LANG_MODULE_SCREENSHOTSINPUTGUI = "screenshotsinputgui";
 	/**
-	 *
+	 * @var bool
 	 */
-	public static function initJS()/*: void*/ {
-		self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/Screenshots.js", false);
-		self::dic()->mainTemplate()->addOnLoadCode(self::getJSOnLoadCode());
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public static function getJSOnLoadCode(): string {
-		$screenshot_tpl = self::plugin()->template("helpme_screenshot.html");
-		$screenshot_tpl->setVariable("TXT_DELETE_SCREENSHOT", self::plugin()->translate("delete_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
-
-		return 'il.Screenshots.PAGE_SCREENSHOT_NAME = ' . json_encode(self::plugin()
-				->translate("page_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT)) . ';
-		il.Screenshots.SCREENSHOT_TEMPLATE = ' . json_encode($screenshot_tpl->get()) . ';';
-	}
-
-
+	protected static $init = false;
 	/**
 	 * @var UploadResult[]
 	 */
 	protected $screenshots = [];
+	/**
+	 * @var Plugin|null
+	 */
+	protected $plugin = NULL;
 
 
 	/**
@@ -80,10 +65,47 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI {
 
 
 	/**
+	 * @return string
+	 */
+	public function getJSOnLoadCode(): string {
+		$screenshot_tpl = $this->getPlugin()->template(__DIR__ . "/../../templates/screenshot.html", true, true, false);
+		$screenshot_tpl->setVariable("TXT_REMOVE_SCREENSHOT", $this->getPlugin()
+			->translate("remove_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI));
+
+		return 'il.Screenshots.PAGE_SCREENSHOT_NAME = ' . json_encode($this->getPlugin()
+				->translate("page_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI)) . ';
+		il.Screenshots.SCREENSHOT_TEMPLATE = ' . json_encode($screenshot_tpl->get()) . ';';
+	}
+
+
+	/**
+	 * @return PluginInterface
+	 */
+	public function getPlugin(): PluginInterface {
+		return $this->plugin;
+	}
+
+
+	/**
 	 * @return UploadResult[]
 	 */
 	public function getValue(): array {
 		return $this->screenshots;
+	}
+
+
+	/**
+	 *
+	 */
+	public function initJS()/*: void*/ {
+		if (self::$init === false) {
+			self::$init = true;
+
+			$dir = substr(__DIR__, strlen(ILIAS_ABSOLUTE_PATH) + 1) . "/../..";
+
+			self::dic()->mainTemplate()->addJavaScript($dir . "/js/Screenshots.js", false);
+			self::dic()->mainTemplate()->addOnLoadCode($this->getJSOnLoadCode());
+		}
 	}
 
 
@@ -122,13 +144,24 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI {
 	 * @return string
 	 */
 	protected function render(): string {
-		$screenshots_tpl = self::plugin()->template("helpme_screenshots.html");
-		$screenshots_tpl->setVariable("TXT_ADD_SCREENSHOT", self::plugin()->translate("add_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
-		$screenshots_tpl->setVariable("TXT_ADD_PAGE_SCREENSHOT", self::plugin()
-			->translate("add_page_screenshot", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+		$this->initJS();
+
+		$screenshots_tpl = $this->getPlugin()->template(__DIR__ . "/../../templates/screenshots.html", true, true, false);
+		$screenshots_tpl->setVariable("TXT_UPLOAD_SCREENSHOT", $this->getPlugin()
+			->translate("upload_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI));
+		$screenshots_tpl->setVariable("TXT_TAKE_PAGE_SCREENSHOT", $this->getPlugin()
+			->translate("take_page_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI));
 		$screenshots_tpl->setVariable("POST_VAR", $this->getPostVar());
 
 		return $screenshots_tpl->get();
+	}
+
+
+	/**
+	 * @param PluginInterface $plugin
+	 */
+	public function setPlugin(PluginInterface $plugin)/*: void*/ {
+		$this->plugin = $plugin;
 	}
 
 

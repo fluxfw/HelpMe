@@ -112,7 +112,7 @@ il.Screenshots.prototype = {
 	 *
 	 */
 	addScreenshot: function () {
-		var $screenshot_file_input = $(".helpme_screenshot_file_input", this.element);
+		var $screenshot_file_input = $(".screenshot_file_input", this.element);
 
 		$screenshot_file_input.click();
 	},
@@ -121,7 +121,7 @@ il.Screenshots.prototype = {
 	 *
 	 */
 	addScreenshotOnChange: function () {
-		var screenshot_file_input = $(".helpme_screenshot_file_input", this.element)[0];
+		var screenshot_file_input = $(".screenshot_file_input", this.element)[0];
 
 		if (screenshot_file_input.value !== "") {
 			Array.prototype.forEach.call(screenshot_file_input.files, function (screenshot) {
@@ -135,9 +135,33 @@ il.Screenshots.prototype = {
 	},
 
 	/**
+	 * @var {FormData} formData
+	 */
+	addScreenshotsToUpload: function (formData) {
+		this.screenshots.forEach(function (screenshot) {
+			formData.append(this.post_var + "[]", screenshot);
+		}, this);
+	},
+
+	/**
+	 *
+	 */
+	init: function () {
+		this.element = $('input[type="file"][name="' + this.post_var + '"]').parent();
+
+		var $add_screenshot = $(".add_screenshot", this.element);
+		var $add_page_screenshot = $(".add_page_screenshot", this.element);
+		var $screenshot_file_input = $(".screenshot_file_input", this.element);
+
+		$add_screenshot.click(this.addScreenshot.bind(this));
+		$add_page_screenshot.click(this.addPageScreenshot.bind(this));
+		$screenshot_file_input.change(this.addScreenshotOnChange.bind(this));
+	},
+
+	/**
 	 * @param {File|Blob} screenshot
 	 */
-	deleteScreenshot: function (screenshot) {
+	removeScreenshot: function (screenshot) {
 		var i = this.screenshots.indexOf(screenshot);
 
 		this.screenshots.splice(i, 1);
@@ -148,37 +172,21 @@ il.Screenshots.prototype = {
 	/**
 	 *
 	 */
-	init: function () {
-		this.element = $('input[type="file"][name="' + this.post_var + '"]').parent();
-
-		var $add_screenshot = $(".helpme_add_screenshot", this.element);
-		var $add_page_screenshot = $(".helpme_add_page_screenshot", this.element);
-		var $screenshot_file_input = $(".helpme_screenshot_file_input", this.element);
-
-		$add_screenshot.click(this.addScreenshot.bind(this));
-		$add_page_screenshot.click(this.addPageScreenshot.bind(this));
-		$screenshot_file_input.change(this.addScreenshotOnChange.bind(this));
-	},
-
-	/**
-	 *
-	 */
 	updateScreenshots: function () {
-		var $screenshots = $(".helpme_screenshots", this.element);
+		var $screenshots = $(".screenshots", this.element);
 
 		$screenshots.empty();
 
 		this.screenshots.forEach(function (screenshot) {
 			var $screenshot = $(this.constructor.SCREENSHOT_TEMPLATE);
-			var $screenshot_name = $(".helpme_screenshot_name", $screenshot);
-			var $screenshot_delete = $(".helpme_screenshot_delete", $screenshot);
+			var $screenshot_name = $(".screenshot_name", $screenshot);
+			var $screenshot_remove = $(".screenshot_remove", $screenshot);
 
 			$screenshot_name.text(screenshot.name);
 
-			// TODO: Screenshot button icons
 			// TODO: May preview
 
-			$screenshot_delete.click(this.deleteScreenshot.bind(this, screenshot));
+			$screenshot_remove.click(this.removeScreenshot.bind(this, screenshot));
 
 			$screenshots.append($screenshot);
 		}, this);

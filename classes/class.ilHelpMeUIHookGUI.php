@@ -62,7 +62,9 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
 
-					ScreenshotsInputGUI::initJS();
+					$screenshot = new ScreenshotsInputGUI();
+					$screenshot->setPlugin(self::plugin());
+					$screenshot->initJS();
 					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/HelpMe.js", false);
 
 					// Fix some pages may not load Form.js
@@ -97,11 +99,13 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 						$modal->setType(ilModalGUI::TYPE_LARGE);
 						$modal->setHeading(self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
 
+						$screenshot = new ScreenshotsInputGUI();
+						$screenshot->setPlugin(self::plugin());
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode($modal->getHTML()) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button_tpl->get()) . ';
 il.HelpMe.init();
-' . ScreenshotsInputGUI::getJSOnLoadCode() . '
+' . $screenshot->getJSOnLoadCode() . '
 							</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
 
 						return [ "mode" => self::REPLACE, "html" => $html ];

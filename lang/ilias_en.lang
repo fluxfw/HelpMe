@@ -28,18 +28,18 @@ removeplugindataconfirm_keep_data#:#Keep %1$s data
 removeplugindataconfirm_msg_kept_data#:#The %1$s data was kept!
 removeplugindataconfirm_msg_removed_data#:#The %1$s data was also removed!
 removeplugindataconfirm_remove_data#:#Remove %1$s data
-support_add_page_screenshot#:#Take screenshot of current page
-support_add_screenshot#:#Add screenshot
+screenshotsinputgui_page_screenshot#:#Page_Screenshot
+screenshotsinputgui_remove_screenshot#:#Remove screenshot
+screenshotsinputgui_take_page_screenshot#:#Take screenshot of current page
+screenshotsinputgui_upload_screenshot#:#Upload screenshot
 support_cancel#:#Cancel
 support_close#:#Close
 support_confirmation#:#Confirmation
 support_datetime#:#Date & time
-support_delete_screenshot#:#Delete screenshot
 support_description#:#Description
 support_email_address#:#Email address
 support_login#:#Login
 support_name#:#Name
-support_page_screenshot#:#Page_Screenshot
 support_phone#:#Phone
 support_please_select#:#please select
 support_priority#:#Priority

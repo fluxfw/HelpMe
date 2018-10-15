@@ -105,6 +105,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$this->addItem($system_infos);
 
 		$screenshot = new ScreenshotsInputGUI(self::plugin()->translate("screenshots", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_screenshots");
+		$screenshot->setPlugin(self::plugin());
 		$screenshot->setRequired(false);
 		$this->addItem($screenshot);
 	}

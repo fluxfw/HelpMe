@@ -156,10 +156,7 @@ il.HelpMe = {
 		var data = new FormData($form[0]); // Supports files upload
 		data.append($submit.prop("name"), $submit.val()); // Send submit button with cmd
 
-		// TODO: HelpMe-Screenshots unabhängig von HelpMe. Anbieten in DIC ein Interface, welches ein Plugin benötigt, damit dann Acreenshot allgemeine Sprachvariablen auslesen kann
-		this.screenshots.screenshots.forEach(function (screenshot) {
-			data.append(this.screenshots.post_var + "[]", screenshot);
-		}, this);
+		this.screenshots.addScreenshotsToUpload(data);
 
 		$.ajax({
 			type: "post",
