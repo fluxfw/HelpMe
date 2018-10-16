@@ -140,23 +140,28 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable {
 	 *
 	 */
 	protected function processScreenshots()/*: void*/ {
+		$this->screenshots = [];
+
 		if (!self::dic()->upload()->hasBeenProcessed()) {
 			self::dic()->upload()->process();
 		}
 
 		if (self::dic()->upload()->hasUploads()) {
-			$uploads = array_values(array_flip(array_map(function (UploadedFile $file): string {
-				return $file->getClientFilename();
-			}, self::dic()->http()->request()->getUploadedFiles()[$this->getPostVar()])));
+			$uploads = self::dic()->http()->request()->getUploadedFiles()[$this->getPostVar()];
 
-			$this->screenshots = array_values(array_filter(self::dic()->upload()->getResults(), function (UploadResult $file) use (&$uploads): bool {
-				$ext = pathinfo($file->getName(), PATHINFO_EXTENSION);
+			if (is_array($uploads)) {
+				$uploads = array_values(array_flip(array_map(function (UploadedFile $file): string {
+					return $file->getClientFilename();
+				}, $uploads)));
 
-				return ($file->getStatus()->getCode() === ProcessingStatus::OK && in_array($file->getPath(), $uploads)
-					&& in_array($ext, $this->allowed_formats));
-			}));
-		} else {
-			$this->screenshots = [];
+				$this->screenshots = array_values(array_filter(self::dic()->upload()
+					->getResults(), function (UploadResult $file) use (&$uploads): bool {
+					$ext = pathinfo($file->getName(), PATHINFO_EXTENSION);
+
+					return ($file->getStatus()->getCode() === ProcessingStatus::OK && in_array($file->getPath(), $uploads)
+						&& in_array($ext, $this->allowed_formats));
+				}));
+			}
 		}
 	}
 
