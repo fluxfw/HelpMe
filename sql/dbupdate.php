@@ -47,3 +47,17 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Con
 	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME);
 }
 ?>
+<#4>
+<?php
+$jira_project_key = \srag\Plugins\HelpMe\Config\Config::getJiraProjectKey();
+
+if (!empty($jira_project_key)) {
+	$projects = \srag\Plugins\HelpMe\Config\Config::getProjects();
+
+	$projects[$jira_project_key] = $jira_project_key;
+
+	\srag\Plugins\HelpMe\Config\Config::setProjects($projects);
+
+	\srag\Plugins\HelpMe\Config\Config::removeJiraProjectKey();
+}
+?>

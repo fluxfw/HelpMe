@@ -1,8 +1,13 @@
-activerecordconfig_configuration#:#Configuration
-activerecordconfig_configuration_saved#:#Configuration saved
-activerecordconfig_save#:#Save
+config_actions#:#Actions
+config_add#:#Add
+config_add_project#:#Add project
+config_cancel#:#Cancel
+config_configuration#:#Configuration
+config_configuration_saved#:#Configuration saved
 config_create_jira_ticket#:#Create a Jira ticket
+config_edit_project#:#Edit project
 config_email_address#:#Email address
+config_key#:#Key
 config_info#:#Info text
 config_jira_access_token#:#Jira access token
 config_jira_authorization#:#Jira authorization
@@ -12,13 +17,18 @@ config_jira_issue_type#:#Jira issue type
 config_jira_oauth#:#oAuth
 config_jira_password#:#Jira password
 config_jira_private_key#:#Jira private key
-config_jira_project_key#:#Jira project key
 config_jira_username#:#Jira username
 config_jira_usernamepassword#:#Username & password
+config_name#:#Name
 config_priorities#:#Priorities
+config_projects#:#Projects
 config_recipient#:#Form recipient
+config_remove#:#Remove
+config_remove_project#:#Remove project
+config_remove_project_confirm#:#Are you really want to delete the project: %s ?
 config_roles#:#Roles
 config_roles_description#:#Show support for selected roles only
+config_save#:#Save
 config_send_email#:#Send an email
 removeplugindataconfirm_cancel#:#Cancel
 removeplugindataconfirm_confirm_remove_data#:#Do you want to remove the %1$s data as well? At most, you just want to disable the %1$s plugin?
@@ -44,6 +54,7 @@ support_name#:#Name
 support_phone#:#Phone
 support_please_select#:#please select
 support_priority#:#Priority
+support_project#:#Project
 support_reproduce_steps#:#Steps to Reproduce
 support_screenshots#:#Screenshots
 support_sent_failure#:#Sorry, your support request could not be sent!

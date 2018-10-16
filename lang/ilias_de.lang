@@ -1,8 +1,13 @@
-activerecordconfig_configuration#:#Konfiguration
-activerecordconfig_configuration_saved#:#Konfiguration gespeichert
-activerecordconfig_save#:#Speichern
+config_actions#:#Aktionen
+config_add#:#Hinzufügen
+config_add_project#:#Projekt hinzufügen
+config_cancel#:#Abbrechen
+config_configuration#:#Konfiguration
+config_configuration_saved#:#Konfiguration gespeichert
 config_create_jira_ticket#:#Jira-Ticket erstellen
+config_edit_project#:#Projekt bearbeiten
 config_email_address#:#E-Mail Adresse
+config_key#:#Key
 config_info#:#Infotext
 config_jira_access_token#:#Jira-Access-Token
 config_jira_authorization#:#Jira-Authorization
@@ -12,13 +17,18 @@ config_jira_issue_type#:#Jira-Issue-Typ
 config_jira_oauth#:#oAuth
 config_jira_password#:#Jira-Passwort
 config_jira_private_key#:#Jira-Private-Key
-config_jira_project_key#:#Jira-Projekt-Key
 config_jira_username#:#Jira-Benutzername
 config_jira_usernamepassword#:#Benutzername & Passwort
+config_name#:#Name
 config_priorities#:#Dringlichkeiten
+config_projects#:#Projekte
 config_recipient#:#Formularempfänger
+config_remove#:#Entfernen
+config_remove_project#:#Projekt entfernen
+config_remove_project_confirm#:#Möchten Sie das Projekt wirklich löschen: %s ?
 config_roles#:#Rollen
 config_roles_description#:#Support nur für die ausgewählten Rollen anzeigen
+config_save#:#Speichern
 config_send_email#:#Per E-Mail senden
 removeplugindataconfirm_cancel#:#Abbrechen
 removeplugindataconfirm_confirm_remove_data#:#Möchten Sie die %1$s-Daten auch entfernen? Allenfalls möchten Sie das %1$s-Plugin nur deaktivieren?
@@ -44,6 +54,7 @@ support_name#:#Name
 support_phone#:#Telefon
 support_please_select#:#bitte wählen
 support_priority#:#Dringlichkeit
+support_project#:#Projekt
 support_reproduce_steps#:#Schritte zum Reproduzieren
 support_screenshots#:#Screenshots
 support_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden!

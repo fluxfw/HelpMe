@@ -27,9 +27,15 @@ class Config extends ActiveRecordConfig {
 	const KEY_JIRA_ISSUE_TYPE = "jira_issue_type";
 	const KEY_JIRA_PASSWORD = "jira_password";
 	const KEY_JIRA_PRIVATE_KEY = "jira_private_key";
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const KEY_JIRA_PROJECT_KEY = "jira_project_key";
 	const KEY_JIRA_USERNAME = "jira_username";
 	const KEY_PRIORITIES = "priorities";
+	const KEY_PROJECTS = "projects";
 	const KEY_RECIPIENT = "recipient";
 	const KEY_ROLES = "roles";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
@@ -41,10 +47,16 @@ class Config extends ActiveRecordConfig {
 	const DEFAULT_JIRA_ISSUE_TYPE = "";
 	const DEFAULT_JIRA_PASSWORD = "";
 	const DEFAULT_JIRA_PRIVATE_KEY = "";
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const DEFAULT_JIRA_PROJECT_KEY = "";
 	const DEFAULT_ROLES = [];
 	const DEFAULT_JIRA_USERNAME = "";
-	const DEFAULT_PRIORITY = [];
+	const DEFAULT_PRIORITIES = [];
+	const DEFAULT_PROJECTS = [];
 	const DEFAULT_RECIPIENT = "";
 	const DEFAULT_SEND_EMAIL_ADDRESS = "";
 
@@ -179,6 +191,8 @@ class Config extends ActiveRecordConfig {
 
 	/**
 	 * @return string
+	 *
+	 * @deprecated
 	 */
 	public static function getJiraProjectKey(): string {
 		return self::getStringValue(self::KEY_JIRA_PROJECT_KEY, self::DEFAULT_JIRA_PROJECT_KEY);
@@ -187,9 +201,19 @@ class Config extends ActiveRecordConfig {
 
 	/**
 	 * @param string $jira_project_key
+	 *
+	 * @deprecated
 	 */
 	public static function setJiraProjectKey(string $jira_project_key)/*: void*/ {
 		self::setStringValue(self::KEY_JIRA_PROJECT_KEY, $jira_project_key);
+	}
+
+
+	/**
+	 * @deprecated
+	 */
+	public static function removeJiraProjectKey()/*: void*/ {
+		self::removeName(self::KEY_JIRA_PROJECT_KEY);
 	}
 
 
@@ -213,7 +237,7 @@ class Config extends ActiveRecordConfig {
 	 * @return string[]
 	 */
 	public static function getPriorities(): array {
-		return self::getJsonValue(self::KEY_PRIORITIES, true, self::DEFAULT_PRIORITY);
+		return self::getJsonValue(self::KEY_PRIORITIES, true, self::DEFAULT_PRIORITIES);
 	}
 
 
@@ -222,6 +246,22 @@ class Config extends ActiveRecordConfig {
 	 */
 	public static function setPriorities(array $priorities)/*: void*/ {
 		self::setJsonValue(self::KEY_PRIORITIES, $priorities);
+	}
+
+
+	/**
+	 * @return string[]
+	 */
+	public static function getProjects(): array {
+		return self::getJsonValue(self::KEY_PROJECTS, true, self::DEFAULT_PROJECTS);
+	}
+
+
+	/**
+	 * @param string[] $projects
+	 */
+	public static function setProjects(array $projects)/*: void*/ {
+		self::setJsonValue(self::KEY_PROJECTS, $projects);
 	}
 
 

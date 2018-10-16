@@ -53,6 +53,8 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	 *
 	 */
 	protected function initForm()/*: void*/ {
+		$configProjects = [ "" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;" ]
+			+ Config::getProjects();
 		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;" ]
 			+ Config::getPriorities();
 
@@ -64,6 +66,11 @@ class SupportFormGUI extends ilPropertyFormGUI {
 
 		$this->setId("helpme_form");
 		$this->setShowTopButtons(false);
+
+		$project = new ilSelectInputGUI(self::plugin()->translate("project", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_project");
+		$project->setRequired(true);
+		$project->setOptions($configProjects);
+		$this->addItem($project);
 
 		$title = new ilTextInputGUI(self::plugin()->translate("title", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_title");
 		$title->setRequired(true);
@@ -121,6 +128,9 @@ class SupportFormGUI extends ilPropertyFormGUI {
 
 		$time = time();
 		$support->setTime($time);
+
+		$project = $this->getInput("srsu_project");
+		$support->setProject($project);
 
 		$title = $this->getInput("srsu_title");
 		$support->setTitle($title);
