@@ -73,6 +73,11 @@ il.Screenshots.prototype = {
 	post_var: "",
 
 	/**
+	 * @type {string[]}
+	 */
+	previewURLCache: [],
+
+	/**
 	 * @type {File[]}
 	 */
 	screenshots: [],
@@ -82,20 +87,11 @@ il.Screenshots.prototype = {
 	 */
 	addPageScreenshot: function () {
 		// Hide modal on the screenshot
-		if (this.modal !== null) {
-			this.modal.css("visibility", "hidden");
-			$(".modal-backdrop").css("visibility", "hidden");
-			$("body").css("overflow", "visible"); // Fix transparent not visible area from modal
-		}
+		this.hideModal();
 
 		html2canvas($("html")[0]).then(function (canvas) {
-
 			// Restore modal
-			if (this.modal !== null) {
-				this.modal.css("visibility", "");
-				$(".modal-backdrop").css("visibility", "");
-				$("body").css("overflow", "");
-			}
+			this.restoreModal();
 
 			// Convert canvas screenshot to png blob for file upload
 			canvas.toBlob(function (blob) {
@@ -105,6 +101,11 @@ il.Screenshots.prototype = {
 
 				this.updateScreenshots();
 			}.bind(this), "image/png");
+		}.bind(this)).catch(function (err) {
+			// Restore modal
+			this.restoreModal();
+
+			alert(err);
 		}.bind(this));
 	},
 
@@ -141,6 +142,19 @@ il.Screenshots.prototype = {
 		this.screenshots.forEach(function (screenshot) {
 			formData.append(this.post_var + "[]", screenshot);
 		}, this);
+
+		this.removePreviewURLCache();
+	},
+
+	/**
+	 *
+	 */
+	hideModal: function () {
+		if (this.modal !== null) {
+			this.modal.css("visibility", "hidden");
+			$(".modal-backdrop").css("visibility", "hidden");
+			$("body").css("overflow", "visible"); // Fix transparent not visible area from modal
+		}
 	},
 
 	/**
@@ -159,6 +173,16 @@ il.Screenshots.prototype = {
 	},
 
 	/**
+	 *
+	 */
+	removePreviewURLCache: function () {
+		this.previewURLCache.forEach(function (preview_url) {
+			URL.revokeObjectURL(preview_url);
+		});
+		this.previewURLCache = [];
+	},
+
+	/**
 	 * @param {File|Blob} screenshot
 	 */
 	removeScreenshot: function (screenshot) {
@@ -172,23 +196,43 @@ il.Screenshots.prototype = {
 	/**
 	 *
 	 */
+	restoreModal: function () {
+		if (this.modal !== null) {
+			this.modal.css("visibility", "");
+			$(".modal-backdrop").css("visibility", "");
+			$("body").css("overflow", "");
+		}
+	},
+
+	/**
+	 *
+	 */
 	updateScreenshots: function () {
 		var $screenshots = $(".screenshots", this.element);
 
 		$screenshots.empty();
+		this.removePreviewURLCache();
 
 		this.screenshots.forEach(function (screenshot) {
 			var $screenshot = $(this.constructor.SCREENSHOT_TEMPLATE);
 			var $screenshot_name = $(".screenshot_name", $screenshot);
 			var $screenshot_remove = $(".screenshot_remove", $screenshot);
+			var $screenshot_preview_link = $(".screenshot_preview_link", $screenshot);
+			var $screenshot_preview = $(".screenshot_preview", $screenshot);
+
+			var preview_url = URL.createObjectURL(screenshot);
 
 			$screenshot_name.text(screenshot.name);
 
-			// TODO: May preview
-
 			$screenshot_remove.click(this.removeScreenshot.bind(this, screenshot));
 
+			$screenshot_preview_link.prop("href", preview_url);
+			$screenshot_preview.prop("src", preview_url);
+			$screenshot_preview.prop("alt", screenshot.name);
+
 			$screenshots.append($screenshot);
+
+			this.previewURLCache.push(preview_url);
 		}, this);
 	}
 };

@@ -29,6 +29,7 @@ removeplugindataconfirm_msg_kept_data#:#The %1$s data was kept!
 removeplugindataconfirm_msg_removed_data#:#The %1$s data was also removed!
 removeplugindataconfirm_remove_data#:#Remove %1$s data
 screenshotsinputgui_page_screenshot#:#Page_Screenshot
+screenshotsinputgui_preview_screenshot#:#Screenshot preview
 screenshotsinputgui_remove_screenshot#:#Remove screenshot
 screenshotsinputgui_take_page_screenshot#:#Take screenshot of current page
 screenshotsinputgui_upload_screenshot#:#Upload screenshot

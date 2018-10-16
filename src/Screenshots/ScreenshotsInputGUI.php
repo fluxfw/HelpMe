@@ -2,6 +2,7 @@
 
 namespace srag\Plugins\HelpMe\Screenshot;
 
+use GuzzleHttp\Psr7\UploadedFile;
 use ilFormException;
 use ilFormPropertyGUI;
 use ILIAS\FileUpload\DTO\ProcessingStatus;
@@ -29,6 +30,10 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable {
 	 * @var bool
 	 */
 	protected static $init = false;
+	/**
+	 * @var string[]
+	 */
+	protected $allowed_formats = [ "bmp", "gif", "jpg", "png" ];
 	/**
 	 * @var UploadResult[]
 	 */
@@ -65,12 +70,22 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable {
 
 
 	/**
+	 * @return string[]
+	 */
+	public function getAllowedFormats(): array {
+		return $this->allowed_formats;
+	}
+
+
+	/**
 	 * @return string
 	 */
 	public function getJSOnLoadCode(): string {
 		$screenshot_tpl = $this->getPlugin()->template(__DIR__ . "/../../templates/screenshot.html", true, true, false);
 		$screenshot_tpl->setVariable("TXT_REMOVE_SCREENSHOT", $this->getPlugin()
 			->translate("remove_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI));
+		$screenshot_tpl->setVariable("TXT_PREVIEW_SCREENSHOT", $this->getPlugin()
+			->translate("preview_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI));
 
 		return 'il.Screenshots.PAGE_SCREENSHOT_NAME = ' . json_encode($this->getPlugin()
 				->translate("page_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI)) . ';
@@ -125,14 +140,20 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable {
 	 *
 	 */
 	protected function processScreenshots()/*: void*/ {
-		// TODO: Match by post var
 		if (!self::dic()->upload()->hasBeenProcessed()) {
 			self::dic()->upload()->process();
 		}
 
 		if (self::dic()->upload()->hasUploads()) {
-			$this->screenshots = array_values(array_filter(self::dic()->upload()->getResults(), function (UploadResult $file): bool {
-				return ($file->getStatus()->getCode() === ProcessingStatus::OK);
+			$uploads = array_values(array_flip(array_map(function (UploadedFile $file): string {
+				return $file->getClientFilename();
+			}, self::dic()->http()->request()->getUploadedFiles()[$this->getPostVar()])));
+
+			$this->screenshots = array_values(array_filter(self::dic()->upload()->getResults(), function (UploadResult $file) use (&$uploads): bool {
+				$ext = pathinfo($file->getName(), PATHINFO_EXTENSION);
+
+				return ($file->getStatus()->getCode() === ProcessingStatus::OK && in_array($file->getPath(), $uploads)
+					&& in_array($ext, $this->allowed_formats));
 			}));
 		} else {
 			$this->screenshots = [];
@@ -152,8 +173,19 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable {
 		$screenshots_tpl->setVariable("TXT_TAKE_PAGE_SCREENSHOT", $this->getPlugin()
 			->translate("take_page_screenshot", self::LANG_MODULE_SCREENSHOTSINPUTGUI));
 		$screenshots_tpl->setVariable("POST_VAR", $this->getPostVar());
+		$screenshots_tpl->setVariable("ALLOWED_FORMATS", implode(",", array_map(function (string $format): string {
+			return "." . $format;
+		}, $this->allowed_formats)));
 
 		return $screenshots_tpl->get();
+	}
+
+
+	/**
+	 * @param string[] $allowed_formats
+	 */
+	public function setAllowedFormats(array $allowed_formats)/*: void*/ {
+		$this->allowed_formats = $allowed_formats;
 	}
 
 

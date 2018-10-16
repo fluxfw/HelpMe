@@ -7,8 +7,8 @@ il.HelpMe = {
 	 */
 	IDS: [
 		"ilMMSearch",
-		"userlog"/*,
-		"mm_lang_sel"*/ // TODO:
+		"userlog",
+		"mm_lang_sel"
 	],
 
 	/**
@@ -93,8 +93,14 @@ il.HelpMe = {
 		this.button.click(this.click.bind(this));
 
 		var test = this.IDS.every(function (id) {
-			if (document.getElementById(id) !== null) {
-				$("#" + id).before(this.li);
+			var beforeLi = document.getElementById(id);
+
+			if (beforeLi !== null) {
+				if (beforeLi.tagName.toLowerCase() !== "li") {
+					beforeLi = beforeLi.parentElement;
+				}
+
+				$(beforeLi).before(this.li);
 
 				return false;
 			}
@@ -131,9 +137,13 @@ il.HelpMe = {
 
 		}
 		this.screenshots = il.Screenshots.lastInstance();
-		this.screenshots.screenshots = screenshots;
-		this.screenshots.modal = this.modal;
-		this.screenshots.updateScreenshots();
+		if (this.screenshots !== undefined) {
+			this.screenshots.screenshots = screenshots;
+			this.screenshots.modal = this.modal;
+			this.screenshots.updateScreenshots();
+		} else {
+			this.screenshots = null;
+		}
 
 		var $form = $("#form_helpme_form");
 		var $cancel = $("#helpme_cancel");
