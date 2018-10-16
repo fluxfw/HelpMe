@@ -1,6 +1,7 @@
 config_actions#:#Aktionen
 config_add#:#Hinzufügen
 config_add_project#:#Projekt hinzufügen
+config_added_project#:#Projekt %s hinzufügt
 config_cancel#:#Abbrechen
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
@@ -25,10 +26,12 @@ config_projects#:#Projekte
 config_recipient#:#Formularempfänger
 config_remove#:#Entfernen
 config_remove_project#:#Projekt entfernen
-config_remove_project_confirm#:#Möchten Sie das Projekt wirklich löschen: %s ?
+config_remove_project_confirm#:#Möchten Sie das Projekt wirklich entfernen: %s ?
+config_removed_project#:#Projekt %s entfernt
 config_roles#:#Rollen
 config_roles_description#:#Support nur für die ausgewählten Rollen anzeigen
 config_save#:#Speichern
+config_saved_project#:#Projekt %s gespeichert
 config_send_email#:#Per E-Mail senden
 removeplugindataconfirm_cancel#:#Abbrechen
 removeplugindataconfirm_confirm_remove_data#:#Möchten Sie die %1$s-Daten auch entfernen? Allenfalls möchten Sie das %1$s-Plugin nur deaktivieren?

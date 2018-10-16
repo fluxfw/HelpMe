@@ -1,6 +1,7 @@
 config_actions#:#Actions
 config_add#:#Add
 config_add_project#:#Add project
+config_added_project#:#Project %s added
 config_cancel#:#Cancel
 config_configuration#:#Configuration
 config_configuration_saved#:#Configuration saved
@@ -26,9 +27,11 @@ config_recipient#:#Form recipient
 config_remove#:#Remove
 config_remove_project#:#Remove project
 config_remove_project_confirm#:#Are you really want to delete the project: %s ?
+config_removed_project#:#Project %s removed
 config_roles#:#Roles
 config_roles_description#:#Show support for selected roles only
 config_save#:#Save
+config_saved_project#:#Project %s saved
 config_send_email#:#Send an email
 removeplugindataconfirm_cancel#:#Cancel
 removeplugindataconfirm_confirm_remove_data#:#Do you want to remove the %1$s data as well? At most, you just want to disable the %1$s plugin?

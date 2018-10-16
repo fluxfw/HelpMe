@@ -261,6 +261,8 @@ class Config extends ActiveRecordConfig {
 	 * @param string[] $projects
 	 */
 	public static function setProjects(array $projects)/*: void*/ {
+		ksort($projects);
+
 		self::setJsonValue(self::KEY_PROJECTS, $projects);
 	}
 

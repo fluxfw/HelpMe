@@ -31,14 +31,15 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * ProjectFormGUI constructor
 	 *
 	 * @param ActiveRecordConfigGUI $parent
+	 * @param string                $tab_id
 	 * @param string|null           $project_key
 	 */
-	public function __construct(ActiveRecordConfigGUI $parent, /*?*/
+	public function __construct(ActiveRecordConfigGUI $parent, string $tab_id, /*?*/
 		string $project_key = NULL) {
 
 		$this->project_key = $project_key;
 
-		parent::__construct($parent);
+		parent::__construct($parent, $tab_id);
 	}
 
 
@@ -93,5 +94,15 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 		$configProjects[$project_key] = $project_name;
 
 		Config::setProjects($configProjects);
+
+		$this->project_key = $project_key;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getProjectKey(): string {
+		return $this->project_key;
 	}
 }

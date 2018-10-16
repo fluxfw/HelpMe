@@ -49,7 +49,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	 */
 	protected function getProjectForm(/*?*/
 		string $project_key = NULL): ProjectFormGUI {
-		$form = new ProjectFormGUI($this, $project_key);
+		$form = new ProjectFormGUI($this, self::TAB_PROJECTS, $project_key);
 
 		return $form;
 	}
@@ -83,7 +83,9 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 			return;
 		}
 
-		$form->storeProject();
+		$form->updateConfig();
+
+		ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
 		self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE . "_" . self::TAB_PROJECTS);
 	}
@@ -121,7 +123,9 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 			return;
 		}
 
-		$form->storeProject();
+		$form->updateConfig();
+
+		ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
 		self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE . "_" . self::TAB_PROJECTS);
 	}
@@ -165,6 +169,8 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		}
 
 		Config::setProjects($configProjects);
+
+		ilUtil::sendSuccess(self::plugin()->translate("removed_project", self::LANG_MODULE_CONFIG, [ $project_key ]), true);
 
 		self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE . "_" . self::TAB_PROJECTS);
 	}
