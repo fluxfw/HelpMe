@@ -3,6 +3,7 @@
 ## [3.0.0]
 - Multiple screenshots upload support
 - Multiple projects selection support
+- Support link inclusive project pre selection
 - Correctly works now on ILIAS public section
 - Refactoring
 

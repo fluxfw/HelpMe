@@ -46,6 +46,8 @@ il.Screenshots.newInstance = function (post_var) {
  * @param {il.Screenshots} screenshots
  */
 il.Screenshots.removeInstance = function (screenshots) {
+	screenshots.removePreviewURLCache();
+
 	var i = this.INSTANCES.indexOf(screenshots);
 
 	this.INSTANCES.splice(i, 1);

@@ -24,6 +24,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	const TEMPLATE_SHOW = "template_show";
 	const PART_1 = "a";
 	const PART_2 = "b";
+	const SESSION_PROJECT_KEY = ilHelpMePlugin::PLUGIN_ID . "_project_key";
 	/**
 	 * @var bool[]
 	 */
@@ -101,11 +102,16 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 						$screenshot = new ScreenshotsInputGUI();
 						$screenshot->setPlugin(self::plugin());
+
+						$project_key = ilSession::get(self::SESSION_PROJECT_KEY);
+
+						// Could not use onload code because it not available on all pages
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode($modal->getHTML()) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button_tpl->get()) . ';
 il.HelpMe.init();
 ' . $screenshot->getJSOnLoadCode() . '
+' . ($project_key !== NULL ? 'il.HelpMe.autoOpen = true;' : '') . '
 							</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
 
 						return [ "mode" => self::REPLACE, "html" => $html ];
@@ -115,5 +121,28 @@ il.HelpMe.init();
 		}
 
 		return [ "mode" => self::KEEP, "html" => "" ];
+	}
+
+
+	/**
+	 *
+	 */
+	public function gotoHook()/*: void*/ {
+		$target = filter_input(INPUT_GET, "target");
+
+		$matches = [];
+		preg_match("/^uihk_" . ilHelpMePlugin::PLUGIN_ID . "(_(.*))?/uim", $target, $matches);
+
+		if (is_array($matches) && count($matches) >= 1) {
+			$project_key = $matches[2];
+
+			if ($project_key === NULL) {
+				$project_key = "";
+			}
+
+			ilSession::set(self::SESSION_PROJECT_KEY, $project_key);
+
+			self::dic()->ctrl()->redirectToURL("/");
+		}
 	}
 }

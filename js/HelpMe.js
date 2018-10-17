@@ -22,6 +22,11 @@ il.HelpMe = {
 	SUPPORT_BUTTON_TEMPLATE: "",
 
 	/**
+	 * @type {boolean}
+	 */
+	autoOpen: false,
+
+	/**
 	 * @type {jQuery|null}
 	 */
 	button: null,
@@ -79,6 +84,10 @@ il.HelpMe = {
 			this.initButton();
 
 			this.initModal();
+
+			if (this.autoOpen) {
+				this.click();
+			}
 		}.bind(this));
 	},
 

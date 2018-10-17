@@ -5,9 +5,11 @@ namespace srag\Plugins\HelpMe\Support;
 use HelpMeSupportGUI;
 use ilEMailInputGUI;
 use ilHelpMePlugin;
+use ilHelpMeUIHookGUI;
 use ilNonEditableValueGUI;
 use ilPropertyFormGUI;
 use ilSelectInputGUI;
+use ilSession;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use Sinergi\BrowserDetector\Browser;
@@ -57,6 +59,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 			+ Config::getProjects();
 		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;" ]
 			+ Config::getPriorities();
+		$project_key = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_KEY);
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 
@@ -70,6 +73,10 @@ class SupportFormGUI extends ilPropertyFormGUI {
 		$project = new ilSelectInputGUI(self::plugin()->translate("project", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_project");
 		$project->setRequired(true);
 		$project->setOptions($configProjects);
+		if ($project_key !== NULL) {
+			$project->setValue($project_key);
+			ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_KEY);
+		}
 		$this->addItem($project);
 
 		$title = new ilTextInputGUI(self::plugin()->translate("title", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "srsu_title");

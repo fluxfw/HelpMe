@@ -49,7 +49,8 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		$this->setData(array_values(array_map(function (string $project_key, string $project_name): array {
 			return [
 				"project_key" => $project_key,
-				"project_name" => $project_name
+				"project_name" => $project_name,
+				"support_link" => ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . "_" . $project_key
 			];
 		}, array_keys($configProjects), $configProjects)));
 	}
@@ -61,6 +62,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	protected function initColumns()/*: void*/ {
 		$this->addColumn($this->txt("key"));
 		$this->addColumn($this->txt("name"));
+		$this->addColumn($this->txt("support_link"));
 		$this->addColumn($this->txt("actions"));
 	}
 
@@ -81,6 +83,10 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		$this->tpl->setVariable("PROJECT_KEY", $project["project_key"]);
 
 		$this->tpl->setVariable("PROJECT_NAME", $project["project_name"]);
+
+		$support_link = self::dic()->ui()->factory()->link()->standard($project["support_link"], $project["support_link"])
+			->withOpenInNewViewport(true);
+		$this->tpl->setVariable("SUPPORT_LINK", self::dic()->ui()->renderer()->render($support_link));
 
 		$actions = new ilAdvancedSelectionListGUI();
 		$actions->setListTitle($this->txt("actions"));
