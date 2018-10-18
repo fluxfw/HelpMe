@@ -42,6 +42,11 @@ il.HelpMe = {
 	modal: null,
 
 	/**
+	 * @type {boolean}
+	 */
+	requestAgain: true,
+
+	/**
 	 * @type {il.Screenshots|null}
 	 */
 	screenshots: null,
@@ -139,6 +144,19 @@ il.HelpMe = {
 	 * @param {string} html
 	 */
 	show: function (html) {
+		if (html.indexOf("form_helpme_form") === -1) {
+			if (this.requestAgain) {
+
+				this.requestAgain = false;
+
+				this.click();
+
+				return;
+			}
+		}
+
+		this.requestAgain = false;
+
 		this.modal.find(".modal-body").html(html);
 
 		// Apply last screenshots
