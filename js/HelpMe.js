@@ -145,8 +145,8 @@ il.HelpMe = {
 	 */
 	show: function (html) {
 		if (html.indexOf("form_helpme_form") === -1) {
+			// Fix login page
 			if (this.requestAgain) {
-
 				this.requestAgain = false;
 
 				this.click();
