@@ -61,8 +61,6 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 					ilModalGUI::initJS();
 
-					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/node_modules/html2canvas/dist/html2canvas.min.js");
-
 					$screenshot = new ScreenshotsInputGUI();
 					$screenshot->setPlugin(self::plugin());
 					$screenshot->initJS();
