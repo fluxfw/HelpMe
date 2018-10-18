@@ -104,7 +104,7 @@ class Support {
 		$tpl = self::plugin()->template("helpme_" . $template . "_body.html");
 
 		$fields = [
-			"project" => $configProjects[$this->project],
+			"project" => $configProjects[$this->project] . " (" . $this->project . ")",
 			"title" => $this->title,
 			"name" => $this->name,
 			"login" => $this->login,

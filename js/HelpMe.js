@@ -72,8 +72,10 @@ il.HelpMe = {
 	hide: function () {
 		this.modal.find(".modal-body").html("");
 
-		il.Screenshots.removeInstance(this.screenshots);
-		this.screenshots = null;
+		if (this.screenshots !== null) {
+			il.Screenshots.removeInstance(this.screenshots);
+			this.screenshots = null;
+		}
 	},
 
 	/**
