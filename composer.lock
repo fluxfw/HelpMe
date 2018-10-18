@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "558e849d1e7dbeea8499cec4542aa5d3",
+    "content-hash": "3e5be42cb91dfd6afcd6dff2318d2f08",
     "packages": [
         {
             "name": "sinergi/browser-detector",
@@ -99,6 +99,52 @@
                 "config"
             ],
             "time": "2018-10-16T12:29:31+00:00"
+        },
+        {
+            "name": "srag/custominputguis",
+            "version": "v0.3.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
+                "reference": "7dfe8441920d7cecdf80b32cf5b90da447db001c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/7dfe8441920d7cecdf80b32cf5b90da447db001c",
+                "reference": "7dfe8441920d7cecdf80b32cf5b90da447db001c",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6",
+                "srag/dic": ">=0.1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "srag\\CustomInputGUIs\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "studer + raimann ag - Team Custom 1",
+                    "email": "support-custom1@studer-raimann.ch",
+                    "homepage": "https://studer-raimann.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Custom Input-GUI's",
+            "homepage": "https://github.com/studer-raimann/CustomInputGUIs",
+            "keywords": [
+                "ILIAS",
+                "PropertyForm",
+                "gui",
+                "input"
+            ],
+            "time": "2018-10-18T13:31:29+00:00"
         },
         {
             "name": "srag/dic",

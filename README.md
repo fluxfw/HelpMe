@@ -15,10 +15,9 @@ If yout want use the Jira recipient with oAuth authorization you can find a guid
 * ILIAS 5.3
 * PHP >=7.0
 * [composer](https://getcomposer.org)
-* [npm](https://nodejs.org)
-* [html2canvas](https://www.npmjs.com/package/html2canvas)
 * [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
 * [srag/activerecordconfig](https://packagist.org/packages/srag/activerecordconfig)
+* [srag/custominputguis](https://packagist.org/packages/srag/custominputguis)
 * [srag/dic](https://packagist.org/packages/srag/dic)
 * [srag/jiracurl](https://packagist.org/packages/srag/jiracurl)
 * [srag/removeplugindataconfirm](https://packagist.org/packages/srag/removeplugindataconfirm)

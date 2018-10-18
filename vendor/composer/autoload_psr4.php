@@ -10,6 +10,7 @@ return array(
     'srag\\Plugins\\HelpMe\\' => array($baseDir . '/src'),
     'srag\\JiraCurl\\' => array($vendorDir . '/srag/jiracurl/src'),
     'srag\\DIC\\' => array($vendorDir . '/srag/dic/src'),
+    'srag\\CustomInputGUIs\\' => array($vendorDir . '/srag/custominputguis/src'),
     'srag\\ActiveRecordConfig\\' => array($vendorDir . '/srag/activerecordconfig/src'),
     'Sinergi\\BrowserDetector\\' => array($vendorDir . '/sinergi/browser-detector/src'),
 );

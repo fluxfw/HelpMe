@@ -2,8 +2,8 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\CustomInputGUIs\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\DICTrait;
-use srag\Plugins\HelpMe\Screenshot\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**

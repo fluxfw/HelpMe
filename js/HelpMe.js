@@ -47,7 +47,7 @@ il.HelpMe = {
 	requestAgain: true,
 
 	/**
-	 * @type {il.Screenshots|null}
+	 * @type {il.ScreenshotsInputGUI|null}
 	 */
 	screenshots: null,
 
@@ -78,7 +78,7 @@ il.HelpMe = {
 		this.modal.find(".modal-body").html("");
 
 		if (this.screenshots !== null) {
-			il.Screenshots.removeInstance(this.screenshots);
+			il.ScreenshotsInputGUI.removeInstance(this.screenshots);
 			this.screenshots = null;
 		}
 	},
@@ -165,7 +165,7 @@ il.HelpMe = {
 			screenshots = this.screenshots.screenshots;
 
 		}
-		this.screenshots = il.Screenshots.lastInstance();
+		this.screenshots = il.ScreenshotsInputGUI.lastInstance();
 		if (this.screenshots !== undefined) {
 			this.screenshots.screenshots = screenshots;
 			this.screenshots.modal = this.modal;
