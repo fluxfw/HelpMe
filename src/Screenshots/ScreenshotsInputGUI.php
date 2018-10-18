@@ -118,7 +118,7 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable {
 
 			$dir = substr(__DIR__, strlen(ILIAS_ABSOLUTE_PATH) + 1) . "/../..";
 
-			self::dic()->mainTemplate()->addJavaScript($dir . "/js/Screenshots.js", false);
+			self::dic()->mainTemplate()->addJavaScript($dir . "/js/Screenshots.min.js", false);
 			self::dic()->mainTemplate()->addOnLoadCode($this->getJSOnLoadCode());
 		}
 	}
