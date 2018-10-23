@@ -57,16 +57,16 @@
         },
         {
             "name": "srag/activerecordconfig",
-            "version": "v0.7.4",
+            "version": "v0.7.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "d12d1bfb2d241d5c30235d74ff6fc1b25817df5b"
+                "reference": "3b3dcf055830af66aa6aae66f9239905f489d56c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/d12d1bfb2d241d5c30235d74ff6fc1b25817df5b",
-                "reference": "d12d1bfb2d241d5c30235d74ff6fc1b25817df5b",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/3b3dcf055830af66aa6aae66f9239905f489d56c",
+                "reference": "3b3dcf055830af66aa6aae66f9239905f489d56c",
                 "shasum": ""
             },
             "require": {
@@ -98,20 +98,20 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2018-10-16T12:29:31+00:00"
+            "time": "2018-10-22T08:06:16+00:00"
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.3.1",
+            "version": "v0.5.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "7dfe8441920d7cecdf80b32cf5b90da447db001c"
+                "reference": "835fd47b0e6b98b2edd37e0823f7db19e7376a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/7dfe8441920d7cecdf80b32cf5b90da447db001c",
-                "reference": "7dfe8441920d7cecdf80b32cf5b90da447db001c",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/835fd47b0e6b98b2edd37e0823f7db19e7376a68",
+                "reference": "835fd47b0e6b98b2edd37e0823f7db19e7376a68",
                 "shasum": ""
             },
             "require": {
@@ -144,7 +144,7 @@
                 "gui",
                 "input"
             ],
-            "time": "2018-10-18T13:31:29+00:00"
+            "time": "2018-10-23T09:51:14+00:00"
         },
         {
             "name": "srag/dic",
