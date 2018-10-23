@@ -7,7 +7,6 @@ config_configuration#:#Configuration
 config_configuration_saved#:#Configuration saved
 config_create_jira_ticket#:#Create a Jira ticket
 config_edit_project#:#Edit project
-config_email_address#:#Email address
 config_key#:#Key
 config_info#:#Info text
 config_jira_access_token#:#Jira access token
@@ -15,9 +14,11 @@ config_jira_authorization#:#Jira authorization
 config_jira_consumer_key#:#Jira consumer key
 config_jira_domain#:#Jira domain name
 config_jira_issue_type#:#Jira issue type
+config_jira_issue_type_info#:#Task, Bug, ...
 config_jira_oauth#:#oAuth
 config_jira_password#:#Jira password
 config_jira_private_key#:#Jira private key
+config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira username
 config_jira_usernamepassword#:#Username & password
 config_name#:#Name
@@ -29,10 +30,11 @@ config_remove_project#:#Remove project
 config_remove_project_confirm#:#Are you really want to delete the project: %s ?
 config_removed_project#:#Project %s removed
 config_roles#:#Roles
-config_roles_description#:#Show support for selected roles only
+config_roles_info#:#Show support for selected roles only
 config_save#:#Save
 config_saved_project#:#Project %s saved
 config_send_email#:#Send an email
+config_send_email_address#:#Email address
 config_support_link#:#Support link
 removeplugindataconfirm_cancel#:#Cancel
 removeplugindataconfirm_confirm_remove_data#:#Do you want to remove the %1$s data as well? At most, you just want to disable the %1$s plugin?
