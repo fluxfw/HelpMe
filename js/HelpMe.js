@@ -170,42 +170,16 @@ il.HelpMe = {
 			this.screenshots.screenshots = screenshots;
 			this.screenshots.modal = this.modal;
 			this.screenshots.updateScreenshots();
+			this.screenshots.submitButtonID = "helpme_submit";
+			this.screenshots.submitFunction = this.show.bind(this);
 		} else {
 			this.screenshots = null;
 		}
 
-		var $form = $("#form_helpme_form");
 		var $cancel = $("#helpme_cancel");
 
-		$form.submit(this.submit.bind(this));
 		$cancel.click(this.cancel.bind(this));
 
 		this.modal.modal("show");
-	},
-
-	/**
-	 * @returns {boolean}
-	 */
-	submit: function () {
-		var $form = $("#form_helpme_form");
-		var $submit = $("#helpme_submit");
-
-		var post_url = $form.attr("action");
-
-		var data = new FormData($form[0]); // Supports files upload
-		data.append($submit.prop("name"), $submit.val()); // Send submit button with cmd
-
-		this.screenshots.addScreenshotsToUpload(data);
-
-		$.ajax({
-			type: "post",
-			url: post_url,
-			contentType: false,
-			processData: false,
-			data: data,
-			success: this.show.bind(this)
-		});
-
-		return false;
 	}
 };
