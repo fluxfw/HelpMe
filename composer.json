@@ -33,32 +33,7 @@
       "srag\\Plugins\\HelpMe\\": "src/"
     },
     "classmap": [
-      "classes/",
-      "../../../../../../../Services/ActiveRecord/class.ActiveRecord.php",
-      "../../../../../../../Services/Calendar/classes/class.ilDatePresentation.php",
-      "../../../../../../../Services/Calendar/classes/class.ilDateTime.php",
-      "../../../../../../../Services/Component/classes/class.ilPluginConfigGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilEMailInputGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilFileInputGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilMultiSelectInputGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilNonEditableValueGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilPasswordInputGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilPropertyFormGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilRadioGroupInputGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilRadioOption.php",
-      "../../../../../../../Services/Form/classes/class.ilSelectInputGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilTextAreaInputGUI.php",
-      "../../../../../../../Services/Form/classes/class.ilTextInputGUI.php",
-      "../../../../../../../Services/jQuery/classes/class.iljQueryUtil.php",
-      "../../../../../../../Services/Mail/classes/class.ilMimeMail.php",
-      "../../../../../../../Services/Mail/classes/Mime/Sender/class.ilMailMimeSenderUser.php",
-      "../../../../../../../Services/UIComponent/classes/class.ilUIHookPluginGUI.php",
-      "../../../../../../../Services/UIComponent/classes/class.ilUIPluginRouterGUI.php",
-      "../../../../../../../Services/UIComponent/classes/class.ilUserInterfaceHookPlugin.php",
-      "../../../../../../../Services/UIComponent/Modal/classes/class.ilModalGUI.php",
-      "../../../../../../../Services/User/classes/class.ilObjUser.php",
-      "../../../../../../../Services/Utilities/classes/class.ilUtil.php",
-      "../../../../../../../Services/WebServices/Curl/classes/class.ilCurlConnection.php"
+      "classes/"
     ]
   },
   "config": {
