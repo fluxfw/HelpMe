@@ -122,13 +122,7 @@ il.ScreenshotsInputGUI.prototype = {
 		// Hide modal on the screenshot
 		this.hideModal();
 
-		html2canvas($("html")[0]).then(this.addPageScreenshot2.bind(this)).catch(function (err) {
-			// Restore modal
-			this.restoreModal();
-
-			//console.log(err);
-			alert(err);
-		}.bind(this));
+		html2canvas($("html")[0]).then(this.addPageScreenshot2.bind(this)).catch(this.addPageScreenshot4.bind(this));
 	},
 
 	/**
@@ -151,13 +145,26 @@ il.ScreenshotsInputGUI.prototype = {
 		var screenshot;
 		try {
 			screenshot = new File([blob], this.constructor.PAGE_SCREENSHOT_NAME + ".png", {type: blob.type});
-		} catch (err) {
+		} catch (ex) {
+			// Fix IE and Edge
 			screenshot = blob;
 		}
 
 		this.screenshots.push(screenshot);
 
 		this.updateScreenshots();
+	},
+
+	/**
+	 *
+	 * @param {Error} ex
+	 */
+	addPageScreenshot4: function (ex) {
+		// Restore modal
+		this.restoreModal();
+
+		//console.log(ex);
+		alert(ex);
 	},
 
 	/**
