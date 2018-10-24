@@ -100,7 +100,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 
 		$jira_private_key = new ilTextAreaInputGUI($this->txt(Config::KEY_JIRA_PRIVATE_KEY), Config::KEY_JIRA_PRIVATE_KEY);
 		$jira_private_key->setRequired(true);
-		$jira_private_key->setInfo($this->txt(Config::KEY_JIRA_CONSUMER_KEY . "_info"));
+		$jira_private_key->setInfo($this->txt(Config::KEY_JIRA_PRIVATE_KEY . "_info"));
 		$jira_private_key->setValue(Config::getJiraPrivateKey());
 		$jira_oauth->addSubItem($jira_private_key);
 
