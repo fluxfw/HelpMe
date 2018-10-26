@@ -1,41 +1,71 @@
-srsu_cancel#:#Abbrechen
-srsu_close#:#Schliessen
-srsu_configuration#:#Konfiguration
-srsu_configuration_saved#:#Konfiguration gespeichert
-srsu_confirmation#:#Bestätigung
-srsu_create_jira_ticket#:#Jira-Ticket erstellen
-srsu_datetime#:#Datum & Zeit
-srsu_description#:#Beschreibung
-srsu_email_address#:#E-Mail Adresse
-srsu_info#:#Infotext
-srsu_jira_access_token#:#Jira-Access-Token
-srsu_jira_authorization#:#Jira-Authorization
-srsu_jira_consumer_key#:#Jira-Consumer-Key
-srsu_jira_domain#:#Jira-Domainname
-srsu_jira_issue_type#:#Jira-Issue-Typ
-srsu_jira_oauth#:#oAuth
-srsu_jira_password#:#Jira-Passwort
-srsu_jira_private_key#:#Jira-Private-Key
-srsu_jira_project_key#:#Jira-Projekt-Key
-srsu_jira_username#:#Jira-Benutzername
-srsu_jira_usernamepassword#:#Benutzername & Passwort
-srsu_login#:#Login
-srsu_name#:#Name
-srsu_phone#:#Telefon
-srsu_please_select#:#bitte wählen
-srsu_priority#:#Dringlichkeit
-srsu_priorities#:#Dringlichkeiten
-srsu_recipient#:#Formularempfänger
-srsu_reproduce_steps#:#Schritte zum Reproduzieren
-srsu_roles#:#Rollen
-srsu_roles_description#:#Support nur für die ausgewählten Rollen anzeigen
-srsu_save#:#Speichern
-srsu_screenshot#:#Screenshot
-srsu_screenshot_current_page#:#Screenshot der aktuellen Seite erstellen
-srsu_send_email#:#Per E-Mail senden
-srsu_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden!
-srsu_sent_success#:#Vielen Dank für Ihre Support-Anfrage! Eine Bestätigungs-E-Mail wurde an Sie geschickt!
-srsu_submit#:#Senden
-srsu_support#:#Support
-srsu_system_infos#:#System-Infos
-srsu_title#:#Titel
+config_actions#:#Aktionen
+config_add#:#Hinzufügen
+config_add_project#:#Projekt hinzufügen
+config_added_project#:#Projekt %s hinzufügt
+config_cancel#:#Abbrechen
+config_configuration#:#Konfiguration
+config_configuration_saved#:#Konfiguration gespeichert
+config_create_jira_ticket#:#Jira-Ticket erstellen
+config_edit_project#:#Projekt bearbeiten
+config_key#:#Key
+config_info#:#Infotext
+config_jira_access_token#:#Jira-Access-Token
+config_jira_authorization#:#Jira-Authorization
+config_jira_consumer_key#:#Jira-Consumer-Key
+config_jira_domain#:#Jira-Domainname
+config_jira_issue_type#:#Jira-Issue-Typ
+config_jira_issue_type_info#:#Task, Bug, ...
+config_jira_oauth#:#oAuth
+config_jira_password#:#Jira-Passwort
+config_jira_private_key#:#Jira-Private-Key
+config_jira_private_key_info#:#PEM formatted RSA private key
+config_jira_username#:#Jira-Benutzername
+config_jira_usernamepassword#:#Benutzername & Passwort
+config_name#:#Name
+config_priorities#:#Dringlichkeiten
+config_projects#:#Projekte
+config_recipient#:#Formularempfänger
+config_remove#:#Entfernen
+config_remove_project#:#Projekt entfernen
+config_remove_project_confirm#:#Möchten Sie das Projekt wirklich entfernen: %s ?
+config_removed_project#:#Projekt %s entfernt
+config_roles#:#Rollen
+config_roles_info#:#Support nur für die ausgewählten Rollen anzeigen
+config_save#:#Speichern
+config_saved_project#:#Projekt %s gespeichert
+config_send_email#:#Per E-Mail senden
+config_send_email_address#:#E-Mail Adresse
+config_support_link#:#Support-Link
+removeplugindataconfirm_cancel#:#Abbrechen
+removeplugindataconfirm_confirm_remove_data#:#Möchten Sie die %1$s-Daten auch entfernen? Allenfalls möchten Sie das %1$s-Plugin nur deaktivieren?
+removeplugindataconfirm_deactivate#:#%1$s-Plugin nur deaktivieren
+removeplugindataconfirm_data#:#%1$s-Daten
+removeplugindataconfirm_keep_data#:#%1$s-Daten behalten
+removeplugindataconfirm_msg_kept_data#:#Die %1$s-Daten wurden behalten!
+removeplugindataconfirm_msg_removed_data#:#Die %1$s-Daten wurden auch entfernt!
+removeplugindataconfirm_remove_data#:#Entferne %1$s-Daten
+screenshotsinputgui_page_screenshot#:#Page_Screenshot
+screenshotsinputgui_preview_screenshot#:#Screenshot-Vorschau
+screenshotsinputgui_remove_screenshot#:#Screenshot entfernen
+screenshotsinputgui_take_page_screenshot#:#Screenshot der aktuellen Seite aufnehmen
+screenshotsinputgui_upload_screenshot#:#Screenshot hochladen
+support_cancel#:#Abbrechen
+support_close#:#Schliessen
+support_confirmation#:#Bestätigung
+support_datetime#:#Datum & Zeit
+support_description#:#Beschreibung
+support_email_address#:#E-Mail Adresse
+support_login#:#Login
+support_name#:#Name
+support_phone#:#Telefon
+support_please_select#:#bitte wählen
+support_priority#:#Dringlichkeit
+support_project#:#Projekt
+support_reproduce_steps#:#Schritte zum Reproduzieren
+support_screenshots#:#Screenshots
+support_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden!
+support_sent_success#:#Vielen Dank für Ihre Support-Anfrage! Eine Bestätigungs-E-Mail wurde an Sie geschickt!
+support_submit#:#Senden
+support_support#:#Support
+support_system_infos#:#System-Infos
+support_title#:#Titel

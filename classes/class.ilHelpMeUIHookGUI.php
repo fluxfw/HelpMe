@@ -1,29 +1,41 @@
 <?php
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\CustomInputGUIs\ScreenshotsInputGUI\ScreenshotsInputGUI;
+use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+
 /**
- * HelpMe UIHook-GUI
+ * Class ilHelpMeUIHookGUI
+ *
+ * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
+	use DICTrait;
+	use HelpMeTrait;
+	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+	const MAIN_TEMPLATE_ID = "tpl.main.html";
+	const MAIN_MENU_TEMPLATE_ID = "Services/MainMenu/tpl.main_menu.html";
+	const STARTUP_SCREEN_TEMPLATE_ID = "Services/Init/tpl.startup_screen.html";
+	const TEMPLATE_ADD = "template_add";
+	const TEMPLATE_GET = "template_get";
+	const TEMPLATE_SHOW = "template_show";
+	const PART_1 = "a";
+	const PART_2 = "b";
+	const SESSION_PROJECT_KEY = ilHelpMePlugin::PLUGIN_ID . "_project_key";
 	/**
-	 * @var ilCtrl
+	 * @var bool[]
 	 */
-	protected $ctrl;
-	/**
-	 * @var ilHelpMePlugin
-	 */
-	protected $pl;
+	protected static $load = [];
 
 
 	/**
-	 *
+	 * ilHelpMeUIHookGUI constructor
 	 */
 	public function __construct() {
-		global $DIC;
 
-		$this->ctrl = $DIC->ctrl();
-		$this->pl = ilHelpMePlugin::getInstance();
 	}
 
 
@@ -34,60 +46,101 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 *
 	 * @return array
 	 */
-	public function getHTML($a_comp, $a_part, $a_par = []) {
-		global $DIC;
+	public function getHTML(/*string*/
+		$a_comp, /*string*/
+		$a_part, /*array*/
+		$a_par = []): array {
+		if (!self::$load[self::PART_1]) {
 
-		if ($a_comp === "Services/MainMenu" && $a_part === "main_menu_search") {
-			if (ilHelpMeConfigRole::currentUserHasRole()) {
-				// Support button
-				$tpl = $this->pl->getTemplate("il_help_me_button.html");
+			if (($a_par["tpl_id"] === self::MAIN_MENU_TEMPLATE_ID && $a_part === self::TEMPLATE_GET)
+				|| ($a_par["tpl_id"] === self::STARTUP_SCREEN_TEMPLATE_ID && $a_part === self::TEMPLATE_ADD)) {
 
-				$main_tpl = $DIC->ui()->mainTemplate();
-				iljQueryUtil::initjQuery();
-				$main_tpl->addJavaScript("Services/Form/js/Form.js");
-				$main_tpl->addJavaScript($this->pl->getDirectory() . "/lib/html2canvas.min.js");
-				$main_tpl->addJavaScript($this->pl->getDirectory() . "/js/ilHelpMe.js");
+				self::$load[self::PART_1] = true;
 
-				$tpl->setCurrentBlock("il_help_me_button");
-				$tpl->setVariable("SUPPORT_TXT", $this->txt("srsu_support"));
-				$tpl->setVariable("SUPPORT_LINK", $this->ctrl->getLinkTargetByClass([
-					ilUIPluginRouterGUI::class,
-					ilHelpMeGUI::class
-				], ilHelpMeGUI::CMD_ADD_SUPPORT, "", true));
-				$html = $tpl->get();
+				if (self::access()->currentUserHasRole()) {
 
-				return [ "mode" => ilUIHookPluginGUI::PREPEND, "html" => $html ];
+					ilModalGUI::initJS();
+
+					$screenshot = new ScreenshotsInputGUI();
+					$screenshot->setPlugin(self::plugin());
+					$screenshot->initJS();
+					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/HelpMe.min.js", false);
+
+					// Fix some pages may not load Form.js
+					self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
+				}
 			}
 		}
 
-		if ($a_par["tpl_id"] === "tpl.adm_content.html") {
-			if (ilHelpMeConfigRole::currentUserHasRole()) {
-				// Modal
-				// TODO Fix after first configure currentUserHasRole false because not yet set, only after this
-				ilModalGUI::initJS();
+		if (!self::$load[self::PART_2]) {
 
-				$modal = ilModalGUI::getInstance();
-				$modal->setType(ilModalGUI::TYPE_LARGE);
-				$modal->setHeading($this->txt("srsu_support"));
+			if ($a_par["tpl_id"] === self::MAIN_TEMPLATE_ID && $a_part === self::TEMPLATE_SHOW) {
 
-				$modal->setId("il_help_me_modal");
+				self::$load[self::PART_2] = true;
 
-				$html = $modal->getHTML();
+				if (self::access()->currentUserHasRole()) {
 
-				return [ "mode" => ilUIHookPluginGUI::APPEND, "html" => $html ];
+					$html = $a_par["html"];
+
+					$helpme_js = '<script type="text/javascript" src="' . self::plugin()->directory() . '/js/HelpMe.min.js"></script>';
+					$helpme_js_pos = stripos($html, $helpme_js);
+					if ($helpme_js_pos !== false) {
+
+						$support_button_tpl = self::plugin()->template("helpme_support_button.html");
+						$support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+						$support_button_tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
+							ilUIPluginRouterGUI::class,
+							HelpMeSupportGUI::class
+						], HelpMeSupportGUI::CMD_ADD_SUPPORT, "", true));
+
+						// TODO: Modal UIServices
+						$modal = ilModalGUI::getInstance();
+						$modal->setType(ilModalGUI::TYPE_LARGE);
+						$modal->setHeading(self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+
+						$screenshot = new ScreenshotsInputGUI();
+						$screenshot->setPlugin(self::plugin());
+
+						$project_key = ilSession::get(self::SESSION_PROJECT_KEY);
+
+						// Could not use onload code because it not available on all pages
+						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
+il.HelpMe.MODAL_TEMPLATE = ' . json_encode($modal->getHTML()) . ';
+il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button_tpl->get()) . ';
+il.HelpMe.init();
+' . $screenshot->getJSOnLoadCode() . '
+' . ($project_key !== NULL ? 'il.HelpMe.autoOpen = true;' : '') . '
+							</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
+
+						return [ "mode" => self::REPLACE, "html" => $html ];
+					}
+				}
 			}
 		}
 
-		return [ "mode" => ilUIHookPluginGUI::KEEP, "html" => "" ];
+		return [ "mode" => self::KEEP, "html" => "" ];
 	}
 
 
 	/**
-	 * @param string $a_var
 	 *
-	 * @return string
 	 */
-	protected function txt($a_var) {
-		return $this->pl->txt($a_var);
+	public function gotoHook()/*: void*/ {
+		$target = filter_input(INPUT_GET, "target");
+
+		$matches = [];
+		preg_match("/^uihk_" . ilHelpMePlugin::PLUGIN_ID . "(_(.*))?/uim", $target, $matches);
+
+		if (is_array($matches) && count($matches) >= 1) {
+			$project_key = $matches[2];
+
+			if ($project_key === NULL) {
+				$project_key = "";
+			}
+
+			ilSession::set(self::SESSION_PROJECT_KEY, $project_key);
+
+			self::dic()->ctrl()->redirectToURL("/");
+		}
 	}
 }

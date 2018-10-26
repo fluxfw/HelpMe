@@ -1,23 +1,37 @@
 <?php
+
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigOld;
+use srag\Plugins\HelpMe\Config\ConfigPriorityOld;
+use srag\Plugins\HelpMe\Config\ConfigRoleOld;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use srag\RemovePluginDataConfirm\PluginUninstallTrait;
+
 /**
- * HelpMe Plugin
+ * Class ilHelpMePlugin
+ *
+ * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
+	use PluginUninstallTrait;
+	use HelpMeTrait;
 	const PLUGIN_ID = "srsu";
 	const PLUGIN_NAME = "HelpMe";
+	const PLUGIN_CLASS_NAME = self::class;
+	const REMOVE_PLUGIN_DATA_CONFIRM_CLASS_NAME = HelpMeRemoveDataConfirm::class;
 	/**
-	 * @var ilHelpMePlugin
+	 * @var self|null
 	 */
 	protected static $instance = NULL;
 
 
 	/**
-	 * @return ilHelpMePlugin
+	 * @return self
 	 */
-	public static function getInstance() {
+	public static function getInstance(): self {
 		if (self::$instance === NULL) {
 			self::$instance = new self();
 		}
@@ -27,39 +41,28 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 
 
 	/**
-	 * @var ilDB
-	 */
-	protected $db;
-
-
-	/**
-	 *
+	 * ilHelpMePlugin constructor
 	 */
 	public function __construct() {
 		parent::__construct();
-
-		global $DIC;
-
-		$this->db = $DIC->database();
 	}
 
 
 	/**
 	 * @return string
 	 */
-	public function getPluginName() {
+	public function getPluginName(): string {
 		return self::PLUGIN_NAME;
 	}
 
 
 	/**
-	 * @return bool
+	 * @inheritdoc
 	 */
-	protected function beforeUninstall() {
-		$this->db->dropTable(ilHelpMeConfig::TABLE_NAME, false);
-		$this->db->dropTable(ilHelpMeConfigPriority::TABLE_NAME, false);
-		$this->db->dropTable(ilHelpMeConfigRole::TABLE_NAME, false);
-
-		return true;
+	protected function deleteData()/*: void*/ {
+		self::dic()->database()->dropTable(ConfigOld::TABLE_NAME, false);
+		self::dic()->database()->dropTable(Config::TABLE_NAME, false);
+		self::dic()->database()->dropTable(ConfigPriorityOld::TABLE_NAME, false);
+		self::dic()->database()->dropTable(ConfigRoleOld::TABLE_NAME, false);
 	}
 }

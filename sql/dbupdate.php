@@ -1,10 +1,63 @@
 <#1>
 <?php
-	require_once "Customizing/global/plugins/Services/UIComponent/UserInterfaceHook/HelpMe/vendor/autoload.php";
+\srag\Plugins\HelpMe\Config\Config::updateDB();
+?>
+<#2>
+<?php
+\srag\Plugins\HelpMe\Config\Config::updateDB();
 
-	ilHelpMeConfig::updateDB();
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME)) {
+	\srag\Plugins\HelpMe\Config\ConfigOld::updateDB();
 
-	ilHelpMeConfigPriority::updateDB();
+	$config_old = \srag\Plugins\HelpMe\Config\ConfigOld::getConfig();
 
-	ilHelpMeConfigRole::updateDB();
+	\srag\Plugins\HelpMe\Config\Config::setInfo($config_old->getInfo());
+	\srag\Plugins\HelpMe\Config\Config::setJiraAccessToken($config_old->getJiraAccessToken());
+	\srag\Plugins\HelpMe\Config\Config::setJiraAuthorization($config_old->getJiraAuthorization());
+	\srag\Plugins\HelpMe\Config\Config::setJiraConsumerKey($config_old->getJiraConsumerKey());
+	\srag\Plugins\HelpMe\Config\Config::setJiraDomain($config_old->getJiraDomain());
+	\srag\Plugins\HelpMe\Config\Config::setJiraIssueType($config_old->getJiraIssueType());
+	\srag\Plugins\HelpMe\Config\Config::setJiraPassword($config_old->getJiraPassword());
+	\srag\Plugins\HelpMe\Config\Config::setJiraPrivateKey($config_old->getJiraPrivateKey());
+	\srag\Plugins\HelpMe\Config\Config::setJiraProjectKey($config_old->getJiraProjectKey());
+	\srag\Plugins\HelpMe\Config\Config::setJiraUsername($config_old->getJiraUsername());
+	\srag\Plugins\HelpMe\Config\Config::setRecipient($config_old->getRecipient());
+	\srag\Plugins\HelpMe\Config\Config::setSendEmailAddress($config_old->getSendEmailAddress());
+
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME);
+}
+?>
+<#3>
+<?php
+\srag\Plugins\HelpMe\Config\Config::updateDB();
+
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME)) {
+	\srag\Plugins\HelpMe\Config\ConfigPriorityOld::updateDB();
+
+	\srag\Plugins\HelpMe\Config\Config::setPriorities(array_values(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::getConfigPrioritiesArray()));
+
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME);
+}
+
+if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME)) {
+	\srag\Plugins\HelpMe\Config\ConfigRoleOld::updateDB();
+
+	\srag\Plugins\HelpMe\Config\Config::setRoles(array_values(\srag\Plugins\HelpMe\Config\ConfigRoleOld::getConfigRolesArray()));
+
+	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME);
+}
+?>
+<#4>
+<?php
+$jira_project_key = \srag\Plugins\HelpMe\Config\Config::getJiraProjectKey();
+
+if (!empty($jira_project_key)) {
+	$projects = \srag\Plugins\HelpMe\Config\Config::getProjects();
+
+	$projects[$jira_project_key] = $jira_project_key;
+
+	\srag\Plugins\HelpMe\Config\Config::setProjects($projects);
+
+	\srag\Plugins\HelpMe\Config\Config::removeJiraProjectKey();
+}
 ?>
