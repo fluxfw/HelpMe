@@ -34,6 +34,7 @@ Config projects:
 * [srag/dic](https://packagist.org/packages/srag/dic)
 * [srag/jiracurl](https://packagist.org/packages/srag/jiracurl)
 * [srag/removeplugindataconfirm](https://packagist.org/packages/srag/removeplugindataconfirm)
+* [babel-minfiy -g](https://www.npmjs.com/package/babel-minify)
 
 Please use it for further development!
 
