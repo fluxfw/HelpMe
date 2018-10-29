@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.0.1]
+- Add some screenshots
+- Fix git clone
+
 ## [3.0.0]
 - Multiple screenshots upload support
 - Multiple projects selection support
