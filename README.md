@@ -13,16 +13,16 @@ If yout want use the Jira recipient with oAuth authorization you can find a guid
 
 ### Some screenshots
 Support button:
-![Support button](./doc/screenshots/support_button.bmp)
+![Support button](./doc/screenshots/support_button.png)
 
 Support gui:
-![Support gui](./doc/screenshots/support_gui.bmp)
+![Support gui](./doc/screenshots/support_gui.png)
 
 Config:
-![Config](./doc/screenshots/config.bmp)
+![Config](./doc/screenshots/config.png)
 
 Config projects:
-![Config projects](./doc/screenshots/config_projects.bmp)
+![Config projects](./doc/screenshots/config_projects.png)
 
 ### Dependencies
 * ILIAS 5.3
