@@ -58,7 +58,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 		} else {
 			$this->addCommandButton(ilHelpMeConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
 		}
-		$this->addCommandButton(ilHelpMeConfigGUI::CMD_CONFIGURE . "_" . ilHelpMeConfigGUI::TAB_PROJECTS, $this->txt("cancel"));
+		$this->addCommandButton($this->parent->getCmdForTab(ilHelpMeConfigGUI::TAB_PROJECTS), $this->txt("cancel"));
 
 		$key = new ilTextInputGUI($this->txt("key"), "srsu_project_key");
 		$key->setRequired(true);
