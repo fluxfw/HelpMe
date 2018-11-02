@@ -64,7 +64,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 					$screenshot = new ScreenshotsInputGUI();
 					$screenshot->setPlugin(self::plugin());
 					$screenshot->initJS();
-					self::dic()->mainTemplate()->addJavaScript(self::plugin()->directory() . "/js/HelpMe.min.js", false);
+					self::dic()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
 
 					// Fix some pages may not load Form.js
 					self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
@@ -82,7 +82,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 					$html = $a_par["html"];
 
-					$helpme_js = '<script type="text/javascript" src="' . self::plugin()->directory() . '/js/HelpMe.min.js"></script>';
+					$helpme_js = '<script type="text/javascript" src="' . substr(self::plugin()->directory(), 2) . '/js/HelpMe.min.js"></script>';
 					$helpme_js_pos = stripos($html, $helpme_js);
 					if ($helpme_js_pos !== false) {
 
