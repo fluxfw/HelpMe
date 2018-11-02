@@ -28,6 +28,10 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	/**
 	 * @var array
 	 */
+	protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class, self::TAB_PROJECTS => ProjectsTableGUI::class ];
+	/**
+	 * @var array
+	 */
 	protected static $custom_commands = [
 		self::CMD_ADD_PROJECT,
 		self::CMD_CREATE_PROJECT,
@@ -36,10 +40,6 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		self::CMD_REMOVE_PROJECT,
 		self::CMD_REMOVE_PROJECT_CONFIRM
 	];
-	/**
-	 * @var array
-	 */
-	protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class, self::TAB_PROJECTS => ProjectsTableGUI::class ];
 
 
 	/**
