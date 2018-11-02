@@ -1,5 +1,57 @@
 # Changelog
 
+## [0.10.1]
+- Fix js and css path for sub folder ILIAS installations
+
+## [0.10.0]
+- Template which supports output base64 data inline javascript
+
+## [0.9.4]
+- adopt container width to longest select option
+
+## [0.9.3]
+- StaticHTMLPresentationInputGUI
+
+## [0.9.2]
+- StaticHTMLPresentationInputGUI
+
+## [0.9.1]
+- StaticHTMLPresentationInputGUI
+
+## [0.9.0]
+- StaticHTMLPresentationInputGUI
+
+## [0.8.6]
+- adopt with of container to longest selected option
+
+## [0.8.5]
+- MultiSelectSearchInputGUI: Fix require js and css path
+
+## [0.8.4]
+- Minify dependencies
+
+## [0.8.3]
+- min css
+
+## [0.8.2]
+- do not show selected options in search results, show one option per line, adopt…
+
+## [0.8.1]
+- Waiter no console log
+
+## [0.8.0]
+- Waiter
+- Min CSS
+ 
+## [0.7.4]
+- Fix ilDateInputGUI in MultiLineInputGUI
+
+## [0.7.3]
+- Fix ilDateInputGUI in MultiLineInputGUI
+
+## [0.7.2]
+- Fix ilDateInputGUI in MultiLineInputGUI
+
 ## [0.7.1]
 - Fix
 
