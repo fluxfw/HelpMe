@@ -70,8 +70,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	/**
 	 * @param array $project
 	 */
-	protected /*abstract*/
-	function fillRow(/*array*/
+	protected function fillRow(/*array*/
 		$project) {
 		$parent = $this->getParentObject();
 
