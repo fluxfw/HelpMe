@@ -3,7 +3,7 @@
 namespace srag\Plugins\HelpMe\Utils;
 
 use srag\Plugins\HelpMe\Access\Access;
-use srag\Plugins\HelpMe\Access\Permission;
+use srag\Plugins\HelpMe\Access\Ilias;
 
 /**
  * Trait HelpMeTrait
@@ -23,9 +23,9 @@ trait HelpMeTrait {
 
 
 	/**
-	 * @return Permission
+	 * @return Ilias
 	 */
-	protected static function permission(): Permission {
-		return Permission::getInstance();
+	protected static function ilias(): Ilias {
+		return Ilias::getInstance();
 	}
 }

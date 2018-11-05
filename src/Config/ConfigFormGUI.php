@@ -35,7 +35,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 		parent::initForm();
 
 		$configPriorities = Config::getPriorities();
-		$allRoles = self::access()->getAllRoles();
+		$allRoles = self::ilias()->roles()->getAllRoles();
 		$configRoles = Config::getRoles();
 
 		// Recipient
