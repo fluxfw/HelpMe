@@ -4,16 +4,17 @@ namespace srag\Plugins\HelpMe\Access;
 
 use ilHelpMePlugin;
 use srag\DIC\DICTrait;
+use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
- * Class Access
+ * Class Permission
  *
  * @package srag\Plugins\HelpMe\Access
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Access {
+final class Permission {
 
 	use DICTrait;
 	use HelpMeTrait;
@@ -37,7 +38,7 @@ final class Access {
 
 
 	/**
-	 * Access constructor
+	 * Permission constructor
 	 */
 	private function __construct() {
 
@@ -45,21 +46,25 @@ final class Access {
 
 
 	/**
-	 * @return array
+	 * @return bool
 	 */
-	public function getAllRoles(): array {
-		/**
-		 * @var array $global_roles
-		 * @var array $roles
-		 */
+	public function currentUserHasRole(): bool {
+		$user_id = self::dic()->user()->getId();
 
-		$global_roles = self::dic()->rbacreview()->getRolesForIDs(self::dic()->rbacreview()->getGlobalRoles(), false);
-
-		$roles = [];
-		foreach ($global_roles as $global_role) {
-			$roles[$global_role["rol_id"]] = $global_role["title"];
+		// Fix login screen
+		if ($user_id === 0 && boolval(self::dic()->settings()->get("pub_section"))) {
+			$user_id = ANONYMOUS_USER_ID;
 		}
 
-		return $roles;
+		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
+		$config_roles = Config::getRoles();
+
+		foreach ($user_roles as $user_role) {
+			if (in_array($user_role, $config_roles)) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

@@ -38,7 +38,7 @@ class HelpMeSupportGUI {
 	 *
 	 */
 	public function executeCommand()/*: void*/ {
-		if (!self::access()->currentUserHasRole()) {
+		if (!self::permission()->currentUserHasRole()) {
 			die();
 		}
 

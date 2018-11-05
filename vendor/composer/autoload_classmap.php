@@ -55,6 +55,7 @@ return array(
     'srag\\DIC\\Version\\VersionInterface' => $vendorDir . '/srag/dic/src/Version/VersionInterface.php',
     'srag\\JiraCurl\\JiraCurl' => $vendorDir . '/srag/jiracurl/src/JiraCurl.php',
     'srag\\Plugins\\HelpMe\\Access\\Access' => $baseDir . '/src/Access/Access.php',
+    'srag\\Plugins\\HelpMe\\Access\\Permission' => $baseDir . '/src/Access/Permission.php',
     'srag\\Plugins\\HelpMe\\Config\\Config' => $baseDir . '/src/Config/Config.php',
     'srag\\Plugins\\HelpMe\\Config\\ConfigFormGUI' => $baseDir . '/src/Config/ConfigFormGUI.php',
     'srag\\Plugins\\HelpMe\\Config\\ConfigOld' => $baseDir . '/src/Config/ConfigOld.php',

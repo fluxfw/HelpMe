@@ -57,7 +57,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				self::$load[self::PART_1] = true;
 
-				if (self::access()->currentUserHasRole()) {
+				if (self::permission()->currentUserHasRole()) {
 
 					ilModalGUI::initJS();
 
@@ -78,7 +78,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				self::$load[self::PART_2] = true;
 
-				if (self::access()->currentUserHasRole()) {
+				if (self::permission()->currentUserHasRole()) {
 
 					$html = $a_par["html"];
 
