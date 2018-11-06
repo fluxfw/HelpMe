@@ -35,16 +35,16 @@ class RecipientCreateJiraTicket extends Recipient {
 
 		$this->jira_curl = new JiraCurl();
 
-		$this->jira_curl->setJiraDomain(Config::getJiraDomain());
+		$this->jira_curl->setJiraDomain(Config::getField(Config::KEY_JIRA_DOMAIN));
 
-		$this->jira_curl->setJiraAuthorization(Config::getJiraAuthorization());
+		$this->jira_curl->setJiraAuthorization(Config::getField(Config::KEY_JIRA_AUTHORIZATION));
 
-		$this->jira_curl->setJiraUsername(Config::getJiraUsername());
-		$this->jira_curl->setJiraPassword(Config::getJiraPassword());
+		$this->jira_curl->setJiraUsername(Config::getField(Config::KEY_JIRA_USERNAME));
+		$this->jira_curl->setJiraPassword(Config::getField(Config::KEY_JIRA_PASSWORD));
 
-		$this->jira_curl->setJiraConsumerKey(Config::getJiraConsumerKey());
-		$this->jira_curl->setJiraPrivateKey(Config::getJiraPrivateKey());
-		$this->jira_curl->setJiraAccessToken(Config::getJiraAccessToken());
+		$this->jira_curl->setJiraConsumerKey(Config::getField(Config::KEY_JIRA_CONSUMER_KEY));
+		$this->jira_curl->setJiraPrivateKey(Config::getField(Config::KEY_JIRA_PRIVATE_KEY));
+		$this->jira_curl->setJiraAccessToken(Config::getField(Config::KEY_JIRA_ACCESS_TOKEN));
 	}
 
 
@@ -62,7 +62,7 @@ class RecipientCreateJiraTicket extends Recipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket(): bool {
-		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject(), Config::getJiraIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
+		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject(), Config::getField(Config::KEY_JIRA_ISSUE_TYPE), $this->support->getSubject(), $this->support->getBody("jira"));
 
 		if ($issue_key === NULL) {
 			return false;

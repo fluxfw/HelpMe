@@ -162,13 +162,13 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	protected function removeProject()/*: void*/ {
 		$project_key = filter_input(INPUT_GET, "srsu_project_key");
 
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		if (isset($configProjects[$project_key])) {
 			unset($configProjects[$project_key]);
 		}
 
-		Config::setProjects($configProjects);
+		Config::setField(Config::KEY_PROJECTS, $configProjects);
 
 		ilUtil::sendSuccess(self::plugin()->translate("removed_project", self::LANG_MODULE_CONFIG, [ $project_key ]), true);
 

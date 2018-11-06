@@ -44,7 +44,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 *
 	 */
 	protected function initData()/*: void*/ {
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		$this->setData(array_values(array_map(function (string $project_key, string $project_name): array {
 			return [

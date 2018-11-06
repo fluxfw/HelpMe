@@ -45,7 +45,7 @@ class RecipientSendMail extends Recipient {
 
 			$mailer->From(new RecipientSendMailSender($this->support));
 
-			$mailer->To(Config::getSendEmailAddress());
+			$mailer->To(Config::getField(Config::KEY_SEND_EMAIL_ADDRESS));
 
 			$mailer->Subject($this->support->getSubject());
 

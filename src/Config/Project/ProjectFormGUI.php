@@ -70,7 +70,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 		$name = new ilTextInputGUI($this->txt("name"), "srsu_project_name");
 		$name->setRequired(true);
 		if ($this->project_key !== NULL) {
-			$configProjects = Config::getProjects();
+			$configProjects = Config::getField(Config::KEY_PROJECTS);
 			$name->setValue($configProjects[$this->project_key]);
 		}
 		$this->addItem($name);
@@ -81,7 +81,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	public function updateConfig()/*: void*/ {
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		$project_key = $this->getInput("srsu_project_key");
 
@@ -93,7 +93,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 		$configProjects[$project_key] = $project_name;
 
-		Config::setProjects($configProjects);
+		Config::setField(Config::KEY_PROJECTS, $configProjects);
 
 		$this->project_key = $project_key;
 	}

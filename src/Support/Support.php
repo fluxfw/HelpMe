@@ -99,7 +99,7 @@ class Support {
 	 * @return string
 	 */
 	public function getBody(string $template): string {
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		$tpl = self::plugin()->template("helpme_" . $template . "_body.html");
 

@@ -56,9 +56,9 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	 */
 	protected function initForm()/*: void*/ {
 		$configProjects = [ "" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;" ]
-			+ Config::getProjects();
+			+ Config::getField(Config::KEY_PROJECTS);
 		$configPriorities = [ "" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;" ]
-			+ Config::getPriorities();
+			+ Config::getField(Config::KEY_PRIORITIES);
 		$project_key = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_KEY);
 
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
@@ -129,7 +129,7 @@ class SupportFormGUI extends ilPropertyFormGUI {
 	 * @return Support
 	 */
 	public function getSupport(): Support {
-		$configPriorities = Config::getPriorities();
+		$configPriorities = Config::getField(Config::KEY_PRIORITIES);
 
 		$support = new Support();
 
