@@ -5,8 +5,8 @@ require_once __DIR__ . "/../vendor/autoload.php";
 use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
-use srag\Plugins\HelpMe\Config\Projects\ProjectFormGUI;
-use srag\Plugins\HelpMe\Config\Projects\ProjectsTableGUI;
+use srag\Plugins\HelpMe\Config\Project\ProjectFormGUI;
+use srag\Plugins\HelpMe\Config\Project\ProjectsTableGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**

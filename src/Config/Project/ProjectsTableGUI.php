@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Config\Projects;
+namespace srag\Plugins\HelpMe\Config\Project;
 
 use ilAdvancedSelectionListGUI;
 use ilHelpMeConfigGUI;
@@ -13,7 +13,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 /**
  * Class ProjectsTableGUI
  *
- * @package srag\Plugins\HelpMe\Config\Projects
+ * @package srag\Plugins\HelpMe\Config\Project
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
