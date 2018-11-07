@@ -2,7 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Config;
 
-use HelpMeRemoveDataConfirm;
 use ilHelpMePlugin;
 use srag\ActiveRecordConfig\ActiveRecordConfig;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -39,68 +38,24 @@ class Config extends ActiveRecordConfig {
 	const KEY_RECIPIENT = "recipient";
 	const KEY_ROLES = "roles";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
-	const DEFAULT_INFO = "";
-	const DEFAULT_JIRA_ACCESS_TOKEN = "";
-	const DEFAULT_JIRA_AUTHORIZATION = "";
-	const DEFAULT_JIRA_CONSUMER_KEY = "";
-	const DEFAULT_JIRA_DOMAIN = "";
-	const DEFAULT_JIRA_ISSUE_TYPE = "";
-	const DEFAULT_JIRA_PASSWORD = "";
-	const DEFAULT_JIRA_PRIVATE_KEY = "";
-	/**
-	 * @var string
-	 *
-	 * @deprecated
-	 */
-	const DEFAULT_JIRA_PROJECT_KEY = "";
-	const DEFAULT_ROLES = [];
-	const DEFAULT_JIRA_USERNAME = "";
-	const DEFAULT_PRIORITIES = [];
-	const DEFAULT_PROJECTS = [];
-	const DEFAULT_RECIPIENT = "";
-	const DEFAULT_SEND_EMAIL_ADDRESS = "";
 	/**
 	 * @var array
 	 */
 	protected static $fields = [
-		self::KEY_INFO => [ self::TYPE_STRING, self::DEFAULT_INFO ],
-		self::KEY_JIRA_ACCESS_TOKEN => [ self::TYPE_STRING, self::DEFAULT_JIRA_ACCESS_TOKEN ],
-		self::KEY_JIRA_AUTHORIZATION => [ self::TYPE_STRING, self::DEFAULT_JIRA_AUTHORIZATION ],
-		self::KEY_JIRA_CONSUMER_KEY => [ self::TYPE_STRING, self::DEFAULT_JIRA_CONSUMER_KEY ],
-		self::KEY_JIRA_DOMAIN => [ self::TYPE_STRING, self::DEFAULT_JIRA_DOMAIN ],
-		self::KEY_JIRA_ISSUE_TYPE => [ self::TYPE_STRING, self::DEFAULT_JIRA_ISSUE_TYPE ],
-		self::KEY_JIRA_PASSWORD => [ self::TYPE_STRING, self::DEFAULT_JIRA_PASSWORD ],
-		self::KEY_JIRA_PRIVATE_KEY => [ self::TYPE_STRING, self::DEFAULT_JIRA_PRIVATE_KEY ],
-		self::KEY_JIRA_PROJECT_KEY => [ self::TYPE_STRING, self::DEFAULT_JIRA_PROJECT_KEY ],
-		self::KEY_JIRA_USERNAME => [ self::TYPE_STRING, self::DEFAULT_JIRA_USERNAME ],
-		self::KEY_PRIORITIES => [ self::TYPE_JSON, self::DEFAULT_PRIORITIES ],
-		self::KEY_PROJECTS => [ self::TYPE_JSON, self::DEFAULT_PROJECTS ],
-		self::KEY_RECIPIENT => [ self::TYPE_STRING, self::DEFAULT_RECIPIENT ],
-		self::KEY_ROLES => [ self::TYPE_JSON, self::DEFAULT_ROLES ],
-		self::KEY_SEND_EMAIL_ADDRESS => [ self::TYPE_STRING, self::DEFAULT_SEND_EMAIL_ADDRESS ],
+		self::KEY_INFO => self::TYPE_STRING,
+		self::KEY_JIRA_ACCESS_TOKEN => self::TYPE_STRING,
+		self::KEY_JIRA_AUTHORIZATION => self::TYPE_STRING,
+		self::KEY_JIRA_CONSUMER_KEY => self::TYPE_STRING,
+		self::KEY_JIRA_DOMAIN => self::TYPE_STRING,
+		self::KEY_JIRA_ISSUE_TYPE => self::TYPE_STRING,
+		self::KEY_JIRA_PASSWORD => self::TYPE_STRING,
+		self::KEY_JIRA_PRIVATE_KEY => self::TYPE_STRING,
+		self::KEY_JIRA_PROJECT_KEY => self::TYPE_STRING,
+		self::KEY_JIRA_USERNAME => self::TYPE_STRING,
+		self::KEY_PRIORITIES => [ self::TYPE_JSON, [] ],
+		self::KEY_PROJECTS => [ self::TYPE_JSON, [] ],
+		self::KEY_RECIPIENT => self::TYPE_STRING,
+		self::KEY_ROLES => [ self::TYPE_JSON, [] ],
+		self::KEY_SEND_EMAIL_ADDRESS => self::TYPE_STRING,
 	];
-
-
-	/**
-	 * @return bool|null
-	 */
-	public static function getUninstallRemovesData()/*: ?bool*/ {
-		return self::getXValue(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA, HelpMeRemoveDataConfirm::DEFAULT_UNINSTALL_REMOVES_DATA);
-	}
-
-
-	/**
-	 * @param bool $uninstall_removes_data
-	 */
-	public static function setUninstallRemovesData(bool $uninstall_removes_data)/*: void*/ {
-		self::setBooleanValue(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA, $uninstall_removes_data);
-	}
-
-
-	/**
-	 *
-	 */
-	public static function removeUninstallRemovesData()/*: void*/ {
-		self::removeName(HelpMeRemoveDataConfirm::KEY_UNINSTALL_REMOVES_DATA);
-	}
 }
