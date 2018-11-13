@@ -53,7 +53,7 @@ class Config extends ActiveRecordConfig {
 		self::KEY_JIRA_PROJECT_KEY => self::TYPE_STRING,
 		self::KEY_JIRA_USERNAME => self::TYPE_STRING,
 		self::KEY_PRIORITIES => [ self::TYPE_JSON, [] ],
-		self::KEY_PROJECTS => [ self::TYPE_JSON, [] ],
+		self::KEY_PROJECTS => [ self::TYPE_JSON, [], true ],
 		self::KEY_RECIPIENT => self::TYPE_STRING,
 		self::KEY_ROLES => [ self::TYPE_JSON, [] ],
 		self::KEY_SEND_EMAIL_ADDRESS => self::TYPE_STRING,
