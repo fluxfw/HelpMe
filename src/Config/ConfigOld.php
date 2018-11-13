@@ -5,7 +5,7 @@ namespace srag\Plugins\HelpMe\Config;
 use ActiveRecord;
 use arConnector;
 use ilHelpMePlugin;
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**

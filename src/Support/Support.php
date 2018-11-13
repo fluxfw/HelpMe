@@ -7,7 +7,7 @@ use ilDatePresentation;
 use ilDateTime;
 use ilHelpMePlugin;
 use ILIAS\FileUpload\DTO\UploadResult;
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -99,7 +99,7 @@ class Support {
 	 * @return string
 	 */
 	public function getBody(string $template): string {
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		$tpl = self::plugin()->template("helpme_" . $template . "_body.html");
 

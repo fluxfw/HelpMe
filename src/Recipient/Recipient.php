@@ -6,7 +6,7 @@ use Exception;
 use HelpMeSupportGUI;
 use ilHelpMePlugin;
 use ilMimeMail;
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 

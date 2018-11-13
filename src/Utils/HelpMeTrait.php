@@ -3,6 +3,7 @@
 namespace srag\Plugins\HelpMe\Utils;
 
 use srag\Plugins\HelpMe\Access\Access;
+use srag\Plugins\HelpMe\Access\Ilias;
 
 /**
  * Trait HelpMeTrait
@@ -18,5 +19,13 @@ trait HelpMeTrait {
 	 */
 	protected static function access(): Access {
 		return Access::getInstance();
+	}
+
+
+	/**
+	 * @return Ilias
+	 */
+	protected static function ilias(): Ilias {
+		return Ilias::getInstance();
 	}
 }

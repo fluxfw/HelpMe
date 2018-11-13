@@ -2,11 +2,11 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
-use srag\Plugins\HelpMe\Config\Projects\ProjectFormGUI;
-use srag\Plugins\HelpMe\Config\Projects\ProjectsTableGUI;
+use srag\Plugins\HelpMe\Config\Project\ProjectFormGUI;
+use srag\Plugins\HelpMe\Config\Project\ProjectsTableGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -28,6 +28,10 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	/**
 	 * @var array
 	 */
+	protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class, self::TAB_PROJECTS => ProjectsTableGUI::class ];
+	/**
+	 * @var array
+	 */
 	protected static $custom_commands = [
 		self::CMD_ADD_PROJECT,
 		self::CMD_CREATE_PROJECT,
@@ -36,10 +40,6 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		self::CMD_REMOVE_PROJECT,
 		self::CMD_REMOVE_PROJECT_CONFIRM
 	];
-	/**
-	 * @var array
-	 */
-	protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class, self::TAB_PROJECTS => ProjectsTableGUI::class ];
 
 
 	/**
@@ -87,7 +87,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 		ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
-		self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE . "_" . self::TAB_PROJECTS);
+		$this->redirectToTab(self::TAB_PROJECTS);
 	}
 
 
@@ -127,7 +127,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 		ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
-		self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE . "_" . self::TAB_PROJECTS);
+		$this->redirectToTab(self::TAB_PROJECTS);
 	}
 
 
@@ -150,7 +150,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		$confirmation->addItem("srsu_project_key", $project_key, $project_key);
 
 		$confirmation->setConfirm($this->txt("remove"), self::CMD_REMOVE_PROJECT);
-		$confirmation->setCancel($this->txt("cancel"), self::CMD_CONFIGURE . "_" . self::TAB_PROJECTS);
+		$confirmation->setCancel($this->txt("cancel"), $this->getCmdForTab(self::TAB_PROJECTS));
 
 		self::plugin()->output($confirmation);
 	}
@@ -162,16 +162,16 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	protected function removeProject()/*: void*/ {
 		$project_key = filter_input(INPUT_GET, "srsu_project_key");
 
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		if (isset($configProjects[$project_key])) {
 			unset($configProjects[$project_key]);
 		}
 
-		Config::setProjects($configProjects);
+		Config::setField(Config::KEY_PROJECTS, $configProjects);
 
 		ilUtil::sendSuccess(self::plugin()->translate("removed_project", self::LANG_MODULE_CONFIG, [ $project_key ]), true);
 
-		self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE . "_" . self::TAB_PROJECTS);
+		$this->redirectToTab(self::TAB_PROJECTS);
 	}
 }

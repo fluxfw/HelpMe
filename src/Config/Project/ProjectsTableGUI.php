@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Config\Projects;
+namespace srag\Plugins\HelpMe\Config\Project;
 
 use ilAdvancedSelectionListGUI;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilLinkButton;
-use srag\ActiveRecordConfig\ActiveRecordConfigTableGUI;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigTableGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class ProjectsTableGUI
  *
- * @package srag\Plugins\HelpMe\Config\Projects
+ * @package srag\Plugins\HelpMe\Config\Project
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -44,7 +44,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 *
 	 */
 	protected function initData()/*: void*/ {
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		$this->setData(array_values(array_map(function (string $project_key, string $project_name): array {
 			return [
@@ -70,8 +70,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	/**
 	 * @param array $project
 	 */
-	protected /*abstract*/
-	function fillRow(/*array*/
+	protected function fillRow(/*array*/
 		$project) {
 		$parent = $this->getParentObject();
 

@@ -33,6 +33,7 @@ Config projects:
 * [srag/custominputguis](https://packagist.org/packages/srag/custominputguis)
 * [srag/dic](https://packagist.org/packages/srag/dic)
 * [srag/jiracurl](https://packagist.org/packages/srag/jiracurl)
+* [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
 * [srag/removeplugindataconfirm](https://packagist.org/packages/srag/removeplugindataconfirm)
 * [babel-minify -g](https://www.npmjs.com/package/babel-minify)
 

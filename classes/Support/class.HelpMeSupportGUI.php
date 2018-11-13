@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../../vendor/autoload.php";
 
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\SuccessFormGUI;
@@ -91,7 +91,7 @@ class HelpMeSupportGUI {
 		$tpl = self::plugin()->template("helpme_modal.html");
 
 		$tpl->setCurrentBlock("helpme_info");
-		$tpl->setVariable("INFO", Config::getInfo());
+		$tpl->setVariable("INFO", Config::getField(Config::KEY_INFO));
 
 		if ($message !== NULL) {
 			$tpl->setCurrentBlock("helpme_message");
@@ -134,7 +134,7 @@ class HelpMeSupportGUI {
 
 		$support = $form->getSupport();
 
-		$recipient = Recipient::getRecipient(Config::getRecipient(), $support);
+		$recipient = Recipient::getRecipient(Config::getField(Config::KEY_RECIPIENT), $support);
 		if ($recipient->sendSupportToRecipient()) {
 			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
 

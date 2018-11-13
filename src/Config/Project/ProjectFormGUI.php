@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Config\Projects;
+namespace srag\Plugins\HelpMe\Config\Project;
 
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilTextInputGUI;
-use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
-use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class ProjectFormGUI
  *
- * @package srag\Plugins\HelpMe\Config\Projects;
+ * @package srag\Plugins\HelpMe\Config\Project
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -58,7 +58,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 		} else {
 			$this->addCommandButton(ilHelpMeConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
 		}
-		$this->addCommandButton(ilHelpMeConfigGUI::CMD_CONFIGURE . "_" . ilHelpMeConfigGUI::TAB_PROJECTS, $this->txt("cancel"));
+		$this->addCommandButton($this->parent->getCmdForTab(ilHelpMeConfigGUI::TAB_PROJECTS), $this->txt("cancel"));
 
 		$key = new ilTextInputGUI($this->txt("key"), "srsu_project_key");
 		$key->setRequired(true);
@@ -70,7 +70,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 		$name = new ilTextInputGUI($this->txt("name"), "srsu_project_name");
 		$name->setRequired(true);
 		if ($this->project_key !== NULL) {
-			$configProjects = Config::getProjects();
+			$configProjects = Config::getField(Config::KEY_PROJECTS);
 			$name->setValue($configProjects[$this->project_key]);
 		}
 		$this->addItem($name);
@@ -81,7 +81,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	public function updateConfig()/*: void*/ {
-		$configProjects = Config::getProjects();
+		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
 		$project_key = $this->getInput("srsu_project_key");
 
@@ -93,7 +93,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 		$configProjects[$project_key] = $project_name;
 
-		Config::setProjects($configProjects);
+		Config::setField(Config::KEY_PROJECTS, $configProjects);
 
 		$this->project_key = $project_key;
 	}
