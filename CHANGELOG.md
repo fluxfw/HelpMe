@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.0.3]
+- Use plugin specif namespace of libraries
+
 ## [3.0.2]
 - Fix ILIAS sub root folder
 
