@@ -5,8 +5,8 @@ namespace srag\Plugins\HelpMe\Config\Project;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilTextInputGUI;
-use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
-use srag\ActiveRecordConfig\ActiveRecordConfigGUI;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 

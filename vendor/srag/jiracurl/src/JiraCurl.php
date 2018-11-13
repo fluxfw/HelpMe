@@ -1,17 +1,17 @@
 <?php
 
-namespace srag\JiraCurl;
+namespace srag\JiraCurl\HelpMe;
 
 use CURLFile;
 use Exception;
 use ilCurlConnection;
 use ilCurlConnectionException;
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 
 /**
  * Class JiraCurl
  *
- * @package srag\JiraCurl
+ * @package srag\JiraCurl\HelpMe
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

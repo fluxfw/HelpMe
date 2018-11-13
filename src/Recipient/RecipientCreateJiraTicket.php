@@ -2,7 +2,7 @@
 
 namespace srag\Plugins\HelpMe\Recipient;
 
-use srag\JiraCurl\JiraCurl;
+use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 

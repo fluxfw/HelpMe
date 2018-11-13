@@ -3,7 +3,7 @@
 namespace srag\Plugins\HelpMe\Access;
 
 use ilHelpMePlugin;
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 

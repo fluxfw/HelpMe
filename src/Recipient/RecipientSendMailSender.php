@@ -5,7 +5,7 @@ namespace srag\Plugins\HelpMe\Recipient;
 use ilHelpMePlugin;
 use ilMailMimeSenderUser;
 use ilObjUser;
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 

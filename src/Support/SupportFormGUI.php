@@ -14,8 +14,8 @@ use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
-use srag\CustomInputGUIs\ScreenshotsInputGUI\ScreenshotsInputGUI;
-use srag\DIC\DICTrait;
+use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 

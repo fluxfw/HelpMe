@@ -7,7 +7,7 @@ use srag\Plugins\HelpMe\Config\ConfigOld;
 use srag\Plugins\HelpMe\Config\ConfigPriorityOld;
 use srag\Plugins\HelpMe\Config\ConfigRoleOld;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RemovePluginDataConfirm\PluginUninstallTrait;
+use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
 
 /**
  * Class ilHelpMePlugin

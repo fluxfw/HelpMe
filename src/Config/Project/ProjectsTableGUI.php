@@ -6,7 +6,7 @@ use ilAdvancedSelectionListGUI;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilLinkButton;
-use srag\ActiveRecordConfig\ActiveRecordConfigTableGUI;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigTableGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 

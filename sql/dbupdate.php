@@ -6,7 +6,7 @@
 <?php
 \srag\Plugins\HelpMe\Config\Config::updateDB();
 
-if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME)) {
+if (\srag\DIC\HelpMe\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME)) {
 	\srag\Plugins\HelpMe\Config\ConfigOld::updateDB();
 
 	$config_old = \srag\Plugins\HelpMe\Config\ConfigOld::getConfig();
@@ -24,27 +24,27 @@ if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Con
 	\srag\Plugins\HelpMe\Config\Config::setField(\srag\Plugins\HelpMe\Config\Config::KEY_RECIPIENT, $config_old->getRecipient());
 	\srag\Plugins\HelpMe\Config\Config::setField(\srag\Plugins\HelpMe\Config\Config::KEY_SEND_EMAIL_ADDRESS, $config_old->getSendEmailAddress());
 
-	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME);
+	\srag\DIC\HelpMe\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigOld::TABLE_NAME);
 }
 ?>
 <#3>
 <?php
 \srag\Plugins\HelpMe\Config\Config::updateDB();
 
-if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME)) {
+if (\srag\DIC\HelpMe\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME)) {
 	\srag\Plugins\HelpMe\Config\ConfigPriorityOld::updateDB();
 
 	\srag\Plugins\HelpMe\Config\Config::setField(\srag\Plugins\HelpMe\Config\Config::KEY_PRIORITIES, array_values(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::getConfigPrioritiesArray()));
 
-	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME);
+	\srag\DIC\HelpMe\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigPriorityOld::TABLE_NAME);
 }
 
-if (\srag\DIC\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME)) {
+if (\srag\DIC\HelpMe\DICStatic::dic()->database()->tableExists(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME)) {
 	\srag\Plugins\HelpMe\Config\ConfigRoleOld::updateDB();
 
 	\srag\Plugins\HelpMe\Config\Config::setField(\srag\Plugins\HelpMe\Config\Config::KEY_ROLES, array_values(\srag\Plugins\HelpMe\Config\ConfigRoleOld::getConfigRolesArray()));
 
-	\srag\DIC\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME);
+	\srag\DIC\HelpMe\DICStatic::dic()->database()->dropTable(\srag\Plugins\HelpMe\Config\ConfigRoleOld::TABLE_NAME);
 }
 ?>
 <#4>

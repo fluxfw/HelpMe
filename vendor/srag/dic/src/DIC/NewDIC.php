@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\DIC\DIC;
+namespace srag\DIC\HelpMe\DIC;
 
 use ILIAS\DI\Container;
-use srag\DIC\DICStatic;
-use srag\DIC\Exception\DICException;
+use srag\DIC\HelpMe\DICStatic;
+use srag\DIC\HelpMe\Exception\DICException;
 
 /**
  * Class NewDIC
  *
- * @package srag\DIC\DIC
+ * @package srag\DIC\HelpMe\DIC
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

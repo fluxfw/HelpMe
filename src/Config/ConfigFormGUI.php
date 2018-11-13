@@ -10,8 +10,8 @@ use ilRadioGroupInputGUI;
 use ilRadioOption;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use srag\ActiveRecordConfig\ActiveRecordConfigFormGUI;
-use srag\JiraCurl\JiraCurl;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
+use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 

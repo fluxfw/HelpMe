@@ -5,7 +5,7 @@ namespace srag\Plugins\HelpMe\Support;
 use HelpMeSupportGUI;
 use ilHelpMePlugin;
 use ilPropertyFormGUI;
-use srag\DIC\DICTrait;
+use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**

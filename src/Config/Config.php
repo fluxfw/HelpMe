@@ -3,7 +3,7 @@
 namespace srag\Plugins\HelpMe\Config;
 
 use ilHelpMePlugin;
-use srag\ActiveRecordConfig\ActiveRecordConfig;
+use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfig;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
