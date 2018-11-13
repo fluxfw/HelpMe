@@ -57,7 +57,7 @@ final class Access {
 		}
 
 		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
-		$config_roles = Config::getRoles();
+		$config_roles = Config::getField(Config::KEY_ROLES);
 
 		foreach ($user_roles as $user_role) {
 			if (in_array($user_role, $config_roles)) {
