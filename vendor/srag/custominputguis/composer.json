@@ -27,7 +27,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\CustomInputGUIs\\HelpMe\\": "src/"
+      "srag\\CustomInputGUIs\\HelpMe\\": "src/"
     }
   },
   "config": {
