@@ -26,7 +26,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\DIC\\HelpMe\\": "src/"
+      "srag\\DIC\\HelpMe\\": "src/"
     }
   },
   "config": {

@@ -28,7 +28,7 @@
   },
   "autoload": {
     "psr-4": {
-      "srag\RemovePluginDataConfirm\\HelpMe\\": "src/"
+      "srag\\RemovePluginDataConfirm\\HelpMe\\": "src/"
     }
   },
   "config": {

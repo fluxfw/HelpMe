@@ -119,9 +119,16 @@ final class LibrariesNamespaceChanger {
 					foreach ($files as $file) {
 						$code = file_get_contents($file);
 
-						$code = str_replace(self::SRAG . "\\" . $library, self::SRAG . "\\" . $library . "\\" . $plugin_name, $code);
+						$replaces = [
+							self::SRAG . "\\" . $library => self::SRAG . "\\" . $library . "\\" . $plugin_name,
+							self::SRAG . "\\\\" . $library => self::SRAG . "\\\\" . $library . "\\\\" . $plugin_name
+						];
 
-						$code = str_replace(self::SRAG . "\\\\" . $library, self::SRAG . "\\" . $library . "\\\\" . $plugin_name, $code);
+						foreach ($replaces as $search => $replace) {
+							if (strpos($code, $replace) === false) {
+								$code = str_replace($search, $replace, $code);
+							}
+						}
 
 						file_put_contents($file, $code);
 					}
