@@ -60,8 +60,8 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 *
 	 */
 	protected function initColumns()/*: void*/ {
-		$this->addColumn($this->txt("key"));
-		$this->addColumn($this->txt("name"));
+		$this->addColumn($this->txt("project_key"));
+		$this->addColumn($this->txt("project_name"));
 		$this->addColumn($this->txt("support_link"));
 		$this->addColumn($this->txt("actions"));
 	}

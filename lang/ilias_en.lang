@@ -5,26 +5,27 @@ config_added_project#:#Project %s added
 config_cancel#:#Cancel
 config_configuration#:#Configuration
 config_configuration_saved#:#Configuration saved
-config_create_jira_ticket#:#Create a Jira ticket
 config_edit_project#:#Edit project
-config_key#:#Key
 config_info#:#Info text
 config_jira_access_token#:#Jira access token
 config_jira_authorization#:#Jira authorization
+config_jira_authorization_oauth#:#oAuth
+config_jira_authorization_usernamepassword#:#Username & password
 config_jira_consumer_key#:#Jira consumer key
 config_jira_domain#:#Jira domain name
 config_jira_issue_type#:#Jira issue type
 config_jira_issue_type_info#:#Task, Bug, ...
-config_jira_oauth#:#oAuth
 config_jira_password#:#Jira password
 config_jira_private_key#:#Jira private key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira username
-config_jira_usernamepassword#:#Username & password
-config_name#:#Name
 config_priorities#:#Priorities
 config_projects#:#Projects
+config_project_key#:#Key
+config_project_name#:#Name
 config_recipient#:#Form recipient
+config_recipient_create_jira_ticket#:#Create a Jira ticket
+config_recipient_send_email#:#Send an email
 config_remove#:#Remove
 config_remove_project#:#Remove project
 config_remove_project_confirm#:#Are you really want to delete the project: %s ?
@@ -33,7 +34,6 @@ config_roles#:#Roles
 config_roles_info#:#Show support for selected roles only
 config_save#:#Save
 config_saved_project#:#Project %s saved
-config_send_email#:#Send an email
 config_send_email_address#:#Email address
 config_support_link#:#Support link
 removeplugindataconfirm_cancel#:#Cancel
@@ -54,7 +54,7 @@ support_close#:#Close
 support_confirmation#:#Confirmation
 support_datetime#:#Date & time
 support_description#:#Description
-support_email_address#:#Email address
+support_email#:#Email address
 support_login#:#Login
 support_name#:#Name
 support_phone#:#Phone

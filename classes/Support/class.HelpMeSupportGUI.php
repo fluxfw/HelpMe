@@ -132,6 +132,8 @@ class HelpMeSupportGUI {
 			return;
 		}
 
+		$form->updateForm();
+
 		$support = $form->getSupport();
 
 		$recipient = Recipient::getRecipient(Config::getField(Config::KEY_RECIPIENT), $support);

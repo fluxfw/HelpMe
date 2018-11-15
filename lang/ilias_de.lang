@@ -5,26 +5,27 @@ config_added_project#:#Projekt %s hinzugefügt
 config_cancel#:#Abbrechen
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
-config_create_jira_ticket#:#Jira-Ticket erstellen
 config_edit_project#:#Projekt bearbeiten
-config_key#:#Key
 config_info#:#Infotext
 config_jira_access_token#:#Jira-Access-Token
 config_jira_authorization#:#Jira-Authorization
+config_jira_authorization_oauth#:#oAuth
+config_jira_authorization_usernamepassword#:#Benutzername & Passwort
 config_jira_consumer_key#:#Jira-Consumer-Key
 config_jira_domain#:#Jira-Domainname
 config_jira_issue_type#:#Jira-Issue-Typ
 config_jira_issue_type_info#:#Task, Bug, ...
-config_jira_oauth#:#oAuth
 config_jira_password#:#Jira-Passwort
 config_jira_private_key#:#Jira-Private-Key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira-Benutzername
-config_jira_usernamepassword#:#Benutzername & Passwort
-config_name#:#Name
 config_priorities#:#Dringlichkeiten
 config_projects#:#Projekte
+config_project_key#:#Key
+config_project_name#:#Name
 config_recipient#:#Formularempfänger
+config_recipient_create_jira_ticket#:#Jira-Ticket erstellen
+config_recipient_send_email#:#Per E-Mail senden
 config_remove#:#Entfernen
 config_remove_project#:#Projekt entfernen
 config_remove_project_confirm#:#Möchten Sie das Projekt wirklich entfernen: %s ?
@@ -33,7 +34,6 @@ config_roles#:#Rollen
 config_roles_info#:#Support nur für die ausgewählten Rollen anzeigen
 config_save#:#Speichern
 config_saved_project#:#Projekt %s gespeichert
-config_send_email#:#Per E-Mail senden
 config_send_email_address#:#E-Mail Adresse
 config_support_link#:#Support-Link
 removeplugindataconfirm_cancel#:#Abbrechen
@@ -54,7 +54,7 @@ support_close#:#Schliessen
 support_confirmation#:#Bestätigung
 support_datetime#:#Datum & Zeit
 support_description#:#Beschreibung
-support_email_address#:#E-Mail Adresse
+support_email#:#E-Mail Adresse
 support_login#:#Login
 support_name#:#Name
 support_phone#:#Telefon

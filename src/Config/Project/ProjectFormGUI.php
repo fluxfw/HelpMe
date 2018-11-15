@@ -21,6 +21,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+	const CONFIG_CLASS_NAME = Config::class;
 	/**
 	 * @var string|null
 	 */
@@ -44,48 +45,90 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 
 	/**
-	 *
+	 * @inheritdoc
 	 */
-	protected function initForm()/*: void*/ {
-		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", $this->project_key);
-		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
-		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", NULL);
+	protected function getValue(/*string*/
+		$key) {
+		switch ($key) {
+			case "project_key":
+				return $this->project_key;
 
-		$this->setTitle($this->txt($this->project_key !== NULL ? "edit_project" : "add_project"));
+			case "project_name":
+				if ($this->project_key !== NULL) {
+					$configProjects = Config::getField(Config::KEY_PROJECTS);
 
-		if ($this->project_key !== NULL) {
-			$this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
-		} else {
-			$this->addCommandButton(ilHelpMeConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
+					return $configProjects[$this->project_key];
+				}
+				break;
+
+			default:
+				break;
 		}
-		$this->addCommandButton($this->parent->getCmdForTab(ilHelpMeConfigGUI::TAB_PROJECTS), $this->txt("cancel"));
 
-		$key = new ilTextInputGUI($this->txt("key"), "srsu_project_key");
-		$key->setRequired(true);
-		if ($this->project_key !== NULL) {
-			$key->setValue($this->project_key);
-		}
-		$this->addItem($key);
-
-		$name = new ilTextInputGUI($this->txt("name"), "srsu_project_name");
-		$name->setRequired(true);
-		if ($this->project_key !== NULL) {
-			$configProjects = Config::getField(Config::KEY_PROJECTS);
-			$name->setValue($configProjects[$this->project_key]);
-		}
-		$this->addItem($name);
+		return NULL;
 	}
 
 
 	/**
 	 * @inheritdoc
 	 */
-	public function updateConfig()/*: void*/ {
+	protected function initAction()/*: void*/ {
+		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", $this->project_key);
+
+		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
+
+		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", NULL);
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function initCommands()/*: void*/ {
+		if ($this->project_key !== NULL) {
+			$this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
+		} else {
+			$this->addCommandButton(ilHelpMeConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
+		}
+
+		$this->addCommandButton($this->parent->getCmdForTab(ilHelpMeConfigGUI::TAB_PROJECTS), $this->txt("cancel"));
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function initFields()/*: void*/ {
+		$this->fields = [
+			"project_key" => [
+				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_REQUIRED => true
+			],
+			"project_name" => [
+				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_REQUIRED => true
+			]
+		];
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function initTile()/*: void*/ {
+		$this->setTitle($this->txt($this->project_key !== NULL ? "edit_project" : "add_project"));
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function updateForm()/*: void*/ {
 		$configProjects = Config::getField(Config::KEY_PROJECTS);
 
-		$project_key = $this->getInput("srsu_project_key");
+		$project_key = $this->getInput("project_key");
 
-		$project_name = $this->getInput("srsu_project_name");
+		$project_name = $this->getInput("project_name");
 
 		if ($this->project_key !== NULL) {
 			unset($configProjects[$this->project_key]);

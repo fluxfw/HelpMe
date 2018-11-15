@@ -83,7 +83,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 			return;
 		}
 
-		$form->updateConfig();
+		$form->updateForm();
 
 		ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
@@ -123,7 +123,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 			return;
 		}
 
-		$form->updateConfig();
+		$form->updateForm();
 
 		ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
