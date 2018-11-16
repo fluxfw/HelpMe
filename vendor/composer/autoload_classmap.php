@@ -39,6 +39,7 @@ return array(
     'srag\\CustomInputGUIs\\HelpMe\\PropertyFormGUI\\PropertyFormGUI' => $vendorDir . '/srag/custominputguis/src/PropertyFormGUI/PropertyFormGUI.php',
     'srag\\CustomInputGUIs\\HelpMe\\ScreenshotsInputGUI\\ScreenshotsInputGUI' => $vendorDir . '/srag/custominputguis/src/ScreenshotsInputGUI/ScreenshotsInputGUI.php',
     'srag\\CustomInputGUIs\\HelpMe\\StaticHTMLPresentationInputGUI\\StaticHTMLPresentationInputGUI' => $vendorDir . '/srag/custominputguis/src/StaticHTMLPresentationInputGUI/StaticHTMLPresentationInputGUI.php',
+    'srag\\CustomInputGUIs\\HelpMe\\TableGUI\\BaseTableGUI' => $vendorDir . '/srag/custominputguis/src/TableGUI/BaseTableGUI.php',
     'srag\\CustomInputGUIs\\HelpMe\\Template\\Template' => $vendorDir . '/srag/custominputguis/src/Template/Template.php',
     'srag\\CustomInputGUIs\\HelpMe\\TextAreaInputGUI\\TextAreaInputGUI' => $vendorDir . '/srag/custominputguis/src/TextAreaInputGUI/TextAreaInputGUI.php',
     'srag\\CustomInputGUIs\\HelpMe\\TextInputGUI\\TextInputGUI' => $vendorDir . '/srag/custominputguis/src/TextInputGUI/TextInputGUI.php',

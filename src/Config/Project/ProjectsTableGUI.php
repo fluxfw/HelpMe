@@ -24,24 +24,29 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 
 
 	/**
-	 *
+	 * @inheritdoc
 	 */
-	protected function initTable()/*: void*/ {
-		parent::initTable();
-
-		$parent = $this->getParentObject();
-
-		$add_project = ilLinkButton::getInstance();
-		$add_project->setCaption($this->txt("add_project"), false);
-		$add_project->setUrl(self::dic()->ctrl()->getLinkTarget($parent, ilHelpMeConfigGUI::CMD_ADD_PROJECT));
-		self::dic()->toolbar()->addButtonInstance($add_project);
-
-		$this->setRowTemplate("projects_table_row.html", self::plugin()->directory());
+	protected function initColumns()/*: void*/ {
+		$this->addColumn($this->txt("project_key"));
+		$this->addColumn($this->txt("project_name"));
+		$this->addColumn($this->txt("support_link"));
+		$this->addColumn($this->txt("actions"));
 	}
 
 
 	/**
-	 *
+	 * @inheritdoc
+	 */
+	protected function initCommands()/*: void*/ {
+		$add_project = ilLinkButton::getInstance();
+		$add_project->setCaption($this->txt("add_project"), false);
+		$add_project->setUrl(self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_ADD_PROJECT));
+		self::dic()->toolbar()->addButtonInstance($add_project);
+	}
+
+
+	/**
+	 * @inheritdoc
 	 */
 	protected function initData()/*: void*/ {
 		$configProjects = Config::getField(Config::KEY_PROJECTS);
@@ -57,13 +62,10 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 
 
 	/**
-	 *
+	 * @inheritdoc
 	 */
-	protected function initColumns()/*: void*/ {
-		$this->addColumn($this->txt("project_key"));
-		$this->addColumn($this->txt("project_name"));
-		$this->addColumn($this->txt("support_link"));
-		$this->addColumn($this->txt("actions"));
+	protected function initRowTemplate()/*: void*/ {
+		$this->setRowTemplate("projects_table_row.html", self::plugin()->directory());
 	}
 
 
@@ -71,13 +73,11 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 * @param array $project
 	 */
 	protected function fillRow(/*array*/
-		$project) {
-		$parent = $this->getParentObject();
-
-		self::dic()->ctrl()->setParameter($parent, "srsu_project_key", $project["project_key"]);
-		$edit_project_link = self::dic()->ctrl()->getLinkTarget($parent, ilHelpMeConfigGUI::CMD_EDIT_PROJECT);
-		$remove_project_link = self::dic()->ctrl()->getLinkTarget($parent, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM);
-		self::dic()->ctrl()->setParameter($parent, "srsu_project_key", NULL);
+		$project)/*: void*/ {
+		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_key", $project["project_key"]);
+		$edit_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT);
+		$remove_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM);
+		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_key", NULL);
 
 		$this->tpl->setVariable("PROJECT_KEY", $project["project_key"]);
 

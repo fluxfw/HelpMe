@@ -10,6 +10,7 @@ use ilPropertyFormGUI;
 use ilRadioGroupInputGUI;
 use ilRadioOption;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Exception\PropertyFormGUIException;
+use srag\DIC\HelpMe\Exception\DICException;
 
 /**
  * Class BasePropertyFormGUI
@@ -283,9 +284,17 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 		$key,/*?string*/
 		$default = NULL)/*: string*/ {
 		if ($default !== NULL) {
-			return self::plugin()->translate($key, static::LANG_MODULE, [], true, "", $default);
+			try {
+				return self::plugin()->translate($key, static::LANG_MODULE, [], true, "", $default);
+			} catch (DICException $ex) {
+				return $default;
+			}
 		} else {
-			return self::plugin()->translate($key, static::LANG_MODULE);
+			try {
+				return self::plugin()->translate($key, static::LANG_MODULE);
+			} catch (DICException $ex) {
+				return "";
+			}
 		}
 	}
 
