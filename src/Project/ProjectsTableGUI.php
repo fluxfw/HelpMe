@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Config\Project;
+namespace srag\Plugins\HelpMe\Project;
 
 use ilAdvancedSelectionListGUI;
 use ilHelpMeConfigGUI;
@@ -13,7 +13,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 /**
  * Class ProjectsTableGUI
  *
- * @package srag\Plugins\HelpMe\Config\Project
+ * @package srag\Plugins\HelpMe\Project
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -21,6 +21,38 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 
 	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+	const ROW_TEMPLATE = "projects_table_row.html";
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function getColumnValue(/*string*/
+		$column, /*array*/
+		$row, /*bool*/
+		$raw_export = false): string {
+		switch ($column) {
+			default:
+				$column = $row[$column];
+				break;
+		}
+
+		if (!empty($column)) {
+			return $column;
+		} else {
+			return "";
+		}
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getSelectableColumns(): array {
+		$columns = [];
+
+		return $columns;
+	}
 
 
 	/**
@@ -62,28 +94,20 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 
 
 	/**
-	 * @inheritdoc
-	 */
-	protected function initRowTemplate()/*: void*/ {
-		$this->setRowTemplate("projects_table_row.html", self::plugin()->directory());
-	}
-
-
-	/**
-	 * @param array $project
+	 * @param array $row
 	 */
 	protected function fillRow(/*array*/
-		$project)/*: void*/ {
-		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_key", $project["project_key"]);
+		$row)/*: void*/ {
+		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_key", $row["project_key"]);
 		$edit_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT);
 		$remove_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM);
 		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_key", NULL);
 
-		$this->tpl->setVariable("PROJECT_KEY", $project["project_key"]);
+		$this->tpl->setVariable("PROJECT_KEY", $row["project_key"]);
 
-		$this->tpl->setVariable("PROJECT_NAME", $project["project_name"]);
+		$this->tpl->setVariable("PROJECT_NAME", $row["project_name"]);
 
-		$support_link = self::dic()->ui()->factory()->link()->standard($project["support_link"], $project["support_link"])
+		$support_link = self::dic()->ui()->factory()->link()->standard($row["support_link"], $row["support_link"])
 			->withOpenInNewViewport(true);
 		$this->tpl->setVariable("SUPPORT_LINK", self::dic()->ui()->renderer()->render($support_link));
 

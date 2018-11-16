@@ -1,20 +1,20 @@
 <?php
 
-namespace srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Exception;
+namespace srag\CustomInputGUIs\HelpMe\TableGUI\Exception;
 
-use ilFormException;
+use ilException;
 
 /**
- * Class PropertyFormGUIException
+ * Class TableGUIException
  *
- * @package srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Exception
+ * @package srag\CustomInputGUIs\HelpMe\TableGUI\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class PropertyFormGUIException extends ilFormException {
+final class TableGUIException extends ilException {
 
 	/**
-	 * PropertyFormGUIException constructor
+	 * TableGUIException constructor
 	 *
 	 * @param string $message
 	 * @param int    $code

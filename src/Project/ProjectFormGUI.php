@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Config\Project;
+namespace srag\Plugins\HelpMe\Project;
 
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
@@ -13,7 +13,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 /**
  * Class ProjectFormGUI
  *
- * @package srag\Plugins\HelpMe\Config\Project
+ * @package srag\Plugins\HelpMe\Project
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
