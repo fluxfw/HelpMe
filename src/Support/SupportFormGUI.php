@@ -28,6 +28,7 @@ class SupportFormGUI extends PropertyFormGUI {
 
 	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+	const LANG_MODULE = HelpMeSupportGUI::LANG_MODULE_SUPPORT;
 	/**
 	 * @var Support|null
 	 */
@@ -162,20 +163,6 @@ class SupportFormGUI extends PropertyFormGUI {
 	 */
 	protected function setValue(/*string*/
 		$key, $value)/*: void*/ {
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function txt(/*string*/
-		$key,/*?string*/
-		$default = NULL)/*: string*/ {
-		if ($default !== NULL) {
-			return self::plugin()->translate($key, HelpMeSupportGUI::LANG_MODULE_SUPPORT, [], true, "", $default);
-		} else {
-			return self::plugin()->translate($key, HelpMeSupportGUI::LANG_MODULE_SUPPORT);
-		}
 	}
 
 
