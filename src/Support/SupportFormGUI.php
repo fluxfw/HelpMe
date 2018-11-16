@@ -87,6 +87,8 @@ class SupportFormGUI extends PropertyFormGUI {
 			->translate("submit", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_submit");
 
 		$this->addCommandButton("", self::plugin()->translate("cancel", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
+
+		$this->setShowTopButtons(false);
 	}
 
 
@@ -152,9 +154,15 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initTitle()/*: void*/ {
+	protected function initId()/*: void*/ {
 		$this->setId("helpme_form");
-		$this->setShowTopButtons(false);
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function initTitle()/*: void*/ {
 	}
 
 

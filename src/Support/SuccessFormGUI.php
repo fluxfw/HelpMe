@@ -33,6 +33,16 @@ class SuccessFormGUI extends BasePropertyFormGUI {
 	 */
 	protected function initCommands()/*: void*/ {
 		$this->addCommandButton("", self::plugin()->translate("close", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
+
+		$this->setShowTopButtons(false);
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function initId()/*: void*/ {
+		$this->setId("helpme_form");
 	}
 
 
@@ -48,8 +58,6 @@ class SuccessFormGUI extends BasePropertyFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initTitle()/*: void*/ {
-		$this->setId("helpme_form");
-		$this->setShowTopButtons(false);
 	}
 
 
