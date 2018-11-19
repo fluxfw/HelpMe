@@ -75,7 +75,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	protected function initAction()/*: void*/ {
 		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", $this->project_key);
 
-		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
+		parent::initAction();
 
 		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", NULL);
 	}
