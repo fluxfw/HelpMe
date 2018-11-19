@@ -76,7 +76,7 @@ final class Items {
 			return $item->getDate();
 		}
 
-		if (method_exists($item, "getValue")) {
+		if (method_exists($item, "getValue") && !($item instanceof ilRadioOption)) {
 			if ($item->getMulti()) {
 				return $item->getMultiValues();
 			} else {
@@ -85,7 +85,7 @@ final class Items {
 				if ($item instanceof ilNumberInputGUI) {
 					$value = floatval($value);
 				} else {
-					if (empty($value)) {
+					if (empty($value) && !is_array($value)) {
 						$value = "";
 					}
 				}
