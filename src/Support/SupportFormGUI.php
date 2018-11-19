@@ -221,8 +221,10 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "screenshots":
-				foreach ($value as $screenshot) {
-					$this->support->addScreenshot($screenshot);
+				if (is_array($value)) {
+					foreach ($value as $screenshot) {
+						$this->support->addScreenshot($screenshot);
+					}
 				}
 				break;
 
