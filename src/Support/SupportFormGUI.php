@@ -83,10 +83,9 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		$this->addCommandButton(HelpMeSupportGUI::CMD_NEW_SUPPORT, self::plugin()
-			->translate("submit", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_submit");
+		$this->addCommandButton(HelpMeSupportGUI::CMD_NEW_SUPPORT, self::plugin()->translate("submit", self::LANG_MODULE), "helpme_submit");
 
-		$this->addCommandButton("", self::plugin()->translate("cancel", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
+		$this->addCommandButton("", self::plugin()->translate("cancel", self::LANG_MODULE), "helpme_cancel");
 
 		$this->setShowTopButtons(false);
 	}
@@ -101,7 +100,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				self::PROPERTY_CLASS => ilSelectInputGUI::class,
 				self::PROPERTY_REQUIRED => true,
 				self::PROPERTY_OPTIONS => [
-						"" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;"
+						"" => "&lt;" . self::plugin()->translate("please_select", self::LANG_MODULE) . "&gt;"
 					] + Config::getField(Config::KEY_PROJECTS)
 			],
 			"title" => [
@@ -127,7 +126,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				self::PROPERTY_CLASS => ilSelectInputGUI::class,
 				self::PROPERTY_REQUIRED => true,
 				self::PROPERTY_OPTIONS => [
-						"" => "&lt;" . self::plugin()->translate("please_select", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . "&gt;"
+						"" => "&lt;" . self::plugin()->translate("please_select", self::LANG_MODULE) . "&gt;"
 					] + Config::getField(Config::KEY_PRIORITIES)
 			],
 			"description" => [
