@@ -135,7 +135,7 @@ class SupportFormGUI extends PropertyFormGUI {
 			],
 			"reproduce_steps" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => true
+				self::PROPERTY_REQUIRED => false
 			],
 			"system_infos" => [
 				self::PROPERTY_CLASS => ilNonEditableValueGUI::class,
