@@ -170,6 +170,65 @@ class SupportFormGUI extends PropertyFormGUI {
 	 */
 	protected function setValue(/*string*/
 		$key, $value)/*: void*/ {
+		switch ($key) {
+			case "project":
+				$this->support->setProject($value);
+				break;
+
+			case "title":
+				$this->support->setTitle($value);
+				break;
+
+			case "name":
+				$this->support->setName(self::dic()->user()->getFullname());
+				break;
+
+			case "login":
+				$this->support->setLogin(self::dic()->user()->getLogin());
+				break;
+
+			case "email":
+				$this->support->setEmail($value);
+				break;
+
+			case "phone":
+				$this->support->setPhone($value);
+				break;
+
+			case "priority":
+				$configPriorities = Config::getField(Config::KEY_PRIORITIES);
+
+				$priority_id = intval($value);
+
+				foreach ($configPriorities as $id => $priority) {
+					if ($id === $priority_id) {
+						$this->support->setPriority($priority);
+						break;
+					}
+				}
+				break;
+
+			case "description":
+				$this->support->setDescription($value);
+				break;
+
+			case "reproduce_steps":
+				$this->support->setReproduceSteps($value);
+				break;
+
+			case "system_infos":
+				$this->support->setSystemInfos($this->getBrowserInfos());
+				break;
+
+			case "screenshots":
+				foreach ($value as $screenshot) {
+					$this->support->addScreenshot($screenshot);
+				}
+				break;
+
+			default:
+				break;
+		}
 	}
 
 
@@ -177,52 +236,12 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	public function updateForm()/*: void*/ {
-		$configPriorities = Config::getField(Config::KEY_PRIORITIES);
-
 		$this->support = new Support();
 
 		$time = time();
 		$this->support->setTime($time);
 
-		$project = $this->getInput("project");
-		$this->support->setProject($project);
-
-		$title = $this->getInput("title");
-		$this->support->setTitle($title);
-
-		$name = self::dic()->user()->getFullname();
-		$this->support->setName($name);
-
-		$login = self::dic()->user()->getLogin();
-		$this->support->setLogin($login);
-
-		$email = $this->getInput("email");
-		$this->support->setEmail($email);
-
-		$phone = $this->getInput("phone");
-		$this->support->setPhone($phone);
-
-		$priority_id = (int)$this->getInput("priority");
-		foreach ($configPriorities as $id => $priority) {
-			if ($id === $priority_id) {
-				$this->support->setPriority($priority);
-				break;
-			}
-		}
-
-		$description = $this->getInput("description");
-		$this->support->setDescription($description);
-
-		$reproduce_steps = $this->getInput("reproduce_steps");
-		$this->support->setReproduceSteps($reproduce_steps);
-
-		$system_infos = $this->getBrowserInfos();
-		$this->support->setSystemInfos($system_infos);
-
-		$screenshots = $this->getItemByPostVar("screenshots")->getValue();
-		foreach ($screenshots as $screenshot) {
-			$this->support->addScreenshot($screenshot);
-		}
+		parent::updateForm();
 	}
 
 
