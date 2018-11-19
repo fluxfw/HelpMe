@@ -74,7 +74,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initAction()/*: void*/ {
+	protected final function initAction()/*: void*/ {
 		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 	}
 
@@ -153,7 +153,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initId()/*: void*/ {
+	protected final function initId()/*: void*/ {
 		$this->setId("helpme_form");
 	}
 
@@ -161,7 +161,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initTitle()/*: void*/ {
+	protected final function initTitle()/*: void*/ {
 	}
 
 

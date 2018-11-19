@@ -3,9 +3,6 @@
 namespace srag\Plugins\HelpMe\Support;
 
 use HelpMeSupportGUI;
-use ilHelpMePlugin;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
-use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class SuccessFormGUI
@@ -14,11 +11,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class SuccessFormGUI extends PropertyFormGUI {
-
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-
+class SuccessFormGUI extends SupportFormGUI {
 
 	/**
 	 * @inheritdoc
@@ -26,14 +19,6 @@ class SuccessFormGUI extends PropertyFormGUI {
 	protected function getValue(/*string*/
 		$key)/*: void*/ {
 
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function initAction()/*: void*/ {
-		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
 	}
 
 
@@ -50,23 +35,7 @@ class SuccessFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initId()/*: void*/ {
-		$this->setId("helpme_form");
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
 	protected function initFields()/*: void*/ {
-
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function initTitle()/*: void*/ {
 
 	}
 
