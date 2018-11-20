@@ -55,7 +55,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 			case "project_name":
 				if ($this->project_key !== NULL) {
-					$configProjects = Config::getField(Config::KEY_PROJECTS);
+					$configProjects = (self::CONFIG_CLASS_NAME)::getField(Config::KEY_PROJECTS);
 
 					return $configProjects[$this->project_key];
 				}
@@ -124,7 +124,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	public function updateForm()/*: void*/ {
-		$configProjects = Config::getField(Config::KEY_PROJECTS);
+		$configProjects = (self::CONFIG_CLASS_NAME)::getField(Config::KEY_PROJECTS);
 
 		$project_key = $this->getInput("project_key");
 
@@ -136,7 +136,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 		$configProjects[$project_key] = $project_name;
 
-		Config::setField(Config::KEY_PROJECTS, $configProjects);
+		(self::CONFIG_CLASS_NAME)::setField(Config::KEY_PROJECTS, $configProjects);
 
 		$this->project_key = $project_key;
 	}
