@@ -9,6 +9,7 @@ use ilHelpMeUIHookGUI;
 use ilNonEditableValueGUI;
 use ilSelectInputGUI;
 use ilSession;
+use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
@@ -130,11 +131,11 @@ class SupportFormGUI extends PropertyFormGUI {
 					] + Config::getField(Config::KEY_PRIORITIES)
 			],
 			"description" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
 				self::PROPERTY_REQUIRED => true
 			],
 			"reproduce_steps" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
 				self::PROPERTY_REQUIRED => false
 			],
 			"system_infos" => [
