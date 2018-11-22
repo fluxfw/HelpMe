@@ -37,11 +37,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 				break;
 		}
 
-		if (!empty($column)) {
-			return $column;
-		} else {
-			return "";
-		}
+		return strval($column);
 	}
 
 
@@ -107,8 +103,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 
 		$this->tpl->setVariable("PROJECT_NAME", $row["project_name"]);
 
-		$support_link = self::dic()->ui()->factory()->link()->standard($row["support_link"], $row["support_link"])
-			->withOpenInNewViewport(true);
+		$support_link = self::dic()->ui()->factory()->link()->standard($row["support_link"], $row["support_link"])->withOpenInNewViewport(true);
 		$this->tpl->setVariable("SUPPORT_LINK", self::dic()->ui()->renderer()->render($support_link));
 
 		$actions = new ilAdvancedSelectionListGUI();
