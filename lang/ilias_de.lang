@@ -41,8 +41,8 @@ removeplugindataconfirm_confirm_remove_data#:#Möchten Sie die %1$s-Daten auch e
 removeplugindataconfirm_deactivate#:#%1$s-Plugin nur deaktivieren
 removeplugindataconfirm_data#:#%1$s-Daten
 removeplugindataconfirm_keep_data#:#%1$s-Daten behalten
-removeplugindataconfirm_msg_kept_data#:#Die %1$s-Daten wurden behalten!
-removeplugindataconfirm_msg_removed_data#:#Die %1$s-Daten wurden auch entfernt!
+removeplugindataconfirm_msg_kept_data#:#Die %1$s-Daten wurden behalten
+removeplugindataconfirm_msg_removed_data#:#Die %1$s-Daten wurden auch entfernt
 removeplugindataconfirm_remove_data#:#Entferne %1$s-Daten
 screenshotsinputgui_page_screenshot#:#Page_Screenshot
 screenshotsinputgui_preview_screenshot#:#Screenshot-Vorschau
@@ -63,8 +63,8 @@ support_priority#:#Dringlichkeit
 support_project#:#Projekt
 support_reproduce_steps#:#Schritte zum Reproduzieren
 support_screenshots#:#Screenshots
-support_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden!
-support_sent_success#:#Vielen Dank für Ihre Support-Anfrage! Eine Bestätigungs-E-Mail wurde an Sie geschickt!
+support_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden
+support_sent_success#:#Vielen Dank für Ihre Support-Anfrage. Eine Bestätigungs-E-Mail wurde an Sie geschickt
 support_submit#:#Senden
 support_support#:#Support
 support_system_infos#:#System-Infos
