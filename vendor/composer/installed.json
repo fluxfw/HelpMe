@@ -100,24 +100,24 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "v0.13.9",
-        "version_normalized": "0.13.9.0",
+        "version": "v0.13.16",
+        "version_normalized": "0.13.16.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "a4f732972ee75ed8c0dfa8f3d717c78a310fa264"
+            "reference": "4a2c8d1269208ec263a809f8234d5e0818e1a542"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/a4f732972ee75ed8c0dfa8f3d717c78a310fa264",
-            "reference": "a4f732972ee75ed8c0dfa8f3d717c78a310fa264",
+            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/4a2c8d1269208ec263a809f8234d5e0818e1a542",
+            "reference": "4a2c8d1269208ec263a809f8234d5e0818e1a542",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2018-11-19T14:32:47+00:00",
+        "time": "2018-11-22T08:12:51+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -243,23 +243,23 @@
     },
     {
         "name": "srag/librariesnamespacechanger",
-        "version": "v0.3.5",
-        "version_normalized": "0.3.5.0",
+        "version": "v0.3.6",
+        "version_normalized": "0.3.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-            "reference": "d4acc7bff635ef9126ad350e5efdb8a9c0a2de94"
+            "reference": "cf5f3be4341270fbe46a977bbd1403d744fb797a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/d4acc7bff635ef9126ad350e5efdb8a9c0a2de94",
-            "reference": "d4acc7bff635ef9126ad350e5efdb8a9c0a2de94",
+            "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/cf5f3be4341270fbe46a977bbd1403d744fb797a",
+            "reference": "cf5f3be4341270fbe46a977bbd1403d744fb797a",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6"
         },
-        "time": "2018-11-14T06:11:41+00:00",
+        "time": "2018-11-21T08:31:42+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

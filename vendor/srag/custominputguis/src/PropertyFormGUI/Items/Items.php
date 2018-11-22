@@ -12,7 +12,7 @@ use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\TableGUI\TableGUI;
 
 /**
- * Class BasePropertyFormGUI
+ * Class Items
  *
  * @package srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items
  *
@@ -28,7 +28,7 @@ final class Items {
 	 * @param ilPropertyFormGUI|ilFormPropertyGUI $parent_item
 	 * @param PropertyFormGUI|TableGUI            $parent
 	 *
-	 * @return PropertyFormGUI|ilFormSectionHeaderGUI|ilRadioOption
+	 * @return ilFormPropertyGUI|ilFormSectionHeaderGUI|ilRadioOption
 	 */
 	public static final function getItem($key, array $field, $parent_item, $parent) {
 		if (!class_exists($field[PropertyFormGUI::PROPERTY_CLASS])) {

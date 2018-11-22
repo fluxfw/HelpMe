@@ -9,17 +9,19 @@ use ilRadioGroupInputGUI;
 use ilRadioOption;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Exception\PropertyFormGUIException;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
+use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
 
 /**
- * Class BasePropertyFormGUI
+ * Class PropertyFormGUI
  *
  * @package srag\CustomInputGUIs\HelpMe\PropertyFormGUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-abstract class PropertyFormGUI extends BasePropertyFormGUI {
+abstract class PropertyFormGUI extends ilPropertyFormGUI {
 
+	use DICTrait;
 	/**
 	 * @var string
 	 */
@@ -56,6 +58,10 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 	 * @var ilFormPropertyGUI[]|ilFormSectionHeaderGUI[]
 	 */
 	private $items_cache = [];
+	/**
+	 * @var object
+	 */
+	protected $parent;
 
 
 	/**
@@ -64,7 +70,13 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 	 * @param object $parent
 	 */
 	public function __construct($parent) {
-		parent::__construct($parent);
+		$this->initId();
+
+		parent::__construct();
+
+		$this->parent = $parent;
+
+		$this->initForm();
 	}
 
 
@@ -139,9 +151,23 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 
 
 	/**
-	 * @inheritdoc
+	 *
 	 */
-	protected final function initItems()/*: void*/ {
+	private final function initForm()/*: void*/ {
+		$this->initAction();
+
+		$this->initCommands();
+
+		$this->initTitle();
+
+		$this->initItems();
+	}
+
+
+	/**
+	 *
+	 */
+	private final function initItems()/*: void*/ {
 		$this->initFields();
 
 		$this->getFields($this->fields, $this);
@@ -174,7 +200,15 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 
 
 	/**
-	 * @inheritdoc
+	 *
+	 */
+	protected function initAction()/*: void*/ {
+		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent));
+	}
+
+
+	/**
+	 *
 	 */
 	public function updateForm()/*: void*/ {
 		$this->getValueFromItems($this->fields);
@@ -193,7 +227,28 @@ abstract class PropertyFormGUI extends BasePropertyFormGUI {
 	/**
 	 *
 	 */
+	protected abstract function initCommands()/*: void*/
+	;
+
+
+	/**
+	 *
+	 */
 	protected abstract function initFields()/*: void*/
+	;
+
+
+	/**
+	 *
+	 */
+	protected abstract function initId()/*: void*/
+	;
+
+
+	/**
+	 *
+	 */
+	protected abstract function initTitle()/*: void*/
 	;
 
 

@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.13.16]
+- Fix
+
+## [0.13.15]
+- Removed unnecessary BasePropertyFormGUI and BaseTableGUI
+
+## [0.13.14]
+- Fix
+
+## [0.13.13]
+- TableGUI: Auto txt for columns
+
+## [0.13.12]
+- TableGUI: Auto txt for columns
+
+## [0.13.11]
+- Call hasSessionValue
+
+## [0.13.10]
+- hasSessionValue
+
 ## [0.13.9]
 - Fix getValue, setValue
 
