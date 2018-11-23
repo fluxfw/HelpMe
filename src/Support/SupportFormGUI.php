@@ -109,11 +109,13 @@ class SupportFormGUI extends PropertyFormGUI {
 				self::PROPERTY_REQUIRED => true
 			],
 			"name" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_CLASS => (self::ilias()->users()->getUserId()
+				=== intval(ANONYMOUS_USER_ID) ? ilTextInputGUI::class : ilNonEditableValueGUI::class),
 				self::PROPERTY_REQUIRED => true
 			],
 			"login" => [
-				self::PROPERTY_CLASS => ilNonEditableValueGUI::class
+				self::PROPERTY_CLASS => ilNonEditableValueGUI::class,
+				self::PROPERTY_REQUIRED => true
 			],
 			"email" => [
 				self::PROPERTY_CLASS => ilEMailInputGUI::class,
@@ -194,7 +196,11 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "name":
-				$this->support->setName(self::dic()->user()->getFullname());
+				if (self::ilias()->users()->getUserId() === intval(ANONYMOUS_USER_ID)) {
+					$this->support->setName($value);
+				} else {
+					$this->support->setName(self::dic()->user()->getFullname());
+				}
 				break;
 
 			case "login":

@@ -7,13 +7,13 @@ use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
- * Class Ilias
+ * Class Users
  *
  * @package srag\Plugins\HelpMe\Access
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Ilias {
+final class Users {
 
 	use DICTrait;
 	use HelpMeTrait;
@@ -37,7 +37,7 @@ final class Ilias {
 
 
 	/**
-	 * Ilias constructor
+	 * Users constructor
 	 */
 	private function __construct() {
 
@@ -45,17 +45,16 @@ final class Ilias {
 
 
 	/**
-	 * @return Roles
+	 * @return int
 	 */
-	public function roles(): Roles {
-		return Roles::getInstance();
-	}
+	public function getUserId(): int {
+		$user_id = self::dic()->user()->getId();
 
+		// Fix login screen
+		if ($user_id === 0 && boolval(self::dic()->settings()->get("pub_section"))) {
+			$user_id = ANONYMOUS_USER_ID;
+		}
 
-	/**
-	 * @return Roles
-	 */
-	public function users(): Users {
-		return Users::getInstance();
+		return intval($user_id);
 	}
 }

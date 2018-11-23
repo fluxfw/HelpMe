@@ -49,12 +49,7 @@ final class Access {
 	 * @return bool
 	 */
 	public function currentUserHasRole(): bool {
-		$user_id = self::dic()->user()->getId();
-
-		// Fix login screen
-		if ($user_id === 0 && boolval(self::dic()->settings()->get("pub_section"))) {
-			$user_id = ANONYMOUS_USER_ID;
-		}
+		$user_id = self::ilias()->users()->getUserId();
 
 		$user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
 		$config_roles = Config::getField(Config::KEY_ROLES);
