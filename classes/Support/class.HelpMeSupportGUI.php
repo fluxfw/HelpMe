@@ -99,9 +99,9 @@ class HelpMeSupportGUI {
 		}
 
 		$tpl->setCurrentBlock("helpme_form");
-		$tpl->setVariable("FORM", $form->getHTML());
+		$tpl->setVariable("FORM", self::output()->getHTML($form));
 
-		self::plugin()->output($tpl);
+		self::output()->output($tpl);
 	}
 
 
@@ -124,9 +124,8 @@ class HelpMeSupportGUI {
 		$message = NULL;
 
 		$form = $this->getSupportForm();
-		$form->setValuesByPost();
 
-		if (!$form->checkInput()) {
+		if (!$form->storeForm()) {
 			$this->show($message, $form);
 
 			return;

@@ -1,5 +1,47 @@
 # Changelog
 
+## [0.13.2]
+- Some improvments in PropertyFormGUI
+
+## [0.13.1]
+- New OutputInterface
+
+## [0.13.0]
+- TableGUI
+
+## [0.12.2]
+- BaseTableGUI
+
+## [0.12.1]
+- BaseTableGUI
+
+## [0.12.0]
+- BaseTableGUI
+
+## [0.11.6]
+- Fix
+
+## [0.11.5]
+- Fix
+
+## [0.11.4]
+- Fix
+
+## [0.11.3]
+- Fix
+
+## [0.11.2]
+- Move PropertyFormGUI to CustomInputGUIs
+
+## [0.11.1]
+- Fix and improvment PropertyForm
+
+## [0.11.0]
+- New PropertyForm
+
+## [0.10.0]
+- getDefaultValue
+
 ## [0.9.4]
 - Fix on some strange PHP versions
 

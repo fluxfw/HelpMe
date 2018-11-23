@@ -50,4 +50,12 @@ final class Ilias {
 	public function roles(): Roles {
 		return Roles::getInstance();
 	}
+
+
+	/**
+	 * @return Roles
+	 */
+	public function users(): Users {
+		return Users::getInstance();
+	}
 }

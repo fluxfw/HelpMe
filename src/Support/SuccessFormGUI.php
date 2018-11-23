@@ -3,10 +3,6 @@
 namespace srag\Plugins\HelpMe\Support;
 
 use HelpMeSupportGUI;
-use ilHelpMePlugin;
-use ilPropertyFormGUI;
-use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class SuccessFormGUI
@@ -15,40 +11,48 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class SuccessFormGUI extends ilPropertyFormGUI {
-
-	use DICTrait;
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	/**
-	 * @var HelpMeSupportGUI
-	 */
-	protected $parent;
-
+class SuccessFormGUI extends SupportFormGUI {
 
 	/**
-	 * SuccessFormGUI constructor
-	 *
-	 * @param HelpMeSupportGUI $parent
+	 * @inheritdoc
 	 */
-	public function __construct(HelpMeSupportGUI $parent) {
-		parent::__construct();
+	protected function getValue(/*string*/
+		$key)/*: void*/ {
 
-		$this->parent = $parent;
-
-		$this->initForm();
 	}
 
 
 	/**
-	 *
+	 * @inheritdoc
 	 */
-	protected function initForm()/*: void*/ {
-		$this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
-
+	protected function initCommands()/*: void*/ {
 		$this->addCommandButton("", self::plugin()->translate("close", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
 
-		$this->setId("helpme_form");
 		$this->setShowTopButtons(false);
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function initFields()/*: void*/ {
+
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function storeForm()/*: bool*/ {
+		return false;
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function storeValue(/*string*/
+		$key, $value)/*: void*/ {
+
 	}
 }

@@ -127,7 +127,7 @@ class Support {
 			$tpl->parseCurrentBlock();
 		};
 
-		$body = $tpl->get();
+		$body = self::output()->getHTML($tpl);
 
 		return $body;
 	}
