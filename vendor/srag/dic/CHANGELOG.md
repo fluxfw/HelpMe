@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.13.4]
+- New getHTML
+
+## [0.13.3]
+- New getHTML
+
 ## [0.13.2]
 - Supports output ilAdvancedSelectionListGUI
 

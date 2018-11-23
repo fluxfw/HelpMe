@@ -10,8 +10,8 @@ return array(
     'srag\\Plugins\\HelpMe\\' => array($baseDir . '/src'),
     'srag\\LibrariesNamespaceChanger\\' => array($vendorDir . '/srag/librariesnamespacechanger/src'),
     'srag\\JiraCurl\\HelpMe\\' => array($vendorDir . '/srag/jiracurl/src'),
-    'srag\\DIC\\HelpMe\\' => array($vendorDir . '/srag/dic/src'),
+    'srag\\DIC\\' => array($vendorDir . '/srag/dic/src'),
     'srag\\CustomInputGUIs\\' => array($vendorDir . '/srag/custominputguis/src'),
-    'srag\\ActiveRecordConfig\\' => array($vendorDir . '/srag/activerecordconfig/src'),
+    'srag\\ActiveRecordConfig\\HelpMe\\' => array($vendorDir . '/srag/activerecordconfig/src'),
     'Sinergi\\BrowserDetector\\' => array($vendorDir . '/sinergi/browser-detector/src'),
 );
