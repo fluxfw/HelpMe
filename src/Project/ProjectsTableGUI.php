@@ -112,6 +112,6 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		$actions->addItem($this->txt("edit_project"), "", $edit_project_link);
 		$actions->addItem($this->txt("remove_project"), "", $remove_project_link);
 
-		$this->tpl->setVariable("ACTIONS", $actions->getHTML());
+		$this->tpl->setVariable("ACTIONS", self::output()->getHTML($actions));
 	}
 }

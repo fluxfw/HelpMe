@@ -119,7 +119,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function setValue(/*string*/
+	protected function storeValue(/*string*/
 		$key, $value)/*: void*/ {
 		switch ($key) {
 			case Config::KEY_ROLES:
@@ -134,6 +134,6 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 				break;
 		}
 
-		parent::setValue($key, $value);
+		parent::storeValue($key, $value);
 	}
 }

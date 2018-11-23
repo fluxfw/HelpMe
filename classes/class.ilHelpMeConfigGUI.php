@@ -63,7 +63,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 		$form = $this->getProjectForm();
 
-		self::plugin()->output($form);
+		self::output()->output($form);
 	}
 
 
@@ -75,15 +75,11 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 		$form = $this->getProjectForm();
 
-		$form->setValuesByPost();
-
-		if (!$form->checkInput()) {
-			self::plugin()->output($form);
+		if (!$form->storeForm()) {
+			self::output()->output($form);
 
 			return;
 		}
-
-		$form->updateForm();
 
 		ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
@@ -101,7 +97,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 		$form = $this->getProjectForm($project_key);
 
-		self::plugin()->output($form);
+		self::output()->output($form);
 	}
 
 
@@ -115,15 +111,11 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 		$form = $this->getProjectForm($project_key);
 
-		$form->setValuesByPost();
-
-		if (!$form->checkInput()) {
-			self::plugin()->output($form);
+		if (!$form->storeForm()) {
+			self::output()->output($form);
 
 			return;
 		}
-
-		$form->updateForm();
 
 		ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [ $form->getProjectKey() ]), true);
 
@@ -152,7 +144,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		$confirmation->setConfirm($this->txt("remove"), self::CMD_REMOVE_PROJECT);
 		$confirmation->setCancel($this->txt("cancel"), $this->getCmdForTab(self::TAB_PROJECTS));
 
-		self::plugin()->output($confirmation);
+		self::output()->output($confirmation);
 	}
 
 

@@ -169,7 +169,20 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function setValue(/*string*/
+	public function storeForm()/*: bool*/ {
+		$this->support = new Support();
+
+		$time = time();
+		$this->support->setTime($time);
+
+		return parent::storeForm();
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function storeValue(/*string*/
 		$key, $value)/*: void*/ {
 		switch ($key) {
 			case "project":
@@ -230,19 +243,6 @@ class SupportFormGUI extends PropertyFormGUI {
 			default:
 				break;
 		}
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	public function updateForm()/*: void*/ {
-		$this->support = new Support();
-
-		$time = time();
-		$this->support->setTime($time);
-
-		parent::updateForm();
 	}
 
 

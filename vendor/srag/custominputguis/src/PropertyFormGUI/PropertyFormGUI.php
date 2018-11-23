@@ -49,6 +49,10 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI {
 	/**
 	 * @var string
 	 */
+	const PROPERTY_VALUE = "value";
+	/**
+	 * @var string
+	 */
 	const LANG_MODULE = "";
 	/**
 	 * @var array
@@ -108,9 +112,11 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI {
 			$this->items_cache[$key] = $item;
 
 			if ($item instanceof ilFormPropertyGUI) {
-				$value = $this->getValue($key);
+				if (!isset($field[self::PROPERTY_VALUE])) {
+					$value = $this->getValue($key);
 
-				Items::setValueToItem($item, $value);
+					Items::setValueToItem($item, $value);
+				}
 			}
 
 			if (is_array($field[self::PROPERTY_SUBITEMS])) {
@@ -125,26 +131,6 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI {
 				} else {
 					$parent_item->addSubItem($item);
 				}
-			}
-		}
-	}
-
-
-	/**
-	 * @param array $fields
-	 */
-	private final function getValueFromItems(array $fields)/*: void*/ {
-		foreach ($fields as $key => $field) {
-			$item = $this->items_cache[$key];
-
-			if ($item instanceof ilFormPropertyGUI) {
-				$value = Items::getValueFromItem($item);
-
-				$this->setValue($key, $value);
-			}
-
-			if (is_array($field[self::PROPERTY_SUBITEMS])) {
-				$this->getValueFromItems($field[self::PROPERTY_SUBITEMS]);
 			}
 		}
 	}
@@ -175,6 +161,40 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI {
 
 
 	/**
+	 * @return bool
+	 */
+	protected final function storeFormCheck()/*: bool*/ {
+		$this->setValuesByPost();
+
+		if (!$this->checkInput()) {
+			return false;
+		}
+
+		return true;
+	}
+
+
+	/**
+	 * @param array $fields
+	 */
+	private final function storeFormItems(array $fields)/*: void*/ {
+		foreach ($fields as $key => $field) {
+			$item = $this->items_cache[$key];
+
+			if ($item instanceof ilFormPropertyGUI) {
+				$value = Items::getValueFromItem($item);
+
+				$this->storeValue($key, $value);
+			}
+
+			if (is_array($field[self::PROPERTY_SUBITEMS])) {
+				$this->storeFormItems($field[self::PROPERTY_SUBITEMS]);
+			}
+		}
+	}
+
+
+	/**
 	 * @param string      $key
 	 * @param string|null $default
 	 *
@@ -200,6 +220,14 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI {
 
 
 	/**
+	 * @return bool
+	 */
+	public function checkInput()/*: bool*/ {
+		return parent::checkInput();
+	}
+
+
+	/**
 	 *
 	 */
 	protected function initAction()/*: void*/ {
@@ -208,10 +236,16 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI {
 
 
 	/**
-	 *
+	 * @return bool
 	 */
-	public function updateForm()/*: void*/ {
-		$this->getValueFromItems($this->fields);
+	public function storeForm()/*: bool*/ {
+		if (!$this->storeFormCheck()) {
+			return false;
+		}
+
+		$this->storeFormItems($this->fields);
+
+		return true;
 	}
 
 
@@ -256,7 +290,7 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI {
 	 * @param string $key
 	 * @param mixed  $value
 	 */
-	protected abstract function setValue(/*string*/
+	protected abstract function storeValue(/*string*/
 		$key, $value)/*: void*/
 	;
 }

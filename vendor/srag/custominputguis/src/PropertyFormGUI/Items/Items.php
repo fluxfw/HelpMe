@@ -58,6 +58,14 @@ final class Items {
 
 		self::setPropertiesToItem($item, $field);
 
+		if ($item instanceof ilFormPropertyGUI) {
+			if (isset($field[PropertyFormGUI::PROPERTY_VALUE])) {
+				$value = $field[PropertyFormGUI::PROPERTY_VALUE];
+
+				Items::setValueToItem($item, $value);
+			}
+		}
+
 		return $item;
 	}
 
@@ -126,6 +134,7 @@ final class Items {
 
 				case PropertyFormGUI::PROPERTY_CLASS:
 				case PropertyFormGUI::PROPERTY_SUBITEMS:
+				case PropertyFormGUI::PROPERTY_VALUE:
 					break;
 
 				default:

@@ -123,7 +123,11 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	public function updateForm()/*: void*/ {
+	public function storeForm()/*: bool*/ {
+		if (!$this->storeFormCheck()) {
+			return false;
+		}
+
 		$configProjects = (self::CONFIG_CLASS_NAME)::getField(Config::KEY_PROJECTS);
 
 		$project_key = $this->getInput("project_key");
@@ -139,6 +143,17 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 		(self::CONFIG_CLASS_NAME)::setField(Config::KEY_PROJECTS, $configProjects);
 
 		$this->project_key = $project_key;
+
+		return true;
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	protected function storeValue(/*string*/
+		$key, $value)/*: void*/ {
+
 	}
 
 

@@ -4,12 +4,16 @@ namespace srag\DIC\HelpMe;
 
 use ilLogLevel;
 use ilPlugin;
-use League\Flysystem\PluginInterface;
 use srag\DIC\HelpMe\DIC\DICInterface;
-use srag\DIC\HelpMe\DIC\LegacyDIC;
-use srag\DIC\HelpMe\DIC\NewDIC;
+use srag\DIC\HelpMe\DIC\Implementation\ILIAS52DIC;
+use srag\DIC\HelpMe\DIC\Implementation\ILIAS53DIC;
+use srag\DIC\HelpMe\DIC\Implementation\ILIAS54DIC;
+use srag\DIC\HelpMe\DIC\Implementation\LegacyDIC;
 use srag\DIC\HelpMe\Exception\DICException;
+use srag\DIC\HelpMe\Output\Output;
+use srag\DIC\HelpMe\Output\OutputInterface;
 use srag\DIC\HelpMe\Plugin\Plugin;
+use srag\DIC\HelpMe\Plugin\PluginInterface;
 use srag\DIC\HelpMe\Version\Version;
 use srag\DIC\HelpMe\Version\VersionInterface;
 
@@ -27,6 +31,10 @@ final class DICStatic implements DICStaticInterface {
 	 */
 	private static $dic = NULL;
 	/**
+	 * @var OutputInterface|null
+	 */
+	private static $output = NULL;
+	/**
 	 * @var PluginInterface[]
 	 */
 	private static $plugins = [];
@@ -41,16 +49,42 @@ final class DICStatic implements DICStaticInterface {
 	 */
 	public static function dic()/*: DICInterface*/ {
 		if (self::$dic === NULL) {
-			if (self::version()->is52()) {
-				global $DIC;
-				self::$dic = new NewDIC($DIC);
-			} else {
-				global $GLOBALS;
-				self::$dic = new LegacyDIC($GLOBALS);
+			switch (true) {
+				case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_2)):
+					global $GLOBALS;
+					self::$dic = new LegacyDIC($GLOBALS);
+					break;
+
+				case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_3)):
+					global $DIC;
+					self::$dic = new ILIAS52DIC($DIC);
+					break;
+
+				case (self::version()->isLower(VersionInterface::ILIAS_VERSION_5_4)):
+					global $DIC;
+					self::$dic = new ILIAS53DIC($DIC);
+					break;
+
+				default:
+					global $DIC;
+					self::$dic = new ILIAS54DIC($DIC);
+					break;
 			}
 		}
 
 		return self::$dic;
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public static function output()/*: OutputInterface*/ {
+		if (self::$output === NULL) {
+			self::$output = new Output();
+		}
+
+		return self::$output;
 	}
 
 
