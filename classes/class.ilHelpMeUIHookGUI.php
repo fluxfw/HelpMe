@@ -106,7 +106,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 						// Could not use onload code because it not available on all pages
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode(self::output()->getHTML($modal)) . ';
-il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button_tpl->get()) . ';
+il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode(self::output()->getHTML($support_button_tpl)) . ';
 il.HelpMe.init();
 ' . $screenshot->getJSOnLoadCode() . '
 ' . ($project_key !== NULL ? 'il.HelpMe.autoOpen = true;' : '') . '
