@@ -104,7 +104,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		$this->tpl->setVariable("PROJECT_NAME", $row["project_name"]);
 
 		$support_link = self::dic()->ui()->factory()->link()->standard($row["support_link"], $row["support_link"])->withOpenInNewViewport(true);
-		$this->tpl->setVariable("SUPPORT_LINK", self::dic()->ui()->renderer()->render($support_link));
+		$this->tpl->setVariable("SUPPORT_LINK", self::output()->getHTML($support_link));
 
 		$actions = new ilAdvancedSelectionListGUI();
 		$actions->setListTitle($this->txt("actions"));
