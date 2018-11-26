@@ -7,7 +7,6 @@ use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilLinkButton;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigTableGUI;
-use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -77,15 +76,13 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 * @inheritdoc
 	 */
 	protected function initData()/*: void*/ {
-		$configProjects = Config::getField(Config::KEY_PROJECTS);
+		$projects = self::projects()->getProjectsArray();
 
-		$this->setData(array_values(array_map(function (string $project_key, string $project_name): array {
-			return [
-				"project_key" => $project_key,
-				"project_name" => $project_name,
-				"support_link" => ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . "_" . $project_key
-			];
-		}, array_keys($configProjects), $configProjects)));
+		$this->setData(array_map(function (array $project): array {
+			$project["support_link"] = ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . "_" . $project["project_key"];
+
+			return $project;
+		}, $projects));
 	}
 
 
@@ -94,10 +91,10 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 */
 	protected function fillRow(/*array*/
 		$row)/*: void*/ {
-		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_key", $row["project_key"]);
+		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", $row["project_id"]);
 		$edit_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT);
 		$remove_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM);
-		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_key", NULL);
+		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", NULL);
 
 		$this->tpl->setVariable("PROJECT_KEY", $row["project_key"]);
 

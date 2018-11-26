@@ -24,7 +24,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	const TEMPLATE_SHOW = "template_show";
 	const PART_1 = "a";
 	const PART_2 = "b";
-	const SESSION_PROJECT_KEY = ilHelpMePlugin::PLUGIN_ID . "_project_key";
+	const SESSION_PROJECT_ID = ilHelpMePlugin::PLUGIN_ID . "_project_id";
 	/**
 	 * @var bool[]
 	 */
@@ -101,7 +101,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 						$screenshot = new ScreenshotsInputGUI();
 						$screenshot->setPlugin(self::plugin());
 
-						$project_key = ilSession::get(self::SESSION_PROJECT_KEY);
+						$project_id = ilSession::get(self::SESSION_PROJECT_ID);
 
 						// Could not use onload code because it not available on all pages
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
@@ -109,7 +109,7 @@ il.HelpMe.MODAL_TEMPLATE = ' . json_encode(self::output()->getHTML($modal)) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode(self::output()->getHTML($support_button_tpl)) . ';
 il.HelpMe.init();
 ' . $screenshot->getJSOnLoadCode() . '
-' . ($project_key !== NULL ? 'il.HelpMe.autoOpen = true;' : '') . '
+' . ($project_id !== NULL ? 'il.HelpMe.autoOpen = true;' : '') . '
 							</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
 
 						return [ "mode" => self::REPLACE, "html" => $html ];
@@ -138,7 +138,15 @@ il.HelpMe.init();
 				$project_key = "";
 			}
 
-			ilSession::set(self::SESSION_PROJECT_KEY, $project_key);
+			$project = self::projects()->getProjectByKey($project_key);
+
+			if ($project !== NULL) {
+				$project_id = $project->getProjectId();
+			} else {
+				$project_id = "";
+			}
+
+			ilSession::set(self::SESSION_PROJECT_ID, $project_id);
 
 			self::dic()->ctrl()->redirectToURL("/");
 		}

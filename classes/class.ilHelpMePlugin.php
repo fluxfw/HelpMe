@@ -6,6 +6,7 @@ use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigOld;
 use srag\Plugins\HelpMe\Config\ConfigPriorityOld;
 use srag\Plugins\HelpMe\Config\ConfigRoleOld;
+use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
 
@@ -64,5 +65,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 		self::dic()->database()->dropTable(Config::TABLE_NAME, false);
 		self::dic()->database()->dropTable(ConfigPriorityOld::TABLE_NAME, false);
 		self::dic()->database()->dropTable(ConfigRoleOld::TABLE_NAME, false);
+		self::dic()->database()->dropTable(Project::TABLE_NAME, false);
 	}
 }

@@ -23,9 +23,9 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CONFIG_CLASS_NAME = Config::class;
 	/**
-	 * @var string|null
+	 * @var Project|null
 	 */
-	protected $project_key;
+	protected $project;
 
 
 	/**
@@ -33,12 +33,12 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 *
 	 * @param ActiveRecordConfigGUI $parent
 	 * @param string                $tab_id
-	 * @param string|null           $project_key
+	 * @param Project|null          $project
 	 */
 	public function __construct(ActiveRecordConfigGUI $parent, string $tab_id, /*?*/
-		string $project_key = NULL) {
+		Project $project = NULL) {
 
-		$this->project_key = $project_key;
+		$this->project = $project;
 
 		parent::__construct($parent, $tab_id);
 	}
@@ -49,20 +49,18 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 */
 	protected function getValue(/*string*/
 		$key) {
-		switch ($key) {
-			case "project_key":
-				return $this->project_key;
+		if ($this->project !== NULL) {
+			switch ($key) {
+				case "project_key":
+					return $this->project->getProjectKey();
 
-			case "project_name":
-				if ($this->project_key !== NULL) {
-					$configProjects = (self::CONFIG_CLASS_NAME)::getField(Config::KEY_PROJECTS);
+				case "project_name":
+					return $this->project->getProjectName();
+					break;
 
-					return $configProjects[$this->project_key];
-				}
-				break;
-
-			default:
-				break;
+				default:
+					break;
+			}
 		}
 
 		return NULL;
@@ -73,11 +71,13 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initAction()/*: void*/ {
-		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", $this->project_key);
+		if ($this->project !== NULL) {
+			self::dic()->ctrl()->setParameter($this->parent, "srsu_project_id", $this->project->getProjectId());
+		}
 
 		parent::initAction();
 
-		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_key", NULL);
+		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_id", NULL);
 	}
 
 
@@ -85,7 +85,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		if ($this->project_key !== NULL) {
+		if ($this->project !== NULL) {
 			$this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
 		} else {
 			$this->addCommandButton(ilHelpMeConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
@@ -116,7 +116,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initTile()/*: void*/ {
-		$this->setTitle($this->txt($this->project_key !== NULL ? "edit_project" : "add_project"));
+		$this->setTitle($this->txt($this->project !== NULL ? "edit_project" : "add_project"));
 	}
 
 
@@ -124,25 +124,15 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	public function storeForm()/*: bool*/ {
-		if (!$this->storeFormCheck()) {
+		if ($this->project === NULL) {
+			$this->project = new Project();
+		}
+
+		if (!parent::storeForm()) {
 			return false;
 		}
 
-		$configProjects = (self::CONFIG_CLASS_NAME)::getField(Config::KEY_PROJECTS);
-
-		$project_key = $this->getInput("project_key");
-
-		$project_name = $this->getInput("project_name");
-
-		if ($this->project_key !== NULL) {
-			unset($configProjects[$this->project_key]);
-		}
-
-		$configProjects[$project_key] = $project_name;
-
-		(self::CONFIG_CLASS_NAME)::setField(Config::KEY_PROJECTS, $configProjects);
-
-		$this->project_key = $project_key;
+		$this->project->store();
 
 		return true;
 	}
@@ -153,14 +143,25 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 */
 	protected function storeValue(/*string*/
 		$key, $value)/*: void*/ {
+		switch ($key) {
+			case "project_key":
+				$this->project->setProjectKey(strval($value));
+				break;
 
+			case "project_name":
+				$this->project->setProjectName(strval($value));
+				break;
+
+			default:
+				break;
+		}
 	}
 
 
 	/**
-	 * @return string
+	 * @return Project
 	 */
-	public function getProjectKey(): string {
-		return $this->project_key;
+	public function getProject(): Project {
+		return $this->project;
 	}
 }

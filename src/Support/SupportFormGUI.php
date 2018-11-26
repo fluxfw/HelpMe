@@ -43,12 +43,12 @@ class SupportFormGUI extends PropertyFormGUI {
 		$key) {
 		switch ($key) {
 			case "project":
-				$project_key = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_KEY);
+				$project_id = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
 
-				if ($project_key !== NULL) {
-					ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_KEY);
+				if ($project_id !== NULL) {
+					ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
 
-					return $project_key;
+					return intval($project_id);
 				}
 				break;
 
@@ -102,7 +102,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				self::PROPERTY_REQUIRED => true,
 				self::PROPERTY_OPTIONS => [
 						"" => "&lt;" . self::plugin()->translate("please_select", self::LANG_MODULE) . "&gt;"
-					] + Config::getField(Config::KEY_PROJECTS)
+					] + self::projects()->getProjectsOptions()
 			],
 			"title" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
@@ -188,7 +188,7 @@ class SupportFormGUI extends PropertyFormGUI {
 		$key, $value)/*: void*/ {
 		switch ($key) {
 			case "project":
-				$this->support->setProject($value);
+				$this->support->setProject(self::projects()->getProjectById(intval($value)));
 				break;
 
 			case "title":
