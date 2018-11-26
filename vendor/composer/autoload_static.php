@@ -14,7 +14,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
+            'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
         'S' => 
@@ -44,7 +44,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\HelpMe\\' => 
+        'srag\\CustomInputGUIs\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),

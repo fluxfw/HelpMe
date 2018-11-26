@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.0.6]
+- Project table: Allows to select columns
+
 ## [3.0.5]
 - Project database table
 
