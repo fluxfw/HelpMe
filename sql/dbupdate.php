@@ -52,12 +52,41 @@ if (\srag\DIC\HelpMe\DICStatic::dic()->database()->tableExists(\srag\Plugins\Hel
 $jira_project_key = \srag\Plugins\HelpMe\Config\Config::getField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_PROJECT_KEY);
 
 if (!empty($jira_project_key)) {
-	$projects = \srag\Plugins\HelpMe\Config\Config::getField(\srag\Plugins\HelpMe\Config\Config::KEY_PROJECTS);
+	$project = new \srag\Plugins\HelpMe\Project\Project();
 
-	$projects[$jira_project_key] = $jira_project_key;
+	$project->setProjectKey($jira_project_key);
 
-	\srag\Plugins\HelpMe\Config\Config::setField(\srag\Plugins\HelpMe\Config\Config::KEY_PROJECTS, $projects);
+	$project->setProjectName($jira_project_key);
 
-	\srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_PROJECT_KEY);
+	$project->store();
 }
+
+\srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_PROJECT_KEY);
+?>
+<#5>
+<?php
+\srag\Plugins\HelpMe\Project\Project::updateDB();
+?>
+<#6>
+<?php
+$projects = \srag\Plugins\HelpMe\Config\Config::getField(\srag\Plugins\HelpMe\Config\Config::KEY_PROJECTS);
+
+if (is_array($projects)) {
+	foreach ($projects as $project_key => $project_name) {
+		$project = new \srag\Plugins\HelpMe\Project\Project();
+
+		$project->setProjectKey($project_key);
+
+		$project->setProjectName($project_name);
+
+		$project->store();
+	}
+}
+
+\srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_PROJECTS);
+?>
+<#7>
+<?php
+\srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_PROJECT_KEY);
+\srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_PROJECTS);
 ?>

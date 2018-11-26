@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.0.5]
+- Project database table
+
 ## [3.0.4]
 - Allows to change the username in public section, because anonymous user name may not make sense
 

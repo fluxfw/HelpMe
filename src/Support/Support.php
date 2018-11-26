@@ -8,7 +8,7 @@ use ilDateTime;
 use ilHelpMePlugin;
 use ILIAS\FileUpload\DTO\UploadResult;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -28,7 +28,7 @@ class Support {
 	 */
 	protected $time;
 	/**
-	 * @var string
+	 * @var Project
 	 */
 	protected $project;
 	/**
@@ -99,12 +99,10 @@ class Support {
 	 * @return string
 	 */
 	public function getBody(string $template): string {
-		$configProjects = Config::getField(Config::KEY_PROJECTS);
-
 		$tpl = self::plugin()->template("helpme_" . $template . "_body.html");
 
 		$fields = [
-			"project" => $configProjects[$this->project] . " (" . $this->project . ")",
+			"project" => $this->project->getProjectName() . " (" . $this->project->getProjectKey() . ")",
 			"title" => $this->title,
 			"name" => $this->name,
 			"login" => $this->login,
@@ -180,17 +178,17 @@ class Support {
 
 
 	/**
-	 * @return string
+	 * @return Project
 	 */
-	public function getProject(): string {
+	public function getProject(): Project {
 		return $this->project;
 	}
 
 
 	/**
-	 * @param string $project
+	 * @param Project $project
 	 */
-	public function setProject(string $project)/*: void*/ {
+	public function setProject(Project $project)/*: void*/ {
 		$this->project = $project;
 	}
 

@@ -4,6 +4,7 @@ namespace srag\Plugins\HelpMe\Utils;
 
 use srag\Plugins\HelpMe\Access\Access;
 use srag\Plugins\HelpMe\Access\Ilias;
+use srag\Plugins\HelpMe\Project\Projects;
 
 /**
  * Trait HelpMeTrait
@@ -27,5 +28,13 @@ trait HelpMeTrait {
 	 */
 	protected static function ilias(): Ilias {
 		return Ilias::getInstance();
+	}
+
+
+	/**
+	 * @return Projects
+	 */
+	protected static function projects(): Projects {
+		return Projects::getInstance();
 	}
 }
