@@ -22,6 +22,7 @@ config_jira_username#:#Jira-Benutzername
 config_priorities#:#Dringlichkeiten
 config_projects#:#Projekte
 config_project_key#:#Key
+config_project_key_info#:#Jira-Projekt-Key, ...
 config_project_name#:#Name
 config_recipient#:#Formularempfänger
 config_recipient_create_jira_ticket#:#Jira-Ticket erstellen
