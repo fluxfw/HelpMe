@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.14.0]
+- PHPVersionChecker
+
+## [0.13.5]
+- DICStatic::clearCache
+
 ## [0.13.4]
 - New getHTML
 

@@ -58,6 +58,7 @@ return array(
     'srag\\DIC\\HelpMe\\Exception\\DICException' => $vendorDir . '/srag/dic/src/Exception/DICException.php',
     'srag\\DIC\\HelpMe\\Output\\Output' => $vendorDir . '/srag/dic/src/Output/Output.php',
     'srag\\DIC\\HelpMe\\Output\\OutputInterface' => $vendorDir . '/srag/dic/src/Output/OutputInterface.php',
+    'srag\\DIC\\HelpMe\\PHPVersionChecker' => $vendorDir . '/srag/dic/src/PHPVersionChecker.php',
     'srag\\DIC\\HelpMe\\Plugin\\Plugin' => $vendorDir . '/srag/dic/src/Plugin/Plugin.php',
     'srag\\DIC\\HelpMe\\Plugin\\PluginInterface' => $vendorDir . '/srag/dic/src/Plugin/PluginInterface.php',
     'srag\\DIC\\HelpMe\\Plugin\\Pluginable' => $vendorDir . '/srag/dic/src/Plugin/Pluginable.php',
