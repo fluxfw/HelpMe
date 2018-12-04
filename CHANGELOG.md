@@ -1,6 +1,7 @@
 # Changelog
 
 ## [3.0.7]
+- PHPVersionChecker
 - Fix Jira
 
 ## [3.0.6]
