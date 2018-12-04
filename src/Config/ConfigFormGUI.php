@@ -50,6 +50,10 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 					Recipient::CREATE_JIRA_TICKET => [
 						self::PROPERTY_CLASS => ilRadioOption::class,
 						self::PROPERTY_SUBITEMS => [
+							Config::KEY_JIRA_DOMAIN => [
+								self::PROPERTY_CLASS => ilTextInputGUI::class,
+								self::PROPERTY_REQUIRED => true
+							],
 							Config::KEY_JIRA_ISSUE_TYPE => [
 								self::PROPERTY_CLASS => ilTextInputGUI::class,
 								self::PROPERTY_REQUIRED => true

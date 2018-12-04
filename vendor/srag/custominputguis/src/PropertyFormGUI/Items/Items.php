@@ -84,6 +84,10 @@ final class Items {
 			return $item->getDate();
 		}
 
+		if (method_exists($item, "getImage")) {
+			return $item->getImage();
+		}
+
 		if (method_exists($item, "getValue") && !($item instanceof ilRadioOption)) {
 			if ($item->getMulti()) {
 				return $item->getMultiValues();
@@ -166,6 +170,12 @@ final class Items {
 
 		if (method_exists($item, "setDate")) {
 			$item->setDate($value);
+
+			return;
+		}
+
+		if (method_exists($item, "setImage")) {
+			$item->setImage($value);
 
 			return;
 		}

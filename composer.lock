@@ -103,16 +103,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.13.19",
+            "version": "v0.13.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "3db75fc743668d35d47ea8fd7889447b9a18e984"
+                "reference": "1d84cfda42824db9a7f86a750cee06cfd5bbf7d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/3db75fc743668d35d47ea8fd7889447b9a18e984",
-                "reference": "3db75fc743668d35d47ea8fd7889447b9a18e984",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/1d84cfda42824db9a7f86a750cee06cfd5bbf7d8",
+                "reference": "1d84cfda42824db9a7f86a750cee06cfd5bbf7d8",
                 "shasum": ""
             },
             "require": {
@@ -122,7 +122,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
+                    "srag\\CustomInputGUIs\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -146,7 +146,7 @@
                 "input",
                 "table"
             ],
-            "time": "2018-11-26T12:16:00+00:00"
+            "time": "2018-12-04T06:43:31+00:00"
         },
         {
             "name": "srag/dic",
@@ -168,7 +168,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -195,16 +195,16 @@
         },
         {
             "name": "srag/jiracurl",
-            "version": "0.2.3",
+            "version": "v0.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "a8a0070a541135672a46ede0a7a63b626bf9b51d"
+                "reference": "ecdfba82c3fdf1960bc7a966df869a60a7f2f17c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/a8a0070a541135672a46ede0a7a63b626bf9b51d",
-                "reference": "a8a0070a541135672a46ede0a7a63b626bf9b51d",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/ecdfba82c3fdf1960bc7a966df869a60a7f2f17c",
+                "reference": "ecdfba82c3fdf1960bc7a966df869a60a7f2f17c",
                 "shasum": ""
             },
             "require": {
@@ -214,7 +214,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\HelpMe\\": "src/"
+                    "srag\\JiraCurl\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -236,7 +236,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2018-09-17T09:05:14+00:00"
+            "time": "2018-12-04T12:33:44+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",

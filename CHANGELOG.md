@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.0.7]
+- Fix Jira
+
 ## [3.0.6]
 - Project table: Allows to select columns
 

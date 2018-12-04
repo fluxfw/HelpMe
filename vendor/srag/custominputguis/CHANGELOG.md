@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.13.20]
+- PropertyForm: getImage, setImage
+
 ## [0.13.19]
 - Fix
 

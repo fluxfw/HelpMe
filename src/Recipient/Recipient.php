@@ -9,6 +9,7 @@ use ilMimeMail;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use Throwable;
 
 /**
  * Class Recipient
@@ -95,7 +96,7 @@ abstract class Recipient {
 			$mailer->Send();
 
 			return true;
-		} catch (Exception $ex) {
+		} catch (Throwable $ex) {
 			return false;
 		}
 	}
