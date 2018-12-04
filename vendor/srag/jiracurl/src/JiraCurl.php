@@ -7,6 +7,7 @@ use Exception;
 use ilCurlConnection;
 use ilCurlConnectionException;
 use srag\DIC\HelpMe\DICTrait;
+use Throwable;
 
 /**
  * Class JiraCurl
@@ -113,8 +114,12 @@ class JiraCurl {
 				openssl_sign($string_to_sign, $signature, $private_key_id);
 				$signature = base64_encode($signature);
 
-				openssl_free_key($private_key_id);
-				openssl_free_key($certificate);
+				try {
+					openssl_free_key($private_key_id);
+					openssl_free_key($certificate);
+				} catch (Throwable $ex) {
+
+				}
 
 				$o_auth["oauth_signature"] = $signature;
 

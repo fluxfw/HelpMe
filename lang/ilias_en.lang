@@ -22,6 +22,7 @@ config_jira_username#:#Jira username
 config_priorities#:#Priorities
 config_projects#:#Projects
 config_project_key#:#Key
+config_project_key_info#:#Jira project key, ...
 config_project_name#:#Name
 config_recipient#:#Form recipient
 config_recipient_create_jira_ticket#:#Create a Jira ticket

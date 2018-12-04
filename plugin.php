@@ -1,6 +1,8 @@
 <?php
+require_once __DIR__ . "/vendor/srag/dic/src/PHPVersionChecker.php";
+
 $id = "srsu";
-$version = "3.0.6";
+$version = "3.0.7";
 $ilias_min_version = "5.3.0";
 $ilias_max_version = "5.3.999";
 $responsible = "studer + raimann ag - Team Custom 1";

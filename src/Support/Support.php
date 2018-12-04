@@ -106,7 +106,7 @@ class Support {
 			"title" => $this->title,
 			"name" => $this->name,
 			"login" => $this->login,
-			"email_address" => $this->email,
+			"email" => $this->email,
 			"phone" => $this->phone,
 			"priority" => $this->priority,
 			"description" => $this->description,

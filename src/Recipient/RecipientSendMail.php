@@ -6,6 +6,7 @@ use Exception;
 use ilMimeMail;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
+use Throwable;
 
 /**
  * Class RecipientSendMail
@@ -58,7 +59,7 @@ class RecipientSendMail extends Recipient {
 			$mailer->Send();
 
 			return true;
-		} catch (Exception $ex) {
+		} catch (Throwable $ex) {
 			return false;
 		}
 	}
