@@ -1,17 +1,27 @@
 <?php
 
-namespace srag\RemovePluginDataConfirm\HelpMe;
+namespace srag\RemovePluginDataConfirm\HelpMe\Exception;
 
 use ilException;
 
 /**
  * Class RemovePluginDataConfirmException
  *
- * @package srag\RemovePluginDataConfirm\HelpMe
+ * @package srag\RemovePluginDataConfirm\HelpMe\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class RemovePluginDataConfirmException extends ilException {
+
+	/**
+	 * @var int
+	 */
+	const CODE_MISSING_CONST_REMOVE_PLUGIN_DATA_CONFIRM_CLASS_NAME = 1;
+	/**
+	 * @var int
+	 */
+	const CODE_INVALID_REMOVE_PLUGIN_DATA_CONFIRM_CLASS = 2;
+
 
 	/**
 	 * RemovePluginDataConfirmException constructor
@@ -23,7 +33,7 @@ class RemovePluginDataConfirmException extends ilException {
 	 */
 	public function __construct(/*string*/
 		$message, /*int*/
-		$code = 0) {
+		$code) {
 		parent::__construct($message, $code);
 	}
 }

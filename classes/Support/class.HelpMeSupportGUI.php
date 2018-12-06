@@ -101,7 +101,7 @@ class HelpMeSupportGUI {
 		$tpl->setCurrentBlock("helpme_form");
 		$tpl->setVariable("FORM", self::output()->getHTML($form));
 
-		self::output()->output($tpl, true);
+		self::output()->output($tpl);
 	}
 
 
