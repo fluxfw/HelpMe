@@ -32,7 +32,8 @@ final class Items {
 	 */
 	public static final function getItem($key, array $field, $parent_item, $parent) {
 		if (!class_exists($field[PropertyFormGUI::PROPERTY_CLASS])) {
-			throw new PropertyFormGUIException("Class " . $field[PropertyFormGUI::PROPERTY_CLASS] . " not exists!");
+			throw new PropertyFormGUIException("Class " . $field[PropertyFormGUI::PROPERTY_CLASS]
+				. " not exists!", PropertyFormGUIException::CODE_INVALID_PROPERTY_CLASS);
 		}
 
 		/**
