@@ -13,6 +13,9 @@ use HelpMeSupportGUI;
  */
 class SuccessFormGUI extends SupportFormGUI {
 
+	const LANG_MODULE = HelpMeSupportGUI::LANG_MODULE_SUPPORT;
+
+
 	/**
 	 * @inheritdoc
 	 */
@@ -26,7 +29,7 @@ class SuccessFormGUI extends SupportFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		$this->addCommandButton("", self::plugin()->translate("close", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
+		$this->addCommandButton("", self::plugin()->translate("close", self::LANG_MODULE), "helpme_cancel");
 
 		$this->setShowTopButtons(false);
 	}
