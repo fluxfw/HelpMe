@@ -2,8 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
-use HelpMeSupportGUI;
-
 /**
  * Class SuccessFormGUI
  *
@@ -12,9 +10,6 @@ use HelpMeSupportGUI;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SuccessFormGUI extends SupportFormGUI {
-
-	const LANG_MODULE = HelpMeSupportGUI::LANG_MODULE_SUPPORT;
-
 
 	/**
 	 * @inheritdoc
