@@ -29,7 +29,7 @@ class SuccessFormGUI extends SupportFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		$this->addCommandButton("", self::plugin()->translate("close", self::LANG_MODULE), "helpme_cancel");
+		$this->addCommandButton("", $this->txt("close"), "helpme_cancel");
 
 		$this->setShowTopButtons(false);
 	}
