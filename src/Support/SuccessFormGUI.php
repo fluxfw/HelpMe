@@ -2,8 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
-use HelpMeSupportGUI;
-
 /**
  * Class SuccessFormGUI
  *
@@ -26,7 +24,7 @@ class SuccessFormGUI extends SupportFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		$this->addCommandButton("", self::plugin()->translate("close", HelpMeSupportGUI::LANG_MODULE_SUPPORT), "helpme_cancel");
+		$this->addCommandButton("", $this->txt("close"), "helpme_cancel");
 
 		$this->setShowTopButtons(false);
 	}
