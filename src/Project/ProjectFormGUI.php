@@ -115,7 +115,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function initTile()/*: void*/ {
+	protected function initTitle()/*: void*/ {
 		$this->setTitle($this->txt($this->project !== NULL ? "edit_project" : "add_project"));
 	}
 
