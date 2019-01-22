@@ -118,7 +118,7 @@ il.HelpMe.init();
 			}
 		}
 
-		return [ "mode" => self::KEEP, "html" => "" ];
+		return parent::getHTML($a_comp, $a_part, $a_par);
 	}
 
 
