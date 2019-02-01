@@ -7,7 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'HelpMeRemoveDataConfirm' => $baseDir . '/classes/uninstall/class.HelpMeRemoveDataConfirm.php',
-    'HelpMeSupportGUI' => $baseDir . '/classes/Support/class.HelpMeSupportGUI.php',
     'Sinergi\\BrowserDetector\\AcceptLanguage' => $vendorDir . '/sinergi/browser-detector/src/AcceptLanguage.php',
     'Sinergi\\BrowserDetector\\Browser' => $vendorDir . '/sinergi/browser-detector/src/Browser.php',
     'Sinergi\\BrowserDetector\\BrowserDetector' => $vendorDir . '/sinergi/browser-detector/src/BrowserDetector.php',
@@ -87,6 +86,7 @@ return array(
     'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => $baseDir . '/src/Support/SuccessFormGUI.php',
     'srag\\Plugins\\HelpMe\\Support\\Support' => $baseDir . '/src/Support/Support.php',
     'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => $baseDir . '/src/Support/SupportFormGUI.php',
+    'srag\\Plugins\\HelpMe\\Support\\SupportGUI' => $baseDir . '/src/Support/class.SupportGUI.php',
     'srag\\Plugins\\HelpMe\\Utils\\HelpMeTrait' => $baseDir . '/src/Utils/HelpMeTrait.php',
     'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractPluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
     'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractRemovePluginDataConfirm' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',

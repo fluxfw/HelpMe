@@ -2,12 +2,11 @@
 
 namespace srag\Plugins\HelpMe\Recipient;
 
-use Exception;
-use HelpMeSupportGUI;
 use ilHelpMePlugin;
 use ilMimeMail;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\Support;
+use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use Throwable;
 
@@ -85,7 +84,7 @@ abstract class Recipient {
 
 			$mailer->To($this->support->getEmail());
 
-			$mailer->Subject(self::plugin()->translate("confirmation", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . ": " . $this->support->getSubject());
+			$mailer->Subject(self::plugin()->translate("confirmation", SupportGUI::LANG_MODULE_SUPPORT) . ": " . $this->support->getSubject());
 
 			$mailer->Body($this->support->getBody("email"));
 

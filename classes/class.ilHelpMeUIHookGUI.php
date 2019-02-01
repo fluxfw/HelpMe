@@ -4,6 +4,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -87,16 +88,16 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 					if ($helpme_js_pos !== false) {
 
 						$support_button_tpl = self::plugin()->template("helpme_support_button.html");
-						$support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+						$support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT));
 						$support_button_tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
 							ilUIPluginRouterGUI::class,
-							HelpMeSupportGUI::class
-						], HelpMeSupportGUI::CMD_ADD_SUPPORT, "", true));
+							SupportGUI::class
+						], SupportGUI::CMD_ADD_SUPPORT, "", true));
 
 						// TODO: Modal UIServices
 						$modal = ilModalGUI::getInstance();
 						$modal->setType(ilModalGUI::TYPE_LARGE);
-						$modal->setHeading(self::plugin()->translate("support", HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+						$modal->setHeading(self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT));
 
 						$screenshot = new ScreenshotsInputGUI();
 						$screenshot->setPlugin(self::plugin());

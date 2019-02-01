@@ -60,7 +60,6 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
 
     public static $classMap = array (
         'HelpMeRemoveDataConfirm' => __DIR__ . '/../..' . '/classes/uninstall/class.HelpMeRemoveDataConfirm.php',
-        'HelpMeSupportGUI' => __DIR__ . '/../..' . '/classes/Support/class.HelpMeSupportGUI.php',
         'Sinergi\\BrowserDetector\\AcceptLanguage' => __DIR__ . '/..' . '/sinergi/browser-detector/src/AcceptLanguage.php',
         'Sinergi\\BrowserDetector\\Browser' => __DIR__ . '/..' . '/sinergi/browser-detector/src/Browser.php',
         'Sinergi\\BrowserDetector\\BrowserDetector' => __DIR__ . '/..' . '/sinergi/browser-detector/src/BrowserDetector.php',
@@ -140,6 +139,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/SuccessFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Support' => __DIR__ . '/../..' . '/src/Support/Support.php',
         'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => __DIR__ . '/../..' . '/src/Support/SupportFormGUI.php',
+        'srag\\Plugins\\HelpMe\\Support\\SupportGUI' => __DIR__ . '/../..' . '/src/Support/class.SupportGUI.php',
         'srag\\Plugins\\HelpMe\\Utils\\HelpMeTrait' => __DIR__ . '/../..' . '/src/Utils/HelpMeTrait.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractPluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractRemovePluginDataConfirm' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',

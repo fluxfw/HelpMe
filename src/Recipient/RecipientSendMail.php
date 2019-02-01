@@ -2,7 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Recipient;
 
-use Exception;
 use ilMimeMail;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;

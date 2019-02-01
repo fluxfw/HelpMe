@@ -1,22 +1,24 @@
 <?php
 
-require_once __DIR__ . "/../../vendor/autoload.php";
+namespace srag\Plugins\HelpMe\Support;
 
+use ilHelpMePlugin;
+use ilPropertyFormGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Recipient\Recipient;
-use srag\Plugins\HelpMe\Support\SuccessFormGUI;
-use srag\Plugins\HelpMe\Support\SupportFormGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
- * Class HelpMeSupportGUI
+ * Class SupportGUI
+ *
+ * @package           srag\Plugins\HelpMe\Support
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy HelpMeSupportGUI: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Plugins\HelpMe\Support\SupportGUI: ilUIPluginRouterGUI
  */
-class HelpMeSupportGUI {
+class SupportGUI {
 
 	use DICTrait;
 	use HelpMeTrait;
@@ -27,7 +29,7 @@ class HelpMeSupportGUI {
 
 
 	/**
-	 * HelpMeSupportGUI constructor
+	 * SupportGUI constructor
 	 */
 	public function __construct() {
 
