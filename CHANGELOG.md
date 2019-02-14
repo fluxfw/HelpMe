@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Log Jira errors
+
 ## [3.0.10]
 - Fix
 
