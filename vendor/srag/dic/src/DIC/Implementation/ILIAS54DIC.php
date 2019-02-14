@@ -3,7 +3,9 @@
 namespace srag\DIC\HelpMe\DIC\Implementation;
 
 use ILIAS\DI\Container;
+use ILIAS\Services\AssessmentQuestion\Factory\AsqFactory;
 use srag\DIC\HelpMe\DIC\AbstractDIC;
+use srag\DIC\HelpMe\DICStatic;
 
 /**
  * Class ILIAS54DIC
@@ -295,6 +297,18 @@ final class ILIAS54DIC extends AbstractDIC {
 	 */
 	public function object()/*: ilObjectService*/ {
 		return $this->dic->object();
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function question()/*: AsqFactory*/ {
+		if (DICStatic::version()->is60()) {
+			return new AsqFactory();
+		} else {
+			throw new DICException("AsqFactory not exists in ILIAS 5.4 or below!");
+		}
 	}
 
 
