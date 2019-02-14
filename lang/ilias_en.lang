@@ -13,14 +13,16 @@ config_jira_authorization_oauth#:#oAuth
 config_jira_authorization_usernamepassword#:#Username & password
 config_jira_consumer_key#:#Jira consumer key
 config_jira_domain#:#Jira domain name
-config_jira_issue_type#:#Jira issue type
-config_jira_issue_type_info#:#Task, Bug, ...
 config_jira_password#:#Jira password
 config_jira_private_key#:#Jira private key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira username
 config_priorities#:#Priorities
 config_projects#:#Projects
+config_project_fix_version#:#Fix version
+config_project_fix_version_info#:#Backlog, ...
+config_project_issue_type#:#Issue type
+config_project_issue_type_info#:#Task, Bug, ...
 config_project_key#:#Key
 config_project_key_info#:#Jira project key, ...
 config_project_name#:#Name

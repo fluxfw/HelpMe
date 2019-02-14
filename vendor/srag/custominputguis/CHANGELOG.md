@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.18.7]
+- Increase StaticHTMLPresentationInputGUI height
+
 ## [0.18.6]
 - Improvments
 

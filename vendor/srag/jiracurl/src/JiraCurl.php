@@ -193,14 +193,16 @@ class JiraCurl {
 	/**
 	 * Create Jira issue ticket
 	 *
-	 * @param string $jira_project_key
-	 * @param string $jira_issue_type
-	 * @param string $summary
-	 * @param string $description
+	 * @param string      $jira_project_key
+	 * @param string      $jira_issue_type
+	 * @param string      $summary
+	 * @param string      $description
+	 * @param string|null $fix_version
 	 *
 	 * @return string|null Issue-Key
 	 */
-	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description)/*: ?string*/ {
+	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description,/*: ?*/
+		string $fix_version = NULL)/*: ?string*/ {
 		$headers = [
 			"Accept" => "application/json",
 			"Content-Type" => "application/json"
@@ -222,6 +224,10 @@ class JiraCurl {
 				]
 			]
 		];
+
+		if (!empty($fix_version)) {
+			$data ["fields"]["fix_version"] = $fix_version;
+		}
 
 		$result = $this->doRequest("/rest/api/2/issue", $headers, json_encode($data));
 

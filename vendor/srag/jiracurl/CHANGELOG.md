@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.2.8]
+- Supports fix_version
+
 ## [0.2.7]
 - Log Jira errors
 

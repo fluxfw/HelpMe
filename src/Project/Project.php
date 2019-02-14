@@ -68,6 +68,22 @@ class Project extends ActiveRecord {
 	 * @con_is_notnull   true
 	 */
 	protected $project_name = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field    true
+	 * @con_fieldtype    text
+	 * @con_is_notnull   true
+	 */
+	protected $project_issue_type = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field    true
+	 * @con_fieldtype    text
+	 * @con_is_notnull   true
+	 */
+	protected $project_fix_version = "";
 
 
 	/**
@@ -161,5 +177,37 @@ class Project extends ActiveRecord {
 	 */
 	public function setProjectName(string $project_name)/*: void*/ {
 		$this->project_name = $project_name;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getProjectIssueType(): string {
+		return $this->project_issue_type;
+	}
+
+
+	/**
+	 * @param string $project_issue_type
+	 */
+	public function setProjectIssueType(string $project_issue_type)/*: void*/  {
+		$this->project_issue_type = $project_issue_type;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getProjectFixVersion(): string {
+		return $this->project_fix_version;
+	}
+
+
+	/**
+	 * @param string $project_fix_version
+	 */
+	public function setProjectFixVersion(string $project_fix_version)/*: void*/  {
+		$this->project_fix_version = $project_fix_version;
 	}
 }

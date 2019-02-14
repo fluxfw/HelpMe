@@ -23,6 +23,11 @@ class Config extends ActiveRecordConfig {
 	const KEY_JIRA_AUTHORIZATION = "jira_authorization";
 	const KEY_JIRA_CONSUMER_KEY = "jira_consumer_key";
 	const KEY_JIRA_DOMAIN = "jira_domain";
+	/**
+	 * @var string
+	 *
+	 * @deprecated
+	 */
 	const KEY_JIRA_ISSUE_TYPE = "jira_issue_type";
 	const KEY_JIRA_PASSWORD = "jira_password";
 	const KEY_JIRA_PRIVATE_KEY = "jira_private_key";

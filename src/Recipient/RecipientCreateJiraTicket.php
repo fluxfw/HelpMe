@@ -62,8 +62,8 @@ class RecipientCreateJiraTicket extends Recipient {
 	 * @return bool
 	 */
 	protected function createJiraTicket(): bool {
-		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()
-			->getProjectKey(), Config::getField(Config::KEY_JIRA_ISSUE_TYPE), $this->support->getSubject(), $this->support->getBody("jira"));
+		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), $this->support->getProject()
+			->getProjectKey(), $this->support->getSubject(), $this->support->getBody("jira"), $this->support->getProject()->getProjectFixVersion());
 
 		if ($issue_key === NULL) {
 			return false;

@@ -100,24 +100,24 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "v0.18.6",
-        "version_normalized": "0.18.6.0",
+        "version": "v0.18.7",
+        "version_normalized": "0.18.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "44076ccd8d9eab6e01afce0ad122f061276e7762"
+            "reference": "e7bea558f2b281b9a14ed26c007ad5d6c801ca39"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/44076ccd8d9eab6e01afce0ad122f061276e7762",
-            "reference": "44076ccd8d9eab6e01afce0ad122f061276e7762",
+            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/e7bea558f2b281b9a14ed26c007ad5d6c801ca39",
+            "reference": "e7bea558f2b281b9a14ed26c007ad5d6c801ca39",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-02-14T07:37:32+00:00",
+        "time": "2019-02-14T14:28:31+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -196,24 +196,24 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "v0.2.7",
-        "version_normalized": "0.2.7.0",
+        "version": "v0.2.8",
+        "version_normalized": "0.2.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "15a4152eebd70c9d45196bd68f93c47e72df8b33"
+            "reference": "73884edf1d007865d6e4c1e535556d2cd8ddbf6e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/15a4152eebd70c9d45196bd68f93c47e72df8b33",
-            "reference": "15a4152eebd70c9d45196bd68f93c47e72df8b33",
+            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/73884edf1d007865d6e4c1e535556d2cd8ddbf6e",
+            "reference": "73884edf1d007865d6e4c1e535556d2cd8ddbf6e",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-02-14T13:28:58+00:00",
+        "time": "2019-02-14T15:04:14+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
