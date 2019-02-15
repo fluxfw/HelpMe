@@ -1,6 +1,6 @@
 # Changelog
 
-## [x]
+## [3.1.0]
 - Log Jira errors
 - Move jira issue type to each project
 
