@@ -23,10 +23,12 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [DateDurationInputGUI](./src/DateDurationInputGUI/doc/DateDurationInputGUI.md)
 * [GlyphGUI](./src/GlyphGUI/doc/GlyphGUI.md)
 * [HiddenInputGUI](./src/HiddenInputGUI/doc/HiddenInputGUI.md)
+* [LearningProgressPie](./src/LearningProgressPie/doc/LearningProgressPie.md)
 * [MultiLineInputGUI](./src/MultiLineInputGUI/doc/MultiLineInputGUI.md)
 * [MultiSelectSearchInputGUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInputGUI.md)
 * [MultiSelectSearchInput2GUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInput2GUI.md)
 * [NumberInputGUI](./src/NumberInputGUI/doc/NumberInputGUI.md)
+* [ProgressMeter](./src/ProgressMeter/doc/ProgressMeter.md)
 * [PropertyFormGUI](./src/PropertyFormGUI/doc/PropertyFormGUI.md)
 * [ScreenshotsInputGUI](./src/ScreenshotsInputGUI/doc/ScreenshotsInputGUI.md)
 * [StaticHTMLPresentationInputGUI](./src/StaticHTMLPresentationInputGUI/doc/StaticHTMLPresentationInputGUI.md)
@@ -34,6 +36,7 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [Template](./src/Template/doc/Template.md)
 * [TextAreaInputGUI](./src/TextAreaInputGUI/doc/TextAreaInputGUI.md)
 * [TextInputGUI](./src/TextInputGUI/doc/TextInputGUI.md)
+* [ViewControlModeGUI](./src/ViewControlModeGUI/doc/ViewControlModeGUI.md)
 * [Waiter](./src/Waiter/doc/Waiter.md)
 
 ### Dependencies
@@ -42,6 +45,7 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [composer](https://getcomposer.org)
 * [npm](https://nodejs.org)
 * [canvas-toBlob](https://www.npmjs.com/package/canvas-toBlob)
+* [d3](https://www.npmjs.com/package/d3)
 * [es6-promise](https://www.npmjs.com/package/es6-promise)
 * [html2canvas](https://www.npmjs.com/package/html2canvas)
 * [select2](https://www.npmjs.com/package/select2)

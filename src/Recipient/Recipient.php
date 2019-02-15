@@ -2,14 +2,16 @@
 
 namespace srag\Plugins\HelpMe\Recipient;
 
-use Exception;
-use HelpMeSupportGUI;
 use ilHelpMePlugin;
 use ilMimeMail;
+use phpmailerException;
+use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
+use srag\DIC\HelpMe\Exception\DICException;
+use srag\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Support\Support;
+use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use Throwable;
 
 /**
  * Class Recipient
@@ -36,6 +38,8 @@ abstract class Recipient {
 	 * @param Support $support
 	 *
 	 * @return Recipient|null
+	 *
+	 * @throws ActiveRecordConfigException
 	 */
 	public static function getRecipient(string $recipient, Support $support)/*: ?Recipient*/ {
 		switch ($recipient) {
@@ -67,37 +71,36 @@ abstract class Recipient {
 	/**
 	 * Send support to recipient
 	 *
-	 * @return bool
+	 * @throws HelpMeException
 	 */
-	public abstract function sendSupportToRecipient(): bool;
+	public abstract function sendSupportToRecipient()/*: void*/
+	;
 
 
 	/**
 	 * Send confirmation email
 	 *
-	 * @return bool
+	 * @throws DICException
+	 * @throws HelpMeException
+	 * @throws phpmailerException
 	 */
-	protected function sendConfirmationMail(): bool {
-		try {
-			$mailer = new ilMimeMail();
+	protected function sendConfirmationMail()/*: void*/ {
+		$mailer = new ilMimeMail();
 
-			$mailer->From(self::dic()->mailMimeSenderFactory()->system());
+		$mailer->From(self::dic()->mailMimeSenderFactory()->system());
 
-			$mailer->To($this->support->getEmail());
+		$mailer->To($this->support->getEmail());
 
-			$mailer->Subject(self::plugin()->translate("confirmation", HelpMeSupportGUI::LANG_MODULE_SUPPORT) . ": " . $this->support->getSubject());
+		$mailer->Subject(self::plugin()->translate("confirmation", SupportGUI::LANG_MODULE_SUPPORT) . ": " . $this->support->getSubject());
 
-			$mailer->Body($this->support->getBody("email"));
+		$mailer->Body($this->support->getBody("email"));
 
-			foreach ($this->support->getScreenshots() as $screenshot) {
-				$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
-			}
+		foreach ($this->support->getScreenshots() as $screenshot) {
+			$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
+		}
 
-			$mailer->Send();
-
-			return true;
-		} catch (Throwable $ex) {
-			return false;
+		if (!$mailer->Send()) {
+			throw new HelpMeException("Mailer returns not true");
 		}
 	}
 

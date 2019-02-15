@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.1.0]
+- Log Jira errors
+- Move jira issue type to each project
+
 ## [3.0.10]
 - Fix
 

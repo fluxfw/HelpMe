@@ -2,6 +2,11 @@
 
 namespace srag\Plugins\HelpMe\Recipient;
 
+use ilCurlConnectionException;
+use phpmailerException;
+use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
+use srag\DIC\HelpMe\Exception\DICException;
+use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
@@ -29,6 +34,8 @@ class RecipientCreateJiraTicket extends Recipient {
 	 * RecipientCreateJiraTicket constructor
 	 *
 	 * @param Support $support
+	 *
+	 * @throws ActiveRecordConfigException
 	 */
 	public function __construct(Support $support) {
 		parent::__construct($support);
@@ -50,42 +57,44 @@ class RecipientCreateJiraTicket extends Recipient {
 
 	/**
 	 * @inheritdoc
+	 *
+	 * @throws DICException
+	 * @throws ilCurlConnectionException
+	 * @throws JiraCurlException
+	 * @throws phpmailerException
 	 */
-	public function sendSupportToRecipient(): bool {
-		return ($this->createJiraTicket() && $this->addScreenshoots() && $this->sendConfirmationMail());
+	public function sendSupportToRecipient()/*: void*/ {
+		$this->createJiraTicket();
+
+		$this->addScreenshoots();
+
+		$this->sendConfirmationMail();
 	}
 
 
 	/**
 	 * Create Jira ticket
 	 *
-	 * @return bool
+	 * @throws ilCurlConnectionException
+	 * @throws JiraCurlException
 	 */
-	protected function createJiraTicket(): bool {
-		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), Config::getField(Config::KEY_JIRA_ISSUE_TYPE), $this->support->getSubject(), $this->support->getBody("jira"));
-
-		if ($issue_key === NULL) {
-			return false;
-		}
+	protected function createJiraTicket()/*: void*/ {
+		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), $this->support->getProject()
+			->getProjectIssueType(), $this->support->getSubject(), $this->support->getBody("jira"));
 
 		$this->issue_key = $issue_key;
-
-		return true;
 	}
 
 
 	/**
 	 * Add screenshots to Jira ticket
 	 *
-	 * @return bool
+	 * @throws ilCurlConnectionException
+	 * @throws JiraCurlException
 	 */
-	protected function addScreenshoots(): bool {
+	protected function addScreenshoots()/*: void*/ {
 		foreach ($this->support->getScreenshots() as $screenshot) {
-			if (!$this->jira_curl->addAttachmentToIssue($this->issue_key, $screenshot->getName(), $screenshot->getMimeType(), $screenshot->getPath())) {
-				return false;
-			}
+			$this->jira_curl->addAttachmentToIssue($this->issue_key, $screenshot->getName(), $screenshot->getMimeType(), $screenshot->getPath());
 		}
-
-		return true;
 	}
 }

@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.10]
+- Log Jira errors
+
+## [0.2.9]
+- Log Jira errors
+
+## [0.2.8]
+- Supports fix_version
+
+## [0.2.7]
+- Log Jira errors
+
+## [0.2.6]
+- Log Jira errors
+
+## [0.2.5]
+- Fixes
+
 ## [0.2.4]
 - Fixes
 

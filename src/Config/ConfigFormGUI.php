@@ -54,10 +54,6 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 								self::PROPERTY_CLASS => ilTextInputGUI::class,
 								self::PROPERTY_REQUIRED => true
 							],
-							Config::KEY_JIRA_ISSUE_TYPE => [
-								self::PROPERTY_CLASS => ilTextInputGUI::class,
-								self::PROPERTY_REQUIRED => true
-							],
 							Config::KEY_JIRA_AUTHORIZATION => [
 								self::PROPERTY_CLASS => ilRadioGroupInputGUI::class,
 								self::PROPERTY_REQUIRED => true,

@@ -2,7 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
-use HelpMeSupportGUI;
 use ilEMailInputGUI;
 use ilHelpMePlugin;
 use ilHelpMeUIHookGUI;
@@ -29,7 +28,7 @@ class SupportFormGUI extends PropertyFormGUI {
 
 	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const LANG_MODULE = HelpMeSupportGUI::LANG_MODULE_SUPPORT;
+	const LANG_MODULE = SupportGUI::LANG_MODULE_SUPPORT;
 	/**
 	 * @var Support|null
 	 */
@@ -84,7 +83,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		$this->addCommandButton(HelpMeSupportGUI::CMD_NEW_SUPPORT, $this->txt("submit"), "helpme_submit");
+		$this->addCommandButton(SupportGUI::CMD_NEW_SUPPORT, $this->txt("submit"), "helpme_submit");
 
 		$this->addCommandButton("", $this->txt("cancel"), "helpme_cancel");
 

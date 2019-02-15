@@ -90,3 +90,21 @@ if (is_array($projects)) {
 \srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_PROJECT_KEY);
 \srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_PROJECTS);
 ?>
+<#8>
+<?php
+\srag\Plugins\HelpMe\Project\Project::updateDB();
+
+$jira_issue_key = \srag\Plugins\HelpMe\Config\Config::getField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_ISSUE_TYPE);
+
+if (!empty($jira_issue_key)) {
+	foreach (\srag\Plugins\HelpMe\Project\Projects::getInstance()->getProjects() as $project) {
+		if (empty($project->getProjectIssueType())) {
+			$project->setProjectIssueType($jira_issue_key);
+
+			$project->store();
+		}
+	}
+}
+
+\srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_ISSUE_TYPE);
+?>

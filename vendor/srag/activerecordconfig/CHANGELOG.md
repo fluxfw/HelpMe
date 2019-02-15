@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.14.3]
+  - Fix initFilterFields
+
+## [0.14.2]
+- Fixes
+
+## [0.14.1]
+- ActiveRecordObjectFormGUI
+
+## [0.14.0]
+- ActiveRecordObjectFormGUI
+
+## [0.13.4]
+- Use ConfigPropertyFormGUI
+
 ## [0.13.3]
 - ActiveRecordConfigException::CODE_X
 

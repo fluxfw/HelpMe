@@ -2,7 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
-use HelpMeSupportGUI;
 use ilDatePresentation;
 use ilDateTime;
 use ilHelpMePlugin;
@@ -118,7 +117,7 @@ class Support {
 		foreach ($fields as $title => $txt) {
 			$tpl->setCurrentBlock("helpme_body");
 
-			$tpl->setVariable("TITLE", self::plugin()->translate($title, HelpMeSupportGUI::LANG_MODULE_SUPPORT));
+			$tpl->setVariable("TITLE", self::plugin()->translate($title, SupportGUI::LANG_MODULE_SUPPORT));
 
 			$tpl->setVariable("TXT", $txt);
 

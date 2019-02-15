@@ -11,6 +11,11 @@ Update, activate and config the plugin in the ILIAS Plugin Administration
 
 If yout want use the Jira recipient with oAuth authorization you can find a guide to config your Jira installation: https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/
 
+You can lock errors in the ILIAS log file like
+```bash
+grep HelpMe /var/iliasdata/ilias/ilias.log
+```
+
 ### Some screenshots
 Support button:
 ![Support button](./doc/screenshots/support_button.png)
