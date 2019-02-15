@@ -52,13 +52,19 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "name":
-				return self::dic()->user()->getFullname();
+				if (self::ilias()->users()->getUserId() !== ANONYMOUS_USER_ID) {
+					return self::dic()->user()->getFullname();
+				}
+				break;
 
 			case "login":
 				return self::dic()->user()->getLogin();
 
 			case "email":
-				return self::dic()->user()->getEmail();
+				if (self::ilias()->users()->getUserId() !== ANONYMOUS_USER_ID) {
+					return self::dic()->user()->getEmail();
+				}
+				break;
 
 			case "system_infos":
 				return $this->getBrowserInfos();

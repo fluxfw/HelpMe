@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.1.3]
+- No anonymous name and email
+
 ## [3.1.2]
 - Phone is now voluntary
 
