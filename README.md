@@ -48,7 +48,7 @@ Please use it for further development!
 * Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/HelpMe/tree/develop
 * Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/PLHM
 * Bug reports under https://jira.studer-raimann.ch/projects/PLHM
-* For external users please send an email to support-custom1@studer-raimann.ch
+* For external users you can report it at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLHM
 
 ### Development
 If you want development in this plugin you should install this plugin like follow:
