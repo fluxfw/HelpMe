@@ -122,7 +122,7 @@ class SupportFormGUI extends PropertyFormGUI {
 			],
 			"phone" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => true
+				self::PROPERTY_REQUIRED => false
 			],
 			"priority" => [
 				self::PROPERTY_CLASS => ilSelectInputGUI::class,
