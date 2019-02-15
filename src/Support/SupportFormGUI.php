@@ -52,7 +52,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "name":
-				if (self::ilias()->users()->getUserId() !== ANONYMOUS_USER_ID) {
+				if (self::ilias()->users()->getUserId() !== intval(ANONYMOUS_USER_ID)) {
 					return self::dic()->user()->getFullname();
 				}
 				break;
@@ -61,7 +61,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				return self::dic()->user()->getLogin();
 
 			case "email":
-				if (self::ilias()->users()->getUserId() !== ANONYMOUS_USER_ID) {
+				if (self::ilias()->users()->getUserId() !== intval(ANONYMOUS_USER_ID)) {
 					return self::dic()->user()->getEmail();
 				}
 				break;
