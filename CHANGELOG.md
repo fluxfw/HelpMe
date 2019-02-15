@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.1.2]
+- Phone is now voluntary
+
 ## [3.1.1]
 - Sort projects
 
