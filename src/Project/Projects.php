@@ -48,7 +48,7 @@ final class Projects {
 	 * @return Project[]
 	 */
 	public function getProjects(): array {
-		return Project::get();
+		return Project::orderBy("project_name", "asc")->get();
 	}
 
 
@@ -56,7 +56,7 @@ final class Projects {
 	 * @return array
 	 */
 	public function getProjectsArray(): array {
-		return Project::getArray();
+		return Project::orderBy("project_name", "asc")->getArray();
 	}
 
 
