@@ -3,9 +3,12 @@
 namespace srag\Plugins\HelpMe\Recipient;
 
 use ilMimeMail;
+use phpmailerException;
+use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
+use srag\DIC\HelpMe\Exception\DICException;
+use srag\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
-use Throwable;
 
 /**
  * Class RecipientSendMail
@@ -28,38 +31,43 @@ class RecipientSendMail extends Recipient {
 
 	/**
 	 * @inheritdoc
+	 *
+	 * @throws ActiveRecordConfigException
+	 * @throws DICException
+	 * @throws phpmailerException
 	 */
-	public function sendSupportToRecipient(): bool {
-		return ($this->sendEmail() && $this->sendConfirmationMail());
+	public function sendSupportToRecipient()/*: void*/ {
+		$this->sendEmail();
+
+		$this->sendConfirmationMail();
 	}
 
 
 	/**
 	 * Send support email
 	 *
-	 * @return bool
+	 * @throws ActiveRecordConfigException
+	 * @throws DICException
+	 * @throws HelpMeException
+	 * @throws phpmailerException
 	 */
-	protected function sendEmail(): bool {
-		try {
-			$mailer = new ilMimeMail();
+	protected function sendEmail()/*: void*/ {
+		$mailer = new ilMimeMail();
 
-			$mailer->From(new RecipientSendMailSender($this->support));
+		$mailer->From(new RecipientSendMailSender($this->support));
 
-			$mailer->To(Config::getField(Config::KEY_SEND_EMAIL_ADDRESS));
+		$mailer->To(Config::getField(Config::KEY_SEND_EMAIL_ADDRESS));
 
-			$mailer->Subject($this->support->getSubject());
+		$mailer->Subject($this->support->getSubject());
 
-			$mailer->Body($this->support->getBody("email"));
+		$mailer->Body($this->support->getBody("email"));
 
-			foreach ($this->support->getScreenshots() as $screenshot) {
-				$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
-			}
+		foreach ($this->support->getScreenshots() as $screenshot) {
+			$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
+		}
 
-			$mailer->Send();
-
-			return true;
-		} catch (Throwable $ex) {
-			return false;
+		if (!$mailer->Send()) {
+			throw new HelpMeException("Mailer returns not true");
 		}
 	}
 }

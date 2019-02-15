@@ -195,16 +195,16 @@
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.2.8",
+            "version": "v0.2.10",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "73884edf1d007865d6e4c1e535556d2cd8ddbf6e"
+                "reference": "f94b3bac44abd6ef6bddaf20eeaa2f067a495d1b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/73884edf1d007865d6e4c1e535556d2cd8ddbf6e",
-                "reference": "73884edf1d007865d6e4c1e535556d2cd8ddbf6e",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/f94b3bac44abd6ef6bddaf20eeaa2f067a495d1b",
+                "reference": "f94b3bac44abd6ef6bddaf20eeaa2f067a495d1b",
                 "shasum": ""
             },
             "require": {
@@ -236,7 +236,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2019-02-14T15:04:14+00:00"
+            "time": "2019-02-15T07:19:46+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",

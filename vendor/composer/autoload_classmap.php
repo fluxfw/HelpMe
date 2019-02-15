@@ -82,6 +82,7 @@ return array(
     'srag\\DIC\\HelpMe\\Plugin\\Pluginable' => $vendorDir . '/srag/dic/src/Plugin/Pluginable.php',
     'srag\\DIC\\HelpMe\\Version\\Version' => $vendorDir . '/srag/dic/src/Version/Version.php',
     'srag\\DIC\\HelpMe\\Version\\VersionInterface' => $vendorDir . '/srag/dic/src/Version/VersionInterface.php',
+    'srag\\JiraCurl\\HelpMe\\Exception\\JiraCurlException' => $vendorDir . '/srag/jiracurl/src/Exception/JiraCurlException.php',
     'srag\\JiraCurl\\HelpMe\\JiraCurl' => $vendorDir . '/srag/jiracurl/src/JiraCurl.php',
     'srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger' => $vendorDir . '/srag/librariesnamespacechanger/src/LibrariesNamespaceChanger.php',
     'srag\\Plugins\\HelpMe\\Access\\Access' => $baseDir . '/src/Access/Access.php',

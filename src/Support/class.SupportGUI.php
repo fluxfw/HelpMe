@@ -3,11 +3,13 @@
 namespace srag\Plugins\HelpMe\Support;
 
 use ilHelpMePlugin;
+use ilLogLevel;
 use ilPropertyFormGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use Throwable;
 
 /**
  * Class SupportGUI
@@ -135,12 +137,17 @@ class SupportGUI {
 
 		$support = $form->getSupport();
 
-		$recipient = Recipient::getRecipient(Config::getField(Config::KEY_RECIPIENT), $support);
-		if ($recipient->sendSupportToRecipient()) {
+		try {
+			$recipient = Recipient::getRecipient(Config::getField(Config::KEY_RECIPIENT), $support);
+
+			$recipient->sendSupportToRecipient();
+
 			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
 
 			$form = $this->getSuccessForm();
-		} else {
+		} catch (Throwable $ex) {
+			self::dic()->logger()->root()->log($ex->__toString(), ilLogLevel::ERROR);
+
 			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("sent_failure", self::LANG_MODULE_SUPPORT), "failure");
 		}
 

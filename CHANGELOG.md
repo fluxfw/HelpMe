@@ -2,7 +2,7 @@
 
 ## [x]
 - Log Jira errors
-- Project issue type and fix version
+- Move jira issue type to each project
 
 ## [3.0.10]
 - Fix
