@@ -129,7 +129,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	public function storeForm()/*: bool*/ {
+	public function storeForm(): bool {
 		if ($this->project === NULL) {
 			$this->project = new Project();
 		}

@@ -176,7 +176,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	public function storeForm()/*: bool*/ {
+	public function storeForm(): bool {
 		$this->support = new Support();
 
 		$time = time();

@@ -41,7 +41,7 @@ class SuccessFormGUI extends SupportFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	public function storeForm()/*: bool*/ {
+	public function storeForm(): bool {
 		return false;
 	}
 
