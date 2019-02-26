@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.1.4]
+- Supports ILIAS 5.4
+
 ## [3.1.3]
 - No anonymous name and email
 

@@ -3,7 +3,7 @@
 namespace srag\Plugins\HelpMe\Recipient;
 
 use ilMimeMail;
-use phpmailerException;
+use PHPMailer\PHPMailer\Exception as phpmailerException;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\HelpMe\Exception\HelpMeException;
