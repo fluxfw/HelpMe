@@ -30,7 +30,7 @@ Config projects:
 ![Config projects](./doc/screenshots/config_projects.png)
 
 ### Dependencies
-* ILIAS 5.3
+* ILIAS 5.3 or ILIAS 5.4
 * PHP >=7.0
 * [composer](https://getcomposer.org)
 * [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
