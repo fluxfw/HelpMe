@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.1.5]
+- Default Issue-Type
+
 ## [3.1.4]
 - Supports ILIAS 5.4
 

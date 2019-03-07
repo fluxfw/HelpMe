@@ -21,6 +21,7 @@ class Project extends ActiveRecord {
 	use HelpMeTrait;
 	const TABLE_NAME = "ui_uihk_srsu_project";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+	const DEFAULT_ISSUE_TYPE = "Support";
 
 
 	/**
@@ -75,7 +76,7 @@ class Project extends ActiveRecord {
 	 * @con_fieldtype    text
 	 * @con_is_notnull   true
 	 */
-	protected $project_issue_type = "";
+	protected $project_issue_type = self::DEFAULT_ISSUE_TYPE;
 
 
 	/**

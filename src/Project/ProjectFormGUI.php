@@ -63,6 +63,14 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				default:
 					break;
 			}
+		} else {
+			switch ($key) {
+				case "project_issue_type":
+					return Project::DEFAULT_ISSUE_TYPE;
+
+				default:
+					break;
+			}
 		}
 
 		return NULL;
