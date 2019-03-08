@@ -2,6 +2,7 @@
 
 ## [3.2.0]
 - The key in support link can now differ to the project key
+- Fix version can now be set for each project
 
 ## [3.1.5]
 - Default Issue-Type

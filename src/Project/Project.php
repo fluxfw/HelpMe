@@ -22,6 +22,7 @@ class Project extends ActiveRecord {
 	const TABLE_NAME = "ui_uihk_srsu_project";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const DEFAULT_ISSUE_TYPE = "Support";
+	const DEFAULT_FIX_VERSION = "Backlog";
 
 
 	/**
@@ -85,6 +86,14 @@ class Project extends ActiveRecord {
 	 * @con_is_notnull   true
 	 */
 	protected $project_issue_type = self::DEFAULT_ISSUE_TYPE;
+	/**
+	 * @var string
+	 *
+	 * @con_has_field    true
+	 * @con_fieldtype    text
+	 * @con_is_notnull   true
+	 */
+	protected $project_fix_version = self::DEFAULT_FIX_VERSION;
 
 
 	/**
@@ -210,5 +219,21 @@ class Project extends ActiveRecord {
 	 */
 	public function setProjectIssueType(string $project_issue_type)/*: void*/ {
 		$this->project_issue_type = $project_issue_type;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getProjectFixVersion(): string {
+		return $this->project_fix_version;
+	}
+
+
+	/**
+	 * @param string $project_fix_version
+	 */
+	public function setProjectFixVersion(string $project_fix_version)/*: void*/ {
+		$this->project_fix_version = $project_fix_version;
 	}
 }

@@ -118,7 +118,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", $row["project_id"]);
 		$edit_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT);
 		$remove_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM);
-		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", NULL);
+		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", null);
 
 		parent::fillRow($row);
 

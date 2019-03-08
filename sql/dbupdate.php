@@ -124,3 +124,7 @@ foreach (\srag\Plugins\HelpMe\Project\Project::get() as $project) {
 	}
 }
 ?>
+<#10>
+<?php
+\srag\Plugins\HelpMe\Project\Project::updateDB();
+?>

@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.19.5]
+- MultiLineInputGUI: Fix date format on public page
+
+## [0.19.4]
+- UsrIdsLearningProgressPie
+
+## [0.19.3]
+- Support MultiSelectSearchInputGUI in table filter and toolbar
+
+## [0.19.2]
+- CountLearningProgressPie
+
+## [0.19.1]
+- CountLearningProgressPie
+
+## [0.19.0]
+- CountLearningProgressPie
+
 ## [0.18.7]
 - Increase StaticHTMLPresentationInputGUI height
 
