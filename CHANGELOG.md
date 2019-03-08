@@ -1,5 +1,8 @@
 # Changelog
 
+## [3.2.0]
+- The key in support link can now differ to the project key
+
 ## [3.1.5]
 - Default Issue-Type
 

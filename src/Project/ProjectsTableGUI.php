@@ -92,7 +92,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		$projects = self::projects()->getProjectsArray();
 
 		$this->setData(array_map(function (array $project): array {
-			$support_link = ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . "_" . $project["project_key"];
+			$support_link = ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . "_" . $project["project_url_key"];
 
 			$project["support_link"] = self::output()->getHTML(self::dic()->ui()->factory()->link()->standard($support_link, $support_link)
 				->withOpenInNewViewport(true));

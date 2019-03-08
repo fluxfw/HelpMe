@@ -68,6 +68,14 @@ class Project extends ActiveRecord {
 	 * @con_fieldtype    text
 	 * @con_is_notnull   true
 	 */
+	protected $project_url_key = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field    true
+	 * @con_fieldtype    text
+	 * @con_is_notnull   true
+	 */
 	protected $project_name = "";
 	/**
 	 * @var string
@@ -86,7 +94,7 @@ class Project extends ActiveRecord {
 	 * @param arConnector|null $connector
 	 */
 	public function __construct(/*int*/
-		$primary_key_value = 0, arConnector $connector = NULL) {
+		$primary_key_value = 0, arConnector $connector = null) {
 		parent::__construct($primary_key_value, $connector);
 	}
 
@@ -102,7 +110,7 @@ class Project extends ActiveRecord {
 
 		switch ($field_name) {
 			default:
-				return NULL;
+				return null;
 		}
 	}
 
@@ -120,7 +128,7 @@ class Project extends ActiveRecord {
 				return intval($field_value);
 
 			default:
-				return NULL;
+				return null;
 		}
 	}
 
@@ -154,6 +162,22 @@ class Project extends ActiveRecord {
 	 */
 	public function setProjectKey(string $project_key)/*: void*/ {
 		$this->project_key = $project_key;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getProjectUrlKey(): string {
+		return $this->project_url_key;
+	}
+
+
+	/**
+	 * @param string $project_url_key
+	 */
+	public function setProjectUrlKey(string $project_url_key)/*: void*/ {
+		$this->project_url_key = $project_url_key;
 	}
 
 
