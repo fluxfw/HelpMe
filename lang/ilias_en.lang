@@ -26,6 +26,7 @@ config_project_issue_type_info#:#Task, Bug, Support, ...
 config_project_key#:#Key
 config_project_key_info#:#Using for create support, for example Jira project key
 config_project_name#:#Name
+config_project_name_info#:#Is displayed in the project selection
 config_project_url_key#:#Url key
 config_project_url_key_info#:#Using in support link
 config_recipient#:#Form recipient
