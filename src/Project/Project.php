@@ -22,13 +22,14 @@ class Project extends ActiveRecord {
 	const TABLE_NAME = "ui_uihk_srsu_project";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const DEFAULT_ISSUE_TYPE = "Support";
-	const DEFAULT_FIX_VERSION = "Backlog";
+	//const DEFAULT_FIX_VERSION = "Backlog";
+	const DEFAULT_FIX_VERSION = "";
 
 
 	/**
 	 * @return string
 	 */
-	public function getConnectorContainerName() {
+	public function getConnectorContainerName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -38,7 +39,7 @@ class Project extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public static function returnDbTableName() {
+	public static function returnDbTableName(): string {
 		return self::TABLE_NAME;
 	}
 
