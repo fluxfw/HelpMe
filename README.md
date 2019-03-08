@@ -29,6 +29,9 @@ Config:
 Config projects:
 ![Config projects](./doc/screenshots/config_projects.png)
 
+### Known issues
+- There is a known issue in the ILIAS core object svg icons (The `foreignObject` tag). This tag prevents to take screenshots in Chrome/Safari, because it could reveal something about the current user. You can read more [here](https://stackoverflow.com/questions/39148582/javascript-todataurl-throwing-security-error-tainted-canvases-may-not-be-ex#answer-41338911)
+
 ### Dependencies
 * ILIAS 5.3 or ILIAS 5.4
 * PHP >=7.0
