@@ -151,6 +151,14 @@ final class ILIAS54DIC extends AbstractDIC {
 	/**
 	 * @inheritdoc
 	 */
+	public function globalScreen()/*: GlobalScreenService*/ {
+		return $this->dic->globalScreen();
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
 	public function help()/*: ilHelpGUI*/ {
 		return $this->dic->help();
 	}

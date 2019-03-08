@@ -21,14 +21,14 @@ final class Projects {
 	/**
 	 * @var self
 	 */
-	protected static $instance = NULL;
+	protected static $instance = null;
 
 
 	/**
 	 * @return self
 	 */
 	public static function getInstance(): self {
-		if (self::$instance === NULL) {
+		if (self::$instance === null) {
 			self::$instance = new self();
 		}
 
@@ -87,6 +87,22 @@ final class Projects {
 		 */
 
 		$project = Project::where([ "project_key" => $project_key ])->first();
+
+		return $project;
+	}
+
+
+	/**
+	 * @param string $project_url_key
+	 *
+	 * @return Project|null
+	 */
+	public function getProjectByUrlKey(string $project_url_key)/*: ?Project*/ {
+		/**
+		 * @var Project|null $project
+		 */
+
+		$project = Project::where([ "project_url_key" => $project_url_key ])->first();
 
 		return $project;
 	}

@@ -108,3 +108,23 @@ if (!empty($jira_issue_key)) {
 
 \srag\Plugins\HelpMe\Config\Config::removeField(\srag\Plugins\HelpMe\Config\Config::KEY_JIRA_ISSUE_TYPE);
 ?>
+<#9>
+<?php
+\srag\Plugins\HelpMe\Project\Project::updateDB();
+
+foreach (\srag\Plugins\HelpMe\Project\Project::get() as $project) {
+	/**
+	 * @var \srag\Plugins\HelpMe\Project\Project $project
+	 */
+
+	if (empty($project->getProjectUrlKey())) {
+		$project->setProjectUrlKey($project->getProjectKey());
+
+		$project->store();
+	}
+}
+?>
+<#10>
+<?php
+\srag\Plugins\HelpMe\Project\Project::updateDB();
+?>

@@ -110,7 +110,7 @@ il.HelpMe.MODAL_TEMPLATE = ' . json_encode(self::output()->getHTML($modal)) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode(self::output()->getHTML($support_button_tpl)) . ';
 il.HelpMe.init();
 ' . $screenshot->getJSOnLoadCode() . '
-' . ($project_id !== NULL ? 'il.HelpMe.autoOpen = true;' : '') . '
+' . ($project_id !== null ? 'il.HelpMe.autoOpen = true;' : '') . '
 							</script>' . substr($html, $helpme_js_pos + strlen($helpme_js));
 
 						return [ "mode" => self::REPLACE, "html" => $html ];
@@ -133,15 +133,15 @@ il.HelpMe.init();
 		preg_match("/^uihk_" . ilHelpMePlugin::PLUGIN_ID . "(_(.*))?/uim", $target, $matches);
 
 		if (is_array($matches) && count($matches) >= 1) {
-			$project_key = $matches[2];
+			$project_url_key = $matches[2];
 
-			if ($project_key === NULL) {
-				$project_key = "";
+			if ($project_url_key === null) {
+				$project_url_key = "";
 			}
 
-			$project = self::projects()->getProjectByKey($project_key);
+			$project = self::projects()->getProjectByUrlKey($project_url_key);
 
-			if ($project !== NULL) {
+			if ($project !== null) {
 				$project_id = $project->getProjectId();
 			} else {
 				$project_id = "";

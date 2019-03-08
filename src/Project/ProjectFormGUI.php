@@ -36,7 +36,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @param Project|null          $project
 	 */
 	public function __construct(ActiveRecordConfigGUI $parent, string $tab_id, /*?*/
-		Project $project = NULL) {
+		Project $project = null) {
 
 		$this->project = $project;
 
@@ -49,16 +49,22 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 */
 	protected function getValue(/*string*/
 		$key) {
-		if ($this->project !== NULL) {
+		if ($this->project !== null) {
 			switch ($key) {
 				case "project_key":
 					return $this->project->getProjectKey();
+
+				case "project_url_key":
+					return $this->project->getProjectUrlKey();
 
 				case "project_name":
 					return $this->project->getProjectName();
 
 				case "project_issue_type":
 					return $this->project->getProjectIssueType();
+
+				case "project_fix_version":
+					return $this->project->getProjectFixVersion();
 
 				default:
 					break;
@@ -68,12 +74,15 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				case "project_issue_type":
 					return Project::DEFAULT_ISSUE_TYPE;
 
+				case "project_fix_version":
+					return Project::DEFAULT_FIX_VERSION;
+
 				default:
 					break;
 			}
 		}
 
-		return NULL;
+		return null;
 	}
 
 
@@ -81,13 +90,13 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initAction()/*: void*/ {
-		if ($this->project !== NULL) {
+		if ($this->project !== null) {
 			self::dic()->ctrl()->setParameter($this->parent, "srsu_project_id", $this->project->getProjectId());
 		}
 
 		parent::initAction();
 
-		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_id", NULL);
+		self::dic()->ctrl()->setParameter($this->parent, "srsu_project_id", null);
 	}
 
 
@@ -95,7 +104,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		if ($this->project !== NULL) {
+		if ($this->project !== null) {
 			$this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
 		} else {
 			$this->addCommandButton(ilHelpMeConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
@@ -114,6 +123,10 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
 				self::PROPERTY_REQUIRED => true
 			],
+			"project_url_key" => [
+				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_REQUIRED => true
+			],
 			"project_name" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
 				self::PROPERTY_REQUIRED => true
@@ -121,6 +134,10 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 			"project_issue_type" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
 				self::PROPERTY_REQUIRED => true
+			],
+			"project_fix_version" => [
+				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_REQUIRED => false
 			]
 		];
 	}
@@ -130,7 +147,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initTitle()/*: void*/ {
-		$this->setTitle($this->txt($this->project !== NULL ? "edit_project" : "add_project"));
+		$this->setTitle($this->txt($this->project !== null ? "edit_project" : "add_project"));
 	}
 
 
@@ -138,7 +155,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	public function storeForm(): bool {
-		if ($this->project === NULL) {
+		if ($this->project === null) {
 			$this->project = new Project();
 		}
 
@@ -162,12 +179,20 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				$this->project->setProjectKey(strval($value));
 				break;
 
+			case "project_url_key":
+				$this->project->setProjectUrlKey(strval($value));
+				break;
+
 			case "project_name":
 				$this->project->setProjectName(strval($value));
 				break;
 
 			case "project_issue_type":
 				$this->project->setProjectIssueType(strval($value));
+				break;
+
+			case "project_fix_version":
+				$this->project->setProjectFixVersion(strval($value));
 				break;
 
 			default:

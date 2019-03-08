@@ -111,7 +111,7 @@ class JiraCurl {
 				$certificate = openssl_pkey_get_private($this->jira_private_key);
 				$private_key_id = openssl_get_privatekey($certificate);
 
-				$signature = NULL;
+				$signature = null;
 				openssl_sign($string_to_sign, $signature, $private_key_id);
 				$signature = base64_encode($signature);
 
@@ -155,15 +155,15 @@ class JiraCurl {
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException
 	 */
-	protected function doRequest(string $rest_url, array $headers, $post_data = NULL): array {
+	protected function doRequest(string $rest_url, array $headers, $post_data = null): array {
 		$url = $this->jira_domain . $rest_url;
 
-		$curlConnection = NULL;
+		$curlConnection = null;
 
 		try {
 			$curlConnection = $this->initCurlConnection($url, $headers);
 
-			if ($post_data !== NULL) {
+			if ($post_data !== null) {
 				$curlConnection->setOpt(CURLOPT_POST, true);
 				$curlConnection->setOpt(CURLOPT_POSTFIELDS, $post_data);
 			}
@@ -184,9 +184,9 @@ class JiraCurl {
 			return $result_json;
 		} finally {
 			// Close Curl connection
-			if ($curlConnection !== NULL) {
+			if ($curlConnection !== null) {
 				$curlConnection->close();
-				$curlConnection = NULL;
+				$curlConnection = null;
 			}
 		}
 	}
@@ -195,17 +195,18 @@ class JiraCurl {
 	/**
 	 * Create Jira issue ticket
 	 *
-	 * @param string $jira_project_key
-	 * @param string $jira_issue_type
-	 * @param string $summary
-	 * @param string $description
+	 * @param string      $jira_project_key
+	 * @param string      $jira_issue_type
+	 * @param string      $summary
+	 * @param string      $description
+	 * @param string|null $fix_version
 	 *
 	 * @return string Issue-Key
 	 *
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException
 	 */
-	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description): string {
+	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description, string $fix_version = null): string {
 		$headers = [
 			"Accept" => "application/json",
 			"Content-Type" => "application/json"
@@ -227,6 +228,14 @@ class JiraCurl {
 				]
 			]
 		];
+
+		if (!empty($fix_version)) {
+			$data["fields"]["fixVersions"] = [
+				[
+					"name" => $fix_version
+				]
+			];
+		}
 
 		$result = $this->doRequest("/rest/api/2/issue", $headers, json_encode($data));
 

@@ -22,12 +22,14 @@ class Project extends ActiveRecord {
 	const TABLE_NAME = "ui_uihk_srsu_project";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const DEFAULT_ISSUE_TYPE = "Support";
+	//const DEFAULT_FIX_VERSION = "Backlog";
+	const DEFAULT_FIX_VERSION = "";
 
 
 	/**
 	 * @return string
 	 */
-	public function getConnectorContainerName() {
+	public function getConnectorContainerName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -37,7 +39,7 @@ class Project extends ActiveRecord {
 	 *
 	 * @deprecated
 	 */
-	public static function returnDbTableName() {
+	public static function returnDbTableName(): string {
 		return self::TABLE_NAME;
 	}
 
@@ -68,6 +70,14 @@ class Project extends ActiveRecord {
 	 * @con_fieldtype    text
 	 * @con_is_notnull   true
 	 */
+	protected $project_url_key = "";
+	/**
+	 * @var string
+	 *
+	 * @con_has_field    true
+	 * @con_fieldtype    text
+	 * @con_is_notnull   true
+	 */
 	protected $project_name = "";
 	/**
 	 * @var string
@@ -77,6 +87,14 @@ class Project extends ActiveRecord {
 	 * @con_is_notnull   true
 	 */
 	protected $project_issue_type = self::DEFAULT_ISSUE_TYPE;
+	/**
+	 * @var string
+	 *
+	 * @con_has_field    true
+	 * @con_fieldtype    text
+	 * @con_is_notnull   true
+	 */
+	protected $project_fix_version = self::DEFAULT_FIX_VERSION;
 
 
 	/**
@@ -86,7 +104,7 @@ class Project extends ActiveRecord {
 	 * @param arConnector|null $connector
 	 */
 	public function __construct(/*int*/
-		$primary_key_value = 0, arConnector $connector = NULL) {
+		$primary_key_value = 0, arConnector $connector = null) {
 		parent::__construct($primary_key_value, $connector);
 	}
 
@@ -102,7 +120,7 @@ class Project extends ActiveRecord {
 
 		switch ($field_name) {
 			default:
-				return NULL;
+				return null;
 		}
 	}
 
@@ -120,7 +138,7 @@ class Project extends ActiveRecord {
 				return intval($field_value);
 
 			default:
-				return NULL;
+				return null;
 		}
 	}
 
@@ -160,6 +178,22 @@ class Project extends ActiveRecord {
 	/**
 	 * @return string
 	 */
+	public function getProjectUrlKey(): string {
+		return $this->project_url_key;
+	}
+
+
+	/**
+	 * @param string $project_url_key
+	 */
+	public function setProjectUrlKey(string $project_url_key)/*: void*/ {
+		$this->project_url_key = $project_url_key;
+	}
+
+
+	/**
+	 * @return string
+	 */
 	public function getProjectName(): string {
 		return $this->project_name;
 	}
@@ -186,5 +220,21 @@ class Project extends ActiveRecord {
 	 */
 	public function setProjectIssueType(string $project_issue_type)/*: void*/ {
 		$this->project_issue_type = $project_issue_type;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getProjectFixVersion(): string {
+		return $this->project_fix_version;
+	}
+
+
+	/**
+	 * @param string $project_fix_version
+	 */
+	public function setProjectFixVersion(string $project_fix_version)/*: void*/ {
+		$this->project_fix_version = $project_fix_version;
 	}
 }

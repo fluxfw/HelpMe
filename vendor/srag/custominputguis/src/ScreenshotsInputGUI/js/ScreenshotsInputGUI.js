@@ -126,7 +126,6 @@ il.ScreenshotsInputGUI.prototype = {
 	},
 
 	/**
-	 *
 	 * @param {HTMLCanvasElement} canvas
 	 */
 	addPageScreenshot2: function (canvas) {
@@ -138,7 +137,6 @@ il.ScreenshotsInputGUI.prototype = {
 	},
 
 	/**
-	 *
 	 * @param {Blob} blob
 	 */
 	addPageScreenshot3: function (blob) {
@@ -156,7 +154,6 @@ il.ScreenshotsInputGUI.prototype = {
 	},
 
 	/**
-	 *
 	 * @param {Error} ex
 	 */
 	addPageScreenshot4: function (ex) {

@@ -19,11 +19,16 @@ config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira-Benutzername
 config_priorities#:#Dringlichkeiten
 config_projects#:#Projekte
+config_project_fix_version#:#Fix-Version
+config_project_fix_version_info#:#Backlog, ...
 config_project_issue_type#:#Issue-Typ
 config_project_issue_type_info#:#Task, Bug, Support, ...
 config_project_key#:#Key
-config_project_key_info#:#Jira-Projekt-Key, ...
+config_project_key_info#:#Wird für Erstellen des Supports verwendet, z. Bsp. Jira-Projekt-Key
 config_project_name#:#Name
+config_project_name_info#:#Wird in der Projektauswahl angezeigt
+config_project_url_key#:#URL-Key
+config_project_url_key_info#:#Wird im Support-Link verwendet
 config_recipient#:#Formularempfänger
 config_recipient_create_jira_ticket#:#Jira-Ticket erstellen
 config_recipient_send_email#:#Per E-Mail senden

@@ -11,9 +11,3 @@ TODO:
 * [html2canvas](https://www.npmjs.com/package/html2canvas)
 * [srag/dic](https://packagist.org/packages/srag/dic)
 * [babel-minify -g](https://www.npmjs.com/package/babel-minify)
-
-### Adjustment suggestions
-* Adjustment suggestions by pull requests on https://git.studer-raimann.ch/ILIAS/Plugins/HelpMe/tree/develop
-* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/PLHM
-* Bug reports under https://jira.studer-raimann.ch/projects/PLHM
-* For external users please send an email to support-custom1@studer-raimann.ch

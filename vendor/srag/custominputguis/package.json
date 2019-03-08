@@ -11,6 +11,9 @@
   "contributors": [
     "srag <support-custom1@studer-raimann.ch> (https://studer-raimann.ch)"
   ],
+  "bugs": {
+    "url": "https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LINP"
+  },
   "dependencies": {
     "canvas-toBlob": "^1.0.0",
     "d3": "^5.9.1",

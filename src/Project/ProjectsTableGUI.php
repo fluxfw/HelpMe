@@ -92,7 +92,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		$projects = self::projects()->getProjectsArray();
 
 		$this->setData(array_map(function (array $project): array {
-			$support_link = ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . "_" . $project["project_key"];
+			$support_link = ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . "_" . $project["project_url_key"];
 
 			$project["support_link"] = self::output()->getHTML(self::dic()->ui()->factory()->link()->standard($support_link, $support_link)
 				->withOpenInNewViewport(true));
@@ -118,7 +118,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", $row["project_id"]);
 		$edit_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT);
 		$remove_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM);
-		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", NULL);
+		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", null);
 
 		parent::fillRow($row);
 
