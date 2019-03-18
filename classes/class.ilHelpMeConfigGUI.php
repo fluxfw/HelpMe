@@ -48,7 +48,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	 * @return ProjectFormGUI
 	 */
 	protected function getProjectForm(/*?*/
-		Project $project = NULL): ProjectFormGUI {
+		Project $project = null): ProjectFormGUI {
 		$form = new ProjectFormGUI($this, self::TAB_PROJECTS, $project);
 
 		return $form;
@@ -138,7 +138,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 		self::dic()->ctrl()->setParameter($this, "srsu_project_id", $project->getProjectId());
 		$confirmation->setFormAction(self::dic()->ctrl()->getFormAction($this));
-		self::dic()->ctrl()->setParameter($this, "srsu_project_id", NULL);
+		self::dic()->ctrl()->setParameter($this, "srsu_project_id", null);
 
 		$confirmation->setHeaderText(self::plugin()->translate("remove_project_confirm", self::LANG_MODULE_CONFIG, [ $project->getProjectName() ]));
 
