@@ -122,7 +122,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 			self::dic()->ui()->factory()->button()->shy($this->txt("edit_project"), self::dic()->ctrl()
 				->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT)),
 			self::dic()->ui()->factory()->button()->shy($this->txt("remove_project"), self::dic()->ctrl()
-				->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM)),
+				->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
 		])->withLabel($this->txt("actions"))));
 	}
 }
