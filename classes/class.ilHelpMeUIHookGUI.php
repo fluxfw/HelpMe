@@ -60,8 +60,6 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 				if (self::access()->currentUserHasRole()) {
 
-					ilModalGUI::initJS();
-
 					$screenshot = new ScreenshotsInputGUI();
 					$screenshot->setPlugin(self::plugin());
 					$screenshot->initJS();
@@ -94,11 +92,6 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 							SupportGUI::class
 						], SupportGUI::CMD_ADD_SUPPORT, "", true));
 
-						// TODO: Modal UIServices
-						$modal = ilModalGUI::getInstance();
-						$modal->setType(ilModalGUI::TYPE_LARGE);
-						$modal->setHeading(self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT));
-
 						$screenshot = new ScreenshotsInputGUI();
 						$screenshot->setPlugin(self::plugin());
 
@@ -106,7 +99,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 
 						// Could not use onload code because it not available on all pages
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
-il.HelpMe.MODAL_TEMPLATE = ' . json_encode(self::output()->getHTML($modal)) . ';
+il.HelpMe.MODAL_TEMPLATE = ' . json_encode($this->getModal()) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode(self::output()->getHTML($support_button_tpl)) . ';
 il.HelpMe.init();
 ' . $screenshot->getJSOnLoadCode() . '
@@ -120,6 +113,21 @@ il.HelpMe.init();
 		}
 
 		return parent::getHTML($a_comp, $a_part, $a_par);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	protected function getModal(): string {
+		$modal = self::output()->getHTML(self::dic()->ui()->factory()->modal()->roundtrip(self::plugin()
+			->translate("support", SupportGUI::LANG_MODULE_SUPPORT), self::dic()->ui()->factory()->legacy("")));
+
+		$modal = str_replace('<div class="modal-footer">', '<div class="modal-footer" style="display:none;">', $modal);
+
+		$modal = str_replace('<div class="modal-dialog"', '<div class="modal-dialog modal-lg"', $modal);
+
+		return $modal;
 	}
 
 
