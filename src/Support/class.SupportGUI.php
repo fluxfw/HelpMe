@@ -97,7 +97,7 @@ class SupportGUI {
 		$tpl->setCurrentBlock("helpme_info");
 		$tpl->setVariable("INFO", Config::getField(Config::KEY_INFO));
 
-		if ($message !== NULL) {
+		if ($message !== null) {
 			$tpl->setCurrentBlock("helpme_message");
 			$tpl->setVariable("MESSAGE", $message);
 		}
@@ -113,7 +113,7 @@ class SupportGUI {
 	 *
 	 */
 	protected function addSupport()/*: void*/ {
-		$message = NULL;
+		$message = null;
 
 		$form = $this->getSupportForm();
 
@@ -125,7 +125,7 @@ class SupportGUI {
 	 *
 	 */
 	protected function newSupport()/*: void*/ {
-		$message = NULL;
+		$message = null;
 
 		$form = $this->getSupportForm();
 
@@ -142,13 +142,25 @@ class SupportGUI {
 
 			$recipient->sendSupportToRecipient();
 
-			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
+			if (self::version()->is54()) {
+				$message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->success(self::plugin()
+					->translate("sent_success", self::LANG_MODULE_SUPPORT)));
+			} else {
+				$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+					->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
+			}
 
 			$form = $this->getSuccessForm();
 		} catch (Throwable $ex) {
 			self::dic()->logger()->root()->log($ex->__toString(), ilLogLevel::ERROR);
 
-			$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()->translate("sent_failure", self::LANG_MODULE_SUPPORT), "failure");
+			if (self::version()->is54()) {
+				$message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->failure(self::plugin()
+					->translate("sent_failure", self::LANG_MODULE_SUPPORT)));
+			} else {
+				$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+					->translate("sent_failure", self::LANG_MODULE_SUPPORT), "failure");
+			}
 		}
 
 		$this->show($message, $form);
