@@ -124,9 +124,12 @@ il.HelpMe.init();
 			->translate("support", SupportGUI::LANG_MODULE_SUPPORT), self::dic()->ui()->factory()->legacy("")));
 
 		// HelpMe needs so patches on the new roundtrip modal ui
-		$modal = str_replace('<div class="modal-footer">', '<div class="modal-footer" style="display:none;">', $modal);
 
+		// Large modal
 		$modal = str_replace('<div class="modal-dialog"', '<div class="modal-dialog modal-lg"', $modal);
+
+		// Buttons will delivered over the form gui
+		$modal = str_replace('<div class="modal-footer">', '<div class="modal-footer" style="display:none;">', $modal);
 
 		return $modal;
 	}
