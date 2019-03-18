@@ -123,6 +123,7 @@ il.HelpMe.init();
 		$modal = self::output()->getHTML(self::dic()->ui()->factory()->modal()->roundtrip(self::plugin()
 			->translate("support", SupportGUI::LANG_MODULE_SUPPORT), self::dic()->ui()->factory()->legacy("")));
 
+		// HelpMe needs so patches on the new roundtrip modal ui
 		$modal = str_replace('<div class="modal-footer">', '<div class="modal-footer" style="display:none;">', $modal);
 
 		$modal = str_replace('<div class="modal-dialog"', '<div class="modal-dialog modal-lg"', $modal);
