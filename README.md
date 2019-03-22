@@ -43,6 +43,7 @@ Body:
 
 #### Jira
 (For safety reasons Jira API does not supports HTML)
+
 Subject:
 ```text
 {{ support.getPriority }} - {{ support.getTitle }}
