@@ -2,7 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
-use ilAdvancedSelectionListGUI;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilLinkButton;
@@ -116,18 +115,14 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	protected function fillRow(/*array*/
 		$row)/*: void*/ {
 		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", $row["project_id"]);
-		$edit_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT);
-		$remove_project_link = self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM);
-		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", null);
 
 		parent::fillRow($row);
 
-		$actions = new ilAdvancedSelectionListGUI();
-		$actions->setListTitle($this->txt("actions"));
-
-		$actions->addItem($this->txt("edit_project"), "", $edit_project_link);
-		$actions->addItem($this->txt("remove_project"), "", $remove_project_link);
-
-		$this->tpl->setVariable("COLUMN", self::output()->getHTML($actions));
+		$this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
+			self::dic()->ui()->factory()->button()->shy($this->txt("edit_project"), self::dic()->ctrl()
+				->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT)),
+			self::dic()->ui()->factory()->button()->shy($this->txt("remove_project"), self::dic()->ctrl()
+				->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
+		])->withLabel($this->txt("actions"))));
 	}
 }

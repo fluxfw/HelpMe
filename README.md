@@ -16,6 +16,48 @@ You can lock errors in the ILIAS log file like
 grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
+### Notifications4Plugins
+You need to install [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
+
+You have a `support` property (See more in [Class Support](./src/Support/Support.php)) in both subject and body.
+
+In body you have also a `fields` (Key/Values)
+
+Config a notification like the follow examples:
+
+#### Mail
+Subject:
+```text
+{{ support.getPriority }} - {{ support.getTitle }}
+```
+Text:
+```html
+{% for key,value in fields %}
+<p>
+	<h2>{{ key }}</h2>
+	{{ value }}
+</p>
+<br>
+{% endfor %}
+```
+
+#### Jira
+(For safety reasons Jira API does not supports HTML)
+
+Subject:
+```text
+{{ support.getPriority }} - {{ support.getTitle }}
+```
+Text:
+```text
+{% for key,value in fields %}
+{{ key }}:
+{{ value }}
+
+
+{% endfor %}
+```
+
 ### Some screenshots
 Support button:
 ![Support button](./doc/screenshots/support_button.png)
@@ -36,6 +78,7 @@ Config projects:
 * ILIAS 5.3 or ILIAS 5.4
 * PHP >=7.0
 * [composer](https://getcomposer.org)
+* [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
 * [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
 * [srag/activerecordconfig](https://packagist.org/packages/srag/activerecordconfig)
 * [srag/custominputguis](https://packagist.org/packages/srag/custominputguis)

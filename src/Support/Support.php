@@ -7,8 +7,10 @@ use ilDateTime;
 use ilHelpMePlugin;
 use ILIAS\FileUpload\DTO\UploadResult;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use srag\Plugins\Notifications4Plugins\Utils\Notifications4PluginsTrait;
 
 /**
  * Class Support
@@ -21,6 +23,7 @@ class Support {
 
 	use DICTrait;
 	use HelpMeTrait;
+	use Notifications4PluginsTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var int
@@ -86,21 +89,23 @@ class Support {
 	 * @return string
 	 */
 	public function getSubject(): string {
-		return $this->priority . " - " . $this->title;
+		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_TEMPLATE));
+
+		return self::parser()->parseSubject(self::parser()->getParserForNotification($notification), $notification, [
+			"support" => $this
+		]);
 	}
 
 
 	/**
 	 * Generate email body
 	 *
-	 * @param string $template email|jira
-	 *
 	 * @return string
 	 */
-	public function getBody(string $template): string {
-		$tpl = self::plugin()->template("helpme_" . $template . "_body.html");
+	public function getBody(): string {
+		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_TEMPLATE));
 
-		$fields = [
+		$fields_ = [
 			"project" => $this->project->getProjectName() . " (" . $this->project->getProjectKey() . ")",
 			"title" => $this->title,
 			"name" => $this->name,
@@ -114,19 +119,15 @@ class Support {
 			"datetime" => $this->getFormatedTime()
 		];
 
-		foreach ($fields as $title => $txt) {
-			$tpl->setCurrentBlock("helpme_body");
+		$fields = [];
+		foreach ($fields_ as $key => $value) {
+			$fields[self::plugin()->translate($key, SupportGUI::LANG_MODULE_SUPPORT)] = $value;
+		}
 
-			$tpl->setVariable("TITLE", self::plugin()->translate($title, SupportGUI::LANG_MODULE_SUPPORT));
-
-			$tpl->setVariable("TXT", $txt);
-
-			$tpl->parseCurrentBlock();
-		};
-
-		$body = self::output()->getHTML($tpl);
-
-		return $body;
+		return self::parser()->parseText(self::parser()->getParserForNotification($notification), $notification, [
+			"support" => $this,
+			"fields" => $fields
+		]);
 	}
 
 

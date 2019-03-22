@@ -143,7 +143,7 @@ class ConfigRoleOld extends ActiveRecord {
 	 */
 	public function __construct(/*int*/
 		$primary_key_value = 0, /*?*/
-		arConnector $connector = NULL) {
+		arConnector $connector = null) {
 		parent::__construct($primary_key_value, $connector);
 	}
 
@@ -161,7 +161,7 @@ class ConfigRoleOld extends ActiveRecord {
 
 		switch ($field_name) {
 			default:
-				return NULL;
+				return null;
 		}
 	}
 
@@ -180,10 +180,9 @@ class ConfigRoleOld extends ActiveRecord {
 			case "id":
 			case "role_id":
 				return intval($field_value);
-				break;
 
 			default:
-				return NULL;
+				return null;
 		}
 	}
 

@@ -1,6 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../vendor/autoload.php";
+require_once __DIR__ . "/../../Notifications4Plugins/vendor/autoload.php";
 
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigOld;
@@ -26,14 +27,14 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	/**
 	 * @var self|null
 	 */
-	protected static $instance = NULL;
+	protected static $instance = null;
 
 
 	/**
 	 * @return self
 	 */
 	public static function getInstance(): self {
-		if (self::$instance === NULL) {
+		if (self::$instance === null) {
 			self::$instance = new self();
 		}
 

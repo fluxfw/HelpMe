@@ -5,15 +5,18 @@ namespace srag\Plugins\HelpMe\Config;
 use ilEMailInputGUI;
 use ilHelpMePlugin;
 use ilMultiSelectInputGUI;
+use ilNotifications4PluginsPlugin;
 use ilPasswordInputGUI;
 use ilRadioGroupInputGUI;
 use ilRadioOption;
+use ilSelectInputGUI;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use srag\Plugins\Notifications4Plugins\Utils\Notifications4PluginsTrait;
 
 /**
  * Class ConfigFormGUI
@@ -25,6 +28,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 
 	use HelpMeTrait;
+	use Notifications4PluginsTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CONFIG_CLASS_NAME = Config::class;
 
@@ -94,6 +98,12 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 						]
 					]
 				]
+			],
+			Config::KEY_TEMPLATE => [
+				self::PROPERTY_CLASS => ilSelectInputGUI::class,
+				self::PROPERTY_REQUIRED => true,
+				self::PROPERTY_OPTIONS => [ "" => "" ] + self::notification()->getArrayForSelection(),
+				"setInfo" => ilNotifications4PluginsPlugin::PLUGIN_NAME
 			],
 			Config::KEY_PRIORITIES => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,

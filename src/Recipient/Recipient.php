@@ -45,15 +45,12 @@ abstract class Recipient {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
 				return new RecipientSendMail($support);
-				break;
 
 			case self::CREATE_JIRA_TICKET:
 				return new RecipientCreateJiraTicket($support);
-				break;
 
 			default:
-				return NULL;
-				break;
+				return null;
 		}
 	}
 
@@ -93,7 +90,7 @@ abstract class Recipient {
 
 		$mailer->Subject(self::plugin()->translate("confirmation", SupportGUI::LANG_MODULE_SUPPORT) . ": " . $this->support->getSubject());
 
-		$mailer->Body($this->support->getBody("email"));
+		$mailer->Body($this->support->getBody());
 
 		foreach ($this->support->getScreenshots() as $screenshot) {
 			$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());

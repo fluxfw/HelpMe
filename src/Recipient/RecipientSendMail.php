@@ -60,7 +60,7 @@ class RecipientSendMail extends Recipient {
 
 		$mailer->Subject($this->support->getSubject());
 
-		$mailer->Body($this->support->getBody("email"));
+		$mailer->Body($this->support->getBody());
 
 		foreach ($this->support->getScreenshots() as $screenshot) {
 			$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
