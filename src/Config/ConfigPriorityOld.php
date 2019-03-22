@@ -140,7 +140,7 @@ class ConfigPriorityOld extends ActiveRecord {
 	 */
 	public function __construct(/*int*/
 		$primary_key_value = 0, /*?*/
-		arConnector $connector = NULL) {
+		arConnector $connector = null) {
 		parent::__construct($primary_key_value, $connector);
 	}
 
@@ -158,7 +158,7 @@ class ConfigPriorityOld extends ActiveRecord {
 
 		switch ($field_name) {
 			default:
-				return NULL;
+				return null;
 		}
 	}
 
@@ -176,10 +176,9 @@ class ConfigPriorityOld extends ActiveRecord {
 		switch ($field_name) {
 			case "id":
 				return intval($field_value);
-				break;
 
 			default:
-				return NULL;
+				return null;
 		}
 	}
 

@@ -45,15 +45,12 @@ abstract class Recipient {
 		switch ($recipient) {
 			case self::SEND_EMAIL:
 				return new RecipientSendMail($support);
-				break;
 
 			case self::CREATE_JIRA_TICKET:
 				return new RecipientCreateJiraTicket($support);
-				break;
 
 			default:
-				return NULL;
-				break;
+				return null;
 		}
 	}
 
