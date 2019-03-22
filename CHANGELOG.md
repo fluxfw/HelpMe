@@ -1,5 +1,9 @@
 # Changelog
 
+## [3.3.0]
+- Use Notifications4Plugins template
+- Using some new ILIAS 5.3 UI's
+
 ## [3.2.0]
 - The key in support link can now differ to the project key
 - Fix version can now be set for each project

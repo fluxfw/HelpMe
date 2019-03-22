@@ -90,7 +90,7 @@ abstract class Recipient {
 
 		$mailer->Subject(self::plugin()->translate("confirmation", SupportGUI::LANG_MODULE_SUPPORT) . ": " . $this->support->getSubject());
 
-		$mailer->Body($this->support->getBody("email"));
+		$mailer->Body($this->support->getBody());
 
 		foreach ($this->support->getScreenshots() as $screenshot) {
 			$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
