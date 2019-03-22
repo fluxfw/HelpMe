@@ -30,7 +30,7 @@ Subject:
 ```text
 {{ support.getPriority }} - {{ support.getTitle }}
 ```
-Body:
+Text:
 ```html
 {% for key,value in fields %}
 <p>
@@ -48,7 +48,7 @@ Subject:
 ```text
 {{ support.getPriority }} - {{ support.getTitle }}
 ```
-Body:
+Text:
 ```text
 {% for key,value in fields %}
 {{ key }}:
