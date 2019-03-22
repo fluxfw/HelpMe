@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . "/../vendor/autoload.php";
-
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\SupportGUI;
