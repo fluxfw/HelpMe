@@ -2,19 +2,19 @@
 
 namespace srag\Plugins\HelpMe\Config;
 
+use ilCheckboxInputGUI;
 use ilEMailInputGUI;
 use ilHelpMePlugin;
 use ilMultiSelectInputGUI;
-use ilNotifications4PluginsPlugin;
 use ilPasswordInputGUI;
 use ilRadioGroupInputGUI;
 use ilRadioOption;
-use ilSelectInputGUI;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Recipient\Recipient;
+use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\Plugins\Notifications4Plugins\Utils\Notifications4PluginsTrait;
 
@@ -36,6 +36,23 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	/**
 	 * @inheritdoc
 	 */
+	protected function getValue(/*string*/
+		$key) {
+		switch (true) {
+			case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
+				$template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
+
+				return parent::getValue(Config::KEY_RECIPIENT_TEMPLATES)[$template_name];
+
+			default:
+				return parent::getValue($key);
+		}
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
 	protected function initFields()/*: void*/ {
 		$this->fields = [
 			Config::KEY_RECIPIENT => [
@@ -45,65 +62,63 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 					Recipient::SEND_EMAIL => [
 						self::PROPERTY_CLASS => ilRadioOption::class,
 						self::PROPERTY_SUBITEMS => [
-							Config::KEY_SEND_EMAIL_ADDRESS => [
-								self::PROPERTY_CLASS => ilEMailInputGUI::class,
-								self::PROPERTY_REQUIRED => true
-							]
-						]
+								Config::KEY_SEND_EMAIL_ADDRESS => [
+									self::PROPERTY_CLASS => ilEMailInputGUI::class,
+									self::PROPERTY_REQUIRED => true
+								]
+							] + $this->getTemplateSelection(Recipient::SEND_EMAIL)
 					],
 					Recipient::CREATE_JIRA_TICKET => [
 						self::PROPERTY_CLASS => ilRadioOption::class,
 						self::PROPERTY_SUBITEMS => [
-							Config::KEY_JIRA_DOMAIN => [
-								self::PROPERTY_CLASS => ilTextInputGUI::class,
-								self::PROPERTY_REQUIRED => true
-							],
-							Config::KEY_JIRA_AUTHORIZATION => [
-								self::PROPERTY_CLASS => ilRadioGroupInputGUI::class,
-								self::PROPERTY_REQUIRED => true,
-								self::PROPERTY_SUBITEMS => [
-									JiraCurl::AUTHORIZATION_USERNAMEPASSWORD => [
-										self::PROPERTY_CLASS => ilRadioOption::class,
-										self::PROPERTY_SUBITEMS => [
-											Config::KEY_JIRA_USERNAME => [
-												self::PROPERTY_CLASS => ilTextInputGUI::class,
-												self::PROPERTY_REQUIRED => true
-											],
-											Config::KEY_JIRA_PASSWORD => [
-												self::PROPERTY_CLASS => ilPasswordInputGUI::class,
-												self::PROPERTY_REQUIRED => true,
-												"setRetype" => false
+								Config::KEY_JIRA_DOMAIN => [
+									self::PROPERTY_CLASS => ilTextInputGUI::class,
+									self::PROPERTY_REQUIRED => true
+								],
+								Config::KEY_JIRA_AUTHORIZATION => [
+									self::PROPERTY_CLASS => ilRadioGroupInputGUI::class,
+									self::PROPERTY_REQUIRED => true,
+									self::PROPERTY_SUBITEMS => [
+										JiraCurl::AUTHORIZATION_USERNAMEPASSWORD => [
+											self::PROPERTY_CLASS => ilRadioOption::class,
+											self::PROPERTY_SUBITEMS => [
+												Config::KEY_JIRA_USERNAME => [
+													self::PROPERTY_CLASS => ilTextInputGUI::class,
+													self::PROPERTY_REQUIRED => true
+												],
+												Config::KEY_JIRA_PASSWORD => [
+													self::PROPERTY_CLASS => ilPasswordInputGUI::class,
+													self::PROPERTY_REQUIRED => true,
+													"setRetype" => false
+												]
 											]
-										]
-									],
-									JiraCurl::AUTHORIZATION_OAUTH => [
-										self::PROPERTY_CLASS => ilRadioOption::class,
-										self::PROPERTY_SUBITEMS => [
-											Config::KEY_JIRA_CONSUMER_KEY => [
-												self::PROPERTY_CLASS => ilTextInputGUI::class,
-												self::PROPERTY_REQUIRED => true
-											],
-											Config::KEY_JIRA_PRIVATE_KEY => [
-												self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
-												self::PROPERTY_REQUIRED => true
-											],
-											Config::KEY_JIRA_ACCESS_TOKEN => [
-												self::PROPERTY_CLASS => ilTextInputGUI::class,
-												self::PROPERTY_REQUIRED => true
-											],
+										],
+										JiraCurl::AUTHORIZATION_OAUTH => [
+											self::PROPERTY_CLASS => ilRadioOption::class,
+											self::PROPERTY_SUBITEMS => [
+												Config::KEY_JIRA_CONSUMER_KEY => [
+													self::PROPERTY_CLASS => ilTextInputGUI::class,
+													self::PROPERTY_REQUIRED => true
+												],
+												Config::KEY_JIRA_PRIVATE_KEY => [
+													self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
+													self::PROPERTY_REQUIRED => true
+												],
+												Config::KEY_JIRA_ACCESS_TOKEN => [
+													self::PROPERTY_CLASS => ilTextInputGUI::class,
+													self::PROPERTY_REQUIRED => true
+												]
+											]
 										]
 									]
 								]
-							],
-						]
+							] + $this->getTemplateSelection(Recipient::CREATE_JIRA_TICKET)
 					]
 				]
 			],
-			Config::KEY_TEMPLATE => [
-				self::PROPERTY_CLASS => ilSelectInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_OPTIONS => [ "" => "" ] + self::notification()->getArrayForSelection(),
-				"setInfo" => ilNotifications4PluginsPlugin::PLUGIN_NAME
+			Config::KEY_SEND_CONFIRMATION_EMAIL => [
+				self::PROPERTY_CLASS => ilCheckboxInputGUI::class,
+				self::PROPERTY_SUBITEMS => $this->getTemplateSelection(Config::KEY_SEND_CONFIRMATION_EMAIL)
 			],
 			Config::KEY_PRIORITIES => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
@@ -131,8 +146,19 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	 */
 	protected function storeValue(/*string*/
 		$key, $value)/*: void*/ {
-		switch ($key) {
-			case Config::KEY_ROLES:
+		switch (true) {
+			case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
+				$template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
+
+				$template_names = $this->getValue(Config::KEY_RECIPIENT_TEMPLATES);
+
+				$template_names[$template_name] = $value;
+
+				$key = Config::KEY_RECIPIENT_TEMPLATES;
+				$value = $template_names;
+				break;
+
+			case ($key === Config::KEY_ROLES):
 				array_shift($value);
 
 				$value = array_map(function (string $role_id): int {
@@ -145,5 +171,18 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 		}
 
 		parent::storeValue($key, $value);
+	}
+
+
+	/**
+	 * @param string $template_name
+	 *
+	 * @return array
+	 */
+	protected function getTemplateSelection(string $template_name): array {
+		return self::notification()->ui()->templateSelection(Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name, [
+			"support" => "object " . Support::class,
+			"fields" => "array"
+		]);
 	}
 }

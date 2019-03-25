@@ -3,11 +3,11 @@
 namespace srag\Plugins\HelpMe\Recipient;
 
 use ilCurlConnectionException;
-use PHPMailer\PHPMailer\Exception as phpmailerException;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
+use srag\Notifications4Plugins\Exception\Notifications4PluginsException;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 
@@ -58,10 +58,8 @@ class RecipientCreateJiraTicket extends Recipient {
 	/**
 	 * @inheritdoc
 	 *
-	 * @throws DICException
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException
-	 * @throws phpmailerException
 	 */
 	public function sendSupportToRecipient()/*: void*/ {
 		$this->createJiraTicket();
@@ -75,12 +73,16 @@ class RecipientCreateJiraTicket extends Recipient {
 	/**
 	 * Create Jira ticket
 	 *
+	 * @throws ActiveRecordConfigException
+	 * @throws DICException
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException
+	 * @throws Notifications4PluginsException
 	 */
 	protected function createJiraTicket()/*: void*/ {
 		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), $this->support->getProject()
-			->getProjectIssueType(), $this->support->getSubject(), $this->support->getBody(), $this->support->getProject()->getProjectFixVersion());
+			->getProjectIssueType(), $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getProject()
+			->getProjectFixVersion());
 
 		$this->issue_key = $issue_key;
 	}

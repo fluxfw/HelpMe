@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../vendor/autoload.php";
+
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Project\Project;

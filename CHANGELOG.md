@@ -1,5 +1,11 @@
 # Changelog
 
+## [3.3.1]
+- Config confirmation mail
+- Supports for each recipient a differnt template
+- Remove old config classes
+- Fix possible config crash
+
 ## [3.3.0]
 - Use Notifications4Plugins template
 - Using some new ILIAS 5.3 UI's
