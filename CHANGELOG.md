@@ -1,6 +1,6 @@
 # Changelog
 
-## [x]
+## [3.3.1]
 - Config confirmation mail
 - Supports for each recipient a differnt template
 - Remove old config classes
