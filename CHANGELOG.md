@@ -3,6 +3,7 @@
 ## [x]
 - Config confirmation mail
 - Supports for each recipient a differnt template
+- Remove old config classes
 
 ## [3.3.0]
 - Use Notifications4Plugins template
