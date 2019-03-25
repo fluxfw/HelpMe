@@ -42,7 +42,7 @@ Text:
 ```
 
 #### Jira
-(For safety reasons Jira API does not supports HTML)
+(For safety reasons Jira API does not supports HTML and will escape HTML)
 
 Subject:
 ```text
