@@ -43,7 +43,6 @@ config_saved_project#:#Projekt %s gespeichert
 config_send_email_address#:#E-Mail Adresse
 config_send_confirmation_email#:#Bestätigung-Email Erhalt Support-Anfrage an Benutzer schicken
 config_support_link#:#Support-Link
-config_template#:#Vorlage
 removeplugindataconfirm_cancel#:#Abbrechen
 removeplugindataconfirm_confirm_remove_data#:#Möchten Sie die %1$s-Daten auch entfernen? Allenfalls möchten Sie das %1$s-Plugin nur deaktivieren?
 removeplugindataconfirm_deactivate#:#%1$s-Plugin nur deaktivieren
