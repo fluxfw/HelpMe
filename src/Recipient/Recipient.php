@@ -107,6 +107,7 @@ abstract class Recipient {
 	 * @param string $template_name
 	 *
 	 * @return string
+	 *
 	 * @throws ActiveRecordConfigException
 	 * @throws Notifications4PluginsException
 	 */
@@ -123,6 +124,7 @@ abstract class Recipient {
 	 * @param string $template_name
 	 *
 	 * @return string
+	 *
 	 * @throws ActiveRecordConfigException
 	 * @throws DICException
 	 * @throws Notifications4PluginsException
