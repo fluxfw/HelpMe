@@ -7,10 +7,8 @@ use ilDateTime;
 use ilHelpMePlugin;
 use ILIAS\FileUpload\DTO\UploadResult;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\Plugins\Notifications4Plugins\Utils\Notifications4PluginsTrait;
 
 /**
  * Class Support
@@ -23,7 +21,6 @@ class Support {
 
 	use DICTrait;
 	use HelpMeTrait;
-	use Notifications4PluginsTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	/**
 	 * @var int
@@ -80,54 +77,6 @@ class Support {
 	 */
 	public function __construct() {
 
-	}
-
-
-	/**
-	 * Generate email subject
-	 *
-	 * @return string
-	 */
-	public function getSubject(): string {
-		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_TEMPLATE));
-
-		return self::parser()->parseSubject(self::parser()->getParserForNotification($notification), $notification, [
-			"support" => $this
-		]);
-	}
-
-
-	/**
-	 * Generate email body
-	 *
-	 * @return string
-	 */
-	public function getBody(): string {
-		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_TEMPLATE));
-
-		$fields_ = [
-			"project" => $this->project->getProjectName() . " (" . $this->project->getProjectKey() . ")",
-			"title" => $this->title,
-			"name" => $this->name,
-			"login" => $this->login,
-			"email" => $this->email,
-			"phone" => $this->phone,
-			"priority" => $this->priority,
-			"description" => $this->description,
-			"reproduce_steps" => $this->reproduce_steps,
-			"system_infos" => $this->system_infos,
-			"datetime" => $this->getFormatedTime()
-		];
-
-		$fields = [];
-		foreach ($fields_ as $key => $value) {
-			$fields[self::plugin()->translate($key, SupportGUI::LANG_MODULE_SUPPORT)] = $value;
-		}
-
-		return self::parser()->parseText(self::parser()->getParserForNotification($notification), $notification, [
-			"support" => $this,
-			"fields" => $fields
-		]);
 	}
 
 

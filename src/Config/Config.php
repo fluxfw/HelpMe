@@ -46,9 +46,10 @@ class Config extends ActiveRecordConfig {
 	 */
 	const KEY_PROJECTS = "projects";
 	const KEY_RECIPIENT = "recipient";
+	const KEY_RECIPIENT_TEMPLATES = "recipient_templates";
 	const KEY_ROLES = "roles";
+	const KEY_SEND_CONFIRMATION_EMAIL = "send_confirmation_email";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
-	const KEY_TEMPLATE = "template";
 	/**
 	 * @var array
 	 */
@@ -66,8 +67,9 @@ class Config extends ActiveRecordConfig {
 		self::KEY_PRIORITIES => [ self::TYPE_JSON, [] ],
 		self::KEY_PROJECTS => [ self::TYPE_JSON, null, true ],
 		self::KEY_RECIPIENT => self::TYPE_STRING,
+		self::KEY_RECIPIENT_TEMPLATES => [ self::TYPE_JSON, [], true ],
 		self::KEY_ROLES => [ self::TYPE_JSON, [] ],
-		self::KEY_SEND_EMAIL_ADDRESS => self::TYPE_STRING,
-		self::KEY_TEMPLATE => self::TYPE_STRING
+		self::KEY_SEND_CONFIRMATION_EMAIL => [ self::TYPE_BOOLEAN, true ],
+		self::KEY_SEND_EMAIL_ADDRESS => self::TYPE_STRING
 	];
 }

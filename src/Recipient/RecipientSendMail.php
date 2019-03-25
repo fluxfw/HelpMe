@@ -58,9 +58,9 @@ class RecipientSendMail extends Recipient {
 
 		$mailer->To(Config::getField(Config::KEY_SEND_EMAIL_ADDRESS));
 
-		$mailer->Subject($this->support->getSubject());
+		$mailer->Subject($this->getSubject(self::SEND_EMAIL));
 
-		$mailer->Body($this->support->getBody());
+		$mailer->Body($this->getBody(self::SEND_EMAIL));
 
 		foreach ($this->support->getScreenshots() as $screenshot) {
 			$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
