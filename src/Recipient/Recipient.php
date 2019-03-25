@@ -9,6 +9,7 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\HelpMe\Exception\HelpMeException;
+use srag\Notifications4Plugins\Exception\Notifications4PluginsException;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Support\SupportGUI;
@@ -69,19 +70,12 @@ abstract class Recipient {
 
 
 	/**
-	 * Send support to recipient
-	 *
-	 * @throws HelpMeException
-	 */
-	public abstract function sendSupportToRecipient()/*: void*/
-	;
-
-
-	/**
 	 * Send confirmation email
 	 *
+	 * @throws ActiveRecordConfigException
 	 * @throws DICException
 	 * @throws HelpMeException
+	 * @throws Notifications4PluginsException
 	 * @throws phpmailerException
 	 */
 	protected function sendConfirmationMail()/*: void*/ {
@@ -100,8 +94,10 @@ abstract class Recipient {
 				$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
 			}
 
-			if (!$mailer->Send()) {
-				throw new HelpMeException("Mailer returns not true");
+			$sent = $mailer->Send();
+
+			if (!$sent) {
+				throw new HelpMeException("Mailer not returns true");
 			}
 		}
 	}
@@ -111,6 +107,8 @@ abstract class Recipient {
 	 * @param string $template_name
 	 *
 	 * @return string
+	 * @throws ActiveRecordConfigException
+	 * @throws Notifications4PluginsException
 	 */
 	public function getSubject(string $template_name): string {
 		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
@@ -125,6 +123,9 @@ abstract class Recipient {
 	 * @param string $template_name
 	 *
 	 * @return string
+	 * @throws ActiveRecordConfigException
+	 * @throws DICException
+	 * @throws Notifications4PluginsException
 	 */
 	public function getBody(string $template_name): string {
 		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
@@ -153,4 +154,17 @@ abstract class Recipient {
 			"fields" => $fields
 		]);
 	}
+
+
+	/**
+	 * Send support to recipient
+	 *
+	 * @throws ActiveRecordConfigException
+	 * @throws DICException
+	 * @throws HelpMeException
+	 * @throws Notifications4PluginsException
+	 * @throws phpmailerException
+	 */
+	public abstract function sendSupportToRecipient()/*: void*/
+	;
 }

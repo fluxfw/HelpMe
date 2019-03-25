@@ -7,6 +7,7 @@ use PHPMailer\PHPMailer\Exception as phpmailerException;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\HelpMe\Exception\HelpMeException;
+use srag\Notifications4Plugins\Exception\Notifications4PluginsException;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 
@@ -31,10 +32,6 @@ class RecipientSendMail extends Recipient {
 
 	/**
 	 * @inheritdoc
-	 *
-	 * @throws ActiveRecordConfigException
-	 * @throws DICException
-	 * @throws phpmailerException
 	 */
 	public function sendSupportToRecipient()/*: void*/ {
 		$this->sendEmail();
@@ -49,6 +46,7 @@ class RecipientSendMail extends Recipient {
 	 * @throws ActiveRecordConfigException
 	 * @throws DICException
 	 * @throws HelpMeException
+	 * @throws Notifications4PluginsException
 	 * @throws phpmailerException
 	 */
 	protected function sendEmail()/*: void*/ {
@@ -66,8 +64,10 @@ class RecipientSendMail extends Recipient {
 			$mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
 		}
 
-		if (!$mailer->Send()) {
-			throw new HelpMeException("Mailer returns not true");
+		$sent = $mailer->Send();
+
+		if (!$sent) {
+			throw new HelpMeException("Mailer not returns true");
 		}
 	}
 }
