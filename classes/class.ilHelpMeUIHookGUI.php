@@ -59,7 +59,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 				if (self::access()->currentUserHasRole()) {
 
 					$screenshot = new ScreenshotsInputGUI();
-					$screenshot->setPlugin(self::plugin());
+					$screenshot->withPlugin(self::plugin());
 					$screenshot->initJS();
 					self::dic()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
 
@@ -91,7 +91,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 						], SupportGUI::CMD_ADD_SUPPORT, "", true));
 
 						$screenshot = new ScreenshotsInputGUI();
-						$screenshot->setPlugin(self::plugin());
+						$screenshot->withPlugin(self::plugin());
 
 						$project_id = ilSession::get(self::SESSION_PROJECT_ID);
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Use RemoveDataConfirm/ScreenshotsInputGUI bundled language
+
 ## [3.3.1]
 - Config confirmation mail
 - Supports for each recipient a differnt template

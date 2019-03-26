@@ -12,6 +12,14 @@ namespace srag\DIC\HelpMe\Version;
 final class Version implements VersionInterface {
 
 	/**
+	 * Version constructor
+	 */
+	public function __construct() {
+
+	}
+
+
+	/**
 	 * @inheritdoc
 	 */
 	public function getILIASVersion()/*: string*/ {

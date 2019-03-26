@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.0]
+- LibraryLanguageInstaller
+
 ## [0.3.6]
 - Fixes
 
