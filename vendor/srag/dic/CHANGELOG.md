@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.15.4]
+- Fix
+
 ## [0.15.3]
 - Allow plugins to modify library languages if needed
 
