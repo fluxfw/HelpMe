@@ -103,16 +103,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.19.5",
+            "version": "v0.19.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "9958d42f0393ed44580fb60ffe28c8f5e29984ea"
+                "reference": "ad4420a2a53a82bbf109682ce6ebc9a01fd49202"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/9958d42f0393ed44580fb60ffe28c8f5e29984ea",
-                "reference": "9958d42f0393ed44580fb60ffe28c8f5e29984ea",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/ad4420a2a53a82bbf109682ce6ebc9a01fd49202",
+                "reference": "ad4420a2a53a82bbf109682ce6ebc9a01fd49202",
                 "shasum": ""
             },
             "require": {
@@ -146,20 +146,20 @@
                 "input",
                 "table"
             ],
-            "time": "2019-03-08T06:57:27+00:00"
+            "time": "2019-03-26T09:38:29+00:00"
         },
         {
             "name": "srag/dic",
-            "version": "v0.14.13",
+            "version": "v0.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "7b8b2082622901cee63570b3e96be8a693f07279"
+                "reference": "9f90f54f36a00a793fc08a7916dfdb06ebe3a76c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/7b8b2082622901cee63570b3e96be8a693f07279",
-                "reference": "7b8b2082622901cee63570b3e96be8a693f07279",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/9f90f54f36a00a793fc08a7916dfdb06ebe3a76c",
+                "reference": "9f90f54f36a00a793fc08a7916dfdb06ebe3a76c",
                 "shasum": ""
             },
             "require": {
@@ -191,20 +191,20 @@
                 "globals",
                 "trait"
             ],
-            "time": "2019-02-26T08:34:09+00:00"
+            "time": "2019-03-26T13:15:41+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.2.11",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "97fdbf9769349d829fa372c737b7e6b28818cd72"
+                "reference": "ed08973e65501e11d474e9d04bb313256236d42f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/97fdbf9769349d829fa372c737b7e6b28818cd72",
-                "reference": "97fdbf9769349d829fa372c737b7e6b28818cd72",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/ed08973e65501e11d474e9d04bb313256236d42f",
+                "reference": "ed08973e65501e11d474e9d04bb313256236d42f",
                 "shasum": ""
             },
             "require": {
@@ -236,20 +236,20 @@
                 "curl",
                 "jira"
             ],
-            "time": "2019-03-08T08:13:47+00:00"
+            "time": "2019-03-28T07:25:38+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
-            "version": "v0.5.1",
+            "version": "v0.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-                "reference": "64a1728ed926f14d6d17b70caf4ebcc3d86df717"
+                "reference": "4db267d97b5768d31429c14acde288181bfa4928"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/64a1728ed926f14d6d17b70caf4ebcc3d86df717",
-                "reference": "64a1728ed926f14d6d17b70caf4ebcc3d86df717",
+                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/4db267d97b5768d31429c14acde288181bfa4928",
+                "reference": "4db267d97b5768d31429c14acde288181bfa4928",
                 "shasum": ""
             },
             "require": {
@@ -279,20 +279,20 @@
                 "ILIAS",
                 "libraries"
             ],
-            "time": "2019-01-22T09:19:11+00:00"
+            "time": "2019-03-19T14:25:06+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
-            "version": "v0.3.6",
+            "version": "v0.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RemovePluginDataConfirm.git",
-                "reference": "c9bab84437a3029ca919da727d7f315c6de3c675"
+                "reference": "fc1f1828c05ac2548d3b4022d53422cf1335ffc2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/c9bab84437a3029ca919da727d7f315c6de3c675",
-                "reference": "c9bab84437a3029ca919da727d7f315c6de3c675",
+                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/fc1f1828c05ac2548d3b4022d53422cf1335ffc2",
+                "reference": "fc1f1828c05ac2548d3b4022d53422cf1335ffc2",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +326,7 @@
                 "plugin",
                 "uninstall"
             ],
-            "time": "2019-01-22T09:18:04+00:00"
+            "time": "2019-03-26T13:17:27+00:00"
         }
     ],
     "packages-dev": [],

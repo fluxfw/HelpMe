@@ -1,19 +1,19 @@
 <?php
 
-namespace srag\CustomInputGUIs\HelpMe\LearningProgressPie;
+namespace srag\CustomInputGUIs\HelpMe\LearningProgressPieUI;
 
 use ilLPObjSettings;
 use ilLPStatus;
 use ilObjectLP;
 
 /**
- * Class ObjIdsLearningProgressPie
+ * Class ObjIdsLearningProgressPieUI
  *
- * @package srag\CustomInputGUIs\HelpMe\LearningProgressPie
+ * @package srag\CustomInputGUIs\HelpMe\LearningProgressPieUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ObjIdsLearningProgressPie extends AbstractLearningProgressPie {
+class ObjIdsLearningProgressPieUI extends AbstractLearningProgressPieUI {
 
 	/**
 	 * @var int[]

@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\CustomInputGUIs\HelpMe\LearningProgressPie;
+namespace srag\CustomInputGUIs\HelpMe\LearningProgressPieUI;
 
 use ilLearningProgressBaseGUI;
 use ilLPStatus;
@@ -8,13 +8,13 @@ use ilTemplate;
 use srag\DIC\HelpMe\DICTrait;
 
 /**
- * Class AbstractLearningProgressPie
+ * Class AbstractLearningProgressPieUI
  *
- * @package srag\CustomInputGUIs\HelpMe\LearningProgressPie
+ * @package srag\CustomInputGUIs\HelpMe\LearningProgressPieUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-abstract class AbstractLearningProgressPie {
+abstract class AbstractLearningProgressPieUI {
 
 	use DICTrait;
 	const LP_STATUS = [
@@ -45,7 +45,7 @@ abstract class AbstractLearningProgressPie {
 
 
 	/**
-	 * AbstractLearningProgressPie constructor
+	 * AbstractLearningProgressPieUI constructor
 	 */
 	public function __construct() {
 

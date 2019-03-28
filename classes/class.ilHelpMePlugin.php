@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 require_once __DIR__ . "/../../Notifications4Plugins/vendor/autoload.php";
 
+use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -52,6 +53,20 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 */
 	public function getPluginName(): string {
 		return self::PLUGIN_NAME;
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function updateLanguages(array $a_lang_keys = null) {
+		parent::updateLanguages($a_lang_keys);
+
+		LibraryLanguageInstaller::getInstance()->withPlugin(self::plugin())->withLibraryLanguageDirectory(__DIR__
+			. "/../vendor/srag/removeplugindataconfirm/lang")->updateLanguages();
+
+		LibraryLanguageInstaller::getInstance()->withPlugin(self::plugin())->withLibraryLanguageDirectory(__DIR__
+			. "/../vendor/srag/custominputguis/src/ScreenshotsInputGUI/lang")->updateLanguages();
 	}
 
 

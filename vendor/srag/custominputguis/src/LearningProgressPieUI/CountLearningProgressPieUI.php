@@ -1,15 +1,15 @@
 <?php
 
-namespace srag\CustomInputGUIs\HelpMe\LearningProgressPie;
+namespace srag\CustomInputGUIs\HelpMe\LearningProgressPieUI;
 
 /**
- * Class CountLearningProgressPie
+ * Class CountLearningProgressPieUI
  *
- * @package srag\CustomInputGUIs\HelpMe\LearningProgressPie
+ * @package srag\CustomInputGUIs\HelpMe\LearningProgressPieUI
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class CountLearningProgressPie extends AbstractLearningProgressPie {
+class CountLearningProgressPieUI extends AbstractLearningProgressPieUI {
 
 	/**
 	 * @var int[]

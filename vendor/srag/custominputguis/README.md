@@ -23,7 +23,7 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [DateDurationInputGUI](./src/DateDurationInputGUI/doc/DateDurationInputGUI.md)
 * [GlyphGUI](./src/GlyphGUI/doc/GlyphGUI.md)
 * [HiddenInputGUI](./src/HiddenInputGUI/doc/HiddenInputGUI.md)
-* [LearningProgressPie](./src/LearningProgressPie/doc/LearningProgressPie.md)
+* [LearningProgressPieUI](./src/LearningProgressPieUI/doc/LearningProgressPieUI.md)
 * [MultiLineInputGUI](./src/MultiLineInputGUI/doc/MultiLineInputGUI.md)
 * [MultiSelectSearchInputGUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInputGUI.md)
 * [MultiSelectSearchInput2GUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInput2GUI.md)
@@ -36,7 +36,7 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [Template](./src/Template/doc/Template.md)
 * [TextAreaInputGUI](./src/TextAreaInputGUI/doc/TextAreaInputGUI.md)
 * [TextInputGUI](./src/TextInputGUI/doc/TextInputGUI.md)
-* [ViewControlModeGUI](./src/ViewControlModeGUI/doc/ViewControlModeGUI.md)
+* [ViewControlModeUI](./src/ViewControlModeUI/doc/ViewControlModeUI.md)
 * [Waiter](./src/Waiter/doc/Waiter.md)
 
 ### Dependencies

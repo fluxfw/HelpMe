@@ -28,7 +28,7 @@ Config a notification like the follow examples:
 #### Mail
 Subject:
 ```text
-{{ support.getPriority }} - {{ support.getTitle }}
+{{ support.getTitle }}
 ```
 Text:
 ```html
@@ -46,7 +46,7 @@ Text:
 
 Subject:
 ```text
-{{ support.getPriority }} - {{ support.getTitle }}
+{{ support.getTitle }}
 ```
 Text:
 ```text
@@ -75,7 +75,7 @@ Config projects:
 - There is a known issue in the ILIAS core object svg icons (The `foreignObject` tag). This tag prevents to take screenshots in Chrome/Safari, because it could reveal something about the current user. [Here](https://mantis.ilias.de/view.php?id=25040) is the ILIAS Mantis report
 
 ### Dependencies
-* ILIAS 5.3 or ILIAS 5.4
+* ILIAS 5.3.14 or ILIAS 5.4
 * PHP >=7.0
 * [composer](https://getcomposer.org)
 * [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)

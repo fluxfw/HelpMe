@@ -199,6 +199,7 @@ class JiraCurl {
 	 * @param string      $jira_issue_type
 	 * @param string      $summary
 	 * @param string      $description
+	 * @param string|null $priority
 	 * @param string|null $fix_version
 	 *
 	 * @return string Issue-Key
@@ -206,7 +207,7 @@ class JiraCurl {
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException
 	 */
-	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description, string $fix_version = null): string {
+	public function createJiraIssueTicket(string $jira_project_key, string $jira_issue_type, string $summary, string $description, string $priority = null, string $fix_version = null): string {
 		$headers = [
 			"Accept" => "application/json",
 			"Content-Type" => "application/json"
@@ -228,6 +229,12 @@ class JiraCurl {
 				]
 			]
 		];
+
+		if (!empty($priority)) {
+			$data["fields"]["priority"] = [
+				"name" => $priority
+			];
+		}
 
 		if (!empty($fix_version)) {
 			$data["fields"]["fixVersions"] = [

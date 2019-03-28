@@ -152,7 +152,7 @@ class SupportFormGUI extends PropertyFormGUI {
 			"screenshots" => [
 				self::PROPERTY_CLASS => ScreenshotsInputGUI::class,
 				self::PROPERTY_REQUIRED => false,
-				"setPlugin" => self::plugin()
+				"withPlugin" => self::plugin()
 			]
 		];
 	}
