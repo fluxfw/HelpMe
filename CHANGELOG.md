@@ -1,6 +1,6 @@
 # Changelog
 
-## [x]
+## [3.3.2]
 - Set priority directly to Jira ticket
 - Use RemoveDataConfirm/ScreenshotsInputGUI bundled language
 
