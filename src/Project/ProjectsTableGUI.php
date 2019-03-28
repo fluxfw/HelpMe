@@ -69,7 +69,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 		$this->addColumn($this->txt("actions"));
 
 		$this->setDefaultOrderField("project_name");
-		$this->setDefaultOrderDirection("sort");
+		$this->setDefaultOrderDirection("asc");
 	}
 
 
