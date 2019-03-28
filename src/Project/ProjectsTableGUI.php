@@ -4,7 +4,6 @@ namespace srag\Plugins\HelpMe\Project;
 
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
-use ilLinkButton;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigTableGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -77,10 +76,8 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 * @inheritdoc
 	 */
 	protected function initCommands()/*: void*/ {
-		$add_project = ilLinkButton::getInstance();
-		$add_project->setCaption($this->txt("add_project"), false);
-		$add_project->setUrl(self::dic()->ctrl()->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_ADD_PROJECT));
-		self::dic()->toolbar()->addButtonInstance($add_project);
+		self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_project"), self::dic()->ctrl()
+			->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_ADD_PROJECT)));
 	}
 
 
