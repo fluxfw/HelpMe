@@ -168,7 +168,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -195,16 +195,16 @@
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.2.11",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "97fdbf9769349d829fa372c737b7e6b28818cd72"
+                "reference": "ed08973e65501e11d474e9d04bb313256236d42f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/97fdbf9769349d829fa372c737b7e6b28818cd72",
-                "reference": "97fdbf9769349d829fa372c737b7e6b28818cd72",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/ed08973e65501e11d474e9d04bb313256236d42f",
+                "reference": "ed08973e65501e11d474e9d04bb313256236d42f",
                 "shasum": ""
             },
             "require": {
@@ -214,7 +214,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\HelpMe\\": "src/"
+                    "srag\\JiraCurl\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -236,7 +236,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2019-03-08T08:13:47+00:00"
+            "time": "2019-03-28T07:25:38+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
@@ -302,7 +302,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\RemovePluginDataConfirm\\": "src/"
+                    "srag\\RemovePluginDataConfirm\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

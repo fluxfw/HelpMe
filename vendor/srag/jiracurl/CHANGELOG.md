@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.3.0]
+- Supports priority
+
 ## [0.2.11]
 - Supports again fix_version
 

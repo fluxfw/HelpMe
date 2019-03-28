@@ -28,7 +28,7 @@ Config a notification like the follow examples:
 #### Mail
 Subject:
 ```text
-{{ support.getPriority }} - {{ support.getTitle }}
+{{ support.getTitle }}
 ```
 Text:
 ```html
@@ -46,7 +46,7 @@ Text:
 
 Subject:
 ```text
-{{ support.getPriority }} - {{ support.getTitle }}
+{{ support.getTitle }}
 ```
 Text:
 ```text
