@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception as phpmailerException;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\HelpMe\Exception\HelpMeException;
-use srag\Notifications4Plugins\Exception\Notifications4PluginsException;
+use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 
@@ -46,7 +46,7 @@ class RecipientSendMail extends Recipient {
 	 * @throws ActiveRecordConfigException
 	 * @throws DICException
 	 * @throws HelpMeException
-	 * @throws Notifications4PluginsException
+	 * @throws Notifications4PluginException
 	 * @throws phpmailerException
 	 */
 	protected function sendEmail()/*: void*/ {

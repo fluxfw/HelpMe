@@ -7,7 +7,7 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
-use srag\Notifications4Plugins\Exception\Notifications4PluginsException;
+use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 
@@ -77,11 +77,12 @@ class RecipientCreateJiraTicket extends Recipient {
 	 * @throws DICException
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException
-	 * @throws Notifications4PluginsException
+	 * @throws Notifications4PluginException
 	 */
 	protected function createJiraTicket()/*: void*/ {
 		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), $this->support->getProject()
-			->getProjectIssueType(), $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getProject()->getProjectFixVersion());
+			->getProjectIssueType(), $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getProject()
+			->getProjectFixVersion());
 
 		$this->issue_key = $issue_key;
 	}

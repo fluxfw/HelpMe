@@ -6,17 +6,21 @@ use ilCheckboxInputGUI;
 use ilEMailInputGUI;
 use ilHelpMePlugin;
 use ilMultiSelectInputGUI;
+use ilNotifications4PluginsPlugin;
 use ilPasswordInputGUI;
 use ilRadioGroupInputGUI;
 use ilRadioOption;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
+use srag\DIC\Notifications4Plugins\DICStatic as Notifications4PluginsDICStatic;
 use srag\JiraCurl\HelpMe\JiraCurl;
+use srag\Notifications4Plugin\Notifications4Plugins\Utils\Notifications4PluginTrait;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\Plugins\Notifications4Plugins\Utils\Notifications4PluginsTrait;
+use srag\Plugins\Notifications4Plugins\Notification\Language\NotificationLanguage;
+use srag\Plugins\Notifications4Plugins\Notification\Notification;
 
 /**
  * Class ConfigFormGUI
@@ -28,7 +32,7 @@ use srag\Plugins\Notifications4Plugins\Utils\Notifications4PluginsTrait;
 class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 
 	use HelpMeTrait;
-	use Notifications4PluginsTrait;
+	use Notifications4PluginTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CONFIG_CLASS_NAME = Config::class;
 
@@ -180,9 +184,12 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	 * @return array
 	 */
 	protected function getTemplateSelection(string $template_name): array {
-		return self::notification()->ui()->templateSelection(Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name, [
-			"support" => "object " . Support::class,
-			"fields" => "array"
-		]);
+		return self::notificationUI()->withPlugin(Notifications4PluginsDICStatic::plugin(ilNotifications4PluginsPlugin::class))
+			->templateSelection(self::notification(Notification::class, NotificationLanguage::class)
+				->getArrayForSelection(self::notification(Notification::class, NotificationLanguage::class)
+					->getNotifications()), Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name, [
+				"support" => "object " . Support::class,
+				"fields" => "array"
+			]);
 	}
 }

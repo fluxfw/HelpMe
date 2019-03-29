@@ -17,7 +17,7 @@ grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
 ### Notifications4Plugins
-You need to install [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
+You need to install [Notifications4Plugins](https://github.com/studer-raimann/Notifications4PluginsPlugin)
 
 You have a `support` property (See more in [Class Support](./src/Support/Support.php)) in both subject and body.
 
@@ -78,7 +78,7 @@ Config projects:
 * ILIAS 5.3.14 or ILIAS 5.4
 * PHP >=7.0
 * [composer](https://getcomposer.org)
-* [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
+* [Notifications4Plugins](https://github.com/studer-raimann/Notifications4PluginsPlugin)
 * [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
 * [srag/activerecordconfig](https://packagist.org/packages/srag/activerecordconfig)
 * [srag/custominputguis](https://packagist.org/packages/srag/custominputguis)
