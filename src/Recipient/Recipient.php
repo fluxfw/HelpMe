@@ -9,12 +9,14 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\HelpMe\Exception\HelpMeException;
-use srag\Notifications4Plugins\Exception\Notifications4PluginsException;
+use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
+use srag\Notifications4Plugin\Notifications4Plugins\Utils\Notifications4PluginTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\Plugins\Notifications4Plugins\Utils\Notifications4PluginsTrait;
+use srag\Plugins\Notifications4Plugins\Notification\Language\NotificationLanguage;
+use srag\Plugins\Notifications4Plugins\Notification\Notification;
 
 /**
  * Class Recipient
@@ -27,7 +29,7 @@ abstract class Recipient {
 
 	use DICTrait;
 	use HelpMeTrait;
-	use Notifications4PluginsTrait;
+	use Notifications4PluginTrait;
 	const SEND_EMAIL = "send_email";
 	const CREATE_JIRA_TICKET = "create_jira_ticket";
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
@@ -75,7 +77,7 @@ abstract class Recipient {
 	 * @throws ActiveRecordConfigException
 	 * @throws DICException
 	 * @throws HelpMeException
-	 * @throws Notifications4PluginsException
+	 * @throws Notifications4PluginException
 	 * @throws phpmailerException
 	 */
 	protected function sendConfirmationMail()/*: void*/ {
@@ -109,10 +111,11 @@ abstract class Recipient {
 	 * @return string
 	 *
 	 * @throws ActiveRecordConfigException
-	 * @throws Notifications4PluginsException
+	 * @throws Notifications4PluginException
 	 */
 	public function getSubject(string $template_name): string {
-		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+		$notification = self::notification(Notification::class, NotificationLanguage::class)
+			->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
 		return self::parser()->parseSubject(self::parser()->getParserForNotification($notification), $notification, [
 			"support" => $this->support
@@ -127,10 +130,11 @@ abstract class Recipient {
 	 *
 	 * @throws ActiveRecordConfigException
 	 * @throws DICException
-	 * @throws Notifications4PluginsException
+	 * @throws Notifications4PluginException
 	 */
 	public function getBody(string $template_name): string {
-		$notification = self::notification()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+		$notification = self::notification(Notification::class, NotificationLanguage::class)
+			->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
 		$fields_ = [
 			"project" => $this->support->getProject()->getProjectName() . " (" . $this->support->getProject()->getProjectKey() . ")",
@@ -164,7 +168,7 @@ abstract class Recipient {
 	 * @throws ActiveRecordConfigException
 	 * @throws DICException
 	 * @throws HelpMeException
-	 * @throws Notifications4PluginsException
+	 * @throws Notifications4PluginException
 	 * @throws phpmailerException
 	 */
 	public abstract function sendSupportToRecipient()/*: void*/
