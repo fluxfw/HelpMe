@@ -5,7 +5,7 @@
 
 ## [3.3.2]
 - Set priority directly to Jira ticket
-- Use RemoveDataConfirm/ScreenshotsInputGUI bundled language (Min. ILIAS 5.3.14 due a conflict to ILIAS 5.4)
+- Use RemoveDataConfirm/ScreenshotsInputGUI bundled language
 
 ## [3.3.1]
 - Config confirmation mail
