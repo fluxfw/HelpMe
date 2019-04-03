@@ -7,7 +7,6 @@ use ilCurlConnection;
 use ilCurlConnectionException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
-use stdClass;
 use Throwable;
 
 /**
@@ -203,7 +202,7 @@ class JiraCurl {
 	 * @param string $jira_project_key   Project key
 	 * @param array  $filter_issue_types Filter by issue types
 	 *
-	 * @return stdClass[] Array of jira tickets
+	 * @return array Array of jira tickets
 	 *
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException

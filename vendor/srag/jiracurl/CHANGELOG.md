@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.3]
+- Fix PHPDoc
+
 ## [0.4.2]
 - Redo 'Correct jql value escape " with \\', because not work
 
