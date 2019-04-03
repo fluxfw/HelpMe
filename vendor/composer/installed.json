@@ -196,24 +196,24 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "v0.3.0",
-        "version_normalized": "0.3.0.0",
+        "version": "v0.4.2",
+        "version_normalized": "0.4.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "ed08973e65501e11d474e9d04bb313256236d42f"
+            "reference": "e93158423d41a8b099fd608a52572d27fda2ca50"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/ed08973e65501e11d474e9d04bb313256236d42f",
-            "reference": "ed08973e65501e11d474e9d04bb313256236d42f",
+            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/e93158423d41a8b099fd608a52572d27fda2ca50",
+            "reference": "e93158423d41a8b099fd608a52572d27fda2ca50",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-03-28T07:25:38+00:00",
+        "time": "2019-04-03T11:10:40+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

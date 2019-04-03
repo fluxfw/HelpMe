@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.4.2]
+- Redo 'Correct jql value escape " with \\', because not work
+
+## [0.4.1]
+- Correct jql value escape " with \\
+
+## [0.4.0]
+- Get tickets of Jira project
+
 ## [0.3.0]
 - Supports priority
 

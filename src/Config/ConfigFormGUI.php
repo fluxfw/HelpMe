@@ -58,6 +58,19 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initFields()/*: void*/ {
+		/*$jira_curl = new JiraCurl();
+
+		$jira_curl->setJiraDomain(Config::getField(Config::KEY_JIRA_DOMAIN));
+
+		$jira_curl->setJiraAuthorization(JiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
+
+		$jira_curl->setJiraUsername(Config::getField(Config::KEY_JIRA_USERNAME));
+		$jira_curl->setJiraPassword(Config::getField(Config::KEY_JIRA_PASSWORD));
+
+		//$tickets = $jira_curl->getTicketsOfProject('PLHM', [ 'Support', 'Bug', 'Development' ]);
+		//$tickets = $jira_curl->getTicketsOfProject('PLHM" OR project="PLH5P', [ 'Support' ]);
+		//$tickets = $jira_curl->getTicketsOfProject('PLHM', [ 'Bug,Support' ]);*/
+
 		$this->fields = [
 			Config::KEY_RECIPIENT => [
 				self::PROPERTY_CLASS => ilRadioGroupInputGUI::class,

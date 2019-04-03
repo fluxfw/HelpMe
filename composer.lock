@@ -77,7 +77,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\": "src/"
+                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -122,7 +122,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -195,16 +195,16 @@
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.3.0",
+            "version": "v0.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "ed08973e65501e11d474e9d04bb313256236d42f"
+                "reference": "e93158423d41a8b099fd608a52572d27fda2ca50"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/ed08973e65501e11d474e9d04bb313256236d42f",
-                "reference": "ed08973e65501e11d474e9d04bb313256236d42f",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/e93158423d41a8b099fd608a52572d27fda2ca50",
+                "reference": "e93158423d41a8b099fd608a52572d27fda2ca50",
                 "shasum": ""
             },
             "require": {
@@ -214,7 +214,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\HelpMe\\": "src/"
+                    "srag\\JiraCurl\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -236,7 +236,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2019-03-28T07:25:38+00:00"
+            "time": "2019-04-03T11:10:40+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
