@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.4]
+- Fix visibility
+
 ## [0.4.3]
 - Fix PHPDoc
 
