@@ -43,3 +43,7 @@
 \srag\Plugins\HelpMe\Config\Config::updateDB();
 \srag\Plugins\HelpMe\Project\Project::updateDB();
 ?>
+<#12>
+<?php
+\srag\Plugins\HelpMe\Ticket\Ticket::updateDB();
+?>

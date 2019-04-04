@@ -158,7 +158,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		$project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
 		$project = self::projects()->getProjectById($project_id);
 
-		$project->delete();
+		self::projects()->deleteProject($project);
 
 		ilUtil::sendSuccess(self::plugin()->translate("removed_project", self::LANG_MODULE_CONFIG, [ $project->getProjectName() ]), true);
 

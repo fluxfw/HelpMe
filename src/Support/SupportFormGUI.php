@@ -32,7 +32,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @var Support|null
 	 */
-	protected $support = NULL;
+	protected $support = null;
 
 
 	/**
@@ -44,7 +44,7 @@ class SupportFormGUI extends PropertyFormGUI {
 			case "project":
 				$project_id = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
 
-				if ($project_id !== NULL) {
+				if ($project_id !== null) {
 					ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
 
 					return intval($project_id);
@@ -73,7 +73,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 		}
 
-		return NULL;
+		return null;
 	}
 
 
@@ -177,7 +177,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	public function storeForm(): bool {
-		$this->support = new Support();
+		$this->support = self::supports()->factory()->newInstance();
 
 		$time = time();
 		$this->support->setTime($time);

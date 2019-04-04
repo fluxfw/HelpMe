@@ -7,13 +7,13 @@ use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
- * Class Projects
+ * Class Repository
  *
  * @package srag\Plugins\HelpMe\Project
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Projects {
+final class Repository {
 
 	use DICTrait;
 	use HelpMeTrait;
@@ -37,7 +37,7 @@ final class Projects {
 
 
 	/**
-	 * Projects constructor
+	 * Repository constructor
 	 */
 	private function __construct() {
 
@@ -45,10 +45,26 @@ final class Projects {
 
 
 	/**
+	 * @param Project $project
+	 */
+	public function deleteProject(Project $project)/*: void*/ {
+		$project->delete();
+	}
+
+
+	/**
+	 * @return Factory
+	 */
+	public function factory(): Factory {
+		return Factory::getInstance();
+	}
+
+
+	/**
 	 * @return Project[]
 	 */
 	public function getProjects(): array {
-		return Project::orderBy("project_name", "asc")->get();
+		return Project::orderBy("project_name", "ASC")->get();
 	}
 
 
@@ -56,7 +72,7 @@ final class Projects {
 	 * @return array
 	 */
 	public function getProjectsArray(): array {
-		return Project::orderBy("project_name", "asc")->getArray();
+		return Project::orderBy("project_name", "ASC")->getArray();
 	}
 
 
@@ -115,5 +131,13 @@ final class Projects {
 		return array_map(function (Project $project): string {
 			return $project->getProjectName();
 		}, $this->getProjects());
+	}
+
+
+	/**
+	 * @param Project $project
+	 */
+	public function storeInstance(Project $project)/*: void*/ {
+		$project->store();
 	}
 }

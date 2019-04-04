@@ -156,14 +156,14 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 */
 	public function storeForm(): bool {
 		if ($this->project === null) {
-			$this->project = new Project();
+			$this->project = self::projects()->factory()->newInstance();
 		}
 
 		if (!parent::storeForm()) {
 			return false;
 		}
 
-		$this->project->store();
+		self::projects()->storeInstance($this->project);
 
 		return true;
 	}
