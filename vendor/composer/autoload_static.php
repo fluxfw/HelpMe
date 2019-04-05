@@ -12,7 +12,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\LibrariesNamespaceChanger\\' => 31,
-            'srag\\JiraCurl\\HelpMe\\' => 21,
+            'srag\\JiraCurl\\' => 14,
             'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\HelpMe\\' => 28,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
@@ -36,7 +36,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         array (
             0 => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src',
         ),
-        'srag\\JiraCurl\\HelpMe\\' => 
+        'srag\\JiraCurl\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
@@ -149,6 +149,8 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         'srag\\Plugins\\HelpMe\\Access\\Users' => __DIR__ . '/../..' . '/src/Access/Users.php',
         'srag\\Plugins\\HelpMe\\Config\\Config' => __DIR__ . '/../..' . '/src/Config/Config.php',
         'srag\\Plugins\\HelpMe\\Config\\ConfigFormGUI' => __DIR__ . '/../..' . '/src/Config/ConfigFormGUI.php',
+        'srag\\Plugins\\HelpMe\\Exception\\HelpMeException' => __DIR__ . '/../..' . '/src/Exception/HelpMeException.php',
+        'srag\\Plugins\\HelpMe\\Job\\FetchJiraTicketsJob' => __DIR__ . '/../..' . '/src/Job/FetchJiraTicketsJob.php',
         'srag\\Plugins\\HelpMe\\Project\\Factory' => __DIR__ . '/../..' . '/src/Project/Factory.php',
         'srag\\Plugins\\HelpMe\\Project\\Project' => __DIR__ . '/../..' . '/src/Project/Project.php',
         'srag\\Plugins\\HelpMe\\Project\\ProjectFormGUI' => __DIR__ . '/../..' . '/src/Project/ProjectFormGUI.php',

@@ -130,6 +130,18 @@ final class Repository {
 
 
 	/**
+	 * @param Ticket[] $tickets
+	 */
+	public function replaceWith(array $tickets)/*: void*/ {
+		$this->removeTickets();
+
+		foreach ($tickets as $ticket) {
+			$this->storeInstance($ticket);
+		}
+	}
+
+
+	/**
 	 * @param Ticket $ticket
 	 */
 	public function storeInstance(Ticket $ticket)/*: void*/ {

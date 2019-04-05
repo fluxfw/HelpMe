@@ -4,6 +4,7 @@ namespace srag\Plugins\HelpMe\Ticket;
 
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -49,11 +50,36 @@ final class Factory {
 	 * @param array $json
 	 *
 	 * @return Ticket
+	 *
+	 * @throws HelpMeException
 	 */
 	public function fromJiraJson(array $json): Ticket {
 		$ticket = $this->newInstance();
 
-		// TODO
+		if (empty($json["key"])) {
+			throw new HelpMeException("Key not set");
+		}
+		$ticket->setTicketKey($json["key"]);
+
+		if (empty($json["fields"]["summary"])) {
+			throw new HelpMeException("Summary of {$ticket->getTicketKey()} not set");
+		}
+		$ticket->setTicketTitle($json["fields"]["summary"]);
+
+		if (empty($json["fields"]["project"]["key"])) {
+			throw new HelpMeException("Project key of {$ticket->getTicketKey()} not set");
+		}
+		$ticket->setTicketProjectKey($json["fields"]["project"]["key"]);
+
+		if (empty($json["fields"]["issuetype"]["name"])) {
+			throw new HelpMeException("Issue type of {$ticket->getTicketKey()} not set");
+		}
+		$ticket->setTicketIssueType($json["fields"]["issuetype"]["name"]);
+
+		if (empty($json["fields"]["priority"]["name"])) {
+			throw new HelpMeException("Priority of {$ticket->getTicketKey()} not set");
+		}
+		$ticket->setTicketPriority($json["fields"]["priority"]["name"]);
 
 		return $ticket;
 	}

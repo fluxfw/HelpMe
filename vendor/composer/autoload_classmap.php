@@ -96,6 +96,8 @@ return array(
     'srag\\Plugins\\HelpMe\\Access\\Users' => $baseDir . '/src/Access/Users.php',
     'srag\\Plugins\\HelpMe\\Config\\Config' => $baseDir . '/src/Config/Config.php',
     'srag\\Plugins\\HelpMe\\Config\\ConfigFormGUI' => $baseDir . '/src/Config/ConfigFormGUI.php',
+    'srag\\Plugins\\HelpMe\\Exception\\HelpMeException' => $baseDir . '/src/Exception/HelpMeException.php',
+    'srag\\Plugins\\HelpMe\\Job\\FetchJiraTicketsJob' => $baseDir . '/src/Job/FetchJiraTicketsJob.php',
     'srag\\Plugins\\HelpMe\\Project\\Factory' => $baseDir . '/src/Project/Factory.php',
     'srag\\Plugins\\HelpMe\\Project\\Project' => $baseDir . '/src/Project/Project.php',
     'srag\\Plugins\\HelpMe\\Project\\ProjectFormGUI' => $baseDir . '/src/Project/ProjectFormGUI.php',

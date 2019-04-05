@@ -9,6 +9,8 @@ git clone https://github.com/studer-raimann/HelpMe.git HelpMe
 ```
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
+Please also install and enable [HelpMeCron](https://github.com/studer-raimann/HelpMeCron).
+
 If yout want use the Jira recipient with oAuth authorization you can find a guide to config your Jira installation: https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/
 
 You can lock errors in the ILIAS log file like
@@ -78,6 +80,7 @@ Config projects:
 * ILIAS 5.3 or ILIAS 5.4
 * PHP >=7.0
 * [composer](https://getcomposer.org)
+* [HelpMeCron](https://github.com/studer-raimann/HelpMeCron)
 * [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
 * [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
 * [srag/activerecordconfig](https://packagist.org/packages/srag/activerecordconfig)

@@ -43,6 +43,9 @@ config_saved_project#:#Projekt %s gespeichert
 config_send_email_address#:#E-Mail Adresse
 config_send_confirmation_email#:#Bestätigung-Email Erhalt Support-Anfrage an Benutzer schicken
 config_support_link#:#Support-Link
+cron_srsu_fetch_jira_tickets#:#Jira-Tickets holen
+cron_srsu_fetch_jira_tickets_description#:#Jira-Tickets holen und zwischenspeichern
+cron_status#:#%s Ticket(s) von Jira geholt
 support_cancel#:#Abbrechen
 support_close#:#Schliessen
 support_datetime#:#Datum & Zeit

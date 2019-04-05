@@ -235,7 +235,15 @@ class JiraCurl {
 			throw new JiraCurlException("Issues array is not set");
 		}
 
-		return $result["issues"];
+		$issues = $result["issues"];
+
+		foreach ($issues as $issue) {
+			if (!is_array($issue)) {
+				throw new JiraCurlException("Issue is not an array");
+			}
+		}
+
+		return $issues;
 	}
 
 

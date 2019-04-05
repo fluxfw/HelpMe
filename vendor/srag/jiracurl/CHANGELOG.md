@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.5]
+- Validate if an issue is array
+
 ## [0.4.4]
 - Fix visibility
 
