@@ -60,8 +60,8 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				case "project_name":
 					return $this->project->getProjectName();
 
-				case "project_issue_type":
-					return $this->project->getProjectIssueType();
+				case "project_issue_types":
+					return $this->project->getProjectIssueTypes();
 
 				case "project_fix_version":
 					return $this->project->getProjectFixVersion();
@@ -71,7 +71,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 			}
 		} else {
 			switch ($key) {
-				case "project_issue_type":
+				case "project_issue_types":
 					return Project::DEFAULT_ISSUE_TYPE;
 
 				case "project_fix_version":
@@ -131,9 +131,10 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
 				self::PROPERTY_REQUIRED => true
 			],
-			"project_issue_type" => [
+			"project_issue_types" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => true
+				self::PROPERTY_REQUIRED => true,
+				"setMulti" => true
 			],
 			"project_fix_version" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
@@ -187,8 +188,8 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				$this->project->setProjectName(strval($value));
 				break;
 
-			case "project_issue_type":
-				$this->project->setProjectIssueType(strval($value));
+			case "project_issue_types":
+				$this->project->setProjectIssueTypes((array)$value);
 				break;
 
 			case "project_fix_version":

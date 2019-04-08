@@ -130,7 +130,7 @@ class FetchJiraTicketsJob extends ilCronJob {
 
 		$jsons = [];
 		foreach (self::projects()->getProjects() as $project) {
-			$jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), [ $project->getProjectIssueType() ]));
+			$jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), $project->getProjectIssueTypes()));
 		}
 
 		$tickets = [];

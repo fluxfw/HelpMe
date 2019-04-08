@@ -80,13 +80,13 @@ class Project extends ActiveRecord {
 	 */
 	protected $project_name = "";
 	/**
-	 * @var string
+	 * @var array
 	 *
 	 * @con_has_field    true
 	 * @con_fieldtype    text
 	 * @con_is_notnull   true
 	 */
-	protected $project_issue_type = self::DEFAULT_ISSUE_TYPE;
+	protected $project_issue_types = [ self::DEFAULT_ISSUE_TYPE ];
 	/**
 	 * @var string
 	 *
@@ -119,6 +119,9 @@ class Project extends ActiveRecord {
 		$field_value = $this->{$field_name};
 
 		switch ($field_name) {
+			case "project_issue_types":
+				return json_encode($field_value);
+
 			default:
 				return null;
 		}
@@ -136,6 +139,9 @@ class Project extends ActiveRecord {
 		switch ($field_name) {
 			case "project_id":
 				return intval($field_value);
+
+			case "project_issue_types":
+				return (array)json_decode($field_value);
 
 			default:
 				return null;
@@ -208,18 +214,18 @@ class Project extends ActiveRecord {
 
 
 	/**
-	 * @return string
+	 * @return array
 	 */
-	public function getProjectIssueType(): string {
-		return $this->project_issue_type;
+	public function getProjectIssueTypes(): array {
+		return $this->project_issue_types;
 	}
 
 
 	/**
-	 * @param string $project_issue_type
+	 * @param array $project_issue_types
 	 */
-	public function setProjectIssueType(string $project_issue_type)/*: void*/ {
-		$this->project_issue_type = $project_issue_type;
+	public function setProjectIssueTypes(array $project_issue_types)/*: void*/ {
+		$this->project_issue_types = $project_issue_types;
 	}
 
 

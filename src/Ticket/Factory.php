@@ -101,7 +101,7 @@ final class Factory {
 
 		$ticket->setTicketProjectKey($support->getProject()->getProjectKey());
 
-		$ticket->setTicketIssueType($support->getProject()->getProjectIssueType());
+		$ticket->setTicketIssueType($support->getProject()->getProjectIssueTypes()[0]);
 
 		$ticket->setTicketPriority($support->getPriority());
 

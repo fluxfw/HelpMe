@@ -81,7 +81,7 @@ class RecipientCreateJiraTicket extends Recipient {
 	 */
 	protected function createJiraTicket()/*: void*/ {
 		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), $this->support->getProject()
-			->getProjectIssueType(), $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getProject()
+			->getProjectIssueTypes()[0], $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getProject()
 			->getProjectFixVersion());
 
 		$this->issue_key = $issue_key;
