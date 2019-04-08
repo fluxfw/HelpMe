@@ -3,6 +3,8 @@
 namespace srag\Plugins\HelpMe\Support;
 
 use ilHelpMePlugin;
+use Sinergi\BrowserDetector\Browser;
+use Sinergi\BrowserDetector\Os;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -49,5 +51,21 @@ final class Repository {
 	 */
 	public function factory(): Factory {
 		return Factory::getInstance();
+	}
+
+
+	/**
+	 * Get browser infos
+	 *
+	 * @return string "Browser Version / System Version"
+	 */
+	public function getBrowserInfos(): string {
+		$browser = new Browser();
+		$os = new Os();
+
+		$infos = $browser->getName() . (($browser->getVersion() !== Browser::UNKNOWN) ? " " . $browser->getVersion() : "") . " / " . $os->getName()
+			. (($os->getVersion() !== Os::UNKNOWN) ? " " . $os->getVersion() : "");
+
+		return $infos;
 	}
 }

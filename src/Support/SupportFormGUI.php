@@ -10,8 +10,6 @@ use ilSelectInputGUI;
 use ilSession;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use Sinergi\BrowserDetector\Browser;
-use Sinergi\BrowserDetector\Os;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Config\Config;
@@ -67,7 +65,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "system_infos":
-				return $this->getBrowserInfos();
+				return self::supports()->getBrowserInfos();
 
 			default:
 				break;
@@ -242,7 +240,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "system_infos":
-				$this->support->setSystemInfos($this->getBrowserInfos());
+				$this->support->setSystemInfos(self::supports()->getBrowserInfos());
 				break;
 
 			case "screenshots":
@@ -254,22 +252,6 @@ class SupportFormGUI extends PropertyFormGUI {
 			default:
 				break;
 		}
-	}
-
-
-	/**
-	 * Get browser infos
-	 *
-	 * @return string "Browser Version / System Version"
-	 */
-	protected function getBrowserInfos(): string {
-		$browser = new Browser();
-		$os = new Os();
-
-		$infos = $browser->getName() . (($browser->getVersion() !== Browser::UNKNOWN) ? " " . $browser->getVersion() : "") . " / " . $os->getName()
-			. (($os->getVersion() !== Os::UNKNOWN) ? " " . $os->getVersion() : "");
-
-		return $infos;
 	}
 
 
