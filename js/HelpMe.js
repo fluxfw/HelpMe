@@ -141,6 +141,34 @@ il.HelpMe = {
 	},
 
 	/**
+	 *
+	 */
+	projectChange: function () {
+		// First empty previous project issue types (Without "please select")
+		var $old_issue_type_select = $("#issue_type");
+		$old_issue_type_select.children().first().nextAll().remove();
+		$old_issue_type_select.prop("disabled", true);
+
+		var $projects_select = $("#project");
+		var project_id = parseInt($projects_select.val());
+
+		var get_url = this.button.attr("href");
+		get_url = get_url.replace("addSupport", "getIssueTypesOfProject");
+		get_url += "&srsu_project_id=" + project_id;
+
+		$.get(get_url, this.projectChangeShowIssueTypes.bind(this));
+	},
+
+	/**
+	 * @param {string} new_issue_types_select_html
+	 */
+	projectChangeShowIssueTypes: function (new_issue_types_select_html) {
+		var $old_issue_type_select = $("#issue_type");
+
+		$old_issue_type_select.replaceWith(new_issue_types_select_html);
+	},
+
+	/**
 	 * @param {string} html
 	 */
 	show: function (html) {
@@ -177,8 +205,12 @@ il.HelpMe = {
 		}
 
 		var $cancel = $("#helpme_cancel");
+		var $projects_select = $("#project");
 
 		$cancel.click(this.cancel.bind(this));
+
+		$projects_select.change(this.projectChange.bind(this));
+		$('input[type="hidden"][name="issue_type"]').remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
 
 		this.modal.modal("show");
 	}

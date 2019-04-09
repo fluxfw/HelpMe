@@ -21,8 +21,9 @@ config_priorities#:#Dringlichkeiten
 config_projects#:#Projekte
 config_project_fix_version#:#Fix-Version
 config_project_fix_version_info#:#Backlog, ...
+config_project_issue_type#:#Issue-Type
+config_project_issue_type_info#:#Task, Bug, Support, ...
 config_project_issue_types#:#Issue-Typen
-config_project_issue_types_info#:#Task, Bug, Support, ...
 config_project_key#:#Key
 config_project_key_info#:#Wird für Erstellen des Supports verwendet, z. Bsp. Jira-Projekt-Key
 config_project_name#:#Name
@@ -51,6 +52,8 @@ support_close#:#Schliessen
 support_datetime#:#Datum & Zeit
 support_description#:#Beschreibung
 support_email#:#E-Mail Adresse
+support_issue_type#:#Issue-Type
+support_issue_type_info#:#Werden anhand der Projektauswahl dargestellt
 support_login#:#Login
 support_name#:#Name
 support_phone#:#Telefon

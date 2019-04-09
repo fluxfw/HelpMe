@@ -8,7 +8,6 @@ use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
-use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 
 /**
@@ -40,18 +39,7 @@ class RecipientCreateJiraTicket extends Recipient {
 	public function __construct(Support $support) {
 		parent::__construct($support);
 
-		$this->jira_curl = new JiraCurl();
-
-		$this->jira_curl->setJiraDomain(Config::getField(Config::KEY_JIRA_DOMAIN));
-
-		$this->jira_curl->setJiraAuthorization(Config::getField(Config::KEY_JIRA_AUTHORIZATION));
-
-		$this->jira_curl->setJiraUsername(Config::getField(Config::KEY_JIRA_USERNAME));
-		$this->jira_curl->setJiraPassword(Config::getField(Config::KEY_JIRA_PASSWORD));
-
-		$this->jira_curl->setJiraConsumerKey(Config::getField(Config::KEY_JIRA_CONSUMER_KEY));
-		$this->jira_curl->setJiraPrivateKey(Config::getField(Config::KEY_JIRA_PRIVATE_KEY));
-		$this->jira_curl->setJiraAccessToken(Config::getField(Config::KEY_JIRA_ACCESS_TOKEN));
+		$this->jira_curl = self::supports()->initJiraCurl();
 	}
 
 
@@ -80,9 +68,8 @@ class RecipientCreateJiraTicket extends Recipient {
 	 * @throws Notifications4PluginException
 	 */
 	protected function createJiraTicket()/*: void*/ {
-		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), $this->support->getProject()
-			->getProjectIssueTypes()[0], $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getProject()
-			->getProjectFixVersion());
+		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()
+			->getProjectKey(), $this->support->getIssueType(), $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getFixVersion());
 
 		$this->issue_key = $issue_key;
 	}

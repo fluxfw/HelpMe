@@ -138,6 +138,7 @@ abstract class Recipient {
 
 		$fields_ = [
 			"project" => $this->support->getProject()->getProjectName() . " (" . $this->support->getProject()->getProjectKey() . ")",
+			"issue_type" => $this->support->getIssueType(),
 			"title" => $this->support->getTitle(),
 			"name" => $this->support->getName(),
 			"login" => $this->support->getLogin(),

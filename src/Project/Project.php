@@ -86,15 +86,12 @@ class Project extends ActiveRecord {
 	 * @con_fieldtype    text
 	 * @con_is_notnull   true
 	 */
-	protected $project_issue_types = [ self::DEFAULT_ISSUE_TYPE ];
-	/**
-	 * @var string
-	 *
-	 * @con_has_field    true
-	 * @con_fieldtype    text
-	 * @con_is_notnull   true
-	 */
-	protected $project_fix_version = self::DEFAULT_FIX_VERSION;
+	protected $project_issue_types = [
+		[
+			"issue_type" => Project::DEFAULT_ISSUE_TYPE,
+			"fix_version" => Project::DEFAULT_FIX_VERSION
+		]
+	];
 
 
 	/**
@@ -141,7 +138,7 @@ class Project extends ActiveRecord {
 				return intval($field_value);
 
 			case "project_issue_types":
-				return (array)json_decode($field_value);
+				return (array)json_decode($field_value, true);
 
 			default:
 				return null;
@@ -226,21 +223,5 @@ class Project extends ActiveRecord {
 	 */
 	public function setProjectIssueTypes(array $project_issue_types)/*: void*/ {
 		$this->project_issue_types = $project_issue_types;
-	}
-
-
-	/**
-	 * @return string
-	 */
-	public function getProjectFixVersion(): string {
-		return $this->project_fix_version;
-	}
-
-
-	/**
-	 * @param string $project_fix_version
-	 */
-	public function setProjectFixVersion(string $project_fix_version)/*: void*/ {
-		$this->project_fix_version = $project_fix_version;
 	}
 }

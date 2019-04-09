@@ -10,9 +10,11 @@ use ilSelectInputGUI;
 use ilSession;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -31,6 +33,10 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @var Support|null
 	 */
 	protected $support = null;
+	/**
+	 * @var Project|null
+	 */
+	protected $project = null;
 
 
 	/**
@@ -40,12 +46,8 @@ class SupportFormGUI extends PropertyFormGUI {
 		$key) {
 		switch ($key) {
 			case "project":
-				$project_id = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
-
-				if ($project_id !== null) {
-					ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
-
-					return intval($project_id);
+				if ($this->project !== null) {
+					return $this->project->getProjectId();
 				}
 				break;
 
@@ -99,6 +101,14 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initFields()/*: void*/ {
+		// Preselect project (Support link)
+		$project_id = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
+		if ($project_id !== null) {
+			ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
+
+			$this->project = self::projects()->getProjectById($project_id);
+		}
+
 		$this->fields = [
 			"project" => [
 				self::PROPERTY_CLASS => ilSelectInputGUI::class,
@@ -106,6 +116,14 @@ class SupportFormGUI extends PropertyFormGUI {
 				self::PROPERTY_OPTIONS => [
 						"" => "&lt;" . $this->txt("please_select") . "&gt;"
 					] + self::projects()->getProjectsOptions()
+			],
+			"issue_type" => [
+				self::PROPERTY_CLASS => ilSelectInputGUI::class,
+				self::PROPERTY_REQUIRED => true,
+				self::PROPERTY_OPTIONS => [
+						"" => "&lt;" . $this->txt("please_select") . "&gt;"
+					] + ($this->project !== null ? self::projects()->getIssueTypesOptions($this->project) : []),
+				self::PROPERTY_DISABLED => ($this->project === null)
 			],
 			"title" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
@@ -174,6 +192,30 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
+	public function checkInput(): bool {
+		$project_select = $this->extractProjectSelector();
+		$issue_type_select = $this->extractIssueTypeSelector();
+
+		// First validate project
+		if ($project_select->checkInput()) {
+
+			// Then set project issue types for validate it
+			$this->project = self::projects()->getProjectById(intval(Items::getValueFromItem($project_select)));
+			if ($this->project !== null) {
+				$issue_type_select->setOptions([
+						"" => "&lt;" . $this->txt("please_select") . "&gt;"
+					] + self::projects()->getIssueTypesOptions($this->project));
+				$issue_type_select->setDisabled(false);
+			}
+		}
+
+		return parent::checkInput();
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
 	public function storeForm(): bool {
 		$this->support = self::supports()->factory()->newInstance();
 
@@ -191,7 +233,12 @@ class SupportFormGUI extends PropertyFormGUI {
 		$key, $value)/*: void*/ {
 		switch ($key) {
 			case "project":
-				$this->support->setProject(self::projects()->getProjectById(intval($value)));
+				$this->support->setProject($this->project);
+				break;
+
+			case "issue_type":
+				$this->support->setIssueType($value);
+				$this->support->setFixVersion(self::projects()->getFixVersionForIssueType($this->project, $this->support->getIssueType()));
 				break;
 
 			case "title":
@@ -260,5 +307,21 @@ class SupportFormGUI extends PropertyFormGUI {
 	 */
 	public function getSupport(): Support {
 		return $this->support;
+	}
+
+
+	/**
+	 * @return ilSelectInputGUI
+	 */
+	public function extractProjectSelector(): ilSelectInputGUI {
+		return $this->getItemByPostVar("project");
+	}
+
+
+	/**
+	 * @return ilSelectInputGUI
+	 */
+	public function extractIssueTypeSelector(): ilSelectInputGUI {
+		return $this->getItemByPostVar("issue_type");
 	}
 }

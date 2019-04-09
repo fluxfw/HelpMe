@@ -26,6 +26,7 @@ class SupportGUI {
 	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_ADD_SUPPORT = "addSupport";
+	const CMD_GET_ISSUE_TYPES_OF_PROJECT = "getIssueTypesOfProject";
 	const CMD_NEW_SUPPORT = "newSupport";
 	const LANG_MODULE_SUPPORT = "support";
 
@@ -54,6 +55,7 @@ class SupportGUI {
 
 				switch ($cmd) {
 					case self::CMD_ADD_SUPPORT:
+					case self::CMD_GET_ISSUE_TYPES_OF_PROJECT:
 					case self::CMD_NEW_SUPPORT:
 						$this->{$cmd}();
 						break;
@@ -118,6 +120,29 @@ class SupportGUI {
 		$form = $this->getSupportForm();
 
 		$this->show($message, $form);
+	}
+
+
+	/**
+	 *
+	 */
+	protected function getIssueTypesOfProject()/*: void*/ {
+		$project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
+
+		$project = self::projects()->getProjectById($project_id);
+
+		$form = $this->getSupportForm();
+
+		$issue_type_select = $form->extractIssueTypeSelector();
+
+		if ($project !== null) {
+			$issue_type_select->setOptions([
+					"" => "&lt;" . $form->txt("please_select") . "&gt;"
+				] + self::projects()->getIssueTypesOptions($project));
+			$issue_type_select->setDisabled(false);
+		}
+
+		self::output()->output($issue_type_select);
 	}
 
 

@@ -7,6 +7,7 @@ use ilHelpMePlugin;
 use ilTextInputGUI;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
+use srag\CustomInputGUIs\HelpMe\MultiLineInputGUI\MultiLineInputGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -63,19 +64,18 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				case "project_issue_types":
 					return $this->project->getProjectIssueTypes();
 
-				case "project_fix_version":
-					return $this->project->getProjectFixVersion();
-
 				default:
 					break;
 			}
 		} else {
 			switch ($key) {
 				case "project_issue_types":
-					return Project::DEFAULT_ISSUE_TYPE;
-
-				case "project_fix_version":
-					return Project::DEFAULT_FIX_VERSION;
+					return [
+						[
+							"issue_type" => Project::DEFAULT_ISSUE_TYPE,
+							"fix_version" => Project::DEFAULT_FIX_VERSION
+						]
+					];
 
 				default:
 					break;
@@ -132,13 +132,26 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				self::PROPERTY_REQUIRED => true
 			],
 			"project_issue_types" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
+				self::PROPERTY_CLASS => MultiLineInputGUI::class,
 				self::PROPERTY_REQUIRED => true,
-				"setMulti" => true
-			],
-			"project_fix_version" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => false
+				self::PROPERTY_MULTI => true,
+				"setShowLabel" => true,
+				self::PROPERTY_SUBITEMS => [
+					"issue_type" => [
+						self::PROPERTY_CLASS => ilTextInputGUI::class,
+						self::PROPERTY_REQUIRED => true,
+						"setTitle" => $this->txt("project_issue_type")
+					],
+					"fix_version" => [
+						self::PROPERTY_CLASS => ilTextInputGUI::class,
+						self::PROPERTY_REQUIRED => false,
+						"setTitle" => $this->txt("project_fix_version")
+					]
+				],
+				"setInfo" => self::output()->getHTML(self::dic()->ui()->factory()->listing()->descriptive([
+					$this->txt("project_issue_type") => $this->txt("project_issue_type_info"),
+					$this->txt("project_fix_version") => $this->txt("project_fix_version_info")
+				]))
 			]
 		];
 	}
@@ -189,11 +202,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				break;
 
 			case "project_issue_types":
-				$this->project->setProjectIssueTypes((array)$value);
-				break;
-
-			case "project_fix_version":
-				$this->project->setProjectFixVersion(strval($value));
+				$this->project->setProjectIssueTypes(array_values($value));
 				break;
 
 			default:

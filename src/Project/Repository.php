@@ -61,6 +61,39 @@ final class Repository {
 
 
 	/**
+	 * @param Project $project
+	 * @param string  $issue_type
+	 *
+	 * @return string
+	 */
+	public function getFixVersionForIssueType(Project $project, string $issue_type): string {
+		foreach ($project->getProjectIssueTypes() as $issue_type_) {
+			if ($issue_type_["issue_type"] === $issue_type) {
+				return $issue_type_["fix_version"];
+			}
+		}
+
+		return "";
+	}
+
+
+	/**
+	 * @param Project $project
+	 *
+	 * @return array
+	 */
+	public function getIssueTypesOptions(Project $project): array {
+		$options = [];
+
+		foreach ($project->getProjectIssueTypes() as $issue_type) {
+			$options[$issue_type["issue_type"]] = $issue_type["issue_type"];
+		}
+
+		return $options;
+	}
+
+
+	/**
 	 * @return Project[]
 	 */
 	public function getProjects(): array {

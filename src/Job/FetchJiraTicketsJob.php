@@ -10,8 +10,6 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
-use srag\JiraCurl\HelpMe\JiraCurl;
-use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -119,18 +117,12 @@ class FetchJiraTicketsJob extends ilCronJob {
 	public function run(): ilCronJobResult {
 		$result = new ilCronJobResult();
 
-		$jira_curl = new JiraCurl();
-
-		$jira_curl->setJiraDomain(Config::getField(Config::KEY_JIRA_DOMAIN));
-
-		$jira_curl->setJiraAuthorization(JiraCurl::AUTHORIZATION_USERNAMEPASSWORD);
-
-		$jira_curl->setJiraUsername(Config::getField(Config::KEY_JIRA_USERNAME));
-		$jira_curl->setJiraPassword(Config::getField(Config::KEY_JIRA_PASSWORD));
+		$jira_curl = self::supports()->initJiraCurl();
 
 		$jsons = [];
 		foreach (self::projects()->getProjects() as $project) {
-			$jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), $project->getProjectIssueTypes()));
+			$jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), self::projects()
+				->getIssueTypesOptions($project)));
 		}
 
 		$tickets = [];

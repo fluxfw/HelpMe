@@ -33,39 +33,47 @@ class Support {
 	/**
 	 * @var string
 	 */
-	protected $title;
+	protected $issue_type = "";
 	/**
 	 * @var string
 	 */
-	protected $name;
+	protected $fix_version = "";
 	/**
 	 * @var string
 	 */
-	protected $login;
+	protected $title = "";
 	/**
 	 * @var string
 	 */
-	protected $email;
+	protected $name = "";
 	/**
 	 * @var string
 	 */
-	protected $phone;
+	protected $login = "";
 	/**
 	 * @var string
 	 */
-	protected $priority;
+	protected $email = "";
 	/**
 	 * @var string
 	 */
-	protected $description;
+	protected $phone = "";
 	/**
 	 * @var string
 	 */
-	protected $reproduce_steps;
+	protected $priority = "";
 	/**
 	 * @var string
 	 */
-	protected $system_infos;
+	protected $description = "";
+	/**
+	 * @var string
+	 */
+	protected $reproduce_steps = "";
+	/**
+	 * @var string
+	 */
+	protected $system_infos = "";
 	/**
 	 * @var UploadResult[]
 	 */
@@ -139,6 +147,38 @@ class Support {
 	 */
 	public function setProject(Project $project)/*: void*/ {
 		$this->project = $project;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getIssueType(): string {
+		return $this->issue_type;
+	}
+
+
+	/**
+	 * @param string $issue_type
+	 */
+	public function setIssueType(string $issue_type)/*: void*/ {
+		$this->issue_type = $issue_type;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getFixVersion(): string {
+		return $this->fix_version;
+	}
+
+
+	/**
+	 * @param string $fix_version
+	 */
+	public function setFixVersion(string $fix_version)/*: void*/ {
+		$this->fix_version = $fix_version;
 	}
 
 
