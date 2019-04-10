@@ -74,6 +74,16 @@ final class Repository {
 
 
 	/**
+	 * @param string $project_url_key
+	 *
+	 * @return string
+	 */
+	public function getLink(string $project_url_key = ""): string {
+		return ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . (!empty($project_url_key) ? "_" . $project_url_key : "");
+	}
+
+
+	/**
 	 * @return JiraCurl
 	 *
 	 * @throws ActiveRecordConfigException
@@ -93,5 +103,15 @@ final class Repository {
 		$jira_curl->setJiraAccessToken(Config::getField(Config::KEY_JIRA_ACCESS_TOKEN));
 
 		return $jira_curl;
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function isEnabledTickets(): bool {
+		// TODO Check if HelpMeCron plugin is available, installed and activated
+
+		return true;
 	}
 }

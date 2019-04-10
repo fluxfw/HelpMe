@@ -53,6 +53,16 @@ final class Repository {
 
 
 	/**
+	 * @param string $project_url_key
+	 *
+	 * @return string
+	 */
+	public function getLink(string $project_url_key = ""): string {
+		return self::supports()->getLink("tickets" . (!empty($project_url_key) ? "_" . $project_url_key : ""));
+	}
+
+
+	/**
 	 * @param int $ticket_id
 	 *
 	 * @return Ticket|null

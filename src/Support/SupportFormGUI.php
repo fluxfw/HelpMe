@@ -47,7 +47,7 @@ class SupportFormGUI extends PropertyFormGUI {
 		switch ($key) {
 			case "project":
 				if ($this->project !== null) {
-					return $this->project->getProjectId();
+					return $this->project->getProjectUrlKey();
 				}
 				break;
 
@@ -102,16 +102,16 @@ class SupportFormGUI extends PropertyFormGUI {
 	 */
 	protected function initFields()/*: void*/ {
 		// Preselect project (Support link)
-		$project_id = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
-		if ($project_id !== null) {
-			ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
+		$project_url_key = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY);
+		if (!empty($project_url_key)) {
+			ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY);
 
-			$this->project = self::projects()->getProjectById($project_id);
+			$this->project = self::projects()->getProjectByUrlKey($project_url_key);
 		}
 
 		$this->fields = [
 			"project" => [
-				self::PROPERTY_CLASS => ilSelectInputGUI::class,
+				self::PROPERTY_CLASS => ProjectSelectInputGUI::class,
 				self::PROPERTY_REQUIRED => true,
 				self::PROPERTY_OPTIONS => [
 						"" => "&lt;" . $this->txt("please_select") . "&gt;"
@@ -200,7 +200,7 @@ class SupportFormGUI extends PropertyFormGUI {
 		if ($project_select->checkInput()) {
 
 			// Then set project issue types for validate it
-			$this->project = self::projects()->getProjectById(intval(Items::getValueFromItem($project_select)));
+			$this->project = self::projects()->getProjectByUrlKey(Items::getValueFromItem($project_select));
 			if ($this->project !== null) {
 				$issue_type_select->setOptions([
 						"" => "&lt;" . $this->txt("please_select") . "&gt;"

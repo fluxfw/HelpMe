@@ -127,9 +127,9 @@ class SupportGUI {
 	 *
 	 */
 	protected function getIssueTypesOfProject()/*: void*/ {
-		$project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
+		$project_url_key = filter_input(INPUT_GET, "project_url_key");
 
-		$project = self::projects()->getProjectById($project_id);
+		$project = self::projects()->getProjectByUrlKey($project_url_key);
 
 		$form = $this->getSupportForm();
 

@@ -14,7 +14,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\' => 21,
+            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
         'S' => 
@@ -44,7 +44,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\' => 
+        'srag\\CustomInputGUIs\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
@@ -161,6 +161,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMail' => __DIR__ . '/../..' . '/src/Recipient/RecipientSendMail.php',
         'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMailSender' => __DIR__ . '/../..' . '/src/Recipient/RecipientSendMailSender.php',
         'srag\\Plugins\\HelpMe\\Support\\Factory' => __DIR__ . '/../..' . '/src/Support/Factory.php',
+        'srag\\Plugins\\HelpMe\\Support\\ProjectSelectInputGUI' => __DIR__ . '/../..' . '/src/Support/ProjectSelectInputGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Repository' => __DIR__ . '/../..' . '/src/Support/Repository.php',
         'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/SuccessFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Support' => __DIR__ . '/../..' . '/src/Support/Support.php',
@@ -169,6 +170,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         'srag\\Plugins\\HelpMe\\Ticket\\Factory' => __DIR__ . '/../..' . '/src/Ticket/Factory.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Repository' => __DIR__ . '/../..' . '/src/Ticket/Repository.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Ticket' => __DIR__ . '/../..' . '/src/Ticket/Ticket.php',
+        'srag\\Plugins\\HelpMe\\Ticket\\TicketsGUI' => __DIR__ . '/../..' . '/src/Ticket/class.TicketsGUI.php',
         'srag\\Plugins\\HelpMe\\Utils\\HelpMeTrait' => __DIR__ . '/../..' . '/src/Utils/HelpMeTrait.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractPluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractRemovePluginDataConfirm' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',

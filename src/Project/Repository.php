@@ -161,9 +161,11 @@ final class Repository {
 	 * @return array
 	 */
 	public function getProjectsOptions(): array {
-		return array_map(function (Project $project): string {
-			return $project->getProjectName();
-		}, $this->getProjects());
+		return array_reduce($this->getProjects(), function (array $projects, Project $project): array {
+			$projects[$project->getProjectUrlKey()] = $project->getProjectName();
+
+			return $projects;
+		}, []);
 	}
 
 
