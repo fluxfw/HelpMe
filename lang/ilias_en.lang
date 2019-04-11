@@ -70,3 +70,8 @@ support_system_infos#:#System infos
 support_title#:#Title
 tickets_show_tickets#:#Show tickets
 tickets_show_tickets_of_selected_project#:#Show tickets of selected project
+tickets_tickets#:#Tickets
+tickets_ticket_issue_type#:#Issue type
+tickets_ticket_project_url_key#:#Project
+tickets_ticket_priority#:#Priority
+tickets_ticket_title#:#Title

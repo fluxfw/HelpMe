@@ -95,7 +95,10 @@ class TicketsGUI {
 
 		$table->writeFilterToSession();
 
-		self::dic()->ctrl()->redirect($this, self::CMD_TICKETS);
+		$table->resetOffset();
+
+		//self::dic()->ctrl()->redirect($this, self::CMD_TICKETS);
+		$this->tickets(); // Fix reset offset
 	}
 
 
@@ -109,7 +112,8 @@ class TicketsGUI {
 
 		$table->resetOffset();
 
-		self::dic()->ctrl()->redirect($this, self::CMD_TICKETS);
+		//self::dic()->ctrl()->redirect($this, self::CMD_TICKETS);
+		$this->tickets(); // Fix reset offset
 	}
 
 
@@ -119,15 +123,11 @@ class TicketsGUI {
 	protected function setProjectFilter()/*: void*/ {
 		$project_url_key = filter_input(INPUT_GET, "project_url_key");
 
-		self::output()->output([ strval($project_url_key), "<br>", "TODO" ], true);
-
-		return;
-
 		$table = $this->getTicketsTable(self::CMD_RESET_FILTER);
 		$table->resetFilter();
 		$table->resetOffset();
 
-		$_POST["project"] = $project_url_key;
+		$_POST["ticket_project_url_key"] = $project_url_key;
 		$this->applyFilter();
 	}
 }

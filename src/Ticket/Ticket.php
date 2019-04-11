@@ -67,7 +67,7 @@ class Ticket extends ActiveRecord {
 	 * @con_fieldtype    text
 	 * @con_is_notnull   true
 	 */
-	protected $ticket_project_key = "";
+	protected $ticket_project_url_key = "";
 	/**
 	 * @var string
 	 *
@@ -175,16 +175,16 @@ class Ticket extends ActiveRecord {
 	/**
 	 * @return string
 	 */
-	public function getTicketProjectKey(): string {
-		return $this->ticket_project_key;
+	public function getTicketProjectUrlKey(): string {
+		return $this->ticket_project_url_key;
 	}
 
 
 	/**
-	 * @param string $ticket_project_key
+	 * @param string $ticket_project_url_key
 	 */
-	public function setTicketProjectKey(string $ticket_project_key)/*: void*/ {
-		$this->ticket_project_key = $ticket_project_key;
+	public function setTicketProjectUrlKey(string $ticket_project_url_key)/*: void*/ {
+		$this->ticket_project_url_key = $ticket_project_url_key;
 	}
 
 

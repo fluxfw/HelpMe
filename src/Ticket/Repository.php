@@ -53,6 +53,38 @@ final class Repository {
 
 
 	/**
+	 * @return array
+	 */
+	public function getAvailableIssueTypes(): array {
+		$result = self::dic()->database()->query('SELECT DISTINCT ticket_issue_type FROM ' . Ticket::TABLE_NAME . ' ORDER BY ticket_issue_type ASC');
+
+		$issue_types = [];
+
+		while (($issue_type = $result->fetchAssoc()) !== false) {
+			$issue_types[$issue_type["ticket_issue_type"]] = $issue_type["ticket_issue_type"];
+		}
+
+		return $issue_types;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	public function getAvailablePriorities(): array {
+		$result = self::dic()->database()->query('SELECT DISTINCT ticket_priority FROM ' . Ticket::TABLE_NAME . ' ORDER BY ticket_priority ASC');
+
+		$priorities = [];
+
+		while (($issue_type = $result->fetchAssoc()) !== false) {
+			$priorities[$issue_type["ticket_priority"]] = $issue_type["ticket_priority"];
+		}
+
+		return $priorities;
+	}
+
+
+	/**
 	 * @param string $project_url_key
 	 *
 	 * @return string
@@ -95,39 +127,118 @@ final class Repository {
 
 
 	/**
+	 * @param array       $fields
+	 * @param string|null $sort_by
+	 * @param string|null $sort_by_direction
+	 * @param int|null    $limit_start
+	 * @param int|null    $limit_end
+	 * @param string      $ticket_title
+	 * @param string      $ticket_project_url_key
+	 * @param string      $ticket_issue_type
+	 * @param string      $ticket_priority
+	 *
+	 * @return array
+	 */
+	public function getTickets(array $fields = [], string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null, string $ticket_title = "", string $ticket_project_url_key = "", string $ticket_issue_type = "", string $ticket_priority = ""): array {
+
+		if (!in_array("ticket_id", $fields)) {
+			array_unshift($fields, "ticket_id");
+		}
+		if (!in_array("ticket_project_url_key", $fields)) {
+			array_unshift($fields, "ticket_project_url_key");
+		}
+
+		$sql = 'SELECT ' . implode(",", array_map(function (string $field): string {
+				return self::dic()->database()->quoteIdentifier($field);
+			}, $fields));
+
+		$sql .= $this->getTicketsQuery($sort_by, $sort_by_direction, $limit_start, $limit_end, $ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority);
+
+		$result = self::dic()->database()->query($sql);
+
+		$tickets = [];
+
+		while (($row = $result->fetchAssoc()) !== false) {
+			$row["ticket_project"] = self::projects()->getProjectByUrlKey($row["ticket_project_url_key"]);
+
+			$tickets[$row["ticket_id"]] = $row;
+		}
+
+		return $tickets;
+	}
+
+
+	/**
 	 * @param string $ticket_title
-	 * @param string $ticket_project_key
+	 * @param string $ticket_project_url_key
 	 * @param string $ticket_issue_type
 	 * @param string $ticket_priority
 	 *
-	 * @return Ticket[]
+	 * @return int
 	 */
-	public function getTickets(string $ticket_title = "", string $ticket_project_key = "", string $ticket_issue_type = "", string $ticket_priority = ""): array {
-		/**
-		 * @var Ticket[] $tickets
-		 */
+	public function getTicketsCount(string $ticket_title = "", string $ticket_project_url_key = "", string $ticket_issue_type = "", string $ticket_priority = ""): int {
 
-		$where = Ticket::where([]);
+		$sql = 'SELECT COUNT(ticket_id) AS count';
 
-		if (!empty($ticket_title)) {
-			$where = $where->where([ "title" => '%' . $ticket_title . '%' ], "LIKE");
+		$sql .= $this->getTicketsQuery(null, null, null, null, $ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority);
+
+		$result = self::dic()->database()->query($sql);
+
+		if (($row = $result->fetchAssoc()) !== false) {
+			return intval($row["count"]);
 		}
 
-		if (!empty($ticket_project_key)) {
-			$where = $where->where([ "ticket_project_key" => $ticket_project_key ]);
+		return 0;
+	}
+
+
+	/**
+	 * @param string|null $sort_by
+	 * @param string|null $sort_by_direction
+	 * @param int|null    $limit_start
+	 * @param int|null    $limit_end
+	 * @param string      $ticket_title
+	 * @param string      $ticket_project_url_key
+	 * @param string      $ticket_issue_type
+	 * @param string      $ticket_priority
+	 *
+	 * @return string
+	 */
+	private function getTicketsQuery(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null, string $ticket_title = "", string $ticket_project_url_key = "", string $ticket_issue_type = "", string $ticket_priority = ""): string {
+
+		$sql = ' FROM ' . Ticket::TABLE_NAME;
+
+		$wheres = [];
+
+		if (!empty($ticket_title)) {
+			$wheres[] = self::dic()->database()->like("ticket_title", "text", '%' . $ticket_title . '%');
+		}
+
+		if (!empty($ticket_project_url_key)) {
+			$wheres[] = 'level=' . self::dic()->database()->quote($ticket_project_url_key, "text");
 		}
 
 		if (!empty($ticket_issue_type)) {
-			$where = $where->where([ "ticket_issue_type" => $ticket_issue_type ]);
+			$wheres[] = 'level=' . self::dic()->database()->quote($ticket_issue_type, "text");
 		}
 
 		if (!empty($ticket_priority)) {
-			$where = $where->where([ "ticket_priority" => $ticket_priority ]);
+			$wheres[] = 'level=' . self::dic()->database()->quote($ticket_priority, "text");
 		}
 
-		$tickets = $where->orderBy("ticket_project_key", "ASC")->orderBy("ticket_title", "ASC")->get();
+		if (count($wheres) > 0) {
+			$sql .= ' WHERE ' . implode(" AND ", $wheres);
+		}
 
-		return $tickets;
+		if ($sort_by !== null && $sort_by_direction !== null) {
+			$sql .= ' ORDER BY ' . self::dic()->database()->quoteIdentifier($sort_by) . ' ' . $sort_by_direction;
+		}
+
+		if ($limit_start !== null && $limit_end !== null) {
+			$sql .= ' LIMIT ' . self::dic()->database()->quote($limit_start, "integer") . ',' . self::dic()->database()->quote($limit_end, "integer");
+		}
+
+		return $sql;
 	}
 
 

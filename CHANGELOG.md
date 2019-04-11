@@ -1,7 +1,10 @@
 # Changelog
 
 ## [x]
-- 
+- Allow projects can have multiple issue types and its fixed version
+- Allow to select issue type in support UI
+- If you use Jira recipient and if HelpMeCron is installed and activated, its enabled the new tickets UI to list open Jira tickets
+- Fix `HelpMeException`
 
 ## [3.3.3]
 - Fixes

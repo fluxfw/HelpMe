@@ -118,6 +118,7 @@ return array(
     'srag\\Plugins\\HelpMe\\Ticket\\Repository' => $baseDir . '/src/Ticket/Repository.php',
     'srag\\Plugins\\HelpMe\\Ticket\\Ticket' => $baseDir . '/src/Ticket/Ticket.php',
     'srag\\Plugins\\HelpMe\\Ticket\\TicketsGUI' => $baseDir . '/src/Ticket/class.TicketsGUI.php',
+    'srag\\Plugins\\HelpMe\\Ticket\\TicketsTableGUI' => $baseDir . '/src/Ticket/TicketsTableGUI.php',
     'srag\\Plugins\\HelpMe\\Utils\\HelpMeTrait' => $baseDir . '/src/Utils/HelpMeTrait.php',
     'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractPluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
     'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractRemovePluginDataConfirm' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',

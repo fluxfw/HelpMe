@@ -171,6 +171,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         'srag\\Plugins\\HelpMe\\Ticket\\Repository' => __DIR__ . '/../..' . '/src/Ticket/Repository.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Ticket' => __DIR__ . '/../..' . '/src/Ticket/Ticket.php',
         'srag\\Plugins\\HelpMe\\Ticket\\TicketsGUI' => __DIR__ . '/../..' . '/src/Ticket/class.TicketsGUI.php',
+        'srag\\Plugins\\HelpMe\\Ticket\\TicketsTableGUI' => __DIR__ . '/../..' . '/src/Ticket/TicketsTableGUI.php',
         'srag\\Plugins\\HelpMe\\Utils\\HelpMeTrait' => __DIR__ . '/../..' . '/src/Utils/HelpMeTrait.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractPluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractRemovePluginDataConfirm' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',
