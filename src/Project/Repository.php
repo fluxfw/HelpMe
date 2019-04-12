@@ -170,6 +170,15 @@ final class Repository {
 
 
 	/**
+	 * @return bool
+	 */
+	public function hasOneProjectAtLeastReadAccess(): bool {
+		// TODO Check at least one project has read access
+		return true;
+	}
+
+
+	/**
 	 * @param Project $project
 	 */
 	public function storeInstance(Project $project)/*: void*/ {

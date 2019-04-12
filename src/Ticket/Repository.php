@@ -215,15 +215,15 @@ final class Repository {
 		}
 
 		if (!empty($ticket_project_url_key)) {
-			$wheres[] = 'level=' . self::dic()->database()->quote($ticket_project_url_key, "text");
+			$wheres[] = 'ticket_project_url_key=' . self::dic()->database()->quote($ticket_project_url_key, "text");
 		}
 
 		if (!empty($ticket_issue_type)) {
-			$wheres[] = 'level=' . self::dic()->database()->quote($ticket_issue_type, "text");
+			$wheres[] = 'ticket_issue_type=' . self::dic()->database()->quote($ticket_issue_type, "text");
 		}
 
 		if (!empty($ticket_priority)) {
-			$wheres[] = 'level=' . self::dic()->database()->quote($ticket_priority, "text");
+			$wheres[] = 'ticket_priority=' . self::dic()->database()->quote($ticket_priority, "text");
 		}
 
 		if (count($wheres) > 0) {

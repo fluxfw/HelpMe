@@ -26,7 +26,11 @@ class RecipientCreateJiraTicket extends Recipient {
 	/**
 	 * @var string
 	 */
-	protected $issue_key;
+	protected $ticket_key = "";
+	/**
+	 * @var string
+	 */
+	protected $ticket_title = "";
 
 
 	/**
@@ -55,6 +59,12 @@ class RecipientCreateJiraTicket extends Recipient {
 		$this->addScreenshoots();
 
 		$this->sendConfirmationMail();
+
+		if (self::supports()->isEnabledTickets()) {
+			$ticket = self::tickets()->factory()->fromSupport($this->support, $this->ticket_key, $this->ticket_title);
+
+			self::tickets()->storeInstance($ticket);
+		}
 	}
 
 
@@ -68,10 +78,10 @@ class RecipientCreateJiraTicket extends Recipient {
 	 * @throws Notifications4PluginException
 	 */
 	protected function createJiraTicket()/*: void*/ {
-		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()
-			->getProjectKey(), $this->support->getIssueType(), $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getFixVersion());
+		$this->ticket_title = $this->getSubject(self::CREATE_JIRA_TICKET);
 
-		$this->issue_key = $issue_key;
+		$this->ticket_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()
+			->getProjectKey(), $this->support->getIssueType(), $this->ticket_title, $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getFixVersion());
 	}
 
 
@@ -83,7 +93,7 @@ class RecipientCreateJiraTicket extends Recipient {
 	 */
 	protected function addScreenshoots()/*: void*/ {
 		foreach ($this->support->getScreenshots() as $screenshot) {
-			$this->jira_curl->addAttachmentToIssue($this->issue_key, $screenshot->getName(), $screenshot->getMimeType(), $screenshot->getPath());
+			$this->jira_curl->addAttachmentToIssue($this->ticket_key, $screenshot->getName(), $screenshot->getMimeType(), $screenshot->getPath());
 		}
 	}
 }

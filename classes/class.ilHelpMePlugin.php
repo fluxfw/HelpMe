@@ -1,6 +1,9 @@
 <?php
 
 require_once __DIR__ . "/../vendor/autoload.php";
+if (file_exists(__DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")) {
+	require_once __DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php";
+}
 require_once __DIR__ . "/../../Notifications4Plugins/vendor/autoload.php";
 
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;

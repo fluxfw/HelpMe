@@ -2,13 +2,18 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
+use ilCronManager;
+use ilHelpMeCronPlugin;
 use ilHelpMePlugin;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
+use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Job\FetchJiraTicketsJob;
+use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -39,6 +44,12 @@ final class Repository {
 
 		return self::$instance;
 	}
+
+
+	/**
+	 * @var bool|null
+	 */
+	protected $is_enabled_tickets = null;
 
 
 	/**
@@ -107,11 +118,19 @@ final class Repository {
 
 
 	/**
+	 * @param bool $checkHasOneProjectAtLeastReadAccess
+	 *
 	 * @return bool
 	 */
-	public function isEnabledTickets(): bool {
-		// TODO Check if HelpMeCron plugin is available, installed and activated
+	public function isEnabledTickets(bool $checkHasOneProjectAtLeastReadAccess = true): bool {
+		if ($this->is_enabled_tickets === null) {
+			$this->is_enabled_tickets = (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
+				&& (!$checkHasOneProjectAtLeastReadAccess || self::projects()->hasOneProjectAtLeastReadAccess())
+				&& file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
+				&& DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
+				&& ilCronManager::isJobActive(FetchJiraTicketsJob::CRON_JOB_ID));
+		}
 
-		return true;
+		return $this->is_enabled_tickets;
 	}
 }
