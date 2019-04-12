@@ -174,7 +174,7 @@ final class Repository {
 	 */
 	public function hasOneProjectAtLeastReadAccess(): bool {
 		// TODO Check at least one project has read access
-		return true;
+		return false;
 	}
 
 

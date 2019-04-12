@@ -75,3 +75,5 @@ tickets_ticket_issue_type#:#Issue-Type
 tickets_ticket_project_url_key#:#Projekt
 tickets_ticket_priority#:#Dringlichkeit
 tickets_ticket_title#:#Titel
+tickets_usage_1_info#:#Wenn Sie das 'Tickets anzeigen'-Feature verwenden möchten, installieren und aktivieren Sie bitte das HelpMeCron-Plugin
+tickets_usage_2_info#:#Damit Sie das 'Tickets anzeigen'-Feature verwenden können, müssen Sie mindestens einem Projekt Lesezugriff geben

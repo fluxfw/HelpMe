@@ -63,6 +63,8 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 * @inheritdoc
 	 */
 	protected function initColumns()/*: void*/ {
+		self::tickets()->showUsageConfigHint();
+
 		parent::initColumns();
 
 		$this->addColumn($this->txt("actions"));

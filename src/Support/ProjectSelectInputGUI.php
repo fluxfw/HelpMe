@@ -29,7 +29,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI {
 	 */
 	public function render(/*string*/
 		$a_mode = ""): string {
-		if (self::supports()->isEnabledTickets()) {
+		if (self::tickets()->isEnabled()) {
 			$tpl = self::plugin()->template("project_select_input.html");
 
 			$tpl->setVariable("SELECT", parent::render($a_mode));

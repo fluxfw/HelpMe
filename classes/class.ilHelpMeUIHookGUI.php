@@ -126,7 +126,7 @@ il.HelpMe.init();
 				], SupportGUI::CMD_ADD_SUPPORT, "", true))
 		];
 
-		if (self::supports()->isEnabledTickets()) {
+		if (self::tickets()->isEnabled()) {
 			$buttons[] = self::dic()->ui()->factory()->link()->standard(self::plugin()
 				->translate("show_tickets", TicketsGUI::LANG_MODULE_TICKETS), self::tickets()->getLink());
 

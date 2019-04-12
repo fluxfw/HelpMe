@@ -2,8 +2,15 @@
 
 namespace srag\Plugins\HelpMe\Ticket;
 
+use ilCronManager;
+use ilHelpMeCronPlugin;
 use ilHelpMePlugin;
+use ilUtil;
+use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Job\FetchJiraTicketsJob;
+use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -243,6 +250,20 @@ final class Repository {
 
 
 	/**
+	 * @param bool $check_has_one_project_at_least_read_access
+	 *
+	 * @return bool
+	 */
+	public function isEnabled(bool $check_has_one_project_at_least_read_access = true): bool {
+		return (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
+			&& (!$check_has_one_project_at_least_read_access || self::projects()->hasOneProjectAtLeastReadAccess())
+			&& file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
+			&& DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
+			&& ilCronManager::isJobActive(FetchJiraTicketsJob::CRON_JOB_ID));
+	}
+
+
+	/**
 	 *
 	 */
 	public function removeTickets()/*: void*/ {
@@ -258,6 +279,22 @@ final class Repository {
 
 		foreach ($tickets as $ticket) {
 			$this->storeInstance($ticket);
+		}
+	}
+
+
+	/**
+	 *
+	 */
+	public function showUsageConfigHint()/*: void*/ {
+		if (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
+			if (!$this->isEnabled(false)) {
+				ilUtil::sendInfo(self::plugin()->translate("usage_1_info", TicketsGUI::LANG_MODULE_TICKETS));
+			} else {
+				if (!$this->isEnabled()) {
+					ilUtil::sendInfo(self::plugin()->translate("usage_2_info", TicketsGUI::LANG_MODULE_TICKETS));
+				}
+			}
 		}
 	}
 

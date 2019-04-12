@@ -117,7 +117,7 @@ class FetchJiraTicketsJob extends ilCronJob {
 	public function run(): ilCronJobResult {
 		$result = new ilCronJobResult();
 
-		if (!self::supports()->isEnabledTickets()) {
+		if (!self::tickets()->isEnabled()) {
 			throw new HelpMeException("Tickets are not enabled");
 		}
 

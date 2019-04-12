@@ -60,7 +60,7 @@ class RecipientCreateJiraTicket extends Recipient {
 
 		$this->sendConfirmationMail();
 
-		if (self::supports()->isEnabledTickets()) {
+		if (self::tickets()->isEnabled()) {
 			$ticket = self::tickets()->factory()->fromSupport($this->support, $this->ticket_key, $this->ticket_title);
 
 			self::tickets()->storeInstance($ticket);

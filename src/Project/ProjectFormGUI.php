@@ -118,6 +118,8 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initFields()/*: void*/ {
+		self::tickets()->showUsageConfigHint();
+
 		$this->fields = [
 			"project_key" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,

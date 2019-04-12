@@ -75,3 +75,5 @@ tickets_ticket_issue_type#:#Issue type
 tickets_ticket_project_url_key#:#Project
 tickets_ticket_priority#:#Priority
 tickets_ticket_title#:#Title
+tickets_usage_1_info#:#If you want to use the 'Show tickets' feature, please install and activate the HelpMeCron plugin
+tickets_usage_2_info#:#In order you can use the 'Show tickets' feature, you need to give at least one project read access

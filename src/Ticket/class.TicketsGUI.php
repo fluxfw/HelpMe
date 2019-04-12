@@ -21,9 +21,9 @@ class TicketsGUI {
 	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 	const CMD_APPLY_FILTER = "applyFilter";
+	const CMD_LIST_TICKETS = "listTickets";
 	const CMD_RESET_FILTER = "resetFilter";
 	const CMD_SET_PROJECT_FILTER = "setProjectFilter";
-	const CMD_TICKETS = "tickets";
 	const LANG_MODULE_TICKETS = "tickets";
 
 
@@ -39,7 +39,7 @@ class TicketsGUI {
 	 *
 	 */
 	public function executeCommand()/*: void*/ {
-		if (!self::access()->currentUserHasRole() || !self::supports()->isEnabledTickets()) {
+		if (!self::access()->currentUserHasRole() || !self::tickets()->isEnabled()) {
 			die();
 		}
 
@@ -51,9 +51,9 @@ class TicketsGUI {
 
 				switch ($cmd) {
 					case self::CMD_APPLY_FILTER:
+					case self::CMD_LIST_TICKETS:
 					case self::CMD_RESET_FILTER:
 					case self::CMD_SET_PROJECT_FILTER:
-					case self::CMD_TICKETS:
 						$this->{$cmd}();
 						break;
 
@@ -70,7 +70,7 @@ class TicketsGUI {
 	 *
 	 * @return TicketsTableGUI
 	 */
-	protected function getTicketsTable(string $cmd = self::CMD_TICKETS): TicketsTableGUI {
+	protected function getTicketsTable(string $cmd = self::CMD_LIST_TICKETS): TicketsTableGUI {
 		$table = new TicketsTableGUI($this, $cmd);
 
 		return $table;
@@ -80,7 +80,7 @@ class TicketsGUI {
 	/**
 	 *
 	 */
-	protected function tickets()/*: void*/ {
+	protected function listTickets()/*: void*/ {
 		$table = $this->getTicketsTable();
 
 		self::output()->output($table, true);
@@ -97,7 +97,7 @@ class TicketsGUI {
 
 		$table->resetOffset();
 
-		//self::dic()->ctrl()->redirect($this, self::CMD_TICKETS);
+		//self::dic()->ctrl()->redirect($this, self::CMD_LIST_TICKETS);
 		$this->tickets(); // Fix reset offset
 	}
 
@@ -112,7 +112,7 @@ class TicketsGUI {
 
 		$table->resetOffset();
 
-		//self::dic()->ctrl()->redirect($this, self::CMD_TICKETS);
+		//self::dic()->ctrl()->redirect($this, self::CMD_LIST_TICKETS);
 		$this->tickets(); // Fix reset offset
 	}
 
