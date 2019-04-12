@@ -15,7 +15,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\HelpMe\\' => 28,
-            'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
+            'srag\\ActiveRecordConfig\\' => 24,
         ),
         'S' => 
         array (
@@ -48,7 +48,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
-        'srag\\ActiveRecordConfig\\HelpMe\\' => 
+        'srag\\ActiveRecordConfig\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
         ),
