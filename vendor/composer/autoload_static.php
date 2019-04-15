@@ -15,7 +15,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\HelpMe\\' => 28,
-            'srag\\ActiveRecordConfig\\' => 24,
+            'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
         'S' => 
         array (
@@ -48,7 +48,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
-        'srag\\ActiveRecordConfig\\' => 
+        'srag\\ActiveRecordConfig\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
         ),
@@ -161,7 +161,8 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMail' => __DIR__ . '/../..' . '/src/Recipient/RecipientSendMail.php',
         'srag\\Plugins\\HelpMe\\Recipient\\RecipientSendMailSender' => __DIR__ . '/../..' . '/src/Recipient/RecipientSendMailSender.php',
         'srag\\Plugins\\HelpMe\\Support\\Factory' => __DIR__ . '/../..' . '/src/Support/Factory.php',
-        'srag\\Plugins\\HelpMe\\Support\\ProjectSelectInputGUI' => __DIR__ . '/../..' . '/src/Support/ProjectSelectInputGUI.php',
+        'srag\\Plugins\\HelpMe\\Support\\IssueTypeSelectInputGUI' => __DIR__ . '/../..' . '/src/Support/class.IssueTypeSelectInputGUI.php',
+        'srag\\Plugins\\HelpMe\\Support\\ProjectSelectInputGUI' => __DIR__ . '/../..' . '/src/Support/class.ProjectSelectInputGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Repository' => __DIR__ . '/../..' . '/src/Support/Repository.php',
         'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/SuccessFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Support' => __DIR__ . '/../..' . '/src/Support/Support.php',

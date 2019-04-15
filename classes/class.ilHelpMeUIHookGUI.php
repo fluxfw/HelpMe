@@ -3,6 +3,8 @@
 use ILIAS\UI\Component\Link\Standard;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Support\IssueTypeSelectInputGUI;
+use srag\Plugins\HelpMe\Support\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Ticket\TicketsGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -99,6 +101,16 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode($this->getModal()) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button) . ';
+il.HelpMe.GET_SHOW_TICKETS_OF_PROJECT_URL =  ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
+								ilUIPluginRouterGUI::class,
+								SupportGUI::class,
+								ProjectSelectInputGUI::class
+							], ProjectSelectInputGUI::CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT, "", true)) . ';
+il.HelpMe.GET_ISSUE_TYPES_OF_PROJECT_URL =  ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
+								ilUIPluginRouterGUI::class,
+								SupportGUI::class,
+								IssueTypeSelectInputGUI::class
+							], IssueTypeSelectInputGUI::CMD_GET_ISSUE_TYPES_OF_PROJECT, "", true)) . ';
 il.HelpMe.init();
 ' . $screenshot->getJSOnLoadCode() . '
 ' . ($project_id !== null ? 'il.HelpMe.autoOpen = true;' : '') . '

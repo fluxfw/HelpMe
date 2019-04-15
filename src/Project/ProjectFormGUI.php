@@ -161,7 +161,7 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 			],
 			"project_show_tickets" => [
 				self::PROPERTY_CLASS => ilCheckboxInputGUI::class
-			],
+			]
 		];
 	}
 

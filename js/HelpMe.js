@@ -14,6 +14,16 @@ il.HelpMe = {
 	/**
 	 * @type {string}
 	 */
+	GET_ISSUE_TYPES_OF_PROJECT_URL: "",
+
+	/**
+	 * @type {string}
+	 */
+	GET_SHOW_TICKETS_OF_PROJECT_URL: "",
+
+	/**
+	 * @type {string}
+	 */
 	MODAL_TEMPLATE: "",
 
 	/**
@@ -61,7 +71,7 @@ il.HelpMe = {
 	},
 
 	/**
-	 * @type {Event|null} e
+	 * @param {Event|null} e
 	 *
 	 * @returns {boolean}
 	 */
@@ -161,8 +171,7 @@ il.HelpMe = {
 		var $projects_select = $("#project");
 		var project_url_key = $projects_select.val();
 
-		var get_url = this.button.attr("href");
-		get_url = get_url.replace("addSupport", "getIssueTypesOfProject");
+		var get_url = this.GET_ISSUE_TYPES_OF_PROJECT_URL;
 		get_url += "&project_url_key=" + project_url_key;
 
 		$.get(get_url, this.projectChangeIssueTypesShow.bind(this));
@@ -178,15 +187,28 @@ il.HelpMe = {
 	},
 
 	/**
-	 * @param {string} tickets_url
+	 *
 	 */
-	projectChangeTickets: function (tickets_url) {
+	projectChangeShowTickets: function () {
+		// First delete previous tickets link
 		var $projects_select = $("#project");
-		var $tickets_link = $projects_select.next();
+		$projects_select.next().remove();
 
 		var project_url_key = $projects_select.val();
 
-		$tickets_link.prop("href", tickets_url.replace("%project_url_key%", project_url_key));
+		var get_url = this.GET_SHOW_TICKETS_OF_PROJECT_URL;
+		get_url += "&project_url_key=" + project_url_key;
+
+		$.get(get_url, this.projectChangeShowTicketsShow.bind(this));
+	},
+
+	/**
+	 * @param {string} new_tickets_link_html
+	 */
+	projectChangeShowTicketsShow: function (new_tickets_link_html) {
+		var $projects_select = $("#project");
+
+		$projects_select.after(new_tickets_link_html);
 	},
 
 	/**
@@ -230,8 +252,6 @@ il.HelpMe = {
 
 			var $cancel = $("#helpme_cancel");
 			var $projects_select = $("#project");
-			var $tickets_link = $projects_select.next();
-			var ticket_url = $tickets_link.prop("href");
 
 			$cancel.click(this.cancel.bind(this));
 
@@ -239,10 +259,9 @@ il.HelpMe = {
 			$projects_select.change(this.projectChangeIssueTypes.bind(this));
 			$('input[type="hidden"][name="issue_type"]').remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
 
-			// Update tickets link
-			if (ticket_url) {
-				$projects_select.change(this.projectChangeTickets.bind(this, ticket_url));
-				this.projectChangeTickets(ticket_url);
+			// Update project show tickets link
+			if ($projects_select.parent(".project_select_input").length > 0) {
+				$projects_select.change(this.projectChangeShowTickets.bind(this));
 			}
 		}
 

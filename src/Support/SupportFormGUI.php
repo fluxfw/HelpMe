@@ -10,7 +10,6 @@ use ilSelectInputGUI;
 use ilSession;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Config\Config;
@@ -118,12 +117,10 @@ class SupportFormGUI extends PropertyFormGUI {
 					] + self::projects()->getProjectsOptions()
 			],
 			"issue_type" => [
-				self::PROPERTY_CLASS => ilSelectInputGUI::class,
+				self::PROPERTY_CLASS => IssueTypeSelectInputGUI::class,
 				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_OPTIONS => [
-						"" => "&lt;" . $this->txt("please_select") . "&gt;"
-					] + ($this->project !== null ? self::projects()->getIssueTypesOptions($this->project) : []),
-				self::PROPERTY_DISABLED => ($this->project === null)
+				self::PROPERTY_OPTIONS => [],
+				self::PROPERTY_DISABLED => true
 			],
 			"title" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
@@ -186,30 +183,6 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	protected final function initTitle()/*: void*/ {
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	public function checkInput(): bool {
-		$project_select = $this->extractProjectSelector();
-		$issue_type_select = $this->extractIssueTypeSelector();
-
-		// First validate project
-		if ($project_select->checkInput()) {
-
-			// Then set project issue types for validate it
-			$this->project = self::projects()->getProjectByUrlKey(Items::getValueFromItem($project_select));
-			if ($this->project !== null) {
-				$issue_type_select->setOptions([
-						"" => "&lt;" . $this->txt("please_select") . "&gt;"
-					] + self::projects()->getIssueTypesOptions($this->project));
-				$issue_type_select->setDisabled(false);
-			}
-		}
-
-		return parent::checkInput();
 	}
 
 
@@ -311,17 +284,34 @@ class SupportFormGUI extends PropertyFormGUI {
 
 
 	/**
-	 * @return ilSelectInputGUI
+	 * @return Project|null
 	 */
-	public function extractProjectSelector(): ilSelectInputGUI {
+	public function getProject()/*: ?Project*/ {
+		return $this->project;
+	}
+
+
+	/**
+	 * @param Project|null $project
+	 */
+	public function setProject(/*?*/
+		Project $project = null)/*: void*/ {
+		$this->project = $project;
+	}
+
+
+	/**
+	 * @return ProjectSelectInputGUI
+	 */
+	public function extractProjectSelector(): ProjectSelectInputGUI {
 		return $this->getItemByPostVar("project");
 	}
 
 
 	/**
-	 * @return ilSelectInputGUI
+	 * @return IssueTypeSelectInputGUI
 	 */
-	public function extractIssueTypeSelector(): ilSelectInputGUI {
+	public function extractIssueTypeSelector(): IssueTypeSelectInputGUI {
 		return $this->getItemByPostVar("issue_type");
 	}
 }

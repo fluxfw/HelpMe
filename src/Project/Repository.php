@@ -166,12 +166,12 @@ final class Repository {
 
 
 	/**
-	 * @param bool $only_show_tickets
+	 * @param bool $only_with_show_tickets
 	 *
 	 * @return array
 	 */
-	public function getProjectsOptions(bool $only_show_tickets = false): array {
-		return array_reduce($this->getProjects($only_show_tickets), function (array $projects, Project $project): array {
+	public function getProjectsOptions(bool $only_with_show_tickets = false): array {
+		return array_reduce($this->getProjects($only_with_show_tickets), function (array $projects, Project $project): array {
 			$projects[$project->getProjectUrlKey()] = $project->getProjectName();
 
 			return $projects;
