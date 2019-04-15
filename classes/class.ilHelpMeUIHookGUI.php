@@ -101,12 +101,12 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode($this->getModal()) . ';
 il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button) . ';
-il.HelpMe.GET_SHOW_TICKETS_OF_PROJECT_URL =  ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
+il.HelpMe.GET_SHOW_TICKETS_OF_PROJECT_URL = ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
 								ilUIPluginRouterGUI::class,
 								SupportGUI::class,
 								ProjectSelectInputGUI::class
 							], ProjectSelectInputGUI::CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT, "", true)) . ';
-il.HelpMe.GET_ISSUE_TYPES_OF_PROJECT_URL =  ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
+il.HelpMe.GET_ISSUE_TYPES_OF_PROJECT_URL = ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
 								ilUIPluginRouterGUI::class,
 								SupportGUI::class,
 								IssueTypeSelectInputGUI::class
