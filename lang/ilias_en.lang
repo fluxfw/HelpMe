@@ -49,7 +49,7 @@ config_usage_1_info#:#If you want to use the 'Show tickets' feature, please inst
 config_usage_2_info#:#In order you can use the 'Show tickets' feature, you need to give at least one project read access
 cron_srsu_fetch_jira_tickets#:#Fetch jira tickets
 cron_srsu_fetch_jira_tickets_description#:#Fetch jira tickets and cache
-cron_status#:#Fetch %s ticket(s) from Jira
+cron_status#:#Fetch %1$s ticket(s) of %2$s project(s) from Jira
 support_cancel#:#Cancel
 support_close#:#Close
 support_datetime#:#Date & time

@@ -123,8 +123,10 @@ class FetchJiraTicketsJob extends ilCronJob {
 
 		$jira_curl = self::supports()->initJiraCurl();
 
+		$projects = self::projects()->getProjects(true);
+
 		$jsons = [];
-		foreach (self::projects()->getProjects(true) as $project) {
+		foreach ($projects as $project) {
 			$jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), self::projects()
 				->getIssueTypesOptions($project)));
 		}
@@ -139,7 +141,8 @@ class FetchJiraTicketsJob extends ilCronJob {
 		$result->setStatus(ilCronJobResult::STATUS_OK);
 
 		$result->setMessage(self::plugin()->translate("status", self::LANG_MODULE_CRON, [
-			count($jsons)
+			count($tickets),
+			count($projects)
 		]));
 
 		return $result;

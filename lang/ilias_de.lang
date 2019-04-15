@@ -49,7 +49,7 @@ config_usage_1_info#:#Wenn Sie das 'Tickets anzeigen'-Feature verwenden möchten
 config_usage_2_info#:#Damit Sie das 'Tickets anzeigen'-Feature verwenden können, müssen Sie mindestens einem Projekt Lesezugriff geben
 cron_srsu_fetch_jira_tickets#:#Jira-Tickets holen
 cron_srsu_fetch_jira_tickets_description#:#Jira-Tickets holen und zwischenspeichern
-cron_status#:#%s Ticket(s) von Jira geholt
+cron_status#:#%1$s Ticket(s) von %2$s Projek(e) von Jira geholt
 support_cancel#:#Abbrechen
 support_close#:#Schliessen
 support_datetime#:#Datum & Zeit
