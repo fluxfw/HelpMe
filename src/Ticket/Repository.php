@@ -3,6 +3,7 @@
 namespace srag\Plugins\HelpMe\Ticket;
 
 use ilCronManager;
+use ilHelpMeConfigGUI;
 use ilHelpMeCronPlugin;
 use ilHelpMePlugin;
 use ilUtil;
@@ -289,10 +290,10 @@ final class Repository {
 	public function showUsageConfigHint()/*: void*/ {
 		if (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
 			if (!$this->isEnabled(false)) {
-				ilUtil::sendInfo(self::plugin()->translate("usage_1_info", TicketsGUI::LANG_MODULE_TICKETS));
+				ilUtil::sendInfo(self::plugin()->translate("usage_1_info", ilHelpMeConfigGUI::LANG_MODULE_CONFIG));
 			} else {
 				if (!$this->isEnabled()) {
-					ilUtil::sendInfo(self::plugin()->translate("usage_2_info", TicketsGUI::LANG_MODULE_TICKETS));
+					ilUtil::sendInfo(self::plugin()->translate("usage_2_info", ilHelpMeConfigGUI::LANG_MODULE_CONFIG));
 				}
 			}
 		}

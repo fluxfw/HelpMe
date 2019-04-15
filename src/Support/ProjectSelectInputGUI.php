@@ -5,7 +5,6 @@ namespace srag\Plugins\HelpMe\Support;
 use ilHelpMePlugin;
 use ilSelectInputGUI;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Ticket\TicketsGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -35,7 +34,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI {
 			$tpl->setVariable("SELECT", parent::render($a_mode));
 
 			$tpl->setVariable("TICKETS_LINK", self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(self::plugin()
-				->translate("show_tickets_of_selected_project", TicketsGUI::LANG_MODULE_TICKETS), self::tickets()->getLink("%project_url_key%"))
+				->translate("show_tickets_of_selected_project", SupportGUI::LANG_MODULE_SUPPORT), self::tickets()->getLink("%project_url_key%"))
 				->withOpenInNewViewport(true)));
 
 			return self::output()->getHTML($tpl);

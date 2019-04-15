@@ -128,7 +128,7 @@ il.HelpMe.init();
 
 		if (self::tickets()->isEnabled()) {
 			$buttons[] = self::dic()->ui()->factory()->link()->standard(self::plugin()
-				->translate("show_tickets", TicketsGUI::LANG_MODULE_TICKETS), self::tickets()->getLink());
+				->translate("show_tickets", SupportGUI::LANG_MODULE_SUPPORT), self::tickets()->getLink());
 
 			$support_button_tpl = self::plugin()->template("helpme_support_button_dropdown.html");
 		} else {
