@@ -2,6 +2,7 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
+use ilCheckboxInputGUI;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilTextInputGUI;
@@ -63,6 +64,9 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 				case "project_issue_types":
 					return $this->project->getProjectIssueTypes();
+
+				case "project_show_tickets":
+					return $this->project->isProjectShowTickets();
 
 				default:
 					break;
@@ -154,7 +158,10 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 					$this->txt("project_issue_type") => $this->txt("project_issue_type_info"),
 					$this->txt("project_fix_version") => $this->txt("project_fix_version_info")
 				]))
-			]
+			],
+			"project_show_tickets" => [
+				self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+			],
 		];
 	}
 
@@ -205,6 +212,10 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 
 			case "project_issue_types":
 				$this->project->setProjectIssueTypes(array_values($value));
+				break;
+
+			case "project_show_tickets":
+				$this->project->setProjectShowTickets(boolval($value));
 				break;
 
 			default:

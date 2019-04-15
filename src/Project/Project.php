@@ -92,6 +92,15 @@ class Project extends ActiveRecord {
 			"fix_version" => Project::DEFAULT_FIX_VERSION
 		]
 	];
+	/**
+	 * @var bool
+	 *
+	 * @con_has_field    true
+	 * @con_fieldtype    integer
+	 * @con_length       1
+	 * @con_is_notnull   true
+	 */
+	protected $project_show_tickets = false;
 
 
 	/**
@@ -116,6 +125,9 @@ class Project extends ActiveRecord {
 		$field_value = $this->{$field_name};
 
 		switch ($field_name) {
+			case "project_show_tickets":
+				return ($field_value ? 1 : 0);
+
 			case "project_issue_types":
 				return json_encode($field_value);
 
@@ -136,6 +148,9 @@ class Project extends ActiveRecord {
 		switch ($field_name) {
 			case "project_id":
 				return intval($field_value);
+
+			case "project_show_tickets":
+				return boolval($field_value);
 
 			case "project_issue_types":
 				return (array)json_decode($field_value, true);
@@ -223,5 +238,21 @@ class Project extends ActiveRecord {
 	 */
 	public function setProjectIssueTypes(array $project_issue_types)/*: void*/ {
 		$this->project_issue_types = $project_issue_types;
+	}
+
+
+	/**
+	 * @return bool
+	 */
+	public function isProjectShowTickets(): bool {
+		return $this->project_show_tickets;
+	}
+
+
+	/**
+	 * @param bool $project_show_tickets
+	 */
+	public function setProjectShowTickets(bool $project_show_tickets)/*: void*/ {
+		$this->project_show_tickets = $project_show_tickets;
 	}
 }

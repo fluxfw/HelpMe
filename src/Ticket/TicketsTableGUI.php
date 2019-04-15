@@ -117,7 +117,7 @@ class TicketsTableGUI extends TableGUI {
 			],
 			"ticket_project_url_key" => [
 				PropertyFormGUI::PROPERTY_CLASS => ilSelectInputGUI::class,
-				PropertyFormGUI::PROPERTY_OPTIONS => [ "" => "" ] + self::projects()->getProjectsOptions()
+				PropertyFormGUI::PROPERTY_OPTIONS => [ "" => "" ] + self::projects()->getProjectsOptions(true)
 			],
 			"ticket_issue_type" => [
 				PropertyFormGUI::PROPERTY_CLASS => ilSelectInputGUI::class,

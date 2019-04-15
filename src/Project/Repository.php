@@ -94,10 +94,18 @@ final class Repository {
 
 
 	/**
+	 * @param bool $only_show_tickets
+	 *
 	 * @return Project[]
 	 */
-	public function getProjects(): array {
-		return Project::orderBy("project_name", "ASC")->get();
+	public function getProjects(bool $only_show_tickets = false): array {
+		$where = Project::where([]);
+
+		if ($only_show_tickets) {
+			$where = $where->where([ "project_show_tickets" => true ]);
+		}
+
+		return $where->orderBy("project_name", "ASC")->get();
 	}
 
 
@@ -158,10 +166,12 @@ final class Repository {
 
 
 	/**
+	 * @param bool $only_show_tickets
+	 *
 	 * @return array
 	 */
-	public function getProjectsOptions(): array {
-		return array_reduce($this->getProjects(), function (array $projects, Project $project): array {
+	public function getProjectsOptions(bool $only_show_tickets = false): array {
+		return array_reduce($this->getProjects($only_show_tickets), function (array $projects, Project $project): array {
 			$projects[$project->getProjectUrlKey()] = $project->getProjectName();
 
 			return $projects;
@@ -173,7 +183,13 @@ final class Repository {
 	 * @return bool
 	 */
 	public function hasOneProjectAtLeastReadAccess(): bool {
-		// TODO Check at least one project has read access
+		$result = self::dic()->database()->queryF("SELECT COUNT(project_show_tickets) AS count FROM " . Project::TABLE_NAME
+			. " WHERE project_show_tickets=%s", [ "integer" ], [ true ]);
+
+		if (($row = $result->fetchAssoc()) !== false) {
+			return (intval($row["count"]) > 0);
+		}
+
 		return false;
 	}
 

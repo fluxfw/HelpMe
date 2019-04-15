@@ -98,7 +98,7 @@ class TicketsGUI {
 		$table->resetOffset();
 
 		//self::dic()->ctrl()->redirect($this, self::CMD_LIST_TICKETS);
-		$this->tickets(); // Fix reset offset
+		$this->listTickets(); // Fix reset offset
 	}
 
 
@@ -113,7 +113,7 @@ class TicketsGUI {
 		$table->resetOffset();
 
 		//self::dic()->ctrl()->redirect($this, self::CMD_LIST_TICKETS);
-		$this->tickets(); // Fix reset offset
+		$this->listTickets(); // Fix reset offset
 	}
 
 

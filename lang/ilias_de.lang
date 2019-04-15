@@ -28,6 +28,7 @@ config_project_key#:#Key
 config_project_key_info#:#Wird für Erstellen des Supports verwendet, z. Bsp. Jira-Projekt-Key
 config_project_name#:#Name
 config_project_name_info#:#Wird in der Projektauswahl angezeigt
+config_project_show_tickets#:#Tickets anzeigen
 config_project_url_key#:#URL-Key
 config_project_url_key_info#:#Wird im Support-Link verwendet
 config_recipient#:#Formularempfänger
