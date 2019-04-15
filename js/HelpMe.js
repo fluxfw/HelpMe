@@ -61,19 +61,18 @@ il.HelpMe = {
 	},
 
 	/**
+	 * @type {Event|null} e
+	 *
 	 * @returns {boolean}
 	 */
-	click: function () {
-		// Hide menu dropdown
-		if (this.li.hasClass("open")) {
-			this.li.find(">a").dropdown("toggle");
+	click: function (e = null) {
+		if (e !== null) {
+			e.preventDefault();
 		}
 
 		var get_url = this.button.attr("href");
 
 		$.get(get_url, this.show.bind(this));
-
-		return false;
 	},
 
 	/**
