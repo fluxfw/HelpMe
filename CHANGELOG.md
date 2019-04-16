@@ -10,6 +10,7 @@
 - Allow projects can have multiple issue types and its fixed version
 - Allow to select issue type in support UI
 - If you use Jira recipient and if `HelpMeCron` is installed and activated, it enabled the new tickets UI to list unresolved Jira tickets
+- Restrict show tickets per project
 - Updated screenshots
 - Fix `HelpMeException`
 
