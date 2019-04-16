@@ -1,5 +1,8 @@
 # Changelog
 
+## [4.0.1]
+- Disable curl verbose
+
 ## [4.0.0]
 - Allow projects can have multiple issue types and its fixed version
 - Allow to select issue type in support UI

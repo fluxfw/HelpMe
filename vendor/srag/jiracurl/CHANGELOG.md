@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.4.6]
+- Disable curl verbose
+
 ## [0.4.5]
 - Validate if an issue is array
 
