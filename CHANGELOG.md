@@ -1,5 +1,8 @@
 # Changelog
 
+## [4.0.2]
+- Fix goto show tickets not work on ILIAS 5.3
+
 ## [4.0.1]
 - Disable curl verbose
 
