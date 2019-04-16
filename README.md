@@ -9,7 +9,7 @@ git clone https://github.com/studer-raimann/HelpMe.git HelpMe
 ```
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
-Please also install and enable [HelpMeCron](https://github.com/studer-raimann/HelpMeCron).
+Please also install and enable [HelpMeCron](https://github.com/studer-raimann/HelpMeCron), if you want to use the show tickets feature.
 
 If yout want use the Jira recipient with oAuth authorization you can find a guide to config your Jira installation: https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/
 
