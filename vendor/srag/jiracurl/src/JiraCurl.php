@@ -84,7 +84,7 @@ class JiraCurl {
 		$curlConnection->init();
 
 		$curlConnection->setOpt(CURLOPT_RETURNTRANSFER, true);
-		$curlConnection->setOpt(CURLOPT_VERBOSE, true);
+		$curlConnection->setOpt(CURLOPT_VERBOSE, false);
 		$curlConnection->setOpt(CURLOPT_SSL_VERIFYPEER, false);
 		$curlConnection->setOpt(CURLOPT_SSL_VERIFYHOST, false);
 		$curlConnection->setOpt(CURLOPT_URL, $url);

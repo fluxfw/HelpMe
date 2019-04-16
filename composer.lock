@@ -77,7 +77,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\": "src/"
+                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -195,16 +195,16 @@
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.4.5",
+            "version": "v0.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "98ffa10339f09db25eb150cfab6afc5cea7f19df"
+                "reference": "688e5b6b05380b4b6a1a5fc78c29f73edc65d265"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/98ffa10339f09db25eb150cfab6afc5cea7f19df",
-                "reference": "98ffa10339f09db25eb150cfab6afc5cea7f19df",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/688e5b6b05380b4b6a1a5fc78c29f73edc65d265",
+                "reference": "688e5b6b05380b4b6a1a5fc78c29f73edc65d265",
                 "shasum": ""
             },
             "require": {
@@ -214,7 +214,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\HelpMe\\": "src/"
+                    "srag\\JiraCurl\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -236,7 +236,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2019-04-05T11:07:45+00:00"
+            "time": "2019-04-16T09:54:40+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
