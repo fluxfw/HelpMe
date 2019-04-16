@@ -203,6 +203,7 @@ il.HelpMe.init();
 					$project_url_key = substr($project_url_key, 1);
 				}
 
+				self::dic()->ctrl()->setTargetScript("ilias.php"); // Fix ILIAS 5.3 bug
 				self::dic()->ctrl()->initBaseClass(ilUIPluginRouterGUI::class); // Fix ILIAS bug
 
 				self::dic()->ctrl()->setParameterByClass(TicketsGUI::class, "project_url_key", $project_url_key);
