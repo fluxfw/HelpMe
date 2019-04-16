@@ -64,14 +64,23 @@ Text:
 Support button:
 ![Support button](./doc/screenshots/support_button.png)
 
-Support gui:
-![Support gui](./doc/screenshots/support_gui.png)
+Support button with enabled show tickets:
+![Support button with enabled show tickets](./doc/screenshots/support_button_dropdown.png)
+
+Support UI:
+![Support UI](./doc/screenshots/support_ui.png)
+
+Show tickets UI:
+![Show tickets UI](./doc/screenshots/show_tickets_ui.png)
 
 Config:
 ![Config](./doc/screenshots/config.png)
 
-Config projects:
-![Config projects](./doc/screenshots/config_projects.png)
+Config projects table:
+![Config projects table](./doc/screenshots/config_projects_table.png)
+
+Config project:
+![Config project](./doc/screenshots/config_project.png)
 
 ### Known issues
 - There is a known issue in the ILIAS core object svg icons (The `foreignObject` tag). This tag prevents to take screenshots in Chrome/Safari, because it could reveal something about the current user. [Here](https://mantis.ilias.de/view.php?id=25040) is the ILIAS Mantis report
