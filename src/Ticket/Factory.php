@@ -64,7 +64,7 @@ final class Factory {
 		if (empty($json["fields"]["summary"])) {
 			throw new HelpMeException("Summary of {$ticket->getTicketKey()} not set");
 		}
-		$ticket->setTicketTitle($json["fields"]["summary"]);
+		$ticket->setTicketTitle(trim($json["fields"]["summary"]));
 
 		if (empty($json["fields"]["project"]["key"])) {
 			throw new HelpMeException("Project key of {$ticket->getTicketKey()} not set");
@@ -97,7 +97,7 @@ final class Factory {
 
 		$ticket->setTicketKey($ticket_key);
 
-		$ticket->setTicketTitle($ticket_title);
+		$ticket->setTicketTitle(trim($ticket_title));
 
 		$ticket->setTicketProjectUrlKey($support->getProject()->getProjectUrlKey());
 
