@@ -8,10 +8,10 @@ use PHPMailer\PHPMailer\Exception as phpmailerException;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
-use srag\HelpMe\Exception\HelpMeException;
 use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
 use srag\Notifications4Plugin\Notifications4Plugins\Utils\Notifications4PluginTrait;
 use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -138,6 +138,7 @@ abstract class Recipient {
 
 		$fields_ = [
 			"project" => $this->support->getProject()->getProjectName() . " (" . $this->support->getProject()->getProjectKey() . ")",
+			"issue_type" => $this->support->getIssueType(),
 			"title" => $this->support->getTitle(),
 			"name" => $this->support->getName(),
 			"login" => $this->support->getLogin(),

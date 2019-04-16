@@ -23,10 +23,12 @@ config_project_fix_version#:#Fix version
 config_project_fix_version_info#:#Backlog, ...
 config_project_issue_type#:#Issue type
 config_project_issue_type_info#:#Task, Bug, Support, ...
+config_project_issue_types#:#Issue types
 config_project_key#:#Key
 config_project_key_info#:#Using for create support, for example Jira project key
 config_project_name#:#Name
 config_project_name_info#:#Is displayed in the project selection
+config_project_show_tickets#:#Show tickets
 config_project_url_key#:#Url key
 config_project_url_key_info#:#Using in support link
 config_recipient#:#Form recipient
@@ -43,11 +45,18 @@ config_saved_project#:#Project %s saved
 config_send_confirmation_email#:#Send confirmation email receipt of support request to user
 config_send_email_address#:#Email address
 config_support_link#:#Support link
+config_usage_1_info#:#If you want to use the 'Show tickets' feature, please install and activate the HelpMeCron plugin
+config_usage_2_info#:#In order you can use the 'Show tickets' feature, you need to give at least one project read access
+cron_srsu_fetch_jira_tickets#:#Fetch jira tickets
+cron_srsu_fetch_jira_tickets_description#:#Fetch jira tickets and cache
+cron_status#:#Fetch %1$s ticket(s) of %2$s project(s) from Jira
 support_cancel#:#Cancel
 support_close#:#Close
 support_datetime#:#Date & time
 support_description#:#Description
 support_email#:#Email address
+support_issue_type#:#Issue type
+support_issue_type_info#:#Will shown based of project selection
 support_login#:#Login
 support_name#:#Name
 support_phone#:#Phone
@@ -58,7 +67,14 @@ support_reproduce_steps#:#Steps to Reproduce
 support_screenshots#:#Screenshots
 support_sent_failure#:#Sorry, your support request could not be sent
 support_sent_success#:#Thank you for your support request. A confirmation email has been sent to you
+support_show_tickets#:#Show tickets
+support_show_tickets_of_selected_project#:#Show tickets of selected project
 support_submit#:#Submit
 support_support#:#Support
 support_system_infos#:#System infos
 support_title#:#Title
+tickets_tickets#:#Tickets
+tickets_ticket_issue_type#:#Issue type
+tickets_ticket_project_url_key#:#Project
+tickets_ticket_priority#:#Priority
+tickets_ticket_title#:#Title

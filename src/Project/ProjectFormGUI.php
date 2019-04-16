@@ -2,11 +2,13 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
+use ilCheckboxInputGUI;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilTextInputGUI;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigFormGUI;
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
+use srag\CustomInputGUIs\HelpMe\MultiLineInputGUI\MultiLineInputGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -60,22 +62,24 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				case "project_name":
 					return $this->project->getProjectName();
 
-				case "project_issue_type":
-					return $this->project->getProjectIssueType();
+				case "project_issue_types":
+					return $this->project->getProjectIssueTypes();
 
-				case "project_fix_version":
-					return $this->project->getProjectFixVersion();
+				case "project_show_tickets":
+					return $this->project->isProjectShowTickets();
 
 				default:
 					break;
 			}
 		} else {
 			switch ($key) {
-				case "project_issue_type":
-					return Project::DEFAULT_ISSUE_TYPE;
-
-				case "project_fix_version":
-					return Project::DEFAULT_FIX_VERSION;
+				case "project_issue_types":
+					return [
+						[
+							"issue_type" => Project::DEFAULT_ISSUE_TYPE,
+							"fix_version" => Project::DEFAULT_FIX_VERSION
+						]
+					];
 
 				default:
 					break;
@@ -118,6 +122,8 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initFields()/*: void*/ {
+		self::tickets()->showUsageConfigHint();
+
 		$this->fields = [
 			"project_key" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
@@ -131,13 +137,30 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
 				self::PROPERTY_REQUIRED => true
 			],
-			"project_issue_type" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => true
+			"project_issue_types" => [
+				self::PROPERTY_CLASS => MultiLineInputGUI::class,
+				self::PROPERTY_REQUIRED => true,
+				self::PROPERTY_MULTI => true,
+				"setShowLabel" => true,
+				self::PROPERTY_SUBITEMS => [
+					"issue_type" => [
+						self::PROPERTY_CLASS => ilTextInputGUI::class,
+						self::PROPERTY_REQUIRED => true,
+						"setTitle" => $this->txt("project_issue_type")
+					],
+					"fix_version" => [
+						self::PROPERTY_CLASS => ilTextInputGUI::class,
+						self::PROPERTY_REQUIRED => false,
+						"setTitle" => $this->txt("project_fix_version")
+					]
+				],
+				"setInfo" => self::output()->getHTML(self::dic()->ui()->factory()->listing()->descriptive([
+					$this->txt("project_issue_type") => $this->txt("project_issue_type_info"),
+					$this->txt("project_fix_version") => $this->txt("project_fix_version_info")
+				]))
 			],
-			"project_fix_version" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => false
+			"project_show_tickets" => [
+				self::PROPERTY_CLASS => ilCheckboxInputGUI::class
 			]
 		];
 	}
@@ -156,14 +179,14 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 	 */
 	public function storeForm(): bool {
 		if ($this->project === null) {
-			$this->project = new Project();
+			$this->project = self::projects()->factory()->newInstance();
 		}
 
 		if (!parent::storeForm()) {
 			return false;
 		}
 
-		$this->project->store();
+		self::projects()->storeInstance($this->project);
 
 		return true;
 	}
@@ -187,12 +210,12 @@ class ProjectFormGUI extends ActiveRecordConfigFormGUI {
 				$this->project->setProjectName(strval($value));
 				break;
 
-			case "project_issue_type":
-				$this->project->setProjectIssueType(strval($value));
+			case "project_issue_types":
+				$this->project->setProjectIssueTypes(array_values($value));
 				break;
 
-			case "project_fix_version":
-				$this->project->setProjectFixVersion(strval($value));
+			case "project_show_tickets":
+				$this->project->setProjectShowTickets(boolval($value));
 				break;
 
 			default:

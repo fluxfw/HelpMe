@@ -10,11 +10,10 @@ use ilSelectInputGUI;
 use ilSession;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use Sinergi\BrowserDetector\Browser;
-use Sinergi\BrowserDetector\Os;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -32,7 +31,11 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @var Support|null
 	 */
-	protected $support = NULL;
+	protected $support = null;
+	/**
+	 * @var Project|null
+	 */
+	protected $project = null;
 
 
 	/**
@@ -42,12 +45,8 @@ class SupportFormGUI extends PropertyFormGUI {
 		$key) {
 		switch ($key) {
 			case "project":
-				$project_id = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
-
-				if ($project_id !== NULL) {
-					ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_ID);
-
-					return intval($project_id);
+				if ($this->project !== null) {
+					return $this->project->getProjectUrlKey();
 				}
 				break;
 
@@ -67,13 +66,13 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "system_infos":
-				return $this->getBrowserInfos();
+				return self::supports()->getBrowserInfos();
 
 			default:
 				break;
 		}
 
-		return NULL;
+		return null;
 	}
 
 
@@ -101,13 +100,27 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initFields()/*: void*/ {
+		// Preselect project (Support link)
+		$project_url_key = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY);
+		if (!empty($project_url_key)) {
+			ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY);
+
+			$this->project = self::projects()->getProjectByUrlKey($project_url_key);
+		}
+
 		$this->fields = [
 			"project" => [
-				self::PROPERTY_CLASS => ilSelectInputGUI::class,
+				self::PROPERTY_CLASS => ProjectSelectInputGUI::class,
 				self::PROPERTY_REQUIRED => true,
 				self::PROPERTY_OPTIONS => [
 						"" => "&lt;" . $this->txt("please_select") . "&gt;"
 					] + self::projects()->getProjectsOptions()
+			],
+			"issue_type" => [
+				self::PROPERTY_CLASS => IssueTypeSelectInputGUI::class,
+				self::PROPERTY_REQUIRED => true,
+				self::PROPERTY_OPTIONS => [],
+				self::PROPERTY_DISABLED => true
 			],
 			"title" => [
 				self::PROPERTY_CLASS => ilTextInputGUI::class,
@@ -177,7 +190,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	 * @inheritdoc
 	 */
 	public function storeForm(): bool {
-		$this->support = new Support();
+		$this->support = self::supports()->factory()->newInstance();
 
 		$time = time();
 		$this->support->setTime($time);
@@ -193,7 +206,12 @@ class SupportFormGUI extends PropertyFormGUI {
 		$key, $value)/*: void*/ {
 		switch ($key) {
 			case "project":
-				$this->support->setProject(self::projects()->getProjectById(intval($value)));
+				$this->support->setProject($this->project);
+				break;
+
+			case "issue_type":
+				$this->support->setIssueType($value);
+				$this->support->setFixVersion(self::projects()->getFixVersionForIssueType($this->project, $this->support->getIssueType()));
 				break;
 
 			case "title":
@@ -242,7 +260,7 @@ class SupportFormGUI extends PropertyFormGUI {
 				break;
 
 			case "system_infos":
-				$this->support->setSystemInfos($this->getBrowserInfos());
+				$this->support->setSystemInfos(self::supports()->getBrowserInfos());
 				break;
 
 			case "screenshots":
@@ -258,25 +276,42 @@ class SupportFormGUI extends PropertyFormGUI {
 
 
 	/**
-	 * Get browser infos
-	 *
-	 * @return string "Browser Version / System Version"
-	 */
-	protected function getBrowserInfos(): string {
-		$browser = new Browser();
-		$os = new Os();
-
-		$infos = $browser->getName() . (($browser->getVersion() !== Browser::UNKNOWN) ? " " . $browser->getVersion() : "") . " / " . $os->getName()
-			. (($os->getVersion() !== Os::UNKNOWN) ? " " . $os->getVersion() : "");
-
-		return $infos;
-	}
-
-
-	/**
 	 * @return Support
 	 */
 	public function getSupport(): Support {
 		return $this->support;
+	}
+
+
+	/**
+	 * @return Project|null
+	 */
+	public function getProject()/*: ?Project*/ {
+		return $this->project;
+	}
+
+
+	/**
+	 * @param Project|null $project
+	 */
+	public function setProject(/*?*/
+		Project $project = null)/*: void*/ {
+		$this->project = $project;
+	}
+
+
+	/**
+	 * @return ProjectSelectInputGUI
+	 */
+	public function extractProjectSelector(): ProjectSelectInputGUI {
+		return $this->getItemByPostVar("project");
+	}
+
+
+	/**
+	 * @return IssueTypeSelectInputGUI
+	 */
+	public function extractIssueTypeSelector(): IssueTypeSelectInputGUI {
+		return $this->getItemByPostVar("issue_type");
 	}
 }

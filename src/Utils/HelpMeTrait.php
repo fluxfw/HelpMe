@@ -4,7 +4,9 @@ namespace srag\Plugins\HelpMe\Utils;
 
 use srag\Plugins\HelpMe\Access\Access;
 use srag\Plugins\HelpMe\Access\Ilias;
-use srag\Plugins\HelpMe\Project\Projects;
+use srag\Plugins\HelpMe\Project\Repository as ProjectRepository;
+use srag\Plugins\HelpMe\Support\Repository as SupportRepository;
+use srag\Plugins\HelpMe\Ticket\Repository as TicketRepository;
 
 /**
  * Trait HelpMeTrait
@@ -32,9 +34,25 @@ trait HelpMeTrait {
 
 
 	/**
-	 * @return Projects
+	 * @return ProjectRepository
 	 */
-	protected static function projects(): Projects {
-		return Projects::getInstance();
+	protected static function projects(): ProjectRepository {
+		return ProjectRepository::getInstance();
+	}
+
+
+	/**
+	 * @return SupportRepository
+	 */
+	protected static function supports(): SupportRepository {
+		return SupportRepository::getInstance();
+	}
+
+
+	/**
+	 * @return TicketRepository
+	 */
+	protected static function tickets(): TicketRepository {
+		return TicketRepository::getInstance();
 	}
 }

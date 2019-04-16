@@ -1,13 +1,13 @@
 <?php
 
-namespace srag\HelpMe\Exception;
+namespace srag\Plugins\HelpMe\Exception;
 
 use ilException;
 
 /**
  * Class HelpMeException
  *
- * @package srag\HelpMe\Exception
+ * @package srag\Plugins\HelpMe\Exception
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

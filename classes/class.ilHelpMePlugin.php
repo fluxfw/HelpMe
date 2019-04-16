@@ -1,11 +1,15 @@
 <?php
 
 require_once __DIR__ . "/../vendor/autoload.php";
+if (file_exists(__DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")) {
+	require_once __DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php";
+}
 require_once __DIR__ . "/../../Notifications4Plugins/vendor/autoload.php";
 
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Project\Project;
+use srag\Plugins\HelpMe\Ticket\Ticket;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
 
@@ -76,5 +80,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	protected function deleteData()/*: void*/ {
 		self::dic()->database()->dropTable(Config::TABLE_NAME, false);
 		self::dic()->database()->dropTable(Project::TABLE_NAME, false);
+		self::dic()->database()->dropTable(Ticket::TABLE_NAME, false);
 	}
 }

@@ -8,7 +8,6 @@ use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
-use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Support\Support;
 
 /**
@@ -27,7 +26,11 @@ class RecipientCreateJiraTicket extends Recipient {
 	/**
 	 * @var string
 	 */
-	protected $issue_key;
+	protected $ticket_key = "";
+	/**
+	 * @var string
+	 */
+	protected $ticket_title = "";
 
 
 	/**
@@ -40,18 +43,7 @@ class RecipientCreateJiraTicket extends Recipient {
 	public function __construct(Support $support) {
 		parent::__construct($support);
 
-		$this->jira_curl = new JiraCurl();
-
-		$this->jira_curl->setJiraDomain(Config::getField(Config::KEY_JIRA_DOMAIN));
-
-		$this->jira_curl->setJiraAuthorization(Config::getField(Config::KEY_JIRA_AUTHORIZATION));
-
-		$this->jira_curl->setJiraUsername(Config::getField(Config::KEY_JIRA_USERNAME));
-		$this->jira_curl->setJiraPassword(Config::getField(Config::KEY_JIRA_PASSWORD));
-
-		$this->jira_curl->setJiraConsumerKey(Config::getField(Config::KEY_JIRA_CONSUMER_KEY));
-		$this->jira_curl->setJiraPrivateKey(Config::getField(Config::KEY_JIRA_PRIVATE_KEY));
-		$this->jira_curl->setJiraAccessToken(Config::getField(Config::KEY_JIRA_ACCESS_TOKEN));
+		$this->jira_curl = self::supports()->initJiraCurl();
 	}
 
 
@@ -67,6 +59,12 @@ class RecipientCreateJiraTicket extends Recipient {
 		$this->addScreenshoots();
 
 		$this->sendConfirmationMail();
+
+		if (self::tickets()->isEnabled()) {
+			$ticket = self::tickets()->factory()->fromSupport($this->support, $this->ticket_key, $this->ticket_title);
+
+			self::tickets()->storeInstance($ticket);
+		}
 	}
 
 
@@ -80,11 +78,10 @@ class RecipientCreateJiraTicket extends Recipient {
 	 * @throws Notifications4PluginException
 	 */
 	protected function createJiraTicket()/*: void*/ {
-		$issue_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()->getProjectKey(), $this->support->getProject()
-			->getProjectIssueType(), $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getProject()
-			->getProjectFixVersion());
+		$this->ticket_title = $this->getSubject(self::CREATE_JIRA_TICKET);
 
-		$this->issue_key = $issue_key;
+		$this->ticket_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()
+			->getProjectKey(), $this->support->getIssueType(), $this->ticket_title, $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getFixVersion());
 	}
 
 
@@ -96,7 +93,7 @@ class RecipientCreateJiraTicket extends Recipient {
 	 */
 	protected function addScreenshoots()/*: void*/ {
 		foreach ($this->support->getScreenshots() as $screenshot) {
-			$this->jira_curl->addAttachmentToIssue($this->issue_key, $screenshot->getName(), $screenshot->getMimeType(), $screenshot->getPath());
+			$this->jira_curl->addAttachmentToIssue($this->ticket_key, $screenshot->getName(), $screenshot->getMimeType(), $screenshot->getPath());
 		}
 	}
 }

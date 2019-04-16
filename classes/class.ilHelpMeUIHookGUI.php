@@ -1,8 +1,12 @@
 <?php
 
+use ILIAS\UI\Component\Link\Standard;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Support\IssueTypeSelectInputGUI;
+use srag\Plugins\HelpMe\Support\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\Support\SupportGUI;
+use srag\Plugins\HelpMe\Ticket\TicketsGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -23,7 +27,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	const TEMPLATE_SHOW = "template_show";
 	const PART_1 = "a";
 	const PART_2 = "b";
-	const SESSION_PROJECT_ID = ilHelpMePlugin::PLUGIN_ID . "_project_id";
+	const SESSION_PROJECT_URL_KEY = ilHelpMePlugin::PLUGIN_ID . "_project_url_key";
 	/**
 	 * @var bool[]
 	 */
@@ -61,6 +65,9 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 					$screenshot = new ScreenshotsInputGUI();
 					$screenshot->withPlugin(self::plugin());
 					$screenshot->initJS();
+
+					self::dic()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
+
 					self::dic()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
 
 					// Fix some pages may not load Form.js
@@ -83,22 +90,27 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 					$helpme_js_pos = stripos($html, $helpme_js);
 					if ($helpme_js_pos !== false) {
 
-						$support_button_tpl = self::plugin()->template("helpme_support_button.html");
-						$support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT));
-						$support_button_tpl->setVariable("SUPPORT_LINK", self::dic()->ctrl()->getLinkTargetByClass([
-							ilUIPluginRouterGUI::class,
-							SupportGUI::class
-						], SupportGUI::CMD_ADD_SUPPORT, "", true));
+						$support_button = $this->getSupportButton();
 
 						$screenshot = new ScreenshotsInputGUI();
 						$screenshot->withPlugin(self::plugin());
 
-						$project_id = ilSession::get(self::SESSION_PROJECT_ID);
+						$project_id = ilSession::get(self::SESSION_PROJECT_URL_KEY);
 
 						// Could not use onload code because it not available on all pages
 						$html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode($this->getModal()) . ';
-il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode(self::output()->getHTML($support_button_tpl)) . ';
+il.HelpMe.SUPPORT_BUTTON_TEMPLATE = ' . json_encode($support_button) . ';
+il.HelpMe.GET_SHOW_TICKETS_OF_PROJECT_URL = ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
+								ilUIPluginRouterGUI::class,
+								SupportGUI::class,
+								ProjectSelectInputGUI::class
+							], ProjectSelectInputGUI::CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT, "", true)) . ';
+il.HelpMe.GET_ISSUE_TYPES_OF_PROJECT_URL = ' . json_encode(self::dic()->ctrl()->getLinkTargetByClass([
+								ilUIPluginRouterGUI::class,
+								SupportGUI::class,
+								IssueTypeSelectInputGUI::class
+							], IssueTypeSelectInputGUI::CMD_GET_ISSUE_TYPES_OF_PROJECT, "", true)) . ';
 il.HelpMe.init();
 ' . $screenshot->getJSOnLoadCode() . '
 ' . ($project_id !== null ? 'il.HelpMe.autoOpen = true;' : '') . '
@@ -111,6 +123,41 @@ il.HelpMe.init();
 		}
 
 		return parent::getHTML($a_comp, $a_part, $a_par);
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getSupportButton(): string {
+		$buttons = [
+			self::dic()->ui()->factory()->link()->standard(self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT), self::dic()->ctrl()
+				->getLinkTargetByClass([
+					ilUIPluginRouterGUI::class,
+					SupportGUI::class
+				], SupportGUI::CMD_ADD_SUPPORT, "", true))
+		];
+
+		if (self::tickets()->isEnabled()) {
+			$buttons[] = self::dic()->ui()->factory()->link()->standard(self::plugin()
+				->translate("show_tickets", SupportGUI::LANG_MODULE_SUPPORT), self::tickets()->getLink());
+
+			$support_button_tpl = self::plugin()->template("helpme_support_button_dropdown.html");
+		} else {
+			$support_button_tpl = self::plugin()->template("helpme_support_button.html");
+		}
+
+		$support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT));
+
+		$support_button_tpl->setVariable("BUTTONS", self::output()->getHTML(array_map(function (Standard $button): string {
+			return self::output()->getHTML([
+				"<li>",
+				$button,
+				"</li>"
+			]);
+		}, $buttons)));
+
+		return self::output()->getHTML($support_button_tpl);
 	}
 
 
@@ -149,17 +196,24 @@ il.HelpMe.init();
 				$project_url_key = "";
 			}
 
-			$project = self::projects()->getProjectByUrlKey($project_url_key);
+			if (strpos($project_url_key, "tickets") === 0) {
+				// Tickets
+				$project_url_key = substr($project_url_key, strlen("tickets"));
+				if ($project_url_key[0] === "_") {
+					$project_url_key = substr($project_url_key, 1);
+				}
 
-			if ($project !== null) {
-				$project_id = $project->getProjectId();
+				self::dic()->ctrl()->initBaseClass(ilUIPluginRouterGUI::class); // Fix ILIAS bug
+
+				self::dic()->ctrl()->setParameterByClass(TicketsGUI::class, "project_url_key", $project_url_key);
+
+				self::dic()->ctrl()->redirectByClass([ ilUIPluginRouterGUI::class, TicketsGUI::class ], TicketsGUI::CMD_SET_PROJECT_FILTER);
 			} else {
-				$project_id = "";
+				// Support
+				ilSession::set(self::SESSION_PROJECT_URL_KEY, $project_url_key);
+
+				self::dic()->ctrl()->redirectToURL("/");
 			}
-
-			ilSession::set(self::SESSION_PROJECT_ID, $project_id);
-
-			self::dic()->ctrl()->redirectToURL("/");
 		}
 	}
 }

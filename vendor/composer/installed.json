@@ -52,17 +52,17 @@
     },
     {
         "name": "srag/activerecordconfig",
-        "version": "v0.15.0",
-        "version_normalized": "0.15.0.0",
+        "version": "v0.15.1",
+        "version_normalized": "0.15.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-            "reference": "9e8c9460ef608b97a76e83f15e98528f7629c2be"
+            "reference": "a004b786de3a7f8362709cdfd8cbc8c115cc3a8d"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/9e8c9460ef608b97a76e83f15e98528f7629c2be",
-            "reference": "9e8c9460ef608b97a76e83f15e98528f7629c2be",
+            "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/a004b786de3a7f8362709cdfd8cbc8c115cc3a8d",
+            "reference": "a004b786de3a7f8362709cdfd8cbc8c115cc3a8d",
             "shasum": ""
         },
         "require": {
@@ -70,7 +70,7 @@
             "srag/custominputguis": ">=0.1.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-03-29T11:28:20+00:00",
+        "time": "2019-04-11T11:24:17+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -100,24 +100,24 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "v0.19.10",
-        "version_normalized": "0.19.10.0",
+        "version": "v0.19.11",
+        "version_normalized": "0.19.11.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "505b631e3b79c3b150700845d422dcb7fb0d560a"
+            "reference": "db5b36b4f230cb3259989a7fb840cf8ef67f44c7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/505b631e3b79c3b150700845d422dcb7fb0d560a",
-            "reference": "505b631e3b79c3b150700845d422dcb7fb0d560a",
+            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/db5b36b4f230cb3259989a7fb840cf8ef67f44c7",
+            "reference": "db5b36b4f230cb3259989a7fb840cf8ef67f44c7",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-03-29T11:30:43+00:00",
+        "time": "2019-04-09T11:06:27+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -196,24 +196,24 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "v0.3.0",
-        "version_normalized": "0.3.0.0",
+        "version": "v0.4.5",
+        "version_normalized": "0.4.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "ed08973e65501e11d474e9d04bb313256236d42f"
+            "reference": "98ffa10339f09db25eb150cfab6afc5cea7f19df"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/ed08973e65501e11d474e9d04bb313256236d42f",
-            "reference": "ed08973e65501e11d474e9d04bb313256236d42f",
+            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/98ffa10339f09db25eb150cfab6afc5cea7f19df",
+            "reference": "98ffa10339f09db25eb150cfab6afc5cea7f19df",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-03-28T07:25:38+00:00",
+        "time": "2019-04-05T11:07:45+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

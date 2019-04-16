@@ -14,6 +14,16 @@ il.HelpMe = {
 	/**
 	 * @type {string}
 	 */
+	GET_ISSUE_TYPES_OF_PROJECT_URL: "",
+
+	/**
+	 * @type {string}
+	 */
+	GET_SHOW_TICKETS_OF_PROJECT_URL: "",
+
+	/**
+	 * @type {string}
+	 */
 	MODAL_TEMPLATE: "",
 
 	/**
@@ -61,14 +71,18 @@ il.HelpMe = {
 	},
 
 	/**
+	 * @param {Event|null} e
+	 *
 	 * @returns {boolean}
 	 */
-	click: function () {
+	click: function (e = null) {
+		if (e !== null) {
+			e.preventDefault();
+		}
+
 		var get_url = this.button.attr("href");
 
 		$.get(get_url, this.show.bind(this));
-
-		return false;
 	},
 
 	/**
@@ -104,11 +118,16 @@ il.HelpMe = {
 	initButton: function () {
 		this.li = $(this.SUPPORT_BUTTON_TEMPLATE);
 
-		this.button = this.li.children(0);
+		if (this.li.hasClass("dropdown")) {
+			this.button = $("li > a:first", this.li); // Support button is the first link  in the dropdown
+		} else {
+			this.button = $("> a:first", this.li)
+		}
 
 		this.button.click(this.click.bind(this));
 
-		var test = this.IDS.every(function (id) {
+		// Checks insert support button near a exists ID, depends which ILIAS page
+		var append_at_end = this.IDS.every(function (id) {
 			var beforeLi = document.getElementById(id);
 
 			if (beforeLi !== null) {
@@ -124,7 +143,7 @@ il.HelpMe = {
 			return true;
 		}, this);
 
-		if (test) {
+		if (append_at_end) {
 			$("#ilTopBarNav").append(this.li);
 		}
 	},
@@ -141,11 +160,63 @@ il.HelpMe = {
 	},
 
 	/**
+	 *
+	 */
+	projectChangeIssueTypes: function () {
+		// First empty previous project issue types (Without "please select")
+		var $old_issue_type_select = $("#issue_type");
+		$old_issue_type_select.children().first().nextAll().remove();
+		$old_issue_type_select.prop("disabled", true);
+
+		var $projects_select = $("#project");
+		var project_url_key = $projects_select.val();
+
+		var get_url = this.GET_ISSUE_TYPES_OF_PROJECT_URL;
+		get_url += "&project_url_key=" + project_url_key;
+
+		$.get(get_url, this.projectChangeIssueTypesShow.bind(this));
+	},
+
+	/**
+	 * @param {string} new_issue_types_select_html
+	 */
+	projectChangeIssueTypesShow: function (new_issue_types_select_html) {
+		var $old_issue_type_select = $("#issue_type");
+
+		$old_issue_type_select.replaceWith(new_issue_types_select_html);
+	},
+
+	/**
+	 *
+	 */
+	projectChangeShowTickets: function () {
+		// First delete previous tickets link
+		var $projects_select = $("#project");
+		$projects_select.next().remove();
+
+		var project_url_key = $projects_select.val();
+
+		var get_url = this.GET_SHOW_TICKETS_OF_PROJECT_URL;
+		get_url += "&project_url_key=" + project_url_key;
+
+		$.get(get_url, this.projectChangeShowTicketsShow.bind(this));
+	},
+
+	/**
+	 * @param {string} new_tickets_link_html
+	 */
+	projectChangeShowTicketsShow: function (new_tickets_link_html) {
+		var $projects_select = $("#project");
+
+		$projects_select.after(new_tickets_link_html);
+	},
+
+	/**
 	 * @param {string} html
 	 */
 	show: function (html) {
 		if (html.indexOf("form_helpme_form") === -1) {
-			// Fix login page
+			// Fix login page (Needs a second request)
 			if (this.requestAgain) {
 				this.requestAgain = false;
 
@@ -159,26 +230,40 @@ il.HelpMe = {
 
 		this.modal.find(".modal-body").html(html);
 
-		// Apply last screenshots
-		var screenshots = [];
-		if (this.screenshots !== null) {
-			screenshots = this.screenshots.screenshots;
+		// Check if the results html contains the support form for prevent js errors
+		if (html.indexOf("form_helpme_form") !== -1) {
 
+			// Apply last screenshots
+			var screenshots = [];
+			if (this.screenshots !== null) {
+				screenshots = this.screenshots.screenshots;
+
+			}
+			this.screenshots = il.ScreenshotsInputGUI.lastInstance();
+			if (this.screenshots !== undefined) {
+				this.screenshots.screenshots = screenshots;
+				this.screenshots.modal = this.modal;
+				this.screenshots.updateScreenshots();
+				this.screenshots.submitButtonID = "helpme_submit";
+				this.screenshots.submitFunction = this.show.bind(this);
+			} else {
+				this.screenshots = null;
+			}
+
+			var $cancel = $("#helpme_cancel");
+			var $projects_select = $("#project");
+
+			$cancel.click(this.cancel.bind(this));
+
+			// Update project ticket issues
+			$projects_select.change(this.projectChangeIssueTypes.bind(this));
+			$('input[type="hidden"][name="issue_type"]').remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
+
+			// Update project show tickets link
+			if ($projects_select.parent(".project_select_input").length > 0) {
+				$projects_select.change(this.projectChangeShowTickets.bind(this));
+			}
 		}
-		this.screenshots = il.ScreenshotsInputGUI.lastInstance();
-		if (this.screenshots !== undefined) {
-			this.screenshots.screenshots = screenshots;
-			this.screenshots.modal = this.modal;
-			this.screenshots.updateScreenshots();
-			this.screenshots.submitButtonID = "helpme_submit";
-			this.screenshots.submitFunction = this.show.bind(this);
-		} else {
-			this.screenshots = null;
-		}
-
-		var $cancel = $("#helpme_cancel");
-
-		$cancel.click(this.cancel.bind(this));
 
 		this.modal.modal("show");
 	}

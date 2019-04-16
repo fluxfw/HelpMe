@@ -9,6 +9,8 @@ git clone https://github.com/studer-raimann/HelpMe.git HelpMe
 ```
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
+Please also install and enable [HelpMeCron](https://github.com/studer-raimann/HelpMeCron), if you want to use the show tickets feature.
+
 If yout want use the Jira recipient with oAuth authorization you can find a guide to config your Jira installation: https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/
 
 You can lock errors in the ILIAS log file like
@@ -62,14 +64,23 @@ Text:
 Support button:
 ![Support button](./doc/screenshots/support_button.png)
 
-Support gui:
-![Support gui](./doc/screenshots/support_gui.png)
+Support button with enabled show tickets:
+![Support button with enabled show tickets](./doc/screenshots/support_button_dropdown.png)
+
+Support UI:
+![Support UI](./doc/screenshots/support_ui.png)
+
+Show tickets UI:
+![Show tickets UI](./doc/screenshots/show_tickets_ui.png)
 
 Config:
 ![Config](./doc/screenshots/config.png)
 
-Config projects:
-![Config projects](./doc/screenshots/config_projects.png)
+Config projects table:
+![Config projects table](./doc/screenshots/config_projects_table.png)
+
+Config project:
+![Config project](./doc/screenshots/config_project.png)
 
 ### Known issues
 - There is a known issue in the ILIAS core object svg icons (The `foreignObject` tag). This tag prevents to take screenshots in Chrome/Safari, because it could reveal something about the current user. [Here](https://mantis.ilias.de/view.php?id=25040) is the ILIAS Mantis report
@@ -78,6 +89,7 @@ Config projects:
 * ILIAS 5.3 or ILIAS 5.4
 * PHP >=7.0
 * [composer](https://getcomposer.org)
+* [HelpMeCron](https://github.com/studer-raimann/HelpMeCron)
 * [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
 * [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
 * [srag/activerecordconfig](https://packagist.org/packages/srag/activerecordconfig)

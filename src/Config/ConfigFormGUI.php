@@ -58,6 +58,8 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	 * @inheritdoc
 	 */
 	protected function initFields()/*: void*/ {
+		self::tickets()->showUsageConfigHint();
+
 		$this->fields = [
 			Config::KEY_RECIPIENT => [
 				self::PROPERTY_CLASS => ilRadioGroupInputGUI::class,

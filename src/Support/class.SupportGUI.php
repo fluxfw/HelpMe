@@ -49,6 +49,14 @@ class SupportGUI {
 		$next_class = self::dic()->ctrl()->getNextClass($this);
 
 		switch (strtolower($next_class)) {
+			case strtolower(ProjectSelectInputGUI::class):
+				self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractProjectSelector());
+				break;
+
+			case strtolower(IssueTypeSelectInputGUI::class):
+				self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractIssueTypeSelector());
+				break;
+
 			default:
 				$cmd = self::dic()->ctrl()->getCmd();
 

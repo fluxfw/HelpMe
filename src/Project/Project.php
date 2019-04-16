@@ -80,21 +80,27 @@ class Project extends ActiveRecord {
 	 */
 	protected $project_name = "";
 	/**
-	 * @var string
+	 * @var array
 	 *
 	 * @con_has_field    true
 	 * @con_fieldtype    text
 	 * @con_is_notnull   true
 	 */
-	protected $project_issue_type = self::DEFAULT_ISSUE_TYPE;
+	protected $project_issue_types = [
+		[
+			"issue_type" => Project::DEFAULT_ISSUE_TYPE,
+			"fix_version" => Project::DEFAULT_FIX_VERSION
+		]
+	];
 	/**
-	 * @var string
+	 * @var bool
 	 *
 	 * @con_has_field    true
-	 * @con_fieldtype    text
+	 * @con_fieldtype    integer
+	 * @con_length       1
 	 * @con_is_notnull   true
 	 */
-	protected $project_fix_version = self::DEFAULT_FIX_VERSION;
+	protected $project_show_tickets = false;
 
 
 	/**
@@ -119,6 +125,12 @@ class Project extends ActiveRecord {
 		$field_value = $this->{$field_name};
 
 		switch ($field_name) {
+			case "project_show_tickets":
+				return ($field_value ? 1 : 0);
+
+			case "project_issue_types":
+				return json_encode($field_value);
+
 			default:
 				return null;
 		}
@@ -136,6 +148,12 @@ class Project extends ActiveRecord {
 		switch ($field_name) {
 			case "project_id":
 				return intval($field_value);
+
+			case "project_show_tickets":
+				return boolval($field_value);
+
+			case "project_issue_types":
+				return (array)json_decode($field_value, true);
 
 			default:
 				return null;
@@ -208,33 +226,33 @@ class Project extends ActiveRecord {
 
 
 	/**
-	 * @return string
+	 * @return array
 	 */
-	public function getProjectIssueType(): string {
-		return $this->project_issue_type;
+	public function getProjectIssueTypes(): array {
+		return $this->project_issue_types;
 	}
 
 
 	/**
-	 * @param string $project_issue_type
+	 * @param array $project_issue_types
 	 */
-	public function setProjectIssueType(string $project_issue_type)/*: void*/ {
-		$this->project_issue_type = $project_issue_type;
+	public function setProjectIssueTypes(array $project_issue_types)/*: void*/ {
+		$this->project_issue_types = $project_issue_types;
 	}
 
 
 	/**
-	 * @return string
+	 * @return bool
 	 */
-	public function getProjectFixVersion(): string {
-		return $this->project_fix_version;
+	public function isProjectShowTickets(): bool {
+		return $this->project_show_tickets;
 	}
 
 
 	/**
-	 * @param string $project_fix_version
+	 * @param bool $project_show_tickets
 	 */
-	public function setProjectFixVersion(string $project_fix_version)/*: void*/ {
-		$this->project_fix_version = $project_fix_version;
+	public function setProjectShowTickets(bool $project_show_tickets)/*: void*/ {
+		$this->project_show_tickets = $project_show_tickets;
 	}
 }
