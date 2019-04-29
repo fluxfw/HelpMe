@@ -4,6 +4,7 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
+use srag\Plugins\HelpMe\Notification\Ctrl\Notifications4PluginCtrl;
 use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Project\ProjectFormGUI;
 use srag\Plugins\HelpMe\Project\ProjectsTableGUI;
@@ -28,7 +29,14 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	/**
 	 * @var array
 	 */
-	protected static $tabs = [ self::TAB_CONFIGURATION => ConfigFormGUI::class, self::TAB_PROJECTS => ProjectsTableGUI::class ];
+	protected static $tabs = [
+		self::TAB_CONFIGURATION => ConfigFormGUI::class,
+		Notifications4PluginCtrl::TAB_NOTIFICATIONS => [
+			Notifications4PluginCtrl::class,
+			Notifications4PluginCtrl::CMD_LIST_NOTIFICATIONS
+		],
+		self::TAB_PROJECTS => ProjectsTableGUI::class
+	];
 	/**
 	 * @var array
 	 */

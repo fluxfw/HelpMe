@@ -17,6 +17,7 @@ config_jira_password#:#Jira password
 config_jira_private_key#:#Jira private key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira username
+config_notifications#:#Notifications
 config_priorities#:#Priorities
 config_projects#:#Projects
 config_project_fix_version#:#Fix version
@@ -52,6 +53,7 @@ cron_srsu_fetch_jira_tickets_description#:#Fetch jira tickets and cache
 cron_status#:#Fetch %1$s ticket(s) of %2$s project(s) from Jira
 support_cancel#:#Cancel
 support_close#:#Close
+support_confirmation#:#Confirmation
 support_datetime#:#Date & time
 support_description#:#Description
 support_email#:#Email address

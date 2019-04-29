@@ -18,8 +18,8 @@ You can lock errors in the ILIAS log file like
 grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
-### Notifications4Plugins
-You need to install [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
+### Notifications4Plugin
+You don't need to install, included as library
 
 You have a `support` property (See more in [Class Support](./src/Support/Support.php)) in both subject and body.
 
@@ -97,6 +97,7 @@ Config project:
 * [srag/dic](https://packagist.org/packages/srag/dic)
 * [srag/jiracurl](https://packagist.org/packages/srag/jiracurl)
 * [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
+* [srag/notifications4plugin](https://packagist.org/packages/srag/notifications4plugin)
 * [srag/removeplugindataconfirm](https://packagist.org/packages/srag/removeplugindataconfirm)
 * [babel-minify -g](https://www.npmjs.com/package/babel-minify)
 
