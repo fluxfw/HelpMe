@@ -7,7 +7,7 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
-use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
+use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
 use srag\Plugins\HelpMe\Support\Support;
 
 /**

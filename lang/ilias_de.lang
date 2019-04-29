@@ -17,6 +17,7 @@ config_jira_password#:#Jira-Passwort
 config_jira_private_key#:#Jira-Private-Key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira-Benutzername
+config_notifications#:#Benachrichtigungen
 config_priorities#:#Dringlichkeiten
 config_projects#:#Projekte
 config_project_fix_version#:#Fix-Version
@@ -52,6 +53,7 @@ cron_srsu_fetch_jira_tickets_description#:#Jira-Tickets holen und zwischenspeich
 cron_status#:#%1$s Ticket(s) von %2$s Projek(e) von Jira geholt
 support_cancel#:#Abbrechen
 support_close#:#Schliessen
+support_confirmation#:#Bestätigung
 support_datetime#:#Datum & Zeit
 support_description#:#Beschreibung
 support_email#:#E-Mail Adresse

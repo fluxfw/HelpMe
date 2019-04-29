@@ -8,15 +8,15 @@ use PHPMailer\PHPMailer\Exception as phpmailerException;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
-use srag\Notifications4Plugin\Notifications4Plugins\Exception\Notifications4PluginException;
-use srag\Notifications4Plugin\Notifications4Plugins\Utils\Notifications4PluginTrait;
+use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
+use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Exception\HelpMeException;
+use srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage;
+use srag\Plugins\HelpMe\Notification\Notification\Notification;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\Plugins\Notifications4Plugins\Notification\Language\NotificationLanguage;
-use srag\Plugins\Notifications4Plugins\Notification\Notification;
 
 /**
  * Class Recipient
