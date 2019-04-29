@@ -1,6 +1,6 @@
 # Changelog
 
-## [x]
+## [4.1.0]
 - Notifications4Plugin library
 
 ## [4.0.2]
