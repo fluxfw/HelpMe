@@ -7,6 +7,7 @@ use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Plugin\PluginInterface;
 use srag\Notifications4Plugin\HelpMe\Ctrl\AbstractCtrl;
 use srag\Notifications4Plugin\HelpMe\Notification\Language\AbstractNotificationLanguage;
+use srag\Notifications4Plugin\HelpMe\Parser\twigParser;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 
 /**
@@ -214,13 +215,24 @@ final class Repository {
 					. " WHERE name=%s", [ "text" ], [ $name ]);
 
 				if (($row = $result->fetchAssoc()) !== false) {
+
+					$notification = $this->getNotificationByName($name);
+					if ($notification !== null) {
+						return $notification;
+					}
+
 					$notification = $this->factory()->newInstance();
 
 					$notification->setName($row["name"]);
 					$notification->setTitle($row["title"]);
 					$notification->setDescription($row["description"]);
 					$notification->setDefaultLanguage($row["default_language"]);
-					$notification->setParser($row["parser"]);
+
+					if ($row["parser"] === "srag\\Notifications4Plugin\\HelpMe\\Notifications4Plugins\\Parser\\twigParser") {
+						$notification->setParser(twigParser::class);
+					} else {
+						$notification->setParser($row["parser"]);
+					}
 
 					$result2 = self::dic()->database()->queryF("SELECT * FROM " . $global_plugin_notification_language_table_name
 						. " WHERE notification_id=%s", [ "integer" ], [ $row["id"] ]);

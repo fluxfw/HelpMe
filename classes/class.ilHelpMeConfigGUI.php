@@ -31,11 +31,11 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	 */
 	protected static $tabs = [
 		self::TAB_CONFIGURATION => ConfigFormGUI::class,
+		self::TAB_PROJECTS => ProjectsTableGUI::class,
 		Notifications4PluginCtrl::TAB_NOTIFICATIONS => [
 			Notifications4PluginCtrl::class,
 			Notifications4PluginCtrl::CMD_LIST_NOTIFICATIONS
-		],
-		self::TAB_PROJECTS => ProjectsTableGUI::class
+		]
 	];
 	/**
 	 * @var array
