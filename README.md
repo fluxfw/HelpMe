@@ -90,7 +90,6 @@ Config project:
 * PHP >=7.0
 * [composer](https://getcomposer.org)
 * [HelpMeCron](https://github.com/studer-raimann/HelpMeCron)
-* [Notifications4Plugins](https://github.com/studer-raimann/Notifications4Plugins)
 * [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
 * [srag/activerecordconfig](https://packagist.org/packages/srag/activerecordconfig)
 * [srag/custominputguis](https://packagist.org/packages/srag/custominputguis)
