@@ -1,5 +1,9 @@
 # Changelog
 
+## [4.1.1]
+- Fix migrate `twigParser` class
+- Fix `fix_version` is `null` and no `string`
+
 ## [4.1.0]
 - Notifications4Plugin library
 

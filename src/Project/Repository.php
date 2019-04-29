@@ -69,7 +69,7 @@ final class Repository {
 	public function getFixVersionForIssueType(Project $project, string $issue_type): string {
 		foreach ($project->getProjectIssueTypes() as $issue_type_) {
 			if ($issue_type_["issue_type"] === $issue_type) {
-				return $issue_type_["fix_version"];
+				return strval($issue_type_["fix_version"]);
 			}
 		}
 
