@@ -3,6 +3,7 @@
 namespace srag\Plugins\HelpMe\Notification\Notification\Language;
 
 use srag\Notifications4Plugin\HelpMe\Notification\Language\AbstractNotificationLanguage;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class NotificationLanguage
@@ -13,5 +14,6 @@ use srag\Notifications4Plugin\HelpMe\Notification\Language\AbstractNotificationL
  */
 class NotificationLanguage extends AbstractNotificationLanguage {
 
+	use HelpMeTrait;
 	const TABLE_NAME = "ui_uihk_srsu_not_lang";
 }

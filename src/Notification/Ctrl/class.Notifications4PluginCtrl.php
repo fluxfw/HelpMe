@@ -6,6 +6,7 @@ use ilHelpMePlugin;
 use srag\Notifications4Plugin\HelpMe\Ctrl\AbstractCtrl;
 use srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage;
 use srag\Plugins\HelpMe\Notification\Notification\Notification;
+use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class Notifications4PluginCtrl
@@ -18,6 +19,7 @@ use srag\Plugins\HelpMe\Notification\Notification\Notification;
  */
 class Notifications4PluginCtrl extends AbstractCtrl {
 
+	use HelpMeTrait;
 	const NOTIFICATION_CLASS_NAME = Notification::class;
 	const LANGUAGE_CLASS_NAME = NotificationLanguage::class;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
@@ -26,7 +28,7 @@ class Notifications4PluginCtrl extends AbstractCtrl {
 	/**
 	 * @inheritdoc
 	 */
-	public function executeCommand() {
+	public function executeCommand()/*: void*/ {
 		self::dic()->tabs()->activateTab(self::TAB_NOTIFICATIONS);
 
 		parent::executeCommand();
