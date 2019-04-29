@@ -197,6 +197,51 @@ final class Repository {
 
 
 	/**
+	 * @param string $name |null
+	 *
+	 * @return AbstractNotification|null
+	 *
+	 * @deprecated
+	 */
+	public function migrateFromOldGlobalPlugin(string $name = null)/*: ?AbstractNotification*/ {
+		$global_plugin_notification_table_name = "sr_notification";
+		$global_plugin_notification_language_table_name = "sr_notification_lang";
+
+		if (!empty($name)) {
+			if (self::dic()->database()->tableExists($global_plugin_notification_table_name)
+				&& self::dic()->database()->tableExists($global_plugin_notification_language_table_name)) {
+				$result = self::dic()->database()->queryF("SELECT * FROM " . $global_plugin_notification_table_name
+					. " WHERE name=%s", [ "text" ], [ $name ]);
+
+				if (($row = $result->fetchAssoc()) !== false) {
+					$notification = $this->factory()->newInstance();
+
+					$notification->setName($row["name"]);
+					$notification->setTitle($row["title"]);
+					$notification->setDescription($row["description"]);
+					$notification->setDefaultLanguage($row["default_language"]);
+					$notification->setParser($row["parser"]);
+
+					$result2 = self::dic()->database()->queryF("SELECT * FROM " . $global_plugin_notification_language_table_name
+						. " WHERE notification_id=%s", [ "integer" ], [ $row["id"] ]);
+
+					while (($row2 = $result2->fetchAssoc()) !== false) {
+						$notification->setSubject($row2["subject"], $row2["language"]);
+						$notification->setText($row2["text"], $row2["language"]);
+					}
+
+					$this->storeInstance($notification);
+
+					return $notification;
+				}
+			}
+		}
+
+		return null;
+	}
+
+
+	/**
 	 * @param AbstractNotification $notification
 	 */
 	public function storeInstance(AbstractNotification $notification)/*: void*/ {
@@ -215,48 +260,5 @@ final class Repository {
 
 			self::notificationLanguage($this->language_class)->storeInstance($language);
 		}
-	}
-
-
-	/**
-	 * @param string $name
-	 *
-	 * @return AbstractNotification|null
-	 *
-	 * @deprecated
-	 */
-	public function migrateFromOldGlobalPlugin(string $name)/*: ?AbstractNotification*/ {
-		$global_plugin_notification_table_name = "sr_notification";
-		$global_plugin_notification_language_table_name = "sr_notification_lang";
-
-		if (self::dic()->database()->tableExists($global_plugin_notification_table_name)
-			&& self::dic()->database()->tableExists($global_plugin_notification_language_table_name)) {
-			$result = self::dic()->database()->queryF("SELECT * FROM " . $global_plugin_notification_table_name
-				. " WHERE name=%s", [ "text" ], [ $name ]);
-
-			if (($row = $result->fetchAssoc()) !== false) {
-				$notification = $this->factory()->newInstance();
-
-				$notification->setName($row["name"]);
-				$notification->setTitle($row["title"]);
-				$notification->setDescription($row["description"]);
-				$notification->setDefaultLanguage($row["default_language"]);
-				$notification->setParser($row["parser"]);
-
-				$result2 = self::dic()->database()->queryF("SELECT * FROM " . $global_plugin_notification_language_table_name
-					. " WHERE notification_id=%s", [ "integer" ], [ $row["id"] ]);
-
-				while (($row2 = $result2->fetchAssoc()) !== false) {
-					$notification->setSubject($row2["subject"], $row2["language"]);
-					$notification->setText($row2["text"], $row2["language"]);
-				}
-
-				$this->storeInstance($notification);
-
-				return $notification;
-			}
-		}
-
-		return null;
 	}
 }

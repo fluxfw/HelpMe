@@ -288,17 +288,17 @@
     },
     {
         "name": "srag/notifications4plugin",
-        "version": "v0.2.2",
-        "version_normalized": "0.2.2.0",
+        "version": "v0.3.0",
+        "version_normalized": "0.3.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-            "reference": "6fcbfba4134a62aaa6c1de9395e8dd1016b0222a"
+            "reference": "e22cf09dc59634f45ce5497c330f3dab25ff1fec"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/6fcbfba4134a62aaa6c1de9395e8dd1016b0222a",
-            "reference": "6fcbfba4134a62aaa6c1de9395e8dd1016b0222a",
+            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/e22cf09dc59634f45ce5497c330f3dab25ff1fec",
+            "reference": "e22cf09dc59634f45ce5497c330f3dab25ff1fec",
             "shasum": ""
         },
         "require": {
@@ -307,7 +307,7 @@
             "srag/dic": ">=0.1.0",
             "twig/twig": "1.18.0"
         },
-        "time": "2019-04-11T11:29:44+00:00",
+        "time": "2019-04-29T07:54:02+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
