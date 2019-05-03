@@ -16,7 +16,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 /**
  * Class FetchJiraTicketsJob
  *
- * @package rag\Plugins\HelpMe\Job
+ * @package srag\Plugins\HelpMe\Job
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
