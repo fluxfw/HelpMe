@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Fix select config not apply first role if "Select all" not selected
+
 ## [4.1.1]
 - Fix migrate `twigParser` class
 - Fix `fix_version` is `null` and no `string`
