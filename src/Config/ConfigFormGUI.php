@@ -163,7 +163,9 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 				break;
 
 			case ($key === Config::KEY_ROLES):
-				array_shift($value);
+				if ($value[0] === "") {
+					array_shift($value);
+				}
 
 				$value = array_map(function (string $role_id): int {
 					return intval($role_id);
