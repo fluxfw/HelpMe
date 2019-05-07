@@ -1,7 +1,8 @@
 # Changelog
 
-## [x]
+## [4.1.2]
 - Fix select config not apply first role if "Select all" not selected
+- Remove know issue, because it fixed in the latest ILIAS core version "There is a known issue in the ILIAS core object svg icons (The `foreignObject` tag). This tag prevents to take screenshots in Chrome/Safari, because it could reveal something about the current user. [Here](https://mantis.ilias.de/view.php?id=25040) is the ILIAS Mantis report
 
 ## [4.1.1]
 - Fix migrate `twigParser` class
