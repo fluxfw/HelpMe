@@ -3,10 +3,15 @@
 namespace srag\Notifications4Plugin\HelpMe\Utils;
 
 use srag\Notifications4Plugin\HelpMe\Notification\Language\Repository as NotificationLanguageRepository;
+use srag\Notifications4Plugin\HelpMe\Notification\Language\RepositoryInterface as NotificationLanguageRepositoryInterface;
 use srag\Notifications4Plugin\HelpMe\Notification\Repository as NotificationRepository;
+use srag\Notifications4Plugin\HelpMe\Notification\RepositoryInterface as NotificationRepositoryInterface;
 use srag\Notifications4Plugin\HelpMe\Parser\Repository as ParserRepository;
+use srag\Notifications4Plugin\HelpMe\Parser\RepositoryInterface as ParserRepositoryInterface;
 use srag\Notifications4Plugin\HelpMe\Sender\Repository as SenderRepository;
-use srag\Notifications4Plugin\HelpMe\UI\UI as NotificationUI;
+use srag\Notifications4Plugin\HelpMe\Sender\RepositoryInterface as SenderRepositoryInterface;
+use srag\Notifications4Plugin\HelpMe\UI\UI;
+use srag\Notifications4Plugin\HelpMe\UI\UIInterface;
 
 /**
  * Trait Notifications4PluginTrait
@@ -21,9 +26,9 @@ trait Notifications4PluginTrait {
 	 * @param string $notification_class
 	 * @param string $language_class
 	 *
-	 * @return NotificationRepository
+	 * @return NotificationRepositoryInterface
 	 */
-	protected static function notification(string $notification_class, string $language_class): NotificationRepository {
+	protected static function notification(string $notification_class, string $language_class): NotificationRepositoryInterface {
 		return NotificationRepository::getInstance($notification_class, $language_class);
 	}
 
@@ -31,33 +36,33 @@ trait Notifications4PluginTrait {
 	/**
 	 * @param string $language_class
 	 *
-	 * @return NotificationLanguageRepository
+	 * @return NotificationLanguageRepositoryInterface
 	 */
-	protected static function notificationLanguage(string $language_class): NotificationLanguageRepository {
+	protected static function notificationLanguage(string $language_class): NotificationLanguageRepositoryInterface {
 		return NotificationLanguageRepository::getInstance($language_class);
 	}
 
 
 	/**
-	 * @return NotificationUI
+	 * @return UIInterface
 	 */
-	protected static function notificationUI(): NotificationUI {
-		return NotificationUI::getInstance();
+	protected static function notificationUI(): UIInterface {
+		return UI::getInstance();
 	}
 
 
 	/**
-	 * @return ParserRepository
+	 * @return ParserRepositoryInterface
 	 */
-	protected static function parser(): ParserRepository {
+	protected static function parser(): ParserRepositoryInterface {
 		return ParserRepository::getInstance();
 	}
 
 
 	/**
-	 * @return SenderRepository
+	 * @return SenderRepositoryInterface
 	 */
-	protected static function sender(): SenderRepository {
+	protected static function sender(): SenderRepositoryInterface {
 		return SenderRepository::getInstance();
 	}
 }

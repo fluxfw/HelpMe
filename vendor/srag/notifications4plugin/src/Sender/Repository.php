@@ -3,8 +3,7 @@
 namespace srag\Notifications4Plugin\HelpMe\Sender;
 
 use srag\DIC\HelpMe\DICTrait;
-use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
-use srag\Notifications4Plugin\HelpMe\Notification\AbstractNotification;
+use srag\Notifications4Plugin\HelpMe\Notification\Notification;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 
 /**
@@ -14,20 +13,20 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Repository {
+final class Repository implements RepositoryInterface {
 
 	use DICTrait;
 	use Notifications4PluginTrait;
 	/**
-	 * @var self
+	 * @var RepositoryInterface
 	 */
 	protected static $instance = null;
 
 
 	/**
-	 * @return self
+	 * @return RepositoryInterface
 	 */
-	public static function getInstance(): self {
+	public static function getInstance(): RepositoryInterface {
 		if (self::$instance === null) {
 			self::$instance = new self();
 		}
@@ -45,22 +44,17 @@ final class Repository {
 
 
 	/**
-	 * @return Factory
+	 * @inheritdoc
 	 */
-	public function factory(): Factory {
+	public function factory(): FactoryInterface {
 		return Factory::getInstance();
 	}
 
 
 	/**
-	 * @param Sender               $sender   A concrete srNotificationSender object, e.g. srNotificationMailSender
-	 * @param AbstractNotification $notification
-	 * @param array                $placeholders
-	 * @param string               $language Omit to choose the default language
-	 *
-	 * @throws Notifications4PluginException
+	 * @inheritdoc
 	 */
-	public function send(Sender $sender, AbstractNotification $notification, array $placeholders = array(), string $language = "")/*: void*/ {
+	public function send(Sender $sender, Notification $notification, array $placeholders = [], string $language = "")/*: void*/ {
 		$parser = self::parser()->getParserForNotification($notification);
 
 		$sender->setSubject(self::parser()->parseSubject($parser, $notification, $placeholders, $language));
