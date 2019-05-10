@@ -82,22 +82,9 @@ Config projects table:
 Config project:
 ![Config project](./doc/screenshots/config_project.png)
 
-### Dependencies
+### Requirements
 * ILIAS 5.3 or ILIAS 5.4
 * PHP >=7.0
-* [composer](https://getcomposer.org)
-* [HelpMeCron](https://github.com/studer-raimann/HelpMeCron)
-* [sinergi/browser-detector](https://packagist.org/packages/sinergi/browser-detector)
-* [srag/activerecordconfig](https://packagist.org/packages/srag/activerecordconfig)
-* [srag/custominputguis](https://packagist.org/packages/srag/custominputguis)
-* [srag/dic](https://packagist.org/packages/srag/dic)
-* [srag/jiracurl](https://packagist.org/packages/srag/jiracurl)
-* [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
-* [srag/notifications4plugin](https://packagist.org/packages/srag/notifications4plugin)
-* [srag/removeplugindataconfirm](https://packagist.org/packages/srag/removeplugindataconfirm)
-* [babel-minify -g](https://www.npmjs.com/package/babel-minify)
-
-Please use it for further development!
 
 ### Adjustment suggestions
 * Adjustment suggestions by pull requests
