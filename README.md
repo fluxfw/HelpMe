@@ -18,45 +18,44 @@ You can lock errors in the ILIAS log file like
 grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
-### Notifications
-You have a `support` property (See more in [Class Support](./src/Support/Support.php)) in both subject and body.
+### Notifications config
+You have a `support` property (See more in [Class Support](./src/Support/Support.php)) for specific fields in both subject and body.
 
-In body you have also a `fields` (Array of [Class SupportField](src/Support/SupportField.php))
+In body you have also a `fields` (Array of [Class SupportField](src/Support/SupportField.php)) for dynamic fields.
 
-Config a notification like the follow examples:
-
-#### Mail
-Subject:
-```text
-{{ support.getTitle }}
-```
-Text:
+So you can either use a for loop to fill the notification body dynamic like:
 ```html
-{% for key,value in fields %}
+{% for field in fields %}
 <p>
-	<h2>{{ key }}</h2>
-	{{ value }}
+	<h2>{{ field.getLabel }}</h2>
+	{{ field.getValue }}
 </p>
 <br>
 {% endfor %}
 ```
 
-#### Jira
-(For safety reasons Jira API does not supports HTML and will escape HTML)
-
-Subject:
-```text
-{{ support.getTitle }}
+or fill only specific support fields like:
+```html
+<h1>{{ support.getTitle }}</h1>
+<p>{{ support.getDescription }}</p>
+<small>{{ support.getPageReference }}</small>
 ```
-Text:
-```text
-{% for key,value in fields %}
-{{ key }}:
-{{ value }}
 
-
+or both mixed like:
+```html
+{% for field in fields %}
+{% if field.getKey !== "page_reference" %}
+<p>
+	<h2>{{ field.getLabel }}</h2>
+	{{ field.getValue }}
+</p>
+<br>
+{% endif %}
 {% endfor %}
+<small>{{ support.getPageReference }}</small>
 ```
+
+Note: For safety reasons Jira API does not supports HTML and will escape HTML
 
 ### Some screenshots
 Support button:
