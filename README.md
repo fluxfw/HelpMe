@@ -23,6 +23,8 @@ You have a `support` property (See more in [Class Support](./src/Support/Support
 
 In body you have also a `fields` (Array of [Class SupportField](src/Support/SupportField.php)) for dynamic fields.
 
+It uses the twig tempate engine (See more at https://twig.symfony.com/doc/1.x/templates.htm).
+
 So you can either use a for loop to fill the notification body dynamic like:
 ```html
 {% for field in fields %}
