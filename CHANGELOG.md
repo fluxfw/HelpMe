@@ -2,7 +2,7 @@
 
 ## [4.2.0]
 - Include page reference in support
-- Notification `fields` variable changes, is now an array of [Class SupportField](src/Support/SupportField.php)
+- Notification `fields` variable changes, is now an array of [Class SupportField](src/Support/SupportField.php) (Tries to automatic migrate)
 - Possibility to hide 'Show tickets' config hints, if not used
 
 ## [4.1.3]
