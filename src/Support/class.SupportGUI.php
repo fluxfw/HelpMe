@@ -46,6 +46,10 @@ class SupportGUI {
 			die();
 		}
 
+		if (self::supports()->getRefId() !== null) {
+			self::dic()->ctrl()->saveParameter($this, Repository::GET_PARAM_REF_ID);
+		}
+
 		$next_class = self::dic()->ctrl()->getNextClass($this);
 
 		switch (strtolower($next_class)) {
@@ -98,8 +102,7 @@ class SupportGUI {
 	 * @param string|null       $message
 	 * @param ilPropertyFormGUI $form
 	 */
-	protected function show(/*?string*/
-		$message, ilPropertyFormGUI $form)/*: void*/ {
+	protected function show(/*?string*/ $message, ilPropertyFormGUI $form)/*: void*/ {
 		$tpl = self::plugin()->template("helpme_modal.html");
 
 		$tpl->setCurrentBlock("helpme_info");

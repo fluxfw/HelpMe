@@ -27,6 +27,10 @@ class Support {
 	 */
 	protected $time;
 	/**
+	 * @var string
+	 */
+	protected $page_reference = "";
+	/**
 	 * @var Project
 	 */
 	protected $project;
@@ -131,6 +135,22 @@ class Support {
 	 */
 	public function setTime(int $time)/*: void*/ {
 		$this->time = $time;
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getPageReference(): string {
+		return $this->page_reference;
+	}
+
+
+	/**
+	 * @param string $page_reference
+	 */
+	public function setPageReference(string $page_reference)/*: void*/ {
+		$this->page_reference = $page_reference;
 	}
 
 

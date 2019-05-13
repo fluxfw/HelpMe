@@ -14,8 +14,7 @@ interface RepositoryInterface {
 	/**
 	 * @param NotificationLanguage $language
 	 */
-	public function deleteLanguage(NotificationLanguage $language)/*: void*/
-	;
+	public function deleteLanguage(NotificationLanguage $language)/*: void*/ ;
 
 
 	/**
@@ -37,8 +36,7 @@ interface RepositoryInterface {
 	 *
 	 * @return NotificationLanguage|null
 	 */
-	public function getLanguageById(int $id)/*: ?NotificationLanguage*/
-	;
+	public function getLanguageById(int $id)/*: ?NotificationLanguage*/ ;
 
 
 	/**
@@ -48,6 +46,12 @@ interface RepositoryInterface {
 	 * @return NotificationLanguage
 	 */
 	public function getLanguageForNotification(int $notification_id, string $language): NotificationLanguage;
+
+
+	/**
+	 * @return array
+	 */
+	public function getLanguages(): array;
 
 
 	/**
@@ -61,6 +65,5 @@ interface RepositoryInterface {
 	/**
 	 * @param NotificationLanguage $language
 	 */
-	public function storeInstance(NotificationLanguage $language)/*: void*/
-	;
+	public function storeInstance(NotificationLanguage $language)/*: void*/ ;
 }

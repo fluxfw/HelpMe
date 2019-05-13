@@ -18,12 +18,10 @@ You can lock errors in the ILIAS log file like
 grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
-### Notifications4Plugin
-You don't need to install, included as library
-
+### Notifications
 You have a `support` property (See more in [Class Support](./src/Support/Support.php)) in both subject and body.
 
-In body you have also a `fields` (Key/Values)
+In body you have also a `fields` (Array of [Class SupportField](src/Support/SupportField.php))
 
 Config a notification like the follow examples:
 

@@ -288,12 +288,34 @@ final class Repository {
 	 *
 	 */
 	public function showUsageConfigHint()/*: void*/ {
+		$usage_id = "";
+
 		if (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
 			if (!$this->isEnabled(false)) {
-				ilUtil::sendInfo(self::plugin()->translate("usage_1_info", ilHelpMeConfigGUI::LANG_MODULE_CONFIG));
+				$usage_id = "usage_1_info";
 			} else {
 				if (!$this->isEnabled()) {
-					ilUtil::sendInfo(self::plugin()->translate("usage_2_info", ilHelpMeConfigGUI::LANG_MODULE_CONFIG));
+					$usage_id = "usage_2_info";
+				}
+			}
+		}
+
+		if (!empty($usage_id)) {
+
+			if (!Config::getField(Config::KEY_USAGE_HIDDEN)[$usage_id]) {
+
+				self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::GET_PARAM_USAGE_ID, $usage_id);
+
+				$text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE_CONFIG);
+
+				$hide_button = self::dic()->ui()->factory()->button()->standard(self::plugin()
+					->translate("usage_hide", ilHelpMeConfigGUI::LANG_MODULE_CONFIG), self::dic()->ctrl()
+					->getLinkTargetByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::CMD_HIDE_USAGE));
+
+				if (self::version()->is54()) {
+					ilUtil::sendInfo(self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([ $hide_button ])));
+				} else {
+					ilUtil::sendInfo(self::output()->getHTML([ $text, $hide_button ]));
 				}
 			}
 		}

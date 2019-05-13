@@ -15,8 +15,8 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\' => 21,
-            'srag\\ActiveRecordConfig\\' => 24,
+            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
+            'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
         'S' => 
         array (
@@ -49,11 +49,11 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\' => 
+        'srag\\CustomInputGUIs\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
-        'srag\\ActiveRecordConfig\\' => 
+        'srag\\ActiveRecordConfig\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
         ),
@@ -397,6 +397,7 @@ class ComposerStaticInit82c54ca93d1e962c039ba6a177c9b500
         'srag\\Plugins\\HelpMe\\Support\\Repository' => __DIR__ . '/../..' . '/src/Support/Repository.php',
         'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/SuccessFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Support' => __DIR__ . '/../..' . '/src/Support/Support.php',
+        'srag\\Plugins\\HelpMe\\Support\\SupportField' => __DIR__ . '/../..' . '/src/Support/SupportField.php',
         'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => __DIR__ . '/../..' . '/src/Support/SupportFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\SupportGUI' => __DIR__ . '/../..' . '/src/Support/class.SupportGUI.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Factory' => __DIR__ . '/../..' . '/src/Ticket/Factory.php',

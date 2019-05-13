@@ -329,6 +329,7 @@ return array(
     'srag\\Plugins\\HelpMe\\Support\\Repository' => $baseDir . '/src/Support/Repository.php',
     'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => $baseDir . '/src/Support/SuccessFormGUI.php',
     'srag\\Plugins\\HelpMe\\Support\\Support' => $baseDir . '/src/Support/Support.php',
+    'srag\\Plugins\\HelpMe\\Support\\SupportField' => $baseDir . '/src/Support/SupportField.php',
     'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => $baseDir . '/src/Support/SupportFormGUI.php',
     'srag\\Plugins\\HelpMe\\Support\\SupportGUI' => $baseDir . '/src/Support/class.SupportGUI.php',
     'srag\\Plugins\\HelpMe\\Ticket\\Factory' => $baseDir . '/src/Ticket/Factory.php',

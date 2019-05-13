@@ -41,9 +41,11 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function getValue(/*string*/
-		$key) {
+	protected function getValue(/*string*/ $key) {
 		switch ($key) {
+			case "page_reference":
+				return self::supports()->getRefLink();
+
 			case "project":
 				if ($this->project !== null) {
 					return $this->project->getProjectUrlKey();
@@ -108,66 +110,70 @@ class SupportFormGUI extends PropertyFormGUI {
 			$this->project = self::projects()->getProjectByUrlKey($project_url_key);
 		}
 
-		$this->fields = [
-			"project" => [
-				self::PROPERTY_CLASS => ProjectSelectInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_OPTIONS => [
-						"" => "&lt;" . $this->txt("please_select") . "&gt;"
-					] + self::projects()->getProjectsOptions()
-			],
-			"issue_type" => [
-				self::PROPERTY_CLASS => IssueTypeSelectInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_OPTIONS => [],
-				self::PROPERTY_DISABLED => true
-			],
-			"title" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => true
-			],
-			"name" => [
-				self::PROPERTY_CLASS => (self::ilias()->users()->getUserId()
-				=== intval(ANONYMOUS_USER_ID) ? ilTextInputGUI::class : ilNonEditableValueGUI::class),
-				self::PROPERTY_REQUIRED => true
-			],
-			"login" => [
-				self::PROPERTY_CLASS => ilNonEditableValueGUI::class,
-				self::PROPERTY_REQUIRED => true
-			],
-			"email" => [
-				self::PROPERTY_CLASS => ilEMailInputGUI::class,
-				self::PROPERTY_REQUIRED => true
-			],
-			"phone" => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => false
-			],
-			"priority" => [
-				self::PROPERTY_CLASS => ilSelectInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_OPTIONS => [
-						"" => "&lt;" . $this->txt("please_select") . "&gt;"
-					] + Config::getField(Config::KEY_PRIORITIES)
-			],
-			"description" => [
-				self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
-				self::PROPERTY_REQUIRED => true
-			],
-			"reproduce_steps" => [
-				self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
-				self::PROPERTY_REQUIRED => false
-			],
-			"system_infos" => [
-				self::PROPERTY_CLASS => ilNonEditableValueGUI::class,
-				self::PROPERTY_REQUIRED => true
-			],
-			"screenshots" => [
-				self::PROPERTY_CLASS => ScreenshotsInputGUI::class,
-				self::PROPERTY_REQUIRED => false,
-				"withPlugin" => self::plugin()
-			]
-		];
+		$this->fields = (self::supports()->getRefId() !== null ? [
+				"page_reference" => [
+					self::PROPERTY_CLASS => ilNonEditableValueGUI::class
+				],
+			] : []) + [
+				"project" => [
+					self::PROPERTY_CLASS => ProjectSelectInputGUI::class,
+					self::PROPERTY_REQUIRED => true,
+					self::PROPERTY_OPTIONS => [
+							"" => "&lt;" . $this->txt("please_select") . "&gt;"
+						] + self::projects()->getProjectsOptions()
+				],
+				"issue_type" => [
+					self::PROPERTY_CLASS => IssueTypeSelectInputGUI::class,
+					self::PROPERTY_REQUIRED => true,
+					self::PROPERTY_OPTIONS => [],
+					self::PROPERTY_DISABLED => true
+				],
+				"title" => [
+					self::PROPERTY_CLASS => ilTextInputGUI::class,
+					self::PROPERTY_REQUIRED => true
+				],
+				"name" => [
+					self::PROPERTY_CLASS => (self::ilias()->users()->getUserId()
+					=== intval(ANONYMOUS_USER_ID) ? ilTextInputGUI::class : ilNonEditableValueGUI::class),
+					self::PROPERTY_REQUIRED => true
+				],
+				"login" => [
+					self::PROPERTY_CLASS => ilNonEditableValueGUI::class,
+					self::PROPERTY_REQUIRED => true
+				],
+				"email" => [
+					self::PROPERTY_CLASS => ilEMailInputGUI::class,
+					self::PROPERTY_REQUIRED => true
+				],
+				"phone" => [
+					self::PROPERTY_CLASS => ilTextInputGUI::class,
+					self::PROPERTY_REQUIRED => false
+				],
+				"priority" => [
+					self::PROPERTY_CLASS => ilSelectInputGUI::class,
+					self::PROPERTY_REQUIRED => true,
+					self::PROPERTY_OPTIONS => [
+							"" => "&lt;" . $this->txt("please_select") . "&gt;"
+						] + Config::getField(Config::KEY_PRIORITIES)
+				],
+				"description" => [
+					self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
+					self::PROPERTY_REQUIRED => true
+				],
+				"reproduce_steps" => [
+					self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
+					self::PROPERTY_REQUIRED => false
+				],
+				"system_infos" => [
+					self::PROPERTY_CLASS => ilNonEditableValueGUI::class,
+					self::PROPERTY_REQUIRED => true
+				],
+				"screenshots" => [
+					self::PROPERTY_CLASS => ScreenshotsInputGUI::class,
+					self::PROPERTY_REQUIRED => false,
+					"withPlugin" => self::plugin()
+				]
+			];
 	}
 
 
@@ -202,9 +208,12 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function storeValue(/*string*/
-		$key, $value)/*: void*/ {
+	protected function storeValue(/*string*/ $key, $value)/*: void*/ {
 		switch ($key) {
+			case "page_reference":
+				$this->support->setPageReference(self::supports()->getRefLink());
+				break;
+
 			case "project":
 				$this->support->setProject($this->project);
 				break;
@@ -294,8 +303,7 @@ class SupportFormGUI extends PropertyFormGUI {
 	/**
 	 * @param Project|null $project
 	 */
-	public function setProject(/*?*/
-		Project $project = null)/*: void*/ {
+	public function setProject(/*?*/ Project $project = null)/*: void*/ {
 		$this->project = $project;
 	}
 

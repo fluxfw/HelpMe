@@ -5,6 +5,7 @@ use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\IssueTypeSelectInputGUI;
 use srag\Plugins\HelpMe\Support\ProjectSelectInputGUI;
+use srag\Plugins\HelpMe\Support\Repository;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Ticket\TicketsGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -49,10 +50,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI {
 	 *
 	 * @return array
 	 */
-	public function getHTML(/*string*/
-		$a_comp, /*string*/
-		$a_part, /*array*/
-		$a_par = []): array {
+	public function getHTML(/*string*/ $a_comp, /*string*/ $a_part, /*array*/ $a_par = []): array {
 		if (!self::$load[self::PART_1]) {
 
 			if (($a_par["tpl_id"] === self::MAIN_MENU_TEMPLATE_ID && $a_part === self::TEMPLATE_GET)
@@ -130,6 +128,11 @@ il.HelpMe.init();
 	 * @return string
 	 */
 	public function getSupportButton(): string {
+		$ref_id = self::supports()->getRefId();
+		if ($ref_id !== null) {
+			self::dic()->ctrl()->setParameterByClass(SupportGUI::class, Repository::GET_PARAM_REF_ID, $ref_id);
+		}
+
 		$buttons = [
 			self::dic()->ui()->factory()->link()->standard(self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT), self::dic()->ctrl()
 				->getLinkTargetByClass([

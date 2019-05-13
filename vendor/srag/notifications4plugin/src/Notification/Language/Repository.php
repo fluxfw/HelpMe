@@ -122,6 +122,20 @@ final class Repository implements RepositoryInterface {
 	/**
 	 * @inheritdoc
 	 */
+	public function getLanguages(): array {
+		/**
+		 * @var NotificationLanguage[] $languages
+		 */
+
+		$languages = call_user_func($this->language_class . "::get");
+
+		return $languages;
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
 	public function getLanguagesForNotification(int $notification_id): array {
 		/**
 		 * @var NotificationLanguage[] $array

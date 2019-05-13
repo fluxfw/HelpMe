@@ -3,6 +3,7 @@
 namespace srag\Plugins\HelpMe\Support;
 
 use ilHelpMePlugin;
+use ilLink;
 use Sinergi\BrowserDetector\Browser;
 use Sinergi\BrowserDetector\Os;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
@@ -23,6 +24,8 @@ final class Repository {
 	use DICTrait;
 	use HelpMeTrait;
 	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+	const GET_PARAM_REF_ID = "ref_id";
+	const GET_PARAM_TARGET = "target";
 	/**
 	 * @var self
 	 */
@@ -80,6 +83,46 @@ final class Repository {
 	 */
 	public function getLink(string $project_url_key = ""): string {
 		return ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . (!empty($project_url_key) ? "_" . $project_url_key : "");
+	}
+
+
+	/**
+	 * @return int|null
+	 */
+	public function getRefId()/*: ?int*/ {
+		if (!Config::getField(Config::KEY_PAGE_REFERENCE)) {
+			return null;
+		}
+
+		$obj_ref_id = filter_input(INPUT_GET, self::GET_PARAM_REF_ID);
+
+		if ($obj_ref_id === null) {
+			$param_target = filter_input(INPUT_GET, self::GET_PARAM_TARGET);
+
+			$obj_ref_id = explode("_", $param_target)[1];
+		}
+
+		$obj_ref_id = intval($obj_ref_id);
+
+		if ($obj_ref_id > 0) {
+			return $obj_ref_id;
+		} else {
+			return null;
+		}
+	}
+
+
+	/**
+	 * @return string
+	 */
+	public function getRefLink(): string {
+		$ref_id = $this->getRefId();
+
+		if ($ref_id === null) {
+			return "";
+		}
+
+		return ilLink::_getStaticLink($ref_id);
 	}
 
 

@@ -18,6 +18,7 @@ config_jira_private_key#:#Jira private key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira username
 config_notifications#:#Notifications
+config_page_reference#:#Include page reference in support
 config_priorities#:#Priorities
 config_projects#:#Projects
 config_project_fix_version#:#Fix version
@@ -48,6 +49,8 @@ config_send_email_address#:#Email address
 config_support_link#:#Support link
 config_usage_1_info#:#If you want to use the 'Show tickets' feature, please install and activate the HelpMeCron plugin
 config_usage_2_info#:#In order you can use the 'Show tickets' feature, you need to give at least one project read access
+config_usage_hidden#:#Hint hidden
+config_usage_hide#:#Hide hint
 cron_srsu_fetch_jira_tickets#:#Fetch jira tickets
 cron_srsu_fetch_jira_tickets_description#:#Fetch jira tickets and cache
 cron_status#:#Fetch %1$s ticket(s) of %2$s project(s) from Jira
@@ -61,6 +64,7 @@ support_issue_type#:#Issue type
 support_issue_type_info#:#Will shown based of project selection
 support_login#:#Login
 support_name#:#Name
+support_page_reference#:#Page reference
 support_phone#:#Phone
 support_please_select#:#please select
 support_priority#:#Priority

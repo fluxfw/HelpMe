@@ -18,6 +18,7 @@ use srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage;
 use srag\Plugins\HelpMe\Notification\Notification\Notification;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\Support;
+use srag\Plugins\HelpMe\Support\SupportField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -38,8 +39,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function getValue(/*string*/
-		$key) {
+	protected function getValue(/*string*/ $key) {
 		switch (true) {
 			case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
 				$template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
@@ -140,6 +140,9 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 				self::PROPERTY_REQUIRED => true,
 				self::PROPERTY_OPTIONS => self::ilias()->roles()->getAllRoles(),
 				"enableSelectAll" => true
+			],
+			Config::KEY_PAGE_REFERENCE => [
+				self::PROPERTY_CLASS => ilCheckboxInputGUI::class
 			]
 		];
 	}
@@ -148,8 +151,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function storeValue(/*string*/
-		$key, $value)/*: void*/ {
+	protected function storeValue(/*string*/ $key, $value)/*: void*/ {
 		switch (true) {
 			case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
 				$template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
@@ -191,7 +193,7 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 				->getArrayForSelection(self::notification(Notification::class, NotificationLanguage::class)
 					->getNotifications()), Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name, [
 				"support" => "object " . Support::class,
-				"fields" => "array"
+				"fields" => "array " . SupportField::class
 			]);
 	}
 }

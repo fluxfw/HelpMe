@@ -3,6 +3,7 @@
 require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigGUI;
+use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Notification\Ctrl\Notifications4PluginCtrl;
 use srag\Plugins\HelpMe\Project\Project;
@@ -23,9 +24,11 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	const CMD_ADD_PROJECT = "addProject";
 	const CMD_CREATE_PROJECT = "createProject";
 	const CMD_EDIT_PROJECT = "editProject";
+	const CMD_HIDE_USAGE = "hideUsage";
 	const CMD_UPDATE_PROJECT = "updateProject";
 	const CMD_REMOVE_PROJECT_CONFIRM = "removeProjectConfirm";
 	const CMD_REMOVE_PROJECT = "removeProject";
+	const GET_PARAM_USAGE_ID = "usage_id";
 	/**
 	 * @var array
 	 */
@@ -44,6 +47,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		self::CMD_ADD_PROJECT,
 		self::CMD_CREATE_PROJECT,
 		self::CMD_EDIT_PROJECT,
+		self::CMD_HIDE_USAGE,
 		self::CMD_UPDATE_PROJECT,
 		self::CMD_REMOVE_PROJECT,
 		self::CMD_REMOVE_PROJECT_CONFIRM
@@ -55,8 +59,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	 *
 	 * @return ProjectFormGUI
 	 */
-	protected function getProjectForm(/*?*/
-		Project $project = null): ProjectFormGUI {
+	protected function getProjectForm(/*?*/ Project $project = null): ProjectFormGUI {
 		$form = new ProjectFormGUI($this, self::TAB_PROJECTS, $project);
 
 		return $form;
@@ -171,5 +174,23 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 		ilUtil::sendSuccess(self::plugin()->translate("removed_project", self::LANG_MODULE_CONFIG, [ $project->getProjectName() ]), true);
 
 		$this->redirectToTab(self::TAB_PROJECTS);
+	}
+
+
+	/**
+	 *
+	 */
+	protected function hideUsage()/*: void*/ {
+		$usage_id = filter_input(INPUT_GET, self::GET_PARAM_USAGE_ID);
+
+		if (!empty($usage_id)) {
+			$usage_hidden = Config::getField(Config::KEY_USAGE_HIDDEN);
+			$usage_hidden[$usage_id] = true;
+			Config::setField(Config::KEY_USAGE_HIDDEN, $usage_hidden);
+
+			ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE_CONFIG), true);
+		}
+
+		$this->redirectToTab(self::TAB_CONFIGURATION);
 	}
 }

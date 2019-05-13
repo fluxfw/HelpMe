@@ -118,10 +118,10 @@ if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag
 
 	foreach ([ "de", "en" ] as $lang) {
 		$notification->setSubject("{{ support.getTitle }}", $lang);
-		$notification->setText("{% for key,value in fields %}
+		$notification->setText("{% for field in fields %}
 <p>
-	<h2>{{ key }}</h2>
-	{{ value }}
+	<h2>{{ field.getLabel }}</h2>
+	{{ field.getValue }}
 </p>
 <br>
 {% endfor %}", $lang);
@@ -143,9 +143,9 @@ if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag
 
 	foreach ([ "de", "en" ] as $lang) {
 		$notification->setSubject("{{ support.getTitle }}", $lang);
-		$notification->setText("{% for key,value in fields %}
-{{ key }}:
-{{ value }}
+		$notification->setText("{% for field in fields %}
+{{ field.getLabel }}:
+{{ field.getValue }}
 
 
 {% endfor %}", $lang);
@@ -169,10 +169,10 @@ if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag
 		$notification->setSubject(\srag\DIC\HelpMe\DICStatic::plugin(\ilHelpMePlugin::class)
 				->translate("confirmation", \srag\Plugins\HelpMe\Support\SupportGUI::LANG_MODULE_SUPPORT, [], true, $lang)
 			. ": {{ support.getTitle }}", $lang);
-		$notification->setText("{% for key,value in fields %}
+		$notification->setText("{% for field in fields %}
 <p>
-	<h2>{{ key }}</h2>
-	{{ value }}
+	<h2>{{ field.getLabel }}</h2>
+	{{ field.getValue }}
 </p>
 <br>
 {% endfor %}", $lang);
@@ -183,4 +183,20 @@ if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag
 }
 
 \srag\Plugins\HelpMe\Config\Config::setField(\srag\Plugins\HelpMe\Config\Config::KEY_RECIPIENT_TEMPLATES, $templates);
+?>
+<#15>
+<?php
+foreach (\srag\Notifications4Plugin\HelpMe\Notification\Language\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::class)
+	         ->getLanguages() as $language) {
+	$text = $language->getText();
+
+	$text = preg_replace("/\{%\s+for\s+key,\s*value\s+in\s+fields\s+%\}/", "{% for field in fields %}", $text);
+	$text = preg_replace("/{{\s+key\s+}}/", "{{ field.getLabel }}", $text);
+	$text = preg_replace("/{{\s+value\s+}}/", "{{ field.getValue }}", $text);
+
+	$language->setText($text);
+
+	\srag\Notifications4Plugin\HelpMe\Notification\Language\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::class)
+		->storeInstance($language);
+}
 ?>
