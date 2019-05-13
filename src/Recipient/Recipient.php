@@ -15,6 +15,7 @@ use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage;
 use srag\Plugins\HelpMe\Notification\Notification\Notification;
 use srag\Plugins\HelpMe\Support\Support;
+use srag\Plugins\HelpMe\Support\SupportField;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -136,24 +137,26 @@ abstract class Recipient {
 		$notification = self::notification(Notification::class, NotificationLanguage::class)
 			->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
-		$fields_ = [
-			"project" => $this->support->getProject()->getProjectName() . " (" . $this->support->getProject()->getProjectKey() . ")",
-			"issue_type" => $this->support->getIssueType(),
-			"title" => $this->support->getTitle(),
-			"name" => $this->support->getName(),
-			"login" => $this->support->getLogin(),
-			"email" => $this->support->getEmail(),
-			"phone" => $this->support->getPhone(),
-			"priority" => $this->support->getPriority(),
-			"description" => $this->support->getDescription(),
-			"reproduce_steps" => $this->support->getReproduceSteps(),
-			"system_infos" => $this->support->getSystemInfos(),
-			"datetime" => $this->support->getFormatedTime()
-		];
+		$fields_ = (!empty($this->support->getPageReference()) ? [
+				"page_reference" => $this->support->getPageReference()
+			] : []) + [
+				"project" => $this->support->getProject()->getProjectName() . " (" . $this->support->getProject()->getProjectKey() . ")",
+				"issue_type" => $this->support->getIssueType(),
+				"title" => $this->support->getTitle(),
+				"name" => $this->support->getName(),
+				"login" => $this->support->getLogin(),
+				"email" => $this->support->getEmail(),
+				"phone" => $this->support->getPhone(),
+				"priority" => $this->support->getPriority(),
+				"description" => $this->support->getDescription(),
+				"reproduce_steps" => $this->support->getReproduceSteps(),
+				"system_infos" => $this->support->getSystemInfos(),
+				"datetime" => $this->support->getFormatedTime()
+			];
 
 		$fields = [];
 		foreach ($fields_ as $key => $value) {
-			$fields[self::plugin()->translate($key, SupportGUI::LANG_MODULE_SUPPORT)] = $value;
+			$fields[] = new SupportField($key, self::plugin()->translate($key, SupportGUI::LANG_MODULE_SUPPORT), $value);
 		}
 
 		return self::parser()->parseText(self::parser()->getParserForNotification($notification), $notification, [
@@ -172,6 +175,5 @@ abstract class Recipient {
 	 * @throws Notifications4PluginException
 	 * @throws phpmailerException
 	 */
-	public abstract function sendSupportToRecipient()/*: void*/
-	;
+	public abstract function sendSupportToRecipient()/*: void*/ ;
 }

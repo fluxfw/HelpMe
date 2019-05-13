@@ -31,6 +31,8 @@ class Notifications4PluginCtrl extends AbstractCtrl {
 	public function executeCommand()/*: void*/ {
 		self::dic()->tabs()->activateTab(self::TAB_NOTIFICATIONS);
 
+		self::tickets()->showUsageConfigHint();
+
 		parent::executeCommand();
 	}
 }

@@ -26,12 +26,14 @@ class Config extends ActiveRecordConfig {
 	const KEY_JIRA_PASSWORD = "jira_password";
 	const KEY_JIRA_PRIVATE_KEY = "jira_private_key";
 	const KEY_JIRA_USERNAME = "jira_username";
+	const KEY_PAGE_REFERENCE = "page_reference";
 	const KEY_PRIORITIES = "priorities";
 	const KEY_RECIPIENT = "recipient";
 	const KEY_RECIPIENT_TEMPLATES = "recipient_templates";
 	const KEY_ROLES = "roles";
 	const KEY_SEND_CONFIRMATION_EMAIL = "send_confirmation_email";
 	const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
+	const KEY_USAGE_HIDDEN = "usage_hidden";
 	/**
 	 * @var array
 	 */
@@ -44,11 +46,13 @@ class Config extends ActiveRecordConfig {
 		self::KEY_JIRA_PASSWORD => self::TYPE_STRING,
 		self::KEY_JIRA_PRIVATE_KEY => self::TYPE_STRING,
 		self::KEY_JIRA_USERNAME => self::TYPE_STRING,
+		self::KEY_PAGE_REFERENCE => self::TYPE_BOOLEAN,
 		self::KEY_PRIORITIES => [ self::TYPE_JSON, [] ],
 		self::KEY_RECIPIENT => self::TYPE_STRING,
 		self::KEY_RECIPIENT_TEMPLATES => [ self::TYPE_JSON, [], true ],
 		self::KEY_ROLES => [ self::TYPE_JSON, [] ],
 		self::KEY_SEND_CONFIRMATION_EMAIL => [ self::TYPE_BOOLEAN, true ],
-		self::KEY_SEND_EMAIL_ADDRESS => self::TYPE_STRING
+		self::KEY_SEND_EMAIL_ADDRESS => self::TYPE_STRING,
+		self::KEY_USAGE_HIDDEN => [ self::TYPE_JSON, [], true ]
 	];
 }

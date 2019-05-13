@@ -25,8 +25,8 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
 	 */
 	protected function getColumnValue(/*string*/
 		$column, /*array*/
-		$row, /*bool*/
-		$raw_export = false): string {
+		$row, /*int*/
+		$format = self::DEFAULT_FORMAT): string {
 		switch ($column) {
 			default:
 				$column = $row[$column];

@@ -18,6 +18,7 @@ config_jira_private_key#:#Jira-Private-Key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_username#:#Jira-Benutzername
 config_notifications#:#Benachrichtigungen
+config_page_reference#:#Seiten-Referenz im Support einbeziehen
 config_priorities#:#Dringlichkeiten
 config_projects#:#Projekte
 config_project_fix_version#:#Fix-Version
@@ -48,6 +49,8 @@ config_send_confirmation_email#:#Bestätigung-Email Erhalt Support-Anfrage an Be
 config_support_link#:#Support-Link
 config_usage_1_info#:#Wenn Sie das 'Tickets anzeigen'-Feature verwenden möchten, installieren und aktivieren Sie bitte das HelpMeCron-Plugin
 config_usage_2_info#:#Damit Sie das 'Tickets anzeigen'-Feature verwenden können, müssen Sie mindestens einem Projekt Lesezugriff geben
+config_usage_hidden#:#Hinweis ausblended
+config_usage_hide#:#Hinweis ausblenden
 cron_srsu_fetch_jira_tickets#:#Jira-Tickets holen
 cron_srsu_fetch_jira_tickets_description#:#Jira-Tickets holen und zwischenspeichern
 cron_status#:#%1$s Ticket(s) von %2$s Projek(e) von Jira geholt
@@ -61,6 +64,7 @@ support_issue_type#:#Issue-Type
 support_issue_type_info#:#Werden anhand der Projektauswahl dargestellt
 support_login#:#Login
 support_name#:#Name
+support_page_reference#:#Seiten-Referenz
 support_phone#:#Telefon
 support_please_select#:#bitte wählen
 support_priority#:#Dringlichkeit

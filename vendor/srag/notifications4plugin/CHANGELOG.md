@@ -1,5 +1,41 @@
 # Changelog
 
+## [4.3.11]
+- NotificationLanguageRepository::getLanguages
+
+## [4.3.10]
+- Adapt `template_selection_info` text
+
+## [4.3.9]
+- NotificationLanguageRepository::getLanguages
+
+## [4.3.8]
+- NotificationLanguageRepository::getLanguages
+
+## [4.3.7]
+- Fix
+
+## [4.3.6]
+- Fix
+
+## [4.3.5]
+- Optimizations
+
+## [4.3.4]
+- TAB_NOTIFICATION
+
+## [4.3.3]
+- New array syntax
+
+## [4.3.2]
+- More interfaces
+
+## [4.3.1]
+- More interfaces
+
+## [4.3.0]
+- More interfaces
+
 ## [4.2.6]
 - Disable change name after create a notification
 
