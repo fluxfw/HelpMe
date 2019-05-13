@@ -1,5 +1,11 @@
 # Changelog
 
+## [4.3.11]
+- NotificationLanguageRepository::getLanguages
+
+## [4.3.10]
+- Adapt `template_selection_info` text
+
 ## [4.3.9]
 - NotificationLanguageRepository::getLanguages
 

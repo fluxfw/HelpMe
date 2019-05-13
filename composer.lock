@@ -283,16 +283,16 @@
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "v4.3.9",
+            "version": "v4.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-                "reference": "8929959d1155d3889f9683c28aad9d33aa4fbffe"
+                "reference": "5d0c3b820fb46b64119fee33b31e56fa29e753a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/8929959d1155d3889f9683c28aad9d33aa4fbffe",
-                "reference": "8929959d1155d3889f9683c28aad9d33aa4fbffe",
+                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/5d0c3b820fb46b64119fee33b31e56fa29e753a8",
+                "reference": "5d0c3b820fb46b64119fee33b31e56fa29e753a8",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +325,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2019-05-13T06:52:41+00:00"
+            "time": "2019-05-13T08:08:23+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",

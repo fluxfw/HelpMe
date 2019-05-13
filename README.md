@@ -44,7 +44,7 @@ or fill only specific support fields like:
 or both mixed like:
 ```html
 {% for field in fields %}
-{% if field.getKey !== "page_reference" %}
+{% if field.getKey != "page_reference" %}
 <p>
 	<h2>{{ field.getLabel }}</h2>
 	{{ field.getValue }}

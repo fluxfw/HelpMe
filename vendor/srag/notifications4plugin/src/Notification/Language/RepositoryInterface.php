@@ -49,7 +49,7 @@ interface RepositoryInterface {
 
 
 	/**
-	 * @return array
+	 * @return NotificationLanguage[]
 	 */
 	public function getLanguages(): array;
 
