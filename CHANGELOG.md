@@ -1,5 +1,8 @@
 # Changelog
 
+## [4.2.1]
+- Fix issue types config
+
 ## [4.2.0]
 - Include page reference in support
 - Notification `fields` variable changes, is now an array of [Class SupportField](src/Support/SupportField.php) (Tries to automatic migrate)
