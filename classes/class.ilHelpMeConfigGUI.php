@@ -55,12 +55,12 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 
 
 	/**
-	 * @param Project|null $project
+	 * @param Project $project
 	 *
 	 * @return ProjectFormGUI
 	 */
-	protected function getProjectForm(/*?*/ Project $project = null): ProjectFormGUI {
-		$form = new ProjectFormGUI($this, self::TAB_PROJECTS, $project);
+	protected function getProjectForm(Project $project): ProjectFormGUI {
+		$form = new ProjectFormGUI($this, $project);
 
 		return $form;
 	}
@@ -72,7 +72,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	protected function addProject()/*: void*/ {
 		self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
 
-		$form = $this->getProjectForm();
+		$form = $this->getProjectForm(self::projects()->factory()->newInstance());
 
 		self::output()->output($form);
 	}
@@ -84,7 +84,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 	protected function createProject()/*: void*/ {
 		self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
 
-		$form = $this->getProjectForm();
+		$form = $this->getProjectForm(self::projects()->factory()->newInstance());
 
 		if (!$form->storeForm()) {
 			self::output()->output($form);
@@ -92,7 +92,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 			return;
 		}
 
-		ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [ $form->getProject()->getProjectName() ]), true);
+		ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [ $form->getObject()->getProjectName() ]), true);
 
 		$this->redirectToTab(self::TAB_PROJECTS);
 	}
@@ -130,7 +130,7 @@ class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
 			return;
 		}
 
-		ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [ $form->getProject()->getProjectName() ]), true);
+		ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [ $form->getObject()->getProjectName() ]), true);
 
 		$this->redirectToTab(self::TAB_PROJECTS);
 	}
