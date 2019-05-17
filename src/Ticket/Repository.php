@@ -244,7 +244,8 @@ final class Repository {
 		}
 
 		if ($limit_start !== null && $limit_end !== null) {
-			$sql .= ' LIMIT ' . self::dic()->database()->quote($limit_start, ilDBConstants::T_INTEGER) . ',' . self::dic()->database()->quote($limit_end, ilDBConstants::T_INTEGER);
+			$sql .= ' LIMIT ' . self::dic()->database()->quote($limit_start, ilDBConstants::T_INTEGER) . ',' . self::dic()->database()
+					->quote($limit_end, ilDBConstants::T_INTEGER);
 		}
 
 		return $sql;
