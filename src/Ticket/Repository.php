@@ -3,6 +3,7 @@
 namespace srag\Plugins\HelpMe\Ticket;
 
 use ilCronManager;
+use ilDBConstants;
 use ilHelpMeConfigGUI;
 use ilHelpMeCronPlugin;
 use ilHelpMePlugin;
@@ -219,19 +220,19 @@ final class Repository {
 		$wheres = [];
 
 		if (!empty($ticket_title)) {
-			$wheres[] = self::dic()->database()->like("ticket_title", "text", '%' . $ticket_title . '%');
+			$wheres[] = self::dic()->database()->like("ticket_title", ilDBConstants::T_TEXT, '%' . $ticket_title . '%');
 		}
 
 		if (!empty($ticket_project_url_key)) {
-			$wheres[] = 'ticket_project_url_key=' . self::dic()->database()->quote($ticket_project_url_key, "text");
+			$wheres[] = 'ticket_project_url_key=' . self::dic()->database()->quote($ticket_project_url_key, ilDBConstants::T_TEXT);
 		}
 
 		if (!empty($ticket_issue_type)) {
-			$wheres[] = 'ticket_issue_type=' . self::dic()->database()->quote($ticket_issue_type, "text");
+			$wheres[] = 'ticket_issue_type=' . self::dic()->database()->quote($ticket_issue_type, ilDBConstants::T_TEXT);
 		}
 
 		if (!empty($ticket_priority)) {
-			$wheres[] = 'ticket_priority=' . self::dic()->database()->quote($ticket_priority, "text");
+			$wheres[] = 'ticket_priority=' . self::dic()->database()->quote($ticket_priority, ilDBConstants::T_TEXT);
 		}
 
 		if (count($wheres) > 0) {
@@ -243,7 +244,7 @@ final class Repository {
 		}
 
 		if ($limit_start !== null && $limit_end !== null) {
-			$sql .= ' LIMIT ' . self::dic()->database()->quote($limit_start, "integer") . ',' . self::dic()->database()->quote($limit_end, "integer");
+			$sql .= ' LIMIT ' . self::dic()->database()->quote($limit_start, ilDBConstants::T_INTEGER) . ',' . self::dic()->database()->quote($limit_end, ilDBConstants::T_INTEGER);
 		}
 
 		return $sql;
