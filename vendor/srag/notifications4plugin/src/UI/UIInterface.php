@@ -43,10 +43,11 @@ interface UIInterface extends Pluginable {
 	/**
 	 * @param string   $parent_cmd
 	 * @param callable $getNotifications
+	 * @param callable $getNotificationsCount
 	 *
 	 * @return NotificationsTableGUI
 	 */
-	public function notificationTable(string $parent_cmd, callable $getNotifications): NotificationsTableGUI;
+	public function notificationTable(string $parent_cmd, callable $getNotifications, callable $getNotificationsCount): NotificationsTableGUI;
 
 
 	/**

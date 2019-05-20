@@ -100,24 +100,24 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "v0.20.4",
-        "version_normalized": "0.20.4.0",
+        "version": "v0.20.7",
+        "version_normalized": "0.20.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "eee86b80001a888d1dd4e455968970ffe8c967dc"
+            "reference": "7e7613ba01a9cf0330d6f702ab14a1839ac66f5e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/eee86b80001a888d1dd4e455968970ffe8c967dc",
-            "reference": "eee86b80001a888d1dd4e455968970ffe8c967dc",
+            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/7e7613ba01a9cf0330d6f702ab14a1839ac66f5e",
+            "reference": "7e7613ba01a9cf0330d6f702ab14a1839ac66f5e",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-05-14T09:36:42+00:00",
+        "time": "2019-05-20T08:16:10+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -149,23 +149,23 @@
     },
     {
         "name": "srag/dic",
-        "version": "0.15.6",
-        "version_normalized": "0.15.6.0",
+        "version": "v0.17.8",
+        "version_normalized": "0.17.8.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/DIC.git",
-            "reference": "574eea5823cd75636ee1a7dcba4ed9e8cef47fe8"
+            "reference": "0572582c0591ee059d6d7d6d5c818eef79a95def"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/574eea5823cd75636ee1a7dcba4ed9e8cef47fe8",
-            "reference": "574eea5823cd75636ee1a7dcba4ed9e8cef47fe8",
+            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/0572582c0591ee059d6d7d6d5c818eef79a95def",
+            "reference": "0572582c0591ee059d6d7d6d5c818eef79a95def",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.6"
+            "php": ">=7.0"
         },
-        "time": "2019-04-29T06:15:24+00:00",
+        "time": "2019-05-20T10:32:00+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -288,17 +288,17 @@
     },
     {
         "name": "srag/notifications4plugin",
-        "version": "v4.3.11",
-        "version_normalized": "4.3.11.0",
+        "version": "v4.4.4",
+        "version_normalized": "4.4.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-            "reference": "5d0c3b820fb46b64119fee33b31e56fa29e753a8"
+            "reference": "2c5a47062b6bc0b975924f222d6701ec3b1c4c7a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/5d0c3b820fb46b64119fee33b31e56fa29e753a8",
-            "reference": "5d0c3b820fb46b64119fee33b31e56fa29e753a8",
+            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/2c5a47062b6bc0b975924f222d6701ec3b1c4c7a",
+            "reference": "2c5a47062b6bc0b975924f222d6701ec3b1c4c7a",
             "shasum": ""
         },
         "require": {
@@ -307,7 +307,7 @@
             "srag/dic": ">=0.1.0",
             "twig/twig": "1.18.0"
         },
-        "time": "2019-05-13T08:08:23+00:00",
+        "time": "2019-05-20T13:37:39+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

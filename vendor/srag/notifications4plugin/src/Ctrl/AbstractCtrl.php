@@ -252,9 +252,12 @@ abstract class AbstractCtrl implements CtrlInterface {
 	 * @return NotificationsTableGUI
 	 */
 	protected function getNotificationsTable(string $parent_cmd = self::CMD_LIST_NOTIFICATIONS): NotificationsTableGUI {
-		return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationTable($parent_cmd, function (): array {
-			return self::notification()->getArrayForTable($this->getNotifications());
-		});
+		return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)
+			->notificationTable($parent_cmd, function (string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null): array {
+				return $this->getNotifications($sort_by, $sort_by_direction, $limit_start, $limit_end);
+			}, function (): int {
+				return $this->getNotificationsCount();
+			});
 	}
 
 
@@ -279,10 +282,23 @@ abstract class AbstractCtrl implements CtrlInterface {
 
 
 	/**
+	 * @param string|null $sort_by
+	 * @param string|null $sort_by_direction
+	 * @param int|null    $limit_start
+	 * @param int|null    $limit_end
+	 *
 	 * @return array
 	 */
-	protected function getNotifications(): array {
-		return self::notification()->getNotifications();
+	protected function getNotifications(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null): array {
+		return self::notification()->getNotifications($sort_by, $sort_by_direction, $limit_start, $limit_end);
+	}
+
+
+	/**
+	 * @return int
+	 */
+	protected function getNotificationsCount(): int {
+		return self::notification()->getNotificationsCount();
 	}
 
 

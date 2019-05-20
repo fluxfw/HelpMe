@@ -2,8 +2,10 @@
 
 namespace srag\Notifications4Plugin\HelpMe\Notification;
 
+use ilDateTime;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
+use stdClass;
 
 /**
  * Class Factory
@@ -49,6 +51,25 @@ final class Factory implements FactoryInterface {
 	 */
 	private function __construct(string $notification_class) {
 		$this->notification_class = $notification_class;
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function fromDB(stdClass $data): Notification {
+		$language = $this->newInstance();
+
+		$language->setId($data->id);
+		$language->setName($data->name);
+		$language->setTitle($data->title);
+		$language->setDescription($data->description);
+		$language->setDefaultLanguage($data->default_language);
+		$language->setParser($data->parser);
+		$language->setCreatedAt(new ilDateTime($data->created_at, IL_CAL_DATETIME));
+		$language->setUpdatedAt(new ilDateTime($data->updated_at, IL_CAL_DATETIME));
+
+		return $language;
 	}
 
 

@@ -15,6 +15,14 @@ use srag\Notifications4Plugin\HelpMe\Notification\Language\NotificationLanguage;
 interface Notification {
 
 	/**
+	 * @var string
+	 *
+	 * @abstract
+	 */
+	const TABLE_NAME = "";
+
+
+	/**
 	 * @return int
 	 */
 	public function getId(): int;
@@ -23,8 +31,7 @@ interface Notification {
 	/**
 	 * @param int $id
 	 */
-	public function setId(int $id)/*: void*/
-	;
+	public function setId(int $id)/*: void*/ ;
 
 
 	/**
@@ -36,8 +43,7 @@ interface Notification {
 	/**
 	 * @param string $name
 	 */
-	public function setName(string $name)/*: void*/
-	;
+	public function setName(string $name)/*: void*/ ;
 
 
 	/**
@@ -49,8 +55,7 @@ interface Notification {
 	/**
 	 * @param string $title
 	 */
-	public function setTitle(string $title)/*: void*/
-	;
+	public function setTitle(string $title)/*: void*/ ;
 
 
 	/**
@@ -62,8 +67,7 @@ interface Notification {
 	/**
 	 * @param string $description
 	 */
-	public function setDescription(string $description)/*: void*/
-	;
+	public function setDescription(string $description)/*: void*/ ;
 
 
 	/**
@@ -75,8 +79,7 @@ interface Notification {
 	/**
 	 * @param string $default_language
 	 */
-	public function setDefaultLanguage(string $default_language)/*: void*/
-	;
+	public function setDefaultLanguage(string $default_language)/*: void*/ ;
 
 
 	/**
@@ -88,8 +91,7 @@ interface Notification {
 	/**
 	 * @param string $parser
 	 */
-	public function setParser(string $parser)/*: void*/
-	;
+	public function setParser(string $parser)/*: void*/ ;
 
 
 	/**
@@ -101,8 +103,7 @@ interface Notification {
 	/**
 	 * @param ilDateTime $created_at
 	 */
-	public function setCreatedAt(ilDateTime $created_at)/*: void*/
-	;
+	public function setCreatedAt(ilDateTime $created_at)/*: void*/ ;
 
 
 	/**
@@ -114,8 +115,7 @@ interface Notification {
 	/**
 	 * @param ilDateTime $updated_at
 	 */
-	public function setUpdatedAt(ilDateTime $updated_at)/*: void*/
-	;
+	public function setUpdatedAt(ilDateTime $updated_at)/*: void*/ ;
 
 
 	/**
@@ -127,15 +127,13 @@ interface Notification {
 	/**
 	 * @param NotificationLanguage[] $languages
 	 */
-	public function setLanguages(array $languages)/*: void*/
-	;
+	public function setLanguages(array $languages)/*: void*/ ;
 
 
 	/**
 	 * @param NotificationLanguage $language
 	 */
-	public function addLanguage(NotificationLanguage $language)/*: void*/
-	;
+	public function addLanguage(NotificationLanguage $language)/*: void*/ ;
 
 
 	/**
@@ -150,8 +148,7 @@ interface Notification {
 	 * @param string $subject
 	 * @param string $language
 	 */
-	public function setSubject(string $subject, string $language)/*: void*/
-	;
+	public function setSubject(string $subject, string $language)/*: void*/ ;
 
 
 	/**
@@ -166,6 +163,5 @@ interface Notification {
 	 * @param string $text
 	 * @param string $language
 	 */
-	public function setText(string $text, string $language)/*: void*/
-	;
+	public function setText(string $text, string $language)/*: void*/ ;
 }

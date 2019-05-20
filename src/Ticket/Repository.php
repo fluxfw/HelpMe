@@ -136,7 +136,6 @@ final class Repository {
 
 
 	/**
-	 * @param array       $fields
 	 * @param string|null $sort_by
 	 * @param string|null $sort_by_direction
 	 * @param int|null    $limit_start
@@ -148,24 +147,17 @@ final class Repository {
 	 *
 	 * @return array
 	 */
-	public function getTickets(array $fields = [], string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null, string $ticket_title = "", string $ticket_project_url_key = "", string $ticket_issue_type = "", string $ticket_priority = ""): array {
+	public function getTickets(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null, string $ticket_title = "", string $ticket_project_url_key = "", string $ticket_issue_type = "", string $ticket_priority = ""): array {
 
-		if (!in_array("ticket_id", $fields)) {
-			array_unshift($fields, "ticket_id");
-		}
-		if (!in_array("ticket_project_url_key", $fields)) {
-			array_unshift($fields, "ticket_project_url_key");
-		}
-
-		$sql = 'SELECT ' . implode(",", array_map(function (string $field): string {
-				return self::dic()->database()->quoteIdentifier($field);
-			}, $fields));
+		$sql = 'SELECT *';
 
 		$sql .= $this->getTicketsQuery($sort_by, $sort_by_direction, $limit_start, $limit_end, $ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority);
 
 		$result = self::dic()->database()->query($sql);
 
-		$tickets = [];
+		$tickets = self::dic()->database()->fetchAllCallback($result,function() {
+			return self::projects()->getProjectByUrlKey($data->ticket_project_url_key);
+		});
 
 		while (($row = $result->fetchAssoc()) !== false) {
 			$row["ticket_project"] = self::projects()->getProjectByUrlKey($row["ticket_project_url_key"]);

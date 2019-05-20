@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.20.7]
+- PHPDoc
+
+## [0.20.6]
+- `strToCamelCase`
+
+## [0.20.5]
+- `strToCamelCase` in table
+
 ## [0.20.4]
 - Nothing to fix ...
 

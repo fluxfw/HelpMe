@@ -123,8 +123,8 @@ final class UI implements UIInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function notificationTable(string $parent_cmd, callable $getNotifications): NotificationsTableGUI {
-		$table = new NotificationsTableGUI($this->getPlugin(), $this->ctrl_class, $parent_cmd, $getNotifications);
+	public function notificationTable(string $parent_cmd, callable $getNotifications, callable $getNotificationsCount): NotificationsTableGUI {
+		$table = new NotificationsTableGUI($this->getPlugin(), $this->ctrl_class, $parent_cmd, $getNotifications, $getNotificationsCount);
 
 		return $table;
 	}

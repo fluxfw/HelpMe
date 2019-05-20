@@ -1,5 +1,20 @@
 # Changelog
 
+## [4.4.4]
+- Fixes
+
+## [4.4.3]
+- Fixes
+
+## [4.4.2]
+- Fixes
+
+## [4.4.1]
+- Fixes
+
+## [4.4.0]
+- Use database
+
 ## [4.3.11]
 - NotificationLanguageRepository::getLanguages
 
