@@ -262,7 +262,7 @@ final class Repository implements RepositoryInterface {
 					$notification->setDescription($row["description"]);
 					$notification->setDefaultLanguage($row["default_language"]);
 
-					if ($row["parser"] === $global_plugin_twig_parser_class) {
+					if (empty($row["parser"]) || $row["parser"] === $global_plugin_twig_parser_class) {
 						$notification->setParser(twigParser::class);
 					} else {
 						$notification->setParser($row["parser"]);
