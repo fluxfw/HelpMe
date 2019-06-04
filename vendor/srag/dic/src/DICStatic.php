@@ -8,6 +8,7 @@ use srag\DIC\HelpMe\DIC\DICInterface;
 use srag\DIC\HelpMe\DIC\Implementation\ILIAS52DIC;
 use srag\DIC\HelpMe\DIC\Implementation\ILIAS53DIC;
 use srag\DIC\HelpMe\DIC\Implementation\ILIAS54DIC;
+use srag\DIC\HelpMe\DIC\Implementation\ILIAS60DIC;
 use srag\DIC\HelpMe\DIC\Implementation\LegacyDIC;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\DIC\HelpMe\Output\Output;
@@ -72,9 +73,14 @@ final class DICStatic implements DICStaticInterface {
 					self::$dic = new ILIAS53DIC($DIC);
 					break;
 
-				default:
+				case (self::version()->isLower(VersionInterface::ILIAS_VERSION_6_0)):
 					global $DIC;
 					self::$dic = new ILIAS54DIC($DIC);
+					break;
+
+				default:
+					global $DIC;
+					self::$dic = new ILIAS60DIC($DIC);
 					break;
 			}
 		}

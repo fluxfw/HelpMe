@@ -133,7 +133,9 @@ final class Repository implements RepositoryInterface {
 			"fromDB"
 		]);
 
-		$notification->setLanguages(self::notificationLanguage($this->language_class)->getLanguagesForNotification($notification->getId()));
+		if ($notification !== null) {
+			$notification->setLanguages(self::notificationLanguage($this->language_class)->getLanguagesForNotification($notification->getId()));
+		}
 
 		return $notification;
 	}
@@ -150,7 +152,9 @@ final class Repository implements RepositoryInterface {
 				->quoteIdentifier($this->notification_class::TABLE_NAME)
 			. ' WHERE name=%s', [ ilDBConstants::T_TEXT ], [ $name ]), [ $this->factory(), "fromDB" ]);
 
-		$notification->setLanguages(self::notificationLanguage($this->language_class)->getLanguagesForNotification($notification->getId()));
+		if ($notification !== null) {
+			$notification->setLanguages(self::notificationLanguage($this->language_class)->getLanguagesForNotification($notification->getId()));
+		}
 
 		return $notification;
 	}

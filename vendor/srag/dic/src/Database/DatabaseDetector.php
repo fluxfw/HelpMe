@@ -57,7 +57,7 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector {
 
 		switch (true) {
 			case($this->db instanceof ilDBPdoPostgreSQL):
-				$this->manipulate('CREATE SEQUENCE ' . $seq_name_q);
+				$this->manipulate('CREATE SEQUENCE IF NOT EXISTS ' . $seq_name_q);
 
 				$this->manipulate('ALTER TABLE ' . $table_name_q . ' ALTER COLUMN ' . $field_q . ' TYPE INT, ALTER COLUMN ' . $field_q
 					. ' SET NOT NULL, ALTER COLUMN ' . $field_q . ' SET DEFAULT nextval(' . $seq_name_q . ')');
@@ -79,7 +79,7 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector {
 
 		switch (true) {
 			case($this->db instanceof ilDBPdoPostgreSQL):
-				$this->manipulate('DROP SEQUENCE ' . $seq_name_q);
+				$this->manipulate('DROP SEQUENCE IF EXISTS ' . $seq_name_q);
 				break;
 
 			default:
@@ -156,14 +156,14 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector {
 	/**
 	 * @inheritdoc
 	 */
-	public function store(string $table_name, array $values, string $primary_key,/*?*/ int $primary_key_value = 0): int {
+	public function store(string $table_name, array $values, string $primary_key_field,/*?*/ int $primary_key_value = 0): int {
 		if (empty($primary_key_value)) {
 			$this->insert($table_name, $values);
 
 			return $this->getLastInsertId();
 		} else {
 			$this->update($table_name, $values, [
-				$primary_key => [ ilDBConstants::T_INTEGER, $primary_key_value ]
+				$primary_key_field => [ ilDBConstants::T_INTEGER, $primary_key_value ]
 			]);
 
 			return $primary_key_value;

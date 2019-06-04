@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.5.1]
+- Make `escapeJQLValue` public
+
+## [0.5.0]
+- getTicketsByJQL
+
 ## [0.4.6]
 - Disable curl verbose
 

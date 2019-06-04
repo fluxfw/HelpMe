@@ -14,6 +14,7 @@ use ilCtrl;
 use ilCtrlStructureReader;
 use ilDBInterface;
 use ilErrorHandling;
+use ilGlobalTemplateInterface;
 use ilHelpGUI;
 use ILIAS;
 use ILIAS\DI\BackgroundTaskServices;
@@ -267,10 +268,9 @@ interface DICInterface {
 
 
 	/**
-	 * @return ilTemplate Main ilTemplate instance
+	 * @return ilTemplate|ilGlobalTemplateInterface
 	 */
-	public function mainTemplate(): ilTemplate;
-
+	public function mainTemplate();/*: ilGlobalTemplateInterface*/
 
 	/**
 	 * @return ilNewsService

@@ -80,10 +80,10 @@ interface DatabaseInterface extends ilDBPdoInterface {
 	/**
 	 * @param string   $table_name
 	 * @param array    $values
-	 * @param string   $primary_key
+	 * @param string   $primary_key_field
 	 * @param int|null $primary_key_value
 	 *
 	 * @return int
 	 */
-	public function store(string $table_name, array $values, string $primary_key,/*?*/ int $primary_key_value = 0): int;
+	public function store(string $table_name, array $values, string $primary_key_field,/*?*/ int $primary_key_value = 0): int;
 }

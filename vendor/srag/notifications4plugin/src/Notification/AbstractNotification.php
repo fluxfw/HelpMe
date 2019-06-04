@@ -176,7 +176,7 @@ abstract class AbstractNotification extends ActiveRecord implements Notification
 	 * @param arConnector|null $connector
 	 */
 	public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null) {
-		parent::__construct($primary_key_value, $connector);
+		//parent::__construct($primary_key_value, $connector);
 	}
 
 

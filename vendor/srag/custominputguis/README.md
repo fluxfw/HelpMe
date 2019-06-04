@@ -28,6 +28,7 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [MultiSelectSearchInputGUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInputGUI.md)
 * [MultiSelectSearchInput2GUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInput2GUI.md)
 * [NumberInputGUI](./src/NumberInputGUI/doc/NumberInputGUI.md)
+* [PieChart](./src/PieChart/doc/PieChart.md)
 * [ProgressMeter](./src/ProgressMeter/doc/ProgressMeter.md)
 * [PropertyFormGUI](./src/PropertyFormGUI/doc/PropertyFormGUI.md)
 * [ScreenshotsInputGUI](./src/ScreenshotsInputGUI/doc/ScreenshotsInputGUI.md)
@@ -38,6 +39,7 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [TextInputGUI](./src/TextInputGUI/doc/TextInputGUI.md)
 * [ViewControlModeUI](./src/ViewControlModeUI/doc/ViewControlModeUI.md)
 * [Waiter](./src/Waiter/doc/Waiter.md)
+* [WeekdayInputGUI](./src/WeekdayInputGUI/doc/WeekdayInputGUI.md)
 
 ### Requirements
 * ILIAS 5.3 or ILIAS 5.4
