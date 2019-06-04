@@ -101,7 +101,7 @@ abstract class AbstractNotification extends ActiveRecord implements Notification
 	 * @con_is_notnull   true
 	 * @con_is_primary   true
 	 */
-	protected $id;
+	protected $id = 0;
 	/**
 	 * @var string
 	 *

@@ -283,16 +283,16 @@
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "v4.4.7",
+            "version": "v4.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-                "reference": "4beca5ae3760e6527c863cbf35fd26416e4007c6"
+                "reference": "021039e3b82a5620a467f6027d521f6023894a33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/4beca5ae3760e6527c863cbf35fd26416e4007c6",
-                "reference": "4beca5ae3760e6527c863cbf35fd26416e4007c6",
+                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/021039e3b82a5620a467f6027d521f6023894a33",
+                "reference": "021039e3b82a5620a467f6027d521f6023894a33",
                 "shasum": ""
             },
             "require": {
@@ -304,7 +304,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -325,7 +325,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2019-06-04T14:39:13+00:00"
+            "time": "2019-06-04T16:18:07+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
