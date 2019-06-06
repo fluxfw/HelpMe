@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.22.5]
+- Fix render multiple legend entries
+
 ## [0.22.4]
 - Remove `checkBoolArg` because not exists in older ILIAS versions
 

@@ -80,8 +80,8 @@ class Renderer extends AbstractComponentRenderer {
 				}
 
 				$tpl->setVariable("SECTION_NAME", $section_name);
+				$tpl->parseCurrentBlock();
 			}
-			$tpl->parseCurrentBlock();
 		}
 
 		foreach ($component->getSections() as $section) {
