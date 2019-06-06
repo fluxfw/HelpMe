@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.22.4]
+- Remove `checkBoolArg` because not exists in older ILIAS versions
+
 ## [0.22.3]
 - Remove PHP 7.1 return `void` syntax
 

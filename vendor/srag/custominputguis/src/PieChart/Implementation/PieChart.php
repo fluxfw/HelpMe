@@ -108,7 +108,7 @@ class PieChart implements PieChartInterface {
 	 * @inheritDoc
 	 */
 	public function withValuesInLegend(bool $state): PieChartInterface {
-		$this->checkBoolArg("state", $state);
+		//$this->checkBoolArg("state", $state);
 		$clone = clone $this;
 		$clone->valuesInLegend = $state;
 
@@ -128,7 +128,7 @@ class PieChart implements PieChartInterface {
 	 * @inheritDoc
 	 */
 	public function withShowLegend(bool $state): PieChartInterface {
-		$this->checkBoolArg("state", $state);
+		//$this->checkBoolArg("state", $state);
 		$clone = clone $this;
 		$clone->showLegend = $state;
 
