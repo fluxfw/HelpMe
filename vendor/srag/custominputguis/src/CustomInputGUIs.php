@@ -87,7 +87,7 @@ final class CustomInputGUIs {
 	 *
 	 * @since ILIAS 6.0
 	 */
-	public function pieChartItem(string $name, float $value, Color $color, ?Color $textColor = null) {
+	public function pieChartItem(string $name, float $value, Color $color, /*?*/Color $textColor = null) {
 		if (self::version()->is60()) {
 			return new PieChartItemCore($name, $value, $color, $textColor);
 		} else {

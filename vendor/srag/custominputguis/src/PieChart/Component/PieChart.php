@@ -73,11 +73,11 @@ interface PieChart extends Component {
 	 *
 	 * @return self
 	 */
-	public function withCustomTotalValue(?float $custom_total_value = null): self;
+	public function withCustomTotalValue(/*?*/float $custom_total_value = null): self;
 
 
 	/**
 	 * @return float|null
 	 */
-	public function getCustomTotalValue(): ?float;
+	public function getCustomTotalValue(): /*?*/float;
 }

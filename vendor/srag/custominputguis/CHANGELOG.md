@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.22.2]
+- Remove PHP 7.1 `null` syntax (`?`)
+
 ## [0.22.1]
 - Remove d3 library (Not needed anymore)
 

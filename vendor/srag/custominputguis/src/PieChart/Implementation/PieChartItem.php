@@ -45,7 +45,7 @@ class PieChartItem implements PieChartItemInterface {
 	 * @param Color      $color
 	 * @param Color|null $textColor
 	 */
-	public function __construct(string $name, float $value, Color $color, ?Color $textColor = null) {
+	public function __construct(string $name, float $value, Color $color, /*?*/Color $textColor = null) {
 		$this->checkStringArg("name", $name);
 		$this->checkFloatArg("value", $value);
 		$this->checkArgInstanceOf("color", $color, Color::class);
