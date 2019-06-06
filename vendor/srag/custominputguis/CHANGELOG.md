@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.22.3]
+- Remove PHP 7.1 return `void` syntax
+
 ## [0.22.2]
 - Remove PHP 7.1 `null` syntax (`?`)
 

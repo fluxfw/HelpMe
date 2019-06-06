@@ -63,7 +63,7 @@ class PieChart implements PieChartInterface {
 	/**
 	 * @param PieChartItemInterface[] $pieChartItems
 	 */
-	protected function createSections(array $pieChartItems): void {
+	protected function createSections(array $pieChartItems)/*: void*/ {
 		$currentOffset = 0;
 		$index = 1;
 
@@ -79,7 +79,7 @@ class PieChart implements PieChartInterface {
 	/**
 	 * @param PieChartItemInterface[] $pieChartItems
 	 */
-	protected function calcTotalValue(array $pieChartItems): void {
+	protected function calcTotalValue(array $pieChartItems)/*: void*/ {
 		$total = 0;
 		foreach ($pieChartItems as $item) {
 			$total += $item->getValue();

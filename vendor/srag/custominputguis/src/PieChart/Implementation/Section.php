@@ -94,7 +94,7 @@ class Section implements SectionInterface {
 	 * @param float $totalValue
 	 * @param float $sectionValue
 	 */
-	private function calcPercentage(float $totalValue, float $sectionValue): void {
+	private function calcPercentage(float $totalValue, float $sectionValue)/*: void*/ {
 		$this->percentage = $sectionValue / $totalValue * 100;
 	}
 
@@ -102,7 +102,7 @@ class Section implements SectionInterface {
 	/**
 	 *
 	 */
-	private function calcStrokeLength(): void {
+	private function calcStrokeLength()/*: void*/ {
 		$this->stroke_length = $this->percentage / 2.549;
 	}
 

@@ -58,7 +58,7 @@ class SectionValue implements SectionValueInterface {
 	 * @param float $stroke_dasharray
 	 * @param float $stroke_dashoffset
 	 */
-	private function calcChartCoords(float $stroke_dasharray, float $stroke_dashoffset): void {
+	private function calcChartCoords(float $stroke_dasharray, float $stroke_dashoffset)/*: void*/ {
 		$angle_dasharray = abs($stroke_dasharray) * 3.6 * 2.549;
 		$angle_dashoffset = abs($stroke_dashoffset) * 3.6 * 2.549;
 		$final_angle_rad = deg2rad(360 - ($angle_dashoffset + $angle_dasharray / 2));
@@ -71,7 +71,7 @@ class SectionValue implements SectionValueInterface {
 	/**
 	 * @param float $section_percentage
 	 */
-	private function calcTextSize(float $section_percentage): void {
+	private function calcTextSize(float $section_percentage)/*: void*/ {
 		if ($section_percentage <= 7) {
 			$this->text_size = 0;
 		} else {
