@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.18.4]
+- Add exists `self::dic()->dic()` to interface
+
+## [0.18.3]
+- ILIAS 6.0 `uiServices`
+
+## [0.18.2]
+- Supports output `ilTemplateWrapper`
+
+## [0.18.1]
+- Fix ILIAS 6.0 global template
+
 ## [0.18.0]
 - Fix ILIAS 6.0 global template
 

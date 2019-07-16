@@ -48,6 +48,7 @@ use ilTabsGUI;
 use ilTemplate;
 use ilToolbarGUI;
 use ilTree;
+use ilUIService;
 use Session;
 use srag\DIC\HelpMe\DIC\AbstractDIC;
 use srag\DIC\HelpMe\Exception\DICException;
@@ -60,24 +61,6 @@ use srag\DIC\HelpMe\Exception\DICException;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class ILIAS53DIC extends AbstractDIC {
-
-	/**
-	 * @var Container
-	 */
-	private $dic;
-
-
-	/**
-	 * ILIAS53DIC constructor
-	 *
-	 * @param Container $dic
-	 */
-	public function __construct(Container &$dic) {
-		parent::__construct();
-
-		$this->dic = &$dic;
-	}
-
 
 	/**
 	 * @inheritdoc
@@ -442,6 +425,14 @@ final class ILIAS53DIC extends AbstractDIC {
 	/**
 	 * @inheritdoc
 	 */
+	public function uiService(): ilUIService {
+		throw new DICException("ilUIService not exists in ILIAS 5.4 or below!");
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
 	public function upload(): FileUpload {
 		return $this->dic->upload();
 	}
@@ -456,7 +447,7 @@ final class ILIAS53DIC extends AbstractDIC {
 
 
 	/**
-	 * @return Container
+	 * @inheritDoc
 	 */
 	public function &dic(): Container {
 		return $this->dic;

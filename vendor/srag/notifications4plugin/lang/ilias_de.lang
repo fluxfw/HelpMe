@@ -22,10 +22,10 @@ notifications4plugin_name#:#Name
 notifications4plugin_name_info#:#Der Name ist eine zusätzliche eindeutige Kennung einer Benachrichtigung. Dies ermöglicht das einfache Abrufen von srNotification-Objekten anhand des Namens, nicht nur anhand der ID
 notifications4plugin_notifications#:#Benachrichtigungen
 notifications4plugin_parser#:#Parser
+notifications4plugin_placeholder_types_info#:#Folgende Platzhalter können in der Benachrichtigungs-Vorlage verwendet werden. Unterhalb wird dessen Datentyp angezeigt. Wie Sie diese verwenden können, schauen Sie bitte in der Dokumentation des ausgewählten Parsers nach
 notifications4plugin_save#:#Speichern
 notifications4plugin_saved_notification#:#Benachrichtigung %s gespeichert
 notifications4plugin_subject#:#Betreff
 notifications4plugin_template_selection#:#Benachrichtigungs-Vorlage
-notifications4plugin_template_selection_info#:#Folgende Platzhalter können in der Benachrichtigungs-Vorlage verwendet werden. Unterhalb wird dessen Datentyp angezeigt. Wie Sie diese verwenden können, schauen Sie bitte in der Dokumentation nach
 notifications4plugin_text#:#Text
 notifications4plugin_title#:#Titel

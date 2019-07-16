@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.5.2]
+- Making connection to jira work, if a proxy in ILIAS is used
+
 ## [0.5.1]
 - Make `escapeJQLValue` public
 

@@ -100,24 +100,24 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "v0.22.5",
-        "version_normalized": "0.22.5.0",
+        "version": "v0.22.10",
+        "version_normalized": "0.22.10.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "b1d2ed99c6dc3bc7fd24915b858e6df33bd8b04c"
+            "reference": "249a03f0d22c2fc855ac1a2f75a64e357d2274bd"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/b1d2ed99c6dc3bc7fd24915b858e6df33bd8b04c",
-            "reference": "b1d2ed99c6dc3bc7fd24915b858e6df33bd8b04c",
+            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/249a03f0d22c2fc855ac1a2f75a64e357d2274bd",
+            "reference": "249a03f0d22c2fc855ac1a2f75a64e357d2274bd",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-06-06T11:23:45+00:00",
+        "time": "2019-07-08T14:42:24+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -149,23 +149,23 @@
     },
     {
         "name": "srag/dic",
-        "version": "v0.18.0",
-        "version_normalized": "0.18.0.0",
+        "version": "v0.18.4",
+        "version_normalized": "0.18.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/DIC.git",
-            "reference": "8cb486d006ae8151139ecfbe1514ecc032b23407"
+            "reference": "f3a3877e52e571f794e54c96d4413de20b274472"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/8cb486d006ae8151139ecfbe1514ecc032b23407",
-            "reference": "8cb486d006ae8151139ecfbe1514ecc032b23407",
+            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/f3a3877e52e571f794e54c96d4413de20b274472",
+            "reference": "f3a3877e52e571f794e54c96d4413de20b274472",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0"
         },
-        "time": "2019-05-28T11:46:06+00:00",
+        "time": "2019-07-05T09:55:53+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -196,24 +196,24 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "v0.5.1",
-        "version_normalized": "0.5.1.0",
+        "version": "v0.5.2",
+        "version_normalized": "0.5.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "647b94b3ca036d633172105ad02c0e89d701bd9a"
+            "reference": "2bac20470890bbcae8cf288b4b253632af4de3ef"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/647b94b3ca036d633172105ad02c0e89d701bd9a",
-            "reference": "647b94b3ca036d633172105ad02c0e89d701bd9a",
+            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/2bac20470890bbcae8cf288b4b253632af4de3ef",
+            "reference": "2bac20470890bbcae8cf288b4b253632af4de3ef",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2019-05-24T05:59:06+00:00",
+        "time": "2019-06-28T06:59:08+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -243,23 +243,23 @@
     },
     {
         "name": "srag/librariesnamespacechanger",
-        "version": "v0.6.4",
-        "version_normalized": "0.6.4.0",
+        "version": "v0.6.7",
+        "version_normalized": "0.6.7.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-            "reference": "a7e3029a0fd9d96554ee3b149e02a5ad608b3572"
+            "reference": "8815a3167fe2fb69ac316962a9f4ebd89df4ac47"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/a7e3029a0fd9d96554ee3b149e02a5ad608b3572",
-            "reference": "a7e3029a0fd9d96554ee3b149e02a5ad608b3572",
+            "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/8815a3167fe2fb69ac316962a9f4ebd89df4ac47",
+            "reference": "8815a3167fe2fb69ac316962a9f4ebd89df4ac47",
             "shasum": ""
         },
         "require": {
             "php": ">=5.6"
         },
-        "time": "2019-05-24T11:57:27+00:00",
+        "time": "2019-07-08T14:54:11+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -288,17 +288,17 @@
     },
     {
         "name": "srag/notifications4plugin",
-        "version": "v4.4.9",
-        "version_normalized": "4.4.9.0",
+        "version": "v4.5.3",
+        "version_normalized": "4.5.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-            "reference": "021039e3b82a5620a467f6027d521f6023894a33"
+            "reference": "4833357fe1f3c61adb2c1ac5b49a798d612a0121"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/021039e3b82a5620a467f6027d521f6023894a33",
-            "reference": "021039e3b82a5620a467f6027d521f6023894a33",
+            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/4833357fe1f3c61adb2c1ac5b49a798d612a0121",
+            "reference": "4833357fe1f3c61adb2c1ac5b49a798d612a0121",
             "shasum": ""
         },
         "require": {
@@ -307,7 +307,7 @@
             "srag/dic": ">=0.1.0",
             "twig/twig": "1.18.0"
         },
-        "time": "2019-06-04T16:18:07+00:00",
+        "time": "2019-07-16T11:40:19+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

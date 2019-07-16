@@ -1,5 +1,8 @@
 # Changelog
 
+## [4.2.2]
+- Display placeholder types in notification form
+
 ## [4.2.1]
 - Fix issue types config
 

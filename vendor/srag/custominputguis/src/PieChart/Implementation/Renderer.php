@@ -4,9 +4,8 @@ namespace srag\CustomInputGUIs\HelpMe\PieChart\Implementation;
 
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Implementation\Render\AbstractComponentRenderer;
-use ILIAS\UI\Implementation\Render\ilTemplateWrapper;
+use ILIAS\UI\Implementation\Render\ResourceRegistry;
 use ILIAS\UI\Renderer as RendererInterface;
-use ilTemplate;
 use srag\CustomInputGUIs\HelpMe\PieChart\Component\PieChart as PieChartInterface;
 use srag\DIC\HelpMe\DICTrait;
 
@@ -28,14 +27,14 @@ class Renderer extends AbstractComponentRenderer {
 	 * @inheritDoc
 	 */
 	protected function getComponentInterfaceName(): array {
-		return [ PieChart::class ];
+		return [ PieChartInterface::class ];
 	}
 
 
 	/**
 	 * @inheritDoc
 	 */
-	public function render(Component $component, RendererInterface $default_renderer) {
+	public function render(Component $component, RendererInterface $default_renderer): string {
 		$this->checkComponent($component);
 
 		return $this->renderStandard($component, $default_renderer);
@@ -49,12 +48,7 @@ class Renderer extends AbstractComponentRenderer {
 	 * @return string
 	 */
 	protected function renderStandard(PieChartInterface $component, RendererInterface $default_renderer): string {
-		$dir = __DIR__;
-		$dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/..";
-
-		self::dic()->mainTemplate()->addCss($dir . "/css/piechart.css");
-
-		$tpl = new ilTemplateWrapper(self::dic()->mainTemplate(), new ilTemplate(__DIR__ . "/../templates/tpl.piechart.html", true, true));
+		$tpl = $this->getTemplate("tpl.piechart.html", true, true);
 
 		foreach ($component->getSections() as $section) {
 			$tpl->setCurrentBlock("section");
@@ -102,6 +96,27 @@ class Renderer extends AbstractComponentRenderer {
 		$tpl->setVariable("TOTAL_VALUE", round($total_value, 2));
 		$tpl->parseCurrentBlock();
 
-		return $tpl->get();
+		return self::output()->getHTML($tpl);
+	}
+
+
+	/**
+	 * @inheritDoc
+	 */
+	public function registerResources(ResourceRegistry $registry): void {
+		parent::registerResources($registry);
+
+		$dir = __DIR__;
+		$dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/..";
+
+		$registry->register($dir . "/css/piechart.css");
+	}
+
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function getTemplatePath(/*string*/ $name): string {
+		return __DIR__ . "/../templates/" . $name;
 	}
 }

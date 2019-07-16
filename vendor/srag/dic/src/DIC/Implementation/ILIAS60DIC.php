@@ -48,6 +48,7 @@ use ilStyleDefinition;
 use ilTabsGUI;
 use ilToolbarGUI;
 use ilTree;
+use ilUIService;
 use Session;
 use srag\DIC\HelpMe\DIC\AbstractDIC;
 
@@ -59,24 +60,6 @@ use srag\DIC\HelpMe\DIC\AbstractDIC;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class ILIAS60DIC extends AbstractDIC {
-
-	/**
-	 * @var Container
-	 */
-	private $dic;
-
-
-	/**
-	 * ILIAS60DIC constructor
-	 *
-	 * @param Container $dic
-	 */
-	public function __construct(Container &$dic) {
-		parent::__construct();
-
-		$this->dic = &$dic;
-	}
-
 
 	/**
 	 * @inheritdoc
@@ -441,6 +424,14 @@ final class ILIAS60DIC extends AbstractDIC {
 	/**
 	 * @inheritdoc
 	 */
+	public function uiService(): ilUIService {
+		return $this->dic->uiService();
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
 	public function upload(): FileUpload {
 		return $this->dic->upload();
 	}
@@ -455,7 +446,7 @@ final class ILIAS60DIC extends AbstractDIC {
 
 
 	/**
-	 * @return Container
+	 * @inheritDoc
 	 */
 	public function &dic(): Container {
 		return $this->dic;

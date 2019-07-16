@@ -83,6 +83,18 @@ class XCtrl extends AbstractCtrl {
 	const LANGUAGE_CLASS_NAME = NotificationLanguage::class;
 	const PLUGIN_CLASS_NAME = ilXPlugin::class;
 	...
+	
+	/**
+	 * @inheritdoc
+	 */
+	public function getPlaceholderTypes(): array {
+		return [
+			'user' => 'object ' . ilObjUser::class,
+			'course' => 'object ' . ilObjCourse::class,
+			'id' => 'int'
+		];
+	}
+	...
 }
 ```
 
@@ -261,11 +273,7 @@ $form = self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)
 $confirm = self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationDeleteConfirmation($notification);
 
 // Template selection
-self::notificationUI()->withPlugin(self::plugin())->templateSelection($notifications, 'post_key', [
-  'user' => 'object ' . ilObjUser::class,
-  'course' => 'object ' . ilObjCourse::class,
-  'id' => 'int'
-]);
+self::notificationUI()->withPlugin(self::plugin())->templateSelection($notifications, 'post_key');
 ```
 
 ### Requirements

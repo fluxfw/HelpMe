@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.6.7]
+- DataTable
+
+## [0.6.6]
+- AssessmentQuestion
+
+## [0.6.5]
+- TableUI
+
 ## [0.6.4]
 - IliasComponentCourse/IliasComponentUser
 
