@@ -2,6 +2,7 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
+use ilDBConstants;
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -184,7 +185,7 @@ final class Repository {
 	 */
 	public function hasOneProjectAtLeastReadAccess(): bool {
 		$result = self::dic()->database()->queryF("SELECT COUNT(project_show_tickets) AS count FROM " . Project::TABLE_NAME
-			. " WHERE project_show_tickets=%s", [ "integer" ], [ true ]);
+			. " WHERE project_show_tickets=%s", [ ilDBConstants::T_INTEGER ], [ true ]);
 
 		if (($row = $result->fetchAssoc()) !== false) {
 			return (intval($row["count"]) > 0);

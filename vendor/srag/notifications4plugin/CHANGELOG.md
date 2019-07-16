@@ -1,5 +1,47 @@
 # Changelog
 
+## [4.5.3]
+- Display placeholder types in notification form
+
+## [4.5.2]
+- Display placeholder types in notification form
+
+## [4.5.1]
+- Display placeholder types in notification form
+
+## [4.5.0]
+- Display placeholder types in notification form
+
+## [4.4.9]
+- Fixes
+
+## [4.4.8]
+- Fixes
+
+## [4.4.7]
+- Fixes
+
+## [4.4.6]
+- Fixes
+
+## [4.4.5]
+- Fixes
+
+## [4.4.4]
+- Fixes
+
+## [4.4.3]
+- Fixes
+
+## [4.4.2]
+- Fixes
+
+## [4.4.1]
+- Fixes
+
+## [4.4.0]
+- Use database
+
 ## [4.3.11]
 - NotificationLanguageRepository::getLanguages
 

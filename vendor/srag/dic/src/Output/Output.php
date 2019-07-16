@@ -3,6 +3,7 @@
 namespace srag\DIC\HelpMe\Output;
 
 use ILIAS\UI\Component\Component;
+use ILIAS\UI\Implementation\Render\ilTemplateWrapper;
 use ilTable2GUI;
 use ilTemplate;
 use JsonSerializable;
@@ -33,7 +34,7 @@ final class Output implements OutputInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function getHTML($value)/*: string*/ {
+	public function getHTML($value): string {
 		if (is_array($value)) {
 			$html = "";
 			foreach ($value as $gui) {
@@ -67,6 +68,7 @@ final class Output implements OutputInterface {
 
 				// Template instance
 				case ($value instanceof ilTemplate):
+				case ($value instanceof ilTemplateWrapper):
 					$html = $value->get();
 					break;
 
@@ -84,9 +86,7 @@ final class Output implements OutputInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function output($value, /*bool*/
-		$show = false, /*bool*/
-		$main_template = true)/*: void*/ {
+	public function output($value, bool $show = false, bool $main_template = true)/*: void*/ {
 		$html = $this->getHTML($value);
 
 		if (self::dic()->ctrl()->isAsynch()) {
@@ -95,13 +95,21 @@ final class Output implements OutputInterface {
 			exit;
 		} else {
 			if ($main_template) {
-				self::dic()->mainTemplate()->getStandardTemplate();
+				if (self::version()->is60()) {
+					self::dic()->mainTemplate()->loadStandardTemplate();
+				} else {
+					self::dic()->mainTemplate()->getStandardTemplate();
+				}
 			}
 
 			self::dic()->mainTemplate()->setContent($html);
 
 			if ($show) {
-				self::dic()->mainTemplate()->show();
+				if (self::version()->is60()) {
+					self::dic()->mainTemplate()->printToStdout();
+				} else {
+					self::dic()->mainTemplate()->show();
+				}
 			}
 		}
 	}

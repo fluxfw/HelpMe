@@ -17,8 +17,6 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 use srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage;
 use srag\Plugins\HelpMe\Notification\Notification\Notification;
 use srag\Plugins\HelpMe\Recipient\Recipient;
-use srag\Plugins\HelpMe\Support\Support;
-use srag\Plugins\HelpMe\Support\SupportField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -191,9 +189,6 @@ class ConfigFormGUI extends ActiveRecordConfigFormGUI {
 		return self::notificationUI()->withPlugin(self::plugin())
 			->templateSelection(self::notification(Notification::class, NotificationLanguage::class)
 				->getArrayForSelection(self::notification(Notification::class, NotificationLanguage::class)
-					->getNotifications()), Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name, [
-				"support" => "object " . Support::class,
-				"fields" => "array " . SupportField::class
-			]);
+					->getNotifications()), Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name);
 	}
 }

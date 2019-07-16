@@ -83,8 +83,8 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin {
 	 */
 	protected function deleteData()/*: void*/ {
 		self::dic()->database()->dropTable(Config::TABLE_NAME, false);
-		self::dic()->database()->dropTable(Notification::TABLE_NAME, false);
-		self::dic()->database()->dropTable(NotificationLanguage::TABLE_NAME, false);
+		Notification::dropDB_();
+		NotificationLanguage::dropDB_();
 		self::dic()->database()->dropTable(Project::TABLE_NAME, false);
 		self::dic()->database()->dropTable(Ticket::TABLE_NAME, false);
 	}

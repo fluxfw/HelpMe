@@ -5,6 +5,7 @@ namespace srag\JiraCurl\HelpMe;
 use CURLFile;
 use ilCurlConnection;
 use ilCurlConnectionException;
+use ilProxySettings;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use Throwable;
@@ -82,6 +83,22 @@ class JiraCurl {
 		$curlConnection = new ilCurlConnection();
 
 		$curlConnection->init();
+
+		// use a proxy, if configured by ILIAS
+		if (!self::version()->is60()) {
+			$proxy = ilProxySettings::_getInstance();
+			if ($proxy->isActive()) {
+				$curlConnection->setOpt(CURLOPT_HTTPPROXYTUNNEL, true);
+
+				if (!empty($proxy->getHost())) {
+					$curlConnection->setOpt(CURLOPT_PROXY, $proxy->getHost());
+				}
+
+				if (!empty($proxy->getPort())) {
+					$curlConnection->setOpt(CURLOPT_PROXYPORT, $proxy->getPort());
+				}
+			}
+		}
 
 		$curlConnection->setOpt(CURLOPT_RETURNTRANSFER, true);
 		$curlConnection->setOpt(CURLOPT_VERBOSE, false);
@@ -197,37 +214,19 @@ class JiraCurl {
 
 
 	/**
-	 * Get Jira tickets of project
+	 * Get Jira tickets by JQL filter
 	 *
-	 * @param string $jira_project_key   Project key
-	 * @param array  $filter_issue_types Filter by issue types
+	 * @param string $jql JQL
 	 *
 	 * @return array Array of jira tickets
 	 *
 	 * @throws ilCurlConnectionException
 	 * @throws JiraCurlException
 	 */
-	public function getTicketsOfProject(string $jira_project_key, array $filter_issue_types = []): array {
+	public function getTicketsByJQL(string $jql): array {
 		$headers = [
 			"Accept" => "application/json"
 		];
-
-		// Tickets of project
-		$jql = 'project=' . $this->escapeJQLValue($jira_project_key);
-
-		// Resolution is unresolved
-		$jql .= " AND resolution=unresolved";
-
-		// No security level set
-		$jql .= " AND level IS EMPTY";
-
-		// Filter by issue types
-		if (!empty($filter_issue_types)) {
-			$jql .= " AND issuetype IN(" . implode(",", array_map([ $this, "escapeJQLValue" ], $filter_issue_types)) . ")";
-		}
-
-		// Sort by updated descending
-		$jql .= " ORDER BY updated DESC";
 
 		$result = $this->doRequest("/rest/api/2/search?maxResults=" . rawurlencode(self::MAX_RESULTS) . "&jql=" . rawurlencode($jql), $headers);
 
@@ -248,11 +247,44 @@ class JiraCurl {
 
 
 	/**
+	 * Get Jira tickets of project
+	 *
+	 * @param string $jira_project_key   Project key
+	 * @param array  $filter_issue_types Filter by issue types
+	 *
+	 * @return array Array of jira tickets
+	 *
+	 * @throws ilCurlConnectionException
+	 * @throws JiraCurlException
+	 */
+	public function getTicketsOfProject(string $jira_project_key, array $filter_issue_types = []): array {
+		// Tickets of project
+		$jql = 'project=' . $this->escapeJQLValue($jira_project_key);
+
+		// Resolution is unresolved
+		$jql .= " AND resolution=unresolved";
+
+		// No security level set
+		$jql .= " AND level IS EMPTY";
+
+		// Filter by issue types
+		if (!empty($filter_issue_types)) {
+			$jql .= " AND issuetype IN(" . implode(",", array_map([ $this, "escapeJQLValue" ], $filter_issue_types)) . ")";
+		}
+
+		// Sort by updated descending
+		$jql .= " ORDER BY updated DESC";
+
+		return $this->getTicketsByJQL($jql);
+	}
+
+
+	/**
 	 * @param string $value
 	 *
 	 * @return string
 	 */
-	protected function escapeJQLValue(string $value): string {
+	public function escapeJQLValue(string $value): string {
 		return '"' . addslashes($value) . '"';
 	}
 

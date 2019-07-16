@@ -53,8 +53,7 @@ class NotificationFormGUI extends ObjectPropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function getValue(/*string*/
-		$key)/*: void*/ {
+	protected function getValue(/*string*/ $key)/*: void*/ {
 		switch (true) {
 			case ($key === "language"):
 			case ($key === "subject"):
@@ -175,8 +174,7 @@ class NotificationFormGUI extends ObjectPropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	protected function storeValue(/*string*/
-		$key, $value)/*: void*/ {
+	protected function storeValue(/*string*/ $key, $value)/*: void*/ {
 		switch (true) {
 			case ($key === "id"):
 			case (strpos($key, "language") === 0):
@@ -252,9 +250,7 @@ class NotificationFormGUI extends ObjectPropertyFormGUI {
 	/**
 	 * @inheritdoc
 	 */
-	public function txt(/*string*/
-		$key,/*?string*/
-		$default = null): string {
+	public function txt(/*string*/ $key,/*?string*/ $default = null): string {
 		if ($default !== null) {
 			return $this->plugin->translate($key, self::LANG_MODULE, [], true, "", $default);
 		} else {

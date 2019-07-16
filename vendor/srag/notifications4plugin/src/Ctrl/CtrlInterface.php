@@ -32,6 +32,11 @@ interface CtrlInterface {
 	/**
 	 *
 	 */
-	public function executeCommand()/*: void*/
-	;
+	public function executeCommand()/*: void*/ ;
+
+
+	/**
+	 * @return array
+	 */
+	public function getPlaceholderTypes(): array;
 }

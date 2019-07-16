@@ -6,6 +6,8 @@ use ilHelpMePlugin;
 use srag\Notifications4Plugin\HelpMe\Ctrl\AbstractCtrl;
 use srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage;
 use srag\Plugins\HelpMe\Notification\Notification\Notification;
+use srag\Plugins\HelpMe\Support\Support;
+use srag\Plugins\HelpMe\Support\SupportField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -34,5 +36,16 @@ class Notifications4PluginCtrl extends AbstractCtrl {
 		self::tickets()->showUsageConfigHint();
 
 		parent::executeCommand();
+	}
+
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getPlaceholderTypes(): array {
+		return [
+			"support" => "object " . Support::class,
+			"fields" => "array " . SupportField::class
+		];
 	}
 }

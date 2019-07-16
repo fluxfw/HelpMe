@@ -14,6 +14,14 @@ use ilDateTime;
 interface NotificationLanguage {
 
 	/**
+	 * @var string
+	 *
+	 * @abstract
+	 */
+	const TABLE_NAME = "";
+
+
+	/**
 	 * @return int
 	 */
 	public function getId(): int;
@@ -22,8 +30,7 @@ interface NotificationLanguage {
 	/**
 	 * @param int $id
 	 */
-	public function setId(int $id)/*: void*/
-	;
+	public function setId(int $id)/*: void*/ ;
 
 
 	/**
@@ -35,8 +42,7 @@ interface NotificationLanguage {
 	/**
 	 * @param int $notification_id
 	 */
-	public function setNotificationId(int $notification_id)/*: void*/
-	;
+	public function setNotificationId(int $notification_id)/*: void*/ ;
 
 
 	/**
@@ -48,8 +54,7 @@ interface NotificationLanguage {
 	/**
 	 * @param string $language
 	 */
-	public function setLanguage(string $language)/*: void*/
-	;
+	public function setLanguage(string $language)/*: void*/ ;
 
 
 	/**
@@ -61,8 +66,7 @@ interface NotificationLanguage {
 	/**
 	 * @param string $subject
 	 */
-	public function setSubject(string $subject)/*: void*/
-	;
+	public function setSubject(string $subject)/*: void*/ ;
 
 
 	/**
@@ -74,8 +78,7 @@ interface NotificationLanguage {
 	/**
 	 * @param string $text
 	 */
-	public function setText(string $text)/*: void*/
-	;
+	public function setText(string $text)/*: void*/ ;
 
 
 	/**
@@ -87,8 +90,7 @@ interface NotificationLanguage {
 	/**
 	 * @param ilDateTime $created_at
 	 */
-	public function setCreatedAt(ilDateTime $created_at)/*: void*/
-	;
+	public function setCreatedAt(ilDateTime $created_at)/*: void*/ ;
 
 
 	/**
@@ -100,6 +102,5 @@ interface NotificationLanguage {
 	/**
 	 * @param ilDateTime $updated_at
 	 */
-	public function setUpdatedAt(ilDateTime $updated_at)/*: void*/
-	;
+	public function setUpdatedAt(ilDateTime $updated_at)/*: void*/ ;
 }

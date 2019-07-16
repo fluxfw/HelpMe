@@ -43,18 +43,18 @@ interface UIInterface extends Pluginable {
 	/**
 	 * @param string   $parent_cmd
 	 * @param callable $getNotifications
+	 * @param callable $getNotificationsCount
 	 *
 	 * @return NotificationsTableGUI
 	 */
-	public function notificationTable(string $parent_cmd, callable $getNotifications): NotificationsTableGUI;
+	public function notificationTable(string $parent_cmd, callable $getNotifications, callable $getNotificationsCount): NotificationsTableGUI;
 
 
 	/**
 	 * @param array  $notifications
 	 * @param string $post_key
-	 * @param array  $placeholder_types
 	 *
 	 * @return array
 	 */
-	public function templateSelection(array $notifications, string $post_key, array $placeholder_types): array;
+	public function templateSelection(array $notifications, string $post_key): array;
 }

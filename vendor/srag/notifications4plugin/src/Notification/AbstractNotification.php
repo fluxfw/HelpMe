@@ -31,12 +31,6 @@ abstract class AbstractNotification extends ActiveRecord implements Notification
 	 *
 	 * @abstract
 	 */
-	const TABLE_NAME = "";
-	/**
-	 * @var string
-	 *
-	 * @abstract
-	 */
 	const LANGUAGE_CLASS_NAME = "";
 
 
@@ -75,6 +69,30 @@ abstract class AbstractNotification extends ActiveRecord implements Notification
 
 
 	/**
+	 *
+	 */
+	public static function updateDB_()/*: void*/ {
+		self::updateDB();
+
+		if (self::dic()->database()->sequenceExists(static::TABLE_NAME)) {
+			self::dic()->database()->dropSequence(static::TABLE_NAME);
+		}
+
+		self::dic()->database()->createAutoIncrement(static::TABLE_NAME, "id");
+	}
+
+
+	/**
+	 *
+	 */
+	public static function dropDB_()/*: void*/ {
+		self::dic()->database()->dropTable(static::TABLE_NAME, false);
+
+		self::dic()->database()->dropAutoIncrementTable(static::TABLE_NAME);
+	}
+
+
+	/**
 	 * @var int
 	 *
 	 * @con_has_field    true
@@ -82,9 +100,8 @@ abstract class AbstractNotification extends ActiveRecord implements Notification
 	 * @con_length       8
 	 * @con_is_notnull   true
 	 * @con_is_primary   true
-	 * @con_sequence     true
 	 */
-	protected $id;
+	protected $id = 0;
 	/**
 	 * @var string
 	 *
@@ -158,62 +175,8 @@ abstract class AbstractNotification extends ActiveRecord implements Notification
 	 * @param int              $primary_key_value
 	 * @param arConnector|null $connector
 	 */
-	public function __construct(/*int*/
-		$primary_key_value = 0, /*?*/
-		arConnector $connector = null) {
-		parent::__construct($primary_key_value, $connector);
-	}
-
-
-	/**
-	 *
-	 */
-	public function afterObjectLoad()/*: void*/ {
-		if (!empty($this->id)) {
-			$this->languages = self::notificationLanguage()->getLanguagesForNotification($this->id);
-		}
-	}
-
-
-	/**
-	 * @param string $field_name
-	 *
-	 * @return mixed|null
-	 */
-	public function sleep(/*string*/
-		$field_name) {
-		$field_value = $this->{$field_name};
-
-		switch ($field_name) {
-			case "created_at":
-			case "updated_at":
-				return $field_value->get(IL_CAL_DATETIME);
-
-			default:
-				return null;
-		}
-	}
-
-
-	/**
-	 * @param string $field_name
-	 * @param mixed  $field_value
-	 *
-	 * @return mixed|null
-	 */
-	public function wakeUp(/*string*/
-		$field_name, $field_value) {
-		switch ($field_name) {
-			case "id":
-				return intval($field_value);
-
-			case "created_at":
-			case "updated_at":
-				return new ilDateTime($field_value, IL_CAL_DATETIME);
-
-			default:
-				return null;
-		}
+	public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null) {
+		//parent::__construct($primary_key_value, $connector);
 	}
 
 

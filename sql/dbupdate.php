@@ -101,8 +101,8 @@ if (\srag\DIC\HelpMe\DICStatic::dic()->database()->tableColumnExists(\srag\Plugi
 ?>
 <#14>
 <?php
-\srag\Plugins\HelpMe\Notification\Notification\Notification::updateDB();
-\srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::updateDB();
+\srag\Plugins\HelpMe\Notification\Notification\Notification::updateDB_();
+\srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::updateDB_();
 
 $templates = \srag\Plugins\HelpMe\Config\Config::getField(\srag\Plugins\HelpMe\Config\Config::KEY_RECIPIENT_TEMPLATES);
 
@@ -199,4 +199,9 @@ foreach (\srag\Notifications4Plugin\HelpMe\Notification\Language\Repository::get
 	\srag\Notifications4Plugin\HelpMe\Notification\Language\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::class)
 		->storeInstance($language);
 }
+?>
+<#16>
+<?php
+\srag\Plugins\HelpMe\Notification\Notification\Notification::updateDB_();
+\srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::updateDB_();
 ?>
