@@ -58,8 +58,8 @@ final class Repository implements RepositoryInterface {
 	 * @inheritdoc
 	 */
 	public function deleteLanguage(NotificationLanguage $language)/*: void*/ {
-		self::dic()->database()->manipulate('DELETE FROM ' . self::dic()->database()->quoteIdentifier($this->language_class::TABLE_NAME)
-			. " WHERE id=%s", [ ilDBConstants::T_INTEGER ], [ $language->getId() ]);
+		self::dic()->database()->manipulateF('DELETE FROM ' . self::dic()->database()->quoteIdentifier($this->language_class::TABLE_NAME)
+			. ' WHERE id=%s', [ ilDBConstants::T_INTEGER ], [ $language->getId() ]);
 	}
 
 

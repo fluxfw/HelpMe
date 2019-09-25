@@ -53,8 +53,9 @@ interface UIInterface extends Pluginable {
 	/**
 	 * @param array  $notifications
 	 * @param string $post_key
+	 * @param bool   $required
 	 *
 	 * @return array
 	 */
-	public function templateSelection(array $notifications, string $post_key): array;
+	public function templateSelection(array $notifications, string $post_key, bool $required = true): array;
 }

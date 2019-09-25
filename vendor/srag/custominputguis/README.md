@@ -37,6 +37,7 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [Template](./src/Template/doc/Template.md)
 * [TextAreaInputGUI](./src/TextAreaInputGUI/doc/TextAreaInputGUI.md)
 * [TextInputGUI](./src/TextInputGUI/doc/TextInputGUI.md)
+* [TextInputGUIWithModernAutoComplete](./src/TextInputGUI/doc/TextInputGUIWithModernAutoComplete.md)
 * [ViewControlModeUI](./src/ViewControlModeUI/doc/ViewControlModeUI.md)
 * [Waiter](./src/Waiter/doc/Waiter.md)
 * [WeekdayInputGUI](./src/WeekdayInputGUI/doc/WeekdayInputGUI.md)

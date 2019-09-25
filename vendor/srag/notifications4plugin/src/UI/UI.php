@@ -140,11 +140,11 @@ final class UI implements UIInterface {
 	/**
 	 * @inheritdoc
 	 */
-	public function templateSelection(array $notifications, string $post_key): array {
+	public function templateSelection(array $notifications, string $post_key, bool $required = true): array {
 		return [
 			$post_key => [
 				PropertyFormGUI::PROPERTY_CLASS => ilSelectInputGUI::class,
-				PropertyFormGUI::PROPERTY_REQUIRED => true,
+				PropertyFormGUI::PROPERTY_REQUIRED => $required,
 				PropertyFormGUI::PROPERTY_OPTIONS => [ "" => "" ] + $notifications,
 				"setTitle" => $this->getPlugin()
 					->translate("template_selection", CtrlInterface::LANG_MODULE_NOTIFICATIONS4PLUGIN, [ CtrlInterface::NAME ]),
