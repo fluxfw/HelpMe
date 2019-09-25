@@ -12,8 +12,9 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class NotificationLanguage extends AbstractNotificationLanguage {
+class NotificationLanguage extends AbstractNotificationLanguage
+{
 
-	use HelpMeTrait;
-	const TABLE_NAME = "ui_uihk_srsu_not_lang";
+    use HelpMeTrait;
+    const TABLE_NAME = "ui_uihk_srsu_not_lang";
 }

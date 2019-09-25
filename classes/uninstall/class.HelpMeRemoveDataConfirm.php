@@ -12,8 +12,9 @@ use srag\RemovePluginDataConfirm\HelpMe\AbstractRemovePluginDataConfirm;
  *
  * @ilCtrl_isCalledBy HelpMeRemoveDataConfirm: ilUIPluginRouterGUI
  */
-class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm {
+class HelpMeRemoveDataConfirm extends AbstractRemovePluginDataConfirm
+{
 
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 }

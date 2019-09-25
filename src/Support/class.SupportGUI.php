@@ -20,160 +20,168 @@ use Throwable;
  *
  * @ilCtrl_isCalledBy srag\Plugins\HelpMe\Support\SupportGUI: ilUIPluginRouterGUI
  */
-class SupportGUI {
+class SupportGUI
+{
 
-	use DICTrait;
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const CMD_ADD_SUPPORT = "addSupport";
-	const CMD_NEW_SUPPORT = "newSupport";
-	const LANG_MODULE_SUPPORT = "support";
-
-
-	/**
-	 * SupportGUI constructor
-	 */
-	public function __construct() {
-
-	}
+    use DICTrait;
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const CMD_ADD_SUPPORT = "addSupport";
+    const CMD_NEW_SUPPORT = "newSupport";
+    const LANG_MODULE_SUPPORT = "support";
 
 
-	/**
-	 *
-	 */
-	public function executeCommand()/*: void*/ {
-		if (!self::access()->currentUserHasRole()) {
-			die();
-		}
+    /**
+     * SupportGUI constructor
+     */
+    public function __construct()
+    {
 
-		if (self::supports()->getRefId() !== null) {
-			self::dic()->ctrl()->saveParameter($this, Repository::GET_PARAM_REF_ID);
-		}
-
-		$next_class = self::dic()->ctrl()->getNextClass($this);
-
-		switch (strtolower($next_class)) {
-			case strtolower(ProjectSelectInputGUI::class):
-				self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractProjectSelector());
-				break;
-
-			case strtolower(IssueTypeSelectInputGUI::class):
-				self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractIssueTypeSelector());
-				break;
-
-			default:
-				$cmd = self::dic()->ctrl()->getCmd();
-
-				switch ($cmd) {
-					case self::CMD_ADD_SUPPORT:
-					case self::CMD_NEW_SUPPORT:
-						$this->{$cmd}();
-						break;
-
-					default:
-						break;
-				}
-				break;
-		}
-	}
+    }
 
 
-	/**
-	 * @return SupportFormGUI
-	 */
-	protected function getSupportForm(): SupportFormGUI {
-		$form = new SupportFormGUI($this);
+    /**
+     *
+     */
+    public function executeCommand()/*: void*/
+    {
+        if (!self::access()->currentUserHasRole()) {
+            die();
+        }
 
-		return $form;
-	}
+        if (self::supports()->getRefId() !== null) {
+            self::dic()->ctrl()->saveParameter($this, Repository::GET_PARAM_REF_ID);
+        }
 
+        $next_class = self::dic()->ctrl()->getNextClass($this);
 
-	/**
-	 * @return SuccessFormGUI
-	 */
-	protected function getSuccessForm(): SuccessFormGUI {
-		$form = new SuccessFormGUI($this);
+        switch (strtolower($next_class)) {
+            case strtolower(ProjectSelectInputGUI::class):
+                self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractProjectSelector());
+                break;
 
-		return $form;
-	}
+            case strtolower(IssueTypeSelectInputGUI::class):
+                self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractIssueTypeSelector());
+                break;
 
+            default:
+                $cmd = self::dic()->ctrl()->getCmd();
 
-	/**
-	 * @param string|null       $message
-	 * @param ilPropertyFormGUI $form
-	 */
-	protected function show(/*?string*/ $message, ilPropertyFormGUI $form)/*: void*/ {
-		$tpl = self::plugin()->template("helpme_modal.html");
+                switch ($cmd) {
+                    case self::CMD_ADD_SUPPORT:
+                    case self::CMD_NEW_SUPPORT:
+                        $this->{$cmd}();
+                        break;
 
-		$tpl->setCurrentBlock("helpme_info");
-		$tpl->setVariable("INFO", Config::getField(Config::KEY_INFO));
-
-		if ($message !== null) {
-			$tpl->setCurrentBlock("helpme_message");
-			$tpl->setVariable("MESSAGE", $message);
-		}
-
-		$tpl->setCurrentBlock("helpme_form");
-		$tpl->setVariable("FORM", self::output()->getHTML($form));
-
-		self::output()->output($tpl);
-	}
-
-
-	/**
-	 *
-	 */
-	protected function addSupport()/*: void*/ {
-		$message = null;
-
-		$form = $this->getSupportForm();
-
-		$this->show($message, $form);
-	}
+                    default:
+                        break;
+                }
+                break;
+        }
+    }
 
 
-	/**
-	 *
-	 */
-	protected function newSupport()/*: void*/ {
-		$message = null;
+    /**
+     * @return SupportFormGUI
+     */
+    protected function getSupportForm() : SupportFormGUI
+    {
+        $form = new SupportFormGUI($this);
 
-		$form = $this->getSupportForm();
+        return $form;
+    }
 
-		if (!$form->storeForm()) {
-			$this->show($message, $form);
 
-			return;
-		}
+    /**
+     * @return SuccessFormGUI
+     */
+    protected function getSuccessForm() : SuccessFormGUI
+    {
+        $form = new SuccessFormGUI($this);
 
-		$support = $form->getSupport();
+        return $form;
+    }
 
-		try {
-			$recipient = Recipient::getRecipient(Config::getField(Config::KEY_RECIPIENT), $support);
 
-			$recipient->sendSupportToRecipient();
+    /**
+     * @param string|null       $message
+     * @param ilPropertyFormGUI $form
+     */
+    protected function show(/*?string*/ $message, ilPropertyFormGUI $form)/*: void*/
+    {
+        $tpl = self::plugin()->template("helpme_modal.html");
 
-			if (self::version()->is54()) {
-				$message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->success(self::plugin()
-					->translate("sent_success", self::LANG_MODULE_SUPPORT)));
-			} else {
-				$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
-					->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
-			}
+        $tpl->setCurrentBlock("helpme_info");
+        $tpl->setVariable("INFO", Config::getField(Config::KEY_INFO));
 
-			$form = $this->getSuccessForm();
-		} catch (Throwable $ex) {
-			self::dic()->logger()->root()->log($ex->__toString(), ilLogLevel::ERROR);
+        if ($message !== null) {
+            $tpl->setCurrentBlock("helpme_message");
+            $tpl->setVariable("MESSAGE", $message);
+        }
 
-			if (self::version()->is54()) {
-				$message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->failure(self::plugin()
-					->translate("sent_failure", self::LANG_MODULE_SUPPORT)));
-			} else {
-				$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
-					->translate("sent_failure", self::LANG_MODULE_SUPPORT), "failure");
-			}
-		}
+        $tpl->setCurrentBlock("helpme_form");
+        $tpl->setVariable("FORM", self::output()->getHTML($form));
 
-		$this->show($message, $form);
-	}
+        self::output()->output($tpl);
+    }
+
+
+    /**
+     *
+     */
+    protected function addSupport()/*: void*/
+    {
+        $message = null;
+
+        $form = $this->getSupportForm();
+
+        $this->show($message, $form);
+    }
+
+
+    /**
+     *
+     */
+    protected function newSupport()/*: void*/
+    {
+        $message = null;
+
+        $form = $this->getSupportForm();
+
+        if (!$form->storeForm()) {
+            $this->show($message, $form);
+
+            return;
+        }
+
+        $support = $form->getSupport();
+
+        try {
+            $recipient = Recipient::getRecipient(Config::getField(Config::KEY_RECIPIENT), $support);
+
+            $recipient->sendSupportToRecipient();
+
+            if (self::version()->is54()) {
+                $message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->success(self::plugin()
+                    ->translate("sent_success", self::LANG_MODULE_SUPPORT)));
+            } else {
+                $message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                    ->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
+            }
+
+            $form = $this->getSuccessForm();
+        } catch (Throwable $ex) {
+            self::dic()->logger()->root()->log($ex->__toString(), ilLogLevel::ERROR);
+
+            if (self::version()->is54()) {
+                $message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->failure(self::plugin()
+                    ->translate("sent_failure", self::LANG_MODULE_SUPPORT)));
+            } else {
+                $message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                    ->translate("sent_failure", self::LANG_MODULE_SUPPORT), "failure");
+            }
+        }
+
+        $this->show($message, $form);
+    }
 }

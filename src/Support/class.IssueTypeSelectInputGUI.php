@@ -18,108 +18,115 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @ilCtrl_isCalledBy srag\Plugins\HelpMe\Support\IssueTypeSelectInputGUI: srag\Plugins\HelpMe\Support\SupportGUI
  */
-class IssueTypeSelectInputGUI extends ilSelectInputGUI {
+class IssueTypeSelectInputGUI extends ilSelectInputGUI
+{
 
-	use DICTrait;
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const CMD_GET_ISSUE_TYPES_OF_PROJECT = "getIssueTypesOfProject";
-	/**
-	 * @var SupportFormGUI
-	 */
-	public $parent_gui;
-
-
-	/**
-	 * @param string $a_mode
-	 *
-	 * @return string
-	 */
-	public function render(/*string*/
-		$a_mode = ""): string {
-		$this->setIssueTypesOptions($this->parent_gui->getProject());
-
-		return parent::render($a_mode);
-	}
+    use DICTrait;
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const CMD_GET_ISSUE_TYPES_OF_PROJECT = "getIssueTypesOfProject";
+    /**
+     * @var SupportFormGUI
+     */
+    public $parent_gui;
 
 
-	/**
-	 * @return bool
-	 */
-	public function checkInput(): bool {
-		$project_select = $this->parent_gui->extractProjectSelector();
+    /**
+     * @param string $a_mode
+     *
+     * @return string
+     */
+    public function render(/*string*/
+        $a_mode = ""
+    ) : string {
+        $this->setIssueTypesOptions($this->parent_gui->getProject());
 
-		// First validate project
-		if ($project_select->checkInput()) {
-
-			// Then set project issue types
-			$project = self::projects()->getProjectByUrlKey(Items::getValueFromItem($project_select));
-
-			$this->parent_gui->setProject($project);
-
-			$this->setIssueTypesOptions($project);
-		}
-
-		// This will validate issue type options
-		return parent::checkInput();
-	}
+        return parent::render($a_mode);
+    }
 
 
-	/**
-	 *
-	 */
-	public function executeCommand()/*: void*/ {
-		$next_class = self::dic()->ctrl()->getNextClass($this);
+    /**
+     * @return bool
+     */
+    public function checkInput() : bool
+    {
+        $project_select = $this->parent_gui->extractProjectSelector();
 
-		switch (strtolower($next_class)) {
-			default:
-				$cmd = self::dic()->ctrl()->getCmd();
+        // First validate project
+        if ($project_select->checkInput()) {
 
-				switch ($cmd) {
-					case self::CMD_GET_ISSUE_TYPES_OF_PROJECT:
-						$this->{$cmd}();
-						break;
+            // Then set project issue types
+            $project = self::projects()->getProjectByUrlKey(Items::getValueFromItem($project_select));
 
-					default:
-						break;
-				}
-				break;
-		}
-	}
+            $this->parent_gui->setProject($project);
 
+            $this->setIssueTypesOptions($project);
+        }
 
-	/**
-	 *
-	 */
-	protected function getIssueTypesOfProject()/*: void*/ {
-		$project_url_key = filter_input(INPUT_GET, "project_url_key");
-
-		$project = self::projects()->getProjectByUrlKey($project_url_key);
-
-		$this->parent_gui->setProject($project);
-
-		self::output()->output($this);
-	}
+        // This will validate issue type options
+        return parent::checkInput();
+    }
 
 
-	/**
-	 * @param Project|null $project
-	 */
-	protected function setIssueTypesOptions(/*?*/
-		Project $project = null)/*: void*/ {
-		$options = [
-			"" => "&lt;" . $this->parent_gui->txt("please_select") . "&gt;"
-		];
+    /**
+     *
+     */
+    public function executeCommand()/*: void*/
+    {
+        $next_class = self::dic()->ctrl()->getNextClass($this);
 
-		if ($project !== null) {
-			$options += self::projects()->getIssueTypesOptions($project);
+        switch (strtolower($next_class)) {
+            default:
+                $cmd = self::dic()->ctrl()->getCmd();
 
-			$this->setDisabled(false);
-		} else {
+                switch ($cmd) {
+                    case self::CMD_GET_ISSUE_TYPES_OF_PROJECT:
+                        $this->{$cmd}();
+                        break;
 
-			$this->setDisabled(true);
-		}
+                    default:
+                        break;
+                }
+                break;
+        }
+    }
 
-		$this->setOptions($options);
-	}
+
+    /**
+     *
+     */
+    protected function getIssueTypesOfProject()/*: void*/
+    {
+        $project_url_key = filter_input(INPUT_GET, "project_url_key");
+
+        $project = self::projects()->getProjectByUrlKey($project_url_key);
+
+        $this->parent_gui->setProject($project);
+
+        self::output()->output($this);
+    }
+
+
+    /**
+     * @param Project|null $project
+     */
+    protected function setIssueTypesOptions(/*?*/
+        Project $project = null
+    )/*: void*/
+    {
+        $options = [
+            "" => "&lt;" . $this->parent_gui->txt("please_select") . "&gt;"
+        ];
+
+        if ($project !== null) {
+            $options += self::projects()->getIssueTypesOptions($project);
+
+            $this->setDisabled(false);
+        } else {
+
+            $this->setDisabled(true);
+        }
+
+        $this->setOptions($options);
+    }
 }

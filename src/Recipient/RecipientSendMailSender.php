@@ -20,23 +20,25 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class RecipientSendMailSender extends ilMailMimeSenderUser {
+class RecipientSendMailSender extends ilMailMimeSenderUser
+{
 
-	use DICTrait;
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    use DICTrait;
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
-	/**
-	 * RecipientSendMailSender constructor
-	 *
-	 * @param Support $support
-	 */
-	public function __construct(Support $support) {
-		$user = new ilObjUser();
-		$user->fullname = $support->getName();
-		$user->setEmail($support->getEmail());
+    /**
+     * RecipientSendMailSender constructor
+     *
+     * @param Support $support
+     */
+    public function __construct(Support $support)
+    {
+        $user = new ilObjUser();
+        $user->fullname = $support->getName();
+        $user->setEmail($support->getEmail());
 
-		parent::__construct(self::dic()->settings(), $user);
-	}
+        parent::__construct(self::dic()->settings(), $user);
+    }
 }

@@ -16,181 +16,192 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ilHelpMeConfigGUI extends ActiveRecordConfigGUI {
+class ilHelpMeConfigGUI extends ActiveRecordConfigGUI
+{
 
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const TAB_PROJECTS = "projects";
-	const CMD_ADD_PROJECT = "addProject";
-	const CMD_CREATE_PROJECT = "createProject";
-	const CMD_EDIT_PROJECT = "editProject";
-	const CMD_HIDE_USAGE = "hideUsage";
-	const CMD_UPDATE_PROJECT = "updateProject";
-	const CMD_REMOVE_PROJECT_CONFIRM = "removeProjectConfirm";
-	const CMD_REMOVE_PROJECT = "removeProject";
-	const GET_PARAM_USAGE_ID = "usage_id";
-	/**
-	 * @var array
-	 */
-	protected static $tabs = [
-		self::TAB_CONFIGURATION => ConfigFormGUI::class,
-		self::TAB_PROJECTS => ProjectsTableGUI::class,
-		Notifications4PluginCtrl::TAB_NOTIFICATIONS => [
-			Notifications4PluginCtrl::class,
-			Notifications4PluginCtrl::CMD_LIST_NOTIFICATIONS
-		]
-	];
-	/**
-	 * @var array
-	 */
-	protected static $custom_commands = [
-		self::CMD_ADD_PROJECT,
-		self::CMD_CREATE_PROJECT,
-		self::CMD_EDIT_PROJECT,
-		self::CMD_HIDE_USAGE,
-		self::CMD_UPDATE_PROJECT,
-		self::CMD_REMOVE_PROJECT,
-		self::CMD_REMOVE_PROJECT_CONFIRM
-	];
-
-
-	/**
-	 * @param Project $project
-	 *
-	 * @return ProjectFormGUI
-	 */
-	protected function getProjectForm(Project $project): ProjectFormGUI {
-		$form = new ProjectFormGUI($this, $project);
-
-		return $form;
-	}
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const TAB_PROJECTS = "projects";
+    const CMD_ADD_PROJECT = "addProject";
+    const CMD_CREATE_PROJECT = "createProject";
+    const CMD_EDIT_PROJECT = "editProject";
+    const CMD_HIDE_USAGE = "hideUsage";
+    const CMD_UPDATE_PROJECT = "updateProject";
+    const CMD_REMOVE_PROJECT_CONFIRM = "removeProjectConfirm";
+    const CMD_REMOVE_PROJECT = "removeProject";
+    const GET_PARAM_USAGE_ID = "usage_id";
+    /**
+     * @var array
+     */
+    protected static $tabs
+        = [
+            self::TAB_CONFIGURATION                     => ConfigFormGUI::class,
+            self::TAB_PROJECTS                          => ProjectsTableGUI::class,
+            Notifications4PluginCtrl::TAB_NOTIFICATIONS => [
+                Notifications4PluginCtrl::class,
+                Notifications4PluginCtrl::CMD_LIST_NOTIFICATIONS
+            ]
+        ];
+    /**
+     * @var array
+     */
+    protected static $custom_commands
+        = [
+            self::CMD_ADD_PROJECT,
+            self::CMD_CREATE_PROJECT,
+            self::CMD_EDIT_PROJECT,
+            self::CMD_HIDE_USAGE,
+            self::CMD_UPDATE_PROJECT,
+            self::CMD_REMOVE_PROJECT,
+            self::CMD_REMOVE_PROJECT_CONFIRM
+        ];
 
 
-	/**
-	 *
-	 */
-	protected function addProject()/*: void*/ {
-		self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
+    /**
+     * @param Project $project
+     *
+     * @return ProjectFormGUI
+     */
+    protected function getProjectForm(Project $project) : ProjectFormGUI
+    {
+        $form = new ProjectFormGUI($this, $project);
 
-		$form = $this->getProjectForm(self::projects()->factory()->newInstance());
-
-		self::output()->output($form);
-	}
-
-
-	/**
-	 *
-	 */
-	protected function createProject()/*: void*/ {
-		self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
-
-		$form = $this->getProjectForm(self::projects()->factory()->newInstance());
-
-		if (!$form->storeForm()) {
-			self::output()->output($form);
-
-			return;
-		}
-
-		ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [ $form->getObject()->getProjectName() ]), true);
-
-		$this->redirectToTab(self::TAB_PROJECTS);
-	}
+        return $form;
+    }
 
 
-	/**
-	 *
-	 */
-	protected function editProject()/*: void*/ {
-		self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
+    /**
+     *
+     */
+    protected function addProject()/*: void*/
+    {
+        self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
 
-		$project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
-		$project = self::projects()->getProjectById($project_id);
+        $form = $this->getProjectForm(self::projects()->factory()->newInstance());
 
-		$form = $this->getProjectForm($project);
-
-		self::output()->output($form);
-	}
+        self::output()->output($form);
+    }
 
 
-	/**
-	 *
-	 */
-	protected function updateProject()/*: void*/ {
-		self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
+    /**
+     *
+     */
+    protected function createProject()/*: void*/
+    {
+        self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
 
-		$project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
-		$project = self::projects()->getProjectById($project_id);
+        $form = $this->getProjectForm(self::projects()->factory()->newInstance());
 
-		$form = $this->getProjectForm($project);
+        if (!$form->storeForm()) {
+            self::output()->output($form);
 
-		if (!$form->storeForm()) {
-			self::output()->output($form);
+            return;
+        }
 
-			return;
-		}
+        ilUtil::sendSuccess(self::plugin()->translate("added_project", self::LANG_MODULE_CONFIG, [$form->getObject()->getProjectName()]), true);
 
-		ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [ $form->getObject()->getProjectName() ]), true);
-
-		$this->redirectToTab(self::TAB_PROJECTS);
-	}
+        $this->redirectToTab(self::TAB_PROJECTS);
+    }
 
 
-	/**
-	 *
-	 */
-	protected function removeProjectConfirm()/*: void*/ {
-		self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
+    /**
+     *
+     */
+    protected function editProject()/*: void*/
+    {
+        self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
 
-		$project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
-		$project = self::projects()->getProjectById($project_id);
+        $project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
+        $project = self::projects()->getProjectById($project_id);
 
-		$confirmation = new ilConfirmationGUI();
+        $form = $this->getProjectForm($project);
 
-		self::dic()->ctrl()->setParameter($this, "srsu_project_id", $project->getProjectId());
-		$confirmation->setFormAction(self::dic()->ctrl()->getFormAction($this));
-		self::dic()->ctrl()->setParameter($this, "srsu_project_id", null);
-
-		$confirmation->setHeaderText(self::plugin()->translate("remove_project_confirm", self::LANG_MODULE_CONFIG, [ $project->getProjectName() ]));
-
-		$confirmation->addItem("srsu_project_id", $project->getProjectId(), $project->getProjectName());
-
-		$confirmation->setConfirm($this->txt("remove"), self::CMD_REMOVE_PROJECT);
-		$confirmation->setCancel($this->txt("cancel"), $this->getCmdForTab(self::TAB_PROJECTS));
-
-		self::output()->output($confirmation);
-	}
+        self::output()->output($form);
+    }
 
 
-	/**
-	 *
-	 */
-	protected function removeProject()/*: void*/ {
-		$project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
-		$project = self::projects()->getProjectById($project_id);
+    /**
+     *
+     */
+    protected function updateProject()/*: void*/
+    {
+        self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
 
-		self::projects()->deleteProject($project);
+        $project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
+        $project = self::projects()->getProjectById($project_id);
 
-		ilUtil::sendSuccess(self::plugin()->translate("removed_project", self::LANG_MODULE_CONFIG, [ $project->getProjectName() ]), true);
+        $form = $this->getProjectForm($project);
 
-		$this->redirectToTab(self::TAB_PROJECTS);
-	}
+        if (!$form->storeForm()) {
+            self::output()->output($form);
+
+            return;
+        }
+
+        ilUtil::sendSuccess(self::plugin()->translate("saved_project", self::LANG_MODULE_CONFIG, [$form->getObject()->getProjectName()]), true);
+
+        $this->redirectToTab(self::TAB_PROJECTS);
+    }
 
 
-	/**
-	 *
-	 */
-	protected function hideUsage()/*: void*/ {
-		$usage_id = filter_input(INPUT_GET, self::GET_PARAM_USAGE_ID);
+    /**
+     *
+     */
+    protected function removeProjectConfirm()/*: void*/
+    {
+        self::dic()->tabs()->activateTab(self::TAB_PROJECTS);
 
-		if (!empty($usage_id)) {
-			$usage_hidden = Config::getField(Config::KEY_USAGE_HIDDEN);
-			$usage_hidden[$usage_id] = true;
-			Config::setField(Config::KEY_USAGE_HIDDEN, $usage_hidden);
+        $project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
+        $project = self::projects()->getProjectById($project_id);
 
-			ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE_CONFIG), true);
-		}
+        $confirmation = new ilConfirmationGUI();
 
-		$this->redirectToTab(self::TAB_CONFIGURATION);
-	}
+        self::dic()->ctrl()->setParameter($this, "srsu_project_id", $project->getProjectId());
+        $confirmation->setFormAction(self::dic()->ctrl()->getFormAction($this));
+        self::dic()->ctrl()->setParameter($this, "srsu_project_id", null);
+
+        $confirmation->setHeaderText(self::plugin()->translate("remove_project_confirm", self::LANG_MODULE_CONFIG, [$project->getProjectName()]));
+
+        $confirmation->addItem("srsu_project_id", $project->getProjectId(), $project->getProjectName());
+
+        $confirmation->setConfirm($this->txt("remove"), self::CMD_REMOVE_PROJECT);
+        $confirmation->setCancel($this->txt("cancel"), $this->getCmdForTab(self::TAB_PROJECTS));
+
+        self::output()->output($confirmation);
+    }
+
+
+    /**
+     *
+     */
+    protected function removeProject()/*: void*/
+    {
+        $project_id = intval(filter_input(INPUT_GET, "srsu_project_id"));
+        $project = self::projects()->getProjectById($project_id);
+
+        self::projects()->deleteProject($project);
+
+        ilUtil::sendSuccess(self::plugin()->translate("removed_project", self::LANG_MODULE_CONFIG, [$project->getProjectName()]), true);
+
+        $this->redirectToTab(self::TAB_PROJECTS);
+    }
+
+
+    /**
+     *
+     */
+    protected function hideUsage()/*: void*/
+    {
+        $usage_id = filter_input(INPUT_GET, self::GET_PARAM_USAGE_ID);
+
+        if (!empty($usage_id)) {
+            $usage_hidden = Config::getField(Config::KEY_USAGE_HIDDEN);
+            $usage_hidden[$usage_id] = true;
+            Config::setField(Config::KEY_USAGE_HIDDEN, $usage_hidden);
+
+            ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE_CONFIG), true);
+        }
+
+        $this->redirectToTab(self::TAB_CONFIGURATION);
+    }
 }

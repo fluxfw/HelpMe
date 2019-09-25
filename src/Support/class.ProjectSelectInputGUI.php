@@ -11,95 +11,100 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 /**
  * Class ProjectSelectInputGUI
  *
- * @package srag\Plugins\HelpMe\Support
+ * @package           srag\Plugins\HelpMe\Support
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
  * @ilCtrl_isCalledBy srag\Plugins\HelpMe\Support\ProjectSelectInputGUI: srag\Plugins\HelpMe\Support\SupportGUI
  */
-class ProjectSelectInputGUI extends ilSelectInputGUI {
+class ProjectSelectInputGUI extends ilSelectInputGUI
+{
 
-	use DICTrait;
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT = "getShowTicketsLinkOfProject";
-	/**
-	 * @var SupportFormGUI
-	 */
-	public $parent_gui;
-
-
-	/**
-	 * @param string $a_mode
-	 *
-	 * @return string
-	 */
-	public function render(/*string*/
-		$a_mode = ""): string {
-		if (self::tickets()->isEnabled()) {
-
-			$tpl = self::plugin()->template("project_select_input.html");
-
-			$tpl->setVariable("SELECT", parent::render($a_mode));
-
-			$tpl->setVariable("SHOW_TICKETS_LINK", $this->getShowTicketsLink($this->parent_gui->getProject()));
-
-			return self::output()->getHTML($tpl);
-		}
-
-		return parent::render($a_mode);
-	}
+    use DICTrait;
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT = "getShowTicketsLinkOfProject";
+    /**
+     * @var SupportFormGUI
+     */
+    public $parent_gui;
 
 
-	/**
-	 *
-	 */
-	public function executeCommand()/*: void*/ {
-		$next_class = self::dic()->ctrl()->getNextClass($this);
+    /**
+     * @param string $a_mode
+     *
+     * @return string
+     */
+    public function render(/*string*/
+        $a_mode = ""
+    ) : string {
+        if (self::tickets()->isEnabled()) {
 
-		switch (strtolower($next_class)) {
-			default:
-				$cmd = self::dic()->ctrl()->getCmd();
+            $tpl = self::plugin()->template("project_select_input.html");
 
-				switch ($cmd) {
-					case self::CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT:
-						$this->{$cmd}();
-						break;
+            $tpl->setVariable("SELECT", parent::render($a_mode));
 
-					default:
-						break;
-				}
-				break;
-		}
-	}
+            $tpl->setVariable("SHOW_TICKETS_LINK", $this->getShowTicketsLink($this->parent_gui->getProject()));
 
+            return self::output()->getHTML($tpl);
+        }
 
-	/**
-	 *
-	 */
-	protected function getShowTicketsLinkOfProject()/*: void*/ {
-		$project_url_key = filter_input(INPUT_GET, "project_url_key");
-
-		$project = self::projects()->getProjectByUrlKey($project_url_key);
-
-		self::output()->output($this->getShowTicketsLink($project));
-	}
+        return parent::render($a_mode);
+    }
 
 
-	/**
-	 * @param Project|null $project
-	 *
-	 * @return string
-	 */
-	protected function getShowTicketsLink(/*?*/
-		Project $project = null): string {
-		if (self::tickets()->isEnabled() && $project !== null && $project->isProjectShowTickets()) {
+    /**
+     *
+     */
+    public function executeCommand()/*: void*/
+    {
+        $next_class = self::dic()->ctrl()->getNextClass($this);
 
-			return self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(self::plugin()
-				->translate("show_tickets_of_selected_project", SupportFormGUI::LANG_MODULE), self::tickets()->getLink($project->getProjectUrlKey()))
-				->withOpenInNewViewport(true));
-		}
+        switch (strtolower($next_class)) {
+            default:
+                $cmd = self::dic()->ctrl()->getCmd();
 
-		return "";
-	}
+                switch ($cmd) {
+                    case self::CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT:
+                        $this->{$cmd}();
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
+        }
+    }
+
+
+    /**
+     *
+     */
+    protected function getShowTicketsLinkOfProject()/*: void*/
+    {
+        $project_url_key = filter_input(INPUT_GET, "project_url_key");
+
+        $project = self::projects()->getProjectByUrlKey($project_url_key);
+
+        self::output()->output($this->getShowTicketsLink($project));
+    }
+
+
+    /**
+     * @param Project|null $project
+     *
+     * @return string
+     */
+    protected function getShowTicketsLink(/*?*/
+        Project $project = null
+    ) : string {
+        if (self::tickets()->isEnabled() && $project !== null && $project->isProjectShowTickets()) {
+
+            return self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(self::plugin()
+                ->translate("show_tickets_of_selected_project", SupportFormGUI::LANG_MODULE), self::tickets()->getLink($project->getProjectUrlKey()))
+                ->withOpenInNewViewport(true));
+        }
+
+        return "";
+    }
 }

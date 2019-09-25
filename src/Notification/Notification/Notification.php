@@ -13,9 +13,10 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class Notification extends AbstractNotification {
+class Notification extends AbstractNotification
+{
 
-	use HelpMeTrait;
-	const TABLE_NAME = "ui_uihk_srsu_not";
-	const LANGUAGE_CLASS_NAME = NotificationLanguage::class;
+    use HelpMeTrait;
+    const TABLE_NAME = "ui_uihk_srsu_not";
+    const LANGUAGE_CLASS_NAME = NotificationLanguage::class;
 }

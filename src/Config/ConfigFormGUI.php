@@ -26,169 +26,174 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ConfigFormGUI extends ActiveRecordConfigFormGUI {
+class ConfigFormGUI extends ActiveRecordConfigFormGUI
+{
 
-	use HelpMeTrait;
-	use Notifications4PluginTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const CONFIG_CLASS_NAME = Config::class;
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function getValue(/*string*/ $key) {
-		switch (true) {
-			case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
-				$template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
-
-				return parent::getValue(Config::KEY_RECIPIENT_TEMPLATES)[$template_name];
-
-			default:
-				return parent::getValue($key);
-		}
-	}
+    use HelpMeTrait;
+    use Notifications4PluginTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const CONFIG_CLASS_NAME = Config::class;
 
 
-	/**
-	 * @inheritdoc
-	 */
-	protected function initFields()/*: void*/ {
-		self::tickets()->showUsageConfigHint();
+    /**
+     * @inheritdoc
+     */
+    protected function getValue(/*string*/ $key)
+    {
+        switch (true) {
+            case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
+                $template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
 
-		$this->fields = [
-			Config::KEY_RECIPIENT => [
-				self::PROPERTY_CLASS => ilRadioGroupInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_SUBITEMS => [
-					Recipient::SEND_EMAIL => [
-						self::PROPERTY_CLASS => ilRadioOption::class,
-						self::PROPERTY_SUBITEMS => [
-								Config::KEY_SEND_EMAIL_ADDRESS => [
-									self::PROPERTY_CLASS => ilEMailInputGUI::class,
-									self::PROPERTY_REQUIRED => true
-								]
-							] + $this->getTemplateSelection(Recipient::SEND_EMAIL)
-					],
-					Recipient::CREATE_JIRA_TICKET => [
-						self::PROPERTY_CLASS => ilRadioOption::class,
-						self::PROPERTY_SUBITEMS => [
-								Config::KEY_JIRA_DOMAIN => [
-									self::PROPERTY_CLASS => ilTextInputGUI::class,
-									self::PROPERTY_REQUIRED => true
-								],
-								Config::KEY_JIRA_AUTHORIZATION => [
-									self::PROPERTY_CLASS => ilRadioGroupInputGUI::class,
-									self::PROPERTY_REQUIRED => true,
-									self::PROPERTY_SUBITEMS => [
-										JiraCurl::AUTHORIZATION_USERNAMEPASSWORD => [
-											self::PROPERTY_CLASS => ilRadioOption::class,
-											self::PROPERTY_SUBITEMS => [
-												Config::KEY_JIRA_USERNAME => [
-													self::PROPERTY_CLASS => ilTextInputGUI::class,
-													self::PROPERTY_REQUIRED => true
-												],
-												Config::KEY_JIRA_PASSWORD => [
-													self::PROPERTY_CLASS => ilPasswordInputGUI::class,
-													self::PROPERTY_REQUIRED => true,
-													"setRetype" => false
-												]
-											]
-										],
-										JiraCurl::AUTHORIZATION_OAUTH => [
-											self::PROPERTY_CLASS => ilRadioOption::class,
-											self::PROPERTY_SUBITEMS => [
-												Config::KEY_JIRA_CONSUMER_KEY => [
-													self::PROPERTY_CLASS => ilTextInputGUI::class,
-													self::PROPERTY_REQUIRED => true
-												],
-												Config::KEY_JIRA_PRIVATE_KEY => [
-													self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
-													self::PROPERTY_REQUIRED => true
-												],
-												Config::KEY_JIRA_ACCESS_TOKEN => [
-													self::PROPERTY_CLASS => ilTextInputGUI::class,
-													self::PROPERTY_REQUIRED => true
-												]
-											]
-										]
-									]
-								]
-							] + $this->getTemplateSelection(Recipient::CREATE_JIRA_TICKET)
-					]
-				]
-			],
-			Config::KEY_SEND_CONFIRMATION_EMAIL => [
-				self::PROPERTY_CLASS => ilCheckboxInputGUI::class,
-				self::PROPERTY_SUBITEMS => $this->getTemplateSelection(Config::KEY_SEND_CONFIRMATION_EMAIL)
-			],
-			Config::KEY_PRIORITIES => [
-				self::PROPERTY_CLASS => ilTextInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_MULTI => true
-			],
-			Config::KEY_INFO => [
-				self::PROPERTY_CLASS => ilTextAreaInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				"setUseRte" => true,
-				"setRteTagSet" => "extended"
-			],
-			Config::KEY_ROLES => [
-				self::PROPERTY_CLASS => ilMultiSelectInputGUI::class,
-				self::PROPERTY_REQUIRED => true,
-				self::PROPERTY_OPTIONS => self::ilias()->roles()->getAllRoles(),
-				"enableSelectAll" => true
-			],
-			Config::KEY_PAGE_REFERENCE => [
-				self::PROPERTY_CLASS => ilCheckboxInputGUI::class
-			]
-		];
-	}
+                return parent::getValue(Config::KEY_RECIPIENT_TEMPLATES)[$template_name];
+
+            default:
+                return parent::getValue($key);
+        }
+    }
 
 
-	/**
-	 * @inheritdoc
-	 */
-	protected function storeValue(/*string*/ $key, $value)/*: void*/ {
-		switch (true) {
-			case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
-				$template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
+    /**
+     * @inheritdoc
+     */
+    protected function initFields()/*: void*/
+    {
+        self::tickets()->showUsageConfigHint();
 
-				$template_names = $this->getValue(Config::KEY_RECIPIENT_TEMPLATES);
+        $this->fields = [
+            Config::KEY_RECIPIENT               => [
+                self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
+                self::PROPERTY_REQUIRED => true,
+                self::PROPERTY_SUBITEMS => [
+                    Recipient::SEND_EMAIL         => [
+                        self::PROPERTY_CLASS    => ilRadioOption::class,
+                        self::PROPERTY_SUBITEMS => [
+                                Config::KEY_SEND_EMAIL_ADDRESS => [
+                                    self::PROPERTY_CLASS    => ilEMailInputGUI::class,
+                                    self::PROPERTY_REQUIRED => true
+                                ]
+                            ] + $this->getTemplateSelection(Recipient::SEND_EMAIL)
+                    ],
+                    Recipient::CREATE_JIRA_TICKET => [
+                        self::PROPERTY_CLASS    => ilRadioOption::class,
+                        self::PROPERTY_SUBITEMS => [
+                                Config::KEY_JIRA_DOMAIN        => [
+                                    self::PROPERTY_CLASS    => ilTextInputGUI::class,
+                                    self::PROPERTY_REQUIRED => true
+                                ],
+                                Config::KEY_JIRA_AUTHORIZATION => [
+                                    self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
+                                    self::PROPERTY_REQUIRED => true,
+                                    self::PROPERTY_SUBITEMS => [
+                                        JiraCurl::AUTHORIZATION_USERNAMEPASSWORD => [
+                                            self::PROPERTY_CLASS    => ilRadioOption::class,
+                                            self::PROPERTY_SUBITEMS => [
+                                                Config::KEY_JIRA_USERNAME => [
+                                                    self::PROPERTY_CLASS    => ilTextInputGUI::class,
+                                                    self::PROPERTY_REQUIRED => true
+                                                ],
+                                                Config::KEY_JIRA_PASSWORD => [
+                                                    self::PROPERTY_CLASS    => ilPasswordInputGUI::class,
+                                                    self::PROPERTY_REQUIRED => true,
+                                                    "setRetype"             => false
+                                                ]
+                                            ]
+                                        ],
+                                        JiraCurl::AUTHORIZATION_OAUTH            => [
+                                            self::PROPERTY_CLASS    => ilRadioOption::class,
+                                            self::PROPERTY_SUBITEMS => [
+                                                Config::KEY_JIRA_CONSUMER_KEY => [
+                                                    self::PROPERTY_CLASS    => ilTextInputGUI::class,
+                                                    self::PROPERTY_REQUIRED => true
+                                                ],
+                                                Config::KEY_JIRA_PRIVATE_KEY  => [
+                                                    self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
+                                                    self::PROPERTY_REQUIRED => true
+                                                ],
+                                                Config::KEY_JIRA_ACCESS_TOKEN => [
+                                                    self::PROPERTY_CLASS    => ilTextInputGUI::class,
+                                                    self::PROPERTY_REQUIRED => true
+                                                ]
+                                            ]
+                                        ]
+                                    ]
+                                ]
+                            ] + $this->getTemplateSelection(Recipient::CREATE_JIRA_TICKET)
+                    ]
+                ]
+            ],
+            Config::KEY_SEND_CONFIRMATION_EMAIL => [
+                self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
+                self::PROPERTY_SUBITEMS => $this->getTemplateSelection(Config::KEY_SEND_CONFIRMATION_EMAIL)
+            ],
+            Config::KEY_PRIORITIES              => [
+                self::PROPERTY_CLASS    => ilTextInputGUI::class,
+                self::PROPERTY_REQUIRED => true,
+                self::PROPERTY_MULTI    => true
+            ],
+            Config::KEY_INFO                    => [
+                self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
+                self::PROPERTY_REQUIRED => true,
+                "setUseRte"             => true,
+                "setRteTagSet"          => "extended"
+            ],
+            Config::KEY_ROLES                   => [
+                self::PROPERTY_CLASS    => ilMultiSelectInputGUI::class,
+                self::PROPERTY_REQUIRED => true,
+                self::PROPERTY_OPTIONS  => self::ilias()->roles()->getAllRoles(),
+                "enableSelectAll"       => true
+            ],
+            Config::KEY_PAGE_REFERENCE          => [
+                self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+            ]
+        ];
+    }
 
-				$template_names[$template_name] = $value;
 
-				$key = Config::KEY_RECIPIENT_TEMPLATES;
-				$value = $template_names;
-				break;
+    /**
+     * @inheritdoc
+     */
+    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    {
+        switch (true) {
+            case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
+                $template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
 
-			case ($key === Config::KEY_ROLES):
-				if ($value[0] === "") {
-					array_shift($value);
-				}
+                $template_names = $this->getValue(Config::KEY_RECIPIENT_TEMPLATES);
 
-				$value = array_map(function (string $role_id): int {
-					return intval($role_id);
-				}, $value);
-				break;
+                $template_names[$template_name] = $value;
 
-			default:
-				break;
-		}
+                $key = Config::KEY_RECIPIENT_TEMPLATES;
+                $value = $template_names;
+                break;
 
-		parent::storeValue($key, $value);
-	}
+            case ($key === Config::KEY_ROLES):
+                if ($value[0] === "") {
+                    array_shift($value);
+                }
+
+                $value = array_map(function (string $role_id) : int {
+                    return intval($role_id);
+                }, $value);
+                break;
+
+            default:
+                break;
+        }
+
+        parent::storeValue($key, $value);
+    }
 
 
-	/**
-	 * @param string $template_name
-	 *
-	 * @return array
-	 */
-	protected function getTemplateSelection(string $template_name): array {
-		return self::notificationUI()->withPlugin(self::plugin())
-			->templateSelection(self::notification(Notification::class, NotificationLanguage::class)
-				->getArrayForSelection(self::notification(Notification::class, NotificationLanguage::class)
-					->getNotifications()), Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name);
-	}
+    /**
+     * @param string $template_name
+     *
+     * @return array
+     */
+    protected function getTemplateSelection(string $template_name) : array
+    {
+        return self::notificationUI()->withPlugin(self::plugin())
+            ->templateSelection(self::notification(Notification::class, NotificationLanguage::class)
+                ->getArrayForSelection(self::notification(Notification::class, NotificationLanguage::class)
+                    ->getNotifications()), Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name);
+    }
 }

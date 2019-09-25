@@ -15,44 +15,50 @@ use srag\Plugins\HelpMe\Ticket\Repository as TicketRepository;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-trait HelpMeTrait {
+trait HelpMeTrait
+{
 
-	/**
-	 * @return Access
-	 */
-	protected static function access(): Access {
-		return Access::getInstance();
-	}
-
-
-	/**
-	 * @return Ilias
-	 */
-	protected static function ilias(): Ilias {
-		return Ilias::getInstance();
-	}
+    /**
+     * @return Access
+     */
+    protected static function access() : Access
+    {
+        return Access::getInstance();
+    }
 
 
-	/**
-	 * @return ProjectRepository
-	 */
-	protected static function projects(): ProjectRepository {
-		return ProjectRepository::getInstance();
-	}
+    /**
+     * @return Ilias
+     */
+    protected static function ilias() : Ilias
+    {
+        return Ilias::getInstance();
+    }
 
 
-	/**
-	 * @return SupportRepository
-	 */
-	protected static function supports(): SupportRepository {
-		return SupportRepository::getInstance();
-	}
+    /**
+     * @return ProjectRepository
+     */
+    protected static function projects() : ProjectRepository
+    {
+        return ProjectRepository::getInstance();
+    }
 
 
-	/**
-	 * @return TicketRepository
-	 */
-	protected static function tickets(): TicketRepository {
-		return TicketRepository::getInstance();
-	}
+    /**
+     * @return SupportRepository
+     */
+    protected static function supports() : SupportRepository
+    {
+        return SupportRepository::getInstance();
+    }
+
+
+    /**
+     * @return TicketRepository
+     */
+    protected static function tickets() : TicketRepository
+    {
+        return TicketRepository::getInstance();
+    }
 }
