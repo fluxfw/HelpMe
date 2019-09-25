@@ -11,96 +11,97 @@ use ilDateTime;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-interface NotificationLanguage {
+interface NotificationLanguage
+{
 
-	/**
-	 * @var string
-	 *
-	 * @abstract
-	 */
-	const TABLE_NAME = "";
-
-
-	/**
-	 * @return int
-	 */
-	public function getId(): int;
+    /**
+     * @var string
+     *
+     * @abstract
+     */
+    const TABLE_NAME = "";
 
 
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id)/*: void*/ ;
+    /**
+     * @return int
+     */
+    public function getId() : int;
 
 
-	/**
-	 * @return int
-	 */
-	public function getNotificationId(): int;
+    /**
+     * @param int $id
+     */
+    public function setId(int $id)/*: void*/ ;
 
 
-	/**
-	 * @param int $notification_id
-	 */
-	public function setNotificationId(int $notification_id)/*: void*/ ;
+    /**
+     * @return int
+     */
+    public function getNotificationId() : int;
 
 
-	/**
-	 * @return string
-	 */
-	public function getLanguage(): string;
+    /**
+     * @param int $notification_id
+     */
+    public function setNotificationId(int $notification_id)/*: void*/ ;
 
 
-	/**
-	 * @param string $language
-	 */
-	public function setLanguage(string $language)/*: void*/ ;
+    /**
+     * @return string
+     */
+    public function getLanguage() : string;
 
 
-	/**
-	 * @return string
-	 */
-	public function getSubject(): string;
+    /**
+     * @param string $language
+     */
+    public function setLanguage(string $language)/*: void*/ ;
 
 
-	/**
-	 * @param string $subject
-	 */
-	public function setSubject(string $subject)/*: void*/ ;
+    /**
+     * @return string
+     */
+    public function getSubject() : string;
 
 
-	/**
-	 * @return string
-	 */
-	public function getText(): string;
+    /**
+     * @param string $subject
+     */
+    public function setSubject(string $subject)/*: void*/ ;
 
 
-	/**
-	 * @param string $text
-	 */
-	public function setText(string $text)/*: void*/ ;
+    /**
+     * @return string
+     */
+    public function getText() : string;
 
 
-	/**
-	 * @return ilDateTime
-	 */
-	public function getCreatedAt(): ilDateTime;
+    /**
+     * @param string $text
+     */
+    public function setText(string $text)/*: void*/ ;
 
 
-	/**
-	 * @param ilDateTime $created_at
-	 */
-	public function setCreatedAt(ilDateTime $created_at)/*: void*/ ;
+    /**
+     * @return ilDateTime
+     */
+    public function getCreatedAt() : ilDateTime;
 
 
-	/**
-	 * @return ilDateTime
-	 */
-	public function getUpdatedAt(): ilDateTime;
+    /**
+     * @param ilDateTime $created_at
+     */
+    public function setCreatedAt(ilDateTime $created_at)/*: void*/ ;
 
 
-	/**
-	 * @param ilDateTime $updated_at
-	 */
-	public function setUpdatedAt(ilDateTime $updated_at)/*: void*/ ;
+    /**
+     * @return ilDateTime
+     */
+    public function getUpdatedAt() : ilDateTime;
+
+
+    /**
+     * @param ilDateTime $updated_at
+     */
+    public function setUpdatedAt(ilDateTime $updated_at)/*: void*/ ;
 }

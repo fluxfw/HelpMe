@@ -22,300 +22,322 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
-abstract class AbstractCtrl implements CtrlInterface {
-
-	use DICTrait;
-	use Notifications4PluginTrait;
-	/**
-	 * @var string
-	 *
-	 * @abstract
-	 */
-	const NOTIFICATION_CLASS_NAME = "";
-	/**
-	 * @var string
-	 *
-	 * @abstract
-	 */
-	const LANGUAGE_CLASS_NAME = "";
+abstract class AbstractCtrl implements CtrlInterface
+{
+
+    use DICTrait;
+    use Notifications4PluginTrait;
+    /**
+     * @var string
+     *
+     * @abstract
+     */
+    const NOTIFICATION_CLASS_NAME = "";
+    /**
+     * @var string
+     *
+     * @abstract
+     */
+    const LANGUAGE_CLASS_NAME = "";
+
+
+    /**
+     * @inheritdoc
+     */
+    protected static function notification() : NotificationRepositoryInterface
+    {
+        return NotificationRepository::getInstance(static::NOTIFICATION_CLASS_NAME, static::LANGUAGE_CLASS_NAME);
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected static function notificationLanguage() : NotificationLanguageRepositoryInterface
+    {
+        return NotificationLanguageRepository::getInstance(static::LANGUAGE_CLASS_NAME);
+    }
+
+
+    /**
+     * AbstractCtrl constructor
+     */
+    public function __construct()
+    {
+
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function executeCommand()/*: void*/
+    {
+        $cmd = self::dic()->ctrl()->getCmd();
+
+        switch ($cmd) {
+            case self::CMD_ADD_NOTIFICATION:
+            case self::CMD_APPLY_FILTER:
+            case self::CMD_CREATE_NOTIFICATION:
+            case self::CMD_DELETE_NOTIFICATION:
+            case self::CMD_DELETE_NOTIFICATION_CONFIRM:
+            case self::CMD_DUPLICATE_NOTIFICATION:
+            case self::CMD_EDIT_NOTIFICATION:
+            case self::CMD_LIST_NOTIFICATIONS:
+            case self::CMD_RESET_FILTER:
+            case self::CMD_UPDATE_NOTIFICATION:
+                $this->{$cmd}();
+                break;
 
-
-	/**
-	 * @inheritdoc
-	 */
-	protected static function notification(): NotificationRepositoryInterface {
-		return NotificationRepository::getInstance(static::NOTIFICATION_CLASS_NAME, static::LANGUAGE_CLASS_NAME);
-	}
+            default:
+                break;
+        }
+    }
 
-
-	/**
-	 * @inheritdoc
-	 */
-	protected static function notificationLanguage(): NotificationLanguageRepositoryInterface {
-		return NotificationLanguageRepository::getInstance(static::LANGUAGE_CLASS_NAME);
-	}
 
+    /**
+     *
+     */
+    protected function listNotifications()/*: void*/
+    {
+        $table = $this->getNotificationsTable();
 
-	/**
-	 * AbstractCtrl constructor
-	 */
-	public function __construct() {
+        self::output()->output($table);
+    }
 
-	}
 
+    /**
+     *
+     */
+    protected function applyFilter()/*: void*/
+    {
+        $table = $this->getNotificationsTable(self::CMD_APPLY_FILTER);
 
-	/**
-	 * @inheritdoc
-	 */
-	public function executeCommand()/*: void*/ {
-		$cmd = self::dic()->ctrl()->getCmd();
+        $table->writeFilterToSession();
 
-		switch ($cmd) {
-			case self::CMD_ADD_NOTIFICATION:
-			case self::CMD_APPLY_FILTER:
-			case self::CMD_CREATE_NOTIFICATION:
-			case self::CMD_DELETE_NOTIFICATION:
-			case self::CMD_DELETE_NOTIFICATION_CONFIRM:
-			case self::CMD_DUPLICATE_NOTIFICATION:
-			case self::CMD_EDIT_NOTIFICATION:
-			case self::CMD_LIST_NOTIFICATIONS:
-			case self::CMD_RESET_FILTER:
-			case self::CMD_UPDATE_NOTIFICATION:
-				$this->{$cmd}();
-				break;
+        $table->resetOffset();
 
-			default:
-				break;
-		}
-	}
+        //$this->redirect(self::CMD_LIST_NOTIFICATIONS);
+        $this->listNotifications(); // Fix reset offset
+    }
 
 
-	/**
-	 *
-	 */
-	protected function listNotifications()/*: void*/ {
-		$table = $this->getNotificationsTable();
+    /**
+     *
+     */
+    protected function resetFilter()/*: void*/
+    {
+        $table = $this->getNotificationsTable(self::CMD_RESET_FILTER);
 
-		self::output()->output($table);
-	}
+        $table->resetOffset();
 
+        $table->resetFilter();
 
-	/**
-	 *
-	 */
-	protected function applyFilter()/*: void*/ {
-		$table = $this->getNotificationsTable(self::CMD_APPLY_FILTER);
+        //$this->redirect(self::CMD_LIST_NOTIFICATIONS);
+        $this->listNotifications(); // Fix reset offset
+    }
 
-		$table->writeFilterToSession();
 
-		$table->resetOffset();
+    /**
+     *
+     */
+    protected function addNotification()/*: void*/
+    {
+        $notification = self::notification()->factory()->newInstance();
 
-		//$this->redirect(self::CMD_LIST_NOTIFICATIONS);
-		$this->listNotifications(); // Fix reset offset
-	}
+        $form = $this->getNotificationForm($notification);
 
+        self::output()->output($form);
+    }
 
-	/**
-	 *
-	 */
-	protected function resetFilter()/*: void*/ {
-		$table = $this->getNotificationsTable(self::CMD_RESET_FILTER);
 
-		$table->resetOffset();
+    /**
+     *
+     */
+    protected function createNotification()/*: void*/
+    {
+        $notification = self::notification()->factory()->newInstance();
 
-		$table->resetFilter();
+        $form = $this->getNotificationForm($notification);
 
-		//$this->redirect(self::CMD_LIST_NOTIFICATIONS);
-		$this->listNotifications(); // Fix reset offset
-	}
+        if (!$form->storeForm()) {
+            self::output()->output($form);
 
+            return;
+        }
 
-	/**
-	 *
-	 */
-	protected function addNotification()/*: void*/ {
-		$notification = self::notification()->factory()->newInstance();
+        self::notification()->storeInstance($form->getObject());
 
-		$form = $this->getNotificationForm($notification);
+        ilUtil::sendSuccess(self::plugin()->translate("added_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [
+            $form->getObject()->getTitle()
+        ]), true);
 
-		self::output()->output($form);
-	}
+        $this->redirect(self::CMD_LIST_NOTIFICATIONS);
+    }
 
 
-	/**
-	 *
-	 */
-	protected function createNotification()/*: void*/ {
-		$notification = self::notification()->factory()->newInstance();
+    /**
+     *
+     */
+    protected function editNotification()/*: void*/
+    {
+        $notification = $this->getNotification();
 
-		$form = $this->getNotificationForm($notification);
+        $form = $this->getNotificationForm($notification);
 
-		if (!$form->storeForm()) {
-			self::output()->output($form);
+        self::output()->output($form);
+    }
 
-			return;
-		}
 
-		self::notification()->storeInstance($form->getObject());
+    /**
+     *
+     */
+    protected function updateNotification()/*: void*/
+    {
+        $notification = $this->getNotification();
 
-		ilUtil::sendSuccess(self::plugin()->translate("added_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [
-			$form->getObject()->getTitle()
-		]), true);
+        $form = $this->getNotificationForm($notification);
 
-		$this->redirect(self::CMD_LIST_NOTIFICATIONS);
-	}
+        if (!$form->storeForm()) {
+            self::output()->output($form);
 
+            return;
+        }
 
-	/**
-	 *
-	 */
-	protected function editNotification()/*: void*/ {
-		$notification = $this->getNotification();
+        self::notification()->storeInstance($form->getObject());
 
-		$form = $this->getNotificationForm($notification);
+        ilUtil::sendSuccess(self::plugin()->translate("saved_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [
+            $form->getObject()->getTitle()
+        ]), true);
 
-		self::output()->output($form);
-	}
+        $this->redirect(self::CMD_LIST_NOTIFICATIONS);
+    }
 
 
-	/**
-	 *
-	 */
-	protected function updateNotification()/*: void*/ {
-		$notification = $this->getNotification();
+    /**
+     *
+     */
+    protected function duplicateNotification()/*: void*/
+    {
+        $notification = $this->getNotification();
 
-		$form = $this->getNotificationForm($notification);
+        $cloned_notification = self::notification()->duplicateNotification($notification, self::plugin());
 
-		if (!$form->storeForm()) {
-			self::output()->output($form);
+        self::notification()->storeInstance($cloned_notification);
 
-			return;
-		}
+        ilUtil::sendSuccess(self::plugin()
+            ->translate("duplicated_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [$notification->getTitle()]), true);
 
-		self::notification()->storeInstance($form->getObject());
+        $this->redirect(self::CMD_LIST_NOTIFICATIONS);
+    }
 
-		ilUtil::sendSuccess(self::plugin()->translate("saved_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [
-			$form->getObject()->getTitle()
-		]), true);
 
-		$this->redirect(self::CMD_LIST_NOTIFICATIONS);
-	}
+    /**
+     *
+     */
+    protected function deleteNotificationConfirm()/*: void*/
+    {
+        $notification = $this->getNotification();
 
+        $confirmation = $this->getNotificationDeleteConfirmation($notification);
 
-	/**
-	 *
-	 */
-	protected function duplicateNotification()/*: void*/ {
-		$notification = $this->getNotification();
+        self::output()->output($confirmation);
+    }
 
-		$cloned_notification = self::notification()->duplicateNotification($notification, self::plugin());
 
-		self::notification()->storeInstance($cloned_notification);
+    /**
+     *
+     */
+    protected function deleteNotification()/*: void*/
+    {
+        $notification = $this->getNotification();
 
-		ilUtil::sendSuccess(self::plugin()
-			->translate("duplicated_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [ $notification->getTitle() ]), true);
+        self::notification()->deleteNotification($notification);
 
-		$this->redirect(self::CMD_LIST_NOTIFICATIONS);
-	}
+        ilUtil::sendSuccess(self::plugin()
+            ->translate("deleted_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [$notification->getTitle()]), true);
 
+        $this->redirect(self::CMD_LIST_NOTIFICATIONS);
+    }
 
-	/**
-	 *
-	 */
-	protected function deleteNotificationConfirm()/*: void*/ {
-		$notification = $this->getNotification();
 
-		$confirmation = $this->getNotificationDeleteConfirmation($notification);
+    /**
+     * @param string $parent_cmd
+     *
+     * @return NotificationsTableGUI
+     */
+    protected function getNotificationsTable(string $parent_cmd = self::CMD_LIST_NOTIFICATIONS) : NotificationsTableGUI
+    {
+        return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)
+            ->notificationTable($parent_cmd, function (string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null) : array {
+                return $this->getNotifications($sort_by, $sort_by_direction, $limit_start, $limit_end);
+            }, function () : int {
+                return $this->getNotificationsCount();
+            });
+    }
 
-		self::output()->output($confirmation);
-	}
 
+    /**
+     * @param Notification $notification
+     *
+     * @return NotificationFormGUI
+     */
+    protected function getNotificationForm(Notification $notification) : NotificationFormGUI
+    {
+        return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationForm($notification);
+    }
 
-	/**
-	 *
-	 */
-	protected function deleteNotification()/*: void*/ {
-		$notification = $this->getNotification();
 
-		self::notification()->deleteNotification($notification);
+    /**
+     * @param Notification $notification
+     *
+     * @return ilConfirmationGUI
+     */
+    protected function getNotificationDeleteConfirmation(Notification $notification) : ilConfirmationGUI
+    {
+        return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationDeleteConfirmation($notification);
+    }
 
-		ilUtil::sendSuccess(self::plugin()
-			->translate("deleted_notification", self::LANG_MODULE_NOTIFICATIONS4PLUGIN, [ $notification->getTitle() ]), true);
 
-		$this->redirect(self::CMD_LIST_NOTIFICATIONS);
-	}
+    /**
+     * @param string|null $sort_by
+     * @param string|null $sort_by_direction
+     * @param int|null    $limit_start
+     * @param int|null    $limit_end
+     *
+     * @return array
+     */
+    protected function getNotifications(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null) : array
+    {
+        return self::notification()->getNotifications($sort_by, $sort_by_direction, $limit_start, $limit_end);
+    }
 
 
-	/**
-	 * @param string $parent_cmd
-	 *
-	 * @return NotificationsTableGUI
-	 */
-	protected function getNotificationsTable(string $parent_cmd = self::CMD_LIST_NOTIFICATIONS): NotificationsTableGUI {
-		return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)
-			->notificationTable($parent_cmd, function (string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null): array {
-				return $this->getNotifications($sort_by, $sort_by_direction, $limit_start, $limit_end);
-			}, function (): int {
-				return $this->getNotificationsCount();
-			});
-	}
+    /**
+     * @return int
+     */
+    protected function getNotificationsCount() : int
+    {
+        return self::notification()->getNotificationsCount();
+    }
 
 
-	/**
-	 * @param Notification $notification
-	 *
-	 * @return NotificationFormGUI
-	 */
-	protected function getNotificationForm(Notification $notification): NotificationFormGUI {
-		return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationForm($notification);
-	}
+    /**
+     * @return Notification
+     */
+    protected function getNotification() : Notification
+    {
+        $notification_id = intval(filter_input(INPUT_GET, self::GET_PARAM));
 
+        return self::notification()->getNotificationById($notification_id);
+    }
 
-	/**
-	 * @param Notification $notification
-	 *
-	 * @return ilConfirmationGUI
-	 */
-	protected function getNotificationDeleteConfirmation(Notification $notification): ilConfirmationGUI {
-		return self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationDeleteConfirmation($notification);
-	}
 
-
-	/**
-	 * @param string|null $sort_by
-	 * @param string|null $sort_by_direction
-	 * @param int|null    $limit_start
-	 * @param int|null    $limit_end
-	 *
-	 * @return array
-	 */
-	protected function getNotifications(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null): array {
-		return self::notification()->getNotifications($sort_by, $sort_by_direction, $limit_start, $limit_end);
-	}
-
-
-	/**
-	 * @return int
-	 */
-	protected function getNotificationsCount(): int {
-		return self::notification()->getNotificationsCount();
-	}
-
-
-	/**
-	 * @return Notification
-	 */
-	protected function getNotification(): Notification {
-		$notification_id = intval(filter_input(INPUT_GET, self::GET_PARAM));
-
-		return self::notification()->getNotificationById($notification_id);
-	}
-
-
-	/**
-	 * @param string $cmd
-	 */
-	protected function redirect(string $cmd)/*: void*/ {
-		self::dic()->ctrl()->redirect($this, $cmd);
-	}
+    /**
+     * @param string $cmd
+     */
+    protected function redirect(string $cmd)/*: void*/
+    {
+        self::dic()->ctrl()->redirect($this, $cmd);
+    }
 }

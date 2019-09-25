@@ -12,68 +12,69 @@ use srag\Notifications4Plugin\HelpMe\Notification\Notification;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-interface RepositoryInterface {
+interface RepositoryInterface
+{
 
-	/**
-	 * @param Parser $parser
-	 */
-	public function addParser(Parser $parser);
-
-
-	/**
-	 * @return FactoryInterface
-	 */
-	public function factory(): FactoryInterface;
+    /**
+     * @param Parser $parser
+     */
+    public function addParser(Parser $parser);
 
 
-	/**
-	 * @return Parser[]
-	 */
-	public function getPossibleParsers(): array;
+    /**
+     * @return FactoryInterface
+     */
+    public function factory() : FactoryInterface;
 
 
-	/**
-	 * @param string $parser_class
-	 *
-	 * @return Parser
-	 *
-	 * @throws Notifications4PluginException
-	 */
-	public function getParserByClass(string $parser_class): Parser;
+    /**
+     * @return Parser[]
+     */
+    public function getPossibleParsers() : array;
 
 
-	/**
-	 * @param Notification $notification
-	 *
-	 * @return Parser
-	 *
-	 * @throws Notifications4PluginException
-	 */
-	public function getParserForNotification(Notification $notification): Parser;
+    /**
+     * @param string $parser_class
+     *
+     * @return Parser
+     *
+     * @throws Notifications4PluginException
+     */
+    public function getParserByClass(string $parser_class) : Parser;
 
 
-	/**
-	 * @param Parser       $parser
-	 * @param Notification $notification
-	 * @param array        $placeholders
-	 * @param string       $language
-	 *
-	 * @return string
-	 *
-	 * @throws Notifications4PluginException
-	 */
-	public function parseSubject(Parser $parser, Notification $notification, array $placeholders = [], string $language = ""): string;
+    /**
+     * @param Notification $notification
+     *
+     * @return Parser
+     *
+     * @throws Notifications4PluginException
+     */
+    public function getParserForNotification(Notification $notification) : Parser;
 
 
-	/**
-	 * @param Parser       $parser
-	 * @param Notification $notification
-	 * @param array        $placeholders
-	 * @param string       $language
-	 *
-	 * @return string
-	 *
-	 * @throws Notifications4PluginException
-	 */
-	public function parseText(Parser $parser, Notification $notification, array $placeholders = [], string $language = ""): string;
+    /**
+     * @param Parser       $parser
+     * @param Notification $notification
+     * @param array        $placeholders
+     * @param string       $language
+     *
+     * @return string
+     *
+     * @throws Notifications4PluginException
+     */
+    public function parseSubject(Parser $parser, Notification $notification, array $placeholders = [], string $language = "") : string;
+
+
+    /**
+     * @param Parser       $parser
+     * @param Notification $notification
+     * @param array        $placeholders
+     * @param string       $language
+     *
+     * @return string
+     *
+     * @throws Notifications4PluginException
+     */
+    public function parseText(Parser $parser, Notification $notification, array $placeholders = [], string $language = "") : string;
 }

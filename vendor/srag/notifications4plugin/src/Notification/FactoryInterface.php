@@ -11,18 +11,19 @@ use stdClass;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-interface FactoryInterface {
+interface FactoryInterface
+{
 
-	/**
-	 * @param stdClass $data
-	 *
-	 * @return Notification
-	 */
-	public function fromDB(stdClass $data): Notification;
+    /**
+     * @param stdClass $data
+     *
+     * @return Notification
+     */
+    public function fromDB(stdClass $data) : Notification;
 
 
-	/**
-	 * @return Notification
-	 */
-	public function newInstance(): Notification;
+    /**
+     * @return Notification
+     */
+    public function newInstance() : Notification;
 }

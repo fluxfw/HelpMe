@@ -20,49 +20,55 @@ use srag\Notifications4Plugin\HelpMe\UI\UIInterface;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-trait Notifications4PluginTrait {
+trait Notifications4PluginTrait
+{
 
-	/**
-	 * @param string $notification_class
-	 * @param string $language_class
-	 *
-	 * @return NotificationRepositoryInterface
-	 */
-	protected static function notification(string $notification_class, string $language_class): NotificationRepositoryInterface {
-		return NotificationRepository::getInstance($notification_class, $language_class);
-	}
-
-
-	/**
-	 * @param string $language_class
-	 *
-	 * @return NotificationLanguageRepositoryInterface
-	 */
-	protected static function notificationLanguage(string $language_class): NotificationLanguageRepositoryInterface {
-		return NotificationLanguageRepository::getInstance($language_class);
-	}
+    /**
+     * @param string $notification_class
+     * @param string $language_class
+     *
+     * @return NotificationRepositoryInterface
+     */
+    protected static function notification(string $notification_class, string $language_class) : NotificationRepositoryInterface
+    {
+        return NotificationRepository::getInstance($notification_class, $language_class);
+    }
 
 
-	/**
-	 * @return UIInterface
-	 */
-	protected static function notificationUI(): UIInterface {
-		return UI::getInstance();
-	}
+    /**
+     * @param string $language_class
+     *
+     * @return NotificationLanguageRepositoryInterface
+     */
+    protected static function notificationLanguage(string $language_class) : NotificationLanguageRepositoryInterface
+    {
+        return NotificationLanguageRepository::getInstance($language_class);
+    }
 
 
-	/**
-	 * @return ParserRepositoryInterface
-	 */
-	protected static function parser(): ParserRepositoryInterface {
-		return ParserRepository::getInstance();
-	}
+    /**
+     * @return UIInterface
+     */
+    protected static function notificationUI() : UIInterface
+    {
+        return UI::getInstance();
+    }
 
 
-	/**
-	 * @return SenderRepositoryInterface
-	 */
-	protected static function sender(): SenderRepositoryInterface {
-		return SenderRepository::getInstance();
-	}
+    /**
+     * @return ParserRepositoryInterface
+     */
+    protected static function parser() : ParserRepositoryInterface
+    {
+        return ParserRepository::getInstance();
+    }
+
+
+    /**
+     * @return SenderRepositoryInterface
+     */
+    protected static function sender() : SenderRepositoryInterface
+    {
+        return SenderRepository::getInstance();
+    }
 }
