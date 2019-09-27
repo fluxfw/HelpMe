@@ -101,10 +101,8 @@ class TicketsTableGUI extends TableGUI
         $ticket_issue_type = $filter["ticket_issue_type"];
         $ticket_priority = $filter["ticket_priority"];
 
-        $columns = array_keys($this->getSelectedColumns());
-
         $this->setData(self::tickets()
-            ->getTickets($columns, $this->getOrderField(), $this->getOrderDirection(), intval($this->getOffset()), intval($this->getLimit()), $ticket_title, $ticket_project_url_key,
+            ->getTickets($this->getOrderField(), $this->getOrderDirection(), intval($this->getOffset()), intval($this->getLimit()), $ticket_title, $ticket_project_url_key,
                 $ticket_issue_type, $ticket_priority));
 
         $this->setMaxCount(self::tickets()->getTicketsCount($ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority));
