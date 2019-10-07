@@ -38,7 +38,7 @@ config_recipient_create_jira_ticket#:#Create a Jira ticket
 config_recipient_send_email#:#Send an email
 config_remove#:#Remove
 config_remove_project#:#Remove project
-config_remove_project_confirm#:#Are you really want to delete the project: %s ?
+config_remove_project_confirm#:#Are you really want to remove the project: %s ?
 config_removed_project#:#Project %s removed
 config_roles#:#Roles
 config_roles_info#:#Show support for selected roles only
