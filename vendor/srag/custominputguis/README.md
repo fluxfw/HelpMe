@@ -47,7 +47,8 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * PHP >=5.6
 
 ### Adjustment suggestions
-* Adjustment suggestions by pull requests
-* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LINP
-* Bug reports under https://jira.studer-raimann.ch/projects/LINP
-* For external users you can report it at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LINP
+* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LINP
+* Adjustment suggestions by pull requests via github
+* Customer of studer + raimann ag: 
+	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LINP
+	* Bug reports under https://jira.studer-raimann.ch/projects/LINP

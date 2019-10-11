@@ -13,7 +13,7 @@ interface VersionInterface {
 
 	const ILIAS_VERSION_5_3 = "5.3.0";
 	const ILIAS_VERSION_5_4 = "5.4.0";
-	const ILIAS_VERSION_6_0 = "6.0.0";
+	const ILIAS_VERSION_6_0 = "6.0";
 
 
 	/**
