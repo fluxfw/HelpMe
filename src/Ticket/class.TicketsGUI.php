@@ -26,6 +26,7 @@ class TicketsGUI
     const CMD_RESET_FILTER = "resetFilter";
     const CMD_SET_PROJECT_FILTER = "setProjectFilter";
     const LANG_MODULE_TICKETS = "tickets";
+    const GET_PARAM_USAGE_ID = "usage_id";
 
 
     /**

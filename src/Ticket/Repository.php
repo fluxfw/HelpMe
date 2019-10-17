@@ -12,6 +12,7 @@ use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Job\FetchJiraTicketsJob;
+use srag\Plugins\HelpMe\Project\ProjectsConfigGUI;
 use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -173,9 +174,7 @@ final class Repository
 
         $result = self::dic()->database()->query($sql);
 
-        $tickets = self::dic()->database()->fetchAllCallback($result, function () {
-            return self::projects()->getProjectByUrlKey($data->ticket_project_url_key);
-        });
+        $tickets = [];
 
         while (($row = $result->fetchAssoc()) !== false) {
             $row["ticket_project"] = self::projects()->getProjectByUrlKey($row["ticket_project_url_key"]);
@@ -330,13 +329,13 @@ final class Repository
 
             if (!Config::getField(Config::KEY_USAGE_HIDDEN)[$usage_id]) {
 
-                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::GET_PARAM_USAGE_ID, $usage_id);
+                self::dic()->ctrl()->setParameterByClass(ProjectsConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
 
                 $text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE_CONFIG);
 
                 $hide_button = self::dic()->ui()->factory()->button()->standard(self::plugin()
                     ->translate("usage_hide", ilHelpMeConfigGUI::LANG_MODULE_CONFIG), self::dic()->ctrl()
-                    ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::CMD_HIDE_USAGE));
+                    ->getLinkTargetByClass(ProjectsConfigGUI::class, ProjectsConfigGUI::CMD_HIDE_USAGE));
 
                 if (self::version()->is54()) {
                     ilUtil::sendInfo(self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button])));

@@ -11,7 +11,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\' => 26,
+            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
@@ -33,7 +33,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\' => 
+        'srag\\Notifications4Plugin\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
@@ -402,6 +402,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Plugins\\HelpMe\\Project\\Factory' => __DIR__ . '/../..' . '/src/Project/Factory.php',
         'srag\\Plugins\\HelpMe\\Project\\Project' => __DIR__ . '/../..' . '/src/Project/Project.php',
         'srag\\Plugins\\HelpMe\\Project\\ProjectFormGUI' => __DIR__ . '/../..' . '/src/Project/ProjectFormGUI.php',
+        'srag\\Plugins\\HelpMe\\Project\\ProjectsConfigGUI' => __DIR__ . '/../..' . '/src/Project/class.ProjectsConfigGUI.php',
         'srag\\Plugins\\HelpMe\\Project\\ProjectsTableGUI' => __DIR__ . '/../..' . '/src/Project/ProjectsTableGUI.php',
         'srag\\Plugins\\HelpMe\\Project\\Repository' => __DIR__ . '/../..' . '/src/Project/Repository.php',
         'srag\\Plugins\\HelpMe\\Recipient\\Recipient' => __DIR__ . '/../..' . '/src/Recipient/Recipient.php',

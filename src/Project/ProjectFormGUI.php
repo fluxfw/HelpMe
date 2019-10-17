@@ -3,7 +3,6 @@
 namespace srag\Plugins\HelpMe\Project;
 
 use ilCheckboxInputGUI;
-use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilTextInputGUI;
 use srag\CustomInputGUIs\HelpMe\MultiLineInputGUI\MultiLineInputGUI;
@@ -22,7 +21,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    const LANG_MODULE = ilHelpMeConfigGUI::LANG_MODULE_CONFIG;
+    const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE_PROJECTS;
     /**
      * @var Project
      */
@@ -32,10 +31,10 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
     /**
      * ProjectFormGUI constructor
      *
-     * @param ilHelpMeConfigGUI $parent
+     * @param ProjectsConfigGUI $parent
      * @param Project           $object
      */
-    public function __construct(ilHelpMeConfigGUI $parent, Project $object)
+    public function __construct(ProjectsConfigGUI $parent, Project $object)
     {
         parent::__construct($parent, $object);
     }
@@ -74,12 +73,12 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
     protected function initCommands()/*: void*/
     {
         if (!empty($this->object->getProjectId())) {
-            $this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
+            $this->addCommandButton(ProjectsConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
         } else {
-            $this->addCommandButton(ilHelpMeConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
+            $this->addCommandButton(ProjectsConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
         }
 
-        $this->addCommandButton($this->parent->getCmdForTab(ilHelpMeConfigGUI::TAB_PROJECTS), $this->txt("cancel"));
+        $this->addCommandButton(ProjectsConfigGUI::CMD_LIST_PROJECTS, $this->txt("cancel"));
     }
 
 
@@ -88,20 +87,21 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
      */
     protected function initFields()/*: void*/
     {
-        self::tickets()->showUsageConfigHint();
-
         $this->fields = [
             "project_key"          => [
                 self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                self::PROPERTY_REQUIRED => true
+                self::PROPERTY_REQUIRED => true,
+                "setTitle"              => $this->txt("key")
             ],
             "project_url_key"      => [
                 self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                self::PROPERTY_REQUIRED => true
+                self::PROPERTY_REQUIRED => true,
+                "setTitle"              => $this->txt("url_key")
             ],
             "project_name"         => [
                 self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                self::PROPERTY_REQUIRED => true
+                self::PROPERTY_REQUIRED => true,
+                "setTitle"              => $this->txt("name")
             ],
             "project_issue_types"  => [
                 self::PROPERTY_CLASS    => MultiLineInputGUI::class,
@@ -111,22 +111,22 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
                 self::PROPERTY_SUBITEMS => [
                     "issue_type"  => [
                         self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                        self::PROPERTY_REQUIRED => true,
-                        "setTitle"              => $this->txt("project_issue_type")
+                        self::PROPERTY_REQUIRED => true
                     ],
                     "fix_version" => [
                         self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                        self::PROPERTY_REQUIRED => false,
-                        "setTitle"              => $this->txt("project_fix_version")
+                        self::PROPERTY_REQUIRED => false
                     ]
                 ],
+                "setTitle"              => $this->txt("issue_types"),
                 "setInfo"               => self::output()->getHTML(self::dic()->ui()->factory()->listing()->descriptive([
-                    $this->txt("project_issue_type")  => $this->txt("project_issue_type_info"),
-                    $this->txt("project_fix_version") => $this->txt("project_fix_version_info")
+                    $this->txt("issue_type")  => $this->txt("issue_type_info"),
+                    $this->txt("fix_version") => $this->txt("fix_version_info")
                 ]))
             ],
             "project_show_tickets" => [
-                self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+                self::PROPERTY_CLASS => ilCheckboxInputGUI::class,
+                "setTitle"              => $this->txt("show_tickets")
             ]
         ];
     }

@@ -106,7 +106,8 @@ if (\srag\DIC\HelpMe\DICStatic::dic()->database()->tableColumnExists(\srag\Plugi
 
 $templates = \srag\Plugins\HelpMe\Config\Config::getField(\srag\Plugins\HelpMe\Config\Config::KEY_RECIPIENT_TEMPLATES);
 
-if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Notification::class,
+if (!isset($templates[\srag\Plugins\HelpMe\Recipient\RecipientCreateJiraTicket::SEND_EMAIL])
+    || \srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Notification::class,
         \srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::class)
         ->migrateFromOldGlobalPlugin($templates[\srag\Plugins\HelpMe\Recipient\RecipientCreateJiraTicket::SEND_EMAIL]) === null
 ) {
@@ -135,7 +136,8 @@ if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag
         ->storeInstance($notification);
 }
 
-if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Notification::class,
+if (!isset($templates[\srag\Plugins\HelpMe\Recipient\RecipientCreateJiraTicket::CREATE_JIRA_TICKET])
+    || \srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Notification::class,
         \srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::class)
         ->migrateFromOldGlobalPlugin($templates[\srag\Plugins\HelpMe\Recipient\RecipientCreateJiraTicket::CREATE_JIRA_TICKET]) === null
 ) {
@@ -163,7 +165,8 @@ if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag
         ->storeInstance($notification);
 }
 
-if (\srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Notification::class,
+if (!isset($templates[\srag\Plugins\HelpMe\Config\Config::KEY_SEND_CONFIRMATION_EMAIL])
+    || \srag\Notifications4Plugin\HelpMe\Notification\Repository::getInstance(\srag\Plugins\HelpMe\Notification\Notification\Notification::class,
         \srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage::class)
         ->migrateFromOldGlobalPlugin($templates[\srag\Plugins\HelpMe\Config\Config::KEY_SEND_CONFIRMATION_EMAIL]) === null
 ) {

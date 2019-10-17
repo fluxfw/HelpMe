@@ -334,6 +334,7 @@ return array(
     'srag\\Plugins\\HelpMe\\Project\\Factory' => $baseDir . '/src/Project/Factory.php',
     'srag\\Plugins\\HelpMe\\Project\\Project' => $baseDir . '/src/Project/Project.php',
     'srag\\Plugins\\HelpMe\\Project\\ProjectFormGUI' => $baseDir . '/src/Project/ProjectFormGUI.php',
+    'srag\\Plugins\\HelpMe\\Project\\ProjectsConfigGUI' => $baseDir . '/src/Project/class.ProjectsConfigGUI.php',
     'srag\\Plugins\\HelpMe\\Project\\ProjectsTableGUI' => $baseDir . '/src/Project/ProjectsTableGUI.php',
     'srag\\Plugins\\HelpMe\\Project\\Repository' => $baseDir . '/src/Project/Repository.php',
     'srag\\Plugins\\HelpMe\\Recipient\\Recipient' => $baseDir . '/src/Recipient/Recipient.php',

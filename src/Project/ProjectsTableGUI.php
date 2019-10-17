@@ -2,9 +2,8 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
-use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
-use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigTableGUI;
+use srag\CustomInputGUIs\HelpMe\TableGUI\TableGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -14,11 +13,24 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ProjectsTableGUI extends ActiveRecordConfigTableGUI
+class ProjectsTableGUI extends TableGUI
 {
 
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE_PROJECTS;
+
+
+    /**
+     * ProjectsTableGUI constructor
+     *
+     * @param ProjectsConfigGUI $parent
+     * @param string            $parent_cmd
+     */
+    public function __construct(ProjectsConfigGUI $parent, string $parent_cmd)
+    {
+        parent::__construct($parent, $parent_cmd);
+    }
 
 
     /**
@@ -45,18 +57,24 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI
     public function getSelectableColumns2() : array
     {
         $columns = [
-            "project_key"  => "project_key",
-            "project_name" => "project_name",
-            "support_link" => "support_link"
-        ];
-
-        $columns = array_map(function (string $key) : array {
-            return [
-                "id"      => $key,
+            "project_key"  => [
+                "id"      => "project_key",
                 "default" => true,
-                "sort"    => ($key !== "support_link")
-            ];
-        }, $columns);
+                "sort"    => true,
+                "txt"     => $this->txt("key")
+            ],
+            "project_name" => [
+                "id"      => "project_name",
+                "default" => true,
+                "sort"    => true,
+                "txt"     => $this->txt("name")
+            ],
+            "support_link" => [
+                "id"      => "support_link",
+                "default" => true,
+                "sort"    => false
+            ]
+        ];
 
         return $columns;
     }
@@ -67,8 +85,6 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI
      */
     protected function initColumns()/*: void*/
     {
-        self::tickets()->showUsageConfigHint();
-
         parent::initColumns();
 
         $this->addColumn($this->txt("actions"));
@@ -84,7 +100,7 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI
     protected function initCommands()/*: void*/
     {
         self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_project"), self::dic()->ctrl()
-            ->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_ADD_PROJECT)));
+            ->getLinkTarget($this->parent_obj, ProjectsConfigGUI::CMD_ADD_PROJECT)));
     }
 
 
@@ -109,9 +125,27 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI
     /**
      * @inheritdoc
      */
+    protected function initFilterFields()/*: void*/
+    {
+        $this->filter_fields = [];
+    }
+
+
+    /**
+     * @inheritdoc
+     */
     protected function initId()/*: void*/
     {
         $this->setId("srsu_projects");
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function initTitle()/*: void*/
+    {
+        $this->setTitle($this->txt("projects"));
     }
 
 
@@ -128,9 +162,9 @@ class ProjectsTableGUI extends ActiveRecordConfigTableGUI
 
         $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
             self::dic()->ui()->factory()->button()->shy($this->txt("edit_project"), self::dic()->ctrl()
-                ->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT)),
+                ->getLinkTarget($this->parent_obj, ProjectsConfigGUI::CMD_EDIT_PROJECT)),
             self::dic()->ui()->factory()->button()->shy($this->txt("remove_project"), self::dic()->ctrl()
-                ->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
+                ->getLinkTarget($this->parent_obj, ProjectsConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
         ])->withLabel($this->txt("actions"))));
     }
 }
