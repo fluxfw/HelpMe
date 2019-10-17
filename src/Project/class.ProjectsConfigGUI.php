@@ -250,6 +250,6 @@ class ProjectsConfigGUI
             ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", ilHelpMeConfigGUI::LANG_MODULE_CONFIG), true);
         }
 
-        self::dic()->ctrl()->redirect($this, self::CMD_LIST_PROJECTS);
+        self::dic()->ctrl()->redirectByClass(ilHelpMeConfigGUI::class);
     }
 }
