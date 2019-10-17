@@ -265,7 +265,7 @@ class MultiLineInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, 
 		$valid = true;
 		// escape data
 		$out_array = array();
-		if (count($_POST[$this->getPostVar()]) > 0) {
+		if (is_array($_POST[$this->getPostVar()]) && count($_POST[$this->getPostVar()]) > 0) {
 			foreach ($_POST[$this->getPostVar()] as $item_num => $item) {
 				foreach ($this->inputs as $input_key => $input) {
 					if (isset($item[$input_key])) {
