@@ -21,27 +21,26 @@ Tip: Because of multiple autoloaders of plugins, it could be, that different ver
 
 So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
-#### Notification ActiveRecord
-First you need to implement a `Notification` and `NotificationLanguage` active record class with your own table name
+#### Using trait
+Your class in this you want to use Notifications4Plugin needs to use the trait `Notifications4PluginTrait`
 ```php
 ...
-use srag\NotificationsUI\x\Notification\AbstractNotification;
-use srag\Plugins\x\Notification\Language\NotificationLanguage;
+use srag\Notifications4Plugin\HelpMe\x\Utils\Notifications4PluginTrait;
 ...
-class Notification extends AbstractNotification {
-
-	const TABLE_NAME = "x";
-	const LANGUAGE_CLASS_NAME = NotificationLanguage::class;
-}
+class x {
+...
+use Notifications4PluginTrait;
+...
 ```
-```php
-...
-use srag\NotificationsUI\x\Notification\Language\AbstractNotificationLanguage;
-...
-class NotificationLanguage extends AbstractNotificationLanguage {
 
-	const TABLE_NAME = "x";
-}
+#### Notification ActiveRecord
+First you need to init the `Notification` and `NotificationLanguage` active record classes with your own table name prefix. Please add this very early in your plugin code
+```php
+self::notifications4plugin()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlugin(self::plugin())->withPlaceholderTypes([
+    'user' => 'object ' . ilObjUser::class,
+    'course' => 'object ' . ilObjCourse::class,
+    'id' => 'int'
+]);
 ```
 
 Add an update step to your `dbupdate.php`
@@ -49,52 +48,26 @@ Add an update step to your `dbupdate.php`
 ...
 <#x>
 <?php
-\srag\Plugins\x\Notification\Notification::updateDB_();
-\srag\Plugins\x\Notification\Language\NotificationLanguage::updateDB_();
+\srag\Notifications4Plugin\HelpMe\x\Repository::getInstance()->installTables();
 ?>
 ```
 
 and not forget to add an uninstaller step in your plugin class too
 ```php
-...
-use srag\Plugins\x\Notification\Notification;
-use srag\Plugins\x\Notification\Language\NotificationLanguage
-...
-Notification::dropDB_();
-NotificationLanguage::dropDB_();
-...
+self::notifications4plugin()->notifications()->dropTables();
 ```
 
-#### Ctrl class
+#### Ctrl classes
 ```php
-...
-use srag\NotificationsUI\x\Ctrl\AbstractCtrl;
-use srag\Plugins\x\Notification\Notification;
-use srag\Plugins\x\Notification\Language\NotificationLanguage;
 ...
 /**
  * ...
  *
- * @ilCtrl_isCalledBy srag\Plugins\x\Notification\Ctrl\XCtrl: ilUIPluginRouterGUI
+ * @ilCtrl_isCalledBy srag\Notifications4Plugin\HelpMe\x\Notification\NotificationsCtrl: x
  */
-class XCtrl extends AbstractCtrl {
-	...
-	const NOTIFICATION_CLASS_NAME = Notification::class;
-	const LANGUAGE_CLASS_NAME = NotificationLanguage::class;
-	const PLUGIN_CLASS_NAME = ilXPlugin::class;
-	...
-	
-	/**
-	 * @inheritdoc
-	 */
-	public function getPlaceholderTypes(): array {
-		return [
-			'user' => 'object ' . ilObjUser::class,
-			'course' => 'object ' . ilObjCourse::class,
-			'id' => 'int'
-		];
-	}
-	...
+class x
+{
+    ...
 }
 ```
 
@@ -108,8 +81,7 @@ Expand you plugin class for installing languages of the library to your plugin
 	public function updateLanguages($a_lang_keys = null) {
 		parent::updateLanguages($a_lang_keys);
 
-		LibraryLanguageInstaller::getInstance()->withPlugin(self::plugin())->withLibraryLanguageDirectory(__DIR__ . "/../vendor/srag/notifications4plugin/lang")
-			->updateLanguages($a_lang_keys);
+		self::notifications4plugin()->installLanguages();
 	}
 ...
 ```
@@ -117,61 +89,44 @@ Expand you plugin class for installing languages of the library to your plugin
 #### Migrate from old global plugin
 Add to your `dbupdate.php` like:
 ```php
-if (\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance(\srag\Plugins\x\Notification\Notification\Notification::class, \srag\Plugins\x\Notification\Notification\Language\NotificationLanguage::class)
-		->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
+if (\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
 
-	$notification = \srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance(\srag\Plugins\x\Notification\Notification\Notification::class, \srag\Plugins\x\Notification\Notification\Language\NotificationLanguage::class)
-		->factory()->newInstance();
+	$notification = \srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->factory()->newInstance();
 
 	$notification->setName(x::TEMPLATE_NAME);
 
 	// TODO: Fill $notification with your default values
 
-	\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance(\srag\Plugins\x\Notification\Notification\Notification::class, \srag\Plugins\x\Notification\Notification\Language\NotificationLanguage::class)
-		->storeInstance($notification);
+	\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->storeNotification($notification);
 }
-```
-
-#### Using trait
-Your class in this you want to use Notifications4Plugin needs to use the trait `Notifications4PluginTrait`
-```php
-...
-use srag\Notifications4Plugin\HelpMe\x\Utils\Notifications4PluginTrait;
-...
-class x {
-...
-use Notifications4PluginTrait;
-...
 ```
 
 ##### Get notification(s)
 Main
 ```php
 // Get the notification by name
-$notification = self::notification(Notification::class, NotificationLanguage::class)->getNotificationByName(self::MY_UNIQUE_NAME);
+$notification = self::notifications4plugin()->notifications()->getNotificationByName(self::MY_UNIQUE_NAME);
 
-// Get notifications for a selection list (For instance the options for an `ilSelectInputGUI`)
-$notifications = self::notification(Notification::class, NotificationLanguage::class)->getArrayForSelection($notifications);
 ```
 Other
 ```php
 // Get the notification by id
-$notification = self::notification(Notification::class, NotificationLanguage::class)->getNotificationById(self::MY_UNIQUE_ID);
+$notification = self::notifications4plugin()->notifications()->getNotificationById(self::MY_UNIQUE_ID);
 
 // Get the notifications
-$notifications = self::notification(Notification::class, NotificationLanguage::class)->getNotifications();
+$notifications = self::notifications4plugin()->notifications()->getNotifications();
 ```
 
 ##### Send a notification
 ```php
 // Send the notification as external mail
-$sender = self::sender()->factory()->externalMail('from_email', 'to_email');
+$sender = self::notifications4plugin()->sender()->factory()->externalMail('from_email', 'to_email');
 
 // Send the notification as internal mail
-$sender = self::sender()->factory()->internalMail('from_user', 'to_user');
+$sender = self::notifications4plugin()->sender()->factory()->internalMail('from_user', 'to_user');
 
 // vcalendar
-$sender = self::sender()->factory()->vcalendar(...);
+$sender = self::notifications4plugin()->sender()->factory()->vcalendar(...);
 
 // Implement a custom sender object
 // Your class must implement the interface `srag\Notifications4Plugin\HelpMe\x\Sender\Sender`
@@ -187,13 +142,13 @@ $placeholders = [
 
 ```php
 // Sent the notification in english first (default langauge) and in german again
-self::sender()->send($sender, $notification, $placeholders);
-self::sender()->send($sender, $notification, $placeholders, 'de');
+self::notifications4plugin()->sender()->send($sender, $notification, $placeholders);
+self::notifications4plugin()->sender()->send($sender, $notification, $placeholders, 'de');
 ```
 
 ##### Create a notification
 ```php
-$notification = self::notification(Notification::class, NotificationLanguage::class)->factory()->newInstance();
+$notification = self::notifications4plugin()->notifications()->factory()->newInstance();
 
 $notification->setName(self::MY_UNIQUE_NAME); // Use the name as unique identifier to retrieve this object later
 $notification->setDefaultLanguage('en'); // The text of the default language gets substituted if you try to get the notification of a langauge not available
@@ -206,17 +161,17 @@ $notification->setText('You joined the course {{ course.getTitle }}', 'en');
 $notification->setSubject('Hallo {{ user.getFullname }}', 'de');
 $notification->setText('Sie sind nun Mitglied in folgendem Kurs {{ course.getTitle }}', 'de');
 
-self::notification(Notification::class, NotificationLanguage::class)->storeInstance($notification);
+self::notifications4plugin()->notifications()->storeNotification($notification);
 ```
 
 ##### Duplicate a notification
 ```php
-$duplicated_notification = self::notification(Notification::class, NotificationLanguage::class)->duplicateNotification($notification, self::plugin());
+$duplicated_notification = self::notifications4plugin()->notifications()->duplicateNotification($notification);
 ```
 
 ##### Delete a notification
 ```php
-self::notification(Notification::class, NotificationLanguage::class)->deleteNotification($notification);
+self::notifications4plugin()->notifications()->deleteNotification($notification);
 ```
 
 ##### Get parsed subject and text of a notification
@@ -228,10 +183,10 @@ $placeholders = [
   'user' => new ilObjUser(6)
 ];
 
-$parser = self::parser()->getParserForNotification($notification);
+$parser = self::notifications4plugin()->parser()->getParserForNotification($notification);
 
-$subject = self::parser()->parseSubject($parser, $notification, $placeholders);
-$text = self::parser()->parseText($parser, $notification, $placeholders);
+$subject = self::notifications4plugin()->parser()->parseSubject($parser, $notification, $placeholders);
+$text = self::notifications4plugin()->parser()->parseText($parser, $notification, $placeholders);
 ```
 
 ##### Implement a custom parser
@@ -239,40 +194,7 @@ Your class must implement the interface `srag\Notifications4Plugin\HelpMe\x\Pars
 
 You can add it
 ```php
-self::parser()->addParser(new CustomParser());
-```
-
-##### UI
-ActiveRecordConfigGUI
-```php
-/**
- * @var array
- */
-protected static $tabs = [
-	XCtrl::TAB_NOTIFICATIONS => [
-		XCtrl::class,
-		XCtrl::CMD_LIST_NOTIFICATIONS
-	]
-];
-```
-
-```php
-// Table
-$table = self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)
-			->notificationTable($parent_cmd, function (string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null): array {
-				return $this->getNotifications($sort_by, $sort_by_direction, $limit_start, $limit_end);
-			}, function (): int {
-				return $this->getNotificationsCount();
-			});
-		
-// Form
-$form = self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationForm($notification);
-
-// Delete confirmation
-$confirm = self::notificationUI()->withPlugin(self::plugin())->withCtrlClass($this)->notificationDeleteConfirmation($notification);
-
-// Template selection
-self::notificationUI()->withPlugin(self::plugin())->templateSelection($notifications, 'post_key');
+self::notifications4plugin()->parser()->addParser(new CustomParser());
 ```
 
 ### Requirements

@@ -10,6 +10,7 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Support\Recipient\Repository as RecipientRepository;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -56,6 +57,15 @@ final class Repository
 
 
     /**
+     * @internal
+     */
+    public function dropTables()/*:void*/
+    {
+        $this->recipient()->dropTables();
+    }
+
+
+    /**
      * @return Factory
      */
     public function factory() : Factory
@@ -82,13 +92,13 @@ final class Repository
 
 
     /**
-     * @param string $project_url_key
+     * @param string $recipient_url_key
      *
      * @return string
      */
-    public function getLink(string $project_url_key = "") : string
+    public function getLink(string $recipient_url_key = "") : string
     {
-        return ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . (!empty($project_url_key) ? "_" . $project_url_key : "");
+        return ILIAS_HTTP_PATH . "/goto.php?target=uihk_" . ilHelpMePlugin::PLUGIN_ID . (!empty($recipient_url_key) ? "_" . $recipient_url_key : "");
     }
 
 
@@ -155,5 +165,23 @@ final class Repository
         $jira_curl->setJiraAccessToken(Config::getField(Config::KEY_JIRA_ACCESS_TOKEN));
 
         return $jira_curl;
+    }
+
+
+    /**
+     * @internal
+     */
+    public function installTables()/*:void*/
+    {
+        $this->recipient()->installTables();
+    }
+
+
+    /**
+     * @return RecipientRepository
+     */
+    public function recipient() : RecipientRepository
+    {
+        return RecipientRepository::getInstance();
     }
 }

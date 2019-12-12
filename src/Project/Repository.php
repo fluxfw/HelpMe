@@ -5,6 +5,9 @@ namespace srag\Plugins\HelpMe\Project;
 use ilDBConstants;
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Support\Recipient\RecipientCreateJiraTicket;
+use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -54,6 +57,15 @@ final class Repository
     public function deleteProject(Project $project)/*: void*/
     {
         $project->delete();
+    }
+
+
+    /**
+     * @internal
+     */
+    public function dropTables()/*:void*/
+    {
+        self::dic()->database()->dropTable(Project::TABLE_NAME, false);
     }
 
 
@@ -115,15 +127,6 @@ final class Repository
         }
 
         return $where->orderBy("project_name", "ASC")->get();
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getProjectsArray() : array
-    {
-        return Project::orderBy("project_name", "ASC")->getArray();
     }
 
 
@@ -210,9 +213,170 @@ final class Repository
 
 
     /**
+     * @internal
+     */
+    public function installTables()/*:void*/
+    {
+        Project::updateDB();
+
+        if (self::dic()->database()->tableColumnExists(Project::TABLE_NAME, "project_issue_type")) {
+
+            foreach (Project::get() as $project) {
+                /**
+                 * @var Project $project
+                 */
+
+                if (!empty($project->project_issue_type)) {
+                    $issue_types = $project->getProjectIssueTypes();
+
+                    $issue_types[] = [
+                        "issue_type"    => $project->project_issue_type,
+                        "fixed_version" => []
+                    ];
+
+                    $project->setProjectIssueTypes($issue_types);
+
+                    $this->storeProject($project);
+                }
+            }
+
+            self::dic()->database()->dropTableColumn(Project::TABLE_NAME, "project_issue_type");
+        }
+        if (self::dic()->database()->tableColumnExists(Project::TABLE_NAME, "project_fix_version")) {
+
+            foreach (Project::get() as $project) {
+                /**
+                 * @var Project $project
+                 */
+
+                if (!empty($project->project_fix_version)) {
+                    $issue_types = $project->getProjectIssueTypes();
+
+                    foreach ($issue_types as &$issue_type) {
+                        if (empty($issue_types["fixed_version"])) {
+                            $issue_types["fixed_version"] = $project->project_fix_version;
+                        }
+                    }
+
+                    $project->setProjectIssueTypes($issue_types);
+
+                    $this->storeProject($project);
+                }
+            }
+
+            self::dic()->database()->dropTableColumn(Project::TABLE_NAME, "project_fix_version");
+        }
+
+        self::helpMe()->notifications4plugin()->notifications()->installTables();
+
+        $templates = Config::getField(Config::KEY_RECIPIENT_TEMPLATES);
+
+        if (!isset($templates[RecipientCreateJiraTicket::SEND_EMAIL])
+            || self::helpMe()->notifications4plugin()->notifications()
+                ->migrateFromOldGlobalPlugin($templates[RecipientCreateJiraTicket::SEND_EMAIL]) === null
+        ) {
+
+            $notification = self::helpMe()->notifications4plugin()->notifications()
+                ->factory()->newInstance();
+
+            $notification->setName($templates[RecipientCreateJiraTicket::SEND_EMAIL] = RecipientCreateJiraTicket::SEND_EMAIL);
+            $notification->setTitle("Mail");
+
+            foreach (["de", "en"] as $lang) {
+                $notification->setSubject("{{ support.getTitle }}", $lang);
+                $notification->setText("{% for field in fields %}
+<p>
+	<h2>{{ field.getLabel }}</h2>
+	{{ field.getValue }}
+</p>
+<br>
+{% endfor %}", $lang);
+            }
+
+            self::helpMe()->notifications4plugin()->notifications()
+                ->storeNotification($notification);
+        }
+
+        if (!isset($templates[RecipientCreateJiraTicket::CREATE_JIRA_TICKET])
+            || self::helpMe()->notifications4plugin()->notifications()
+                ->migrateFromOldGlobalPlugin($templates[RecipientCreateJiraTicket::CREATE_JIRA_TICKET]) === null
+        ) {
+
+            $notification = self::helpMe()->notifications4plugin()->notifications()
+                ->factory()->newInstance();
+
+            $notification->setName($templates[RecipientCreateJiraTicket::CREATE_JIRA_TICKET] = RecipientCreateJiraTicket::CREATE_JIRA_TICKET);
+            $notification->setTitle("Jira");
+
+            foreach (["de", "en"] as $lang) {
+                $notification->setSubject("{{ support.getTitle }}", $lang);
+                $notification->setText("{% for field in fields %}
+{{ field.getLabel }}:
+{{ field.getValue }}
+
+
+{% endfor %}", $lang);
+            }
+
+            self::helpMe()->notifications4plugin()->notifications()
+                ->storeNotification($notification);
+        }
+
+        if (!isset($templates[Config::KEY_SEND_CONFIRMATION_EMAIL])
+            || self::helpMe()->notifications4plugin()->notifications()
+                ->migrateFromOldGlobalPlugin($templates[Config::KEY_SEND_CONFIRMATION_EMAIL]) === null
+        ) {
+
+            $notification = self::helpMe()->notifications4plugin()->notifications()
+                ->factory()->newInstance();
+
+            $notification->setName($templates[Config::KEY_SEND_CONFIRMATION_EMAIL] = Config::KEY_SEND_CONFIRMATION_EMAIL);
+            $notification->setTitle("Confirm Mail");
+
+            foreach (["de", "en"] as $lang) {
+                $notification->setSubject(self::plugin()
+                        ->translate("confirmation", SupportGUI::LANG_MODULE, [], true, $lang)
+                    . ": {{ support.getTitle }}", $lang);
+                $notification->setText("{% for field in fields %}
+<p>
+	<h2>{{ field.getLabel }}</h2>
+	{{ field.getValue }}
+</p>
+<br>
+{% endfor %}", $lang);
+            }
+
+            self::helpMe()->notifications4plugin()->notifications()
+                ->storeNotification($notification);
+        }
+
+        Config::setField(Config::KEY_RECIPIENT_TEMPLATES, $templates);
+
+        foreach (
+            self::helpMe()->notifications4plugin()->notifications()
+                ->getNotifications() as $notification
+        ) {
+            foreach (array_keys($notification->getTexts()) as $lang_key) {
+
+                $text = $notification->getText($lang_key, false);
+
+                $text = preg_replace("/\{%\s+for\s+key,\s*value\s+in\s+fields\s+%\}/", "{% for field in fields %}", $text);
+                $text = preg_replace("/{{\s+key\s+}}/", "{{ field.getLabel }}", $text);
+                $text = preg_replace("/{{\s+value\s+}}/", "{{ field.getValue }}", $text);
+
+                $notification->setText($text, $lang_key);
+            }
+
+            self::helpMe()->notifications4plugin()->notifications()
+                ->storeNotification($notification);
+        }
+    }
+
+
+    /**
      * @param Project $project
      */
-    public function storeInstance(Project $project)/*: void*/
+    public function storeProject(Project $project)/*: void*/
     {
         $project->store();
     }

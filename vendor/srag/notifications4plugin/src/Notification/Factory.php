@@ -3,7 +3,9 @@
 namespace srag\Notifications4Plugin\HelpMe\Notification;
 
 use ilDateTime;
+use ilUtil;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Notifications4Plugin\HelpMe\Ctrl\CtrlInterface;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 use stdClass;
 
@@ -20,70 +22,93 @@ final class Factory implements FactoryInterface
     use DICTrait;
     use Notifications4PluginTrait;
     /**
-     * @var FactoryInterface[]
+     * @var FactoryInterface|null
      */
-    protected static $instances = [];
+    protected static $instance = null;
 
 
     /**
-     * @param string $notification_class
-     *
      * @return FactoryInterface
      */
-    public static function getInstance(string $notification_class) : FactoryInterface
+    public static function getInstance() : FactoryInterface
     {
-        if (!isset(self::$instances[$notification_class])) {
-            self::$instances[$notification_class] = new self($notification_class);
+        if (self::$instance === null) {
+            self::$instance = new self();
         }
 
-        return self::$instances[$notification_class];
+        return self::$instance;
     }
-
-
-    /**
-     * @var string|Notification
-     */
-    protected $notification_class;
 
 
     /**
      * Factory constructor
-     *
-     * @param string $notification_class
      */
-    private function __construct(string $notification_class)
+    private function __construct()
     {
-        $this->notification_class = $notification_class;
+
     }
 
 
     /**
      * @inheritdoc
      */
-    public function fromDB(stdClass $data) : Notification
+    public function fromDB(stdClass $data) : NotificationInterface
     {
-        $language = $this->newInstance();
+        $notification = $this->newInstance();
 
-        $language->setId($data->id);
-        $language->setName($data->name);
-        $language->setTitle($data->title);
-        $language->setDescription($data->description);
-        $language->setDefaultLanguage($data->default_language);
-        $language->setParser($data->parser);
-        $language->setCreatedAt(new ilDateTime($data->created_at, IL_CAL_DATETIME));
-        $language->setUpdatedAt(new ilDateTime($data->updated_at, IL_CAL_DATETIME));
+        $notification->setId($data->id);
+        $notification->setName($data->name);
+        $notification->setTitle($data->title);
+        $notification->setDescription($data->description);
+        $notification->setParser($data->parser);
+        $notification->setSubjects(json_decode($data->subject, true) ?? []);
+        $notification->setTexts(json_decode($data->text, true) ?? []);
+        $notification->setCreatedAt(new ilDateTime($data->created_at, IL_CAL_DATETIME));
+        $notification->setUpdatedAt(new ilDateTime($data->updated_at, IL_CAL_DATETIME));
 
-        return $language;
-    }
-
-
-    /**
-     * @inheritdoc
-     */
-    public function newInstance() : Notification
-    {
-        $notification = new $this->notification_class();
+        if (isset($data->default_language)) {
+            $notification->default_language = $data->default_language;
+        }
 
         return $notification;
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function newInstance() : NotificationInterface
+    {
+        $notification = new Notification();
+
+        return $notification;
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function newTableInstance(NotificationsCtrl $parent, string $parent_cmd = NotificationsCtrl::CMD_LIST_NOTIFICATIONS) : NotificationsTableGUI
+    {
+        $table = new NotificationsTableGUI($parent, $parent_cmd);
+
+        return $table;
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function newFormInstance(NotificationCtrl $parent, NotificationInterface $notification) : NotificationFormGUI
+    {
+        ilUtil::sendInfo(self::output()->getHTML([
+            self::notifications4plugin()->getPlugin()->translate("placeholder_types_info", NotificationsCtrl::LANG_MODULE),
+            "<br><br>",
+            self::dic()->ui()->factory()->listing()->descriptive(self::notifications4plugin()->getPlaceholderTypes())
+        ]));
+
+        $form = new NotificationFormGUI($parent, $notification);
+
+        return $form;
     }
 }

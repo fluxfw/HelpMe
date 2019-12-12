@@ -6,11 +6,6 @@ if (file_exists(__DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload
 }
 
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
-use srag\Plugins\HelpMe\Config\Config;
-use srag\Plugins\HelpMe\Notification\Notification\Language\NotificationLanguage;
-use srag\Plugins\HelpMe\Notification\Notification\Notification;
-use srag\Plugins\HelpMe\Project\Project;
-use srag\Plugins\HelpMe\Ticket\Ticket;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
 
@@ -78,8 +73,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
         LibraryLanguageInstaller::getInstance()->withPlugin(self::plugin())->withLibraryLanguageDirectory(__DIR__
             . "/../vendor/srag/custominputguis/src/ScreenshotsInputGUI/lang")->updateLanguages();
 
-        LibraryLanguageInstaller::getInstance()->withPlugin(self::plugin())->withLibraryLanguageDirectory(__DIR__
-            . "/../vendor/srag/notifications4plugin/lang")->updateLanguages();
+        self::helpMe()->notifications4plugin()->installLanguages();
     }
 
 
@@ -88,10 +82,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
      */
     protected function deleteData()/*: void*/
     {
-        self::dic()->database()->dropTable(Config::TABLE_NAME, false);
-        Notification::dropDB_();
-        NotificationLanguage::dropDB_();
-        self::dic()->database()->dropTable(Project::TABLE_NAME, false);
-        self::dic()->database()->dropTable(Ticket::TABLE_NAME, false);
+        self::helpMe()->dropTables();
     }
 }

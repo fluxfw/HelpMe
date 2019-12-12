@@ -62,7 +62,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
 
                 self::$load[self::PART_1] = true;
 
-                if (self::access()->currentUserHasRole()) {
+                if (self::helpMe()->currentUserHasRole()) {
 
                     $screenshot = new ScreenshotsInputGUI();
                     $screenshot->withPlugin(self::plugin());
@@ -84,7 +84,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
 
                 self::$load[self::PART_2] = true;
 
-                if (self::access()->currentUserHasRole()) {
+                if (self::helpMe()->currentUserHasRole()) {
 
                     $html = $a_par["html"];
 
@@ -133,29 +133,29 @@ il.HelpMe.init();
      */
     public function getSupportButton() : string
     {
-        $ref_id = self::supports()->getRefId();
+        $ref_id = self::helpMe()->support()->getRefId();
         if ($ref_id !== null) {
             self::dic()->ctrl()->setParameterByClass(SupportGUI::class, Repository::GET_PARAM_REF_ID, $ref_id);
         }
 
         $buttons = [
-            self::dic()->ui()->factory()->link()->standard(self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard(self::plugin()->translate("support", SupportGUI::LANG_MODULE), self::dic()->ctrl()
                 ->getLinkTargetByClass([
                     ilUIPluginRouterGUI::class,
                     SupportGUI::class
                 ], SupportGUI::CMD_ADD_SUPPORT, "", true))
         ];
 
-        if (self::tickets()->isEnabled()) {
+        if (self::helpMe()->ticket()->isEnabled()) {
             $buttons[] = self::dic()->ui()->factory()->link()->standard(self::plugin()
-                ->translate("show_tickets", SupportGUI::LANG_MODULE_SUPPORT), self::tickets()->getLink());
+                ->translate("show_tickets", SupportGUI::LANG_MODULE), self::helpMe()->ticket()->getLink());
 
             $support_button_tpl = self::plugin()->template("helpme_support_button_dropdown.html");
         } else {
             $support_button_tpl = self::plugin()->template("helpme_support_button.html");
         }
 
-        $support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", SupportGUI::LANG_MODULE_SUPPORT));
+        $support_button_tpl->setVariable("TXT_SUPPORT", self::plugin()->translate("support", SupportGUI::LANG_MODULE));
 
         $support_button_tpl->setVariable("BUTTONS", self::output()->getHTML(array_map(function (Standard $button) : string {
             return self::output()->getHTML([
@@ -175,7 +175,7 @@ il.HelpMe.init();
     protected function getModal() : string
     {
         $modal = self::output()->getHTML(self::dic()->ui()->factory()->modal()->roundtrip(self::plugin()
-            ->translate("support", SupportGUI::LANG_MODULE_SUPPORT), self::dic()->ui()->factory()->legacy("")));
+            ->translate("support", SupportGUI::LANG_MODULE), self::dic()->ui()->factory()->legacy("")));
 
         // HelpMe needs so patches on the new roundtrip modal ui
 

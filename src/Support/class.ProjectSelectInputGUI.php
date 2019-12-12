@@ -38,7 +38,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     public function render(/*string*/
         $a_mode = ""
     ) : string {
-        if (self::tickets()->isEnabled()) {
+        if (self::helpMe()->ticket()->isEnabled()) {
 
             $tpl = self::plugin()->template("project_select_input.html");
 
@@ -84,7 +84,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
-        $project = self::projects()->getProjectByUrlKey($project_url_key);
+        $project = self::helpMe()->project()->getProjectByUrlKey($project_url_key);
 
         self::output()->output($this->getShowTicketsLink($project));
     }
@@ -98,10 +98,10 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     protected function getShowTicketsLink(/*?*/
         Project $project = null
     ) : string {
-        if (self::tickets()->isEnabled() && $project !== null && $project->isProjectShowTickets()) {
+        if (self::helpMe()->ticket()->isEnabled() && $project !== null && $project->isProjectShowTickets()) {
 
             return self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(self::plugin()
-                ->translate("show_tickets_of_selected_project", SupportFormGUI::LANG_MODULE), self::tickets()->getLink($project->getProjectUrlKey()))
+                ->translate("show_tickets_of_selected_project", SupportFormGUI::LANG_MODULE), self::helpMe()->ticket()->getLink($project->getProjectUrlKey()))
                 ->withOpenInNewViewport(true));
         }
 

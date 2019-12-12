@@ -250,7 +250,7 @@ public function fromDB(stdClass $data): x {
 ```
 
 ### Requirements
-* ILIAS 5.3 or ILIAS 5.4
+* ILIAS 5.3 or ILIAS 5.4 or ILIAS 6
 * PHP >=7.0
 * PDO (MySQL or PostgreSQL 9.5)
 

@@ -5,7 +5,7 @@ namespace srag\Plugins\HelpMe\Project;
 use ilCheckboxInputGUI;
 use ilHelpMePlugin;
 use ilTextInputGUI;
-use srag\CustomInputGUIs\HelpMe\MultiLineInputGUI\MultiLineInputGUI;
+use srag\CustomInputGUIs\HelpMe\MultiLineNewInputGUI\MultiLineNewInputGUI;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\ObjectPropertyFormGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -21,7 +21,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE_PROJECTS;
+    const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE;
     /**
      * @var Project
      */
@@ -31,10 +31,10 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
     /**
      * ProjectFormGUI constructor
      *
-     * @param ProjectsConfigGUI $parent
-     * @param Project           $object
+     * @param ProjectConfigGUI $parent
+     * @param Project          $object
      */
-    public function __construct(ProjectsConfigGUI $parent, Project $object)
+    public function __construct(ProjectConfigGUI $parent, Project $object)
     {
         parent::__construct($parent, $object);
     }
@@ -55,30 +55,15 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
     /**
      * @inheritdoc
      */
-    protected function initAction()/*: void*/
-    {
-        if (!empty($this->object->getProjectId())) {
-            self::dic()->ctrl()->setParameter($this->parent, "srsu_project_id", $this->object->getProjectId());
-        }
-
-        parent::initAction();
-
-        self::dic()->ctrl()->setParameter($this->parent, "srsu_project_id", null);
-    }
-
-
-    /**
-     * @inheritdoc
-     */
     protected function initCommands()/*: void*/
     {
         if (!empty($this->object->getProjectId())) {
-            $this->addCommandButton(ProjectsConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
+            $this->addCommandButton(ProjectConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
         } else {
-            $this->addCommandButton(ProjectsConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
+            $this->addCommandButton(ProjectConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
         }
 
-        $this->addCommandButton(ProjectsConfigGUI::CMD_LIST_PROJECTS, $this->txt("cancel"));
+        $this->addCommandButton(ProjectConfigGUI::CMD_BACK, $this->txt("cancel"));
     }
 
 
@@ -104,10 +89,8 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
                 "setTitle"              => $this->txt("name")
             ],
             "project_issue_types"  => [
-                self::PROPERTY_CLASS    => MultiLineInputGUI::class,
+                self::PROPERTY_CLASS    => MultiLineNewInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_MULTI    => true,
-                "setShowLabel"          => true,
                 self::PROPERTY_SUBITEMS => [
                     "issue_type"  => [
                         self::PROPERTY_CLASS    => ilTextInputGUI::class,
@@ -126,7 +109,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
             ],
             "project_show_tickets" => [
                 self::PROPERTY_CLASS => ilCheckboxInputGUI::class,
-                "setTitle"              => $this->txt("show_tickets")
+                "setTitle"           => $this->txt("show_tickets")
             ]
         ];
     }

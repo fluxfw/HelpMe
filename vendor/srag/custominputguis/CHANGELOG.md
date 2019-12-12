@@ -1,5 +1,57 @@
 # Changelog
 
+## [0.27.3]
+- Optimized `MultiSelectSearchInputGUI` ajax
+
+## [0.27.2]
+- `MultiLineNewInputGUI`: Add new line below
+
+## [0.27.1]
+- `MultiLineNewInputGUI`: Possibility to disable sort
+
+## [0.27.0]
+- New `MultiLineNewInputGUI`
+- Optimized `TabsInputGUI` to work with `MultiLineNewInputGUI`
+- Optimized `MultiSelectSearchInputGUI` ajax
+- Deprecated `MultiLineInputGUI`, `MultiSelectSearchInput2GUI` and `GlyphGUI`
+
+## [0.26.4]
+- `MultilangualTabsInputGUI` default language
+
+## [0.26.3]
+- `MultilangualTabsInputGUI` default language
+
+## [0.26.2]
+- `MultilangualTabsInputGUI` default language
+
+## [0.26.1]
+- Fix
+
+## [0.26.0]
+- `InputGUIWrapperUIInputComponent` and `UIInputComponentWrapperInputGUI`
+
+## [0.25.3]
+- `StaticHTMLPresentationInputGUI`: Fix charset
+
+## [0.25.2]
+- `TabsInputGUI`
+
+## [0.25.1]
+- `MultilangualTabsInputGUI`
+
+## [0.25.0]
+- `TabsInputGUI`
+- `MultilangualTabsInputGUI`
+
+## [0.24.1]
+- `getDataOnly` for `LearningProgressPieUI`
+
+## [0.24.0]
+- `getDataOnly` for `LearningProgressPieUI`
+
+## [0.23.6]
+- Make ProgressMeter run again with PHP 7.0
+
 ## [0.23.5]
 - MultiLineInputGUI: fix PHP 7.2
 

@@ -3,7 +3,7 @@
 namespace srag\Notifications4Plugin\HelpMe\Sender;
 
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
-use srag\Notifications4Plugin\HelpMe\Notification\Notification;
+use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
 
 /**
  * Interface RepositoryInterface
@@ -16,18 +16,30 @@ interface RepositoryInterface
 {
 
     /**
+     * @internal
+     */
+    public function dropTables()/*: void*/ ;
+
+
+    /**
      * @return FactoryInterface
      */
     public function factory() : FactoryInterface;
 
 
     /**
-     * @param Sender       $sender   A concrete srNotificationSender object, e.g. srNotificationMailSender
-     * @param Notification $notification
-     * @param array        $placeholders
-     * @param string       $language Omit to choose the default language
+     * @internal
+     */
+    public function installTables()/*: void*/ ;
+
+
+    /**
+     * @param Sender                $sender   A concrete srNotificationSender object, e.g. srNotificationMailSender
+     * @param NotificationInterface $notification
+     * @param array                 $placeholders
+     * @param string|null           $language Omit to choose the default language
      *
      * @throws Notifications4PluginException
      */
-    public function send(Sender $sender, Notification $notification, array $placeholders = [], string $language = "")/*: void*/ ;
+    public function send(Sender $sender, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null)/*: void*/ ;
 }

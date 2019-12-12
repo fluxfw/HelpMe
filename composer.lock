@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "6354483f739e666fe2a28f8774ea8aac",
@@ -57,16 +57,16 @@
         },
         {
             "name": "srag/activerecordconfig",
-            "version": "v0.16.3",
+            "version": "v0.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "e9fdbeff6e2b2a05aca25d03e625ae9de98ea9ed"
+                "reference": "2788a9500eb038f54dc1ff65ab8daded841172b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/e9fdbeff6e2b2a05aca25d03e625ae9de98ea9ed",
-                "reference": "e9fdbeff6e2b2a05aca25d03e625ae9de98ea9ed",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/2788a9500eb038f54dc1ff65ab8daded841172b1",
+                "reference": "2788a9500eb038f54dc1ff65ab8daded841172b1",
                 "shasum": ""
             },
             "require": {
@@ -99,20 +99,20 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2019-09-03T08:14:04+00:00"
+            "time": "2019-12-09T10:43:04+00:00"
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.23.5",
+            "version": "v0.27.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "930392409528493163c4ea6affc55feb0c24fb6a"
+                "reference": "ee85ae8bda926020896440122ddff1d4e4cfb2f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/930392409528493163c4ea6affc55feb0c24fb6a",
-                "reference": "930392409528493163c4ea6affc55feb0c24fb6a",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/ee85ae8bda926020896440122ddff1d4e4cfb2f4",
+                "reference": "ee85ae8bda926020896440122ddff1d4e4cfb2f4",
                 "shasum": ""
             },
             "require": {
@@ -122,7 +122,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -146,20 +146,20 @@
                 "input",
                 "table"
             ],
-            "time": "2019-09-25T11:33:03+00:00"
+            "time": "2019-12-10T08:12:33+00:00"
         },
         {
             "name": "srag/dic",
-            "version": "v0.18.5",
+            "version": "v0.19.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "d33475080cab8446bf05b8cb1593aea39ba68d23"
+                "reference": "a991dc3e9b9df58aa9fe4ce40e8fbbc4a904d14f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/d33475080cab8446bf05b8cb1593aea39ba68d23",
-                "reference": "d33475080cab8446bf05b8cb1593aea39ba68d23",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/a991dc3e9b9df58aa9fe4ce40e8fbbc4a904d14f",
+                "reference": "a991dc3e9b9df58aa9fe4ce40e8fbbc4a904d14f",
                 "shasum": ""
             },
             "require": {
@@ -168,7 +168,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -191,20 +191,20 @@
                 "globals",
                 "trait"
             ],
-            "time": "2019-10-11T12:15:38+00:00"
+            "time": "2019-11-15T12:49:24+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.5.2",
+            "version": "v0.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "2bac20470890bbcae8cf288b4b253632af4de3ef"
+                "reference": "5af980ab203a8510c2e788d13adac076eb20ab55"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/2bac20470890bbcae8cf288b4b253632af4de3ef",
-                "reference": "2bac20470890bbcae8cf288b4b253632af4de3ef",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/5af980ab203a8510c2e788d13adac076eb20ab55",
+                "reference": "5af980ab203a8510c2e788d13adac076eb20ab55",
                 "shasum": ""
             },
             "require": {
@@ -236,20 +236,20 @@
                 "curl",
                 "jira"
             ],
-            "time": "2019-06-28T06:59:08+00:00"
+            "time": "2019-12-12T11:48:18+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
-            "version": "v0.6.13",
+            "version": "v0.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-                "reference": "b90172668c936568dc0b6a992a7ac046b3fc5546"
+                "reference": "80afdd6f1d0690004e87edadcf120fb6d0740ebb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/b90172668c936568dc0b6a992a7ac046b3fc5546",
-                "reference": "b90172668c936568dc0b6a992a7ac046b3fc5546",
+                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/80afdd6f1d0690004e87edadcf120fb6d0740ebb",
+                "reference": "80afdd6f1d0690004e87edadcf120fb6d0740ebb",
                 "shasum": ""
             },
             "require": {
@@ -279,20 +279,20 @@
                 "ILIAS",
                 "libraries"
             ],
-            "time": "2019-09-19T08:53:12+00:00"
+            "time": "2019-12-11T08:38:08+00:00"
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "v4.5.7",
+            "version": "v5.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-                "reference": "1fdf259e355b985e3f9dcea901166f6f71a0ff33"
+                "reference": "42576bda289c1151d716e87025effbdda217b928"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/1fdf259e355b985e3f9dcea901166f6f71a0ff33",
-                "reference": "1fdf259e355b985e3f9dcea901166f6f71a0ff33",
+                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/42576bda289c1151d716e87025effbdda217b928",
+                "reference": "42576bda289c1151d716e87025effbdda217b928",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +325,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2019-09-25T06:49:01+00:00"
+            "time": "2019-12-09T07:43:58+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",

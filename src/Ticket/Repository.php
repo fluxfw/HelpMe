@@ -13,7 +13,7 @@ use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Job\FetchJiraTicketsJob;
 use srag\Plugins\HelpMe\Project\ProjectsConfigGUI;
-use srag\Plugins\HelpMe\Recipient\Recipient;
+use srag\Plugins\HelpMe\Support\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -54,6 +54,15 @@ final class Repository
     private function __construct()
     {
 
+    }
+
+
+    /**
+     * @internal
+     */
+    public function dropTables()/*:void*/
+    {
+        self::dic()->database()->dropTable(Ticket::TABLE_NAME, false);
     }
 
 
@@ -107,7 +116,7 @@ final class Repository
      */
     public function getLink(string $project_url_key = "") : string
     {
-        return self::supports()->getLink("tickets" . (!empty($project_url_key) ? "_" . $project_url_key : ""));
+        return self::helpMe()->support()->getLink("tickets" . (!empty($project_url_key) ? "_" . $project_url_key : ""));
     }
 
 
@@ -177,7 +186,7 @@ final class Repository
         $tickets = [];
 
         while (($row = $result->fetchAssoc()) !== false) {
-            $row["ticket_project"] = self::projects()->getProjectByUrlKey($row["ticket_project_url_key"]);
+            $row["ticket_project"] = self::helpMe()->project()->getProjectByUrlKey($row["ticket_project_url_key"]);
 
             $tickets[$row["ticket_id"]] = $row;
         }
@@ -272,6 +281,15 @@ final class Repository
 
 
     /**
+     * @internal
+     */
+    public function installTables()/*:void*/
+    {
+        Ticket::updateDB();
+    }
+
+
+    /**
      * @param bool $check_has_one_project_at_least_read_access
      *
      * @return bool
@@ -279,7 +297,7 @@ final class Repository
     public function isEnabled(bool $check_has_one_project_at_least_read_access = true) : bool
     {
         return (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
-            && (!$check_has_one_project_at_least_read_access || self::projects()->hasOneProjectAtLeastReadAccess())
+            && (!$check_has_one_project_at_least_read_access || self::helpMe()->project()->hasOneProjectAtLeastReadAccess())
             && file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
             && DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
             && ilCronManager::isJobActive(FetchJiraTicketsJob::CRON_JOB_ID));
@@ -303,7 +321,7 @@ final class Repository
         $this->removeTickets();
 
         foreach ($tickets as $ticket) {
-            $this->storeInstance($ticket);
+            $this->storeTicket($ticket);
         }
     }
 
@@ -331,11 +349,11 @@ final class Repository
 
                 self::dic()->ctrl()->setParameterByClass(ProjectsConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
 
-                $text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE_CONFIG);
+                $text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE);
 
                 $hide_button = self::dic()->ui()->factory()->button()->standard(self::plugin()
-                    ->translate("usage_hide", ilHelpMeConfigGUI::LANG_MODULE_CONFIG), self::dic()->ctrl()
-                    ->getLinkTargetByClass(ProjectsConfigGUI::class, ProjectsConfigGUI::CMD_HIDE_USAGE));
+                    ->translate("usage_hide", ilHelpMeConfigGUI::LANG_MODULE), self::dic()->ctrl()
+                    ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::CMD_HIDE_USAGE));
 
                 if (self::version()->is54()) {
                     ilUtil::sendInfo(self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button])));
@@ -350,7 +368,7 @@ final class Repository
     /**
      * @param Ticket $ticket
      */
-    public function storeInstance(Ticket $ticket)/*: void*/
+    public function storeTicket(Ticket $ticket)/*: void*/
     {
         $ticket->store();
     }

@@ -3,7 +3,7 @@
 namespace srag\Notifications4Plugin\HelpMe\Sender;
 
 use srag\DIC\HelpMe\DICTrait;
-use srag\Notifications4Plugin\HelpMe\Notification\Notification;
+use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 
 /**
@@ -19,7 +19,7 @@ final class Repository implements RepositoryInterface
     use DICTrait;
     use Notifications4PluginTrait;
     /**
-     * @var RepositoryInterface
+     * @var RepositoryInterface|null
      */
     protected static $instance = null;
 
@@ -47,6 +47,15 @@ final class Repository implements RepositoryInterface
 
 
     /**
+     * @inheritDoc
+     */
+    public function dropTables()/*:void*/
+    {
+
+    }
+
+
+    /**
      * @inheritdoc
      */
     public function factory() : FactoryInterface
@@ -56,15 +65,24 @@ final class Repository implements RepositoryInterface
 
 
     /**
+     * @inheritDoc
+     */
+    public function installTables()/*:void*/
+    {
+
+    }
+
+
+    /**
      * @inheritdoc
      */
-    public function send(Sender $sender, Notification $notification, array $placeholders = [], string $language = "")/*: void*/
+    public function send(Sender $sender, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null)/*: void*/
     {
-        $parser = self::parser()->getParserForNotification($notification);
+        $parser = self::notifications4plugin()->parser()->getParserForNotification($notification);
 
-        $sender->setSubject(self::parser()->parseSubject($parser, $notification, $placeholders, $language));
+        $sender->setSubject(self::notifications4plugin()->parser()->parseSubject($parser, $notification, $placeholders, $language));
 
-        $sender->setMessage(self::parser()->parseText($parser, $notification, $placeholders, $language));
+        $sender->setMessage(self::notifications4plugin()->parser()->parseText($parser, $notification, $placeholders, $language));
 
         $sender->send();
     }
