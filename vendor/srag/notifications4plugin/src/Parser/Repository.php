@@ -4,7 +4,7 @@ namespace srag\Notifications4Plugin\HelpMe\Parser;
 
 use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
-use srag\Notifications4Plugin\HelpMe\Notification\Notification;
+use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 
 /**
@@ -20,7 +20,7 @@ final class Repository implements RepositoryInterface
     use DICTrait;
     use Notifications4PluginTrait;
     /**
-     * @var RepositoryInterface
+     * @var RepositoryInterface|null
      */
     protected static $instance = null;
 
@@ -59,11 +59,20 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritdoc
      */
-    public function addParser(Parser $parser)
+    public function addParser(Parser $parser)/*:void*/
     {
         $parser_class = get_class($parser);
 
         $this->parsers[$parser_class] = $parser_class::NAME;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function dropTables()/*:void*/
+    {
+
     }
 
 
@@ -101,16 +110,25 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritdoc
      */
-    public function getParserForNotification(Notification $notification) : Parser
+    public function getParserForNotification(NotificationInterface $notification) : Parser
     {
         return $this->getParserByClass($notification->getParser());
     }
 
 
     /**
+     * @inheritDoc
+     */
+    public function installTables()/*:void*/
+    {
+
+    }
+
+
+    /**
      * @inheritdoc
      */
-    public function parseSubject(Parser $parser, Notification $notification, array $placeholders = [], string $language = "") : string
+    public function parseSubject(Parser $parser, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null) : string
     {
         return $parser->parse($notification->getSubject($language), $placeholders);
     }
@@ -119,7 +137,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritdoc
      */
-    public function parseText(Parser $parser, Notification $notification, array $placeholders = [], string $language = "") : string
+    public function parseText(Parser $parser, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null) : string
     {
         return $parser->parse($notification->getText($language), $placeholders);
     }

@@ -56,4 +56,32 @@ final class Factory
 
         return $ticket;
     }
+
+
+    /**
+     * @param ProjectsConfigGUI $parent
+     * @param string            $cmd
+     *
+     * @return ProjectsTableGUI
+     */
+    public function newTableInstance(ProjectsConfigGUI $parent, string $cmd = ProjectsConfigGUI::CMD_LIST_PROJECTS) : ProjectsTableGUI
+    {
+        $table = new ProjectsTableGUI($parent, $cmd);
+
+        return $table;
+    }
+
+
+    /**
+     * @param ProjectConfigGUI $parent
+     * @param Project          $project
+     *
+     * @return ProjectFormGUI
+     */
+    public function newFormInstance(ProjectConfigGUI $parent, Project $project) : ProjectFormGUI
+    {
+        $form = new ProjectFormGUI($parent, $project);
+
+        return $form;
+    }
 }

@@ -25,8 +25,8 @@ class TicketsGUI
     const CMD_LIST_TICKETS = "listTickets";
     const CMD_RESET_FILTER = "resetFilter";
     const CMD_SET_PROJECT_FILTER = "setProjectFilter";
-    const LANG_MODULE_TICKETS = "tickets";
     const GET_PARAM_USAGE_ID = "usage_id";
+    const LANG_MODULE = "tickets";
 
 
     /**
@@ -43,9 +43,11 @@ class TicketsGUI
      */
     public function executeCommand()/*: void*/
     {
-        if (!self::access()->currentUserHasRole() || !self::tickets()->isEnabled()) {
+        if (!self::helpMe()->currentUserHasRole() || !self::helpMe()->ticket()->isEnabled()) {
             die();
         }
+
+        $this->setTabs();
 
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
@@ -70,15 +72,11 @@ class TicketsGUI
 
 
     /**
-     * @param string $cmd
      *
-     * @return TicketsTableGUI
      */
-    protected function getTicketsTable(string $cmd = self::CMD_LIST_TICKETS) : TicketsTableGUI
+    protected function setTabs()/*: void*/
     {
-        $table = new TicketsTableGUI($this, $cmd);
 
-        return $table;
     }
 
 
@@ -87,7 +85,7 @@ class TicketsGUI
      */
     protected function listTickets()/*: void*/
     {
-        $table = $this->getTicketsTable();
+        $table = self::helpMe()->ticket()->factory()->newTableInstance($this);
 
         self::output()->output($table, true);
     }
@@ -98,7 +96,7 @@ class TicketsGUI
      */
     protected function applyFilter()/*: void*/
     {
-        $table = $this->getTicketsTable(self::CMD_APPLY_FILTER);
+        $table = self::helpMe()->ticket()->factory()->newTableInstance($this, self::CMD_APPLY_FILTER);
 
         $table->writeFilterToSession();
 
@@ -114,7 +112,7 @@ class TicketsGUI
      */
     protected function resetFilter()/*: void*/
     {
-        $table = $this->getTicketsTable(self::CMD_RESET_FILTER);
+        $table = self::helpMe()->ticket()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
 
         $table->resetFilter();
 
@@ -132,7 +130,7 @@ class TicketsGUI
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
-        $table = $this->getTicketsTable(self::CMD_RESET_FILTER);
+        $table = self::helpMe()->ticket()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
         $table->resetFilter();
         $table->resetOffset();
 

@@ -1,0 +1,178 @@
+<?php
+
+namespace srag\Plugins\HelpMe\Support\Recipient;
+
+use ilCurlConnectionException;
+use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
+use srag\DIC\HelpMe\Exception\DICException;
+use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
+use srag\JiraCurl\HelpMe\JiraCurl;
+use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
+use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Support\Support;
+
+/**
+ * Class RecipientCreateJiraTicket
+ *
+ * @package srag\Plugins\HelpMe\Support\Recipient
+ *
+ * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ */
+class RecipientCreateJiraTicket extends Recipient
+{
+
+    /**
+     * @var JiraCurl
+     */
+    protected $jira_curl;
+    /**
+     * @var string
+     */
+    protected $service_desk_customer_name = "";
+    /**
+     * @var string
+     */
+    protected $service_desk_ticket_key = "";
+    /**
+     * @var string
+     */
+    protected $ticket_key = "";
+    /**
+     * @var string
+     */
+    protected $ticket_title = "";
+
+
+    /**
+     * RecipientCreateJiraTicket constructor
+     *
+     * @param Support $support
+     *
+     * @throws ActiveRecordConfigException
+     */
+    public function __construct(Support $support)
+    {
+        parent::__construct($support);
+
+        $this->jira_curl = self::helpMe()->support()->initJiraCurl();
+    }
+
+
+    /**
+     * @inheritdoc
+     *
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     */
+    public function sendSupportToRecipient()/*: void*/
+    {
+        if (Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+            $this->createServiceDeskCustomer();
+
+            $this->createServiceDeskRequest();
+
+            $this->addScreenshotsToServiceDeskRequest();
+        }
+
+        $this->createJiraTicket();
+
+        $this->addScreenshots();
+
+        if (Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+            $this->linkServiceDeskAndProjectTicket();
+        } else {
+            $this->sendConfirmationMail();
+        }
+
+        if (self::helpMe()->ticket()->isEnabled()) {
+            $ticket = self::helpMe()->ticket()->factory()->fromSupport($this->support, $this->ticket_key, $this->ticket_title);
+
+            self::helpMe()->ticket()->storeTicket($ticket);
+        }
+    }
+
+
+    /**
+     * Create service desk customer
+     *
+     * @throws DICException
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     */
+    protected function createServiceDeskCustomer()/*:void*/
+    {
+        $this->service_desk_customer_name = $this->jira_curl->createServiceDeskCustomer($this->support->getEmail(), $this->support->getName());
+    }
+
+
+    /**
+     * Create service desk request
+     *
+     * @throws ActiveRecordConfigException
+     * @throws DICException
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     * @throws Notifications4PluginException
+     */
+    protected function createServiceDeskRequest()/*:void*/
+    {
+        $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(Config::getField(Config::KEY_JIRA_SERVICE_DESK_ID), Config::getField(Config::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
+            $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->service_desk_customer_name);
+    }
+
+
+    /**
+     * Add screenshots to service desk request
+     *
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     */
+    protected function addScreenshotsToServiceDeskRequest()/*: void*/
+    {
+        $this->jira_curl->addAttachmentsToServiceDeskRequest(Config::getField(Config::KEY_JIRA_SERVICE_DESK_ID), $this->service_desk_ticket_key, $this->support->getScreenshots());
+    }
+
+
+    /**
+     * Create Jira ticket
+     *
+     * @throws ActiveRecordConfigException
+     * @throws DICException
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     * @throws Notifications4PluginException
+     */
+    protected function createJiraTicket()/*: void*/
+    {
+        $this->ticket_title = $this->getSubject(self::CREATE_JIRA_TICKET);
+
+        $this->ticket_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()
+            ->getProjectKey(), $this->support->getIssueType(), $this->ticket_title, $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getFixVersion());
+    }
+
+
+    /**
+     * Add screenshots to Jira ticket
+     *
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     */
+    protected function addScreenshots()/*: void*/
+    {
+        $this->jira_curl->addAttachmentsToIssue($this->ticket_key, $this->support->getScreenshots());
+    }
+
+
+    /**
+     * Link service desk and project ticket
+     *
+     * @throws ActiveRecordConfigException
+     * @throws DICException
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     */
+    protected function linkServiceDeskAndProjectTicket()/*:void*/
+    {
+        $this->jira_curl->linkTickets($this->service_desk_ticket_key, $this->ticket_key, Config::getField(Config::KEY_JIRA_SERVICE_DESK_LINK_TYPE));
+    }
+}

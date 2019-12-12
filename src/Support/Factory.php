@@ -56,4 +56,32 @@ final class Factory
 
         return $support;
     }
+
+
+    /**
+     * @param SupportGUI $parent
+     * @param Support    $support
+     *
+     * @return SupportFormGUI
+     */
+    public function newFormInstance(SupportGUI $parent, Support $support) : SupportFormGUI
+    {
+        $form = new SupportFormGUI($parent, $support);
+
+        return $form;
+    }
+
+
+    /**
+     * @param SupportGUI $parent
+     * @param Support    $support
+     *
+     * @return SuccessFormGUI
+     */
+    public function newSuccessFormInstance(SupportGUI $parent, Support $support) : SuccessFormGUI
+    {
+        $form = new SuccessFormGUI($parent, $support);
+
+        return $form;
+    }
 }

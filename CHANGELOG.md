@@ -1,5 +1,9 @@
 # Changelog
 
+## [x]
+- Create jira service desk request
+- Other improvments and fixes
+
 ## [4.2.2]
 - Display placeholder types in notification form
 

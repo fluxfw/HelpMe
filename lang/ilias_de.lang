@@ -1,3 +1,4 @@
+config_always_enabled#:#Lässt sich mit aktiviertem %s nicht deaktivieren
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
 config_info#:#Infotext
@@ -6,15 +7,17 @@ config_jira_authorization#:#Jira-Authorization
 config_jira_authorization_oauth#:#oAuth
 config_jira_authorization_usernamepassword#:#Benutzername & Passwort
 config_jira_consumer_key#:#Jira-Consumer-Key
+config_jira_create_service_desk_request#:#Service-Desk-Anfrage erstellen
 config_jira_domain#:#Jira-Domainname
 config_jira_password#:#Jira-Passwort
 config_jira_private_key#:#Jira-Private-Key
 config_jira_private_key_info#:#PEM formatted RSA private key
+config_jira_service_desk_id#:#Service-Desk-ID
+config_jira_service_desk_link_type#:#Link-Typ
+config_jira_service_desk_request_type_id#:#Anfrage-Typ-ID
 config_jira_username#:#Jira-Benutzername
-config_notifications#:#Benachrichtigungen
 config_page_reference#:#Seiten-Referenz im Support einbeziehen
 config_priorities#:#Dringlichkeiten
-config_projects#:#Projekte
 config_recipient#:#Formularempfänger
 config_recipient_create_jira_ticket#:#Jira-Ticket erstellen
 config_recipient_send_email#:#Per E-Mail senden
@@ -74,7 +77,8 @@ support_project#:#Projekt
 support_reproduce_steps#:#Schritte zum Reproduzieren
 support_screenshots#:#Screenshots
 support_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden
-support_sent_success#:#Vielen Dank für Ihre Support-Anfrage. Eine Bestätigungs-E-Mail wurde an Sie geschickt
+support_sent_success#:#Vielen Dank für Ihre Support-Anfrage
+support_sent_success_confirmation_email#:#Eine Bestätigungs-E-Mail wurde an Sie geschickt
 support_show_tickets#:#Tickets anzeigen
 support_show_tickets_of_selected_project#:#Tickets vom ausgewählten Projekt anzeigen
 support_submit#:#Senden

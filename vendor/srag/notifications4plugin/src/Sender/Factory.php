@@ -18,7 +18,7 @@ final class Factory implements FactoryInterface
     use DICTrait;
     use Notifications4PluginTrait;
     /**
-     * @var FactoryInterface
+     * @var FactoryInterface|null
      */
     protected static $instance = null;
 

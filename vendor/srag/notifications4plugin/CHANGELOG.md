@@ -1,10 +1,22 @@
 # Changelog
 
+## [5.1.0]
+- Improvments
+
+## [5.0.0]
+- Improvments - new structur
+
+## [4.6.1]
+- Adjust `default_language_info`
+
+## [4.6.0]
+- Optimize subject and text input/edit - Add an inline tab for all available languages (No need to enter manually needed)
+
 ## [4.5.7]
 - Fix
 
 ## [4.5.6]
-- Fix install (Fix Call to a member function getName() on null (Because not use ILIAS primary key))
+- Fix install (Fix Call to a member function getName() on null (Because not use ILIAS sequence))
 
 ## [4.5.5]
 - Allows template selection is not required

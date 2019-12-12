@@ -31,7 +31,8 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * PHP >=7.0
 
 ### Adjustment suggestions
-* Adjustment suggestions by pull requests
-* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LJIRACURL
-* Bug reports under https://jira.studer-raimann.ch/projects/LJIRACURL
-* For external users you can report it at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
+* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
+* Adjustment suggestions by pull requests via github
+* Customer of studer + raimann ag: 
+	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LJIRACURL
+	* Bug reports under https://jira.studer-raimann.ch/projects/LJIRACURL
