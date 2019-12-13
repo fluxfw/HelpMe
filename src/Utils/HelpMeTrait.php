@@ -2,7 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Utils;
 
-use srag\Plugins\HelpMe\Access\Access;
 use srag\Plugins\HelpMe\Repository;
 
 /**

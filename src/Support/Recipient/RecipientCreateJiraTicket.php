@@ -26,9 +26,9 @@ class RecipientCreateJiraTicket extends Recipient
      */
     protected $jira_curl;
     /**
-     * @var string
+     * @var string|null
      */
-    protected $service_desk_customer_name = "";
+    protected $service_desk_customer = null;
     /**
      * @var string
      */
@@ -67,7 +67,13 @@ class RecipientCreateJiraTicket extends Recipient
     public function sendSupportToRecipient()/*: void*/
     {
         if (Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
-            $this->createServiceDeskCustomer();
+            if (Config::getField(Config::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER)) {
+                if (Config::getField(Config::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS)) {
+                    $this->service_desk_customer = $this->jira_curl->ensureServiceDeskCustomer($this->support->getEmail(), $this->support->getName());
+                } else {
+                    $this->service_desk_customer = $this->support->getEmail();
+                }
+            }
 
             $this->createServiceDeskRequest();
 
@@ -93,19 +99,6 @@ class RecipientCreateJiraTicket extends Recipient
 
 
     /**
-     * Create service desk customer
-     *
-     * @throws DICException
-     * @throws ilCurlConnectionException
-     * @throws JiraCurlException
-     */
-    protected function createServiceDeskCustomer()/*:void*/
-    {
-        $this->service_desk_customer_name = $this->jira_curl->createServiceDeskCustomer($this->support->getEmail(), $this->support->getName());
-    }
-
-
-    /**
      * Create service desk request
      *
      * @throws ActiveRecordConfigException
@@ -117,7 +110,7 @@ class RecipientCreateJiraTicket extends Recipient
     protected function createServiceDeskRequest()/*:void*/
     {
         $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(Config::getField(Config::KEY_JIRA_SERVICE_DESK_ID), Config::getField(Config::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
-            $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->service_desk_customer_name);
+            $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->service_desk_customer);
     }
 
 

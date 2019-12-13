@@ -12,6 +12,8 @@ config_jira_domain#:#Jira-Domainname
 config_jira_password#:#Jira-Passwort
 config_jira_private_key#:#Jira-Private-Key
 config_jira_private_key_info#:#PEM formatted RSA private key
+config_jira_service_desk_create_as_customer#:#Als Kunde anlegen
+config_jira_service_desk_create_new_customers#:#Neue Kunden anlegen
 config_jira_service_desk_id#:#Service-Desk-ID
 config_jira_service_desk_link_type#:#Link-Typ
 config_jira_service_desk_request_type_id#:#Anfrage-Typ-ID

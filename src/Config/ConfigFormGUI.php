@@ -144,15 +144,23 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
                                 Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST => [
                                     self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
                                     self::PROPERTY_SUBITEMS => [
-                                        Config::KEY_JIRA_SERVICE_DESK_ID              => [
+                                        Config::KEY_JIRA_SERVICE_DESK_ID                 => [
                                             self::PROPERTY_CLASS    => ilNumberInputGUI::class,
                                             self::PROPERTY_REQUIRED => true
                                         ],
-                                        Config::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID => [
+                                        Config::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID    => [
                                             self::PROPERTY_CLASS    => ilNumberInputGUI::class,
                                             self::PROPERTY_REQUIRED => true
                                         ],
-                                        Config::KEY_JIRA_SERVICE_DESK_LINK_TYPE       => [
+                                        Config::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER => [
+                                            self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
+                                            self::PROPERTY_SUBITEMS => [
+                                                Config::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS => [
+                                                    self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+                                                ]
+                                            ]
+                                        ],
+                                        Config::KEY_JIRA_SERVICE_DESK_LINK_TYPE          => [
                                             self::PROPERTY_CLASS    => ilTextInputGUI::class,
                                             self::PROPERTY_REQUIRED => true
                                         ]
