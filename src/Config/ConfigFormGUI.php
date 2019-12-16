@@ -38,9 +38,9 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
 
 
     /**
-     * ilHelpMeConfigGUI constructor
+     * ConfigFormGUI constructor
      *
-     * @param ConfigFormGUI $parent
+     * @param ilHelpMeConfigGUI $parent
      */
     public function __construct(ilHelpMeConfigGUI $parent)
     {
