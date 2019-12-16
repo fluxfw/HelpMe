@@ -67,7 +67,7 @@ final class Repository
      */
     public function currentUserHasRole() : bool
     {
-        $user_id = self::helpMe()->ilias()->users()->getUserId();
+        $user_id = $this->ilias()->users()->getUserId();
 
         $user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
         $config_roles = Config::getField(Config::KEY_ROLES);
