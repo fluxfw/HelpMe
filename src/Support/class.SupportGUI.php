@@ -48,6 +48,8 @@ class SupportGUI
      */
     public function executeCommand()/*: void*/
     {
+        $this->support = self::helpMe()->support()->factory()->newInstance();
+
         if (!self::helpMe()->currentUserHasRole()) {
             die();
         }
@@ -89,7 +91,7 @@ class SupportGUI
      */
     protected function setTabs()/*: void*/
     {
-        $this->support = self::helpMe()->support()->factory()->newInstance();
+
     }
 
 
