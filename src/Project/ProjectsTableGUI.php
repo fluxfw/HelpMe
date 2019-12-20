@@ -2,9 +2,9 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
-use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
-use srag\ActiveRecordConfig\HelpMe\ActiveRecordConfigTableGUI;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\HelpMe\TableGUI\TableGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -14,114 +14,161 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ProjectsTableGUI extends ActiveRecordConfigTableGUI {
+class ProjectsTableGUI extends TableGUI
+{
 
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function getColumnValue(/*string*/
-		$column, /*array*/
-		$row, /*int*/
-		$format = self::DEFAULT_FORMAT): string {
-		switch ($column) {
-			default:
-				$column = $row[$column];
-				break;
-		}
-
-		return strval($column);
-	}
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE;
 
 
-	/**
-	 * @inheritdoc
-	 */
-	public function getSelectableColumns2(): array {
-		$columns = [
-			"project_key" => "project_key",
-			"project_name" => "project_name",
-			"support_link" => "support_link"
-		];
-
-		$columns = array_map(function (string $key): array {
-			return [
-				"id" => $key,
-				"default" => true,
-				"sort" => ($key !== "support_link")
-			];
-		}, $columns);
-
-		return $columns;
-	}
+    /**
+     * ProjectsTableGUI constructor
+     *
+     * @param ProjectsConfigGUI $parent
+     * @param string            $parent_cmd
+     */
+    public function __construct(ProjectsConfigGUI $parent, string $parent_cmd)
+    {
+        parent::__construct($parent, $parent_cmd);
+    }
 
 
-	/**
-	 * @inheritdoc
-	 */
-	protected function initColumns()/*: void*/ {
-		self::tickets()->showUsageConfigHint();
+    /**
+     * @inheritdoc
+     *
+     * @param Project $project
+     */
+    protected function getColumnValue(/*string*/
+        $column, /*Project*/
+        $project, /*int*/
+        $format = self::DEFAULT_FORMAT
+    ) : string {
+        switch ($column) {
+            case "support_link":
+                $support_link = self::helpMe()->support()->getLink($project->getProjectUrlKey());
 
-		parent::initColumns();
+                $column = self::output()->getHTML(self::dic()->ui()->factory()->link()->standard($support_link, $support_link)
+                    ->withOpenInNewViewport(true));
+                break;
 
-		$this->addColumn($this->txt("actions"));
+            default:
+                $column = Items::getter($project, $column);
+                break;
+        }
 
-		$this->setDefaultOrderField("project_name");
-		$this->setDefaultOrderDirection("asc");
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function initCommands()/*: void*/ {
-		self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_project"), self::dic()->ctrl()
-			->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_ADD_PROJECT)));
-	}
-
-
-	/**
-	 * @inheritdoc
-	 */
-	protected function initData()/*: void*/ {
-		$projects = self::projects()->getProjectsArray();
-
-		$this->setData(array_map(function (array $project): array {
-			$support_link = self::supports()->getLink($project["project_url_key"]);
-
-			$project["support_link"] = self::output()->getHTML(self::dic()->ui()->factory()->link()->standard($support_link, $support_link)
-				->withOpenInNewViewport(true));
-
-			return $project;
-		}, $projects));
-	}
+        return strval($column);
+    }
 
 
-	/**
-	 * @inheritdoc
-	 */
-	protected function initId()/*: void*/ {
-		$this->setId("srsu_projects");
-	}
+    /**
+     * @inheritdoc
+     */
+    public function getSelectableColumns2() : array
+    {
+        $columns = [
+            "project_key"  => [
+                "id"      => "project_key",
+                "default" => true,
+                "sort"    => true,
+                "txt"     => $this->txt("key")
+            ],
+            "project_name" => [
+                "id"      => "project_name",
+                "default" => true,
+                "sort"    => true,
+                "txt"     => $this->txt("name")
+            ],
+            "support_link" => [
+                "id"      => "support_link",
+                "default" => true,
+                "sort"    => false
+            ]
+        ];
+
+        return $columns;
+    }
 
 
-	/**
-	 * @param array $row
-	 */
-	protected function fillRow(/*array*/
-		$row)/*: void*/ {
-		self::dic()->ctrl()->setParameter($this->parent_obj, "srsu_project_id", $row["project_id"]);
+    /**
+     * @inheritdoc
+     */
+    protected function initColumns()/*: void*/
+    {
+        parent::initColumns();
 
-		parent::fillRow($row);
+        $this->addColumn($this->txt("actions"));
 
-		$this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
-			self::dic()->ui()->factory()->button()->shy($this->txt("edit_project"), self::dic()->ctrl()
-				->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_EDIT_PROJECT)),
-			self::dic()->ui()->factory()->button()->shy($this->txt("remove_project"), self::dic()->ctrl()
-				->getLinkTarget($this->parent_obj, ilHelpMeConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
-		])->withLabel($this->txt("actions"))));
-	}
+        $this->setDefaultOrderField("project_name");
+        $this->setDefaultOrderDirection("asc");
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function initCommands()/*: void*/
+    {
+        self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_project"), self::dic()->ctrl()
+            ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_ADD_PROJECT)));
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function initData()/*: void*/
+    {
+        $this->setExternalSegmentation(true);
+        $this->setExternalSorting(true);
+
+        $this->setData(self::helpMe()->project()->getProjects());
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function initFilterFields()/*: void*/
+    {
+        $this->filter_fields = [];
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function initId()/*: void*/
+    {
+        $this->setId("srsu_projects");
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    protected function initTitle()/*: void*/
+    {
+        $this->setTitle($this->txt("projects"));
+    }
+
+
+    /**
+     * @param Project $project
+     */
+    protected function fillRow(/*Project*/
+        $project
+    )/*: void*/
+    {
+        self::dic()->ctrl()->setParameterByClass(ProjectConfigGUI::class, ProjectConfigGUI::GET_PARAM_PROJECT_ID, $project->getProjectId());
+
+        parent::fillRow($project);
+
+        $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
+            self::dic()->ui()->factory()->button()->shy($this->txt("edit_project"), self::dic()->ctrl()
+                ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_EDIT_PROJECT)),
+            self::dic()->ui()->factory()->button()->shy($this->txt("remove_project"), self::dic()->ctrl()
+                ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
+        ])->withLabel($this->txt("actions"))));
+    }
 }

@@ -16,8 +16,9 @@ use srag\CustomInputGUIs\HelpMe\ProgressMeter\Component\FixedSize as FixedSizeCo
  * @author  Ralph Dittrich <dittrich@qualitus.de>
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @since ILIAS 5.4
+ * @since   ILIAS 5.4
  */
-class FixedSize extends Standard implements FixedSizeComponent {
+class FixedSize extends Standard implements FixedSizeComponent
+{
 
 }

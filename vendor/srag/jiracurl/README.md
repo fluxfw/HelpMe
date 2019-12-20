@@ -10,14 +10,6 @@ First add the following to your `composer.json` file:
 },
 ```
 
-If your plugin should support ILIAS 5.2 or earlier you need to require `ilCurlConnection` like follow in your `composer.json` file:
-```json
-"autoload": {
-    "classmap": [
-      "../../../../../../../Services/WebServices/Curl/classes/class.ilCurlConnection.php",
-```
-May you need to adjust the relative `ilCurlConnection` path
-
 And run a `composer install`.
 
 If you deliver your plugin, the plugin has it's own copy of this library and the user doesn't need to install the library.
@@ -31,7 +23,8 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * PHP >=7.0
 
 ### Adjustment suggestions
-* Adjustment suggestions by pull requests
-* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LJIRACURL
-* Bug reports under https://jira.studer-raimann.ch/projects/LJIRACURL
-* For external users you can report it at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
+* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
+* Adjustment suggestions by pull requests via github
+* Customer of studer + raimann ag: 
+	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LJIRACURL
+	* Bug reports under https://jira.studer-raimann.ch/projects/LJIRACURL

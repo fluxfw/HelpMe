@@ -1,11 +1,8 @@
 notifications4plugin_actions#:#Aktionen
 notifications4plugin_add#:#Hinzugefügen
-notifications4plugin_add_new_language#:#Neue Sprache hinzufügen
 notifications4plugin_add_notification#:#Benachrichtigung hinzufügen
 notifications4plugin_added_notification#:#Benachrichtigung %s hinzugefügt
 notifications4plugin_cancel#:#Abbrechen
-notifications4plugin_default_language#:#Standard-Sprache
-notifications4plugin_default_language_info#:#Diese Sprache wird ersetzt, wenn Sie versuchen, eine nicht vorhandene Sprache zu laden, oder wenn keine Sprache bereitgestellt wird
 notifications4plugin_delete#:#Löschen
 notifications4plugin_delete_notification_confirm#:#Möchten Sie die Benachrichtigung wirklich entfernen: %s ?
 notifications4plugin_deleted_notification#:#Benachrichtigung %s gelöscht
@@ -16,10 +13,8 @@ notifications4plugin_duplicated_notification#:#Benachrichtigung %s dupliziert
 notifications4plugin_edit#:#Bearbeiten
 notifications4plugin_edit_notification#:#Benachrichtigung bearbeiten
 notifications4plugin_id#:#ID
-notifications4plugin_language#:#Sprache
-notifications4plugin_languages#:#Sprachen
 notifications4plugin_name#:#Name
-notifications4plugin_name_info#:#Der Name ist eine zusätzliche eindeutige Kennung einer Benachrichtigung. Dies ermöglicht das einfache Abrufen von srNotification-Objekten anhand des Namens, nicht nur anhand der ID
+notifications4plugin_name_info#:#Der Name ist eine zusätzliche eindeutige Kennung einer Benachrichtigung. Dies ermöglicht das Abrufen der Benachrichtigung anhand des Namens, nicht nur anhand der ID
 notifications4plugin_notifications#:#Benachrichtigungen
 notifications4plugin_parser#:#Parser
 notifications4plugin_placeholder_types_info#:#Folgende Platzhalter können in der Benachrichtigungs-Vorlage verwendet werden. Unterhalb wird dessen Datentyp angezeigt. Wie Sie diese verwenden können, schauen Sie bitte in der Dokumentation des ausgewählten Parsers nach

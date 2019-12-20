@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.8.2]
+- Remove ILIAS 5.2 hints
+
+## [0.8.1]
+- Improvments
+
+## [0.8.0]
+- Create service desk customer
+
+## [0.7.0]
+- Add attachments to service desk request
+
+## [0.6.0]
+- Create service desk request
+- Link tickets
+
 ## [0.5.2]
 - Making connection to jira work, if a proxy in ILIAS is used
 

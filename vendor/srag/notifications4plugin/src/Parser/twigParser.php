@@ -16,40 +16,44 @@ use Twig_Loader_String;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
-class twigParser implements Parser {
+class twigParser implements Parser
+{
 
-	use DICTrait;
-	use Notifications4PluginTrait;
-	const NAME = "twig";
-	const DOC_LINK = "https://twig.symfony.com/doc/1.x/templates.html";
-	/**
-	 * @var array
-	 */
-	protected $options = [
-		"autoescape" => false // Do not auto escape variables by default when using {{ myVar }}
-	];
-
-
-	/**
-	 * twigParser constructor
-	 *
-	 * @param array $options
-	 */
-	public function __construct(array $options = []) {
-		$this->options = array_merge($this->options, $options);
-	}
+    use DICTrait;
+    use Notifications4PluginTrait;
+    const NAME = "twig";
+    const DOC_LINK = "https://twig.symfony.com/doc/1.x/templates.html";
+    /**
+     * @var array
+     */
+    protected $options
+        = [
+            "autoescape" => false // Do not auto escape variables by default when using {{ myVar }}
+        ];
 
 
-	/**
-	 * @inheritdoc
-	 *
-	 * @throws Twig_Error
-	 */
-	public function parse(string $text, array $placeholders = []): string {
-		$loader = new Twig_Loader_String();
+    /**
+     * twigParser constructor
+     *
+     * @param array $options
+     */
+    public function __construct(array $options = [])
+    {
+        $this->options = array_merge($this->options, $options);
+    }
 
-		$twig = new Twig_Environment($loader, $this->options);
 
-		return $twig->render($text, $placeholders);
-	}
+    /**
+     * @inheritdoc
+     *
+     * @throws Twig_Error
+     */
+    public function parse(string $text, array $placeholders = []) : string
+    {
+        $loader = new Twig_Loader_String();
+
+        $twig = new Twig_Environment($loader, $this->options);
+
+        return $twig->render($text, $placeholders);
+    }
 }

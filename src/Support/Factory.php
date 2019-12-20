@@ -13,43 +13,75 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Factory {
+final class Factory
+{
 
-	use DICTrait;
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	/**
-	 * @var self
-	 */
-	protected static $instance = null;
-
-
-	/**
-	 * @return self
-	 */
-	public static function getInstance(): self {
-		if (self::$instance === null) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
+    use DICTrait;
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    /**
+     * @var self
+     */
+    protected static $instance = null;
 
 
-	/**
-	 * Factory constructor
-	 */
-	private function __construct() {
+    /**
+     * @return self
+     */
+    public static function getInstance() : self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
 
-	}
+        return self::$instance;
+    }
 
 
-	/**
-	 * @return Support
-	 */
-	public function newInstance(): Support {
-		$support = new Support();
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
 
-		return $support;
-	}
+    }
+
+
+    /**
+     * @return Support
+     */
+    public function newInstance() : Support
+    {
+        $support = new Support();
+
+        return $support;
+    }
+
+
+    /**
+     * @param SupportGUI $parent
+     * @param Support    $support
+     *
+     * @return SupportFormGUI
+     */
+    public function newFormInstance(SupportGUI $parent, Support $support) : SupportFormGUI
+    {
+        $form = new SupportFormGUI($parent, $support);
+
+        return $form;
+    }
+
+
+    /**
+     * @param SupportGUI $parent
+     * @param Support    $support
+     *
+     * @return SuccessFormGUI
+     */
+    public function newSuccessFormInstance(SupportGUI $parent, Support $support) : SuccessFormGUI
+    {
+        $form = new SuccessFormGUI($parent, $support);
+
+        return $form;
+    }
 }

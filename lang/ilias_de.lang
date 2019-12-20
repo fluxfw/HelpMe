@@ -1,52 +1,33 @@
-config_actions#:#Aktionen
-config_add#:#Hinzufügen
-config_add_project#:#Projekt hinzufügen
-config_added_project#:#Projekt %s hinzugefügt
-config_cancel#:#Abbrechen
+config_always_enabled#:#Lässt sich mit aktiviertem %s nicht deaktivieren
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
-config_edit_project#:#Projekt bearbeiten
 config_info#:#Infotext
 config_jira_access_token#:#Jira-Access-Token
 config_jira_authorization#:#Jira-Authorization
 config_jira_authorization_oauth#:#oAuth
 config_jira_authorization_usernamepassword#:#Benutzername & Passwort
 config_jira_consumer_key#:#Jira-Consumer-Key
+config_jira_create_service_desk_request#:#Service-Desk-Anfrage erstellen
 config_jira_domain#:#Jira-Domainname
 config_jira_password#:#Jira-Passwort
 config_jira_private_key#:#Jira-Private-Key
 config_jira_private_key_info#:#PEM formatted RSA private key
+config_jira_service_desk_create_as_customer#:#Als Kunde anlegen
+config_jira_service_desk_create_new_customers#:#Neue Kunden anlegen
+config_jira_service_desk_id#:#Service-Desk-ID
+config_jira_service_desk_link_type#:#Link-Typ
+config_jira_service_desk_request_type_id#:#Anfrage-Typ-ID
 config_jira_username#:#Jira-Benutzername
-config_notifications#:#Benachrichtigungen
 config_page_reference#:#Seiten-Referenz im Support einbeziehen
 config_priorities#:#Dringlichkeiten
-config_projects#:#Projekte
-config_project_fix_version#:#Fix-Version
-config_project_fix_version_info#:#Backlog, ...
-config_project_issue_type#:#Issue-Type
-config_project_issue_type_info#:#Task, Bug, Support, ...
-config_project_issue_types#:#Issue-Typen
-config_project_key#:#Key
-config_project_key_info#:#Wird für Erstellen des Supports verwendet, z. Bsp. Jira-Projekt-Key
-config_project_name#:#Name
-config_project_name_info#:#Wird in der Projektauswahl angezeigt
-config_project_show_tickets#:#Tickets anzeigen
-config_project_url_key#:#URL-Key
-config_project_url_key_info#:#Wird im Support-Link verwendet
 config_recipient#:#Formularempfänger
 config_recipient_create_jira_ticket#:#Jira-Ticket erstellen
 config_recipient_send_email#:#Per E-Mail senden
-config_remove#:#Entfernen
-config_remove_project#:#Projekt entfernen
-config_remove_project_confirm#:#Möchten Sie das Projekt wirklich entfernen: %s ?
-config_removed_project#:#Projekt %s entfernt
 config_roles#:#Rollen
 config_roles_info#:#Support nur für die ausgewählten Rollen anzeigen
 config_save#:#Speichern
-config_saved_project#:#Projekt %s gespeichert
 config_send_email_address#:#E-Mail Adresse
 config_send_confirmation_email#:#Bestätigung-Email Erhalt Support-Anfrage an Benutzer schicken
-config_support_link#:#Support-Link
 config_usage_1_info#:#Wenn Sie das 'Tickets anzeigen'-Feature verwenden möchten, installieren und aktivieren Sie bitte das HelpMeCron-Plugin
 config_usage_2_info#:#Damit Sie das 'Tickets anzeigen'-Feature verwenden können, müssen Sie mindestens einem Projekt Lesezugriff geben
 config_usage_hidden#:#Hinweis ausblended
@@ -54,6 +35,32 @@ config_usage_hide#:#Hinweis ausblenden
 cron_srsu_fetch_jira_tickets#:#Jira-Tickets holen
 cron_srsu_fetch_jira_tickets_description#:#Jira-Tickets holen und zwischenspeichern
 cron_status#:#%1$s Ticket(s) von %2$s Projek(e) von Jira geholt
+projects_actions#:#Aktionen
+projects_add#:#Hinzufügen
+projects_add_project#:#Projekt hinzufügen
+projects_added_project#:#Projekt %s hinzugefügt
+projects_cancel#:#Abbrechen
+projects_edit_project#:#Projekt bearbeiten
+projects_fix_version#:#Fix-Version
+projects_fix_version_info#:#Backlog, ...
+projects_issue_type#:#Issue-Type
+projects_issue_type_info#:#Task, Bug, Support, ...
+projects_issue_types#:#Issue-Typen
+projects_key#:#Key
+projects_key_info#:#Wird für Erstellen des Supports verwendet, z. Bsp. Jira-Projekt-Key
+projects_name#:#Name
+projects_name_info#:#Wird in der Projektauswahl angezeigt
+projects_projects#:#Projekte
+projects_remove#:#Entfernen
+projects_remove_project#:#Projekt entfernen
+projects_remove_project_confirm#:#Möchten Sie das Projekt wirklich entfernen: %s ?
+projects_removed_project#:#Projekt %s entfernt
+projects_save#:#Speichern
+projects_saved_project#:#Projekt %s gespeichert
+projects_show_tickets#:#Tickets anzeigen
+projects_support_link#:#Support-Link
+projects_url_key#:#URL-Key
+projects_url_key_info#:#Wird im Support-Link verwendet
 support_cancel#:#Abbrechen
 support_close#:#Schliessen
 support_confirmation#:#Bestätigung
@@ -72,7 +79,8 @@ support_project#:#Projekt
 support_reproduce_steps#:#Schritte zum Reproduzieren
 support_screenshots#:#Screenshots
 support_sent_failure#:#Ihre Support-Anfrage konnte leider nicht gesendet werden
-support_sent_success#:#Vielen Dank für Ihre Support-Anfrage. Eine Bestätigungs-E-Mail wurde an Sie geschickt
+support_sent_success#:#Vielen Dank für Ihre Support-Anfrage
+support_sent_success_confirmation_email#:#Eine Bestätigungs-E-Mail wurde an Sie geschickt
 support_show_tickets#:#Tickets anzeigen
 support_show_tickets_of_selected_project#:#Tickets vom ausgewählten Projekt anzeigen
 support_submit#:#Senden

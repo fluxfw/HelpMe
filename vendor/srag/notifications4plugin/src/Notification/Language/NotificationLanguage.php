@@ -2,105 +2,178 @@
 
 namespace srag\Notifications4Plugin\HelpMe\Notification\Language;
 
+use ActiveRecord;
+use arConnector;
 use ilDateTime;
+use srag\DIC\HelpMe\DICTrait;
+use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 
 /**
- * Interface NotificationLanguage
+ * Class NotificationLanguage
  *
  * @package srag\Notifications4Plugin\HelpMe\Notification\Language
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @author  Stefan Wanzenried <sw@studer-raimann.ch>
+ *
+ * @deprecated
  */
-interface NotificationLanguage {
+class NotificationLanguage extends ActiveRecord
+{
 
-	/**
-	 * @var string
-	 *
-	 * @abstract
-	 */
-	const TABLE_NAME = "";
-
-
-	/**
-	 * @return int
-	 */
-	public function getId(): int;
+    use DICTrait;
+    use Notifications4PluginTrait;
+    /**
+     * @var string
+     *
+     * @deprecated
+     */
+    const TABLE_NAME_SUFFIX = "not_lan";
 
 
-	/**
-	 * @param int $id
-	 */
-	public function setId(int $id)/*: void*/ ;
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    public static function getTableName() : string
+    {
+        return self::notifications4plugin()->getTableNamePrefix() . "_" . self::TABLE_NAME_SUFFIX;
+    }
 
 
-	/**
-	 * @return int
-	 */
-	public function getNotificationId(): int;
+    /**
+     * @return string
+     *
+     * @deprecated
+     */
+    public function getConnectorContainerName()
+    {
+        return static::getTableName();
+    }
 
 
-	/**
-	 * @param int $notification_id
-	 */
-	public function setNotificationId(int $notification_id)/*: void*/ ;
+    /**
+     * @return string
+     *
+     * @deprecated
+     */
+    public static function returnDbTableName()
+    {
+        return static::getTableName();
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getLanguage(): string;
+    /**
+     * @var int
+     *
+     * @con_has_field    true
+     * @con_fieldtype    integer
+     * @con_length       8
+     * @con_is_notnull   true
+     * @con_is_primary   true
+     *
+     * @deprecated
+     */
+    protected $id = 0;
+    /**
+     * @var int
+     *
+     * @con_has_field    true
+     * @con_fieldtype    integer
+     * @con_length       8
+     * @con_is_notnull   true
+     *
+     * @deprecated
+     */
+    protected $notification_id;
+    /**
+     * @var string
+     *
+     * @con_has_field    true
+     * @con_fieldtype    text
+     * @con_length       2
+     * @con_is_notnull   true
+     *
+     * @deprecated
+     */
+    protected $language = "";
+    /**
+     * @var string
+     *
+     * @con_has_field    true
+     * @con_fieldtype    clob
+     * @con_length       256
+     * @con_is_notnull   true
+     *
+     * @deprecated
+     */
+    protected $subject = "";
+    /**
+     * @var string
+     *
+     * @con_has_field    true
+     * @con_fieldtype    clob
+     * @con_length       4000
+     * @con_is_notnull   true
+     *
+     * @deprecated
+     */
+    protected $text = "";
+    /**
+     * @var ilDateTime
+     *
+     * @con_has_field    true
+     * @con_fieldtype    timestamp
+     * @con_is_notnull   true
+     *
+     * @deprecated
+     */
+    protected $created_at;
+    /**
+     * @var ilDateTime
+     *
+     * @con_has_field    true
+     * @con_fieldtype    timestamp
+     * @con_is_notnull   true
+     *
+     * @deprecated
+     */
+    protected $updated_at;
 
 
-	/**
-	 * @param string $language
-	 */
-	public function setLanguage(string $language)/*: void*/ ;
+    /**
+     * NotificationLanguage constructor
+     *
+     * @param int              $primary_key_value
+     * @param arConnector|null $connector
+     *
+     * @deprecated
+     */
+    public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null)
+    {
+        //parent::__construct($primary_key_value, $connector);
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getSubject(): string;
+    /**
+     * @inheritdoc
+     *
+     * @deprecated
+     */
+    public function getSubject() : string
+    {
+        return $this->subject;
+    }
 
 
-	/**
-	 * @param string $subject
-	 */
-	public function setSubject(string $subject)/*: void*/ ;
-
-
-	/**
-	 * @return string
-	 */
-	public function getText(): string;
-
-
-	/**
-	 * @param string $text
-	 */
-	public function setText(string $text)/*: void*/ ;
-
-
-	/**
-	 * @return ilDateTime
-	 */
-	public function getCreatedAt(): ilDateTime;
-
-
-	/**
-	 * @param ilDateTime $created_at
-	 */
-	public function setCreatedAt(ilDateTime $created_at)/*: void*/ ;
-
-
-	/**
-	 * @return ilDateTime
-	 */
-	public function getUpdatedAt(): ilDateTime;
-
-
-	/**
-	 * @param ilDateTime $updated_at
-	 */
-	public function setUpdatedAt(ilDateTime $updated_at)/*: void*/ ;
+    /**
+     * @inheritdoc
+     *
+     * @deprecated
+     */
+    public function getText() : string
+    {
+        return $this->text;
+    }
 }

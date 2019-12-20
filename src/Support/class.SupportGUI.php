@@ -7,7 +7,6 @@ use ilLogLevel;
 use ilPropertyFormGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\Config;
-use srag\Plugins\HelpMe\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use Throwable;
 
@@ -20,160 +19,167 @@ use Throwable;
  *
  * @ilCtrl_isCalledBy srag\Plugins\HelpMe\Support\SupportGUI: ilUIPluginRouterGUI
  */
-class SupportGUI {
+class SupportGUI
+{
 
-	use DICTrait;
-	use HelpMeTrait;
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const CMD_ADD_SUPPORT = "addSupport";
-	const CMD_NEW_SUPPORT = "newSupport";
-	const LANG_MODULE_SUPPORT = "support";
-
-
-	/**
-	 * SupportGUI constructor
-	 */
-	public function __construct() {
-
-	}
+    use DICTrait;
+    use HelpMeTrait;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const CMD_ADD_SUPPORT = "addSupport";
+    const CMD_NEW_SUPPORT = "newSupport";
+    const LANG_MODULE = "support";
+    /**
+     * @var Support
+     */
+    protected $support;
 
 
-	/**
-	 *
-	 */
-	public function executeCommand()/*: void*/ {
-		if (!self::access()->currentUserHasRole()) {
-			die();
-		}
+    /**
+     * SupportGUI constructor
+     */
+    public function __construct()
+    {
 
-		if (self::supports()->getRefId() !== null) {
-			self::dic()->ctrl()->saveParameter($this, Repository::GET_PARAM_REF_ID);
-		}
-
-		$next_class = self::dic()->ctrl()->getNextClass($this);
-
-		switch (strtolower($next_class)) {
-			case strtolower(ProjectSelectInputGUI::class):
-				self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractProjectSelector());
-				break;
-
-			case strtolower(IssueTypeSelectInputGUI::class):
-				self::dic()->ctrl()->forwardCommand($this->getSupportForm()->extractIssueTypeSelector());
-				break;
-
-			default:
-				$cmd = self::dic()->ctrl()->getCmd();
-
-				switch ($cmd) {
-					case self::CMD_ADD_SUPPORT:
-					case self::CMD_NEW_SUPPORT:
-						$this->{$cmd}();
-						break;
-
-					default:
-						break;
-				}
-				break;
-		}
-	}
+    }
 
 
-	/**
-	 * @return SupportFormGUI
-	 */
-	protected function getSupportForm(): SupportFormGUI {
-		$form = new SupportFormGUI($this);
+    /**
+     *
+     */
+    public function executeCommand()/*: void*/
+    {
+        $this->support = self::helpMe()->support()->factory()->newInstance();
 
-		return $form;
-	}
+        if (!self::helpMe()->currentUserHasRole()) {
+            die();
+        }
 
+        self::dic()->ctrl()->saveParameter($this, Repository::GET_PARAM_REF_ID);
 
-	/**
-	 * @return SuccessFormGUI
-	 */
-	protected function getSuccessForm(): SuccessFormGUI {
-		$form = new SuccessFormGUI($this);
+        $this->setTabs();
 
-		return $form;
-	}
+        $next_class = self::dic()->ctrl()->getNextClass($this);
 
+        switch (strtolower($next_class)) {
+            case strtolower(ProjectSelectInputGUI::class):
+                self::dic()->ctrl()->forwardCommand(self::helpMe()->support()->factory()->newFormInstance($this, $this->support)->extractProjectSelector());
+                break;
 
-	/**
-	 * @param string|null       $message
-	 * @param ilPropertyFormGUI $form
-	 */
-	protected function show(/*?string*/ $message, ilPropertyFormGUI $form)/*: void*/ {
-		$tpl = self::plugin()->template("helpme_modal.html");
+            case strtolower(IssueTypeSelectInputGUI::class):
+                self::dic()->ctrl()->forwardCommand(self::helpMe()->support()->factory()->newFormInstance($this, $this->support)->extractIssueTypeSelector());
+                break;
 
-		$tpl->setCurrentBlock("helpme_info");
-		$tpl->setVariable("INFO", Config::getField(Config::KEY_INFO));
+            default:
+                $cmd = self::dic()->ctrl()->getCmd();
 
-		if ($message !== null) {
-			$tpl->setCurrentBlock("helpme_message");
-			$tpl->setVariable("MESSAGE", $message);
-		}
+                switch ($cmd) {
+                    case self::CMD_ADD_SUPPORT:
+                    case self::CMD_NEW_SUPPORT:
+                        $this->{$cmd}();
+                        break;
 
-		$tpl->setCurrentBlock("helpme_form");
-		$tpl->setVariable("FORM", self::output()->getHTML($form));
-
-		self::output()->output($tpl);
-	}
-
-
-	/**
-	 *
-	 */
-	protected function addSupport()/*: void*/ {
-		$message = null;
-
-		$form = $this->getSupportForm();
-
-		$this->show($message, $form);
-	}
+                    default:
+                        break;
+                }
+                break;
+        }
+    }
 
 
-	/**
-	 *
-	 */
-	protected function newSupport()/*: void*/ {
-		$message = null;
+    /**
+     *
+     */
+    protected function setTabs()/*: void*/
+    {
 
-		$form = $this->getSupportForm();
+    }
 
-		if (!$form->storeForm()) {
-			$this->show($message, $form);
 
-			return;
-		}
+    /**
+     * @param string|null       $message
+     * @param ilPropertyFormGUI $form
+     */
+    protected function show(/*?string*/ $message, ilPropertyFormGUI $form)/*: void*/
+    {
+        $tpl = self::plugin()->template("helpme_modal.html");
 
-		$support = $form->getSupport();
+        $tpl->setCurrentBlock("helpme_info");
+        $tpl->setVariable("INFO", Config::getField(Config::KEY_INFO));
 
-		try {
-			$recipient = Recipient::getRecipient(Config::getField(Config::KEY_RECIPIENT), $support);
+        if ($message !== null) {
+            $tpl->setCurrentBlock("helpme_message");
+            $tpl->setVariable("MESSAGE", $message);
+        }
 
-			$recipient->sendSupportToRecipient();
+        $tpl->setCurrentBlock("helpme_form");
+        $tpl->setVariable("FORM", self::output()->getHTML($form));
 
-			if (self::version()->is54()) {
-				$message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->success(self::plugin()
-					->translate("sent_success", self::LANG_MODULE_SUPPORT)));
-			} else {
-				$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
-					->translate("sent_success", self::LANG_MODULE_SUPPORT), "success");
-			}
+        self::output()->output($tpl);
+    }
 
-			$form = $this->getSuccessForm();
-		} catch (Throwable $ex) {
-			self::dic()->logger()->root()->log($ex->__toString(), ilLogLevel::ERROR);
 
-			if (self::version()->is54()) {
-				$message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->failure(self::plugin()
-					->translate("sent_failure", self::LANG_MODULE_SUPPORT)));
-			} else {
-				$message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
-					->translate("sent_failure", self::LANG_MODULE_SUPPORT), "failure");
-			}
-		}
+    /**
+     *
+     */
+    protected function addSupport()/*: void*/
+    {
+        $message = null;
 
-		$this->show($message, $form);
-	}
+        $form = self::helpMe()->support()->factory()->newFormInstance($this, $this->support);
+
+        $this->show($message, $form);
+    }
+
+
+    /**
+     *
+     */
+    protected function newSupport()/*: void*/
+    {
+        $message = null;
+
+        $form = self::helpMe()->support()->factory()->newFormInstance($this, $this->support);
+
+        if (!$form->storeForm()) {
+            $this->show($message, $form);
+
+            return;
+        }
+
+        try {
+            $recipient = self::helpMe()->support()->recipient()->factory()->newInstance(Config::getField(Config::KEY_RECIPIENT), $this->support);
+
+            $recipient->sendSupportToRecipient();
+
+            if (self::version()->is54()) {
+                $message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->success(self::plugin()
+                    ->translate("sent_success", self::LANG_MODULE)));
+                if (Config::getField(Config::KEY_SEND_CONFIRMATION_EMAIL) || Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+                    $message .= self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->info(self::plugin()
+                        ->translate("sent_success_confirmation_email", self::LANG_MODULE)));
+                }
+            } else {
+                $message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                    ->translate("sent_success", self::LANG_MODULE), "success");
+                if (Config::getField(Config::KEY_SEND_CONFIRMATION_EMAIL) || Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+                    $message .= self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                        ->translate("sent_success_confirmation_email", self::LANG_MODULE), "info");
+                }
+            }
+
+            $form = self::helpMe()->support()->factory()->newSuccessFormInstance($this, $this->support);
+        } catch (Throwable $ex) {
+            self::dic()->logger()->root()->log($ex->__toString(), ilLogLevel::ERROR);
+
+            if (self::version()->is54()) {
+                $message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->failure(self::plugin()
+                    ->translate("sent_failure", self::LANG_MODULE)));
+            } else {
+                $message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                    ->translate("sent_failure", self::LANG_MODULE), "failure");
+            }
+        }
+
+        $this->show($message, $form);
+    }
 }

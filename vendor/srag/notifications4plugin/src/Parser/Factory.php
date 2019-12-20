@@ -12,40 +12,44 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-final class Factory implements FactoryInterface {
+final class Factory implements FactoryInterface
+{
 
-	use DICTrait;
-	use Notifications4PluginTrait;
-	/**
-	 * @var FactoryInterface
-	 */
-	protected static $instance = null;
-
-
-	/**
-	 * @return FactoryInterface
-	 */
-	public static function getInstance(): FactoryInterface {
-		if (self::$instance === null) {
-			self::$instance = new self();
-		}
-
-		return self::$instance;
-	}
+    use DICTrait;
+    use Notifications4PluginTrait;
+    /**
+     * @var FactoryInterface|null
+     */
+    protected static $instance = null;
 
 
-	/**
-	 * Factory constructor
-	 */
-	private function __construct() {
+    /**
+     * @return FactoryInterface
+     */
+    public static function getInstance() : FactoryInterface
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
 
-	}
+        return self::$instance;
+    }
 
 
-	/**
-	 * @inheritdoc
-	 */
-	public function twig(): twigParser {
-		return new twigParser();
-	}
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
+     * @inheritdoc
+     */
+    public function twig() : twigParser
+    {
+        return new twigParser();
+    }
 }

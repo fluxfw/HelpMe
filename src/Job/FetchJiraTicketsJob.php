@@ -20,131 +20,141 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class FetchJiraTicketsJob extends ilCronJob {
+class FetchJiraTicketsJob extends ilCronJob
+{
 
-	use DICTrait;
-	use HelpMeTrait;
-	const CRON_JOB_ID = ilHelpMePlugin::PLUGIN_ID . "_fetch_jira_tickets";
-	const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-	const LANG_MODULE_CRON = "cron";
-
-
-	/**
-	 * FetchJiraTicketsJob constructor
-	 */
-	public function __construct() {
-
-	}
+    use DICTrait;
+    use HelpMeTrait;
+    const CRON_JOB_ID = ilHelpMePlugin::PLUGIN_ID . "_fetch_jira_tickets";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const LANG_MODULE_CRON = "cron";
 
 
-	/**
-	 * Get id
-	 *
-	 * @return string
-	 */
-	public function getId(): string {
-		return self::CRON_JOB_ID;
-	}
+    /**
+     * FetchJiraTicketsJob constructor
+     */
+    public function __construct()
+    {
+
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getTitle(): string {
-		return ilHelpMePlugin::PLUGIN_NAME . ": " . self::plugin()->translate(self::CRON_JOB_ID, self::LANG_MODULE_CRON);
-	}
+    /**
+     * Get id
+     *
+     * @return string
+     */
+    public function getId() : string
+    {
+        return self::CRON_JOB_ID;
+    }
 
 
-	/**
-	 * @return string
-	 */
-	public function getDescription(): string {
-		return self::plugin()->translate(self::CRON_JOB_ID . "_description", self::LANG_MODULE_CRON);
-	}
+    /**
+     * @return string
+     */
+    public function getTitle() : string
+    {
+        return ilHelpMePlugin::PLUGIN_NAME . ": " . self::plugin()->translate(self::CRON_JOB_ID, self::LANG_MODULE_CRON);
+    }
 
 
-	/**
-	 * Is to be activated on "installation"
-	 *
-	 * @return boolean
-	 */
-	public function hasAutoActivation(): bool {
-		return true;
-	}
+    /**
+     * @return string
+     */
+    public function getDescription() : string
+    {
+        return self::plugin()->translate(self::CRON_JOB_ID . "_description", self::LANG_MODULE_CRON);
+    }
 
 
-	/**
-	 * Can the schedule be configured?
-	 *
-	 * @return boolean
-	 */
-	public function hasFlexibleSchedule(): bool {
-		return true;
-	}
+    /**
+     * Is to be activated on "installation"
+     *
+     * @return boolean
+     */
+    public function hasAutoActivation() : bool
+    {
+        return true;
+    }
 
 
-	/**
-	 * Get schedule type
-	 *
-	 * @return int
-	 */
-	public function getDefaultScheduleType(): int {
-		return self::SCHEDULE_TYPE_IN_HOURS;
-	}
+    /**
+     * Can the schedule be configured?
+     *
+     * @return boolean
+     */
+    public function hasFlexibleSchedule() : bool
+    {
+        return true;
+    }
 
 
-	/**
-	 * Get schedule value
-	 *
-	 * @return int|array
-	 */
-	public function getDefaultScheduleValue() {
-		return 1;
-	}
+    /**
+     * Get schedule type
+     *
+     * @return int
+     */
+    public function getDefaultScheduleType() : int
+    {
+        return self::SCHEDULE_TYPE_IN_HOURS;
+    }
 
 
-	/**
-	 * Run job
-	 *
-	 * @return ilCronJobResult
-	 *
-	 * @throws ActiveRecordConfigException
-	 * @throws ilCurlConnectionException
-	 * @throws JiraCurlException
-	 * @throws HelpMeException
-	 * @throws DICException
-	 */
-	public function run(): ilCronJobResult {
-		$result = new ilCronJobResult();
+    /**
+     * Get schedule value
+     *
+     * @return int|array
+     */
+    public function getDefaultScheduleValue()
+    {
+        return 1;
+    }
 
-		if (!self::tickets()->isEnabled()) {
-			throw new HelpMeException("Tickets are not enabled");
-		}
 
-		$jira_curl = self::supports()->initJiraCurl();
+    /**
+     * Run job
+     *
+     * @return ilCronJobResult
+     *
+     * @throws ActiveRecordConfigException
+     * @throws ilCurlConnectionException
+     * @throws JiraCurlException
+     * @throws HelpMeException
+     * @throws DICException
+     */
+    public function run() : ilCronJobResult
+    {
+        $result = new ilCronJobResult();
 
-		$projects = self::projects()->getProjects(true);
+        if (!self::helpMe()->ticket()->isEnabled()) {
+            throw new HelpMeException("Tickets are not enabled");
+        }
 
-		$jsons = [];
-		foreach ($projects as $project) {
-			$jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), self::projects()
-				->getIssueTypesOptions($project)));
-		}
+        $jira_curl = self::helpMe()->support()->initJiraCurl();
 
-		$tickets = [];
-		foreach ($jsons as $json) {
-			$tickets[] = self::tickets()->factory()->fromJiraJson($json);
-		}
+        $projects = self::helpMe()->project()->getProjects(true);
 
-		self::tickets()->replaceWith($tickets);
+        $jsons = [];
+        foreach ($projects as $project) {
+            $jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), self::helpMe()->project()
+                ->getIssueTypesOptions($project)));
+        }
 
-		$result->setStatus(ilCronJobResult::STATUS_OK);
+        $tickets = [];
+        foreach ($jsons as $json) {
+            $tickets[] = self::helpMe()->ticket()->factory()->fromJiraJson($json);
+        }
 
-		$result->setMessage(self::plugin()->translate("status", self::LANG_MODULE_CRON, [
-			count($tickets),
-			count($projects)
-		]));
+        self::helpMe()->ticket()->replaceWith($tickets);
 
-		return $result;
-	}
+        $result->setStatus(ilCronJobResult::STATUS_OK);
+
+        $result->setMessage(self::plugin()->translate("status", self::LANG_MODULE_CRON, [
+            count($tickets),
+            count($projects)
+        ]));
+
+        return $result;
+    }
 }

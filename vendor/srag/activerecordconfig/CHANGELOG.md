@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.17.1]
+- Remove ILIAS 5.2 hints
+
+## [0.17.0]
+- Deprecated `ActiveRecordConfigGUI`
+
+## [0.16.4]
+- Add plugin to locator
+
+## [0.16.3]
+- Fix redirect after process table filter
+
 ## [0.16.2]
 - Fix
 

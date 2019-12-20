@@ -12,22 +12,23 @@ use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
-interface Parser {
+interface Parser
+{
 
-	/**
-	 * @var string
-	 *
-	 * @abstract
-	 */
-	//const NAME = "";
+    /**
+     * @var string
+     *
+     * @abstract
+     */
+    //const NAME = "";
 
-	/**
-	 * @param string $text
-	 * @param array  $placeholders
-	 *
-	 * @return string
-	 *
-	 * @throws Notifications4PluginException
-	 */
-	public function parse(string $text, array $placeholders = []): string;
+    /**
+     * @param string $text
+     * @param array  $placeholders
+     *
+     * @return string
+     *
+     * @throws Notifications4PluginException
+     */
+    public function parse(string $text, array $placeholders = []) : string;
 }
