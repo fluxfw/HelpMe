@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.8.2]
+- Remove ILIAS 5.2 hints
+
 ## [0.8.1]
 - Improvments
 

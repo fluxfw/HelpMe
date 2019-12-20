@@ -6,7 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'HelpMeRemoveDataConfirm' => $baseDir . '/classes/uninstall/class.HelpMeRemoveDataConfirm.php',
     'Sinergi\\BrowserDetector\\AcceptLanguage' => $vendorDir . '/sinergi/browser-detector/src/AcceptLanguage.php',
     'Sinergi\\BrowserDetector\\Browser' => $vendorDir . '/sinergi/browser-detector/src/Browser.php',
     'Sinergi\\BrowserDetector\\BrowserDetector' => $vendorDir . '/sinergi/browser-detector/src/BrowserDetector.php',
@@ -361,9 +360,8 @@ return array(
     'srag\\Plugins\\HelpMe\\Ticket\\TicketsGUI' => $baseDir . '/src/Ticket/class.TicketsGUI.php',
     'srag\\Plugins\\HelpMe\\Ticket\\TicketsTableGUI' => $baseDir . '/src/Ticket/TicketsTableGUI.php',
     'srag\\Plugins\\HelpMe\\Utils\\HelpMeTrait' => $baseDir . '/src/Utils/HelpMeTrait.php',
-    'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractPluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractPluginUninstallTrait.php',
-    'srag\\RemovePluginDataConfirm\\HelpMe\\AbstractRemovePluginDataConfirm' => $vendorDir . '/srag/removeplugindataconfirm/src/AbstractRemovePluginDataConfirm.php',
-    'srag\\RemovePluginDataConfirm\\HelpMe\\Exception\\RemovePluginDataConfirmException' => $vendorDir . '/srag/removeplugindataconfirm/src/Exception/RemovePluginDataConfirmException.php',
+    'srag\\RemovePluginDataConfirm\\HelpMe\\BasePluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/BasePluginUninstallTrait.php',
     'srag\\RemovePluginDataConfirm\\HelpMe\\PluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/PluginUninstallTrait.php',
+    'srag\\RemovePluginDataConfirm\\HelpMe\\RemovePluginDataConfirmCtrl' => $vendorDir . '/srag/removeplugindataconfirm/src/class.RemovePluginDataConfirmCtrl.php',
     'srag\\RemovePluginDataConfirm\\HelpMe\\RepositoryObjectPluginUninstallTrait' => $vendorDir . '/srag/removeplugindataconfirm/src/RepositoryObjectPluginUninstallTrait.php',
 );

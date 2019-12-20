@@ -57,16 +57,16 @@
         },
         {
             "name": "srag/activerecordconfig",
-            "version": "v0.17.0",
+            "version": "v0.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "2788a9500eb038f54dc1ff65ab8daded841172b1"
+                "reference": "f6aa3956b49c1928722b6216d9b7aeb5aea2a5b6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/2788a9500eb038f54dc1ff65ab8daded841172b1",
-                "reference": "2788a9500eb038f54dc1ff65ab8daded841172b1",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/f6aa3956b49c1928722b6216d9b7aeb5aea2a5b6",
+                "reference": "f6aa3956b49c1928722b6216d9b7aeb5aea2a5b6",
                 "shasum": ""
             },
             "require": {
@@ -99,7 +99,7 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2019-12-09T10:43:04+00:00"
+            "time": "2019-12-19T10:42:05+00:00"
         },
         {
             "name": "srag/custominputguis",
@@ -150,16 +150,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.19.2",
+            "version": "v0.19.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "a991dc3e9b9df58aa9fe4ce40e8fbbc4a904d14f"
+                "reference": "f14149cdd28245876f97786cdfec2e10e1655d7b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/a991dc3e9b9df58aa9fe4ce40e8fbbc4a904d14f",
-                "reference": "a991dc3e9b9df58aa9fe4ce40e8fbbc4a904d14f",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/f14149cdd28245876f97786cdfec2e10e1655d7b",
+                "reference": "f14149cdd28245876f97786cdfec2e10e1655d7b",
                 "shasum": ""
             },
             "require": {
@@ -191,20 +191,20 @@
                 "globals",
                 "trait"
             ],
-            "time": "2019-11-15T12:49:24+00:00"
+            "time": "2019-12-19T10:39:54+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.8.1",
+            "version": "v0.8.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "c4e75e1d5071df2c00c4189c943c0d10d75bbc4a"
+                "reference": "7fabc5ce1ae674824f07d36390097b9f771618f2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/c4e75e1d5071df2c00c4189c943c0d10d75bbc4a",
-                "reference": "c4e75e1d5071df2c00c4189c943c0d10d75bbc4a",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/7fabc5ce1ae674824f07d36390097b9f771618f2",
+                "reference": "7fabc5ce1ae674824f07d36390097b9f771618f2",
                 "shasum": ""
             },
             "require": {
@@ -214,7 +214,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\": "src/"
+                    "srag\\JiraCurl\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -236,7 +236,7 @@
                 "curl",
                 "jira"
             ],
-            "time": "2019-12-13T13:27:46+00:00"
+            "time": "2019-12-19T10:43:12+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
@@ -329,16 +329,16 @@
         },
         {
             "name": "srag/removeplugindataconfirm",
-            "version": "v0.4.1",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RemovePluginDataConfirm.git",
-                "reference": "fc1f1828c05ac2548d3b4022d53422cf1335ffc2"
+                "reference": "879e1fbfc64744f28313eb67e00f966176894a16"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/fc1f1828c05ac2548d3b4022d53422cf1335ffc2",
-                "reference": "fc1f1828c05ac2548d3b4022d53422cf1335ffc2",
+                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/879e1fbfc64744f28313eb67e00f966176894a16",
+                "reference": "879e1fbfc64744f28313eb67e00f966176894a16",
                 "shasum": ""
             },
             "require": {
@@ -372,7 +372,7 @@
                 "plugin",
                 "uninstall"
             ],
-            "time": "2019-03-26T13:17:27+00:00"
+            "time": "2019-12-20T07:50:07+00:00"
         },
         {
             "name": "twig/twig",

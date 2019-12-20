@@ -22,7 +22,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     const PLUGIN_ID = "srsu";
     const PLUGIN_NAME = "HelpMe";
     const PLUGIN_CLASS_NAME = self::class;
-    const REMOVE_PLUGIN_DATA_CONFIRM_CLASS_NAME = HelpMeRemoveDataConfirm::class;
     /**
      * @var self|null
      */
