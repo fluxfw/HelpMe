@@ -1,6 +1,6 @@
 # Changelog
 
-## [x]
+## [5.0.0]
 - Create jira service desk request
 - Other improvments and fixes
 
