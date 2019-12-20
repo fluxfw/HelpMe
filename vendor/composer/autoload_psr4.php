@@ -10,7 +10,7 @@ return array(
     'srag\\Plugins\\HelpMe\\' => array($baseDir . '/src'),
     'srag\\Notifications4Plugin\\HelpMe\\' => array($vendorDir . '/srag/notifications4plugin/src'),
     'srag\\LibrariesNamespaceChanger\\' => array($vendorDir . '/srag/librariesnamespacechanger/src'),
-    'srag\\JiraCurl\\HelpMe\\' => array($vendorDir . '/srag/jiracurl/src'),
+    'srag\\JiraCurl\\' => array($vendorDir . '/srag/jiracurl/src'),
     'srag\\DIC\\HelpMe\\' => array($vendorDir . '/srag/dic/src'),
     'srag\\CustomInputGUIs\\HelpMe\\' => array($vendorDir . '/srag/custominputguis/src'),
     'srag\\ActiveRecordConfig\\HelpMe\\' => array($vendorDir . '/srag/activerecordconfig/src'),

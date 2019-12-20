@@ -239,7 +239,7 @@ class JiraCurl
 
         $result = $this->doRequest("/rest/api/2/search?maxResults=" . rawurlencode(self::MAX_RESULTS) . "&jql=" . rawurlencode($jql), $headers);
 
-        if (empty($result["issues"]) || !is_array($result["issues"])) {
+        if (!is_array($result["issues"])) {
             throw new JiraCurlException("Issues array is not set");
         }
 
