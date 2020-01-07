@@ -165,9 +165,9 @@ class ProjectsTableGUI extends TableGUI
         parent::fillRow($project);
 
         $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
-            self::dic()->ui()->factory()->button()->shy($this->txt("edit_project"), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard($this->txt("edit_project"), self::dic()->ctrl()
                 ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_EDIT_PROJECT)),
-            self::dic()->ui()->factory()->button()->shy($this->txt("remove_project"), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard($this->txt("remove_project"), self::dic()->ctrl()
                 ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
         ])->withLabel($this->txt("actions"))));
     }
