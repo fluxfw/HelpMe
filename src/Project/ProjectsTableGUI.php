@@ -35,7 +35,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @param Project $project
      */
@@ -62,7 +62,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getSelectableColumns2() : array
     {
@@ -91,7 +91,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initColumns()/*: void*/
     {
@@ -105,7 +105,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -115,7 +115,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initData()/*: void*/
     {
@@ -127,7 +127,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFilterFields()/*: void*/
     {
@@ -136,7 +136,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -145,7 +145,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {

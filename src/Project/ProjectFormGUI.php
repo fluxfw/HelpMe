@@ -41,7 +41,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getValue(/*string*/ $key)
     {
@@ -53,7 +53,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -68,7 +68,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFields()/*: void*/
     {
@@ -116,7 +116,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -125,7 +125,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {
@@ -134,7 +134,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function storeValue(/*string*/ $key, $value)/*: void*/
     {

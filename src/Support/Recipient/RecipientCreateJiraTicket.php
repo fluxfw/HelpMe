@@ -59,7 +59,7 @@ class RecipientCreateJiraTicket extends Recipient
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @throws ilCurlConnectionException
      * @throws JiraCurlException

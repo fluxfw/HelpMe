@@ -54,7 +54,7 @@ class Config extends ActiveRecordConfig
             self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST       => self::TYPE_BOOLEAN,
             self::KEY_JIRA_PASSWORD                          => self::TYPE_STRING,
             self::KEY_JIRA_PRIVATE_KEY                       => self::TYPE_STRING,
-            self::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER => self::TYPE_BOOLEAN,
+            self::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER   => self::TYPE_BOOLEAN,
             self::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS => self::TYPE_BOOLEAN,
             self::KEY_JIRA_SERVICE_DESK_ID                   => self::TYPE_INTEGER,
             self::KEY_JIRA_SERVICE_DESK_LINK_TYPE            => self::TYPE_STRING,

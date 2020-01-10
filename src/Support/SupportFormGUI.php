@@ -52,7 +52,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getValue(/*string*/ $key)
     {
@@ -94,7 +94,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected final function initAction()/*: void*/
     {
@@ -103,7 +103,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -116,7 +116,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFields()/*: void*/
     {
@@ -196,7 +196,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected final function initId()/*: void*/
     {
@@ -205,7 +205,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected final function initTitle()/*: void*/
     {
@@ -213,7 +213,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function storeValue(/*string*/ $key, $value)/*: void*/
     {
@@ -274,7 +274,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function storeForm() : bool
     {

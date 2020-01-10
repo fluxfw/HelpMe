@@ -37,7 +37,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getColumnValue(/*string*/
         $column, /*array*/
@@ -59,7 +59,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getSelectableColumns2() : array
     {
@@ -83,7 +83,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -92,7 +92,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initData()/*: void*/
     {
@@ -124,7 +124,7 @@ class TicketsTableGUI extends TableGUI
      */
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFilterFields()/*: void*/
     {
@@ -149,7 +149,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -158,7 +158,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {

@@ -33,7 +33,7 @@ class RecipientSendMail extends Recipient
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function sendSupportToRecipient()/*: void*/
     {
