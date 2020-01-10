@@ -56,7 +56,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
         if ($project_select->checkInput()) {
 
             // Then set project issue types
-            $project = self::helpMe()->project()->getProjectByUrlKey(Items::getValueFromItem($project_select));
+            $project = self::helpMe()->projects()->getProjectByUrlKey(Items::getValueFromItem($project_select));
 
             $this->parent_gui->setProject($project);
 
@@ -99,7 +99,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
-        $project = self::helpMe()->project()->getProjectByUrlKey($project_url_key);
+        $project = self::helpMe()->projects()->getProjectByUrlKey($project_url_key);
 
         $this->parent_gui->setProject($project);
 
@@ -119,7 +119,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
         ];
 
         if ($project !== null) {
-            $options += self::helpMe()->project()->getIssueTypesOptions($project);
+            $options += self::helpMe()->projects()->getIssueTypesOptions($project);
 
             $this->setDisabled(false);
         } else {

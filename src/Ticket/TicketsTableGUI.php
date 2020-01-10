@@ -113,11 +113,11 @@ class TicketsTableGUI extends TableGUI
         $ticket_issue_type = $filter["ticket_issue_type"];
         $ticket_priority = $filter["ticket_priority"];
 
-        $this->setData(self::helpMe()->ticket()
+        $this->setData(self::helpMe()->tickets()
             ->getTickets($this->getOrderField(), $this->getOrderDirection(), intval($this->getOffset()), intval($this->getLimit()), $ticket_title, $ticket_project_url_key,
                 $ticket_issue_type, $ticket_priority));
 
-        $this->setMaxCount(self::helpMe()->ticket()->getTicketsCount($ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority));
+        $this->setMaxCount(self::helpMe()->tickets()->getTicketsCount($ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority));
     }
     /**
      *
@@ -134,15 +134,15 @@ class TicketsTableGUI extends TableGUI
             ],
             "ticket_project_url_key" => [
                 PropertyFormGUI::PROPERTY_CLASS   => ilSelectInputGUI::class,
-                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->project()->getProjectsOptions(true)
+                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->projects()->getProjectsOptions(true)
             ],
             "ticket_issue_type"      => [
                 PropertyFormGUI::PROPERTY_CLASS   => ilSelectInputGUI::class,
-                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->ticket()->getAvailableIssueTypes()
+                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->tickets()->getAvailableIssueTypes()
             ],
             "ticket_priority"        => [
                 PropertyFormGUI::PROPERTY_CLASS   => ilSelectInputGUI::class,
-                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->ticket()->getAvailablePriorities()
+                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->tickets()->getAvailablePriorities()
             ]
         ];
     }

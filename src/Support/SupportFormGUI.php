@@ -125,7 +125,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
         if (!empty($project_url_key)) {
             ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY);
 
-            $this->project = self::helpMe()->project()->getProjectByUrlKey($project_url_key);
+            $this->project = self::helpMe()->projects()->getProjectByUrlKey($project_url_key);
         }
 
         $this->fields = (self::helpMe()->support()->getRefId() !== null ? [
@@ -138,7 +138,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
                     self::PROPERTY_REQUIRED => true,
                     self::PROPERTY_OPTIONS  => [
                             "" => "&lt;" . $this->txt("please_select") . "&gt;"
-                        ] + self::helpMe()->project()->getProjectsOptions()
+                        ] + self::helpMe()->projects()->getProjectsOptions()
                 ],
                 "issue_type"      => [
                     self::PROPERTY_CLASS    => IssueTypeSelectInputGUI::class,
@@ -228,7 +228,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
             case "issue_type":
                 $this->object->setIssueType($value);
-                $this->object->setFixVersion(self::helpMe()->project()->getFixVersionForIssueType($this->project, $this->object->getIssueType()));
+                $this->object->setFixVersion(self::helpMe()->projects()->getFixVersionForIssueType($this->project, $this->object->getIssueType()));
                 break;
 
             case "name":

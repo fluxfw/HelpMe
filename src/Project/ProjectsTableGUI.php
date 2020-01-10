@@ -122,7 +122,7 @@ class ProjectsTableGUI extends TableGUI
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
 
-        $this->setData(self::helpMe()->project()->getProjects());
+        $this->setData(self::helpMe()->projects()->getProjects());
     }
 
 

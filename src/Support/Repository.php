@@ -10,7 +10,7 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Config\Config;
-use srag\Plugins\HelpMe\Support\Recipient\Repository as RecipientRepository;
+use srag\Plugins\HelpMe\Support\Recipient\Repository as RecipientsRepository;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -61,7 +61,7 @@ final class Repository
      */
     public function dropTables()/*:void*/
     {
-        $this->recipient()->dropTables();
+        $this->recipients()->dropTables();
     }
 
 
@@ -173,15 +173,15 @@ final class Repository
      */
     public function installTables()/*:void*/
     {
-        $this->recipient()->installTables();
+        $this->recipients()->installTables();
     }
 
 
     /**
-     * @return RecipientRepository
+     * @return RecipientsRepository
      */
-    public function recipient() : RecipientRepository
+    public function recipients() : RecipientsRepository
     {
-        return RecipientRepository::getInstance();
+        return RecipientsRepository::getInstance();
     }
 }

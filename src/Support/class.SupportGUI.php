@@ -147,7 +147,7 @@ class SupportGUI
         }
 
         try {
-            $recipient = self::helpMe()->support()->recipient()->factory()->newInstance(Config::getField(Config::KEY_RECIPIENT), $this->support);
+            $recipient = self::helpMe()->support()->recipients()->factory()->newInstance(Config::getField(Config::KEY_RECIPIENT), $this->support);
 
             $recipient->sendSupportToRecipient();
 

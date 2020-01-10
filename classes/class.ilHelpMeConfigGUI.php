@@ -91,7 +91,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
 
         self::dic()->locator()->addItem(ilHelpMePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTarget($this, self::CMD_CONFIGURE));
 
-        self::helpMe()->ticket()->showUsageConfigHint();
+        self::helpMe()->tickets()->showUsageConfigHint();
     }
 
 

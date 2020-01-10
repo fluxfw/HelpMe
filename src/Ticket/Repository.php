@@ -186,7 +186,7 @@ final class Repository
         $tickets = [];
 
         while (($row = $result->fetchAssoc()) !== false) {
-            $row["ticket_project"] = self::helpMe()->project()->getProjectByUrlKey($row["ticket_project_url_key"]);
+            $row["ticket_project"] = self::helpMe()->projects()->getProjectByUrlKey($row["ticket_project_url_key"]);
 
             $tickets[$row["ticket_id"]] = $row;
         }
@@ -297,7 +297,7 @@ final class Repository
     public function isEnabled(bool $check_has_one_project_at_least_read_access = true) : bool
     {
         return (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
-            && (!$check_has_one_project_at_least_read_access || self::helpMe()->project()->hasOneProjectAtLeastReadAccess())
+            && (!$check_has_one_project_at_least_read_access || self::helpMe()->projects()->hasOneProjectAtLeastReadAccess())
             && file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
             && DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
             && ilCronManager::isJobActive(FetchJiraTicketsJob::CRON_JOB_ID));

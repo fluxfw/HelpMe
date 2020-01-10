@@ -4,15 +4,15 @@ namespace srag\Plugins\HelpMe;
 
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Notifications4Plugin\HelpMe\RepositoryInterface as NotificationRepositoryInterface;
+use srag\Notifications4Plugin\HelpMe\RepositoryInterface as Notifications4PluginRepositoryInterface;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 use srag\Plugins\HelpMe\Access\Ilias;
 use srag\Plugins\HelpMe\Config\Config;
-use srag\Plugins\HelpMe\Project\Repository as ProjectRepository;
+use srag\Plugins\HelpMe\Project\Repository as ProjectsRepository;
 use srag\Plugins\HelpMe\Support\Repository as SupportRepository;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Support\SupportField;
-use srag\Plugins\HelpMe\Ticket\Repository as TicketRepository;
+use srag\Plugins\HelpMe\Ticket\Repository as TicketsRepository;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -89,9 +89,9 @@ final class Repository
     {
         self::dic()->database()->dropTable(Config::TABLE_NAME, false);
         $this->notifications4plugin()->dropTables();
-        $this->project()->dropTables();
+        $this->projects()->dropTables();
         $this->support()->dropTables();
-        $this->ticket()->dropTables();
+        $this->tickets()->dropTables();
     }
 
 
@@ -111,27 +111,27 @@ final class Repository
     {
         Config::updateDB();
         $this->notifications4plugin()->installTables();
-        $this->project()->installTables();
+        $this->projects()->installTables();
         $this->support()->installTables();
-        $this->ticket()->installTables();
+        $this->tickets()->installTables();
     }
 
 
     /**
      * @inheritDoc
      */
-    public function notifications4plugin() : NotificationRepositoryInterface
+    public function notifications4plugin() : Notifications4PluginRepositoryInterface
     {
         return self::_notifications4plugin();
     }
 
 
     /**
-     * @return ProjectRepository
+     * @return ProjectsRepository
      */
-    public function project() : ProjectRepository
+    public function projects() : ProjectsRepository
     {
-        return ProjectRepository::getInstance();
+        return ProjectsRepository::getInstance();
     }
 
 
@@ -145,10 +145,10 @@ final class Repository
 
 
     /**
-     * @return TicketRepository
+     * @return TicketsRepository
      */
-    public function ticket() : TicketRepository
+    public function tickets() : TicketsRepository
     {
-        return TicketRepository::getInstance();
+        return TicketsRepository::getInstance();
     }
 }

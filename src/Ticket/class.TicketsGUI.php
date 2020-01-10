@@ -43,7 +43,7 @@ class TicketsGUI
      */
     public function executeCommand()/*: void*/
     {
-        if (!self::helpMe()->currentUserHasRole() || !self::helpMe()->ticket()->isEnabled()) {
+        if (!self::helpMe()->currentUserHasRole() || !self::helpMe()->tickets()->isEnabled()) {
             die();
         }
 
@@ -85,7 +85,7 @@ class TicketsGUI
      */
     protected function listTickets()/*: void*/
     {
-        $table = self::helpMe()->ticket()->factory()->newTableInstance($this);
+        $table = self::helpMe()->tickets()->factory()->newTableInstance($this);
 
         self::output()->output($table, true);
     }
@@ -96,7 +96,7 @@ class TicketsGUI
      */
     protected function applyFilter()/*: void*/
     {
-        $table = self::helpMe()->ticket()->factory()->newTableInstance($this, self::CMD_APPLY_FILTER);
+        $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_APPLY_FILTER);
 
         $table->writeFilterToSession();
 
@@ -112,7 +112,7 @@ class TicketsGUI
      */
     protected function resetFilter()/*: void*/
     {
-        $table = self::helpMe()->ticket()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
+        $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
 
         $table->resetFilter();
 
@@ -130,7 +130,7 @@ class TicketsGUI
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
-        $table = self::helpMe()->ticket()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
+        $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
         $table->resetFilter();
         $table->resetOffset();
 

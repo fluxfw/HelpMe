@@ -105,26 +105,26 @@ class FetchJiraTicketsJob extends ilCronJob
     {
         $result = new ilCronJobResult();
 
-        if (!self::helpMe()->ticket()->isEnabled()) {
+        if (!self::helpMe()->tickets()->isEnabled()) {
             throw new HelpMeException("Tickets are not enabled");
         }
 
         $jira_curl = self::helpMe()->support()->initJiraCurl();
 
-        $projects = self::helpMe()->project()->getProjects(true);
+        $projects = self::helpMe()->projects()->getProjects(true);
 
         $jsons = [];
         foreach ($projects as $project) {
-            $jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), self::helpMe()->project()
+            $jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), self::helpMe()->projects()
                 ->getIssueTypesOptions($project)));
         }
 
         $tickets = [];
         foreach ($jsons as $json) {
-            $tickets[] = self::helpMe()->ticket()->factory()->fromJiraJson($json);
+            $tickets[] = self::helpMe()->tickets()->factory()->fromJiraJson($json);
         }
 
-        self::helpMe()->ticket()->replaceWith($tickets);
+        self::helpMe()->tickets()->replaceWith($tickets);
 
         $result->setStatus(ilCronJobResult::STATUS_OK);
 

@@ -91,7 +91,7 @@ class ProjectsConfigGUI
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_PROJECTS);
 
-        $table = self::helpMe()->project()->factory()->newTableInstance($this);
+        $table = self::helpMe()->projects()->factory()->newTableInstance($this);
 
         self::output()->output($table);
     }
