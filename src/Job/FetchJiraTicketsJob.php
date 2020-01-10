@@ -4,12 +4,8 @@ namespace srag\Plugins\HelpMe\Job;
 
 use ilCronJob;
 use ilCronJobResult;
-use ilCurlConnectionException;
 use ilHelpMePlugin;
-use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
-use srag\DIC\HelpMe\Exception\DICException;
-use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -40,9 +36,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
 
     /**
-     * Get id
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getId() : string
     {
@@ -51,7 +45,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getTitle() : string
     {
@@ -60,7 +54,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
 
     /**
-     * @return string
+     * @inheritDoc
      */
     public function getDescription() : string
     {
@@ -69,9 +63,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
 
     /**
-     * Is to be activated on "installation"
-     *
-     * @return boolean
+     * @inheritDoc
      */
     public function hasAutoActivation() : bool
     {
@@ -80,9 +72,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
 
     /**
-     * Can the schedule be configured?
-     *
-     * @return boolean
+     * @inheritDoc
      */
     public function hasFlexibleSchedule() : bool
     {
@@ -91,9 +81,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
 
     /**
-     * Get schedule type
-     *
-     * @return int
+     * @inheritDoc
      */
     public function getDefaultScheduleType() : int
     {
@@ -102,26 +90,16 @@ class FetchJiraTicketsJob extends ilCronJob
 
 
     /**
-     * Get schedule value
-     *
-     * @return int|array
+     * @inheritDoc
      */
-    public function getDefaultScheduleValue()
+    public function getDefaultScheduleValue()/*:?int*/
     {
         return 1;
     }
 
 
     /**
-     * Run job
-     *
-     * @return ilCronJobResult
-     *
-     * @throws ActiveRecordConfigException
-     * @throws ilCurlConnectionException
-     * @throws JiraCurlException
-     * @throws HelpMeException
-     * @throws DICException
+     * @inheritDoc
      */
     public function run() : ilCronJobResult
     {
