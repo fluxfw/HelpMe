@@ -43,7 +43,7 @@ class NotificationLanguage extends ActiveRecord
 
 
     /**
-     * @return string
+     * @inheritDoc
      *
      * @deprecated
      */
@@ -54,7 +54,7 @@ class NotificationLanguage extends ActiveRecord
 
 
     /**
-     * @return string
+     * @inheritDoc
      *
      * @deprecated
      */
