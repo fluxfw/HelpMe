@@ -27,7 +27,7 @@ trait BasePluginUninstallTrait
      *
      * @internal
      */
-    protected final function pluginUninstall(/*bool*/ $remove_data = true)/*: bool*/
+    protected final function pluginUninstall(bool $remove_data = true) : bool
     {
         $uninstall_removes_data = RemovePluginDataConfirmCtrl::getUninstallRemovesData();
 

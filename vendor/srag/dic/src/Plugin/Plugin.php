@@ -42,7 +42,7 @@ final class Plugin implements PluginInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function directory() : string
     {
@@ -51,7 +51,7 @@ final class Plugin implements PluginInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function template(string $template, bool $remove_unknown_variables = true, bool $remove_empty_blocks = true, bool $plugin = true) : ilTemplate
     {
@@ -64,7 +64,7 @@ final class Plugin implements PluginInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function translate(string $key, string $module = "", array $placeholders = [], bool $plugin = true, string $lang = "", string $default = "MISSING %s") : string
     {
@@ -119,7 +119,7 @@ final class Plugin implements PluginInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getPluginObject() : ilPlugin
     {

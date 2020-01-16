@@ -115,7 +115,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function send()/*: void*/
     {
@@ -150,7 +150,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setSubject($subject)
     {
@@ -161,7 +161,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setMessage($message)
     {
@@ -172,7 +172,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setFrom($from)
     {
@@ -192,7 +192,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setTo($to)
     {
@@ -212,7 +212,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setCc($cc)
     {
@@ -232,7 +232,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setBcc($bcc)
     {
@@ -241,7 +241,7 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function reset()
     {

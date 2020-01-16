@@ -40,7 +40,7 @@ class Notification extends ActiveRecord implements NotificationInterface
      */
     public function getConnectorContainerName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
@@ -51,7 +51,7 @@ class Notification extends ActiveRecord implements NotificationInterface
      */
     public static function returnDbTableName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
@@ -254,7 +254,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getId() : int
     {
@@ -263,7 +263,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setId(int $id)/*: void*/
     {
@@ -272,7 +272,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getName() : string
     {
@@ -281,7 +281,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setName(string $name)/*: void*/
     {
@@ -290,7 +290,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getTitle() : string
     {
@@ -299,7 +299,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setTitle(string $title)/*: void*/
     {
@@ -308,7 +308,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getDescription() : string
     {
@@ -317,7 +317,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setDescription(string $description)/*: void*/
     {
@@ -326,7 +326,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getParser() : string
     {
@@ -335,7 +335,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setParser(string $parser)/*: void*/
     {
@@ -344,7 +344,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getCreatedAt() : ilDateTime
     {
@@ -353,7 +353,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setCreatedAt(ilDateTime $created_at)/*: void*/
     {
@@ -362,7 +362,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getUpdatedAt() : ilDateTime
     {
@@ -371,7 +371,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setUpdatedAt(ilDateTime $updated_at)/*: void*/
     {

@@ -46,7 +46,7 @@ final class Factory implements FactoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function externalMail(string $from = "", $to = "") : ExternalMailSender
     {
@@ -55,7 +55,7 @@ final class Factory implements FactoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function internalMail($user_from = 0, $user_to = "") : InternalMailSender
     {
@@ -64,7 +64,7 @@ final class Factory implements FactoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function vcalendar($user_from = 0, $to = "", string $method = vcalendarSender::METHOD_REQUEST, string $uid = "", int $startTime = 0, int $endTime = 0, int $sequence = 0) : vcalendarSender
     {

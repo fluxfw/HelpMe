@@ -6,7 +6,6 @@ use ilDateTime;
 use ilDBConstants;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
-use srag\DIC\HelpMe\Plugin\PluginInterface;
 use srag\Notifications4Plugin\HelpMe\Notification\Language\NotificationLanguage;
 use srag\Notifications4Plugin\HelpMe\Parser\twigParser;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
@@ -45,20 +44,6 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @var string
-     */
-    protected $table_name_prefix = "";
-    /**
-     * @var PluginInterface
-     */
-    protected $plugin;
-    /**
-     * @var array
-     */
-    protected $placeholder_types;
-
-
-    /**
      * Repository constructor
      */
     private function __construct()
@@ -68,7 +53,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function deleteNotification(NotificationInterface $notification)/*: void*/
     {
@@ -110,7 +95,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function duplicateNotification(NotificationInterface $notification) : NotificationInterface
     {
@@ -126,7 +111,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function factory() : FactoryInterface
     {
@@ -158,7 +143,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getNotificationById(int $id)/*: ?NotificationInterface*/
     {
@@ -176,7 +161,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getNotificationByName(string $name)/*: ?NotificationInterface*/
     {
@@ -192,7 +177,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getNotifications(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null) : array
     {
@@ -211,7 +196,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getNotificationsCount() : int
     {
@@ -282,7 +267,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */
@@ -381,7 +366,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function storeNotification(NotificationInterface $notification)/*: void*/
     {

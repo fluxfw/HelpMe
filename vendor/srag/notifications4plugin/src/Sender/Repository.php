@@ -56,7 +56,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function factory() : FactoryInterface
     {
@@ -74,7 +74,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function send(Sender $sender, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null)/*: void*/
     {

@@ -53,7 +53,7 @@ class UsrIdsLearningProgressPieUI extends AbstractLearningProgressPieUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function parseData() : array
     {
@@ -76,7 +76,7 @@ class UsrIdsLearningProgressPieUI extends AbstractLearningProgressPieUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getCount() : int
     {

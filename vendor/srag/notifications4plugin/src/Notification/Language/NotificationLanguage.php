@@ -49,7 +49,7 @@ class NotificationLanguage extends ActiveRecord
      */
     public function getConnectorContainerName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
@@ -60,7 +60,7 @@ class NotificationLanguage extends ActiveRecord
      */
     public static function returnDbTableName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
@@ -157,7 +157,7 @@ class NotificationLanguage extends ActiveRecord
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */
@@ -168,7 +168,7 @@ class NotificationLanguage extends ActiveRecord
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */

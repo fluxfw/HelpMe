@@ -98,7 +98,7 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getPlugin() : PluginInterface
     {
@@ -265,7 +265,7 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function withPlugin(PluginInterface $plugin) : self
     {

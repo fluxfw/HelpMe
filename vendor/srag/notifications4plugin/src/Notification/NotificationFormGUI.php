@@ -6,7 +6,9 @@ use ilNonEditableValueGUI;
 use ilSelectInputGUI;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\ObjectPropertyFormGUI;
+use ilUtil;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\TabsInputGUI;
 use srag\CustomInputGUIs\HelpMe\TextAreaInputGUI\TextAreaInputGUI;
@@ -21,7 +23,7 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
-class NotificationFormGUI extends ObjectPropertyFormGUI
+class NotificationFormGUI extends PropertyFormGUI
 {
 
     use Notifications4PluginTrait;
@@ -29,39 +31,41 @@ class NotificationFormGUI extends ObjectPropertyFormGUI
     /**
      * @var NotificationInterface
      */
-    protected $object;
+    protected $notification;
 
 
     /**
      * NotificationFormGUI constructor
      *
      * @param NotificationCtrl      $parent
-     * @param NotificationInterface $object
+     * @param NotificationInterface $notification
      */
-    public function __construct(NotificationCtrl $parent, NotificationInterface $object)
+    public function __construct(NotificationCtrl $parent, NotificationInterface $notification)
     {
-        parent::__construct($parent, $object, false);
+        $this->notification = $notification;
+
+        parent::__construct($parent);
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getValue(/*string*/ $key)/*: void*/
     {
         switch ($key) {
             default:
-                return parent::getValue($key);
+                return Items::getter($this->notification, $key);
         }
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
-        if (!empty($this->object->getId())) {
+        if (!empty($this->notification->getId())) {
             $this->addCommandButton(NotificationCtrl::CMD_UPDATE_NOTIFICATION, $this->txt("save"));
         } else {
             $this->addCommandButton(NotificationCtrl::CMD_CREATE_NOTIFICATION, $this->txt("add"));
@@ -72,7 +76,7 @@ class NotificationFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -81,18 +85,24 @@ class NotificationFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFields()/*: void*/
     {
-        $this->fields = (!empty($this->object->getId()) ? [
+        ilUtil::sendInfo(self::output()->getHTML([
+            self::notifications4plugin()->getPlugin()->translate("placeholder_types_info", NotificationsCtrl::LANG_MODULE),
+            "<br><br>",
+            self::dic()->ui()->factory()->listing()->descriptive(self::notifications4plugin()->getPlaceholderTypes())
+        ]));
+
+        $this->fields = (!empty($this->notification->getId()) ? [
                 "id" => [
                     self::PROPERTY_CLASS    => ilNonEditableValueGUI::class,
                     self::PROPERTY_REQUIRED => true
                 ]
             ] : []) + [
                 "name"        => [
-                    self::PROPERTY_CLASS    => (empty($this->object->getId()) ? ilTextInputGUI::class : ilNonEditableValueGUI::class),
+                    self::PROPERTY_CLASS    => (empty($this->notification->getId()) ? ilTextInputGUI::class : ilNonEditableValueGUI::class),
                     self::PROPERTY_REQUIRED => true
                 ],
                 "title"       => [
@@ -136,16 +146,16 @@ class NotificationFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {
-        $this->setTitle($this->txt(!empty($this->object->getId()) ? "edit_notification" : "add_notification"));
+        $this->setTitle($this->txt(!empty($this->notification->getId()) ? "edit_notification" : "add_notification"));
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function storeValue(/*string*/ $key, $value)/*: void*/
     {
@@ -154,13 +164,14 @@ class NotificationFormGUI extends ObjectPropertyFormGUI
                 break;
 
             case "name":
-                if (empty($this->object->getId())) {
-                    parent::storeValue($key, $value);
+                if (empty($this->notification->getId())) {
+                    Items::setter($this->notification, $key, $value);
                 }
                 break;
 
             default:
-                parent::storeValue($key, $value);
+                Items::setter($this->notification, $key, $value);
+                break;
         }
     }
 
@@ -174,14 +185,14 @@ class NotificationFormGUI extends ObjectPropertyFormGUI
             return false;
         }
 
-        self::notifications4plugin()->notifications()->storeNotification($this->object);
+        self::notifications4plugin()->notifications()->storeNotification($this->notification);
 
         return true;
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function txt(/*string*/ $key,/*?string*/ $default = null) : string
     {
