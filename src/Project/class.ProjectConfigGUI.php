@@ -153,7 +153,7 @@ class ProjectConfigGUI
 
         self::dic()->ctrl()->setParameter($this, self::GET_PARAM_PROJECT_ID, $this->project->getProjectId());
 
-        ilUtil::sendSuccess(self::plugin()->translate("added_project", ProjectsConfigGUI::LANG_MODULE, [$form->getObject()->getProjectName()]), true);
+        ilUtil::sendSuccess(self::plugin()->translate("added_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_EDIT_PROJECT);
     }
@@ -187,7 +187,7 @@ class ProjectConfigGUI
             return;
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("saved_project", ProjectsConfigGUI::LANG_MODULE, [$form->getObject()->getProjectName()]), true);
+        ilUtil::sendSuccess(self::plugin()->translate("saved_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_EDIT_PROJECT);
     }

@@ -10,7 +10,8 @@ use ilSelectInputGUI;
 use ilSession;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\ObjectPropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Project\Project;
@@ -23,7 +24,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class SupportFormGUI extends ObjectPropertyFormGUI
+class SupportFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
@@ -32,7 +33,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
     /**
      * @var Support
      */
-    protected $object;
+    protected $support;
     /**
      * @var Project|null
      */
@@ -47,7 +48,9 @@ class SupportFormGUI extends ObjectPropertyFormGUI
      */
     public function __construct(SupportGUI $parent, Support $support)
     {
-        parent::__construct($parent, $support, false);
+        $this->support = $support;
+
+        parent::__construct($parent);
     }
 
 
@@ -88,7 +91,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
                 return self::helpMe()->support()->getBrowserInfos();
 
             default:
-                return parent::getValue($key);
+                return Items::getter($this->support, $key);
         }
     }
 
@@ -219,28 +222,28 @@ class SupportFormGUI extends ObjectPropertyFormGUI
     {
         switch ($key) {
             case "page_reference":
-                $this->object->setPageReference(self::helpMe()->support()->getRefLink());
+                Items::setter($this->support, $key, self::helpMe()->support()->getRefLink());
                 break;
 
             case "project":
-                $this->object->setProject($this->project);
+                Items::setter($this->support, $key, $this->project);
                 break;
 
             case "issue_type":
-                $this->object->setIssueType($value);
-                $this->object->setFixVersion(self::helpMe()->projects()->getFixVersionForIssueType($this->project, $this->object->getIssueType()));
+                Items::setter($this->support, $key, $value);
+                Items::setter($this->support, "fix_version", self::helpMe()->projects()->getFixVersionForIssueType($this->project, $this->support->getIssueType()));
                 break;
 
             case "name":
                 if (self::helpMe()->ilias()->users()->getUserId() === intval(ANONYMOUS_USER_ID)) {
-                    $this->object->setName($value);
+                    Items::setter($this->support, $key, $value);
                 } else {
-                    $this->object->setName(self::dic()->user()->getFullname());
+                    Items::setter($this->support, $key, self::dic()->user()->getFullname());
                 }
                 break;
 
             case "login":
-                $this->object->setLogin(self::dic()->user()->getLogin());
+                Items::setter($this->support, $key, self::dic()->user()->getLogin());
                 break;
 
             case "priority":
@@ -250,24 +253,24 @@ class SupportFormGUI extends ObjectPropertyFormGUI
 
                 foreach ($configPriorities as $id => $priority) {
                     if ($id === $priority_id) {
-                        $this->object->setPriority($priority);
+                        Items::setter($this->support, $key, $priority);
                         break;
                     }
                 }
                 break;
 
             case "system_infos":
-                $this->object->setSystemInfos(self::helpMe()->support()->getBrowserInfos());
+                Items::setter($this->support, $key, self::helpMe()->support()->getBrowserInfos());
                 break;
 
             case "screenshots":
                 foreach ($value as $screenshot) {
-                    $this->object->addScreenshot($screenshot);
+                    $this->support->addScreenshot($screenshot);
                 }
                 break;
 
             default:
-                parent::storeValue($key, $value);
+                Items::setter($this->support, $key, $value);
                 break;
         }
     }
@@ -279,7 +282,7 @@ class SupportFormGUI extends ObjectPropertyFormGUI
     public function storeForm() : bool
     {
         $time = time();
-        $this->object->setTime($time);
+        $this->support->setTime($time);
 
         return parent::storeForm();
     }
