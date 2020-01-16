@@ -14,7 +14,7 @@ use ilRadioOption;
 use ilSelectInputGUI;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\ConfigPropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
@@ -28,12 +28,11 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ConfigFormGUI extends ConfigPropertyFormGUI
+class ConfigFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    const CONFIG_CLASS_NAME = Config::class;
     const LANG_MODULE = ilHelpMeConfigGUI::LANG_MODULE;
 
 
@@ -57,13 +56,13 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
             case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
                 $template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
 
-                return parent::getValue(Config::KEY_RECIPIENT_TEMPLATES)[$template_name];
+                return Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name];
 
             case ($key === Config::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
                 return true;
 
             default:
-                return parent::getValue($key);
+                return Config::getField($key);
         }
     }
 
@@ -241,6 +240,8 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
 
                 $key = Config::KEY_RECIPIENT_TEMPLATES;
                 $value = $template_names;
+
+                Config::setField($key, $value);
                 break;
 
             case ($key === Config::KEY_ROLES):
@@ -251,16 +252,17 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
                 $value = array_map(function (string $role_id) : int {
                     return intval($role_id);
                 }, $value);
+
+                Config::setField($key, $value);
                 break;
 
             case ($key === Config::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
-                return;
+                break;
 
             default:
+                Config::setField($key, $value);
                 break;
         }
-
-        parent::storeValue($key, $value);
     }
 
 
