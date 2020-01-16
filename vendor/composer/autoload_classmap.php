@@ -331,7 +331,6 @@ return array(
     'srag\\Plugins\\HelpMe\\Access\\Ilias' => $baseDir . '/src/Access/Ilias.php',
     'srag\\Plugins\\HelpMe\\Access\\Roles' => $baseDir . '/src/Access/Roles.php',
     'srag\\Plugins\\HelpMe\\Access\\Users' => $baseDir . '/src/Access/Users.php',
-    'srag\\Plugins\\HelpMe\\Config\\Config' => $baseDir . '/src/Config/Config.php',
     'srag\\Plugins\\HelpMe\\Config\\ConfigFormGUI' => $baseDir . '/src/Config/ConfigFormGUI.php',
     'srag\\Plugins\\HelpMe\\Exception\\HelpMeException' => $baseDir . '/src/Exception/HelpMeException.php',
     'srag\\Plugins\\HelpMe\\Job\\FetchJiraTicketsJob' => $baseDir . '/src/Job/FetchJiraTicketsJob.php',

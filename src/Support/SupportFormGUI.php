@@ -13,7 +13,7 @@ use ilTextInputGUI;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -175,7 +175,7 @@ class SupportFormGUI extends PropertyFormGUI
                     self::PROPERTY_REQUIRED => true,
                     self::PROPERTY_OPTIONS  => [
                             "" => "&lt;" . $this->txt("please_select") . "&gt;"
-                        ] + Config::getField(Config::KEY_PRIORITIES)
+                        ] + self::helpMe()->config()->getField(ConfigFormGUI::KEY_PRIORITIES)
                 ],
                 "description"     => [
                     self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
@@ -247,7 +247,7 @@ class SupportFormGUI extends PropertyFormGUI
                 break;
 
             case "priority":
-                $configPriorities = Config::getField(Config::KEY_PRIORITIES);
+                $configPriorities = self::helpMe()->config()->getField(ConfigFormGUI::KEY_PRIORITIES);
 
                 $priority_id = intval($value);
 

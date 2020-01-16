@@ -9,7 +9,7 @@ use Sinergi\BrowserDetector\Os;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\JiraCurl;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Support\Recipient\Repository as RecipientsRepository;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -107,7 +107,7 @@ final class Repository
      */
     public function getRefId()/*: ?int*/
     {
-        if (!Config::getField(Config::KEY_PAGE_REFERENCE)) {
+        if (!self::helpMe()->config()->getField(ConfigFormGUI::KEY_PAGE_REFERENCE)) {
             return null;
         }
 
@@ -153,16 +153,16 @@ final class Repository
     {
         $jira_curl = new JiraCurl();
 
-        $jira_curl->setJiraDomain(Config::getField(Config::KEY_JIRA_DOMAIN));
+        $jira_curl->setJiraDomain(self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_DOMAIN));
 
-        $jira_curl->setJiraAuthorization(Config::getField(Config::KEY_JIRA_AUTHORIZATION));
+        $jira_curl->setJiraAuthorization(self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_AUTHORIZATION));
 
-        $jira_curl->setJiraUsername(Config::getField(Config::KEY_JIRA_USERNAME));
-        $jira_curl->setJiraPassword(Config::getField(Config::KEY_JIRA_PASSWORD));
+        $jira_curl->setJiraUsername(self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_USERNAME));
+        $jira_curl->setJiraPassword(self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_PASSWORD));
 
-        $jira_curl->setJiraConsumerKey(Config::getField(Config::KEY_JIRA_CONSUMER_KEY));
-        $jira_curl->setJiraPrivateKey(Config::getField(Config::KEY_JIRA_PRIVATE_KEY));
-        $jira_curl->setJiraAccessToken(Config::getField(Config::KEY_JIRA_ACCESS_TOKEN));
+        $jira_curl->setJiraConsumerKey(self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_CONSUMER_KEY));
+        $jira_curl->setJiraPrivateKey(self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_PRIVATE_KEY));
+        $jira_curl->setJiraAccessToken(self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_ACCESS_TOKEN));
 
         return $jira_curl;
     }

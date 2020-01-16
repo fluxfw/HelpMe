@@ -5,7 +5,7 @@ namespace srag\Plugins\HelpMe\Project;
 use ilDBConstants;
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Support\Recipient\RecipientCreateJiraTicket;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -269,7 +269,7 @@ final class Repository
 
         self::helpMe()->notifications4plugin()->notifications()->installTables();
 
-        $templates = Config::getField(Config::KEY_RECIPIENT_TEMPLATES);
+        $templates = self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES);
 
         if (!isset($templates[RecipientCreateJiraTicket::SEND_EMAIL])
             || self::helpMe()->notifications4plugin()->notifications()
@@ -322,15 +322,15 @@ final class Repository
                 ->storeNotification($notification);
         }
 
-        if (!isset($templates[Config::KEY_SEND_CONFIRMATION_EMAIL])
+        if (!isset($templates[ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL])
             || self::helpMe()->notifications4plugin()->notifications()
-                ->migrateFromOldGlobalPlugin($templates[Config::KEY_SEND_CONFIRMATION_EMAIL]) === null
+                ->migrateFromOldGlobalPlugin($templates[ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL]) === null
         ) {
 
             $notification = self::helpMe()->notifications4plugin()->notifications()
                 ->factory()->newInstance();
 
-            $notification->setName($templates[Config::KEY_SEND_CONFIRMATION_EMAIL] = Config::KEY_SEND_CONFIRMATION_EMAIL);
+            $notification->setName($templates[ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL] = ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL);
             $notification->setTitle("Confirm Mail");
 
             foreach (["de", "en"] as $lang) {
@@ -350,7 +350,7 @@ final class Repository
                 ->storeNotification($notification);
         }
 
-        Config::setField(Config::KEY_RECIPIENT_TEMPLATES, $templates);
+        self::helpMe()->config()->setField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES, $templates);
 
         foreach (
             self::helpMe()->notifications4plugin()->notifications()

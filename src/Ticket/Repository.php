@@ -10,7 +10,7 @@ use ilHelpMePlugin;
 use ilUtil;
 use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Job\FetchJiraTicketsJob;
 use srag\Plugins\HelpMe\Project\ProjectsConfigGUI;
 use srag\Plugins\HelpMe\Support\Recipient\Recipient;
@@ -296,7 +296,7 @@ final class Repository
      */
     public function isEnabled(bool $check_has_one_project_at_least_read_access = true) : bool
     {
-        return (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
+        return (self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
             && (!$check_has_one_project_at_least_read_access || self::helpMe()->projects()->hasOneProjectAtLeastReadAccess())
             && file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
             && DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
@@ -333,7 +333,7 @@ final class Repository
     {
         $usage_id = "";
 
-        if (Config::getField(Config::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
+        if (self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
             if (!$this->isEnabled(false)) {
                 $usage_id = "usage_1_info";
             } else {
@@ -345,7 +345,7 @@ final class Repository
 
         if (!empty($usage_id)) {
 
-            if (!Config::getField(Config::KEY_USAGE_HIDDEN)[$usage_id]) {
+            if (!self::helpMe()->config()->getField(ConfigFormGUI::KEY_USAGE_HIDDEN)[$usage_id]) {
 
                 self::dic()->ctrl()->setParameterByClass(ProjectsConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
 

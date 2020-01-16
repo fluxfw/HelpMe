@@ -93,13 +93,13 @@ class Config extends ActiveRecord
      */
     protected $name = "";
     /**
-     * @var string
+     * @var mixed
      *
      * @con_has_field   true
      * @con_fieldtype   text
      * @con_is_notnull  false
      */
-    protected $value = "";
+    protected $value = null;
 
 
     /**
@@ -159,18 +159,18 @@ class Config extends ActiveRecord
 
 
     /**
-     * @return string
+     * @return mixed
      */
-    public function getValue() : string
+    public function getValue()
     {
         return $this->value;
     }
 
 
     /**
-     * @param string $value
+     * @param mixed $value
      */
-    public function setValue(string $value)/*: void*/
+    public function setValue($value)/*: void*/
     {
         $this->value = $value;
     }

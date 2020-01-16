@@ -9,7 +9,7 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Support\SupportField;
@@ -59,16 +59,16 @@ abstract class Recipient
      */
     protected function sendConfirmationMail()/*: void*/
     {
-        if (Config::getField(Config::KEY_SEND_CONFIRMATION_EMAIL)) {
+        if (self::helpMe()->config()->getField(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL)) {
             $mailer = new ilMimeMail();
 
             $mailer->From(self::dic()->mailMimeSenderFactory()->system());
 
             $mailer->To($this->support->getEmail());
 
-            $mailer->Subject($this->getSubject(Config::KEY_SEND_CONFIRMATION_EMAIL));
+            $mailer->Subject($this->getSubject(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
 
-            $mailer->Body($this->getBody(Config::KEY_SEND_CONFIRMATION_EMAIL));
+            $mailer->Body($this->getBody(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
 
             foreach ($this->support->getScreenshots() as $screenshot) {
                 $mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
@@ -93,7 +93,7 @@ abstract class Recipient
      */
     public function getSubject(string $template_name) : string
     {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
         return self::helpMe()->notifications4plugin()->parser()->parseSubject(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
             "support" => $this->support
@@ -112,7 +112,7 @@ abstract class Recipient
      */
     public function getBody(string $template_name) : string
     {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
         $fields_ = (!empty($this->support->getPageReference()) ? [
                 "page_reference" => $this->support->getPageReference()

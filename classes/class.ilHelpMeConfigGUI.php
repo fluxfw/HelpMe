@@ -4,7 +4,6 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
-use srag\Plugins\HelpMe\Config\Config;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Project\ProjectsConfigGUI;
 use srag\Plugins\HelpMe\Ticket\TicketsGUI;
@@ -148,9 +147,9 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
         $usage_id = filter_input(INPUT_GET, TicketsGUI::GET_PARAM_USAGE_ID);
 
         if (!empty($usage_id)) {
-            $usage_hidden = Config::getField(Config::KEY_USAGE_HIDDEN);
+            $usage_hidden = self::helpMe()->config()->getField(ConfigFormGUI::KEY_USAGE_HIDDEN);
             $usage_hidden[$usage_id] = true;
-            Config::setField(Config::KEY_USAGE_HIDDEN, $usage_hidden);
+            self::helpMe()->config()->setField(ConfigFormGUI::KEY_USAGE_HIDDEN, $usage_hidden);
 
             ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE), true);
         }

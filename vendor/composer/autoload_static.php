@@ -399,7 +399,6 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Plugins\\HelpMe\\Access\\Ilias' => __DIR__ . '/../..' . '/src/Access/Ilias.php',
         'srag\\Plugins\\HelpMe\\Access\\Roles' => __DIR__ . '/../..' . '/src/Access/Roles.php',
         'srag\\Plugins\\HelpMe\\Access\\Users' => __DIR__ . '/../..' . '/src/Access/Users.php',
-        'srag\\Plugins\\HelpMe\\Config\\Config' => __DIR__ . '/../..' . '/src/Config/Config.php',
         'srag\\Plugins\\HelpMe\\Config\\ConfigFormGUI' => __DIR__ . '/../..' . '/src/Config/ConfigFormGUI.php',
         'srag\\Plugins\\HelpMe\\Exception\\HelpMeException' => __DIR__ . '/../..' . '/src/Exception/HelpMeException.php',
         'srag\\Plugins\\HelpMe\\Job\\FetchJiraTicketsJob' => __DIR__ . '/../..' . '/src/Job/FetchJiraTicketsJob.php',
