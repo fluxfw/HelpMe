@@ -12,7 +12,6 @@ use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Support\Support;
-use srag\Plugins\HelpMe\Support\SupportField;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -133,7 +132,7 @@ abstract class Recipient
 
         $fields = [];
         foreach ($fields_ as $key => $value) {
-            $fields[] = new SupportField($key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
+            $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
         }
 
         return self::helpMe()->notifications4plugin()->parser()->parseText(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
