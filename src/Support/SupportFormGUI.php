@@ -175,7 +175,7 @@ class SupportFormGUI extends PropertyFormGUI
                     self::PROPERTY_REQUIRED => true,
                     self::PROPERTY_OPTIONS  => [
                             "" => "&lt;" . $this->txt("please_select") . "&gt;"
-                        ] + self::helpMe()->config()->getField(ConfigFormGUI::KEY_PRIORITIES)
+                        ] + self::helpMe()->config()->getValue(ConfigFormGUI::KEY_PRIORITIES)
                 ],
                 "description"     => [
                     self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
@@ -247,7 +247,7 @@ class SupportFormGUI extends PropertyFormGUI
                 break;
 
             case "priority":
-                $configPriorities = self::helpMe()->config()->getField(ConfigFormGUI::KEY_PRIORITIES);
+                $configPriorities = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_PRIORITIES);
 
                 $priority_id = intval($value);
 

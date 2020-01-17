@@ -59,7 +59,7 @@ abstract class Recipient
      */
     protected function sendConfirmationMail()/*: void*/
     {
-        if (self::helpMe()->config()->getField(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL)) {
+        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL)) {
             $mailer = new ilMimeMail();
 
             $mailer->From(self::dic()->mailMimeSenderFactory()->system());
@@ -93,7 +93,7 @@ abstract class Recipient
      */
     public function getSubject(string $template_name) : string
     {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
         return self::helpMe()->notifications4plugin()->parser()->parseSubject(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
             "support" => $this->support
@@ -112,7 +112,7 @@ abstract class Recipient
      */
     public function getBody(string $template_name) : string
     {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
         $fields_ = (!empty($this->support->getPageReference()) ? [
                 "page_reference" => $this->support->getPageReference()

@@ -13,6 +13,6 @@ return array(
     'srag\\JiraCurl\\HelpMe\\' => array($vendorDir . '/srag/jiracurl/src'),
     'srag\\DIC\\HelpMe\\' => array($vendorDir . '/srag/dic/src'),
     'srag\\CustomInputGUIs\\HelpMe\\' => array($vendorDir . '/srag/custominputguis/src'),
-    'srag\\ActiveRecordConfig\\' => array($vendorDir . '/srag/activerecordconfig/src'),
+    'srag\\ActiveRecordConfig\\HelpMe\\' => array($vendorDir . '/srag/activerecordconfig/src'),
     'Sinergi\\BrowserDetector\\' => array($vendorDir . '/sinergi/browser-detector/src'),
 );

@@ -104,7 +104,7 @@ class SupportGUI
         $tpl = self::plugin()->template("helpme_modal.html");
 
         $tpl->setCurrentBlock("helpme_info");
-        $tpl->setVariable("INFO", self::helpMe()->config()->getField(ConfigFormGUI::KEY_INFO));
+        $tpl->setVariable("INFO", self::helpMe()->config()->getValue(ConfigFormGUI::KEY_INFO));
 
         if ($message !== null) {
             $tpl->setCurrentBlock("helpme_message");
@@ -147,21 +147,21 @@ class SupportGUI
         }
 
         try {
-            $recipient = self::helpMe()->support()->recipients()->factory()->newInstance(self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT), $this->support);
+            $recipient = self::helpMe()->support()->recipients()->factory()->newInstance(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT), $this->support);
 
             $recipient->sendSupportToRecipient();
 
             if (self::version()->is54()) {
                 $message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->success(self::plugin()
                     ->translate("sent_success", self::LANG_MODULE)));
-                if (self::helpMe()->config()->getField(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL) || self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+                if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL) || self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
                     $message .= self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->info(self::plugin()
                         ->translate("sent_success_confirmation_email", self::LANG_MODULE)));
                 }
             } else {
                 $message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
                     ->translate("sent_success", self::LANG_MODULE), "success");
-                if (self::helpMe()->config()->getField(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL) || self::helpMe()->config()->getField(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+                if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL) || self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
                     $message .= self::dic()->mainTemplate()->getMessageHTML(self::plugin()
                         ->translate("sent_success_confirmation_email", self::LANG_MODULE), "info");
                 }

@@ -78,13 +78,13 @@ class ConfigFormGUI extends PropertyFormGUI
             case (strpos($key, self::KEY_RECIPIENT_TEMPLATES . "_") === 0):
                 $template_name = substr($key, strlen(self::KEY_RECIPIENT_TEMPLATES) + 1);
 
-                return self::helpMe()->config()->getField(self::KEY_RECIPIENT_TEMPLATES)[$template_name];
+                return self::helpMe()->config()->getValue(self::KEY_RECIPIENT_TEMPLATES)[$template_name];
 
             case ($key === self::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
                 return true;
 
             default:
-                return self::helpMe()->config()->getField($key);
+                return self::helpMe()->config()->getValue($key);
         }
     }
 
@@ -194,12 +194,12 @@ class ConfigFormGUI extends PropertyFormGUI
             self::KEY_SEND_CONFIRMATION_EMAIL                     => [
                 self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
                 self::PROPERTY_SUBITEMS => $this->getTemplateSelection(self::KEY_SEND_CONFIRMATION_EMAIL),
-                self::PROPERTY_NOT_ADD  => self::helpMe()->config()->getField(self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)
+                self::PROPERTY_NOT_ADD  => self::helpMe()->config()->getValue(self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)
             ],
             self::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled" => [
                 self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
                 self::PROPERTY_DISABLED => true,
-                self::PROPERTY_NOT_ADD  => (!self::helpMe()->config()->getField(self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)),
+                self::PROPERTY_NOT_ADD  => (!self::helpMe()->config()->getValue(self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)),
                 "setTitle"              => $this->txt(self::KEY_SEND_CONFIRMATION_EMAIL),
                 "setInfo"               => self::plugin()->translate("always_enabled", self::LANG_MODULE, [
                     implode(" > ", [$this->txt("recipient"), $this->txt("recipient_create_jira_ticket"), $this->txt("jira_create_service_desk_request")])
@@ -263,7 +263,7 @@ class ConfigFormGUI extends PropertyFormGUI
                 $key = self::KEY_RECIPIENT_TEMPLATES;
                 $value = $template_names;
 
-                self::helpMe()->config()->setField($key, $value);
+                self::helpMe()->config()->setValue($key, $value);
                 break;
 
             case ($key === self::KEY_ROLES):
@@ -275,14 +275,14 @@ class ConfigFormGUI extends PropertyFormGUI
                     return intval($role_id);
                 }, $value);
 
-                self::helpMe()->config()->setField($key, $value);
+                self::helpMe()->config()->setValue($key, $value);
                 break;
 
             case ($key === self::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
                 break;
 
             default:
-                self::helpMe()->config()->setField($key, $value);
+                self::helpMe()->config()->setValue($key, $value);
                 break;
         }
     }

@@ -269,7 +269,7 @@ final class Repository
 
         self::helpMe()->notifications4plugin()->notifications()->installTables();
 
-        $templates = self::helpMe()->config()->getField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES);
+        $templates = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES);
 
         if (!isset($templates[RecipientCreateJiraTicket::SEND_EMAIL])
             || self::helpMe()->notifications4plugin()->notifications()
@@ -350,7 +350,7 @@ final class Repository
                 ->storeNotification($notification);
         }
 
-        self::helpMe()->config()->setField(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES, $templates);
+        self::helpMe()->config()->setValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES, $templates);
 
         foreach (
             self::helpMe()->notifications4plugin()->notifications()

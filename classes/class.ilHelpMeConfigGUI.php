@@ -95,24 +95,13 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
 
 
     /**
-     * @return ConfigFormGUI
-     */
-    protected function getConfigForm() : ConfigFormGUI
-    {
-        $form = new ConfigFormGUI($this);
-
-        return $form;
-    }
-
-
-    /**
      *
      */
     protected function configure()/*: void*/
     {
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
-        $form = $this->getConfigForm();
+        $form = self::helpMe()->config()->factory()->newFormInstance($this);
 
         self::output()->output($form);
     }
@@ -125,7 +114,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
     {
         self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
 
-        $form = $this->getConfigForm();
+        $form = self::helpMe()->config()->factory()->newFormInstance($this);
 
         if (!$form->storeForm()) {
             self::output()->output($form);
@@ -147,9 +136,9 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
         $usage_id = filter_input(INPUT_GET, TicketsGUI::GET_PARAM_USAGE_ID);
 
         if (!empty($usage_id)) {
-            $usage_hidden = self::helpMe()->config()->getField(ConfigFormGUI::KEY_USAGE_HIDDEN);
+            $usage_hidden = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN);
             $usage_hidden[$usage_id] = true;
-            self::helpMe()->config()->setField(ConfigFormGUI::KEY_USAGE_HIDDEN, $usage_hidden);
+            self::helpMe()->config()->setValue(ConfigFormGUI::KEY_USAGE_HIDDEN, $usage_hidden);
 
             ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE), true);
         }
