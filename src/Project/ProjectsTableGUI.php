@@ -98,9 +98,6 @@ class ProjectsTableGUI extends TableGUI
         parent::initColumns();
 
         $this->addColumn($this->txt("actions"));
-
-        $this->setDefaultOrderField("project_name");
-        $this->setDefaultOrderDirection("asc");
     }
 
 
@@ -121,6 +118,9 @@ class ProjectsTableGUI extends TableGUI
     {
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
+
+        $this->setDefaultOrderField("project_name");
+        $this->setDefaultOrderDirection("asc");
 
         $this->setData(self::helpMe()->projects()->getProjects());
     }
