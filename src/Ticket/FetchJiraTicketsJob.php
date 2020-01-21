@@ -1,18 +1,17 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Job;
+namespace srag\Plugins\HelpMe\Ticket;
 
 use ilCronJob;
 use ilCronJobResult;
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
  * Class FetchJiraTicketsJob
  *
- * @package srag\Plugins\HelpMe\Job
+ * @package srag\Plugins\HelpMe\Ticket
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -23,7 +22,6 @@ class FetchJiraTicketsJob extends ilCronJob
     use HelpMeTrait;
     const CRON_JOB_ID = ilHelpMePlugin::PLUGIN_ID . "_fetch_jira_tickets";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    const LANG_MODULE_CRON = "cron";
 
 
     /**
@@ -49,7 +47,7 @@ class FetchJiraTicketsJob extends ilCronJob
      */
     public function getTitle() : string
     {
-        return ilHelpMePlugin::PLUGIN_NAME . ": " . self::plugin()->translate(self::CRON_JOB_ID, self::LANG_MODULE_CRON);
+        return ilHelpMePlugin::PLUGIN_NAME . ": " . self::plugin()->translate("fetch_jira_tickets", TicketsGUI::LANG_MODULE);
     }
 
 
@@ -58,7 +56,7 @@ class FetchJiraTicketsJob extends ilCronJob
      */
     public function getDescription() : string
     {
-        return self::plugin()->translate(self::CRON_JOB_ID . "_description", self::LANG_MODULE_CRON);
+        return self::plugin()->translate("fetch_jira_tickets_description", TicketsGUI::LANG_MODULE);
     }
 
 
@@ -106,7 +104,9 @@ class FetchJiraTicketsJob extends ilCronJob
         $result = new ilCronJobResult();
 
         if (!self::helpMe()->tickets()->isEnabled()) {
-            throw new HelpMeException("Tickets are not enabled");
+            $result->setStatus(ilCronJobResult::STATUS_NO_ACTION);
+
+            return $result;
         }
 
         $jira_curl = self::helpMe()->support()->initJiraCurl();
@@ -128,7 +128,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
         $result->setStatus(ilCronJobResult::STATUS_OK);
 
-        $result->setMessage(self::plugin()->translate("status", self::LANG_MODULE_CRON, [
+        $result->setMessage(self::plugin()->translate("fetch_jira_tickets_status", TicketsGUI::LANG_MODULE, [
             count($tickets),
             count($projects)
         ]));

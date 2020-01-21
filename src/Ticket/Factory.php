@@ -137,4 +137,15 @@ final class Factory
 
         return $table;
     }
+
+
+    /**
+     * @return FetchJiraTicketsJob
+     */
+    public function newFetchJiraTicketsJobInstance() : FetchJiraTicketsJob
+    {
+        $job = new FetchJiraTicketsJob();
+
+        return $job;
+    }
 }

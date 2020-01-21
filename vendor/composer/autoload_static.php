@@ -9,14 +9,14 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
-            'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
+            'srag\\RemovePluginDataConfirm\\' => 29,
             'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\HelpMe\\' => 28,
-            'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
+            'srag\\ActiveRecordConfig\\' => 24,
         ),
         'S' => 
         array (
@@ -25,7 +25,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
     );
 
     public static $prefixDirsPsr4 = array (
-        'srag\\RemovePluginDataConfirm\\HelpMe\\' => 
+        'srag\\RemovePluginDataConfirm\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src',
         ),
@@ -53,7 +53,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
-        'srag\\ActiveRecordConfig\\HelpMe\\' => 
+        'srag\\ActiveRecordConfig\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
         ),
@@ -404,7 +404,8 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Plugins\\HelpMe\\Config\\Factory' => __DIR__ . '/../..' . '/src/Config/Factory.php',
         'srag\\Plugins\\HelpMe\\Config\\Repository' => __DIR__ . '/../..' . '/src/Config/Repository.php',
         'srag\\Plugins\\HelpMe\\Exception\\HelpMeException' => __DIR__ . '/../..' . '/src/Exception/HelpMeException.php',
-        'srag\\Plugins\\HelpMe\\Job\\FetchJiraTicketsJob' => __DIR__ . '/../..' . '/src/Job/FetchJiraTicketsJob.php',
+        'srag\\Plugins\\HelpMe\\Job\\Factory' => __DIR__ . '/../..' . '/src/Job/Factory.php',
+        'srag\\Plugins\\HelpMe\\Job\\Repository' => __DIR__ . '/../..' . '/src/Job/Repository.php',
         'srag\\Plugins\\HelpMe\\Project\\Factory' => __DIR__ . '/../..' . '/src/Project/Factory.php',
         'srag\\Plugins\\HelpMe\\Project\\Project' => __DIR__ . '/../..' . '/src/Project/Project.php',
         'srag\\Plugins\\HelpMe\\Project\\ProjectConfigGUI' => __DIR__ . '/../..' . '/src/Project/class.ProjectConfigGUI.php',
@@ -429,6 +430,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => __DIR__ . '/../..' . '/src/Support/SupportFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\SupportGUI' => __DIR__ . '/../..' . '/src/Support/class.SupportGUI.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Factory' => __DIR__ . '/../..' . '/src/Ticket/Factory.php',
+        'srag\\Plugins\\HelpMe\\Ticket\\FetchJiraTicketsJob' => __DIR__ . '/../..' . '/src/Ticket/FetchJiraTicketsJob.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Repository' => __DIR__ . '/../..' . '/src/Ticket/Repository.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Ticket' => __DIR__ . '/../..' . '/src/Ticket/Ticket.php',
         'srag\\Plugins\\HelpMe\\Ticket\\TicketsGUI' => __DIR__ . '/../..' . '/src/Ticket/class.TicketsGUI.php',

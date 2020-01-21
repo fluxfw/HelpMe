@@ -9,6 +9,7 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 use srag\Plugins\HelpMe\Access\Ilias;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Config\Repository as ConfigRepository;
+use srag\Plugins\HelpMe\Job\Repository as JobsRepository;
 use srag\Plugins\HelpMe\Project\Repository as ProjectsRepository;
 use srag\Plugins\HelpMe\Support\Repository as SupportRepository;
 use srag\Plugins\HelpMe\Support\Support;
@@ -98,6 +99,7 @@ final class Repository
     public function dropTables()/*: void*/
     {
         $this->config()->dropTables();
+        $this->jobs()->dropTables();
         $this->notifications4plugin()->dropTables();
         $this->projects()->dropTables();
         $this->support()->dropTables();
@@ -120,10 +122,20 @@ final class Repository
     public function installTables()/*: void*/
     {
         $this->config()->installTables();
+        $this->jobs()->installTables();
         $this->notifications4plugin()->installTables();
         $this->projects()->installTables();
         $this->support()->installTables();
         $this->tickets()->installTables();
+    }
+
+
+    /**
+     * @return JobsRepository
+     */
+    public function jobs() : JobsRepository
+    {
+        return JobsRepository::getInstance();
     }
 
 

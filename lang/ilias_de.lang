@@ -32,9 +32,6 @@ config_usage_1_info#:#Wenn Sie das 'Tickets anzeigen'-Feature verwenden möchten
 config_usage_2_info#:#Damit Sie das 'Tickets anzeigen'-Feature verwenden können, müssen Sie mindestens einem Projekt Lesezugriff geben
 config_usage_hidden#:#Hinweis ausblended
 config_usage_hide#:#Hinweis ausblenden
-cron_srsu_fetch_jira_tickets#:#Jira-Tickets holen
-cron_srsu_fetch_jira_tickets_description#:#Jira-Tickets holen und zwischenspeichern
-cron_status#:#%1$s Ticket(s) von %2$s Projek(e) von Jira geholt
 projects_actions#:#Aktionen
 projects_add#:#Hinzufügen
 projects_add_project#:#Projekt hinzufügen
@@ -88,6 +85,9 @@ support_support#:#Support
 support_system_infos#:#System-Infos
 support_title#:#Titel
 support_title_info#:#Bitte einen ausschlaggebenden Titel wählen
+tickets_fetch_jira_tickets#:#Jira-Tickets holen
+tickets_fetch_jira_tickets_description#:#Jira-Tickets holen und zwischenspeichern
+tickets_fetch_jira_tickets_status#:#%1$s Ticket(s) von %2$s Projek(e) von Jira geholt
 tickets_tickets#:#Tickets
 tickets_ticket_issue_type#:#Issue-Type
 tickets_ticket_project_url_key#:#Projekt

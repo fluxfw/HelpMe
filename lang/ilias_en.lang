@@ -32,9 +32,6 @@ config_usage_1_info#:#If you want to use the 'Show tickets' feature, please inst
 config_usage_2_info#:#In order you can use the 'Show tickets' feature, you need to give at least one project read access
 config_usage_hidden#:#Hint hidden
 config_usage_hide#:#Hide hint
-cron_srsu_fetch_jira_tickets#:#Fetch jira tickets
-cron_srsu_fetch_jira_tickets_description#:#Fetch jira tickets and cache
-cron_status#:#Fetch %1$s ticket(s) of %2$s project(s) from Jira
 projects_actions#:#Actions
 projects_add#:#Add
 projects_add_project#:#Add project
@@ -88,6 +85,9 @@ support_support#:#Support
 support_system_infos#:#System infos
 support_title#:#Title
 support_title_info#:#Please choose a decisive title
+tickets_fetch_jira_tickets#:#Fetch jira tickets
+tickets_fetch_jira_tickets_description#:#Fetch jira tickets and cache
+tickets_fetch_jira_tickets_status#:#Fetch %1$s ticket(s) of %2$s project(s) from Jira
 tickets_tickets#:#Tickets
 tickets_ticket_issue_type#:#Issue type
 tickets_ticket_project_url_key#:#Project
