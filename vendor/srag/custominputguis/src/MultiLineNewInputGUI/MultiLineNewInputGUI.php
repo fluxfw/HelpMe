@@ -24,6 +24,30 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     const SHOW_INPUT_LABEL_ONCE = 2;
     const SHOW_INPUT_LABEL_ALWAYS = 3;
     /**
+     * @var bool
+     */
+    protected static $init = false;
+
+
+    /**
+     *
+     */
+    public static function init()/*: void*/
+    {
+        if (self::$init === false) {
+            self::$init = true;
+
+            $dir = __DIR__;
+            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+
+            self::dic()->mainTemplate()->addCss($dir . "/css/multi_line_new_input_gui.css");
+
+            self::dic()->mainTemplate()->addJavaScript($dir . "/js/multi_line_new_input_gui.min.js");
+        }
+    }
+
+
+    /**
      * @var ilFormPropertyGUI[]
      */
     protected $inputs = [];
@@ -54,6 +78,8 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     public function __construct(string $title = "", string $post_var = "")
     {
         parent::__construct($title, $post_var);
+
+        self::init();
     }
 
 
@@ -212,11 +238,6 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
      */
     public function render() : string
     {
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
-        self::dic()->mainTemplate()->addCss($dir . "/css/multi_line_new_input_gui.css");
-        self::dic()->mainTemplate()->addJavaScript($dir . "/js/multi_line_new_input_gui.min.js");
-
         $tpl = new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui.html", true, true);
 
         $remove_first_line = (!$this->required && empty($this->getValue(false)));

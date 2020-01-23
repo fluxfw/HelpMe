@@ -32,6 +32,26 @@ final class Items
 {
 
     use DICTrait;
+    /**
+     * @var bool
+     */
+    protected static $init = false;
+
+
+    /**
+     *
+     */
+    public static function init()/*: void*/
+    {
+        if (self::$init === false) {
+            self::$init = true;
+
+            $dir = __DIR__;
+            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+
+            self::dic()->mainTemplate()->addCss($dir . "/css/input_gui_input.css");
+        }
+    }
 
 
     /**
@@ -161,9 +181,7 @@ final class Items
      */
     public static function renderInputs(array $inputs) : string
     {
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
-        self::dic()->mainTemplate()->addCss($dir . "/css/input_gui_input.css");
+        self::init();
 
         $input_tpl = new ilTemplate(__DIR__ . "/templates/input_gui_input.html", true, true);
 

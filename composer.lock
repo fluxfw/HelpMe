@@ -103,16 +103,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.30.2",
+            "version": "v0.30.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "ec4e6595d4dbfc6ff4e609d4acc15916cd9145af"
+                "reference": "540458d6e217cc6d3eb005be7207470464935783"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/ec4e6595d4dbfc6ff4e609d4acc15916cd9145af",
-                "reference": "ec4e6595d4dbfc6ff4e609d4acc15916cd9145af",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/540458d6e217cc6d3eb005be7207470464935783",
+                "reference": "540458d6e217cc6d3eb005be7207470464935783",
                 "shasum": ""
             },
             "require": {
@@ -146,7 +146,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-01-23T11:43:07+00:00"
+            "time": "2020-01-23T13:06:09+00:00"
         },
         {
             "name": "srag/dic",

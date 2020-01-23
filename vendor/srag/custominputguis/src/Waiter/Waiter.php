@@ -23,20 +23,27 @@ final class Waiter
      * @var string
      */
     const TYPE_PERCENTAGE = "percentage";
+    /**
+     * @var bool
+     */
+    protected static $init = false;
 
 
     /**
      * @param string $type
      */
-    public static final function init(/*string*/
-        $type
-    )/*: void*/
+    public static final function init(/*string*/ $type)/*: void*/
     {
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+        if (self::$init === false) {
+            self::$init = true;
 
-        self::dic()->mainTemplate()->addJavaScript($dir . "/js/waiter.min.js");
-        self::dic()->mainTemplate()->addCss($dir . "/css/waiter.css");
+            $dir = __DIR__;
+            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+
+            self::dic()->mainTemplate()->addCss($dir . "/css/waiter.css");
+
+            self::dic()->mainTemplate()->addJavaScript($dir . "/js/waiter.min.js");
+        }
 
         self::dic()->mainTemplate()->addOnLoadCode('il.waiter.init("' . $type . '");');
     }

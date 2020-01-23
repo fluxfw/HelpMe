@@ -118,7 +118,7 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable
     /**
      *
      */
-    public function initJS()/*: void*/
+    public function init()/*: void*/
     {
         if (self::$init === false) {
             self::$init = true;
@@ -185,7 +185,7 @@ class ScreenshotsInputGUI extends ilFormPropertyGUI implements Pluginable
      */
     public function render() : string
     {
-        $this->initJS();
+        $this->init();
 
         $screenshots_tpl = $this->getPlugin()->template(__DIR__ . "/templates/screenshots.html", true, true, false);
         $screenshots_tpl->setVariable("TXT_UPLOAD_SCREENSHOT", $this->getPlugin()

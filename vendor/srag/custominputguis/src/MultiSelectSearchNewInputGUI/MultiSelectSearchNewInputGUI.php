@@ -20,6 +20,31 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
 {
 
     use DICTrait;
+    /**
+     * @var bool
+     */
+    protected static $init = false;
+
+
+    /**
+     *
+     */
+    public static function init()/*: void*/
+    {
+        if (self::$init === false) {
+            self::$init = true;
+
+            $dir = __DIR__;
+            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+
+            self::dic()->mainTemplate()->addCss($dir . "/../../node_modules/select2/dist/css/select2.min.css");
+
+            self::dic()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/select2.full.min.js");
+
+            self::dic()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/i18n/" . self::dic()->user()->getCurrentLanguage()
+                . ".js");
+        }
+    }
 
 
     /**
@@ -31,6 +56,8 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
     public function __construct(string $title = "", string $post_var = "")
     {
         parent::__construct($title, $post_var);
+
+        self::init();
     }
 
 
@@ -123,13 +150,6 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
      */
     public function render() : string
     {
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
-        self::dic()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/select2.full.min.js");
-        self::dic()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/i18n/" . self::dic()->user()->getCurrentLanguage()
-            . ".js");
-        self::dic()->mainTemplate()->addCss($dir . "/../../node_modules/select2/dist/css/select2.min.css");
-
         $tpl = new ilTemplate(__DIR__ . "/templates/multiple_select_new_input_gui.html", true, true);
 
         $tpl->setVariable("ID", $this->getFieldId());

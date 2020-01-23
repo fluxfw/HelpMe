@@ -25,7 +25,7 @@ class TextInputGUIWithModernAutoComplete extends TextInputGUI
     /**
      *
      */
-    public function initJS()/*: void*/
+    public static function init()/*: void*/
     {
         if (self::$init === false) {
             self::$init = true;
@@ -47,14 +47,26 @@ class TextInputGUIWithModernAutoComplete extends TextInputGUI
 
 
     /**
+     * TextInputGUIWithModernAutoComplete constructor
+     *
+     * @param string $a_title
+     * @param string $a_postvar
+     */
+    public function __construct(string $a_title = "", string $a_postvar = "")
+    {
+        parent::__construct($a_title, $a_postvar);
+
+        self::init();
+    }
+
+
+    /**
      * @param string $a_mode
      *
      * @return string
      */
     public function render(/*string*/ $a_mode = "") : string
     {
-        $this->initJS();
-
         $tpl = new ilTemplate(__DIR__ . "/templates/text_input_gui_with_modern_auto_complete.html", true, true);
         if (strlen($this->getValue())) {
             $tpl->setCurrentBlock("prop_text_propval");

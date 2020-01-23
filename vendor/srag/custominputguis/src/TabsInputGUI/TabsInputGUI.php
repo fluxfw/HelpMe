@@ -24,6 +24,28 @@ class TabsInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToo
     const SHOW_INPUT_LABEL_AUTO = 2;
     const SHOW_INPUT_LABEL_ALWAYS = 3;
     /**
+     * @var bool
+     */
+    protected static $init = false;
+
+
+    /**
+     *
+     */
+    public static function init()/*: void*/
+    {
+        if (self::$init === false) {
+            self::$init = true;
+
+            $dir = __DIR__;
+            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+
+            self::dic()->mainTemplate()->addCss($dir . "/css/tabs_input_gui.css");
+        }
+    }
+
+
+    /**
      * @var int
      */
     protected $show_input_label = self::SHOW_INPUT_LABEL_AUTO;
@@ -46,6 +68,8 @@ class TabsInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToo
     public function __construct(string $title = "", string $post_var = "")
     {
         parent::__construct($title, $post_var);
+
+        self::init();
     }
 
 
@@ -156,10 +180,6 @@ class TabsInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToo
      */
     public function render() : string
     {
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
-        self::dic()->mainTemplate()->addCss($dir . "/css/tabs_input_gui.css");
-
         $tpl = new ilTemplate(__DIR__ . "/templates/tabs_input_gui.html", true, true);
 
         foreach ($this->tabs as $tab) {

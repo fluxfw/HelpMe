@@ -63,9 +63,9 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
 
                     $screenshot = new ScreenshotsInputGUI();
                     $screenshot->withPlugin(self::plugin());
-                    $screenshot->initJS();
+                    $screenshot->init();
 
-                    new MultiSelectSearchNewInputGUI();
+                    MultiSelectSearchNewInputGUI::init();
 
                     self::dic()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
 
