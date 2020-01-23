@@ -1,0 +1,8 @@
+<select data-multipleselectnewinputgui data-multipleselectnewinputgui_ajaxurl="{AJAX_LINK}" data-multipleselectnewinputgui_maximumselectionlength="{LIMIT_COUNT}" data-multipleselectnewinputgui_minimuminputlength="{MINIMUM_INPUT_LENGTH}" id="{ID}" multiple name="{POST_VAR}[]" style="display:none;width:300px;">
+	<!-- BEGIN option -->
+	<option value="{VAL}" {SELECTED}>{TEXT}</option>
+	<!-- END option -->
+</select>
+<script>
+    $("#{ID}").select2({OPTIONS});
+</script>
