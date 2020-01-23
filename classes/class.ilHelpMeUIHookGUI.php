@@ -1,8 +1,8 @@
 <?php
 
 use ILIAS\UI\Component\Link\Standard;
-use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
+use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\IssueTypeSelectInputGUI;
 use srag\Plugins\HelpMe\Support\ProjectSelectInputGUI;
