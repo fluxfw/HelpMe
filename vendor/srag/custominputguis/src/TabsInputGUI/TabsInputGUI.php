@@ -83,14 +83,14 @@ class TabsInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToo
 
 
     /**
-     * @return bool
+     * @inheritDoc
      */
     public function checkInput() : bool
     {
         $ok = true;
 
         foreach ($this->tabs as $tab) {
-            foreach ($tab->getInputs($this->getPostVar(), $this->value) as $org_post_var => $input) {
+            foreach ($tab->getInputs($this->getPostVar(), $this->getValue()) as $org_post_var => $input) {
                 $b_value = $_POST[$input->getPostVar()];
 
                 $_POST[$input->getPostVar()] = $_POST[$this->getPostVar()][$tab->getPostVar()][$org_post_var];
@@ -182,8 +182,8 @@ class TabsInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToo
     {
         $tpl = new ilTemplate(__DIR__ . "/templates/tabs_input_gui.html", true, true);
 
-        foreach ($this->tabs as $tab) {
-            $inputs = $tab->getInputs($this->getPostVar(), $this->value);
+        foreach ($this->getTabs() as $tab) {
+            $inputs = $tab->getInputs($this->getPostVar(), $this->getValue());
 
             $tpl->setCurrentBlock("tab");
 
@@ -204,10 +204,10 @@ class TabsInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToo
 
             $tpl->setCurrentBlock("tab_content");
 
-            if ($this->show_input_label === self::SHOW_INPUT_LABEL_AUTO) {
+            if ($this->getShowInputLabel() === self::SHOW_INPUT_LABEL_AUTO) {
                 $tpl->setVariable("SHOW_INPUT_LABEL", (count($inputs) > 1 ? self::SHOW_INPUT_LABEL_ALWAYS : self::SHOW_INPUT_LABEL_NONE));
             } else {
-                $tpl->setVariable("SHOW_INPUT_LABEL", $this->show_input_label);
+                $tpl->setVariable("SHOW_INPUT_LABEL", $this->getShowInputLabel());
             }
 
             if ($tab->isActive()) {

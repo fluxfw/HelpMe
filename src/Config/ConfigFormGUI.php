@@ -6,7 +6,6 @@ use ilCheckboxInputGUI;
 use ilEMailInputGUI;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
-use ilMultiSelectInputGUI;
 use ilNumberInputGUI;
 use ilPasswordInputGUI;
 use ilRadioGroupInputGUI;
@@ -14,6 +13,7 @@ use ilRadioOption;
 use ilSelectInputGUI;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
+use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
@@ -217,10 +217,9 @@ class ConfigFormGUI extends PropertyFormGUI
                 "setRteTagSet"          => "extended"
             ],
             self::KEY_ROLES                                       => [
-                self::PROPERTY_CLASS    => ilMultiSelectInputGUI::class,
+                self::PROPERTY_CLASS    => MultiSelectSearchNewInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_OPTIONS  => self::helpMe()->ilias()->roles()->getAllRoles(),
-                "enableSelectAll"       => true
+                self::PROPERTY_OPTIONS  => self::helpMe()->ilias()->roles()->getAllRoles()
             ],
             self::KEY_PAGE_REFERENCE                              => [
                 self::PROPERTY_CLASS => ilCheckboxInputGUI::class
@@ -262,18 +261,6 @@ class ConfigFormGUI extends PropertyFormGUI
 
                 $key = self::KEY_RECIPIENT_TEMPLATES;
                 $value = $template_names;
-
-                self::helpMe()->config()->setValue($key, $value);
-                break;
-
-            case ($key === self::KEY_ROLES):
-                if ($value[0] === "") {
-                    array_shift($value);
-                }
-
-                $value = array_map(function (string $role_id) : int {
-                    return intval($role_id);
-                }, $value);
 
                 self::helpMe()->config()->setValue($key, $value);
                 break;

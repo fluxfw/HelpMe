@@ -94,13 +94,13 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
 
 
     /**
-     * @return bool
+     * @inheritDoc
      */
     public function checkInput() : bool
     {
         $ok = true;
 
-        foreach ($this->getInputs($this->required) as $i => $inputs) {
+        foreach ($this->getInputs($this->getRequired()) as $i => $inputs) {
             foreach ($inputs as $org_post_var => $input) {
                 $b_value = $_POST[$input->getPostVar()];
 
@@ -240,12 +240,12 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     {
         $tpl = new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui.html", true, true);
 
-        $remove_first_line = (!$this->required && empty($this->getValue(false)));
+        $remove_first_line = (!$this->getRequired() && empty($this->getValue(false)));
         $tpl->setVariable("REMOVE_FIRST_LINE", $remove_first_line);
-        $tpl->setVariable("REQUIRED", $this->required);
-        $tpl->setVariable("SHOW_INPUT_LABEL", $this->show_input_label);
+        $tpl->setVariable("REQUIRED", $this->getRequired());
+        $tpl->setVariable("SHOW_INPUT_LABEL", $this->getShowInputLabel());
 
-        if (!$this->required) {
+        if (!$this->getRequired()) {
             $tpl->setCurrentBlock("add_first_line");
 
             if (!empty($this->getInputs())) {
@@ -268,7 +268,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
 
             $tpl->setVariable("INPUTS", Items::renderInputs($inputs));
 
-            if ($this->show_sort) {
+            if ($this->isShowSort()) {
                 $sort_tpl = new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_sort.html", true, true);
 
                 $sort_tpl->setVariable("UP", self::output()->getHTML(self::dic()->ui()->factory()->glyph()->sortAscending()));
@@ -290,7 +290,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
             })));
 
             $tpl->setVariable("REMOVE", self::output()->getHTML(self::dic()->ui()->factory()->glyph()->remove()));
-            if ($this->required && count($this->getInputs()) < 2) {
+            if ($this->getRequired() && count($this->getInputs()) < 2) {
                 $tpl->setVariable("HIDE_REMOVE", self::output()->getHTML(new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
             }
 

@@ -2,7 +2,7 @@
 
 namespace srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI;
 
-use ilMultiSelectInputGUI;
+use ilFormPropertyGUI;
 use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
@@ -16,7 +16,7 @@ use srag\DIC\HelpMe\DICTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTableFilterItem, ilToolbarItem
+class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToolbarItem
 {
 
     use DICTrait;
@@ -48,6 +48,28 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
 
 
     /**
+     * @var string|null
+     */
+    protected $ajax_link = null;
+    /**
+     * @var int|null
+     */
+    protected $limit_count = null;
+    /**
+     * @var int|null
+     */
+    protected $minimum_input_length = null;
+    /**
+     * @var array
+     */
+    protected $options = [];
+    /**
+     * @var array
+     */
+    protected $value = [];
+
+
+    /**
      * MultiSelectSearchNewInputGUI constructor
      *
      * @param string $title
@@ -62,38 +84,47 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
 
 
     /**
+     * @param string $key
+     * @param mixed  $value
+     */
+    public function addOption(string $key, $value)/*:void*/
+    {
+        $this->options[$key] = $value;
+    }
+
+
+    /**
      * @inheritDoc
      */
     public function checkInput() : bool
     {
-        if ($this->getRequired() && empty($this->getValue())) {
+        $values = $_POST[$this->getPostVar()];
+        if (!is_array($values)) {
+            $values = [];
+        }
+
+        if ($this->getRequired() && empty($values)) {
             $this->setAlert(self::dic()->language()->txt("msg_input_is_required"));
 
             return false;
         }
 
-        if ($this->getLimitCount() !== null && count($this->getValue()) > $this->getLimitCount()) {
+        if ($this->getLimitCount() !== null && count($values) > $this->getLimitCount()) {
             $this->setAlert(self::dic()->language()->txt("form_input_not_valid"));
 
             return false;
         }
 
+        foreach ($values as $key => $value) {
+            if (!isset($this->getOptions()[$value])) {
+                $this->setAlert(self::dic()->language()->txt("form_input_not_valid"));
+
+                return false;
+            }
+        }
+
         return true;
     }
-
-
-    /**
-     * @var string|null
-     */
-    protected $ajax_link = null;
-    /**
-     * @var int|null
-     */
-    protected $limit_count = null;
-    /**
-     * @var int|null
-     */
-    protected $minimum_input_length = null;
 
 
     /**
@@ -128,6 +159,15 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
 
 
     /**
+     * @return array
+     */
+    public function getOptions() : array
+    {
+        return $this->options;
+    }
+
+
+    /**
      * @inheritDoc
      */
     public function getTableFilterHTML() : string
@@ -146,7 +186,29 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
 
 
     /**
-     * @inheritDoc
+     * @return array
+     */
+    public function getValue() : array
+    {
+        return $this->value;
+    }
+
+
+    /**
+     * @param ilTemplate $tpl
+     */
+    public function insert(ilTemplate $tpl) /*: void*/
+    {
+        $html = $this->render();
+
+        $tpl->setCurrentBlock("prop_generic");
+        $tpl->setVariable("PROP_GENERIC", $html);
+        $tpl->parseCurrentBlock();
+    }
+
+
+    /**
+     * @return string
      */
     public function render() : string
     {
@@ -166,7 +228,7 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
             ];
         }
 
-        $tpl->setVariable("OPTIONS", json_encode($options));
+        $tpl->setVariable("OPTIONS", base64_encode(json_encode($options)));
 
         if (!empty($this->getOptions())) {
 
@@ -218,5 +280,36 @@ class MultiSelectSearchNewInputGUI extends ilMultiSelectInputGUI implements ilTa
     public function setMinimumInputLength(/*?*/ int $minimum_input_length = null)/*: void*/
     {
         $this->minimum_input_length = $minimum_input_length;
+    }
+
+
+    /**
+     * @param array $options
+     */
+    public function setOptions(array $options)/* : void*/
+    {
+        $this->options = $options;
+    }
+
+
+    /**
+     * @param array $value
+     */
+    public function setValue(/*array*/ $value)/*: void*/
+    {
+        if (is_array($value)) {
+            $this->value = $value;
+        } else {
+            $this->value = [];
+        }
+    }
+
+
+    /**
+     * @param array $value
+     */
+    public function setValueByArray(/*array*/ $value)/*: void*/
+    {
+        $this->setValue($value[$this->getPostVar()]);
     }
 }

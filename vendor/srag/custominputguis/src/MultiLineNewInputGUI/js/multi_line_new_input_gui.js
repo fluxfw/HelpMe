@@ -90,15 +90,7 @@ il.MultiLineNewInputGUI = {
             $("select[data-multipleselectnewinputgui]:not([data-cached_options_id])", el).each(function (i2, el2) {
                 el2 = $(el2);
 
-                const options = {
-                    maximumSelectionLength: el2.data("multipleselectnewinputgui_maximumselectionlength"),
-                    minimumInputLength: el2.data("multipleselectnewinputgui_minimuminputlength")
-                };
-                if (el2.data("multipleselectnewinputgui_ajaxurl")) {
-                    options.ajax = {
-                        url: el2.data("multipleselectnewinputgui_ajaxurl")
-                    };
-                }
+                const options = JSON.parse(atob(el2.data("multipleselectnewinputgui")));
 
                 this.cacheOptions(el2, "select2", options);
             }.bind(this));
