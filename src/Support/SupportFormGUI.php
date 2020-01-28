@@ -134,7 +134,7 @@ class SupportFormGUI extends PropertyFormGUI
         $this->fields = (self::helpMe()->support()->getRefId() !== null ? [
                 "page_reference" => [
                     self::PROPERTY_CLASS => ilNonEditableValueGUI::class
-                ],
+                ]
             ] : []) + [
                 "project"         => [
                     self::PROPERTY_CLASS    => ProjectSelectInputGUI::class,
