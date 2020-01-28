@@ -272,7 +272,7 @@ final class Repository
         $templates = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES);
 
         if (!isset($templates[RecipientCreateJiraTicket::SEND_EMAIL])
-            || self::helpMe()->notifications4plugin()->notifications()
+            && self::helpMe()->notifications4plugin()->notifications()
                 ->migrateFromOldGlobalPlugin($templates[RecipientCreateJiraTicket::SEND_EMAIL]) === null
         ) {
 
@@ -298,7 +298,7 @@ final class Repository
         }
 
         if (!isset($templates[RecipientCreateJiraTicket::CREATE_JIRA_TICKET])
-            || self::helpMe()->notifications4plugin()->notifications()
+            && self::helpMe()->notifications4plugin()->notifications()
                 ->migrateFromOldGlobalPlugin($templates[RecipientCreateJiraTicket::CREATE_JIRA_TICKET]) === null
         ) {
 
@@ -323,7 +323,7 @@ final class Repository
         }
 
         if (!isset($templates[ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL])
-            || self::helpMe()->notifications4plugin()->notifications()
+            && self::helpMe()->notifications4plugin()->notifications()
                 ->migrateFromOldGlobalPlugin($templates[ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL]) === null
         ) {
 
