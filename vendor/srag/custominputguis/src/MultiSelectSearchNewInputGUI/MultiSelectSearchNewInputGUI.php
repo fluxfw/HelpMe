@@ -6,7 +6,7 @@ use ilFormPropertyGUI;
 use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
-use ilUtil;
+use srag\CustomInputGUIs\HelpMe\Template\Template;
 use srag\DIC\HelpMe\DICTrait;
 
 /**
@@ -37,11 +37,11 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
             $dir = __DIR__;
             $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
 
-            self::dic()->mainTemplate()->addCss($dir . "/../../node_modules/select2/dist/css/select2.min.css");
+            self::dic()->ui()->mainTemplate()->addCss($dir . "/../../node_modules/select2/dist/css/select2.min.css");
 
-            self::dic()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/select2.full.min.js");
+            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/select2.full.min.js");
 
-            self::dic()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/i18n/" . self::dic()->user()->getCurrentLanguage()
+            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/../../node_modules/select2/dist/js/i18n/" . self::dic()->user()->getCurrentLanguage()
                 . ".js");
         }
     }
@@ -212,11 +212,11 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
      */
     public function render() : string
     {
-        $tpl = new ilTemplate(__DIR__ . "/templates/multiple_select_new_input_gui.html", true, true);
+        $tpl = new Template(__DIR__ . "/templates/multiple_select_new_input_gui.html");
 
-        $tpl->setVariable("ID", $this->getFieldId());
+        $tpl->setVariableEscaped("ID", $this->getFieldId());
 
-        $tpl->setVariable("POST_VAR", $this->getPostVar());
+        $tpl->setVariableEscaped("POST_VAR", $this->getPostVar());
 
         $options = [
             "maximumSelectionLength" => $this->getLimitCount(),
@@ -228,7 +228,7 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
             ];
         }
 
-        $tpl->setVariable("OPTIONS", base64_encode(json_encode($options)));
+        $tpl->setVariableEscaped("OPTIONS", base64_encode(json_encode($options)));
 
         if (!empty($this->getOptions())) {
 
@@ -242,11 +242,11 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
                 }
 
                 if ($selected) {
-                    $tpl->setVariable("SELECTED", "selected");
+                    $tpl->setVariableEscaped("SELECTED", "selected");
                 }
 
-                $tpl->setVariable("VAL", ilUtil::prepareFormOutput($option_value));
-                $tpl->setVariable("TEXT", $option_text);
+                $tpl->setVariableEscaped("VAL", $option_value);
+                $tpl->setVariableEscaped("TEXT", $option_text);
 
                 $tpl->parseCurrentBlock();
             }

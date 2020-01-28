@@ -40,12 +40,12 @@ final class Waiter
             $dir = __DIR__;
             $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
 
-            self::dic()->mainTemplate()->addCss($dir . "/css/waiter.css");
+            self::dic()->ui()->mainTemplate()->addCss($dir . "/css/waiter.css");
 
-            self::dic()->mainTemplate()->addJavaScript($dir . "/js/waiter.min.js");
+            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/js/waiter.min.js");
         }
 
-        self::dic()->mainTemplate()->addOnLoadCode('il.waiter.init("' . $type . '");');
+        self::dic()->ui()->mainTemplate()->addOnLoadCode('il.waiter.init("' . $type . '");');
     }
 
 

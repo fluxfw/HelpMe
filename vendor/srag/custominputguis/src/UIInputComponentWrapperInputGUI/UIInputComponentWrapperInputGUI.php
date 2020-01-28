@@ -9,6 +9,7 @@ use ILIAS\UI\Implementation\Component\Input\Container\Form\PostDataFromServerReq
 use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
+use srag\CustomInputGUIs\HelpMe\Template\Template;
 use srag\DIC\HelpMe\DICTrait;
 use Throwable;
 
@@ -40,7 +41,7 @@ class UIInputComponentWrapperInputGUI extends ilFormPropertyGUI implements ilTab
             $dir = __DIR__;
             $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
 
-            self::dic()->mainTemplate()->addCss($dir . "/css/UIInputComponentWrapperInputGUI.css");
+            self::dic()->ui()->mainTemplate()->addCss($dir . "/css/UIInputComponentWrapperInputGUI.css");
         }
     }
 
@@ -198,7 +199,7 @@ class UIInputComponentWrapperInputGUI extends ilFormPropertyGUI implements ilTab
      */
     public function render() : string
     {
-        $tpl = new ilTemplate(__DIR__ . "/templates/input.html", true, true);
+        $tpl = new Template(__DIR__ . "/templates/input.html");
 
         $tpl->setVariable("INPUT", self::output()->getHTML($this->input));
 

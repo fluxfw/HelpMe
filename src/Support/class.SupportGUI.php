@@ -159,10 +159,10 @@ class SupportGUI
                         ->translate("sent_success_confirmation_email", self::LANG_MODULE)));
                 }
             } else {
-                $message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                $message = self::dic()->ui()->mainTemplate()->getMessageHTML(self::plugin()
                     ->translate("sent_success", self::LANG_MODULE), "success");
                 if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL) || self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
-                    $message .= self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                    $message .= self::dic()->ui()->mainTemplate()->getMessageHTML(self::plugin()
                         ->translate("sent_success_confirmation_email", self::LANG_MODULE), "info");
                 }
             }
@@ -175,7 +175,7 @@ class SupportGUI
                 $message = self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->failure(self::plugin()
                     ->translate("sent_failure", self::LANG_MODULE)));
             } else {
-                $message = self::dic()->mainTemplate()->getMessageHTML(self::plugin()
+                $message = self::dic()->ui()->mainTemplate()->getMessageHTML(self::plugin()
                     ->translate("sent_failure", self::LANG_MODULE), "failure");
             }
         }

@@ -90,7 +90,7 @@ class NotificationFormGUI extends PropertyFormGUI
     protected function initFields()/*: void*/
     {
         ilUtil::sendInfo(self::output()->getHTML([
-            self::notifications4plugin()->getPlugin()->translate("placeholder_types_info", NotificationsCtrl::LANG_MODULE),
+            htmlspecialchars(self::notifications4plugin()->getPlugin()->translate("placeholder_types_info", NotificationsCtrl::LANG_MODULE)),
             "<br><br>",
             self::dic()->ui()->factory()->listing()->descriptive(self::notifications4plugin()->getPlaceholderTypes())
         ]));

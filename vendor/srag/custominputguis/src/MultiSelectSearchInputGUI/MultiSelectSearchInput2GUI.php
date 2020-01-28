@@ -7,10 +7,10 @@ use ilUtil;
 /**
  * Class MultiSelectSearchInput2GUI
  *
- * @package srag\CustomInputGUIs\HelpMe\MultiSelectSearchInputGUI
+ * @package    srag\CustomInputGUIs\HelpMe\MultiSelectSearchInputGUI
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  Oskar Truffer <ot@studer-raimann.ch>
+ * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
+ * @author     Oskar Truffer <ot@studer-raimann.ch>
  *
  * @deprecated Please switch to `MultiSelectSearchNewInputGUI`
  */

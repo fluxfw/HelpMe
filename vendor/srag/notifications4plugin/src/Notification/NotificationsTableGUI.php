@@ -42,7 +42,7 @@ class NotificationsTableGUI extends TableGUI
     {
         switch ($column) {
             default:
-                $value = Items::getter($notification, $column);
+                $value = htmlspecialchars(Items::getter($notification, $column));
                 break;
         }
 

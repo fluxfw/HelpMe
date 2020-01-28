@@ -67,12 +67,12 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
 
                     MultiSelectSearchNewInputGUI::init();
 
-                    self::dic()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
+                    self::dic()->ui()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
 
-                    self::dic()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
+                    self::dic()->ui()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
 
                     // Fix some pages may not load Form.js
-                    self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
+                    self::dic()->ui()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
                 }
             }
         }

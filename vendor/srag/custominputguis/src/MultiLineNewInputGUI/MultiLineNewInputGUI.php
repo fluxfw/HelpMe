@@ -7,6 +7,7 @@ use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\HelpMe\Template\Template;
 use srag\DIC\HelpMe\DICTrait;
 
 /**
@@ -40,9 +41,9 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
             $dir = __DIR__;
             $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
 
-            self::dic()->mainTemplate()->addCss($dir . "/css/multi_line_new_input_gui.css");
+            self::dic()->ui()->mainTemplate()->addCss($dir . "/css/multi_line_new_input_gui.css");
 
-            self::dic()->mainTemplate()->addJavaScript($dir . "/js/multi_line_new_input_gui.min.js");
+            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/js/multi_line_new_input_gui.min.js");
         }
     }
 
@@ -238,18 +239,18 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
      */
     public function render() : string
     {
-        $tpl = new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui.html", true, true);
+        $tpl = new Template(__DIR__ . "/templates/multi_line_new_input_gui.html");
 
         $remove_first_line = (!$this->getRequired() && empty($this->getValue(false)));
-        $tpl->setVariable("REMOVE_FIRST_LINE", $remove_first_line);
-        $tpl->setVariable("REQUIRED", $this->getRequired());
-        $tpl->setVariable("SHOW_INPUT_LABEL", $this->getShowInputLabel());
+        $tpl->setVariableEscaped("REMOVE_FIRST_LINE", $remove_first_line);
+        $tpl->setVariableEscaped("REQUIRED", $this->getRequired());
+        $tpl->setVariableEscaped("SHOW_INPUT_LABEL", $this->getShowInputLabel());
 
         if (!$this->getRequired()) {
             $tpl->setCurrentBlock("add_first_line");
 
             if (!empty($this->getInputs())) {
-                $tpl->setVariable("HIDE_ADD_FIRST_LINE", self::output()->getHTML(new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
+                $tpl->setVariable("HIDE_ADD_FIRST_LINE", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
             }
 
             $tpl->setVariable("ADD_FIRST_LINE", self::output()->getHTML(self::dic()->ui()->factory()->glyph()->add()->withAdditionalOnLoadCode(function (string $id) : string {
@@ -263,22 +264,22 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
 
         foreach ($this->getInputs() as $i => $inputs) {
             if ($remove_first_line) {
-                $tpl->setVariable("HIDE_LINE", self::output()->getHTML(new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
+                $tpl->setVariable("HIDE_LINE", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
             }
 
             $tpl->setVariable("INPUTS", Items::renderInputs($inputs));
 
             if ($this->isShowSort()) {
-                $sort_tpl = new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_sort.html", true, true);
+                $sort_tpl = new Template(__DIR__ . "/templates/multi_line_new_input_gui_sort.html");
 
                 $sort_tpl->setVariable("UP", self::output()->getHTML(self::dic()->ui()->factory()->glyph()->sortAscending()));
                 if ($i === 0) {
-                    $sort_tpl->setVariable("HIDE_UP", self::output()->getHTML(new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
+                    $sort_tpl->setVariable("HIDE_UP", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
                 }
 
                 $sort_tpl->setVariable("DOWN", self::output()->getHTML(self::dic()->ui()->factory()->glyph()->sortDescending()));
                 if ($i === (count($this->getInputs()) - 1)) {
-                    $sort_tpl->setVariable("HIDE_DOWN", self::output()->getHTML(new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
+                    $sort_tpl->setVariable("HIDE_DOWN", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
                 }
 
                 $tpl->setVariable("SORT", self::output()->getHTML($sort_tpl));
@@ -291,7 +292,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
 
             $tpl->setVariable("REMOVE", self::output()->getHTML(self::dic()->ui()->factory()->glyph()->remove()));
             if ($this->getRequired() && count($this->getInputs()) < 2) {
-                $tpl->setVariable("HIDE_REMOVE", self::output()->getHTML(new ilTemplate(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
+                $tpl->setVariable("HIDE_REMOVE", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
             }
 
             $tpl->parseCurrentBlock();

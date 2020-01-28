@@ -3,8 +3,8 @@
 namespace srag\CustomInputGUIs\HelpMe\TextInputGUI;
 
 use iljQueryUtil;
-use ilTemplate;
 use ilUtil;
+use srag\CustomInputGUIs\HelpMe\Template\Template;
 
 /**
  * Class TextInputGUIWithModernAutoComplete
@@ -36,11 +36,11 @@ class TextInputGUIWithModernAutoComplete extends TextInputGUI
             iljQueryUtil::initjQuery();
             iljQueryUtil::initjQueryUI();
 
-            self::dic()->mainTemplate()->addJavaScript($dir . "/../../node_modules/babel-polyfill/dist/polyfill.min.js");
+            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/../../node_modules/babel-polyfill/dist/polyfill.min.js");
 
-            self::dic()->mainTemplate()->addJavaScript($dir . "/js/text_input_gui_with_modern_auto_complete.min.js");
+            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/js/text_input_gui_with_modern_auto_complete.min.js");
 
-            self::dic()->mainTemplate()->addOnLoadCode("il.textinput_more_txt = " . json_encode(self::dic()->language()->txt('autocomplete_more')
+            self::dic()->ui()->mainTemplate()->addOnLoadCode("il.textinput_more_txt = " . json_encode(self::dic()->language()->txt('autocomplete_more')
                     . ";") . ";");
         }
     }
@@ -67,7 +67,7 @@ class TextInputGUIWithModernAutoComplete extends TextInputGUI
      */
     public function render(/*string*/ $a_mode = "") : string
     {
-        $tpl = new ilTemplate(__DIR__ . "/templates/text_input_gui_with_modern_auto_complete.html", true, true);
+        $tpl = new Template(__DIR__ . "/templates/text_input_gui_with_modern_auto_complete.html", true, true);
         if (strlen($this->getValue())) {
             $tpl->setCurrentBlock("prop_text_propval");
             $tpl->setVariable("PROPERTY_VALUE", ilUtil::prepareFormOutput($this->getValue()));

@@ -46,11 +46,11 @@ class TicketsTableGUI extends TableGUI
     ) : string {
         switch ($column) {
             case "ticket_project_url_key":
-                $column = $row["ticket_project"]->getProjectName();
+                $column = htmlspecialchars($row["ticket_project"]->getProjectName());
                 break;
 
             default:
-                $column = $row[$column];
+                $column = htmlspecialchars($row[$column]);
                 break;
         }
 

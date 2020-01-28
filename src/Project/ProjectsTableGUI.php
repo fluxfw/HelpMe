@@ -53,7 +53,7 @@ class ProjectsTableGUI extends TableGUI
                 break;
 
             default:
-                $column = Items::getter($project, $column);
+                $column = htmlspecialchars(Items::getter($project, $column));
                 break;
         }
 
