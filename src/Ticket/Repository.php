@@ -11,7 +11,6 @@ use ilUtil;
 use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
-use srag\Plugins\HelpMe\Project\ProjectsConfigGUI;
 use srag\Plugins\HelpMe\Support\Recipient\Recipient;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -330,19 +329,23 @@ final class Repository
      */
     public function showUsageConfigHint()/*: void*/
     {
-        $usage_id = "";
+        $usage_ids = [];
 
         if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
+
             if (!$this->isEnabled(false)) {
-                $usage_id = "usage_1_info";
-            } else {
-                if (!$this->isEnabled()) {
-                    $usage_id = "usage_2_info";
-                }
+
+                $usage_ids[] = "usage_1_info";
+            }
+
+            if (!$this->isEnabled()) {
+
+                $usage_ids[] = "usage_2_info";
             }
         }
 
-        if (!empty($usage_id)) {
+        $info = [];
+        foreach ($usage_ids as $usage_id) {
 
             if (!self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN)[$usage_id]) {
 
@@ -350,16 +353,24 @@ final class Repository
 
                 $text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE);
 
+                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
                 $hide_button = self::dic()->ui()->factory()->button()->standard(self::plugin()
                     ->translate("usage_hide", ilHelpMeConfigGUI::LANG_MODULE), self::dic()->ctrl()
                     ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::CMD_HIDE_USAGE));
+                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, null);
 
                 if (self::version()->is54()) {
-                    ilUtil::sendInfo(self::output()->getHTML(self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button])));
+                    $info[] = self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button]);
                 } else {
-                    ilUtil::sendInfo(self::output()->getHTML([$text, $hide_button]));
+                    $info[] = $text;
+                    $info[] = "<br>";
+                    $info[] = $hide_button;
+                    $info[] = "<br><br>";
                 }
             }
+        }
+        if (!empty($info)) {
+            ilUtil::sendInfo(self::output()->getHTML($info));
         }
     }
 

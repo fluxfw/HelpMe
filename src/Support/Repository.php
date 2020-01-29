@@ -107,10 +107,6 @@ final class Repository
      */
     public function getRefId()/*: ?int*/
     {
-        if (!self::helpMe()->config()->getValue(ConfigFormGUI::KEY_PAGE_REFERENCE)) {
-            return null;
-        }
-
         $obj_ref_id = filter_input(INPUT_GET, self::GET_PARAM_REF_ID);
 
         if ($obj_ref_id === null) {

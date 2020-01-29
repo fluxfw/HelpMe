@@ -133,7 +133,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
      */
     protected function hideUsage()/*: void*/
     {
-        $usage_id = filter_input(INPUT_GET, TicketsGUI::GET_PARAM_USAGE_ID);
+        $usage_id = strval(filter_input(INPUT_GET, TicketsGUI::GET_PARAM_USAGE_ID));
 
         if (!empty($usage_id)) {
             $usage_hidden = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN);

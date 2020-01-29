@@ -132,10 +132,7 @@ il.HelpMe.init();
      */
     public function getSupportButton() : string
     {
-        $ref_id = self::helpMe()->support()->getRefId();
-        if ($ref_id !== null) {
-            self::dic()->ctrl()->setParameterByClass(SupportGUI::class, Repository::GET_PARAM_REF_ID, $ref_id);
-        }
+        self::dic()->ctrl()->setParameterByClass(SupportGUI::class, Repository::GET_PARAM_REF_ID, self::helpMe()->support()->getRefId());
 
         $buttons = [
             self::dic()->ui()->factory()->link()->standard(self::plugin()->translate("support", SupportGUI::LANG_MODULE), self::dic()->ctrl()
