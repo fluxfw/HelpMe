@@ -346,7 +346,7 @@ final class Repository
 
             if (!self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN)[$usage_id]) {
 
-                self::dic()->ctrl()->setParameterByClass(ProjectsConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
+                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
 
                 $text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE);
 

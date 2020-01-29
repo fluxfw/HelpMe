@@ -103,16 +103,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.31.3",
+            "version": "v0.31.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "bc824ec477c17a39a60ff5f779c6e7d78cff7939"
+                "reference": "386a1b2be3f926be6a705e59205f778593f6f15f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/bc824ec477c17a39a60ff5f779c6e7d78cff7939",
-                "reference": "bc824ec477c17a39a60ff5f779c6e7d78cff7939",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/386a1b2be3f926be6a705e59205f778593f6f15f",
+                "reference": "386a1b2be3f926be6a705e59205f778593f6f15f",
                 "shasum": ""
             },
             "require": {
@@ -146,7 +146,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-01-29T06:41:19+00:00"
+            "time": "2020-01-29T09:33:18+00:00"
         },
         {
             "name": "srag/dic",
@@ -304,7 +304,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",

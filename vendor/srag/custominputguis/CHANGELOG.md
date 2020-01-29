@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.31.4]
+- `ScreenshotsInputGUI`: fix required alert message
+
 ## [0.31.3]
 - Fix
 
