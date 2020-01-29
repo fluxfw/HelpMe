@@ -31,13 +31,22 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
 
 
     /**
-     * @param string $a_mode
+     * ProjectSelectInputGUI constructor
      *
-     * @return string
+     * @param string $a_title
+     * @param string $a_postvar
      */
-    public function render(/*string*/
-        $a_mode = ""
-    ) : string {
+    public function __construct(string $a_title = "", string $a_postvar = "")
+    {
+        parent::__construct($a_title, $a_postvar);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function render(/*string*/ $a_mode = "") : string
+    {
         if (self::helpMe()->tickets()->isEnabled()) {
 
             $tpl = self::plugin()->template("project_select_input.html");
@@ -95,9 +104,8 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
      *
      * @return string
      */
-    protected function getShowTicketsLink(/*?*/
-        Project $project = null
-    ) : string {
+    protected function getShowTicketsLink(/*?*/ Project $project = null) : string
+    {
         if (self::helpMe()->tickets()->isEnabled() && $project !== null && $project->isProjectShowTickets()) {
 
             return self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(self::plugin()

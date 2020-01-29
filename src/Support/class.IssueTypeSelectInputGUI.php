@@ -32,13 +32,22 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
 
 
     /**
-     * @param string $a_mode
+     * IssueTypeSelectInputGUI constructor
      *
-     * @return string
+     * @param string $a_title
+     * @param string $a_postvar
      */
-    public function render(/*string*/
-        $a_mode = ""
-    ) : string {
+    public function __construct(string $a_title = "", string $a_postvar = "")
+    {
+        parent::__construct($a_title, $a_postvar);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function render(/*string*/ $a_mode = "") : string
+    {
         $this->setIssueTypesOptions($this->parent_gui->getProject());
 
         return parent::render($a_mode);
@@ -46,7 +55,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
 
 
     /**
-     * @return bool
+     * @inheritDoc
      */
     public function checkInput() : bool
     {
@@ -110,9 +119,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     /**
      * @param Project|null $project
      */
-    protected function setIssueTypesOptions(/*?*/
-        Project $project = null
-    )/*: void*/
+    protected function setIssueTypesOptions(/*?*/ Project $project = null)/*: void*/
     {
         $options = [
             "" => "&lt;" . $this->parent_gui->txt("please_select") . "&gt;"
