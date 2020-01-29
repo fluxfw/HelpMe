@@ -143,6 +143,6 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
             ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE), true);
         }
 
-        self::dic()->ctrl()->redirectByClass(ilHelpMeConfigGUI::class);
+        self::dic()->ctrl()->redirectByClass(self::class, self::CMD_CONFIGURE);
     }
 }
