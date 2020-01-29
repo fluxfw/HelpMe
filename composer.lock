@@ -103,16 +103,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.31.2",
+            "version": "v0.31.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "07dc764ee0402347d5fa3bbd0ad33c63e3a92833"
+                "reference": "bc824ec477c17a39a60ff5f779c6e7d78cff7939"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/07dc764ee0402347d5fa3bbd0ad33c63e3a92833",
-                "reference": "07dc764ee0402347d5fa3bbd0ad33c63e3a92833",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/bc824ec477c17a39a60ff5f779c6e7d78cff7939",
+                "reference": "bc824ec477c17a39a60ff5f779c6e7d78cff7939",
                 "shasum": ""
             },
             "require": {
@@ -146,7 +146,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-01-28T08:36:07+00:00"
+            "time": "2020-01-29T06:41:19+00:00"
         },
         {
             "name": "srag/dic",
@@ -168,7 +168,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -283,16 +283,16 @@
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "v5.1.6",
+            "version": "v5.1.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-                "reference": "8eebf6ffa7dbd02f6c3c423b3399e4c0491d802f"
+                "reference": "062129efee8f278602546cd6c9050ca9af730305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/8eebf6ffa7dbd02f6c3c423b3399e4c0491d802f",
-                "reference": "8eebf6ffa7dbd02f6c3c423b3399e4c0491d802f",
+                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/062129efee8f278602546cd6c9050ca9af730305",
+                "reference": "062129efee8f278602546cd6c9050ca9af730305",
                 "shasum": ""
             },
             "require": {
@@ -325,7 +325,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2020-01-28T08:32:55+00:00"
+            "time": "2020-01-29T08:52:01+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",

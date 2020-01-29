@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.1.7]
+- Show parser links dynamic
+
 ## [5.1.6]
 - Fix
 
