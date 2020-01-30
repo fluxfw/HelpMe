@@ -1,5 +1,8 @@
 # Changelog
 
+## [x]
+- Custom fields
+
 ## [5.0.1]
 - Fix cron if no tickets
 

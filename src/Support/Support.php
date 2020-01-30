@@ -2,12 +2,14 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
-use ilDatePresentation;
-use ilDateTime;
 use ilHelpMePlugin;
 use ILIAS\FileUpload\DTO\UploadResult;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Project\Project;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
+use srag\Plugins\HelpMe\RequiredData\Field\Screenshots\ScreenshotsField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -23,66 +25,11 @@ class Support
     use DICTrait;
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const REQUIRED_DATA_PARENT_CONTEXT_CONFIG = 1;
     /**
-     * @var int
+     * @var array
      */
-    protected $time;
-    /**
-     * @var string
-     */
-    protected $page_reference = "";
-    /**
-     * @var Project
-     */
-    protected $project;
-    /**
-     * @var string
-     */
-    protected $issue_type = "";
-    /**
-     * @var string
-     */
-    protected $fix_version = "";
-    /**
-     * @var string
-     */
-    protected $title = "";
-    /**
-     * @var string
-     */
-    protected $name = "";
-    /**
-     * @var string
-     */
-    protected $login = "";
-    /**
-     * @var string
-     */
-    protected $email = "";
-    /**
-     * @var string
-     */
-    protected $phone = "";
-    /**
-     * @var string
-     */
-    protected $priority = "";
-    /**
-     * @var string
-     */
-    protected $description = "";
-    /**
-     * @var string
-     */
-    protected $reproduce_steps = "";
-    /**
-     * @var string
-     */
-    protected $system_infos = "";
-    /**
-     * @var UploadResult[]
-     */
-    protected $screenshots = [];
+    protected $field_values = [];
 
 
     /**
@@ -90,183 +37,124 @@ class Support
      */
     public function __construct()
     {
+        if (self::helpMe()->ilias()->users()->getUserId() !== intval(ANONYMOUS_USER_ID)) {
+            if (!empty(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_NAME_FIELD))) {
+                $this->field_values[self::helpMe()->config()->getValue(ConfigFormGUI::KEY_NAME_FIELD)] = self::dic()->user()->getFullname();
+            }
 
+            if (!empty(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_EMAIL_FIELD))) {
+                $this->field_values[self::helpMe()->config()->getValue(ConfigFormGUI::KEY_EMAIL_FIELD)] = self::dic()->user()->getEmail();
+            }
+        }
     }
 
 
     /**
-     * Add screenshot from post file upload
+     * @return array
+     */
+    public function getFieldValues() : array
+    {
+        return $this->field_values;
+    }
+
+
+    /**
+     * @param string $field_id
+     * @param mixed  $default_value
      *
-     * @param UploadResult $screenshot
+     * @return mixed
      */
-    public function addScreenshot(UploadResult $screenshot)/*: void*/
+    public function getFieldValueById(string $field_id, $default_value)
     {
-        $this->screenshots[] = $screenshot;
+        $field_value = $this->field_values[$field_id];
+
+        if (empty($field_value)) {
+            $field_value = $default_value;
+        }
+
+        return $field_value;
     }
 
 
     /**
-     * Format time
+     * @param string $config_key
+     * @param mixed  $default_value
      *
-     * @return string
+     * @return mixed
      */
-    public function getFormatedTime() : string
+    public function getFieldValueByConfigKey(string $config_key, $default_value)
     {
-        // Save and restore old existing useRelativeDates
-        $useRelativeDates_ = ilDatePresentation::useRelativeDates();
-
-        ilDatePresentation::setUseRelativeDates(false);
-
-        $formated_time = ilDatePresentation::formatDate(new ilDateTime($this->time, IL_CAL_UNIX));
-
-        // Save and restore old existing useRelativeDates
-        ilDatePresentation::setUseRelativeDates($useRelativeDates_);
-
-        return $formated_time;
-    }
-
-
-    /**
-     * @return int
-     */
-    public function getTime() : int
-    {
-        return $this->time;
-    }
-
-
-    /**
-     * @param int $time
-     */
-    public function setTime(int $time)/*: void*/
-    {
-        $this->time = $time;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getPageReference() : string
-    {
-        return $this->page_reference;
-    }
-
-
-    /**
-     * @param string $page_reference
-     */
-    public function setPageReference(string $page_reference)/*: void*/
-    {
-        $this->page_reference = $page_reference;
-    }
-
-
-    /**
-     * @return Project
-     */
-    public function getProject() : Project
-    {
-        return $this->project;
-    }
-
-
-    /**
-     * @param Project $project
-     */
-    public function setProject(Project $project)/*: void*/
-    {
-        $this->project = $project;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getIssueType() : string
-    {
-        return $this->issue_type;
-    }
-
-
-    /**
-     * @param string $issue_type
-     */
-    public function setIssueType(string $issue_type)/*: void*/
-    {
-        $this->issue_type = $issue_type;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getFixVersion() : string
-    {
-        return $this->fix_version;
-    }
-
-
-    /**
-     * @param string $fix_version
-     */
-    public function setFixVersion(string $fix_version)/*: void*/
-    {
-        $this->fix_version = $fix_version;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getTitle() : string
-    {
-        return $this->title;
-    }
-
-
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title)/*: void*/
-    {
-        $this->title = $title;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getName() : string
-    {
-        return $this->name;
+        return $this->getFieldValueById(self::helpMe()->config()->getValue($config_key), $default_value);
     }
 
 
     /**
      * @param string $name
+     * @param mixed  $default_value
+     *
+     * @return mixed
      */
-    public function setName(string $name)/*: void*/
+    public function getFieldValueByName(string $name, $default_value)
     {
-        $this->name = $name;
+        $field = self::helpMe()->requiredData()->fields()->getFieldByName(self::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, self::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, $name);
+
+        if ($field !== null) {
+            return $this->getFieldValueById($field->getId(), $default_value);
+        } else {
+            return $default_value;
+        }
     }
 
 
     /**
-     * @return string
+     * @param string $type
+     * @param mixed  $default_value
+     *
+     * @return mixed
      */
-    public function getLogin() : string
+    public function getFieldValueByType(string $type, $default_value)
     {
-        return $this->login;
+        $field = current(self::helpMe()
+            ->requiredData()
+            ->fields()
+            ->getFields(self::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, self::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [$type]));
+
+        if ($field) {
+            return $this->getFieldValueById($field->getId(), $default_value);
+        } else {
+            return $default_value;
+        }
     }
 
 
     /**
-     * @param string $login
+     * @param array $field_values
      */
-    public function setLogin(string $login)/*: void*/
+    public function setFieldValues(array $field_values)/* : void*/
     {
-        $this->login = $login;
+        $this->field_values = $field_values;
+    }
+
+
+    /**
+     * @param string $field_id
+     * @param mixed  $value
+     */
+    public function setFieldValueById(string $field_id, $value)/* : void*/
+    {
+        $this->field_values[$field_id] = $value;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getFormattedFieldValues() : array
+    {
+        return self::helpMe()
+            ->requiredData()
+            ->fills()
+            ->formatAsStrings(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, $this->field_values, true);
     }
 
 
@@ -275,34 +163,34 @@ class Support
      */
     public function getEmail() : string
     {
-        return $this->email;
-    }
-
-
-    /**
-     * @param string $email
-     */
-    public function setEmail(string $email)/*: void*/
-    {
-        $this->email = $email;
+        return $this->getFieldValueByConfigKey(ConfigFormGUI::KEY_EMAIL_FIELD, (self::helpMe()->ilias()->users()->getUserId() !== intval(ANONYMOUS_USER_ID) ? self::dic()->user()->getEmail() : ""));
     }
 
 
     /**
      * @return string
      */
-    public function getPhone() : string
+    public function getFixVersion() : string
     {
-        return $this->phone;
+        return self::helpMe()->projects()->getFixVersionForIssueType($this->getProject(), $this->getIssueType());
     }
 
 
     /**
-     * @param string $phone
+     * @return string
      */
-    public function setPhone(string $phone)/*: void*/
+    public function getIssueType() : string
     {
-        $this->phone = $phone;
+        return $this->getFieldValueByType(IssueTypeField::getType(), "");
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getName() : string
+    {
+        return $this->getFieldValueByConfigKey(ConfigFormGUI::KEY_NAME_FIELD, (self::helpMe()->ilias()->users()->getUserId() !== intval(ANONYMOUS_USER_ID) ? self::dic()->user()->getFullname() : ""));
     }
 
 
@@ -311,70 +199,16 @@ class Support
      */
     public function getPriority() : string
     {
-        return $this->priority;
+        return $this->getFieldValueByConfigKey(ConfigFormGUI::KEY_JIRA_PRIORITY_FIELD, "");
     }
 
 
     /**
-     * @param string $priority
+     * @return Project|null
      */
-    public function setPriority(string $priority)/*: void*/
+    public function getProject()/* : ?Project*/
     {
-        $this->priority = $priority;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getDescription() : string
-    {
-        return $this->description;
-    }
-
-
-    /**
-     * @param string $description
-     */
-    public function setDescription(string $description)/*: void*/
-    {
-        $this->description = $description;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getReproduceSteps() : string
-    {
-        return $this->reproduce_steps;
-    }
-
-
-    /**
-     * @param string $reproduce_steps
-     */
-    public function setReproduceSteps(string $reproduce_steps)/*: void*/
-    {
-        $this->reproduce_steps = $reproduce_steps;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getSystemInfos() : string
-    {
-        return $this->system_infos;
-    }
-
-
-    /**
-     * @param string $system_infos
-     */
-    public function setSystemInfos(string $system_infos)/*: void*/
-    {
-        $this->system_infos = $system_infos;
+        return self::helpMe()->projects()->getProjectByUrlKey($this->getFieldValueByType(ProjectField::getType(), ""));
     }
 
 
@@ -383,15 +217,18 @@ class Support
      */
     public function getScreenshots() : array
     {
-        return $this->screenshots;
+        return $this->getFieldValueByType(ScreenshotsField::getType(), []);
     }
 
 
     /**
-     * @param UploadResult[] $screenshots
+     * @param string $name
+     * @param array  $arguments
+     *
+     * @return mixed
      */
-    public function setScreenshots(array $screenshots)/*: void*/
+    public function __call(string $name, array $arguments)
     {
-        $this->screenshots = $screenshots;
+        return $this->getFieldValueByName($name, "");
     }
 }

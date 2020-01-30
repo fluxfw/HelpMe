@@ -164,11 +164,10 @@ il.HelpMe = {
      */
     projectChangeIssueTypes: function () {
         // First empty previous project issue types (Without "please select")
-        var $old_issue_type_select = $("#issue_type");
-        $old_issue_type_select.children().first().nextAll().remove();
+        var $old_issue_type_select = $('select[id^="field_issuetypefield_"]', this.modal);
         $old_issue_type_select.prop("disabled", true);
 
-        var $projects_select = $("#project");
+        var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
         var project_url_key = $projects_select.val();
 
         var get_url = this.GET_ISSUE_TYPES_OF_PROJECT_URL;
@@ -181,9 +180,11 @@ il.HelpMe = {
      * @param {string} new_issue_types_select_html
      */
     projectChangeIssueTypesShow: function (new_issue_types_select_html) {
-        var $old_issue_type_select = $("#issue_type");
+        var $old_issue_type_select = $('select[id^="field_issuetypefield_"]', this.modal);
 
         $old_issue_type_select.replaceWith(new_issue_types_select_html);
+
+        $('input[type="hidden"][name^="field_issuetypefield_"]', this.modal).remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
     },
 
     /**
@@ -191,7 +192,7 @@ il.HelpMe = {
      */
     projectChangeShowTickets: function () {
         // First delete previous tickets link
-        var $projects_select = $("#project");
+        var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
         $projects_select.next().remove();
 
         var project_url_key = $projects_select.val();
@@ -206,7 +207,7 @@ il.HelpMe = {
      * @param {string} new_tickets_link_html
      */
     projectChangeShowTicketsShow: function (new_tickets_link_html) {
-        var $projects_select = $("#project");
+        var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
 
         $projects_select.after(new_tickets_link_html);
     },
@@ -244,27 +245,59 @@ il.HelpMe = {
                 this.screenshots.screenshots = screenshots;
                 this.screenshots.modal = this.modal;
                 this.screenshots.updateScreenshots();
-                this.screenshots.submitButtonID = "helpme_submit";
-                this.screenshots.submitFunction = this.show.bind(this);
             } else {
                 this.screenshots = null;
             }
 
-            var $cancel = $("#helpme_cancel");
-            var $projects_select = $("#project");
+            var $form = $("#form_helpme_form");
+            $form.submit(this.submit.bind(this));
 
+            var $cancel = $("#helpme_cancel");
             $cancel.click(this.cancel.bind(this));
 
-            // Update project ticket issues
-            $projects_select.change(this.projectChangeIssueTypes.bind(this));
-            $('input[type="hidden"][name="issue_type"]').remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
+            var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
+            if ($projects_select.length === 1) {
+                // Update project ticket issues
+                if ($('select[id^="field_issuetypefield_"]', this.modal).length === 1) {
+                    $projects_select.change(this.projectChangeIssueTypes.bind(this));
+                }
 
-            // Update project show tickets link
-            if ($projects_select.parent(".project_select_input").length > 0) {
-                $projects_select.change(this.projectChangeShowTickets.bind(this));
+                // Update project show tickets link
+                if ($projects_select.parent(".project_select_input").length === 1) {
+                    $projects_select.change(this.projectChangeShowTickets.bind(this));
+                }
             }
+            $('input[type="hidden"][name^="field_projectfield_"],input[type="hidden"][name^="field_issuetypefield_"]', this.modal).remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
         }
 
         this.modal.modal("show");
+    },
+
+    /**
+     * @returns {boolean}
+     */
+    submit: function () {
+        var $form = $("#form_helpme_form");
+        var $submit = $("#helpme_submit");
+
+        var post_url = $form.attr("action");
+
+        var data = new FormData($form[0]); // Supports files upload
+        data.append($submit.prop("name"), $submit.val()); // Send submit button with cmd
+
+        if (this.screenshots !== null) {
+            this.screenshots.addScreenshotsToUpload(data);
+        }
+
+        $.ajax({
+            type: "post",
+            url: post_url,
+            contentType: false,
+            processData: false,
+            data: data,
+            success: this.show.bind(this)
+        });
+
+        return false;
     }
 };

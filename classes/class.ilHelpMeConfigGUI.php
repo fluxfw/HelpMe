@@ -6,8 +6,10 @@ use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Project\ProjectsConfigGUI;
+use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Ticket\TicketsGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use srag\RequiredData\HelpMe\Field\FieldsCtrl;
 
 /**
  * Class ilHelpMeConfigGUI
@@ -15,6 +17,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
  * @ilCtrl_isCalledBy srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl: ilHelpMeConfigGUI
+ * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\FieldsCtrl: ilHelpMeConfigGUI
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI
 {
@@ -48,6 +51,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
+            case strtolower(FieldsCtrl::class);
+                self::dic()->ctrl()->forwardCommand(new FieldsCtrl(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG));
+                break;
+
             case strtolower(ProjectsConfigGUI::class);
                 self::dic()->ctrl()->forwardCommand(new ProjectsConfigGUI());
                 break;
@@ -82,6 +89,9 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
     {
         self::dic()->tabs()->addTab(self::TAB_CONFIGURATION, self::plugin()->translate("configuration", self::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTargetByClass(self::class, self::CMD_CONFIGURE));
+
+        self::dic()->tabs()->addTab(FieldsCtrl::TAB_LIST_FIELDS, self::plugin()->translate("fields", self::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTargetByClass(FieldsCtrl::class, FieldsCtrl::CMD_LIST_FIELDS));
 
         ProjectsConfigGUI::addTabs();
 

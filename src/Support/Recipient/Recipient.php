@@ -113,26 +113,13 @@ abstract class Recipient
     {
         $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
-        $fields_ = (!empty($this->support->getPageReference()) ? [
-                "page_reference" => $this->support->getPageReference()
-            ] : []) + [
-                "project"         => $this->support->getProject()->getProjectName() . " (" . $this->support->getProject()->getProjectKey() . ")",
-                "issue_type"      => $this->support->getIssueType(),
-                "title"           => $this->support->getTitle(),
-                "name"            => $this->support->getName(),
-                "login"           => $this->support->getLogin(),
-                "email"           => $this->support->getEmail(),
-                "phone"           => $this->support->getPhone(),
-                "priority"        => $this->support->getPriority(),
-                "description"     => $this->support->getDescription(),
-                "reproduce_steps" => $this->support->getReproduceSteps(),
-                "system_infos"    => $this->support->getSystemInfos(),
-                "datetime"        => $this->support->getFormatedTime()
-            ];
-
         $fields = [];
-        foreach ($fields_ as $key => $value) {
-            $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
+        foreach ($this->support->getFormattedFieldValues() as $key => $value) {
+            if (is_array($value)) {
+                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $value[0], $value[1], $value[2]);
+            } else {
+                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
+            }
         }
 
         return self::helpMe()->notifications4plugin()->parser()->parseText(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [

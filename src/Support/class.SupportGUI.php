@@ -7,6 +7,8 @@ use ilLogLevel;
 use ilPropertyFormGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeSelectInputGUI;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use Throwable;
 

@@ -19,7 +19,14 @@ use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
 use srag\Plugins\HelpMe\Support\Recipient\Recipient;
+use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use srag\RequiredData\HelpMe\Field\AbstractField;
+use srag\RequiredData\HelpMe\Field\Email\EmailField;
+use srag\RequiredData\HelpMe\Field\Radio\RadioField;
+use srag\RequiredData\HelpMe\Field\SearchSelect\SearchSelectField;
+use srag\RequiredData\HelpMe\Field\Select\SelectField;
+use srag\RequiredData\HelpMe\Field\Text\TextField;
 
 /**
  * Class ConfigFormGUI
@@ -33,6 +40,7 @@ class ConfigFormGUI extends PropertyFormGUI
 
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const KEY_EMAIL_FIELD = "email_field";
     const KEY_INFO = "info";
     const KEY_JIRA_ACCESS_TOKEN = "jira_access_token";
     const KEY_JIRA_AUTHORIZATION = "jira_authorization";
@@ -40,6 +48,7 @@ class ConfigFormGUI extends PropertyFormGUI
     const KEY_JIRA_CREATE_SERVICE_DESK_REQUEST = "jira_create_service_desk_request";
     const KEY_JIRA_DOMAIN = "jira_domain";
     const KEY_JIRA_PASSWORD = "jira_password";
+    const KEY_JIRA_PRIORITY_FIELD = "jira_priority_field";
     const KEY_JIRA_PRIVATE_KEY = "jira_private_key";
     const KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER = "jira_service_desk_create_as_customer";
     const KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS = "jira_service_desk_create_new_customers";
@@ -47,7 +56,18 @@ class ConfigFormGUI extends PropertyFormGUI
     const KEY_JIRA_SERVICE_DESK_LINK_TYPE = "jira_service_desk_link_type";
     const KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID = "jira_service_desk_request_type_id";
     const KEY_JIRA_USERNAME = "jira_username";
+    const KEY_NAME_FIELD = "name_field";
+    /**
+     * @var string
+     *
+     * @deprecated
+     */
     const KEY_PAGE_REFERENCE = "page_reference";
+    /**
+     * @var string
+     *
+     * @deprecated
+     */
     const KEY_PRIORITIES = "priorities";
     const KEY_RECIPIENT = "recipient";
     const KEY_RECIPIENT_TEMPLATES = "recipient_templates";
@@ -104,6 +124,25 @@ class ConfigFormGUI extends PropertyFormGUI
     protected function initFields()/*: void*/
     {
         $this->fields = [
+            self::KEY_NAME_FIELD                                  => [
+                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
+                self::PROPERTY_REQUIRED => false,
+                self::PROPERTY_OPTIONS  => ["" => ""] + array_map(function (AbstractField $field) : string {
+                        return $field->getLabel();
+                    }, self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [
+                        EmailField::getType(),
+                        TextField::getType()
+                    ]))
+            ],
+            self::KEY_EMAIL_FIELD                                 => [
+                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
+                self::PROPERTY_REQUIRED => false,
+                self::PROPERTY_OPTIONS  => ["" => ""] + array_map(function (AbstractField $field) : string {
+                        return $field->getLabel();
+                    }, self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [
+                        EmailField::getType()
+                    ]))
+            ],
             self::KEY_RECIPIENT                                   => [
                 self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
@@ -120,11 +159,11 @@ class ConfigFormGUI extends PropertyFormGUI
                     Recipient::CREATE_JIRA_TICKET => [
                         self::PROPERTY_CLASS    => ilRadioOption::class,
                         self::PROPERTY_SUBITEMS => [
-                                self::KEY_JIRA_DOMAIN        => [
+                                self::KEY_JIRA_DOMAIN         => [
                                     self::PROPERTY_CLASS    => ilTextInputGUI::class,
                                     self::PROPERTY_REQUIRED => true
                                 ],
-                                self::KEY_JIRA_AUTHORIZATION => [
+                                self::KEY_JIRA_AUTHORIZATION  => [
                                     self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
                                     self::PROPERTY_REQUIRED => true,
                                     self::PROPERTY_SUBITEMS => [
@@ -160,6 +199,16 @@ class ConfigFormGUI extends PropertyFormGUI
                                             ]
                                         ]
                                     ]
+                                ],
+                                self::KEY_JIRA_PRIORITY_FIELD => [
+                                    self::PROPERTY_CLASS   => ilSelectInputGUI::class,
+                                    self::PROPERTY_OPTIONS => ["" => ""] + array_map(function (AbstractField $field) : string {
+                                            return $field->getLabel();
+                                        }, self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [
+                                            RadioField::getType(),
+                                            SearchSelectField::getType(),
+                                            SelectField::getType()
+                                        ]))
                                 ]
                             ] + $this->getTemplateSelection(Recipient::CREATE_JIRA_TICKET) + [
                                 self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST => [
@@ -205,11 +254,6 @@ class ConfigFormGUI extends PropertyFormGUI
                     implode(" > ", [$this->txt("recipient"), $this->txt("recipient_create_jira_ticket"), $this->txt("jira_create_service_desk_request")])
                 ])
             ],
-            self::KEY_PRIORITIES                                  => [
-                self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_MULTI    => true
-            ],
             self::KEY_INFO                                        => [
                 self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
@@ -220,9 +264,6 @@ class ConfigFormGUI extends PropertyFormGUI
                 self::PROPERTY_CLASS    => MultiSelectSearchNewInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
                 self::PROPERTY_OPTIONS  => self::helpMe()->ilias()->roles()->getAllRoles()
-            ],
-            self::KEY_PAGE_REFERENCE                              => [
-                self::PROPERTY_CLASS => ilCheckboxInputGUI::class
             ]
         ];
     }

@@ -74,6 +74,7 @@ final class Repository extends AbstractRepository
     protected function getFields() : array
     {
         return [
+            ConfigFormGUI::KEY_EMAIL_FIELD                            => Config::TYPE_STRING,
             ConfigFormGUI::KEY_INFO                                   => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_ACCESS_TOKEN                      => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_AUTHORIZATION                     => Config::TYPE_STRING,
@@ -81,6 +82,7 @@ final class Repository extends AbstractRepository
             ConfigFormGUI::KEY_JIRA_DOMAIN                            => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST       => Config::TYPE_BOOLEAN,
             ConfigFormGUI::KEY_JIRA_PASSWORD                          => Config::TYPE_STRING,
+            ConfigFormGUI::KEY_JIRA_PRIORITY_FIELD                    => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_PRIVATE_KEY                       => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER   => Config::TYPE_BOOLEAN,
             ConfigFormGUI::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS => Config::TYPE_BOOLEAN,
@@ -88,6 +90,7 @@ final class Repository extends AbstractRepository
             ConfigFormGUI::KEY_JIRA_SERVICE_DESK_LINK_TYPE            => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID      => Config::TYPE_INTEGER,
             ConfigFormGUI::KEY_JIRA_USERNAME                          => Config::TYPE_STRING,
+            ConfigFormGUI::KEY_NAME_FIELD                             => Config::TYPE_STRING,
             ConfigFormGUI::KEY_PAGE_REFERENCE                         => Config::TYPE_BOOLEAN,
             ConfigFormGUI::KEY_PRIORITIES                             => [Config::TYPE_JSON, []],
             ConfigFormGUI::KEY_RECIPIENT                              => Config::TYPE_STRING,

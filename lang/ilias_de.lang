@@ -1,6 +1,9 @@
 config_always_enabled#:#Lässt sich mit aktiviertem %s nicht deaktivieren
 config_configuration#:#Konfiguration
 config_configuration_saved#:#Konfiguration gespeichert
+config_email_field#:#Benutzer-E-Mail-Feld
+config_email_field_info#:#Wählen Sie für das Senden das Feld aus, in welches der Benutzer die E-Mail eingibt, ansonst wird die E-Mail des aktuell eingeloggten Benutzers verwendet
+config_fields#:#Felder
 config_info#:#Infotext
 config_jira_access_token#:#Jira-Access-Token
 config_jira_authorization#:#Jira-Authorization
@@ -10,6 +13,8 @@ config_jira_consumer_key#:#Jira-Consumer-Key
 config_jira_create_service_desk_request#:#Service-Desk-Anfrage erstellen
 config_jira_domain#:#Jira-Domainname
 config_jira_password#:#Jira-Passwort
+config_jira_priority_field#:#Dringlichkeit-Feld
+config_jira_priority_field_info#:#Wählen Sie für das Jira-Ticket das Feld aus, in welches der Benutzer die Dringlichkeit auswählt, ansonst wird die Standard-Dringlichkeit des Jira-Projekts verwendet
 config_jira_private_key#:#Jira-Private-Key
 config_jira_private_key_info#:#PEM formatted RSA private key
 config_jira_service_desk_create_as_customer#:#Als Kunde anlegen
@@ -18,8 +23,8 @@ config_jira_service_desk_id#:#Service-Desk-ID
 config_jira_service_desk_link_type#:#Link-Typ
 config_jira_service_desk_request_type_id#:#Anfrage-Typ-ID
 config_jira_username#:#Jira-Benutzername
-config_page_reference#:#Seiten-Referenz im Support einbeziehen
-config_priorities#:#Dringlichkeiten
+config_name_field#:#Benutzer-Name-Feld
+config_name_field_info#:#Wählen Sie für das Senden das Feld aus, in welches der Benutzer den Namen eingibt, ansonst wird der Name des aktuell eingeloggten Benutzers verwendet
 config_recipient#:#Formularempfänger
 config_recipient_create_jira_ticket#:#Jira-Ticket erstellen
 config_recipient_send_email#:#Per E-Mail senden
@@ -27,9 +32,11 @@ config_roles#:#Rollen
 config_roles_info#:#Support nur für die ausgewählten Rollen anzeigen
 config_save#:#Speichern
 config_send_email_address#:#E-Mail Adresse
-config_send_confirmation_email#:#Bestätigung-Email Erhalt Support-Anfrage an Benutzer schicken
+config_send_confirmation_email#:#Bestätigung-E-Mail Erhalt Support-Anfrage an Benutzer schicken
 config_usage_1_info#:#Wenn Sie das 'Tickets anzeigen'-Feature verwenden möchten, installieren und aktivieren Sie bitte das HelpMeCron-Plugin
 config_usage_2_info#:#Damit Sie das 'Tickets anzeigen'-Feature verwenden können, müssen Sie mindestens einem Projekt Lesezugriff geben
+config_usage_3_info#:#Damit Projekte im Support-Formular zur Auswahl stehen, müssen Sie das Projekt-Feld hinzufügen
+config_usage_4_info#:#Damit Issue-Types im Support-Formular zur Auswahl stehen, müssen Sie das Jira-Issue-Feld hinzufügen
 config_usage_hidden#:#Hinweis ausblended
 config_usage_hide#:#Hinweis ausblenden
 projects_actions#:#Aktionen
@@ -61,7 +68,7 @@ projects_url_key_info#:#Wird im Support-Link verwendet
 support_cancel#:#Abbrechen
 support_close#:#Schliessen
 support_confirmation#:#Bestätigung
-support_datetime#:#Datum & Zeit
+support_createddatetime#:#Erstellt Datum & Zeit
 support_description#:#Beschreibung
 support_email#:#E-Mail Adresse
 support_issue_type#:#Issue-Type
