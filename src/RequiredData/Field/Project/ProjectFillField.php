@@ -3,8 +3,6 @@
 namespace srag\Plugins\HelpMe\RequiredData\Field\Project;
 
 use ilHelpMePlugin;
-use ilHelpMeUIHookGUI;
-use ilSession;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -57,11 +55,8 @@ class ProjectFillField extends AbstractFillField
         $project = null;
 
         // Preselect project (Support link)
-        $project_url_key = ilSession::get(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY);
+        $project_url_key = strval(filter_input(INPUT_GET, SupportGUI::GET_PARAM_PROJECT_URL_KEY));
         if (!empty($project_url_key)) {
-            ilSession::set(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY, "");
-            ilSession::clear(ilHelpMeUIHookGUI::SESSION_PROJECT_URL_KEY);
-
             $project = self::helpMe()->projects()->getProjectByUrlKey($project_url_key);
         }
 

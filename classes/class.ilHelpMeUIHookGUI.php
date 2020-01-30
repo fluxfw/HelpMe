@@ -91,12 +91,14 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
                     $helpme_js_pos = stripos($html, $helpme_js);
                     if ($helpme_js_pos !== false) {
 
+                        $project_id = ilSession::get(self::SESSION_PROJECT_URL_KEY);
+                        self::dic()->ctrl()->setParameterByClass(SupportGUI::class, SupportGUI::GET_PARAM_PROJECT_URL_KEY, $project_id);
+                        ilSession::clear(self::SESSION_PROJECT_URL_KEY);
+
                         $support_button = $this->getSupportButton();
 
                         $screenshot = new ScreenshotsInputGUI();
                         $screenshot->withPlugin(self::plugin());
-
-                        $project_id = ilSession::get(self::SESSION_PROJECT_URL_KEY);
 
                         // Could not use onload code because it not available on all pages
                         $html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>

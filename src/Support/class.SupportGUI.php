@@ -29,6 +29,7 @@ class SupportGUI
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_ADD_SUPPORT = "addSupport";
     const CMD_NEW_SUPPORT = "newSupport";
+    const GET_PARAM_PROJECT_URL_KEY = "project_url_key";
     const LANG_MODULE = "support";
     /**
      * @var Support
