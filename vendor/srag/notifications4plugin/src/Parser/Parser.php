@@ -23,6 +23,13 @@ interface Parser
     //const NAME = "";
 
     /**
+     * @var string
+     *
+     * @abstract
+     */
+    //const DOC_LINK = "";
+
+    /**
      * @param string $text
      * @param array  $placeholders
      *

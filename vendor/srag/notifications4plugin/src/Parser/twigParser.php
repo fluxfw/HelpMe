@@ -44,7 +44,7 @@ class twigParser implements Parser
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @throws Twig_Error
      */

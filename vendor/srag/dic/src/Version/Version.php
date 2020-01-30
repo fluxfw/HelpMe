@@ -22,7 +22,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getILIASVersion() : string
     {
@@ -31,7 +31,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isEqual(string $version) : bool
     {
@@ -40,7 +40,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isGreater(string $version) : bool
     {
@@ -49,7 +49,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isLower(string $version) : bool
     {
@@ -58,7 +58,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isMaxVersion(string $version) : bool
     {
@@ -67,7 +67,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function isMinVersion(string $version) : bool
     {
@@ -76,7 +76,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function is53() : bool
     {
@@ -85,7 +85,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function is54() : bool
     {
@@ -94,7 +94,7 @@ final class Version implements VersionInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function is60() : bool
     {

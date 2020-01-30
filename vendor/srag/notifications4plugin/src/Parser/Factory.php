@@ -46,7 +46,7 @@ final class Factory implements FactoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function twig() : twigParser
     {

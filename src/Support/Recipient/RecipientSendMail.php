@@ -7,7 +7,7 @@ use PHPMailer\PHPMailer\Exception as phpmailerException;
 use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Support\Support;
 
@@ -33,7 +33,7 @@ class RecipientSendMail extends Recipient
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function sendSupportToRecipient()/*: void*/
     {
@@ -58,7 +58,7 @@ class RecipientSendMail extends Recipient
 
         $mailer->From(new RecipientSendMailSender($this->support));
 
-        $mailer->To(Config::getField(Config::KEY_SEND_EMAIL_ADDRESS));
+        $mailer->To(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_EMAIL_ADDRESS));
 
         $mailer->Subject($this->getSubject(self::SEND_EMAIL));
 

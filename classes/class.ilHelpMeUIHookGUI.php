@@ -1,10 +1,11 @@
 <?php
 
 use ILIAS\UI\Component\Link\Standard;
+use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
-use srag\Plugins\HelpMe\Support\IssueTypeSelectInputGUI;
-use srag\Plugins\HelpMe\Support\ProjectSelectInputGUI;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeSelectInputGUI;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\Support\Repository;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Ticket\TicketsGUI;
@@ -46,11 +47,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
 
 
     /**
-     * @param string $a_comp
-     * @param string $a_part
-     * @param array  $a_par
-     *
-     * @return array
+     * @inheritDoc
      */
     public function getHTML(/*string*/ $a_comp, /*string*/ $a_part, /*array*/ $a_par = []) : array
     {
@@ -66,14 +63,16 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
 
                     $screenshot = new ScreenshotsInputGUI();
                     $screenshot->withPlugin(self::plugin());
-                    $screenshot->initJS();
+                    $screenshot->init();
 
-                    self::dic()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
+                    MultiSelectSearchNewInputGUI::init();
 
-                    self::dic()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
+                    self::dic()->ui()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
+
+                    self::dic()->ui()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
 
                     // Fix some pages may not load Form.js
-                    self::dic()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
+                    self::dic()->ui()->mainTemplate()->addJavaScript("Services/Form/js/Form.js");
                 }
             }
         }
@@ -92,12 +91,14 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
                     $helpme_js_pos = stripos($html, $helpme_js);
                     if ($helpme_js_pos !== false) {
 
+                        $project_id = ilSession::get(self::SESSION_PROJECT_URL_KEY);
+                        self::dic()->ctrl()->setParameterByClass(SupportGUI::class, SupportGUI::GET_PARAM_PROJECT_URL_KEY, $project_id);
+                        ilSession::clear(self::SESSION_PROJECT_URL_KEY);
+
                         $support_button = $this->getSupportButton();
 
                         $screenshot = new ScreenshotsInputGUI();
                         $screenshot->withPlugin(self::plugin());
-
-                        $project_id = ilSession::get(self::SESSION_PROJECT_URL_KEY);
 
                         // Could not use onload code because it not available on all pages
                         $html = substr($html, 0, ($helpme_js_pos + strlen($helpme_js))) . '<script>
@@ -133,10 +134,7 @@ il.HelpMe.init();
      */
     public function getSupportButton() : string
     {
-        $ref_id = self::helpMe()->support()->getRefId();
-        if ($ref_id !== null) {
-            self::dic()->ctrl()->setParameterByClass(SupportGUI::class, Repository::GET_PARAM_REF_ID, $ref_id);
-        }
+        self::dic()->ctrl()->setParameterByClass(SupportGUI::class, Repository::GET_PARAM_REF_ID, self::helpMe()->support()->getRefId());
 
         $buttons = [
             self::dic()->ui()->factory()->link()->standard(self::plugin()->translate("support", SupportGUI::LANG_MODULE), self::dic()->ctrl()
@@ -146,9 +144,9 @@ il.HelpMe.init();
                 ], SupportGUI::CMD_ADD_SUPPORT, "", true))
         ];
 
-        if (self::helpMe()->ticket()->isEnabled()) {
+        if (self::helpMe()->tickets()->isEnabled()) {
             $buttons[] = self::dic()->ui()->factory()->link()->standard(self::plugin()
-                ->translate("show_tickets", SupportGUI::LANG_MODULE), self::helpMe()->ticket()->getLink());
+                ->translate("show_tickets", SupportGUI::LANG_MODULE), self::helpMe()->tickets()->getLink());
 
             $support_button_tpl = self::plugin()->template("helpme_support_button_dropdown.html");
         } else {
@@ -190,7 +188,7 @@ il.HelpMe.init();
 
 
     /**
-     *
+     * @inheritDoc
      */
     public function gotoHook()/*: void*/
     {

@@ -9,10 +9,9 @@ use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Exception\HelpMeException;
 use srag\Plugins\HelpMe\Support\Support;
-use srag\Plugins\HelpMe\Support\SupportField;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
@@ -59,16 +58,16 @@ abstract class Recipient
      */
     protected function sendConfirmationMail()/*: void*/
     {
-        if (Config::getField(Config::KEY_SEND_CONFIRMATION_EMAIL)) {
+        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL)) {
             $mailer = new ilMimeMail();
 
             $mailer->From(self::dic()->mailMimeSenderFactory()->system());
 
             $mailer->To($this->support->getEmail());
 
-            $mailer->Subject($this->getSubject(Config::KEY_SEND_CONFIRMATION_EMAIL));
+            $mailer->Subject($this->getSubject(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
 
-            $mailer->Body($this->getBody(Config::KEY_SEND_CONFIRMATION_EMAIL));
+            $mailer->Body($this->getBody(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
 
             foreach ($this->support->getScreenshots() as $screenshot) {
                 $mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
@@ -93,7 +92,7 @@ abstract class Recipient
      */
     public function getSubject(string $template_name) : string
     {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
         return self::helpMe()->notifications4plugin()->parser()->parseSubject(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
             "support" => $this->support
@@ -112,28 +111,15 @@ abstract class Recipient
      */
     public function getBody(string $template_name) : string
     {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(Config::getField(Config::KEY_RECIPIENT_TEMPLATES)[$template_name]);
-
-        $fields_ = (!empty($this->support->getPageReference()) ? [
-                "page_reference" => $this->support->getPageReference()
-            ] : []) + [
-                "project"         => $this->support->getProject()->getProjectName() . " (" . $this->support->getProject()->getProjectKey() . ")",
-                "issue_type"      => $this->support->getIssueType(),
-                "title"           => $this->support->getTitle(),
-                "name"            => $this->support->getName(),
-                "login"           => $this->support->getLogin(),
-                "email"           => $this->support->getEmail(),
-                "phone"           => $this->support->getPhone(),
-                "priority"        => $this->support->getPriority(),
-                "description"     => $this->support->getDescription(),
-                "reproduce_steps" => $this->support->getReproduceSteps(),
-                "system_infos"    => $this->support->getSystemInfos(),
-                "datetime"        => $this->support->getFormatedTime()
-            ];
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
 
         $fields = [];
-        foreach ($fields_ as $key => $value) {
-            $fields[] = new SupportField($key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
+        foreach ($this->support->getFormattedFieldValues() as $key => $value) {
+            if (is_array($value)) {
+                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $value[0], $value[1], $value[2]);
+            } else {
+                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
+            }
         }
 
         return self::helpMe()->notifications4plugin()->parser()->parseText(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [

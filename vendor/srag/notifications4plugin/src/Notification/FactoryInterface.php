@@ -30,11 +30,11 @@ interface FactoryInterface
 
     /**
      * @param NotificationsCtrl $parent
-     * @param string            $parent_cmd
+     * @param string            $cmd
      *
      * @return NotificationsTableGUI
      */
-    public function newTableInstance(NotificationsCtrl $parent, string $parent_cmd = NotificationsCtrl::CMD_LIST_NOTIFICATIONS) : NotificationsTableGUI;
+    public function newTableInstance(NotificationsCtrl $parent, string $cmd = NotificationsCtrl::CMD_LIST_NOTIFICATIONS) : NotificationsTableGUI;
 
 
     /**

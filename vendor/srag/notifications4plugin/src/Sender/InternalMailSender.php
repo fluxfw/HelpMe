@@ -85,7 +85,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @throws ilMailError
      */
@@ -114,7 +114,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setSubject($subject)
     {
@@ -134,7 +134,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setMessage($message)
     {
@@ -145,7 +145,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setFrom($from)
     {
@@ -156,7 +156,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setTo($to)
     {
@@ -176,7 +176,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setCc($cc)
     {
@@ -196,7 +196,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setBcc($bcc)
     {
@@ -207,7 +207,7 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function reset()
     {

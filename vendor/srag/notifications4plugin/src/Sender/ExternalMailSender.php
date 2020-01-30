@@ -71,7 +71,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function send()/*: void*/
     {
@@ -117,7 +117,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setSubject($subject)
     {
@@ -128,7 +128,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setMessage($message)
     {
@@ -148,7 +148,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setFrom($from)
     {
@@ -168,7 +168,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setTo($to)
     {
@@ -188,7 +188,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setCc($cc)
     {
@@ -208,7 +208,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function setBcc($bcc)
     {
@@ -217,7 +217,7 @@ class ExternalMailSender implements Sender
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function reset()
     {

@@ -73,7 +73,7 @@ final class Factory
         if (empty($json["fields"]["project"]["key"])) {
             throw new HelpMeException("Project key of {$ticket->getTicketKey()} not set");
         }
-        $ticket->setTicketProjectUrlKey(self::helpMe()->project()->getProjectByKey($json["fields"]["project"]["key"])->getProjectUrlKey());
+        $ticket->setTicketProjectUrlKey(self::helpMe()->projects()->getProjectByKey($json["fields"]["project"]["key"])->getProjectUrlKey());
 
         if (empty($json["fields"]["issuetype"]["name"])) {
             throw new HelpMeException("Issue type of {$ticket->getTicketKey()} not set");
@@ -136,5 +136,16 @@ final class Factory
         $table = new TicketsTableGUI($parent, $cmd);
 
         return $table;
+    }
+
+
+    /**
+     * @return FetchJiraTicketsJob
+     */
+    public function newFetchJiraTicketsJobInstance() : FetchJiraTicketsJob
+    {
+        $job = new FetchJiraTicketsJob();
+
+        return $job;
     }
 }

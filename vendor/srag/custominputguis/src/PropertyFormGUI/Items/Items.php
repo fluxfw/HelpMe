@@ -2,18 +2,19 @@
 
 namespace srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items;
 
+use ilDateTime;
 use ilFormPropertyGUI;
 use ilFormSectionHeaderGUI;
 use ILIAS\UI\Component\Input\Field\Input;
 use ilNumberInputGUI;
 use ilPropertyFormGUI;
 use ilRadioOption;
-use ilTemplate;
 use ilUtil;
 use srag\CustomInputGUIs\HelpMe\MultiLineInputGUI\MultiLineInputGUI;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Exception\PropertyFormGUIException;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\TableGUI\TableGUI;
+use srag\CustomInputGUIs\HelpMe\Template\Template;
 use srag\CustomInputGUIs\HelpMe\UIInputComponentWrapperInputGUI\UIInputComponentWrapperInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use TypeError;
@@ -31,6 +32,26 @@ final class Items
 {
 
     use DICTrait;
+    /**
+     * @var bool
+     */
+    protected static $init = false;
+
+
+    /**
+     *
+     */
+    public static function init()/*: void*/
+    {
+        if (self::$init === false) {
+            self::$init = true;
+
+            $dir = __DIR__;
+            $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
+
+            self::dic()->ui()->mainTemplate()->addCss($dir . "/css/input_gui_input.css");
+        }
+    }
 
 
     /**
@@ -160,36 +181,36 @@ final class Items
      */
     public static function renderInputs(array $inputs) : string
     {
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
-        self::dic()->mainTemplate()->addCss($dir . "/css/input_gui_input.css");
+        self::init();
 
-        $input_tpl = new ilTemplate(__DIR__ . "/templates/input_gui_input.html", true, true);
+        $input_tpl = new Template(__DIR__ . "/templates/input_gui_input.html");
 
         $input_tpl->setCurrentBlock("input");
 
         foreach ($inputs as $input) {
-            $input_tpl->setVariable("TITLE", $input->getTitle());
+            $input_tpl->setVariableEscaped("TITLE", $input->getTitle());
 
             if ($input->getRequired()) {
-                $input_tpl->setVariable("REQUIRED", self::output()->getHTML(new ilTemplate(__DIR__ . "/templates/input_gui_input_required.html", true, false)));
+                $input_tpl->setVariable("REQUIRED", self::output()->getHTML(new Template(__DIR__ . "/templates/input_gui_input_required.html", true, false)));
             }
 
-            $input_tpl->setVariable("INPUT", self::output()->getHTML($input));
+            $input_html = self::output()->getHTML($input);
+            $input_html = str_replace('<div class="help-block"></div>', "", $input_html);
+            $input_tpl->setVariable("INPUT", $input_html);
 
             if ($input->getInfo()) {
-                $input_info_tpl = new ilTemplate(__DIR__ . "/templates/input_gui_input_info.html", true, true);
+                $input_info_tpl = new Template(__DIR__ . "/templates/input_gui_input_info.html");
 
-                $input_info_tpl->setVariable("INFO", $input->getInfo());
+                $input_info_tpl->setVariableEscaped("INFO", $input->getInfo());
 
                 $input_tpl->setVariable("INFO", self::output()->getHTML($input_info_tpl));
             }
 
             if ($input->getAlert()) {
-                $input_alert_tpl = new ilTemplate(__DIR__ . "/templates/input_gui_input_alert.html", true, true);
+                $input_alert_tpl = new Template(__DIR__ . "/templates/input_gui_input_alert.html");
                 $input_alert_tpl->setVariable("IMG",
                     self::output()->getHTML(self::dic()->ui()->factory()->image()->standard(ilUtil::getImagePath("icon_alert.svg"), self::dic()->language()->txt("alert"))));
-                $input_alert_tpl->setVariable("TXT", $input->getAlert());
+                $input_alert_tpl->setVariableEscaped("TXT", $input->getAlert());
                 $input_tpl->setVariable("ALERT", self::output()->getHTML($input_alert_tpl));
             }
 
@@ -270,6 +291,10 @@ final class Items
         }
 
         if (method_exists($item, "setDate")) {
+            if (is_string($value)) {
+                $value = new ilDateTime($value, IL_CAL_DATE);
+            }
+
             $item->setDate($value);
 
             return;

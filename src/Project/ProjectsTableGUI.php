@@ -35,7 +35,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @param Project $project
      */
@@ -53,7 +53,7 @@ class ProjectsTableGUI extends TableGUI
                 break;
 
             default:
-                $column = Items::getter($project, $column);
+                $column = htmlspecialchars(Items::getter($project, $column));
                 break;
         }
 
@@ -62,7 +62,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getSelectableColumns2() : array
     {
@@ -91,21 +91,18 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initColumns()/*: void*/
     {
         parent::initColumns();
 
         $this->addColumn($this->txt("actions"));
-
-        $this->setDefaultOrderField("project_name");
-        $this->setDefaultOrderDirection("asc");
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -115,19 +112,22 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initData()/*: void*/
     {
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
 
-        $this->setData(self::helpMe()->project()->getProjects());
+        $this->setDefaultOrderField("project_name");
+        $this->setDefaultOrderDirection("asc");
+
+        $this->setData(self::helpMe()->projects()->getProjects());
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFilterFields()/*: void*/
     {
@@ -136,7 +136,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -145,7 +145,7 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {
@@ -165,9 +165,9 @@ class ProjectsTableGUI extends TableGUI
         parent::fillRow($project);
 
         $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
-            self::dic()->ui()->factory()->button()->shy($this->txt("edit_project"), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard($this->txt("edit_project"), self::dic()->ctrl()
                 ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_EDIT_PROJECT)),
-            self::dic()->ui()->factory()->button()->shy($this->txt("remove_project"), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard($this->txt("remove_project"), self::dic()->ctrl()
                 ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
         ])->withLabel($this->txt("actions"))));
     }

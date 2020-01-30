@@ -51,7 +51,7 @@ final class LibraryLanguageInstaller implements Pluginable
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getPlugin() : PluginInterface
     {
@@ -60,7 +60,7 @@ final class LibraryLanguageInstaller implements Pluginable
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function withPlugin(PluginInterface $plugin) : self
     {

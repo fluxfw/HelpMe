@@ -31,8 +31,8 @@ So you can either use a for loop to fill the notification body dynamic like:
 ```html
 {% for field in fields %}
 <p>
-	<h2>{{ field.getLabel }}</h2>
-	{{ field.getValue }}
+	<h2>{{ field.label }}</h2>
+	{{ field.value }}
 </p>
 <br>
 {% endfor %}
@@ -40,9 +40,9 @@ So you can either use a for loop to fill the notification body dynamic like:
 
 or fill only specific support fields like:
 ```html
-<h1>{{ support.getTitle }}</h1>
-<p>{{ support.getDescription }}</p>
-<small>{{ support.getPageReference }}</small>
+<h1>{{ support.title }}</h1>
+<p>{{ support.description }}</p>
+<small>{{ support.page_reference }}</small>
 ```
 
 or both mixed like:
@@ -50,13 +50,13 @@ or both mixed like:
 {% for field in fields %}
 {% if field.getKey != "page_reference" %}
 <p>
-	<h2>{{ field.getLabel }}</h2>
-	{{ field.getValue }}
+	<h2>{{ field.label }}</h2>
+	{{ field.value }}
 </p>
 <br>
 {% endif %}
 {% endfor %}
-<small>{{ support.getPageReference }}</small>
+<small>{{ support.page_reference }}</small>
 ```
 
 Note: For safety reasons Jira API does not supports HTML and will escape HTML

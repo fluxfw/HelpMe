@@ -6,7 +6,6 @@ use ilCheckboxInputGUI;
 use ilEMailInputGUI;
 use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
-use ilMultiSelectInputGUI;
 use ilNumberInputGUI;
 use ilPasswordInputGUI;
 use ilRadioGroupInputGUI;
@@ -14,12 +13,20 @@ use ilRadioOption;
 use ilSelectInputGUI;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\ConfigPropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
 use srag\Plugins\HelpMe\Support\Recipient\Recipient;
+use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use srag\RequiredData\HelpMe\Field\AbstractField;
+use srag\RequiredData\HelpMe\Field\Email\EmailField;
+use srag\RequiredData\HelpMe\Field\Radio\RadioField;
+use srag\RequiredData\HelpMe\Field\SearchSelect\SearchSelectField;
+use srag\RequiredData\HelpMe\Field\Select\SelectField;
+use srag\RequiredData\HelpMe\Field\Text\TextField;
 
 /**
  * Class ConfigFormGUI
@@ -28,12 +35,46 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ConfigFormGUI extends ConfigPropertyFormGUI
+class ConfigFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    const CONFIG_CLASS_NAME = Config::class;
+    const KEY_EMAIL_FIELD = "email_field";
+    const KEY_INFO = "info";
+    const KEY_JIRA_ACCESS_TOKEN = "jira_access_token";
+    const KEY_JIRA_AUTHORIZATION = "jira_authorization";
+    const KEY_JIRA_CONSUMER_KEY = "jira_consumer_key";
+    const KEY_JIRA_CREATE_SERVICE_DESK_REQUEST = "jira_create_service_desk_request";
+    const KEY_JIRA_DOMAIN = "jira_domain";
+    const KEY_JIRA_PASSWORD = "jira_password";
+    const KEY_JIRA_PRIORITY_FIELD = "jira_priority_field";
+    const KEY_JIRA_PRIVATE_KEY = "jira_private_key";
+    const KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER = "jira_service_desk_create_as_customer";
+    const KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS = "jira_service_desk_create_new_customers";
+    const KEY_JIRA_SERVICE_DESK_ID = "jira_service_desk_id";
+    const KEY_JIRA_SERVICE_DESK_LINK_TYPE = "jira_service_desk_link_type";
+    const KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID = "jira_service_desk_request_type_id";
+    const KEY_JIRA_USERNAME = "jira_username";
+    const KEY_NAME_FIELD = "name_field";
+    /**
+     * @var string
+     *
+     * @deprecated
+     */
+    const KEY_PAGE_REFERENCE = "page_reference";
+    /**
+     * @var string
+     *
+     * @deprecated
+     */
+    const KEY_PRIORITIES = "priorities";
+    const KEY_RECIPIENT = "recipient";
+    const KEY_RECIPIENT_TEMPLATES = "recipient_templates";
+    const KEY_ROLES = "roles";
+    const KEY_SEND_CONFIRMATION_EMAIL = "send_confirmation_email";
+    const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
+    const KEY_USAGE_HIDDEN = "usage_hidden";
     const LANG_MODULE = ilHelpMeConfigGUI::LANG_MODULE;
 
 
@@ -49,27 +90,27 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getValue(/*string*/ $key)
     {
         switch (true) {
-            case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
-                $template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
+            case (strpos($key, self::KEY_RECIPIENT_TEMPLATES . "_") === 0):
+                $template_name = substr($key, strlen(self::KEY_RECIPIENT_TEMPLATES) + 1);
 
-                return parent::getValue(Config::KEY_RECIPIENT_TEMPLATES)[$template_name];
+                return self::helpMe()->config()->getValue(self::KEY_RECIPIENT_TEMPLATES)[$template_name];
 
-            case ($key === Config::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
+            case ($key === self::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
                 return true;
 
             default:
-                return parent::getValue($key);
+                return self::helpMe()->config()->getValue($key);
         }
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -78,19 +119,38 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFields()/*: void*/
     {
         $this->fields = [
-            Config::KEY_RECIPIENT                                   => [
+            self::KEY_NAME_FIELD                                  => [
+                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
+                self::PROPERTY_REQUIRED => false,
+                self::PROPERTY_OPTIONS  => ["" => ""] + array_map(function (AbstractField $field) : string {
+                        return $field->getLabel();
+                    }, self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [
+                        EmailField::getType(),
+                        TextField::getType()
+                    ]))
+            ],
+            self::KEY_EMAIL_FIELD                                 => [
+                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
+                self::PROPERTY_REQUIRED => false,
+                self::PROPERTY_OPTIONS  => ["" => ""] + array_map(function (AbstractField $field) : string {
+                        return $field->getLabel();
+                    }, self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [
+                        EmailField::getType()
+                    ]))
+            ],
+            self::KEY_RECIPIENT                                   => [
                 self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
                 self::PROPERTY_SUBITEMS => [
                     Recipient::SEND_EMAIL         => [
                         self::PROPERTY_CLASS    => ilRadioOption::class,
                         self::PROPERTY_SUBITEMS => [
-                                Config::KEY_SEND_EMAIL_ADDRESS => [
+                                self::KEY_SEND_EMAIL_ADDRESS => [
                                     self::PROPERTY_CLASS    => ilEMailInputGUI::class,
                                     self::PROPERTY_REQUIRED => true
                                 ]
@@ -99,22 +159,22 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
                     Recipient::CREATE_JIRA_TICKET => [
                         self::PROPERTY_CLASS    => ilRadioOption::class,
                         self::PROPERTY_SUBITEMS => [
-                                Config::KEY_JIRA_DOMAIN        => [
+                                self::KEY_JIRA_DOMAIN         => [
                                     self::PROPERTY_CLASS    => ilTextInputGUI::class,
                                     self::PROPERTY_REQUIRED => true
                                 ],
-                                Config::KEY_JIRA_AUTHORIZATION => [
+                                self::KEY_JIRA_AUTHORIZATION  => [
                                     self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
                                     self::PROPERTY_REQUIRED => true,
                                     self::PROPERTY_SUBITEMS => [
                                         JiraCurl::AUTHORIZATION_USERNAMEPASSWORD => [
                                             self::PROPERTY_CLASS    => ilRadioOption::class,
                                             self::PROPERTY_SUBITEMS => [
-                                                Config::KEY_JIRA_USERNAME => [
+                                                self::KEY_JIRA_USERNAME => [
                                                     self::PROPERTY_CLASS    => ilTextInputGUI::class,
                                                     self::PROPERTY_REQUIRED => true
                                                 ],
-                                                Config::KEY_JIRA_PASSWORD => [
+                                                self::KEY_JIRA_PASSWORD => [
                                                     self::PROPERTY_CLASS    => ilPasswordInputGUI::class,
                                                     self::PROPERTY_REQUIRED => true,
                                                     "setRetype"             => false
@@ -124,43 +184,53 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
                                         JiraCurl::AUTHORIZATION_OAUTH            => [
                                             self::PROPERTY_CLASS    => ilRadioOption::class,
                                             self::PROPERTY_SUBITEMS => [
-                                                Config::KEY_JIRA_CONSUMER_KEY => [
+                                                self::KEY_JIRA_CONSUMER_KEY => [
                                                     self::PROPERTY_CLASS    => ilTextInputGUI::class,
                                                     self::PROPERTY_REQUIRED => true
                                                 ],
-                                                Config::KEY_JIRA_PRIVATE_KEY  => [
+                                                self::KEY_JIRA_PRIVATE_KEY  => [
                                                     self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
                                                     self::PROPERTY_REQUIRED => true
                                                 ],
-                                                Config::KEY_JIRA_ACCESS_TOKEN => [
+                                                self::KEY_JIRA_ACCESS_TOKEN => [
                                                     self::PROPERTY_CLASS    => ilTextInputGUI::class,
                                                     self::PROPERTY_REQUIRED => true
                                                 ]
                                             ]
                                         ]
                                     ]
+                                ],
+                                self::KEY_JIRA_PRIORITY_FIELD => [
+                                    self::PROPERTY_CLASS   => ilSelectInputGUI::class,
+                                    self::PROPERTY_OPTIONS => ["" => ""] + array_map(function (AbstractField $field) : string {
+                                            return $field->getLabel();
+                                        }, self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [
+                                            RadioField::getType(),
+                                            SearchSelectField::getType(),
+                                            SelectField::getType()
+                                        ]))
                                 ]
                             ] + $this->getTemplateSelection(Recipient::CREATE_JIRA_TICKET) + [
-                                Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST => [
+                                self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST => [
                                     self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
                                     self::PROPERTY_SUBITEMS => [
-                                        Config::KEY_JIRA_SERVICE_DESK_ID                 => [
+                                        self::KEY_JIRA_SERVICE_DESK_ID                 => [
                                             self::PROPERTY_CLASS    => ilNumberInputGUI::class,
                                             self::PROPERTY_REQUIRED => true
                                         ],
-                                        Config::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID    => [
+                                        self::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID    => [
                                             self::PROPERTY_CLASS    => ilNumberInputGUI::class,
                                             self::PROPERTY_REQUIRED => true
                                         ],
-                                        Config::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER => [
+                                        self::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER => [
                                             self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
                                             self::PROPERTY_SUBITEMS => [
-                                                Config::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS => [
+                                                self::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS => [
                                                     self::PROPERTY_CLASS => ilCheckboxInputGUI::class
                                                 ]
                                             ]
                                         ],
-                                        Config::KEY_JIRA_SERVICE_DESK_LINK_TYPE          => [
+                                        self::KEY_JIRA_SERVICE_DESK_LINK_TYPE          => [
                                             self::PROPERTY_CLASS    => ilTextInputGUI::class,
                                             self::PROPERTY_REQUIRED => true
                                         ]
@@ -170,39 +240,30 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
                     ]
                 ]
             ],
-            Config::KEY_SEND_CONFIRMATION_EMAIL                     => [
+            self::KEY_SEND_CONFIRMATION_EMAIL                     => [
                 self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
-                self::PROPERTY_SUBITEMS => $this->getTemplateSelection(Config::KEY_SEND_CONFIRMATION_EMAIL),
-                self::PROPERTY_NOT_ADD  => Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)
+                self::PROPERTY_SUBITEMS => $this->getTemplateSelection(self::KEY_SEND_CONFIRMATION_EMAIL),
+                self::PROPERTY_NOT_ADD  => self::helpMe()->config()->getValue(self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)
             ],
-            Config::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled" => [
+            self::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled" => [
                 self::PROPERTY_CLASS    => ilCheckboxInputGUI::class,
                 self::PROPERTY_DISABLED => true,
-                self::PROPERTY_NOT_ADD  => (!Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)),
-                "setTitle"              => $this->txt(Config::KEY_SEND_CONFIRMATION_EMAIL),
+                self::PROPERTY_NOT_ADD  => (!self::helpMe()->config()->getValue(self::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)),
+                "setTitle"              => $this->txt(self::KEY_SEND_CONFIRMATION_EMAIL),
                 "setInfo"               => self::plugin()->translate("always_enabled", self::LANG_MODULE, [
                     implode(" > ", [$this->txt("recipient"), $this->txt("recipient_create_jira_ticket"), $this->txt("jira_create_service_desk_request")])
                 ])
             ],
-            Config::KEY_PRIORITIES                                  => [
-                self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_MULTI    => true
-            ],
-            Config::KEY_INFO                                        => [
+            self::KEY_INFO                                        => [
                 self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
                 "setUseRte"             => true,
                 "setRteTagSet"          => "extended"
             ],
-            Config::KEY_ROLES                                       => [
-                self::PROPERTY_CLASS    => ilMultiSelectInputGUI::class,
+            self::KEY_ROLES                                       => [
+                self::PROPERTY_CLASS    => MultiSelectSearchNewInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_OPTIONS  => self::helpMe()->ilias()->roles()->getAllRoles(),
-                "enableSelectAll"       => true
-            ],
-            Config::KEY_PAGE_REFERENCE                              => [
-                self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+                self::PROPERTY_OPTIONS  => self::helpMe()->ilias()->roles()->getAllRoles()
             ]
         ];
     }
@@ -218,7 +279,7 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {
@@ -227,40 +288,31 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function storeValue(/*string*/ $key, $value)/*: void*/
     {
         switch (true) {
-            case (strpos($key, Config::KEY_RECIPIENT_TEMPLATES . "_") === 0):
-                $template_name = substr($key, strlen(Config::KEY_RECIPIENT_TEMPLATES) + 1);
+            case (strpos($key, self::KEY_RECIPIENT_TEMPLATES . "_") === 0):
+                $template_name = substr($key, strlen(self::KEY_RECIPIENT_TEMPLATES) + 1);
 
-                $template_names = $this->getValue(Config::KEY_RECIPIENT_TEMPLATES);
+                $template_names = $this->getValue(self::KEY_RECIPIENT_TEMPLATES);
 
                 $template_names[$template_name] = $value;
 
-                $key = Config::KEY_RECIPIENT_TEMPLATES;
+                $key = self::KEY_RECIPIENT_TEMPLATES;
                 $value = $template_names;
+
+                self::helpMe()->config()->setValue($key, $value);
                 break;
 
-            case ($key === Config::KEY_ROLES):
-                if ($value[0] === "") {
-                    array_shift($value);
-                }
-
-                $value = array_map(function (string $role_id) : int {
-                    return intval($role_id);
-                }, $value);
+            case ($key === self::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
                 break;
-
-            case ($key === Config::KEY_SEND_CONFIRMATION_EMAIL . "_always_enabled"):
-                return;
 
             default:
+                self::helpMe()->config()->setValue($key, $value);
                 break;
         }
-
-        parent::storeValue($key, $value);
     }
 
 
@@ -272,7 +324,7 @@ class ConfigFormGUI extends ConfigPropertyFormGUI
     protected function getTemplateSelection(string $template_name) : array
     {
         return [
-            Config::KEY_RECIPIENT_TEMPLATES . "_" . $template_name => [
+            self::KEY_RECIPIENT_TEMPLATES . "_" . $template_name => [
                 self::PROPERTY_CLASS    => ilSelectInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
                 self::PROPERTY_OPTIONS  => ["" => ""] + array_combine(array_map(function (NotificationInterface $notification) : string {

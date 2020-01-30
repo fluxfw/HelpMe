@@ -1,5 +1,10 @@
 # Changelog
 
+## [6.0.0]
+- Make fields full configurable
+- System infos are now the raw user agent
+- May fix reopen again on each page if support link was open
+
 ## [5.0.1]
 - Fix cron if no tickets
 

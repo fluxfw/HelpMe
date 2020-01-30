@@ -34,7 +34,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @param NotificationInterface $notification
      */
@@ -42,7 +42,7 @@ class NotificationsTableGUI extends TableGUI
     {
         switch ($column) {
             default:
-                $value = Items::getter($notification, $column);
+                $value = htmlspecialchars(Items::getter($notification, $column));
                 break;
         }
 
@@ -51,7 +51,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getSelectableColumns2() : array
     {
@@ -78,7 +78,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initColumns()/*: void*/
     {
@@ -89,7 +89,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -99,7 +99,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initData()/*: void*/
     {
@@ -120,7 +120,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFilterFields()/*: void*/
     {
@@ -129,7 +129,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -138,7 +138,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {
@@ -147,7 +147,7 @@ class NotificationsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @param NotificationInterface $notification
      */
@@ -158,18 +158,18 @@ class NotificationsTableGUI extends TableGUI
         parent::fillRow($notification);
 
         $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
-            self::dic()->ui()->factory()->button()->shy($this->txt("edit"), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard($this->txt("edit"), self::dic()->ctrl()
                 ->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_EDIT_NOTIFICATION)),
-            self::dic()->ui()->factory()->button()->shy($this->txt("duplicate"), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard($this->txt("duplicate"), self::dic()->ctrl()
                 ->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_DUPLICATE_NOTIFICATION)),
-            self::dic()->ui()->factory()->button()->shy($this->txt("delete"), self::dic()->ctrl()
+            self::dic()->ui()->factory()->link()->standard($this->txt("delete"), self::dic()->ctrl()
                 ->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_DELETE_NOTIFICATION_CONFIRM))
         ])->withLabel($this->txt("actions"))));
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function txt(/*string*/ $key,/*?string*/ $default = null) : string
     {

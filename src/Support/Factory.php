@@ -59,6 +59,22 @@ final class Factory
 
 
     /**
+     * @param string $key
+     * @param string $name
+     * @param string $label
+     * @param string $value
+     *
+     * @return SupportField
+     */
+    public function newFieldInstance(string $key, string $name, string $label, string $value) : SupportField
+    {
+        $support_field = new SupportField($key, $name, $label, $value);
+
+        return $support_field;
+    }
+
+
+    /**
      * @param SupportGUI $parent
      * @param Support    $support
      *

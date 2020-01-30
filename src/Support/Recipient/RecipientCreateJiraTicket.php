@@ -8,7 +8,7 @@ use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
-use srag\Plugins\HelpMe\Config\Config;
+use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Support\Support;
 
 /**
@@ -59,16 +59,16 @@ class RecipientCreateJiraTicket extends Recipient
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
      */
     public function sendSupportToRecipient()/*: void*/
     {
-        if (Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
-            if (Config::getField(Config::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER)) {
-                if (Config::getField(Config::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS)) {
+        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+            if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER)) {
+                if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_CREATE_NEW_CUSTOMERS)) {
                     $this->service_desk_customer = $this->jira_curl->ensureServiceDeskCustomer($this->support->getEmail(), $this->support->getName());
                 } else {
                     $this->service_desk_customer = $this->support->getEmail();
@@ -84,16 +84,16 @@ class RecipientCreateJiraTicket extends Recipient
 
         $this->addScreenshots();
 
-        if (Config::getField(Config::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
+        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
             $this->linkServiceDeskAndProjectTicket();
         } else {
             $this->sendConfirmationMail();
         }
 
-        if (self::helpMe()->ticket()->isEnabled()) {
-            $ticket = self::helpMe()->ticket()->factory()->fromSupport($this->support, $this->ticket_key, $this->ticket_title);
+        if (self::helpMe()->tickets()->isEnabled()) {
+            $ticket = self::helpMe()->tickets()->factory()->fromSupport($this->support, $this->ticket_key, $this->ticket_title);
 
-            self::helpMe()->ticket()->storeTicket($ticket);
+            self::helpMe()->tickets()->storeTicket($ticket);
         }
     }
 
@@ -109,7 +109,8 @@ class RecipientCreateJiraTicket extends Recipient
      */
     protected function createServiceDeskRequest()/*:void*/
     {
-        $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(Config::getField(Config::KEY_JIRA_SERVICE_DESK_ID), Config::getField(Config::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
+        $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_ID),
+            self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
             $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->service_desk_customer);
     }
 
@@ -122,7 +123,8 @@ class RecipientCreateJiraTicket extends Recipient
      */
     protected function addScreenshotsToServiceDeskRequest()/*: void*/
     {
-        $this->jira_curl->addAttachmentsToServiceDeskRequest(Config::getField(Config::KEY_JIRA_SERVICE_DESK_ID), $this->service_desk_ticket_key, $this->support->getScreenshots());
+        $this->jira_curl->addAttachmentsToServiceDeskRequest(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_ID), $this->service_desk_ticket_key,
+            $this->support->getScreenshots());
     }
 
 
@@ -166,6 +168,6 @@ class RecipientCreateJiraTicket extends Recipient
      */
     protected function linkServiceDeskAndProjectTicket()/*:void*/
     {
-        $this->jira_curl->linkTickets($this->service_desk_ticket_key, $this->ticket_key, Config::getField(Config::KEY_JIRA_SERVICE_DESK_LINK_TYPE));
+        $this->jira_curl->linkTickets($this->service_desk_ticket_key, $this->ticket_key, self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_LINK_TYPE));
     }
 }

@@ -1,5 +1,78 @@
 # Changelog
 
+## [0.31.5]
+- Fix
+
+## [0.31.4]
+- `ScreenshotsInputGUI`: fix required alert message
+
+## [0.31.3]
+- Fix
+
+## [0.31.2]
+- Fix
+
+## [0.31.1]
+- Fix
+
+## [0.31.0]
+- `Template::setVariableEscaped`
+
+## [0.30.6]
+- Fix
+
+## [0.30.5]
+- Fix
+
+## [0.30.4]
+- Fix
+
+## [0.30.3]
+- Fix
+
+## [0.30.2]
+- Fix
+
+## [0.30.1]
+- Fix
+
+## [0.30.0]
+- `MultiSelectSearchNewInputGUI`
+- Imrpove `MultiLineNewInputGUI`
+
+## [0.29.1]
+- Fix
+
+## [0.29.0]
+- `MultiLineNewInputGUI`
+    - Move add button to right
+    - Show sort buttons only if it's possible to move
+- `MultiSelectSearchInputGUI`
+    - Add limit count (default `null` which unlimited, like before)
+
+## [0.28.5]
+- Deprecate `ConfigPropertyFormGUI` and `ObjectPropertyFormGUI`
+
+## [0.28.4]
+- Fix `ilCheckboxInputGUI` in `MultiLineNewInputGUI`
+
+## [0.28.3]
+- Revert 'Fix `fields` in `MultiLineNewInputGUI`'
+
+## [0.28.2]
+- Fix `fields` in `MultiLineNewInputGUI`
+
+## [0.28.1]
+- Fix `ilCheckboxInputGUI` in `MultiLineNewInputGUI`
+
+## [0.28.0]
+- Improve `MultiLineNewInputGUI`
+    - Fix input fields with show label once
+    - Supports `ilDateTimeInputGUI`
+    - Hide remove button if only one line
+    - Allow to remove all elements if not required
+    - Fix empty info block in `ilNumberInputGUI`
+
 ## [0.27.3]
 - Optimized `MultiSelectSearchInputGUI` ajax
 

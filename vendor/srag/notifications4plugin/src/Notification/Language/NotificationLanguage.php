@@ -43,24 +43,24 @@ class NotificationLanguage extends ActiveRecord
 
 
     /**
-     * @return string
+     * @inheritDoc
      *
      * @deprecated
      */
-    public function getConnectorContainerName()
+    public function getConnectorContainerName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
     /**
-     * @return string
+     * @inheritDoc
      *
      * @deprecated
      */
-    public static function returnDbTableName()
+    public static function returnDbTableName() : string
     {
-        return static::getTableName();
+        return self::getTableName();
     }
 
 
@@ -157,7 +157,7 @@ class NotificationLanguage extends ActiveRecord
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */
@@ -168,7 +168,7 @@ class NotificationLanguage extends ActiveRecord
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      *
      * @deprecated
      */

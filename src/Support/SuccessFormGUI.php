@@ -13,7 +13,7 @@ class SuccessFormGUI extends SupportFormGUI
 {
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getValue(/*string*/
         $key
@@ -24,7 +24,7 @@ class SuccessFormGUI extends SupportFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -35,7 +35,7 @@ class SuccessFormGUI extends SupportFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFields()/*: void*/
     {
@@ -44,7 +44,7 @@ class SuccessFormGUI extends SupportFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function storeForm() : bool
     {
@@ -53,7 +53,7 @@ class SuccessFormGUI extends SupportFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function storeValue(/*string*/
         $key,

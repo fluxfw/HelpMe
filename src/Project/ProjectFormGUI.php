@@ -6,7 +6,8 @@ use ilCheckboxInputGUI;
 use ilHelpMePlugin;
 use ilTextInputGUI;
 use srag\CustomInputGUIs\HelpMe\MultiLineNewInputGUI\MultiLineNewInputGUI;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\ObjectPropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -16,7 +17,7 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ProjectFormGUI extends ObjectPropertyFormGUI
+class ProjectFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
@@ -25,39 +26,41 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
     /**
      * @var Project
      */
-    protected $object;
+    protected $project;
 
 
     /**
      * ProjectFormGUI constructor
      *
      * @param ProjectConfigGUI $parent
-     * @param Project          $object
+     * @param Project          $project
      */
-    public function __construct(ProjectConfigGUI $parent, Project $object)
+    public function __construct(ProjectConfigGUI $parent, Project $project)
     {
-        parent::__construct($parent, $object);
+        $this->project = $project;
+
+        parent::__construct($parent);
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getValue(/*string*/ $key)
     {
         switch ($key) {
             default:
-                return parent::getValue($key);
+                return Items::getter($this->project, $key);
         }
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
-        if (!empty($this->object->getProjectId())) {
+        if (!empty($this->project->getProjectId())) {
             $this->addCommandButton(ProjectConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
         } else {
             $this->addCommandButton(ProjectConfigGUI::CMD_CREATE_PROJECT, $this->txt("add"));
@@ -68,7 +71,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFields()/*: void*/
     {
@@ -116,7 +119,7 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -125,27 +128,42 @@ class ProjectFormGUI extends ObjectPropertyFormGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {
-        $this->setTitle($this->txt(!empty($this->object->getProjectId()) ? "edit_project" : "add_project"));
+        $this->setTitle($this->txt(!empty($this->project->getProjectId()) ? "edit_project" : "add_project"));
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function storeValue(/*string*/ $key, $value)/*: void*/
     {
         switch ($key) {
             case "project_issue_types":
-                parent::storeValue($key, array_values($value));
+                Items::setter($this->project, $key, array_values($value));
                 break;
 
             default:
-                parent::storeValue($key, $value);
+                Items::setter($this->project, $key, $value);
                 break;
         }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function storeForm() : bool
+    {
+        if (!parent::storeForm()) {
+            return false;
+        }
+
+        self::helpMe()->projects()->storeProject($this->project);
+
+        return true;
     }
 }

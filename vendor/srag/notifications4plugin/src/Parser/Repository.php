@@ -57,7 +57,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function addParser(Parser $parser)/*:void*/
     {
@@ -77,7 +77,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function factory() : FactoryInterface
     {
@@ -86,7 +86,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getPossibleParsers() : array
     {
@@ -95,7 +95,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getParserByClass(string $parser_class) : Parser
     {
@@ -108,7 +108,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getParserForNotification(NotificationInterface $notification) : Parser
     {
@@ -126,7 +126,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function parseSubject(Parser $parser, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null) : string
     {
@@ -135,7 +135,7 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function parseText(Parser $parser, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null) : string
     {

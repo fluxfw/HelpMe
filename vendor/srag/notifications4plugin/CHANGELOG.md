@@ -1,5 +1,26 @@
 # Changelog
 
+## [5.1.7]
+- Show parser links dynamic
+
+## [5.1.6]
+- Fix
+
+## [5.1.5]
+- Fix
+
+## [5.1.4]
+- Fix
+
+## [5.1.3]
+- Improve
+
+## [5.1.2]
+- Fix dropdown usability
+
+## [5.1.1]
+- Fix
+
 ## [5.1.0]
 - Improvments
 

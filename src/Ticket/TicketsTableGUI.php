@@ -37,7 +37,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getColumnValue(/*string*/
         $column, /*array*/
@@ -46,11 +46,11 @@ class TicketsTableGUI extends TableGUI
     ) : string {
         switch ($column) {
             case "ticket_project_url_key":
-                $column = $row["ticket_project"]->getProjectName();
+                $column = htmlspecialchars($row["ticket_project"]->getProjectName());
                 break;
 
             default:
-                $column = $row[$column];
+                $column = htmlspecialchars($row[$column]);
                 break;
         }
 
@@ -59,7 +59,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getSelectableColumns2() : array
     {
@@ -83,7 +83,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initCommands()/*: void*/
     {
@@ -92,7 +92,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initData()/*: void*/
     {
@@ -113,18 +113,18 @@ class TicketsTableGUI extends TableGUI
         $ticket_issue_type = $filter["ticket_issue_type"];
         $ticket_priority = $filter["ticket_priority"];
 
-        $this->setData(self::helpMe()->ticket()
+        $this->setData(self::helpMe()->tickets()
             ->getTickets($this->getOrderField(), $this->getOrderDirection(), intval($this->getOffset()), intval($this->getLimit()), $ticket_title, $ticket_project_url_key,
                 $ticket_issue_type, $ticket_priority));
 
-        $this->setMaxCount(self::helpMe()->ticket()->getTicketsCount($ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority));
+        $this->setMaxCount(self::helpMe()->tickets()->getTicketsCount($ticket_title, $ticket_project_url_key, $ticket_issue_type, $ticket_priority));
     }
     /**
      *
      */
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initFilterFields()/*: void*/
     {
@@ -134,22 +134,22 @@ class TicketsTableGUI extends TableGUI
             ],
             "ticket_project_url_key" => [
                 PropertyFormGUI::PROPERTY_CLASS   => ilSelectInputGUI::class,
-                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->project()->getProjectsOptions(true)
+                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->projects()->getProjectsOptions(true)
             ],
             "ticket_issue_type"      => [
                 PropertyFormGUI::PROPERTY_CLASS   => ilSelectInputGUI::class,
-                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->ticket()->getAvailableIssueTypes()
+                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->tickets()->getAvailableIssueTypes()
             ],
             "ticket_priority"        => [
                 PropertyFormGUI::PROPERTY_CLASS   => ilSelectInputGUI::class,
-                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->ticket()->getAvailablePriorities()
+                PropertyFormGUI::PROPERTY_OPTIONS => ["" => ""] + self::helpMe()->tickets()->getAvailablePriorities()
             ]
         ];
     }
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initId()/*: void*/
     {
@@ -158,7 +158,7 @@ class TicketsTableGUI extends TableGUI
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function initTitle()/*: void*/
     {

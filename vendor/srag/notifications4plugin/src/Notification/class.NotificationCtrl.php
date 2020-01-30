@@ -133,8 +133,6 @@ class NotificationCtrl
             return;
         }
 
-        $this->notification = $form->getObject();
-
         self::dic()->ctrl()->setParameter($this, self::GET_PARAM_NOTIFICATION_ID, $this->notification->getId());
 
         ilUtil::sendSuccess(self::notifications4plugin()->getPlugin()->translate("added_notification", NotificationsCtrl::LANG_MODULE, [$this->notification->getTitle()]), true);

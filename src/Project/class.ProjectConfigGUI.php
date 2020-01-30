@@ -58,7 +58,7 @@ class ProjectConfigGUI
      */
     public function executeCommand()/*: void*/
     {
-        $this->project = self::helpMe()->project()->getProjectById(intval(filter_input(INPUT_GET, self::GET_PARAM_PROJECT_ID)));
+        $this->project = self::helpMe()->projects()->getProjectById(intval(filter_input(INPUT_GET, self::GET_PARAM_PROJECT_ID)));
 
         self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_PROJECT_ID);
 
@@ -110,7 +110,7 @@ class ProjectConfigGUI
                 self::dic()->locator()->addItem($this->project->getTitle(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_PROJECT));
             }
         } else {
-            $this->project = self::helpMe()->project()->factory()->newInstance();
+            $this->project = self::helpMe()->projects()->factory()->newInstance();
 
             self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("add_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
                 ->getLinkTarget($this, self::CMD_ADD_PROJECT));
@@ -132,7 +132,7 @@ class ProjectConfigGUI
      */
     protected function addProject()/*: void*/
     {
-        $form = self::helpMe()->project()->factory()->newFormInstance($this, $this->project);
+        $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
         self::output()->output($form);
     }
@@ -143,7 +143,7 @@ class ProjectConfigGUI
      */
     protected function createProject()/*: void*/
     {
-        $form = self::helpMe()->project()->factory()->newFormInstance($this, $this->project);
+        $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
         if (!$form->storeForm()) {
             self::output()->output($form);
@@ -153,7 +153,7 @@ class ProjectConfigGUI
 
         self::dic()->ctrl()->setParameter($this, self::GET_PARAM_PROJECT_ID, $this->project->getProjectId());
 
-        ilUtil::sendSuccess(self::plugin()->translate("added_project", ProjectsConfigGUI::LANG_MODULE, [$form->getObject()->getProjectName()]), true);
+        ilUtil::sendSuccess(self::plugin()->translate("added_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_EDIT_PROJECT);
     }
@@ -166,7 +166,7 @@ class ProjectConfigGUI
     {
         self::dic()->tabs()->activateTab(self::TAB_EDIT_PROJECT);
 
-        $form = self::helpMe()->project()->factory()->newFormInstance($this, $this->project);
+        $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
         self::output()->output($form);
     }
@@ -179,7 +179,7 @@ class ProjectConfigGUI
     {
         self::dic()->tabs()->activateTab(self::TAB_EDIT_PROJECT);
 
-        $form = self::helpMe()->project()->factory()->newFormInstance($this, $this->project);
+        $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
         if (!$form->storeForm()) {
             self::output()->output($form);
@@ -187,7 +187,7 @@ class ProjectConfigGUI
             return;
         }
 
-        ilUtil::sendSuccess(self::plugin()->translate("saved_project", ProjectsConfigGUI::LANG_MODULE, [$form->getObject()->getProjectName()]), true);
+        ilUtil::sendSuccess(self::plugin()->translate("saved_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_EDIT_PROJECT);
     }
@@ -218,7 +218,7 @@ class ProjectConfigGUI
      */
     protected function removeProject()/*: void*/
     {
-        self::helpMe()->project()->deleteProject($this->project);
+        self::helpMe()->projects()->deleteProject($this->project);
 
         ilUtil::sendSuccess(self::plugin()->translate("removed_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
 

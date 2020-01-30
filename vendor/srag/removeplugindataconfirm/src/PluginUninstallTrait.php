@@ -20,7 +20,7 @@ trait PluginUninstallTrait
      *
      * @internal
      */
-    protected final function beforeUninstall()/*: bool*/
+    protected final function beforeUninstall() : bool
     {
         return $this->pluginUninstall();
     }
