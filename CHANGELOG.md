@@ -1,7 +1,8 @@
 # Changelog
 
-## [x]
-- Custom fields
+## [6.0.0]
+- Make fields full configurable
+- System infos are now the raw user agent
 
 ## [5.0.1]
 - Fix cron if no tickets
