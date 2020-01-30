@@ -283,11 +283,11 @@ final class Repository
             $notification->setTitle("Mail");
 
             foreach (["de", "en"] as $lang) {
-                $notification->setSubject("{{ support.getTitle }}", $lang);
+                $notification->setSubject("{{ support.title }}", $lang);
                 $notification->setText("{% for field in fields %}
 <p>
-	<h2>{{ field.getLabel }}</h2>
-	{{ field.getValue }}
+	<h2>{{ field.label }}</h2>
+	{{ field.value }}
 </p>
 <br>
 {% endfor %}", $lang);
@@ -308,11 +308,11 @@ final class Repository
             $notification->setName($templates[RecipientCreateJiraTicket::CREATE_JIRA_TICKET] = RecipientCreateJiraTicket::CREATE_JIRA_TICKET);
             $notification->setTitle("Jira");
 
-            foreach (["de", "en"] as $lang) {
-                $notification->setSubject("{{ support.getTitle }}", $lang);
+            foreach (["default", "de", "en"] as $lang) {
+                $notification->setSubject("{{ support.title }}", $lang);
                 $notification->setText("{% for field in fields %}
-{{ field.getLabel }}:
-{{ field.getValue }}
+{{ field.label }}:
+{{ field.value }}
 
 
 {% endfor %}", $lang);
@@ -333,14 +333,14 @@ final class Repository
             $notification->setName($templates[ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL] = ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL);
             $notification->setTitle("Confirm Mail");
 
-            foreach (["de", "en"] as $lang) {
+            foreach (["default", "de", "en"] as $lang) {
                 $notification->setSubject(self::plugin()
                         ->translate("confirmation", SupportGUI::LANG_MODULE, [], true, $lang)
-                    . ": {{ support.getTitle }}", $lang);
+                    . ": {{ support.title }}", $lang);
                 $notification->setText("{% for field in fields %}
 <p>
-	<h2>{{ field.getLabel }}</h2>
-	{{ field.getValue }}
+	<h2>{{ field.label }}</h2>
+	{{ field.value }}
 </p>
 <br>
 {% endfor %}", $lang);
@@ -357,13 +357,22 @@ final class Repository
                 ->getNotifications() as $notification
         ) {
             foreach (array_keys($notification->getTexts()) as $lang_key) {
-
+                $subject = $notification->getSubject($lang_key, false);
                 $text = $notification->getText($lang_key, false);
 
                 $text = preg_replace("/\{%\s+for\s+key,\s*value\s+in\s+fields\s+%\}/", "{% for field in fields %}", $text);
-                $text = preg_replace("/{{\s+key\s+}}/", "{{ field.getLabel }}", $text);
-                $text = preg_replace("/{{\s+value\s+}}/", "{{ field.getValue }}", $text);
+                $text = preg_replace("/{{\s+key\s+}}/", "{{ field.label }}", $text);
+                $text = preg_replace("/{{\s+field\.getLabel\s+}}/", "{{ field.label }}", $text);
+                $text = preg_replace("/{{\s+value\s+}}/", "{{ field.value }}", $text);
+                $text = preg_replace("/{{\s+field\.getValue\s+}}/", "{{ field.value }}", $text);
 
+                foreach ([&$subject, &$text] as &$var) {
+                    $var = preg_replace("/{{\s+support\.getTitle\s+}}/", "{{ support.title }}", $var);
+                    $var = preg_replace("/{{\s+support\.getDescription\s+}}/", "{{ support.description }}", $var);
+                    $var = preg_replace("/{{\s+support\.getPageReference\s+}}/", "{{ support.page_reference }}", $var);
+                }
+
+                $notification->setSubject($subject, $lang_key);
                 $notification->setText($text, $lang_key);
             }
 

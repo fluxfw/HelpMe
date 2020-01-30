@@ -9,22 +9,23 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
+            'srag\\RequiredData\\HelpMe\\' => 25,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\' => 21,
+            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
-        ),
-        'S' => 
-        array (
-            'Sinergi\\BrowserDetector\\' => 24,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
+        'srag\\RequiredData\\HelpMe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/requireddata/src',
+        ),
         'srag\\RemovePluginDataConfirm\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src',
@@ -49,17 +50,13 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\' => 
+        'srag\\CustomInputGUIs\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
         'srag\\ActiveRecordConfig\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
-        ),
-        'Sinergi\\BrowserDetector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/sinergi/browser-detector/src',
         ),
     );
 
@@ -74,18 +71,6 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
     );
 
     public static $classMap = array (
-        'Sinergi\\BrowserDetector\\AcceptLanguage' => __DIR__ . '/..' . '/sinergi/browser-detector/src/AcceptLanguage.php',
-        'Sinergi\\BrowserDetector\\Browser' => __DIR__ . '/..' . '/sinergi/browser-detector/src/Browser.php',
-        'Sinergi\\BrowserDetector\\BrowserDetector' => __DIR__ . '/..' . '/sinergi/browser-detector/src/BrowserDetector.php',
-        'Sinergi\\BrowserDetector\\DetectorInterface' => __DIR__ . '/..' . '/sinergi/browser-detector/src/DetectorInterface.php',
-        'Sinergi\\BrowserDetector\\Device' => __DIR__ . '/..' . '/sinergi/browser-detector/src/Device.php',
-        'Sinergi\\BrowserDetector\\DeviceDetector' => __DIR__ . '/..' . '/sinergi/browser-detector/src/DeviceDetector.php',
-        'Sinergi\\BrowserDetector\\InvalidArgumentException' => __DIR__ . '/..' . '/sinergi/browser-detector/src/InvalidArgumentException.php',
-        'Sinergi\\BrowserDetector\\Language' => __DIR__ . '/..' . '/sinergi/browser-detector/src/Language.php',
-        'Sinergi\\BrowserDetector\\LanguageDetector' => __DIR__ . '/..' . '/sinergi/browser-detector/src/LanguageDetector.php',
-        'Sinergi\\BrowserDetector\\Os' => __DIR__ . '/..' . '/sinergi/browser-detector/src/Os.php',
-        'Sinergi\\BrowserDetector\\OsDetector' => __DIR__ . '/..' . '/sinergi/browser-detector/src/OsDetector.php',
-        'Sinergi\\BrowserDetector\\UserAgent' => __DIR__ . '/..' . '/sinergi/browser-detector/src/UserAgent.php',
         'Twig_Autoloader' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Autoloader.php',
         'Twig_Compiler' => __DIR__ . '/..' . '/twig/twig/lib/Twig/Compiler.php',
         'Twig_CompilerInterface' => __DIR__ . '/..' . '/twig/twig/lib/Twig/CompilerInterface.php',
@@ -415,9 +400,30 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Plugins\\HelpMe\\Project\\ProjectsTableGUI' => __DIR__ . '/../..' . '/src/Project/ProjectsTableGUI.php',
         'srag\\Plugins\\HelpMe\\Project\\Repository' => __DIR__ . '/../..' . '/src/Project/Repository.php',
         'srag\\Plugins\\HelpMe\\Repository' => __DIR__ . '/../..' . '/src/Repository.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\CreatedDateTime\\CreatedDateTimeField' => __DIR__ . '/../..' . '/src/RequiredData/Field/CreatedDateTime/CreatedDateTimeField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\CreatedDateTime\\CreatedDateTimeFieldFormGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/CreatedDateTime/CreatedDateTimeFieldFormGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\CreatedDateTime\\CreatedDateTimeFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/CreatedDateTime/CreatedDateTimeFillField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\IssueType\\IssueTypeField' => __DIR__ . '/../..' . '/src/RequiredData/Field/IssueType/IssueTypeField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\IssueType\\IssueTypeFieldFormGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/IssueType/IssueTypeFieldFormGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\IssueType\\IssueTypeFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/IssueType/IssueTypeFillField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\IssueType\\IssueTypeSelectInputGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/IssueType/class.IssueTypeSelectInputGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Login\\LoginField' => __DIR__ . '/../..' . '/src/RequiredData/Field/Login/LoginField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Login\\LoginFieldFormGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/Login/LoginFieldFormGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Login\\LoginFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/Login/LoginFillField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\PageReference\\PageReferenceField' => __DIR__ . '/../..' . '/src/RequiredData/Field/PageReference/PageReferenceField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\PageReference\\PageReferenceFieldFormGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/PageReference/PageReferenceFieldFormGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\PageReference\\PageReferenceFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/PageReference/PageReferenceFillField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Project\\ProjectField' => __DIR__ . '/../..' . '/src/RequiredData/Field/Project/ProjectField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Project\\ProjectFieldFormGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/Project/ProjectFieldFormGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Project\\ProjectFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/Project/ProjectFillField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Project\\ProjectSelectInputGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/Project/class.ProjectSelectInputGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Screenshots\\ScreenshotsField' => __DIR__ . '/../..' . '/src/RequiredData/Field/Screenshots/ScreenshotsField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Screenshots\\ScreenshotsFieldFormGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/Screenshots/ScreenshotsFieldFormGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\Screenshots\\ScreenshotsFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/Screenshots/ScreenshotsFillField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\SystemInfos\\SystemInfosField' => __DIR__ . '/../..' . '/src/RequiredData/Field/SystemInfos/SystemInfosField.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\SystemInfos\\SystemInfosFieldFormGUI' => __DIR__ . '/../..' . '/src/RequiredData/Field/SystemInfos/SystemInfosFieldFormGUI.php',
+        'srag\\Plugins\\HelpMe\\RequiredData\\Field\\SystemInfos\\SystemInfosFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/SystemInfos/SystemInfosFillField.php',
         'srag\\Plugins\\HelpMe\\Support\\Factory' => __DIR__ . '/../..' . '/src/Support/Factory.php',
-        'srag\\Plugins\\HelpMe\\Support\\IssueTypeSelectInputGUI' => __DIR__ . '/../..' . '/src/Support/class.IssueTypeSelectInputGUI.php',
-        'srag\\Plugins\\HelpMe\\Support\\ProjectSelectInputGUI' => __DIR__ . '/../..' . '/src/Support/class.ProjectSelectInputGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\Factory' => __DIR__ . '/../..' . '/src/Support/Recipient/Factory.php',
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\Recipient' => __DIR__ . '/../..' . '/src/Support/Recipient/Recipient.php',
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\RecipientCreateJiraTicket' => __DIR__ . '/../..' . '/src/Support/Recipient/RecipientCreateJiraTicket.php',
@@ -441,6 +447,64 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\RemovePluginDataConfirm\\HelpMe\\PluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/PluginUninstallTrait.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\RemovePluginDataConfirmCtrl' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/class.RemovePluginDataConfirmCtrl.php',
         'srag\\RemovePluginDataConfirm\\HelpMe\\RepositoryObjectPluginUninstallTrait' => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src/RepositoryObjectPluginUninstallTrait.php',
+        'srag\\RequiredData\\HelpMe\\Field\\AbstractField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/AbstractField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\AbstractFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/AbstractFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Checkbox\\CheckboxField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Checkbox/CheckboxField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Checkbox\\CheckboxFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Checkbox/CheckboxFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Checkbox\\CheckboxFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Checkbox/CheckboxFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\CreateFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/CreateFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Date\\DateField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Date/DateField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Date\\DateFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Date/DateFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Date\\DateFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Date/DateFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\DynamicValue\\DynamicValueField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/DynamicValue/DynamicValueField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\DynamicValue\\DynamicValueFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/DynamicValue/DynamicValueFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\DynamicValue\\DynamicValueFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/DynamicValue/DynamicValueFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Email\\EmailField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Email/EmailField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Email\\EmailFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Email/EmailFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Email\\EmailFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Email/EmailFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Factory' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Factory.php',
+        'srag\\RequiredData\\HelpMe\\Field\\FieldCtrl' => __DIR__ . '/..' . '/srag/requireddata/src/Field/class.FieldCtrl.php',
+        'srag\\RequiredData\\HelpMe\\Field\\FieldsCtrl' => __DIR__ . '/..' . '/srag/requireddata/src/Field/class.FieldsCtrl.php',
+        'srag\\RequiredData\\HelpMe\\Field\\FieldsTableGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/FieldsTableGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Float\\FloatField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Float/FloatField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Float\\FloatFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Float/FloatFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Float\\FloatFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Float/FloatFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Integer\\IntegerField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Integer/IntegerField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Integer\\IntegerFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Integer/IntegerFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Integer\\IntegerFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Integer/IntegerFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultiSearchSelect\\MultiSearchSelectField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultiSearchSelect/MultiSearchSelectField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultiSearchSelect\\MultiSearchSelectFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultiSearchSelect/MultiSearchSelectFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultiSearchSelect\\MultiSearchSelectFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultiSearchSelect/MultiSearchSelectFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultiSelect\\MultiSelectField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultiSelect/MultiSelectField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultiSelect\\MultiSelectFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultiSelect/MultiSelectFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultiSelect\\MultiSelectFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultiSelect/MultiSelectFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultilineText\\MultilineTextField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultilineText/MultilineTextField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultilineText\\MultilineTextFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultilineText/MultilineTextFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\MultilineText\\MultilineTextFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/MultilineText/MultilineTextFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Radio\\RadioField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Radio/RadioField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Radio\\RadioFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Radio/RadioFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Radio\\RadioFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Radio/RadioFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Repository' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Repository.php',
+        'srag\\RequiredData\\HelpMe\\Field\\SearchSelect\\SearchSelectField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/SearchSelect/SearchSelectField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\SearchSelect\\SearchSelectFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/SearchSelect/SearchSelectFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\SearchSelect\\SearchSelectFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/SearchSelect/SearchSelectFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Select\\SelectField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Select/SelectField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Select\\SelectFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Select/SelectFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Select\\SelectFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Select/SelectFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\StaticMultiSearchSelect\\StaticMultiSearchSelectField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/StaticMultiSearchSelect/StaticMultiSearchSelectField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\StaticMultiSearchSelect\\StaticMultiSearchSelectFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/StaticMultiSearchSelect/StaticMultiSearchSelectFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\StaticMultiSearchSelect\\StaticMultiSearchSelectFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/StaticMultiSearchSelect/StaticMultiSearchSelectFillField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Text\\TextField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Text/TextField.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Text\\TextFieldFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Text/TextFieldFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Field\\Text\\TextFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Field/Text/TextFillField.php',
+        'srag\\RequiredData\\HelpMe\\Fill\\AbstractFillCtrl' => __DIR__ . '/..' . '/srag/requireddata/src/Fill/AbstractFillCtrl.php',
+        'srag\\RequiredData\\HelpMe\\Fill\\AbstractFillField' => __DIR__ . '/..' . '/srag/requireddata/src/Fill/AbstractFillField.php',
+        'srag\\RequiredData\\HelpMe\\Fill\\Factory' => __DIR__ . '/..' . '/srag/requireddata/src/Fill/Factory.php',
+        'srag\\RequiredData\\HelpMe\\Fill\\FillFormGUI' => __DIR__ . '/..' . '/srag/requireddata/src/Fill/FillFormGUI.php',
+        'srag\\RequiredData\\HelpMe\\Fill\\FillStorage' => __DIR__ . '/..' . '/srag/requireddata/src/Fill/FillStorage.php',
+        'srag\\RequiredData\\HelpMe\\Fill\\Repository' => __DIR__ . '/..' . '/srag/requireddata/src/Fill/Repository.php',
+        'srag\\RequiredData\\HelpMe\\Repository' => __DIR__ . '/..' . '/srag/requireddata/src/Repository.php',
+        'srag\\RequiredData\\HelpMe\\Utils\\RequiredDataTrait' => __DIR__ . '/..' . '/srag/requireddata/src/Utils/RequiredDataTrait.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

@@ -22,55 +22,34 @@ class SupportField
     /**
      * @var string
      */
-    protected $key = "";
+    public $key = "";
     /**
      * @var string
      */
-    protected $label = "";
+    public $name = "";
     /**
      * @var string
      */
-    protected $value = "";
+    public $label = "";
+    /**
+     * @var string
+     */
+    public $value = "";
 
 
     /**
      * SupportField constructor
      *
      * @param string $key
+     * @param string $name
      * @param string $label
      * @param string $value
      */
-    public function __construct(string $key, string $label, string $value)
+    public function __construct(string $key, string $name, string $label, string $value)
     {
         $this->key = $key;
+        $this->name = $name;
         $this->label = $label;
         $this->value = $value;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getKey() : string
-    {
-        return $this->key;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getLabel() : string
-    {
-        return $this->label;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getValue() : string
-    {
-        return $this->value;
     }
 }

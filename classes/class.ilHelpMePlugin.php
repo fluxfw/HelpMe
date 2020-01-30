@@ -72,6 +72,8 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
             . "/../vendor/srag/custominputguis/src/ScreenshotsInputGUI/lang")->updateLanguages();
 
         self::helpMe()->notifications4plugin()->installLanguages();
+
+        self::helpMe()->requiredData()->installLanguages();
     }
 
 

@@ -11,7 +11,10 @@ use ilUtil;
 use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
 use srag\Plugins\HelpMe\Support\Recipient\Recipient;
+use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -341,6 +344,30 @@ final class Repository
             if (!$this->isEnabled()) {
 
                 $usage_ids[] = "usage_2_info";
+            }
+        }
+
+        if (!empty(self::helpMe()->projects()->getProjects())) {
+
+            if (empty(self::helpMe()
+                ->requiredData()
+                ->fields()
+                ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [ProjectField::getType()]))
+            ) {
+
+                $usage_ids[] = "usage_3_info";
+            }
+
+            if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
+
+                if (empty(self::helpMe()
+                    ->requiredData()
+                    ->fields()
+                    ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [IssueTypeField::getType()]))
+                ) {
+
+                    $usage_ids[] = "usage_4_info";
+                }
             }
         }
 

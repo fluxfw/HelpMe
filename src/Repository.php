@@ -11,11 +11,20 @@ use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Config\Repository as ConfigRepository;
 use srag\Plugins\HelpMe\Job\Repository as JobsRepository;
 use srag\Plugins\HelpMe\Project\Repository as ProjectsRepository;
+use srag\Plugins\HelpMe\RequiredData\Field\CreatedDateTime\CreatedDateTimeField;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
+use srag\Plugins\HelpMe\RequiredData\Field\Login\LoginField;
+use srag\Plugins\HelpMe\RequiredData\Field\PageReference\PageReferenceField;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
+use srag\Plugins\HelpMe\RequiredData\Field\Screenshots\ScreenshotsField;
+use srag\Plugins\HelpMe\RequiredData\Field\SystemInfos\SystemInfosField;
 use srag\Plugins\HelpMe\Support\Repository as SupportRepository;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Support\SupportField;
 use srag\Plugins\HelpMe\Ticket\Repository as TicketsRepository;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
+use srag\RequiredData\HelpMe\Repository as RequiredDataRepository;
+use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
 /**
  * Class Repository
@@ -31,6 +40,9 @@ final class Repository
     use HelpMeTrait;
     use Notifications4PluginTrait {
         notifications4plugin as protected _notifications4plugin;
+    }
+    use RequiredDataTrait {
+        requiredData as protected _requiredData;
     }
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
@@ -61,6 +73,15 @@ final class Repository
             "support" => "object " . Support::class,
             "fields"  => "array " . SupportField::class
         ]);
+
+        $this->requiredData()->withTableNamePrefix(ilHelpMePlugin::PLUGIN_ID)->withPlugin(self::plugin())->withEnableNames(true);
+        $this->requiredData()->fields()->factory()->addClass(CreatedDateTimeField::class);
+        $this->requiredData()->fields()->factory()->addClass(IssueTypeField::class);
+        $this->requiredData()->fields()->factory()->addClass(LoginField::class);
+        $this->requiredData()->fields()->factory()->addClass(PageReferenceField::class);
+        $this->requiredData()->fields()->factory()->addClass(ProjectField::class);
+        $this->requiredData()->fields()->factory()->addClass(ScreenshotsField::class);
+        $this->requiredData()->fields()->factory()->addClass(SystemInfosField::class);
     }
 
 
@@ -102,6 +123,7 @@ final class Repository
         $this->jobs()->dropTables();
         $this->notifications4plugin()->dropTables();
         $this->projects()->dropTables();
+        $this->requiredData()->dropTables();
         $this->support()->dropTables();
         $this->tickets()->dropTables();
     }
@@ -125,6 +147,7 @@ final class Repository
         $this->jobs()->installTables();
         $this->notifications4plugin()->installTables();
         $this->projects()->installTables();
+        $this->requiredData()->installTables();
         $this->support()->installTables();
         $this->tickets()->installTables();
     }
@@ -154,6 +177,15 @@ final class Repository
     public function projects() : ProjectsRepository
     {
         return ProjectsRepository::getInstance();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function requiredData() : RequiredDataRepository
+    {
+        return self::_requiredData();
     }
 
 

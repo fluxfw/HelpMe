@@ -1,0 +1,51 @@
+required_data_actions#:#Aktionen
+required_data_add#:#Hinzufügen
+required_data_add_field#:#Feld hinzufügen
+required_data_added_field#:#Feld %s hinzugefügt
+required_data_back#:#Zurück
+required_data_cancel#:#Abbrechen
+required_data_count_decimals#:#Dezimalstellen beschränken
+required_data_description#:#Beschreibung
+required_data_disable_fields#:#Felder deaktivieren
+required_data_disabled_fields#:#Felder deaktiviert
+required_data_dynamic_value#:#Aktueller Wert: %s
+required_data_edit_field#:#Feld bearbeiten
+required_data_enable_fields#:#Felder aktivieren
+required_data_enabled#:#Aktiviert
+required_data_enabled_fields#:#Felder aktiviert
+required_data_field_description#:#Feld
+required_data_fields#:#Felder
+required_data_fill_fields#:#Felder ausfüllen
+required_data_hide#:#Verstecken
+required_data_hide_info#:#Wenn aktiviert, wird das Feld dem Benutzer nicht angezeigt, wird aber trotzdem ausgefüllt
+required_data_label#:#Beschriftung
+required_data_max_value#:#Max. Wert
+required_data_min_value#:#Mind. Wert
+required_data_name#:#Name
+required_data_name_info#:#Verwendung des Felds anhand des Namens
+required_data_options#:#Optionen
+required_data_please_select#:#bitte wählen
+required_data_remove#:#Entfernen
+required_data_remove_field#:#Feld entfernen
+required_data_remove_field_confirm#:#Möchten Sie das Feld wirklich entfernen: %s ?
+required_data_remove_fields#:#Felder entfernen
+required_data_remove_fields_confirm#:#Möchten Sie die folgenden Felder wirklich entfernen?
+required_data_removed_field#:#Feld %s entfernt
+required_data_removed_fields#:#Felder entfernt
+required_data_required#:#Benötigt
+required_data_save#:#Speichern
+required_data_saved_field#:#Feld %s gespeichert
+required_data_type#:#Typ
+required_data_type_checkboxfield#:#Checkbox
+required_data_type_datefield#:#Datum
+required_data_type_emailfield#:#E-Mail
+required_data_type_floatfield#:#Kommezahl
+required_data_type_integerfield#:#Ganzahl
+required_data_type_multilinetextfield#:#Mehrzeiliges-Text
+required_data_type_multisearchselectfield#:#Mehrfach-Suche-Auswahl
+required_data_type_multiselectfield#:#Mehrfach-Auswahl
+required_data_type_radiofield#:#Radio
+required_data_type_searchselectfield#:#Suche-Auswahl
+required_data_type_selectfield#:#Auswahl
+required_data_type_textfield#:#Text
+required_data_value#:#Wert
