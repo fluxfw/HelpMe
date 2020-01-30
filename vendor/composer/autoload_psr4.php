@@ -6,7 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'srag\\RequiredData\\HelpMe\\' => array($vendorDir . '/srag/requireddata/src'),
+    'srag\\RequiredData\\' => array($vendorDir . '/srag/requireddata/src'),
     'srag\\RemovePluginDataConfirm\\HelpMe\\' => array($vendorDir . '/srag/removeplugindataconfirm/src'),
     'srag\\Plugins\\HelpMe\\' => array($baseDir . '/src'),
     'srag\\Notifications4Plugin\\HelpMe\\' => array($vendorDir . '/srag/notifications4plugin/src'),

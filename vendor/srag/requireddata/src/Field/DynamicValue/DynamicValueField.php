@@ -43,7 +43,17 @@ abstract class DynamicValueField extends AbstractField
      */
     public function getFieldDescription() : string
     {
-        return htmlspecialchars(self::requiredData()->getPlugin()->translate("dynamic_value", FieldsCtrl::LANG_MODULE, [$this->deliverDynamicValue()]));
+        $descriptions = [];
+
+        if ($this->hide) {
+            $descriptions[] = self::plugin()->translate("hide", FieldsCtrl::LANG_MODULE);
+        }
+
+        $descriptions[] = self::requiredData()->getPlugin()->translate("dynamic_value", FieldsCtrl::LANG_MODULE, [$this->deliverDynamicValue()]);
+
+        return nl2br(implode("\n", array_map(function (string $description) : string {
+            return htmlspecialchars($description);
+        }, $descriptions)), false);
     }
 
 
