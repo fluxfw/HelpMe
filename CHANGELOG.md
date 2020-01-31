@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.0.1]
+- Fixes
+
 ## [6.0.0]
 - Make fields full configurable
 - System infos are now the raw user agent

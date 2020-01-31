@@ -8,7 +8,7 @@ required_data_count_decimals#:#Restrict decimal parts
 required_data_description#:#Description
 required_data_disable_fields#:#Disable fields
 required_data_disabled_fields#:#Fields disabled
-required_data_dynamic_value#:#Current value: %s
+required_data_dynamic_value#:#Dynamic value: %s
 required_data_edit_field#:#Edit field
 required_data_enable_fields#:#Enable fields
 required_data_enabled#:#Enabled
