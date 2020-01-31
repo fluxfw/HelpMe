@@ -8,7 +8,7 @@ required_data_count_decimals#:#Dezimalstellen beschränken
 required_data_description#:#Beschreibung
 required_data_disable_fields#:#Felder deaktivieren
 required_data_disabled_fields#:#Felder deaktiviert
-required_data_dynamic_value#:#Aktueller Wert: %s
+required_data_dynamic_value#:#Dynamischer Wert: %s
 required_data_edit_field#:#Feld bearbeiten
 required_data_enable_fields#:#Felder aktivieren
 required_data_enabled#:#Aktiviert
@@ -41,7 +41,7 @@ required_data_type_datefield#:#Datum
 required_data_type_emailfield#:#E-Mail
 required_data_type_floatfield#:#Kommezahl
 required_data_type_integerfield#:#Ganzahl
-required_data_type_multilinetextfield#:#Mehrzeiliges-Text
+required_data_type_multilinetextfield#:#Mehrzeiliger Text
 required_data_type_multisearchselectfield#:#Mehrfach-Suche-Auswahl
 required_data_type_multiselectfield#:#Mehrfach-Auswahl
 required_data_type_radiofield#:#Radio

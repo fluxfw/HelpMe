@@ -334,17 +334,17 @@
     },
     {
         "name": "srag/requireddata",
-        "version": "v0.10.4",
-        "version_normalized": "0.10.4.0",
+        "version": "v0.10.6",
+        "version_normalized": "0.10.6.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/RequiredData.git",
-            "reference": "36ccc31990c65216aaf36baca49efcc5de32e7b1"
+            "reference": "6d70dbbdba4e13c240bb773a28acac6b117cbad1"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/36ccc31990c65216aaf36baca49efcc5de32e7b1",
-            "reference": "36ccc31990c65216aaf36baca49efcc5de32e7b1",
+            "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/6d70dbbdba4e13c240bb773a28acac6b117cbad1",
+            "reference": "6d70dbbdba4e13c240bb773a28acac6b117cbad1",
             "shasum": ""
         },
         "require": {
@@ -352,7 +352,7 @@
             "srag/custominputguis": ">=0.1.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2020-01-30T14:23:51+00:00",
+        "time": "2020-01-31T14:54:22+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
