@@ -68,5 +68,9 @@
 ?>
 <#18>
 <?php
+//
+?>
+<#19>
+<?php
 \srag\Plugins\HelpMe\Repository::getInstance()->installTables();
 ?>

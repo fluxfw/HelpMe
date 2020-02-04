@@ -45,7 +45,7 @@ class LoginField extends DynamicValueField
      */
     protected function getInitHide() : bool
     {
-        return false;
+        return true;
     }
 
 
