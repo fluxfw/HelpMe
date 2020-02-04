@@ -1,6 +1,7 @@
 # Changelog
 
 ## [6.0.3]
+- Fix
 
 ## [6.0.2]
 - Info text can now be set multilang
