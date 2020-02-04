@@ -265,6 +265,17 @@ final class Repository
         $this->recipients()->installTables();
 
         $this->initDefaultFields();
+
+        $old_info = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_INFO);
+        if (!empty($old_info)) {
+            self::helpMe()->config()->setValue(ConfigFormGUI::KEY_INFO_TEXTS, [
+                "default" => [
+                    ConfigFormGUI::KEY_INFO_TEXT => $old_info
+                ]
+            ]);
+
+            self::helpMe()->config()->removeValue(ConfigFormGUI::KEY_INFO);
+        }
     }
 
 
