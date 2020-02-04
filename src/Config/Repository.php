@@ -76,6 +76,7 @@ final class Repository extends AbstractRepository
         return [
             ConfigFormGUI::KEY_EMAIL_FIELD                            => Config::TYPE_STRING,
             ConfigFormGUI::KEY_INFO                                   => Config::TYPE_STRING,
+            ConfigFormGUI::KEY_INFO_TEXTS                             => [Config::TYPE_JSON, [], true],
             ConfigFormGUI::KEY_JIRA_ACCESS_TOKEN                      => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_AUTHORIZATION                     => Config::TYPE_STRING,
             ConfigFormGUI::KEY_JIRA_CONSUMER_KEY                      => Config::TYPE_STRING,

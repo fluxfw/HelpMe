@@ -4,7 +4,7 @@ config_configuration_saved#:#Konfiguration gespeichert
 config_email_field#:#Benutzer-E-Mail-Feld
 config_email_field_info#:#Wählen Sie für das Senden das Feld aus, in welches der Benutzer die E-Mail eingibt, ansonst wird die E-Mail des aktuell eingeloggten Benutzers verwendet
 config_fields#:#Felder
-config_info#:#Infotext
+config_info_texts#:#Infotext
 config_jira_access_token#:#Jira-Access-Token
 config_jira_authorization#:#Jira-Authorization
 config_jira_authorization_oauth#:#oAuth

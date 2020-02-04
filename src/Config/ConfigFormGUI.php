@@ -15,6 +15,9 @@ use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
+use srag\CustomInputGUIs\HelpMe\TabsInputGUI\TabsInputGUI;
+use srag\CustomInputGUIs\HelpMe\TextAreaInputGUI\TextAreaInputGUI;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationInterface;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
@@ -41,7 +44,14 @@ class ConfigFormGUI extends PropertyFormGUI
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const KEY_EMAIL_FIELD = "email_field";
+    /**
+     * @var string
+     *
+     * @deprecated
+     */
     const KEY_INFO = "info";
+    const KEY_INFO_TEXTS = "info_texts";
+    const KEY_INFO_TEXT = "info_text";
     const KEY_JIRA_ACCESS_TOKEN = "jira_access_token";
     const KEY_JIRA_AUTHORIZATION = "jira_authorization";
     const KEY_JIRA_CONSUMER_KEY = "jira_consumer_key";
@@ -254,11 +264,16 @@ class ConfigFormGUI extends PropertyFormGUI
                     implode(" > ", [$this->txt("recipient"), $this->txt("recipient_create_jira_ticket"), $this->txt("jira_create_service_desk_request")])
                 ])
             ],
-            self::KEY_INFO                                        => [
-                self::PROPERTY_CLASS    => ilTextAreaInputGUI::class,
+            self::KEY_INFO_TEXTS                                  => [
+                self::PROPERTY_CLASS    => TabsInputGUI::class,
                 self::PROPERTY_REQUIRED => true,
-                "setUseRte"             => true,
-                "setRteTagSet"          => "extended"
+                self::PROPERTY_SUBITEMS => MultilangualTabsInputGUI::generate([
+                    self::KEY_INFO_TEXT => [
+                        self::PROPERTY_CLASS => TextAreaInputGUI::class,
+                        "setUseRte"          => true,
+                        "setRteTagSet"       => "extended"
+                    ]
+                ], true)
             ],
             self::KEY_ROLES                                       => [
                 self::PROPERTY_CLASS    => MultiSelectSearchNewInputGUI::class,

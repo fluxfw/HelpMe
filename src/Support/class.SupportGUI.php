@@ -5,6 +5,7 @@ namespace srag\Plugins\HelpMe\Support;
 use ilHelpMePlugin;
 use ilLogLevel;
 use ilPropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeSelectInputGUI;
@@ -107,7 +108,7 @@ class SupportGUI
         $tpl = self::plugin()->template("helpme_modal.html");
 
         $tpl->setCurrentBlock("helpme_info");
-        $tpl->setVariable("INFO", self::helpMe()->config()->getValue(ConfigFormGUI::KEY_INFO));
+        $tpl->setVariable("INFO_TEXT", MultilangualTabsInputGUI::getValueForLang(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_INFO_TEXTS), null, ConfigFormGUI::KEY_INFO_TEXT));
 
         if ($message !== null) {
             $tpl->setCurrentBlock("helpme_message");
