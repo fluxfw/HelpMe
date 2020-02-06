@@ -95,6 +95,8 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
                         self::dic()->ctrl()->setParameterByClass(SupportGUI::class, SupportGUI::GET_PARAM_PROJECT_URL_KEY, $project_id);
                         ilSession::clear(self::SESSION_PROJECT_URL_KEY);
 
+                        self::dic()->ctrl()->saveParameterByClass(SupportGUI::class, "lang");
+
                         $support_button = $this->getSupportButton();
 
                         $screenshot = new ScreenshotsInputGUI();

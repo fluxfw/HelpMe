@@ -59,6 +59,7 @@ class SupportGUI
         }
 
         self::dic()->ctrl()->saveParameter($this, Repository::GET_PARAM_REF_ID);
+        self::dic()->ctrl()->saveParameter($this, "lang");
 
         $this->setTabs();
 

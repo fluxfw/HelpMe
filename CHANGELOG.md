@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.0.4]
+- Fix selected language not apply in public area
+
 ## [6.0.3]
 - Fix
 
