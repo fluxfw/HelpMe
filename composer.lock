@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "srag/activerecordconfig",
-            "version": "v0.19.4",
+            "version": "v0.19.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "5098cd3c206287da0a479f9ff4534609e8d15039"
+                "reference": "cf747e69c22f1549d3c5d9be440ae92c7b3aed34"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/5098cd3c206287da0a479f9ff4534609e8d15039",
-                "reference": "5098cd3c206287da0a479f9ff4534609e8d15039",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/cf747e69c22f1549d3c5d9be440ae92c7b3aed34",
+                "reference": "cf747e69c22f1549d3c5d9be440ae92c7b3aed34",
                 "shasum": ""
             },
             "require": {
@@ -28,7 +28,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
+                    "srag\\ActiveRecordConfig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -50,7 +50,7 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2020-01-31T09:50:26+00:00"
+            "time": "2020-02-05T06:16:30+00:00"
         },
         {
             "name": "srag/custominputguis",
@@ -101,16 +101,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.20.0",
+            "version": "v0.20.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "94d039173ca2ec209dd88300cdcb415dbc8ba7a3"
+                "reference": "c79a0e0cd0f9db586b556c92db38d5548ef7305b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/94d039173ca2ec209dd88300cdcb415dbc8ba7a3",
-                "reference": "94d039173ca2ec209dd88300cdcb415dbc8ba7a3",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/c79a0e0cd0f9db586b556c92db38d5548ef7305b",
+                "reference": "c79a0e0cd0f9db586b556c92db38d5548ef7305b",
                 "shasum": ""
             },
             "require": {
@@ -119,7 +119,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\HelpMe\\": "src/"
+                    "srag\\DIC\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -142,7 +142,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-01-28T07:42:40+00:00"
+            "time": "2020-02-05T07:30:05+00:00"
         },
         {
             "name": "srag/jiracurl",
@@ -327,16 +327,16 @@
         },
         {
             "name": "srag/requireddata",
-            "version": "v0.10.6",
+            "version": "v0.10.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RequiredData.git",
-                "reference": "6d70dbbdba4e13c240bb773a28acac6b117cbad1"
+                "reference": "c42480607deaa4fa419bcce452ff275f4539e935"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/6d70dbbdba4e13c240bb773a28acac6b117cbad1",
-                "reference": "6d70dbbdba4e13c240bb773a28acac6b117cbad1",
+                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/c42480607deaa4fa419bcce452ff275f4539e935",
+                "reference": "c42480607deaa4fa419bcce452ff275f4539e935",
                 "shasum": ""
             },
             "require": {
@@ -369,7 +369,7 @@
                 "field",
                 "required"
             ],
-            "time": "2020-01-31T14:54:22+00:00"
+            "time": "2020-02-07T09:59:01+00:00"
         },
         {
             "name": "twig/twig",

@@ -34,7 +34,7 @@ class DatabaseDetector extends AbstractILIASDatabaseDetector
      *
      * @throws DICException DatabaseDetector only supports ilDBPdoInterface!
      */
-    public static function getInstance(ilDBInterface $db)
+    public static function getInstance(ilDBInterface $db) : self
     {
         if (!($db instanceof ilDBPdoInterface)) {
             throw new DICException("DatabaseDetector only supports ilDBPdoInterface!");

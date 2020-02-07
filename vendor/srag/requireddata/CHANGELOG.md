@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.10.7]
+- Fix ajax results
+
 ## [0.10.6]
 - Fix
 
