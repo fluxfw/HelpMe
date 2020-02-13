@@ -379,14 +379,15 @@ final class Repository implements RepositoryInterface
         $notification->setUpdatedAt($date);
 
         $notification->setId(self::dic()->database()->store(Notification::getTableName(), [
-            "name"        => [ilDBConstants::T_TEXT, $notification->getName()],
-            "title"       => [ilDBConstants::T_TEXT, $notification->getTitle()],
-            "description" => [ilDBConstants::T_TEXT, $notification->getDescription()],
-            "parser"      => [ilDBConstants::T_TEXT, $notification->getParser()],
-            "subject"     => [ilDBConstants::T_TEXT, json_encode($notification->getSubjects())],
-            "text"        => [ilDBConstants::T_TEXT, json_encode($notification->getTexts())],
-            "created_at"  => [ilDBConstants::T_TEXT, $notification->getCreatedAt()->get(IL_CAL_DATETIME)],
-            "updated_at"  => [ilDBConstants::T_TEXT, $notification->getUpdatedAt()->get(IL_CAL_DATETIME)]
+            "name"           => [ilDBConstants::T_TEXT, $notification->getName()],
+            "title"          => [ilDBConstants::T_TEXT, $notification->getTitle()],
+            "description"    => [ilDBConstants::T_TEXT, $notification->getDescription()],
+            "parser"         => [ilDBConstants::T_TEXT, $notification->getParser()],
+            "parser_options" => [ilDBConstants::T_TEXT, json_encode($notification->getParserOptions())],
+            "subject"        => [ilDBConstants::T_TEXT, json_encode($notification->getSubjects())],
+            "text"           => [ilDBConstants::T_TEXT, json_encode($notification->getTexts())],
+            "created_at"     => [ilDBConstants::T_TEXT, $notification->getCreatedAt()->get(IL_CAL_DATETIME)],
+            "updated_at"     => [ilDBConstants::T_TEXT, $notification->getUpdatedAt()->get(IL_CAL_DATETIME)]
         ], "id", $notification->getId()));
     }
 }

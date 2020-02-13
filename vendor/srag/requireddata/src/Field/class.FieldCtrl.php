@@ -209,7 +209,7 @@ class FieldCtrl
      */
     protected function staticMultiSearchSelectGetDataAutoComplete()/*:void*/
     {
-        $search = strval(filter_input(INPUT_GET, "term", FILTER_DEFAULT, FILTER_FORCE_ARRAY)["term"]);
+        $search = strval(filter_input(INPUT_GET, "term"));
 
         $form = self::requiredData()->fields()->factory()->newFormInstance($this, $this->field);
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.8]
+- Remove formatted value html escape because it's depends on output context
+
+## [0.10.7]
+- Fix ajax results
+
 ## [0.10.6]
 - Fix
 

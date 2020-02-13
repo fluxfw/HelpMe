@@ -59,6 +59,7 @@ final class Factory implements FactoryInterface
         $notification->setTitle($data->title);
         $notification->setDescription($data->description);
         $notification->setParser($data->parser);
+        $notification->setParserOptions(json_decode($data->parser_options, true) ?? []);
         $notification->setSubjects(json_decode($data->subject, true) ?? []);
         $notification->setTexts(json_decode($data->text, true) ?? []);
         $notification->setCreatedAt(new ilDateTime($data->created_at, IL_CAL_DATETIME));

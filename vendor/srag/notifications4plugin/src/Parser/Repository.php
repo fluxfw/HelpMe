@@ -39,12 +39,9 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @var array
+     * @var Parser[]
      */
-    protected $parsers
-        = [
-            twigParser::class => twigParser::NAME
-        ];
+    protected $parsers = [];
 
 
     /**
@@ -52,7 +49,7 @@ final class Repository implements RepositoryInterface
      */
     private function __construct()
     {
-
+        $this->addParser($this->factory()->twig());
     }
 
 
@@ -61,9 +58,7 @@ final class Repository implements RepositoryInterface
      */
     public function addParser(Parser $parser)/*:void*/
     {
-        $parser_class = get_class($parser);
-
-        $this->parsers[$parser_class] = $parser_class::NAME;
+        $this->parsers[$parser->getClass()] = $parser;
     }
 
 
@@ -100,7 +95,7 @@ final class Repository implements RepositoryInterface
     public function getParserByClass(string $parser_class) : Parser
     {
         if (isset($this->getPossibleParsers()[$parser_class])) {
-            return new $parser_class();
+            return $this->getPossibleParsers()[$parser_class];
         } else {
             throw new Notifications4PluginException("Invalid parser class $parser_class");
         }
@@ -130,7 +125,7 @@ final class Repository implements RepositoryInterface
      */
     public function parseSubject(Parser $parser, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null) : string
     {
-        return $parser->parse($notification->getSubject($language), $placeholders);
+        return $parser->parse($notification->getSubject($language), $placeholders, $notification->getParserOptions());
     }
 
 
@@ -139,6 +134,6 @@ final class Repository implements RepositoryInterface
      */
     public function parseText(Parser $parser, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null) : string
     {
-        return $parser->parse($notification->getText($language), $placeholders);
+        return $parser->parse($notification->getText($language), $placeholders, $notification->getParserOptions());
     }
 }

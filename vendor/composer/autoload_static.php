@@ -12,10 +12,10 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
             'srag\\RequiredData\\' => 18,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
+            'srag\\Notifications4Plugin\\' => 26,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
-            'srag\\DIC\\HelpMe\\' => 16,
+            'srag\\DIC\\' => 9,
             'srag\\CustomInputGUIs\\HelpMe\\' => 28,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
@@ -34,7 +34,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\HelpMe\\' => 
+        'srag\\Notifications4Plugin\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
@@ -46,7 +46,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
-        'srag\\DIC\\HelpMe\\' => 
+        'srag\\DIC\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
@@ -366,6 +366,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationsTableGUI' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/NotificationsTableGUI.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Repository' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Repository.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\RepositoryInterface' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/RepositoryInterface.php',
+        'srag\\Notifications4Plugin\\HelpMe\\Parser\\AbstractParser' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Parser/AbstractParser.php',
         'srag\\Notifications4Plugin\\HelpMe\\Parser\\Factory' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Parser/Factory.php',
         'srag\\Notifications4Plugin\\HelpMe\\Parser\\FactoryInterface' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Parser/FactoryInterface.php',
         'srag\\Notifications4Plugin\\HelpMe\\Parser\\Parser' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Parser/Parser.php',

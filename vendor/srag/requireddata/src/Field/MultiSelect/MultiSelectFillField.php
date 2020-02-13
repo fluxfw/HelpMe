@@ -58,7 +58,7 @@ class MultiSelectFillField extends SelectFillField
     public function formatAsString($fill_value) : string
     {
         return nl2br(implode("\n", array_map(function (string $value) : string {
-            return htmlspecialchars($this->field->getSelectOptions()[$value]);
+            return strval($this->field->getSelectOptions()[$value]);
         }, (array) ($fill_value))), false);
     }
 }

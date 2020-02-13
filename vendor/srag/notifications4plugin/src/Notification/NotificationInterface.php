@@ -14,6 +14,12 @@ use ilDateTime;
 interface NotificationInterface
 {
 
+    const DEFAULT_PARSER_OPTIONS
+        = [
+            "autoescape" => false
+        ];
+
+
     /**
      * @return string
      */
@@ -78,6 +84,35 @@ interface NotificationInterface
      * @param string $parser
      */
     public function setParser(string $parser)/*: void*/ ;
+
+
+    /**
+     * @return array
+     */
+    public function getParserOptions() : array;
+
+
+    /**
+     * @param string $key
+     *
+     * @return mixed
+     */
+    public function getParserOption(string $key);
+
+
+    /**
+     * @param array $parser_options
+     */
+    public function setParserOptions(array $parser_options = self::DEFAULT_PARSER_OPTIONS)/* : void*/ ;
+
+
+    /**
+     * @param string $key
+     * @param mixed  $value
+     *
+     * @return mixed
+     */
+    public function setParserOption(string $key, $value)/* : void*/ ;
 
 
     /**
