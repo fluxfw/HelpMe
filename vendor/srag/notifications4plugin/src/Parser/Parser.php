@@ -20,22 +20,47 @@ interface Parser
      *
      * @abstract
      */
-    //const NAME = "";
-
+    const NAME = "";
     /**
      * @var string
      *
      * @abstract
      */
-    //const DOC_LINK = "";
+    const DOC_LINK = "";
+
+
+    /**
+     * @return string
+     */
+    public function getClass() : string;
+
+
+    /**
+     * @return string
+     */
+    public function getName() : string;
+
+
+    /**
+     * @return string
+     */
+    public function getDocLink() : string;
+
+
+    /**
+     * @return array
+     */
+    public function getOptionsFields() : array;
+
 
     /**
      * @param string $text
      * @param array  $placeholders
+     * @param array  $options
      *
      * @return string
      *
      * @throws Notifications4PluginException
      */
-    public function parse(string $text, array $placeholders = []) : string;
+    public function parse(string $text, array $placeholders = [], array $options = []) : string;
 }

@@ -282,12 +282,12 @@ final class Repository
             $notification->setName($templates[RecipientCreateJiraTicket::SEND_EMAIL] = RecipientCreateJiraTicket::SEND_EMAIL);
             $notification->setTitle("Mail");
 
-            foreach (["de", "en"] as $lang) {
+            foreach (["default", "de", "en"] as $lang) {
                 $notification->setSubject("{{ support.title }}", $lang);
                 $notification->setText("{% for field in fields %}
 <p>
-	<h2>{{ field.label }}</h2>
-	{{ field.value }}
+	<h2>{{ field.label |e }}</h2>
+	{{ field.value |e }}
 </p>
 <br>
 {% endfor %}", $lang);
@@ -311,8 +311,8 @@ final class Repository
             foreach (["default", "de", "en"] as $lang) {
                 $notification->setSubject("{{ support.title }}", $lang);
                 $notification->setText("{% for field in fields %}
-{{ field.label }}:
-{{ field.value }}
+{{ field.label |e }}:
+{{ field.value |e }}
 
 
 {% endfor %}", $lang);
@@ -339,8 +339,8 @@ final class Repository
                     . ": {{ support.title }}", $lang);
                 $notification->setText("{% for field in fields %}
 <p>
-	<h2>{{ field.label }}</h2>
-	{{ field.value }}
+	<h2>{{ field.label |e }}</h2>
+	{{ field.value |e }}
 </p>
 <br>
 {% endfor %}", $lang);
@@ -361,15 +361,15 @@ final class Repository
                 $text = $notification->getText($lang_key, false);
 
                 $text = preg_replace("/\{%\s+for\s+key,\s*value\s+in\s+fields\s+%\}/", "{% for field in fields %}", $text);
-                $text = preg_replace("/{{\s+key\s+}}/", "{{ field.label }}", $text);
-                $text = preg_replace("/{{\s+field\.getLabel\s+}}/", "{{ field.label }}", $text);
-                $text = preg_replace("/{{\s+value\s+}}/", "{{ field.value }}", $text);
-                $text = preg_replace("/{{\s+field\.getValue\s+}}/", "{{ field.value }}", $text);
+                $text = preg_replace("/{{\s*key\s*}}/", "{{ field.label |e }}", $text);
+                $text = preg_replace("/{{\s*field\.getLabel\s*}}/", "{{ field.label |e }}", $text);
+                $text = preg_replace("/{{\s*value\s*}}/", "{{ field.value |e }}", $text);
+                $text = preg_replace("/{{\s*field\.getValue\s*}}/", "{{ field.value |e }}", $text);
 
                 foreach ([&$subject, &$text] as &$var) {
-                    $var = preg_replace("/{{\s+support\.getTitle\s+}}/", "{{ support.title }}", $var);
-                    $var = preg_replace("/{{\s+support\.getDescription\s+}}/", "{{ support.description }}", $var);
-                    $var = preg_replace("/{{\s+support\.getPageReference\s+}}/", "{{ support.page_reference }}", $var);
+                    $var = preg_replace("/{{\s*support\.getTitle\s*}}/", "{{ support.title |e }}", $var);
+                    $var = preg_replace("/{{\s*support\.getDescription\s*}}/", "{{ support.description |e }}", $var);
+                    $var = preg_replace("/{{\s*support\.getPageReference\s*}}/", "{{ support.page_reference |e }}", $var);
                 }
 
                 $notification->setSubject($subject, $lang_key);

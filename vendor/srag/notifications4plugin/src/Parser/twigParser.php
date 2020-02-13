@@ -2,8 +2,9 @@
 
 namespace srag\Notifications4Plugin\HelpMe\Parser;
 
-use srag\DIC\HelpMe\DICTrait;
-use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
+use ilCheckboxInputGUI;
+use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
 use Twig_Environment;
 use Twig_Error;
 use Twig_Loader_String;
@@ -16,20 +17,11 @@ use Twig_Loader_String;
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
-class twigParser implements Parser
+class twigParser extends AbstractParser
 {
 
-    use DICTrait;
-    use Notifications4PluginTrait;
     const NAME = "twig";
     const DOC_LINK = "https://twig.symfony.com/doc/1.x/templates.html";
-    /**
-     * @var array
-     */
-    protected $options
-        = [
-            "autoescape" => false // Do not auto escape variables by default when using {{ myVar }}
-        ];
 
 
     /**
@@ -37,9 +29,27 @@ class twigParser implements Parser
      *
      * @param array $options
      */
-    public function __construct(array $options = [])
+    public function __construct()
     {
-        $this->options = array_merge($this->options, $options);
+        parent::__construct();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getOptionsFields() : array
+    {
+        return [
+            "autoescape" => [
+                PropertyFormGUI::PROPERTY_CLASS => ilCheckboxInputGUI::class,
+                "setInfo"                       => nl2br(implode("\n", [
+                    self::notifications4plugin()->getPlugin()->translate("parser_option_autoescape_info_1", NotificationsCtrl::LANG_MODULE, ["|raw"]),
+                    self::notifications4plugin()->getPlugin()->translate("parser_option_autoescape_info_2", NotificationsCtrl::LANG_MODULE, ["|e"]),
+                    "<b>" . self::notifications4plugin()->getPlugin()->translate("parser_option_autoescape_info_3", NotificationsCtrl::LANG_MODULE) . "</b>"
+                ]), false)
+            ]
+        ];
     }
 
 
@@ -48,11 +58,13 @@ class twigParser implements Parser
      *
      * @throws Twig_Error
      */
-    public function parse(string $text, array $placeholders = []) : string
+    public function parse(string $text, array $placeholders = [], array $options = []) : string
     {
         $loader = new Twig_Loader_String();
 
-        $twig = new Twig_Environment($loader, $this->options);
+        $twig = new Twig_Environment($loader, [
+            "autoescape" => boolval($options["autoescape"])
+        ]);
 
         return $twig->render($text, $placeholders);
     }

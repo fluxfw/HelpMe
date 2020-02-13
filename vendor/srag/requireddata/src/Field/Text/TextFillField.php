@@ -56,6 +56,6 @@ class TextFillField extends AbstractFillField
      */
     public function formatAsString($fill_value) : string
     {
-        return htmlspecialchars($fill_value);
+        return strval($fill_value);
     }
 }

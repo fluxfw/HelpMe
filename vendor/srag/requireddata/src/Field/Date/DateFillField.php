@@ -59,6 +59,6 @@ class DateFillField extends AbstractFillField
      */
     public function formatAsString($fill_value) : string
     {
-        return htmlspecialchars(ilDatePresentation::formatDate(new ilDate(intval($fill_value), IL_CAL_UNIX)));
+        return strval(ilDatePresentation::formatDate(new ilDate(intval($fill_value), IL_CAL_UNIX)));
     }
 }

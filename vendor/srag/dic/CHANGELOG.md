@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.20.2]
+- Auto replace manually line breaks text in language files to real line breaks
+
 ## [0.20.1]
 - Fix
 

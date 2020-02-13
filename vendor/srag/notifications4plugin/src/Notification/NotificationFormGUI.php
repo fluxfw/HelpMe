@@ -3,7 +3,8 @@
 namespace srag\Notifications4Plugin\HelpMe\Notification;
 
 use ilNonEditableValueGUI;
-use ilSelectInputGUI;
+use ilRadioGroupInputGUI;
+use ilRadioOption;
 use ilTextAreaInputGUI;
 use ilTextInputGUI;
 use ilUtil;
@@ -12,6 +13,7 @@ use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\TabsInputGUI;
 use srag\CustomInputGUIs\HelpMe\TextAreaInputGUI\TextAreaInputGUI;
+use srag\Notifications4Plugin\HelpMe\Parser\Parser;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 
 /**
@@ -52,7 +54,12 @@ class NotificationFormGUI extends PropertyFormGUI
      */
     protected function getValue(/*string*/ $key)/*: void*/
     {
-        switch ($key) {
+        switch (true) {
+            case (strpos($key, "parser_option_") === 0):
+                $parser_option = substr($key, strlen("parser_option_"));
+
+                return $this->notification->getParserOption($parser_option);
+
             default:
                 return Items::getter($this->notification, $key);
         }
@@ -113,13 +120,23 @@ class NotificationFormGUI extends PropertyFormGUI
                     self::PROPERTY_REQUIRED => false
                 ],
                 "parser"      => [
-                    self::PROPERTY_CLASS    => ilSelectInputGUI::class,
+                    self::PROPERTY_CLASS    => ilRadioGroupInputGUI::class,
                     self::PROPERTY_REQUIRED => true,
-                    self::PROPERTY_OPTIONS  => self::notifications4plugin()->parser()->getPossibleParsers(),
-                    "setInfo"               => nl2br(implode("\n", array_map(function (string $parser_class) : string {
-                        return $parser_class::NAME . ": " . self::output()->getHTML(self::dic()->ui()->factory()->link()
-                                ->standard($parser_class::DOC_LINK, $parser_class::DOC_LINK)->withOpenInNewViewport(true));
-                    }, array_keys(self::notifications4plugin()->parser()->getPossibleParsers()))), false)
+                    self::PROPERTY_SUBITEMS => array_map(function (Parser $parser) : array {
+                        $parser_options = [];
+
+                        foreach ($parser->getOptionsFields() as $key => $field) {
+                            $parser_options["parser_option_" . $key] = $field;
+                        }
+
+                        return [
+                            self::PROPERTY_CLASS    => ilRadioOption::class,
+                            self::PROPERTY_SUBITEMS => $parser_options,
+                            "setTitle"              => $parser->getName(),
+                            "setInfo"               => self::output()->getHTML(self::dic()->ui()->factory()->link()
+                                ->standard($parser->getDocLink(), $parser->getDocLink())->withOpenInNewViewport(true))
+                        ];
+                    }, self::notifications4plugin()->parser()->getPossibleParsers())
                 ],
                 "subjects"    => [
                     self::PROPERTY_CLASS    => TabsInputGUI::class,
@@ -160,14 +177,20 @@ class NotificationFormGUI extends PropertyFormGUI
      */
     protected function storeValue(/*string*/ $key, $value)/*: void*/
     {
-        switch ($key) {
-            case "id":
+        switch (true) {
+            case ($key === "id"):
                 break;
 
-            case "name":
+            case ($key === "name"):
                 if (empty($this->notification->getId())) {
                     Items::setter($this->notification, $key, $value);
                 }
+                break;
+
+            case (strpos($key, "parser_option_") === 0):
+                $parser_option = substr($key, strlen("parser_option_"));
+
+                $this->notification->setParserOption($parser_option, $value);
                 break;
 
             default:

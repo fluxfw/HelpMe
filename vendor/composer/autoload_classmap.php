@@ -301,6 +301,7 @@ return array(
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationsTableGUI' => $vendorDir . '/srag/notifications4plugin/src/Notification/NotificationsTableGUI.php',
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\Repository' => $vendorDir . '/srag/notifications4plugin/src/Notification/Repository.php',
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\RepositoryInterface' => $vendorDir . '/srag/notifications4plugin/src/Notification/RepositoryInterface.php',
+    'srag\\Notifications4Plugin\\HelpMe\\Parser\\AbstractParser' => $vendorDir . '/srag/notifications4plugin/src/Parser/AbstractParser.php',
     'srag\\Notifications4Plugin\\HelpMe\\Parser\\Factory' => $vendorDir . '/srag/notifications4plugin/src/Parser/Factory.php',
     'srag\\Notifications4Plugin\\HelpMe\\Parser\\FactoryInterface' => $vendorDir . '/srag/notifications4plugin/src/Parser/FactoryInterface.php',
     'srag\\Notifications4Plugin\\HelpMe\\Parser\\Parser' => $vendorDir . '/srag/notifications4plugin/src/Parser/Parser.php',

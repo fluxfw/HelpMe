@@ -108,6 +108,14 @@ class Notification extends ActiveRecord implements NotificationInterface
      * @con_fieldtype    text
      * @con_is_notnull   true
      */
+    protected $parser_options = self::DEFAULT_PARSER_OPTIONS;
+    /**
+     * @var array
+     *
+     * @con_has_field    true
+     * @con_fieldtype    text
+     * @con_is_notnull   true
+     */
     protected $subject = [];
     /**
      * @var array
@@ -144,6 +152,46 @@ class Notification extends ActiveRecord implements NotificationInterface
     public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null)
     {
         //parent::__construct($primary_key_value, $connector);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getParserOptions() : array
+    {
+        return $this->parser_options;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getParserOption(string $key)
+    {
+        return $this->parser_options[$key];
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setParserOptions(array $parser_options = self::DEFAULT_PARSER_OPTIONS)/* : void*/
+    {
+        if (empty($parser_options)) {
+            $parser_options = self::DEFAULT_PARSER_OPTIONS;
+        }
+
+        $this->parser_options = $parser_options;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setParserOption(string $key, $value)/*:void*/
+    {
+        $this->parser_options[$key] = $value;
     }
 
 
@@ -229,6 +277,7 @@ class Notification extends ActiveRecord implements NotificationInterface
         switch ($field_name) {
             case "subject":
             case "text":
+            case "parser_options":
                 return json_encode($field_value);
 
             default:
@@ -245,6 +294,7 @@ class Notification extends ActiveRecord implements NotificationInterface
         switch ($field_name) {
             case "subject":
             case "text":
+            case "parser_options":
                 return json_decode($field_value, true);
 
             default:

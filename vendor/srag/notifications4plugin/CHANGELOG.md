@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.2.0]
+- Auto escape twig parser option
+
 ## [5.1.7]
 - Show parser links dynamic
 
