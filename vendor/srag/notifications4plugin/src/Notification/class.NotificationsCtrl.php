@@ -41,7 +41,7 @@ class NotificationsCtrl
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower(NotificationCtrl::class);
+            case strtolower(NotificationCtrl::class):
                 self::dic()->ctrl()->forwardCommand(new NotificationCtrl($this));
                 break;
 

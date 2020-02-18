@@ -45,7 +45,7 @@ class ProjectsConfigGUI
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower(ProjectConfigGUI::class);
+            case strtolower(ProjectConfigGUI::class):
                 self::dic()->ctrl()->forwardCommand(new ProjectConfigGUI($this));
                 break;
 

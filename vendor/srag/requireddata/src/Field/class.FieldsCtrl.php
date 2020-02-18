@@ -59,7 +59,7 @@ class FieldsCtrl
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower(FieldCtrl::class);
+            case strtolower(FieldCtrl::class):
                 self::dic()->ctrl()->forwardCommand(new FieldCtrl($this));
                 break;
 

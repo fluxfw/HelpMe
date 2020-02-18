@@ -51,15 +51,15 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower(FieldsCtrl::class);
+            case strtolower(FieldsCtrl::class):
                 self::dic()->ctrl()->forwardCommand(new FieldsCtrl(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG));
                 break;
 
-            case strtolower(ProjectsConfigGUI::class);
+            case strtolower(ProjectsConfigGUI::class):
                 self::dic()->ctrl()->forwardCommand(new ProjectsConfigGUI());
                 break;
 
-            case strtolower(NotificationsCtrl::class);
+            case strtolower(NotificationsCtrl::class):
                 self::dic()->tabs()->activateTab(NotificationsCtrl::TAB_NOTIFICATIONS);
                 self::dic()->ctrl()->forwardCommand(new NotificationsCtrl());
                 break;

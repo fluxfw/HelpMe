@@ -81,7 +81,7 @@ class FieldCtrl
                     case self::CMD_BACK:
                     case self::CMD_CREATE_FIELD:
                     case self::CMD_EDIT_FIELD:
-                    case self::CMD_MOVE_FIELD_DOWN;
+                    case self::CMD_MOVE_FIELD_DOWN:
                     case self::CMD_MOVE_FIELD_UP:
                     case self::CMD_REMOVE_FIELD:
                     case self::CMD_REMOVE_FIELD_CONFIRM:
