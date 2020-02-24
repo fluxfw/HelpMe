@@ -22,7 +22,7 @@ final class Factory
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 

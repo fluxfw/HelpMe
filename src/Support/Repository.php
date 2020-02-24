@@ -39,7 +39,7 @@ final class Repository
     const GET_PARAM_REF_ID = "ref_id";
     const GET_PARAM_TARGET = "target";
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
