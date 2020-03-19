@@ -57,7 +57,7 @@ class CreateFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands()/* : void*/
     {
         $this->addCommandButton(FieldCtrl::CMD_CREATE_FIELD, $this->txt("add"));
         $this->addCommandButton(FieldCtrl::CMD_BACK, $this->txt("cancel"));
@@ -67,7 +67,7 @@ class CreateFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields()/* : void*/
     {
         $this->fields = [
             "type" => [
@@ -87,7 +87,7 @@ class CreateFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId()/* : void*/
     {
 
     }
@@ -96,7 +96,7 @@ class CreateFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle()/* : void*/
     {
         $this->setTitle($this->txt("add_field"));
     }
@@ -105,7 +105,7 @@ class CreateFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value)/* : void*/
     {
         switch ($key) {
             default:

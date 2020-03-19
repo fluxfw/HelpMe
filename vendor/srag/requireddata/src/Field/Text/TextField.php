@@ -24,4 +24,13 @@ class TextField extends AbstractField
     {
         return "";
     }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function supportsMultiLang() : bool
+    {
+        return true;
+    }
 }

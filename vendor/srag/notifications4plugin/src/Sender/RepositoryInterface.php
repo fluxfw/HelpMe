@@ -18,7 +18,7 @@ interface RepositoryInterface
     /**
      * @internal
      */
-    public function dropTables()/*: void*/ ;
+    public function dropTables()/* : void*/;
 
 
     /**
@@ -30,7 +30,7 @@ interface RepositoryInterface
     /**
      * @internal
      */
-    public function installTables()/*: void*/ ;
+    public function installTables()/* : void*/;
 
 
     /**
@@ -41,5 +41,5 @@ interface RepositoryInterface
      *
      * @throws Notifications4PluginException
      */
-    public function send(Sender $sender, NotificationInterface $notification, array $placeholders = [], /*?*/ string $language = null)/*: void*/ ;
+    public function send(Sender $sender, NotificationInterface $notification, array $placeholders = [], /*?string*/ $language = null)/* : void*/;
 }

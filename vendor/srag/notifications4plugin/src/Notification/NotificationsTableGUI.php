@@ -80,7 +80,7 @@ class NotificationsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initColumns()/*: void*/
+    protected function initColumns()/* : void*/
     {
         parent::initColumns();
 
@@ -91,7 +91,7 @@ class NotificationsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands()/* : void*/
     {
         self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_notification"), self::dic()->ctrl()
             ->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_ADD_NOTIFICATION)));
@@ -101,7 +101,7 @@ class NotificationsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initData()/*: void*/
+    protected function initData()/* : void*/
     {
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
@@ -122,7 +122,7 @@ class NotificationsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initFilterFields()/*: void*/
+    protected function initFilterFields()/* : void*/
     {
 
     }
@@ -131,7 +131,7 @@ class NotificationsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId()/* : void*/
     {
         $this->setId("notifications4plugin_" . self::notifications4plugin()->getPlugin()->getPluginObject()->getId());
     }
@@ -140,7 +140,7 @@ class NotificationsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle()/* : void*/
     {
 
     }
@@ -151,7 +151,7 @@ class NotificationsTableGUI extends TableGUI
      *
      * @param NotificationInterface $notification
      */
-    protected function fillRow(/*NotificationInterface*/ $notification)/*: void*/
+    protected function fillRow(/*NotificationInterface*/ $notification)/* : void*/
     {
         self::dic()->ctrl()->setParameterByClass(NotificationCtrl::class, NotificationCtrl::GET_PARAM_NOTIFICATION_ID, $notification->getId());
 

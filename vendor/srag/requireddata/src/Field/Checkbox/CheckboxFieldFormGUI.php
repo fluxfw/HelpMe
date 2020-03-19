@@ -18,14 +18,14 @@ class CheckboxFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @var CheckboxField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, CheckboxField $object)
+    public function __construct(FieldCtrl $parent, CheckboxField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

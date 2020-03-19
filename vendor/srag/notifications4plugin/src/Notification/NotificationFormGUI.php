@@ -52,7 +52,7 @@ class NotificationFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function getValue(/*string*/ $key)/*: void*/
+    protected function getValue(/*string*/ $key)/* : void*/
     {
         switch (true) {
             case (strpos($key, "parser_option_") === 0):
@@ -69,7 +69,7 @@ class NotificationFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands()/* : void*/
     {
         if (!empty($this->notification->getId())) {
             $this->addCommandButton(NotificationCtrl::CMD_UPDATE_NOTIFICATION, $this->txt("save"));
@@ -84,7 +84,7 @@ class NotificationFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId()/* : void*/
     {
 
     }
@@ -93,7 +93,7 @@ class NotificationFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields()/* : void*/
     {
         ilUtil::sendInfo(self::output()->getHTML([
             htmlspecialchars(self::notifications4plugin()->getPlugin()->translate("placeholder_types_info", NotificationsCtrl::LANG_MODULE)),
@@ -166,7 +166,7 @@ class NotificationFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle()/* : void*/
     {
         $this->setTitle($this->txt(!empty($this->notification->getId()) ? "edit_notification" : "add_notification"));
     }
@@ -175,7 +175,7 @@ class NotificationFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value)/* : void*/
     {
         switch (true) {
             case ($key === "id"):

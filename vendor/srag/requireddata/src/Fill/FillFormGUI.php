@@ -43,10 +43,10 @@ class FillFormGUI extends PropertyFormGUI
     protected function getValue(/*string*/ $key)
     {
         switch ($key) {
-            case (strpos($key, "field_") === 0):
+            /*case (strpos($key, "field_") === 0):
                 $field_id = substr($key, strlen("field_"));
 
-                return $this->fill_values[$field_id];
+                return $this->fill_values[$field_id];*/
 
             default:
                 return null;
@@ -57,7 +57,7 @@ class FillFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands()/* : void*/
     {
         $this->addCommandButton(AbstractFillCtrl::CMD_SAVE_FIELDS, $this->txt("save"));
         $this->addCommandButton(AbstractFillCtrl::CMD_CANCEL, $this->txt("cancel"));
@@ -67,16 +67,16 @@ class FillFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields()/* : void*/
     {
-        $this->fields = self::requiredData()->fills()->getFormFields($this->parent->getParentContext(), $this->parent->getParentId());
+        $this->fields = self::requiredData()->fills()->getFormFields($this->parent->getParentContext(), $this->parent->getParentId(), $this->fill_values);
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId()/* : void*/
     {
 
     }
@@ -85,7 +85,7 @@ class FillFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle()/* : void*/
     {
         $this->setTitle($this->txt("fill_fields"));
     }
@@ -94,7 +94,7 @@ class FillFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value)/* : void*/
     {
         switch ($key) {
             case (strpos($key, "field_") === 0):
@@ -112,7 +112,7 @@ class FillFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    public function storeForm()/*: void*/
+    public function storeForm() : bool
     {
         if (!parent::storeForm()) {
             return false;

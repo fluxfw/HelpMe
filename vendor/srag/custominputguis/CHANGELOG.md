@@ -1,5 +1,37 @@
 # Changelog
 
+## [0.33.3]
+- `OrgUnitAjaxAutoCompleteCtrl`
+
+## [0.33.2]
+- Fix `MultiSelectSearchNewInputGUI` bottom in `MultiLineNewInputGUI`
+
+## [0.33.1]
+- Fix not merged `PieChart` in ILIAS 6
+
+## [0.33.0]
+- `AjaxCheckbox`
+
+## [0.32.5]
+- Fix
+
+## [0.32.4]
+- Fix
+
+## [0.32.3]
+- Fix
+
+## [0.32.2]
+- Fix
+
+## [0.32.1]
+- Fix
+
+## [0.32.0]
+- MultiSelectSearchNewInputGUI:
+    - New ajax auto complete concept (`AbstractAjaxAutoCompleteCtrl`)
+    - Show whole option text
+
 ## [0.31.8]
 - Fix
 

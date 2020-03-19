@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.11.0]
+- Min. PHP 7.2
+- Multilingual
+
+## [0.10.9]
+- Improve
+
 ## [0.10.8]
 - Remove formatted value html escape because it's depends on output context
 

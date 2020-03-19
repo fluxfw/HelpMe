@@ -18,14 +18,14 @@ class MultilineTextFieldFormGUI extends TextFieldFormGUI
     /**
      * @var MultilineTextField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, MultilineTextField $object)
+    public function __construct(FieldCtrl $parent, MultilineTextField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

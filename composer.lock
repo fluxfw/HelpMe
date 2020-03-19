@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "srag/activerecordconfig",
-            "version": "v0.19.5",
+            "version": "v0.19.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-                "reference": "cf747e69c22f1549d3c5d9be440ae92c7b3aed34"
+                "reference": "37c29f8f8f7e8972d5f42aabea133bff18388a18"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/cf747e69c22f1549d3c5d9be440ae92c7b3aed34",
-                "reference": "cf747e69c22f1549d3c5d9be440ae92c7b3aed34",
+                "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/37c29f8f8f7e8972d5f42aabea133bff18388a18",
+                "reference": "37c29f8f8f7e8972d5f42aabea133bff18388a18",
                 "shasum": ""
             },
             "require": {
@@ -50,24 +50,24 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2020-02-05T06:16:30+00:00"
+            "time": "2020-02-21T09:47:44+00:00"
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.31.8",
+            "version": "v0.33.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "71fa066e505c4cce9492ca2242f3d3c87a9477d3"
+                "reference": "27d39d0c098ece7852006f6e21dfb6dd5d5e8ca7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/71fa066e505c4cce9492ca2242f3d3c87a9477d3",
-                "reference": "71fa066e505c4cce9492ca2242f3d3c87a9477d3",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/27d39d0c098ece7852006f6e21dfb6dd5d5e8ca7",
+                "reference": "27d39d0c098ece7852006f6e21dfb6dd5d5e8ca7",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6",
+                "php": ">=7.0",
                 "srag/dic": ">=0.1.0"
             },
             "type": "library",
@@ -97,20 +97,20 @@
                 "input",
                 "table"
             ],
-            "time": "2020-02-10T11:31:05+00:00"
+            "time": "2020-03-09T11:46:20+00:00"
         },
         {
             "name": "srag/dic",
-            "version": "v0.20.2",
+            "version": "v0.20.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "e5d3265eb83b722f95579c36ce1b59dca0f1316f"
+                "reference": "3c8c3a3ae484ad539ff54c1b2bd0fdd49bc4ecb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/e5d3265eb83b722f95579c36ce1b59dca0f1316f",
-                "reference": "e5d3265eb83b722f95579c36ce1b59dca0f1316f",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/3c8c3a3ae484ad539ff54c1b2bd0fdd49bc4ecb8",
+                "reference": "3c8c3a3ae484ad539ff54c1b2bd0fdd49bc4ecb8",
                 "shasum": ""
             },
             "require": {
@@ -119,7 +119,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -142,7 +142,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-02-13T07:39:21+00:00"
+            "time": "2020-02-28T13:10:35+00:00"
         },
         {
             "name": "srag/jiracurl",
@@ -191,20 +191,20 @@
         },
         {
             "name": "srag/librariesnamespacechanger",
-            "version": "v0.7.0",
+            "version": "v0.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-                "reference": "80afdd6f1d0690004e87edadcf120fb6d0740ebb"
+                "reference": "166c2800a764439335a1836d4d3353cc491066e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/80afdd6f1d0690004e87edadcf120fb6d0740ebb",
-                "reference": "80afdd6f1d0690004e87edadcf120fb6d0740ebb",
+                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/166c2800a764439335a1836d4d3353cc491066e6",
+                "reference": "166c2800a764439335a1836d4d3353cc491066e6",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.6"
+                "php": ">=7.0"
             },
             "type": "library",
             "autoload": {
@@ -230,24 +230,24 @@
                 "ILIAS",
                 "libraries"
             ],
-            "time": "2019-12-11T08:38:08+00:00"
+            "time": "2020-03-19T12:42:59+00:00"
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "v5.2.0",
+            "version": "v5.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-                "reference": "d50c6fafd684d448f198c52a0ebbbfd948f15814"
+                "reference": "db9950782a513fd72c2b95a79a6865850065b249"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/d50c6fafd684d448f198c52a0ebbbfd948f15814",
-                "reference": "d50c6fafd684d448f198c52a0ebbbfd948f15814",
+                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/db9950782a513fd72c2b95a79a6865850065b249",
+                "reference": "db9950782a513fd72c2b95a79a6865850065b249",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0",
+                "php": ">=7.2",
                 "srag/custominputguis": ">=0.1.0",
                 "srag/dic": ">=0.1.0",
                 "twig/twig": "1.18.0"
@@ -276,7 +276,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2020-02-13T07:58:02+00:00"
+            "time": "2020-03-19T12:52:12+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
@@ -327,20 +327,20 @@
         },
         {
             "name": "srag/requireddata",
-            "version": "v0.10.8",
+            "version": "v0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RequiredData.git",
-                "reference": "7ea657755079cfac929e765796a94ae3ffcbe527"
+                "reference": "2e79097cd41a31ebc9473d28d32d7071f909fcc4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/7ea657755079cfac929e765796a94ae3ffcbe527",
-                "reference": "7ea657755079cfac929e765796a94ae3ffcbe527",
+                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/2e79097cd41a31ebc9473d28d32d7071f909fcc4",
+                "reference": "2e79097cd41a31ebc9473d28d32d7071f909fcc4",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.0",
+                "php": ">=7.2",
                 "srag/custominputguis": ">=0.1.0",
                 "srag/dic": ">=0.1.0"
             },
@@ -369,7 +369,7 @@
                 "field",
                 "required"
             ],
-            "time": "2020-02-13T08:05:09+00:00"
+            "time": "2020-03-19T13:06:44+00:00"
         },
         {
             "name": "twig/twig",

@@ -70,7 +70,7 @@ class IntegerField extends AbstractField
     /**
      * @param int|null $min_value
      */
-    public function setMinValue(/*?*/ int $min_value = null)/* : void*/
+    public function setMinValue(/*?int*/ $min_value = null)/* : void*/
     {
         $this->min_value = $min_value;
     }
@@ -88,7 +88,7 @@ class IntegerField extends AbstractField
     /**
      * @param int|null $max_value
      */
-    public function setMaxValue(/*?*/ int $max_value = null)/* : void*/
+    public function setMaxValue(/*?int*/ $max_value = null)/* : void*/
     {
         $this->max_value = $max_value;
     }

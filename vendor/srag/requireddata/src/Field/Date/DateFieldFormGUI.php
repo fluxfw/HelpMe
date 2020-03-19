@@ -18,14 +18,14 @@ class DateFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @var DateField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, DateField $object)
+    public function __construct(FieldCtrl $parent, DateField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

@@ -3,6 +3,7 @@
 use ILIAS\UI\Component\Link\Standard;
 use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
+use srag\CustomInputGUIs\HelpMe\TabsInputGUI\TabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeSelectInputGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectSelectInputGUI;
@@ -66,6 +67,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
                     $screenshot->init();
 
                     MultiSelectSearchNewInputGUI::init();
+                    TabsInputGUI::init();
 
                     self::dic()->ui()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
 

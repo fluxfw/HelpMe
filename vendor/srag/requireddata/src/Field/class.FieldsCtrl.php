@@ -52,7 +52,7 @@ class FieldsCtrl
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand()/* : void*/
     {
         $this->setTabs();
 
@@ -86,7 +86,7 @@ class FieldsCtrl
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs()/* : void*/
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_FIELDS);
     }
@@ -95,7 +95,7 @@ class FieldsCtrl
     /**
      *
      */
-    protected function listFields()/*: void*/
+    protected function listFields()/* : void*/
     {
         $table = self::requiredData()->fields()->factory()->newTableInstance($this);
 
@@ -106,7 +106,7 @@ class FieldsCtrl
     /**
      *
      */
-    protected function enableFields()/*: void*/
+    protected function enableFields()/* : void*/
     {
         $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 
@@ -138,7 +138,7 @@ class FieldsCtrl
     /**
      *
      */
-    protected function disableFields()/*: void*/
+    protected function disableFields()/* : void*/
     {
         $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 
@@ -170,7 +170,7 @@ class FieldsCtrl
     /**
      *
      */
-    protected function removeFieldsConfirm()/*: void*/
+    protected function removeFieldsConfirm()/* : void*/
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_FIELDS);
 
@@ -209,7 +209,7 @@ class FieldsCtrl
     /**
      *
      */
-    protected function removeFields()/*: void*/
+    protected function removeFields()/* : void*/
     {
         $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
 

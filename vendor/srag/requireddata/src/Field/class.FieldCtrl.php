@@ -5,6 +5,7 @@ namespace srag\RequiredData\HelpMe\Field;
 use ilConfirmationGUI;
 use ilUtil;
 use srag\DIC\HelpMe\DICTrait;
+use srag\RequiredData\HelpMe\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
 /**
@@ -15,6 +16,7 @@ use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
  * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\FieldCtrl: srag\RequiredData\HelpMe\Field\FieldsCtrl
+ * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl: srag\RequiredData\HelpMe\Field\FieldCtrl
  */
 class FieldCtrl
 {
@@ -29,7 +31,6 @@ class FieldCtrl
     const CMD_MOVE_FIELD_UP = "moveFieldUp";
     const CMD_REMOVE_FIELD = "removeField";
     const CMD_REMOVE_FIELD_CONFIRM = "removeFieldConfirm";
-    const CMD_STATIC_MULTI_SEARCH_SELECT_GET_DATA_AUTOCOMPLETE = "staticMultiSearchSelectGetDataAutoComplete";
     const CMD_UPDATE_FIELD = "updateField";
     const GET_PARAM_FIELD_ID = "field_id";
     const GET_PARAM_FIELD_TYPE = "field_type";
@@ -58,21 +59,27 @@ class FieldCtrl
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand()/* : void*/
     {
         $this->field = self::requiredData()
             ->fields()
             ->getFieldById($this->parent->getParentContext(), $this->parent->getParentId(), strval(filter_input(INPUT_GET, self::GET_PARAM_FIELD_TYPE)),
                 intval(filter_input(INPUT_GET, self::GET_PARAM_FIELD_ID)));
 
-        self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_FIELD_TYPE);
-        self::dic()->ctrl()->saveParameter($this, self::GET_PARAM_FIELD_ID);
+        if ($this->field !== null) {
+            self::dic()->ctrl()->setParameter($this, self::GET_PARAM_FIELD_TYPE, $this->field->getType());
+            self::dic()->ctrl()->setParameter($this, self::GET_PARAM_FIELD_ID, $this->field->getFieldId());
+        }
 
         $this->setTabs();
 
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
+            case strtolower(SMSSAjaxAutoCompleteCtrl::class):
+                self::dic()->ctrl()->forwardCommand(new SMSSAjaxAutoCompleteCtrl($this));
+                break;
+
             default:
                 $cmd = self::dic()->ctrl()->getCmd();
 
@@ -85,7 +92,6 @@ class FieldCtrl
                     case self::CMD_MOVE_FIELD_UP:
                     case self::CMD_REMOVE_FIELD:
                     case self::CMD_REMOVE_FIELD_CONFIRM:
-                    case self::CMD_STATIC_MULTI_SEARCH_SELECT_GET_DATA_AUTOCOMPLETE:
                     case self::CMD_UPDATE_FIELD:
                         $this->{$cmd}();
                         break;
@@ -101,7 +107,7 @@ class FieldCtrl
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs()/* : void*/
     {
         self::dic()->tabs()->clearTargets();
 
@@ -130,7 +136,7 @@ class FieldCtrl
     /**
      *
      */
-    protected function back()/*: void*/
+    protected function back()/* : void*/
     {
         self::dic()->ctrl()->redirect($this->parent, FieldsCtrl::CMD_LIST_FIELDS);
     }
@@ -161,7 +167,7 @@ class FieldCtrl
     /**
      *
      */
-    protected function addField()/*: void*/
+    protected function addField()/* : void*/
     {
         $form = self::requiredData()->fields()->factory()->newCreateFormInstance($this);
 
@@ -172,7 +178,7 @@ class FieldCtrl
     /**
      *
      */
-    protected function createField()/*: void*/
+    protected function createField()/* : void*/
     {
         $form = self::requiredData()->fields()->factory()->newCreateFormInstance($this);
 
@@ -196,7 +202,7 @@ class FieldCtrl
     /**
      *
      */
-    protected function editField()/*: void*/
+    protected function editField()/* : void*/
     {
         $form = self::requiredData()->fields()->factory()->newFormInstance($this, $this->field);
 
@@ -207,29 +213,7 @@ class FieldCtrl
     /**
      *
      */
-    protected function staticMultiSearchSelectGetDataAutoComplete()/*:void*/
-    {
-        $search = strval(filter_input(INPUT_GET, "term"));
-
-        $form = self::requiredData()->fields()->factory()->newFormInstance($this, $this->field);
-
-        $options = [];
-
-        foreach ($form->deliverPossibleOptions($search) as $id => $title) {
-            $options[] = [
-                "id"   => $id,
-                "text" => $title
-            ];
-        }
-
-        self::output()->outputJSON(["results" => $options]);
-    }
-
-
-    /**
-     *
-     */
-    protected function updateField()/*: void*/
+    protected function updateField()/* : void*/
     {
         $form = self::requiredData()->fields()->factory()->newFormInstance($this, $this->field);
 
@@ -248,7 +232,7 @@ class FieldCtrl
     /**
      *
      */
-    protected function removeFieldConfirm()/*: void*/
+    protected function removeFieldConfirm()/* : void*/
     {
         $confirmation = new ilConfirmationGUI();
 
@@ -269,13 +253,22 @@ class FieldCtrl
     /**
      *
      */
-    protected function removeField()/*: void*/
+    protected function removeField()/* : void*/
     {
         self::requiredData()->fields()->deleteField($this->field);
 
         ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("removed_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_BACK);
+    }
+
+
+    /**
+     * @return AbstractField
+     */
+    public function getField() : AbstractField
+    {
+        return $this->field;
     }
 
 

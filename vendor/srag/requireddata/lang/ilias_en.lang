@@ -21,6 +21,7 @@ required_data_hide_info#:#If enabled, the field is not shown to the user, but is
 required_data_label#:#Label
 required_data_max_value#:#Max value
 required_data_min_value#:#Min value
+required_data_multi_lang#:#Multilingual
 required_data_name#:#Name
 required_data_name_info#:#Using of the field by name
 required_data_options#:#Options

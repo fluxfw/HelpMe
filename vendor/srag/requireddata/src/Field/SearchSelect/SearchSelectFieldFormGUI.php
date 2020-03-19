@@ -18,14 +18,14 @@ class SearchSelectFieldFormGUI extends MultiSearchSelectFieldFormGUI
     /**
      * @var SearchSelectField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, SearchSelectField $object)
+    public function __construct(FieldCtrl $parent, SearchSelectField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

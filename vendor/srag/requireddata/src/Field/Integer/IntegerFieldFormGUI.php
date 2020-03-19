@@ -20,15 +20,15 @@ class IntegerFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @var IntegerField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, IntegerField $object)
+    public function __construct(FieldCtrl $parent, IntegerField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 
 
@@ -39,10 +39,10 @@ class IntegerFieldFormGUI extends AbstractFieldFormGUI
     {
         switch ($key) {
             case "min_value_checkbox":
-                return ($this->object->getMinValue() !== null);
+                return ($this->field->getMinValue() !== null);
 
             case "max_value_checkbox":
-                return ($this->object->getMaxValue() !== null);
+                return ($this->field->getMaxValue() !== null);
 
             default:
                 return parent::getValue($key);
@@ -53,7 +53,7 @@ class IntegerFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*:void*/
+    protected function initFields()/* : void*/
     {
         parent::initFields();
 
@@ -86,26 +86,26 @@ class IntegerFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value)/* : void*/
     {
         switch ($key) {
             case "min_value_checkbox":
-                $this->object->setMinValue($value ? 0 : null);
+                $this->field->setMinValue($value ? 0 : null);
                 break;
 
             case "min_value":
-                if ($this->object->getMinValue() !== null) {
-                    $this->object->setMinValue($value);
+                if ($this->field->getMinValue() !== null) {
+                    $this->field->setMinValue($value);
                 }
                 break;
 
             case "max_value_checkbox":
-                $this->object->setMaxValue($value ? 0 : null);
+                $this->field->setMaxValue($value ? 0 : null);
                 break;
 
             case "max_value":
-                if ($this->object->getMaxValue() !== null) {
-                    $this->object->setMaxValue($value);
+                if ($this->field->getMaxValue() !== null) {
+                    $this->field->setMaxValue($value);
                 }
                 break;
 

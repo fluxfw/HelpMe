@@ -15,13 +15,13 @@ interface RepositoryInterface
     /**
      * @param NotificationInterface $notification
      */
-    public function deleteNotification(NotificationInterface $notification)/*: void*/ ;
+    public function deleteNotification(NotificationInterface $notification)/* : void*/;
 
 
     /**
      * @internal
      */
-    public function dropTables()/*: void*/ ;
+    public function dropTables()/* : void*/;
 
 
     /**
@@ -43,7 +43,7 @@ interface RepositoryInterface
      *
      * @return NotificationInterface|null
      */
-    public function getNotificationById(int $id)/*: ?NotificationInterface*/ ;
+    public function getNotificationById(int $id)/* : ?NotificationInterface*/;
 
 
     /**
@@ -51,7 +51,7 @@ interface RepositoryInterface
      *
      * @return NotificationInterface|null
      */
-    public function getNotificationByName(string $name)/*: ?NotificationInterface*/ ;
+    public function getNotificationByName(string $name)/* : ?NotificationInterface*/;
 
 
     /**
@@ -74,7 +74,7 @@ interface RepositoryInterface
     /**
      * @internal
      */
-    public function installTables()/*:void*/ ;
+    public function installTables()/* : void*/;
 
 
     /**
@@ -84,11 +84,11 @@ interface RepositoryInterface
      *
      * @deprecated
      */
-    public function migrateFromOldGlobalPlugin(string $name = null)/*: ?Notification*/ ;
+    public function migrateFromOldGlobalPlugin(string $name = null)/* : ?Notification*/;
 
 
     /**
      * @param NotificationInterface $notification
      */
-    public function storeNotification(NotificationInterface $notification)/*: void*/ ;
+    public function storeNotification(NotificationInterface $notification)/* : void*/;
 }

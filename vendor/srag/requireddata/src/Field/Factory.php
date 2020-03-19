@@ -30,7 +30,7 @@ final class Factory
     use DICTrait;
     use RequiredDataTrait;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
@@ -80,7 +80,7 @@ final class Factory
     /**
      * @param string $class
      */
-    public function addClass(string $class)/*:void*/
+    public function addClass(string $class)/* : void*/
     {
         if (!in_array($class, $this->classes)) {
             $this->classes[] = $class;
@@ -95,7 +95,7 @@ final class Factory
      *
      * @return string[]
      */
-    public function getClasses(bool $check_can_be_added_only_once = false,/*?*/ int $parent_context = null, /*?*/ int $parent_id = null) : array
+    public function getClasses(bool $check_can_be_added_only_once = false, /*?int*/ $parent_context = null, /*?int*/ $parent_id = null) : array
     {
         $classes = array_combine(array_map(function (string $class) : string {
             return $class::getType();
@@ -124,7 +124,7 @@ final class Factory
      *
      * @return AbstractField|null
      */
-    public function newInstance(string $type) /*: ?AbstractField*/
+    public function newInstance(string $type)/* : ?AbstractField*/
     {
         $field = null;
 

@@ -21,6 +21,7 @@ required_data_hide_info#:#Wenn aktiviert, wird das Feld dem Benutzer nicht angez
 required_data_label#:#Beschriftung
 required_data_max_value#:#Max. Wert
 required_data_min_value#:#Mind. Wert
+required_data_multi_lang#:#Mehrsprachig
 required_data_name#:#Name
 required_data_name_info#:#Verwendung des Felds anhand des Namens
 required_data_options#:#Optionen

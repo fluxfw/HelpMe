@@ -15,4 +15,13 @@ class EmailField extends TextField
 {
 
     const TABLE_NAME_SUFFIX = "eml";
+
+
+    /**
+     * @inheritDoc
+     */
+    public function supportsMultiLang() : bool
+    {
+        return false;
+    }
 }

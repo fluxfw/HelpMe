@@ -20,15 +20,15 @@ class FloatFieldFormGUI extends IntegerFieldFormGUI
     /**
      * @var FloatField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, FloatField $object)
+    public function __construct(FieldCtrl $parent, FloatField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 
 
@@ -39,7 +39,7 @@ class FloatFieldFormGUI extends IntegerFieldFormGUI
     {
         switch ($key) {
             case "count_decimals_checkbox":
-                return ($this->object->getCountDecimals() !== null);
+                return ($this->field->getCountDecimals() !== null);
 
             default:
                 return parent::getValue($key);
@@ -50,7 +50,7 @@ class FloatFieldFormGUI extends IntegerFieldFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*:void*/
+    protected function initFields()/* : void*/
     {
         parent::initFields();
 
@@ -74,16 +74,16 @@ class FloatFieldFormGUI extends IntegerFieldFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value)/* : void*/
     {
         switch ($key) {
             case "count_decimals_checkbox":
-                $this->object->setCountDecimals($value ? 0 : null);
+                $this->field->setCountDecimals($value ? 0 : null);
                 break;
 
             case "count_decimals":
-                if ($this->object->getCountDecimals() !== null) {
-                    $this->object->setCountDecimals($value);
+                if ($this->field->getCountDecimals() !== null) {
+                    $this->field->setCountDecimals($value);
                 }
                 break;
 

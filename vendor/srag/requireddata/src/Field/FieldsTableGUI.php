@@ -127,7 +127,7 @@ class FieldsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initColumns()/*: void*/
+    protected function initColumns()/* : void*/
     {
         $this->addColumn("");
 
@@ -142,7 +142,7 @@ class FieldsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands()/* : void*/
     {
         self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_field"), self::dic()->ctrl()
             ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_ADD_FIELD)));
@@ -157,7 +157,7 @@ class FieldsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initData()/*: void*/
+    protected function initData()/* : void*/
     {
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
@@ -169,7 +169,7 @@ class FieldsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initFilterFields()/*: void*/
+    protected function initFilterFields()/* : void*/
     {
         $this->filter_fields = [];
     }
@@ -178,7 +178,7 @@ class FieldsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId()/* : void*/
     {
         $this->setId("fields_" . self::requiredData()->getPlugin()->getPluginObject()->getId());
     }
@@ -187,7 +187,7 @@ class FieldsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle()/* : void*/
     {
         $this->setTitle($this->txt("fields"));
     }
@@ -196,7 +196,7 @@ class FieldsTableGUI extends TableGUI
     /**
      * @param AbstractField $field
      */
-    protected function fillRow(/*AbstractField*/ $field)/*: void*/
+    protected function fillRow(/*AbstractField*/ $field)/* : void*/
     {
         self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $field->getType());
         self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $field->getFieldId());

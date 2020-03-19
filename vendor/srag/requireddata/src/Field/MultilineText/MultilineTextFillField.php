@@ -4,6 +4,7 @@ namespace srag\RequiredData\HelpMe\Field\MultilineText;
 
 use ilTextAreaInputGUI;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\TextAreaInputGUI\TextAreaInputGUI;
 use srag\RequiredData\HelpMe\Field\Text\TextFillField;
 
 /**
@@ -37,7 +38,7 @@ class MultilineTextFillField extends TextFillField
     public function getFormFields() : array
     {
         return [
-            PropertyFormGUI::PROPERTY_CLASS => ilTextAreaInputGUI::class
+            PropertyFormGUI::PROPERTY_CLASS => TextAreaInputGUI::class
         ];
     }
 

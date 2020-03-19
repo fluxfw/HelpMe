@@ -18,14 +18,14 @@ class TextFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @var TextField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, TextField $object)
+    public function __construct(FieldCtrl $parent, TextField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

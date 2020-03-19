@@ -18,14 +18,14 @@ class EmailFieldFormGUI extends TextFieldFormGUI
     /**
      * @var EmailField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, EmailField $object)
+    public function __construct(FieldCtrl $parent, EmailField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

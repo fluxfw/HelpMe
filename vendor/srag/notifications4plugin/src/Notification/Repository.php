@@ -55,7 +55,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function deleteNotification(NotificationInterface $notification)/*: void*/
+    public function deleteNotification(NotificationInterface $notification)/* : void*/
     {
         self::dic()->database()->manipulateF('DELETE FROM ' . self::dic()->database()->quoteIdentifier(Notification::getTableName())
             . ' WHERE id=%s', [ilDBConstants::T_INTEGER], [$notification->getId()]);
@@ -65,7 +65,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function dropTables()/*: void*/
+    public function dropTables()/* : void*/
     {
         self::dic()->database()->dropTable(Notification::getTableName(), false);
 
@@ -78,7 +78,7 @@ final class Repository implements RepositoryInterface
     /**
      * @deprecated
      */
-    protected function dropTablesLanguage()/*: void*/
+    protected function dropTablesLanguage()/* : void*/
     {
         if (self::dic()->database()->sequenceExists(NotificationLanguage::getTableName() . "g")) {
             self::dic()->database()->dropSequence(NotificationLanguage::getTableName() . "g");
@@ -127,7 +127,7 @@ final class Repository implements RepositoryInterface
      *
      * @deprecated
      */
-    protected function getLanguageForNotification(int $notification_id, string $language) /* : ?stdClass*/
+    protected function getLanguageForNotification(int $notification_id, string $language)/* : ?stdClass*/
     {
         /**
          * @var stdClass|null $l
@@ -145,7 +145,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getNotificationById(int $id)/*: ?NotificationInterface*/
+    public function getNotificationById(int $id)/* : ?NotificationInterface*/
     {
         /**
          * @var NotificationInterface|null $notification
@@ -163,7 +163,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getNotificationByName(string $name)/*: ?NotificationInterface*/
+    public function getNotificationByName(string $name)/* : ?NotificationInterface*/
     {
         /**
          * @var NotificationInterface|null $notification
@@ -244,7 +244,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function installTables()/*:void*/
+    public function installTables()/* : void*/
     {
         try {
             Notification::updateDB();
@@ -271,7 +271,7 @@ final class Repository implements RepositoryInterface
      *
      * @deprecated
      */
-    public function migrateFromOldGlobalPlugin(string $name = null)/*: ?NotificationInterface*/
+    public function migrateFromOldGlobalPlugin(string $name = null)/* : ?NotificationInterface*/
     {
         $global_plugin_notification_table_name = "sr_notification";
         $global_plugin_notification_language_table_name = "sr_notification_lang";
@@ -332,7 +332,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    protected function migrateLanguages()/*:void*/
+    protected function migrateLanguages()/* : void*/
     {
         if (self::dic()->database()->tableExists(NotificationLanguage::getTableName() . "g")) {
             self::dic()->database()->renameTable(NotificationLanguage::getTableName() . "g", NotificationLanguage::getTableName());
@@ -368,7 +368,7 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function storeNotification(NotificationInterface $notification)/*: void*/
+    public function storeNotification(NotificationInterface $notification)/* : void*/
     {
         $date = new ilDateTime(time(), IL_CAL_UNIX);
 

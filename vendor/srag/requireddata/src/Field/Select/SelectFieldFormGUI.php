@@ -22,22 +22,22 @@ class SelectFieldFormGUI extends AbstractFieldFormGUI
     /**
      * @var SelectField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, SelectField $object)
+    public function __construct(FieldCtrl $parent, SelectField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initFields()/*:void*/
+    protected function initFields()/* : void*/
     {
         parent::initFields();
 

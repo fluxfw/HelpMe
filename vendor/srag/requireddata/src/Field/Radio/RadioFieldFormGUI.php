@@ -18,14 +18,14 @@ class RadioFieldFormGUI extends SelectFieldFormGUI
     /**
      * @var RadioField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, RadioField $object)
+    public function __construct(FieldCtrl $parent, RadioField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

@@ -18,14 +18,14 @@ class MultiSelectFieldFormGUI extends SelectFieldFormGUI
     /**
      * @var MultiSelectField
      */
-    protected $object;
+    protected $field;
 
 
     /**
      * @inheritDoc
      */
-    public function __construct(FieldCtrl $parent, MultiSelectField $object)
+    public function __construct(FieldCtrl $parent, MultiSelectField $field)
     {
-        parent::__construct($parent, $object);
+        parent::__construct($parent, $field);
     }
 }

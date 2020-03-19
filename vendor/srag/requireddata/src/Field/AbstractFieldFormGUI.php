@@ -58,7 +58,7 @@ abstract class AbstractFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands()/* : void*/
     {
         $this->addCommandButton(FieldCtrl::CMD_UPDATE_FIELD, $this->txt("save"));
     }
@@ -67,49 +67,53 @@ abstract class AbstractFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*:void*/
+    protected function initFields()/* : void*/
     {
         $this->fields = [
-            "enabled"      => [
-                self::PROPERTY_CLASS => ilCheckboxInputGUI::class
-            ],
-            "name"         => [
-                self::PROPERTY_CLASS    => ilTextInputGUI::class,
-                self::PROPERTY_REQUIRED => self::requiredData()->isEnableNames(),
-                self::PROPERTY_NOT_ADD  => (!self::requiredData()->isEnableNames())
-            ],
-            "required"     => [
-                self::PROPERTY_CLASS => ilCheckboxInputGUI::class
-            ],
-            "labels"       => [
-                self::PROPERTY_CLASS    => TabsInputGUI::class,
-                self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_SUBITEMS => MultilangualTabsInputGUI::generate([
-                    "label" => [
-                        self::PROPERTY_CLASS => ilTextInputGUI::class
-                    ]
-                ], true),
-                "setTitle"              => $this->txt("label")
-            ],
-            "descriptions" => [
-                self::PROPERTY_CLASS    => TabsInputGUI::class,
-                self::PROPERTY_REQUIRED => false,
-                self::PROPERTY_SUBITEMS => MultilangualTabsInputGUI::generate([
-                    "description" => [
-                        self::PROPERTY_CLASS => TextAreaInputGUI::class,
-                        "setRows"            => 10
-                    ]
-                ], true, false),
-                "setTitle"              => $this->txt("description")
-            ]
-        ];
+                "enabled"      => [
+                    self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+                ],
+                "name"         => [
+                    self::PROPERTY_CLASS    => ilTextInputGUI::class,
+                    self::PROPERTY_REQUIRED => self::requiredData()->isEnableNames(),
+                    self::PROPERTY_NOT_ADD  => (!self::requiredData()->isEnableNames())
+                ],
+                "required"     => [
+                    self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+                ],
+                "labels"       => [
+                    self::PROPERTY_CLASS    => TabsInputGUI::class,
+                    self::PROPERTY_REQUIRED => true,
+                    self::PROPERTY_SUBITEMS => MultilangualTabsInputGUI::generate([
+                        "label" => [
+                            self::PROPERTY_CLASS => ilTextInputGUI::class
+                        ]
+                    ], true),
+                    "setTitle"              => $this->txt("label")
+                ],
+                "descriptions" => [
+                    self::PROPERTY_CLASS    => TabsInputGUI::class,
+                    self::PROPERTY_REQUIRED => false,
+                    self::PROPERTY_SUBITEMS => MultilangualTabsInputGUI::generate([
+                        "description" => [
+                            self::PROPERTY_CLASS => TextAreaInputGUI::class,
+                            "setRows"            => 10
+                        ]
+                    ], true, false),
+                    "setTitle"              => $this->txt("description")
+                ]
+            ] + ($this->field->supportsMultiLang() ? [
+                "multi_lang" => [
+                    self::PROPERTY_CLASS => ilCheckboxInputGUI::class
+                ]
+            ] : []);
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId()/* : void*/
     {
 
     }
@@ -118,7 +122,7 @@ abstract class AbstractFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle()/* : void*/
     {
         $this->setTitle($this->txt("edit_field"));
     }
@@ -127,7 +131,7 @@ abstract class AbstractFieldFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value)/* : void*/
     {
         switch ($key) {
             default:
