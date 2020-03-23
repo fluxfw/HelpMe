@@ -140,7 +140,7 @@ class ProjectsTableGUI extends TableGUI
      */
     protected function initId()/*: void*/
     {
-        $this->setId("srsu_projects");
+        $this->setId(ilHelpMePlugin::PLUGIN_ID . "_projects");
     }
 
 

@@ -153,7 +153,7 @@ class TicketsTableGUI extends TableGUI
      */
     protected function initId()/*: void*/
     {
-        $this->setId("srsu_tickets");
+        $this->setId(ilHelpMePlugin::PLUGIN_ID . "_tickets");
     }
 
 
