@@ -32,7 +32,7 @@ It support the follow libraries:
 * [srag libraries](https://packagist.org/packages/srag)
 
 ### PHP72Backport
-If your plugin needs a PHP 7.0 compatible of version of a library, you can also add additionally the follow composer script:
+If your plugin needs a PHP 7.0 compatible of version of a PHP 7.2/7.1 library, you can also add additionally the follow composer script:
 ```json
  "pre-autoload-dump": [
     ...,
@@ -40,8 +40,10 @@ If your plugin needs a PHP 7.0 compatible of version of a library, you can also 
     ]
 ```
 
+It works with RegExp and affects your whole plugin workspace (`classes`, `src`, `vendor`, ...)
+
 ### php7backport
-If your plugin needs a PHP 5.6 compatible of version of a library, you can also add additionally the follow composer script:
+If your plugin needs a PHP 5.6 compatible of version of a PHP 7.0 library, you can also add additionally the follow composer script:
 ```json
  "post-update-cmd": "srag\\LibrariesNamespaceChanger\\PHP7Backport::PHP7Backport"
 ```

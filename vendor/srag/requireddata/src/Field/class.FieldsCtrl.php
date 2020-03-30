@@ -97,7 +97,7 @@ class FieldsCtrl
      */
     protected function listFields()/* : void*/
     {
-        $table = self::requiredData()->fields()->factory()->newTableInstance($this);
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
 
         self::output()->output($table);
     }
@@ -108,11 +108,9 @@ class FieldsCtrl
      */
     protected function enableFields()/* : void*/
     {
-        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
 
-        if (!is_array($field_ids)) {
-            $field_ids = [];
-        }
+        $field_ids = $table->getTable()->getBrowserFormat()->getMultipleActionRowIds($table->getTable()->getTableId());
 
         /**
          * @var AbstractField[] $fields
@@ -140,11 +138,9 @@ class FieldsCtrl
      */
     protected function disableFields()/* : void*/
     {
-        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
 
-        if (!is_array($field_ids)) {
-            $field_ids = [];
-        }
+        $field_ids = $table->getTable()->getBrowserFormat()->getMultipleActionRowIds($table->getTable()->getTableId());
 
         /**
          * @var AbstractField[] $fields
@@ -174,11 +170,9 @@ class FieldsCtrl
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_FIELDS);
 
-        $field_ids = filter_input(INPUT_POST, FieldCtrl::GET_PARAM_FIELD_ID, FILTER_DEFAULT, FILTER_FORCE_ARRAY);
+        $table = self::requiredData()->fields()->factory()->newTableBuilderInstance($this);
 
-        if (!is_array($field_ids)) {
-            $field_ids = [];
-        }
+        $field_ids = $table->getTable()->getBrowserFormat()->getMultipleActionRowIds($table->getTable()->getTableId());
 
         /**
          * @var AbstractField[] $fields

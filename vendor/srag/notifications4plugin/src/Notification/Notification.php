@@ -268,6 +268,24 @@ class Notification extends ActiveRecord implements NotificationInterface
 
 
     /**
+     * @return array
+     */
+    public function getActions() : array
+    {
+        self::dic()->ctrl()->setParameterByClass(NotificationCtrl::class, NotificationCtrl::GET_PARAM_NOTIFICATION_ID, $this->id);
+
+        return [
+            self::dic()->ui()->factory()->link()->standard(self::notifications4plugin()->getPlugin()->translate("edit", NotificationsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_EDIT_NOTIFICATION, "", false, false)),
+            self::dic()->ui()->factory()->link()->standard(self::notifications4plugin()->getPlugin()->translate("duplicate", NotificationsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_DUPLICATE_NOTIFICATION, "", false, false)),
+            self::dic()->ui()->factory()->link()->standard(self::notifications4plugin()->getPlugin()->translate("delete", NotificationsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_DELETE_NOTIFICATION_CONFIRM, "", false, false))
+        ];
+    }
+
+
+    /**
      * @inheritDoc
      */
     public function sleep(/*string*/ $field_name)

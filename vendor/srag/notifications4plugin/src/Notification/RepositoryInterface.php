@@ -2,6 +2,8 @@
 
 namespace srag\Notifications4Plugin\HelpMe\Notification;
 
+use srag\DataTableUI\HelpMe\Component\Settings\Settings;
+
 /**
  * Interface RepositoryInterface
  *
@@ -55,14 +57,11 @@ interface RepositoryInterface
 
 
     /**
-     * @param string|null $sort_by
-     * @param string|null $sort_by_direction
-     * @param int|null    $limit_start
-     * @param int|null    $limit_end
+     * @param Settings|null $settings
      *
      * @return NotificationInterface[]
      */
-    public function getNotifications(string $sort_by = null, string $sort_by_direction = null, int $limit_start = null, int $limit_end = null) : array;
+    public function getNotifications(/*?Settings*/ $settings = null) : array;
 
 
     /**
@@ -84,7 +83,7 @@ interface RepositoryInterface
      *
      * @deprecated
      */
-    public function migrateFromOldGlobalPlugin(string $name = null)/* : ?Notification*/;
+    public function migrateFromOldGlobalPlugin(string $name = null)/* : ?NotificationInterface*/;
 
 
     /**

@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.33.7]
+- Fix
+
+## [0.33.6]
+- Fix
+
+## [0.33.5]
+- Deprecated `TableGUI`
+
+## [0.33.4]
+- Fix `ilRepositorySelector2InputGUI`
+
 ## [0.33.3]
 - `OrgUnitAjaxAutoCompleteCtrl`
 

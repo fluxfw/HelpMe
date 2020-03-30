@@ -83,7 +83,7 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI
      *
      * @param object $parent
      */
-    public function __construct($parent)
+    public function __construct(/*object*/ $parent)
     {
         $this->initId();
 

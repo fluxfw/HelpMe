@@ -306,6 +306,51 @@ abstract class AbstractField extends ActiveRecord
 
 
     /**
+     * @return array
+     */
+    public function getActions() : array
+    {
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $this->getType());
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $this->field_id);
+
+        return [
+            self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("edit_field", FieldsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_EDIT_FIELD)),
+            self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("remove_field", FieldsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_REMOVE_FIELD_CONFIRM))
+        ];
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getSortUpActionUrl() : string
+    {
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $this->getType());
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $this->field_id);
+
+        return self::dic()
+            ->ctrl()
+            ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_UP, "", true);
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getSortDownActionUrl() : string
+    {
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $this->getType());
+        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $this->field_id);
+
+        return self::dic()
+            ->ctrl()
+            ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_DOWN, "", true);
+    }
+
+
+    /**
      * @inheritDoc
      */
     public function sleep(/*string*/ $field_name)

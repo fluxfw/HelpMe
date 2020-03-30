@@ -3,7 +3,7 @@
 namespace srag\DIC\HelpMe\Output;
 
 use ILIAS\UI\Component\Component;
-use ILIAS\UI\Implementation\Render\ilTemplateWrapper;
+use ILIAS\UI\Implementation\Render\Template;
 use ilTable2GUI;
 use ilTemplate;
 use JsonSerializable;
@@ -71,7 +71,7 @@ final class Output implements OutputInterface
 
                 // Template instance
                 case ($value instanceof ilTemplate):
-                case ($value instanceof ilTemplateWrapper):
+                case ($value instanceof Template):
                     $html = $value->get();
                     break;
 

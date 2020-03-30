@@ -75,7 +75,7 @@ class NotificationsCtrl
      */
     protected function listNotifications()/* : void*/
     {
-        $table = self::notifications4plugin()->notifications()->factory()->newTableInstance($this);
+        $table = self::notifications4plugin()->notifications()->factory()->newTableBuilderInstance($this);
 
         self::output()->output($table);
     }

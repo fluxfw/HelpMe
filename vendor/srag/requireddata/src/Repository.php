@@ -3,6 +3,7 @@
 namespace srag\RequiredData\HelpMe;
 
 use LogicException;
+use srag\DataTableUI\HelpMe\Implementation\Utils\DataTableUITrait;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Plugin\Pluginable;
 use srag\DIC\HelpMe\Plugin\PluginInterface;
@@ -23,6 +24,7 @@ final class Repository implements Pluginable
 
     use DICTrait;
     use RequiredDataTrait;
+    use DataTableUITrait;
     /**
      * @var self|null
      */
@@ -126,6 +128,8 @@ final class Repository implements Pluginable
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($this->getPlugin())->withLibraryLanguageDirectory(__DIR__
             . "/../lang")->updateLanguages();
+
+        self::dataTableUI()->installLanguages($this->plugin);
     }
 
 
