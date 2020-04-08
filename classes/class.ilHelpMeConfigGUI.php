@@ -4,10 +4,9 @@ require_once __DIR__ . "/../vendor/autoload.php";
 
 use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
-use srag\Plugins\HelpMe\Config\ConfigFormGUI;
+use srag\Plugins\HelpMe\Config\ConfigCtrl;
 use srag\Plugins\HelpMe\Project\ProjectsConfigGUI;
 use srag\Plugins\HelpMe\Support\Support;
-use srag\Plugins\HelpMe\Ticket\TicketsGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RequiredData\HelpMe\Field\FieldsCtrl;
 
@@ -26,10 +25,6 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
     use HelpMeTrait;
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_CONFIGURE = "configure";
-    const CMD_HIDE_USAGE = "hideUsage";
-    const CMD_UPDATE_CONFIGURE = "updateConfigure";
-    const LANG_MODULE = "config";
-    const TAB_CONFIGURATION = "configuration";
 
 
     /**
@@ -51,6 +46,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
+            case strtolower(ConfigCtrl::class):
+                self::dic()->ctrl()->forwardCommand(new ConfigCtrl());
+                break;
+
             case strtolower(FieldsCtrl::class):
                 self::dic()->ctrl()->forwardCommand(new FieldsCtrl(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG));
                 break;
@@ -69,8 +68,6 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
 
                 switch ($cmd) {
                     case self::CMD_CONFIGURE:
-                    case self::CMD_HIDE_USAGE:
-                    case self::CMD_UPDATE_CONFIGURE:
                         $this->{$cmd}();
                         break;
 
@@ -87,10 +84,9 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
      */
     protected function setTabs()/*: void*/
     {
-        self::dic()->tabs()->addTab(self::TAB_CONFIGURATION, self::plugin()->translate("configuration", self::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTargetByClass(self::class, self::CMD_CONFIGURE));
+        ConfigCtrl::addTabs();
 
-        self::dic()->tabs()->addTab(FieldsCtrl::TAB_LIST_FIELDS, self::plugin()->translate("fields", self::LANG_MODULE), self::dic()->ctrl()
+        self::dic()->tabs()->addTab(FieldsCtrl::TAB_LIST_FIELDS, self::plugin()->translate("fields", ConfigCtrl::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTargetByClass(FieldsCtrl::class, FieldsCtrl::CMD_LIST_FIELDS));
 
         ProjectsConfigGUI::addTabs();
@@ -109,50 +105,6 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
      */
     protected function configure()/*: void*/
     {
-        self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
-
-        $form = self::helpMe()->config()->factory()->newFormInstance($this);
-
-        self::output()->output($form);
-    }
-
-
-    /**
-     *
-     */
-    protected function updateConfigure()/*: void*/
-    {
-        self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
-
-        $form = self::helpMe()->config()->factory()->newFormInstance($this);
-
-        if (!$form->storeForm()) {
-            self::output()->output($form);
-
-            return;
-        }
-
-        ilUtil::sendSuccess(self::plugin()->translate("configuration_saved", self::LANG_MODULE), true);
-
-        self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
-    }
-
-
-    /**
-     *
-     */
-    protected function hideUsage()/*: void*/
-    {
-        $usage_id = strval(filter_input(INPUT_GET, TicketsGUI::GET_PARAM_USAGE_ID));
-
-        if (!empty($usage_id)) {
-            $usage_hidden = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN);
-            $usage_hidden[$usage_id] = true;
-            self::helpMe()->config()->setValue(ConfigFormGUI::KEY_USAGE_HIDDEN, $usage_hidden);
-
-            ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE), true);
-        }
-
-        self::dic()->ctrl()->redirectByClass(self::class, self::CMD_CONFIGURE);
+        self::dic()->ctrl()->redirectByClass(ConfigCtrl::class, ConfigCtrl::CMD_CONFIGURE);
     }
 }

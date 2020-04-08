@@ -16,7 +16,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DataTableUI\\' => 17,
-            'srag\\DIC\\' => 9,
+            'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
@@ -51,7 +51,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
-        'srag\\DIC\\' => 
+        'srag\\DIC\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
@@ -272,6 +272,8 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\CustomInputGUIs\\HelpMe\\CustomInputGUIs' => __DIR__ . '/..' . '/srag/custominputguis/src/CustomInputGUIs.php',
         'srag\\CustomInputGUIs\\HelpMe\\CustomInputGUIsTrait' => __DIR__ . '/..' . '/srag/custominputguis/src/CustomInputGUIsTrait.php',
         'srag\\CustomInputGUIs\\HelpMe\\DateDurationInputGUI\\DateDurationInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/DateDurationInputGUI/DateDurationInputGUI.php',
+        'srag\\CustomInputGUIs\\HelpMe\\FormBuilder\\AbstractFormBuilder' => __DIR__ . '/..' . '/srag/custominputguis/src/FormBuilder/AbstractFormBuilder.php',
+        'srag\\CustomInputGUIs\\HelpMe\\FormBuilder\\FormBuilder' => __DIR__ . '/..' . '/srag/custominputguis/src/FormBuilder/FormBuilder.php',
         'srag\\CustomInputGUIs\\HelpMe\\GlyphGUI\\GlyphGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/GlyphGUI/GlyphGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\HiddenInputGUI\\HiddenInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/HiddenInputGUI/HiddenInputGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraint' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraint.php',
@@ -376,6 +378,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\DataTableUI\\HelpMe\\Component\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Component/Factory.php',
         'srag\\DataTableUI\\HelpMe\\Component\\Format\\Browser\\BrowserFormat' => __DIR__ . '/..' . '/srag/datatable/src/Component/Format/Browser/BrowserFormat.php',
         'srag\\DataTableUI\\HelpMe\\Component\\Format\\Browser\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Component/Format/Browser/Factory.php',
+        'srag\\DataTableUI\\HelpMe\\Component\\Format\\Browser\\Filter\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Component/Format/Browser/Filter/Factory.php',
         'srag\\DataTableUI\\HelpMe\\Component\\Format\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Component/Format/Factory.php',
         'srag\\DataTableUI\\HelpMe\\Component\\Format\\Format' => __DIR__ . '/..' . '/srag/datatable/src/Component/Format/Format.php',
         'srag\\DataTableUI\\HelpMe\\Component\\Settings\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Component/Settings/Factory.php',
@@ -413,6 +416,8 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\AbstractFormat' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/AbstractFormat.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\Browser\\DefaultBrowserFormat' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/Browser/DefaultBrowserFormat.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\Browser\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/Browser/Factory.php',
+        'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\Browser\\Filter\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/Browser/Filter/Factory.php',
+        'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\Browser\\Filter\\FormBuilder' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/Browser/Filter/FormBuilder.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\CsvFormat' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/CsvFormat.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\ExcelFormat' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/ExcelFormat.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Format\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Format/Factory.php',
@@ -469,6 +474,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Plugins\\HelpMe\\Access\\Ilias' => __DIR__ . '/../..' . '/src/Access/Ilias.php',
         'srag\\Plugins\\HelpMe\\Access\\Roles' => __DIR__ . '/../..' . '/src/Access/Roles.php',
         'srag\\Plugins\\HelpMe\\Access\\Users' => __DIR__ . '/../..' . '/src/Access/Users.php',
+        'srag\\Plugins\\HelpMe\\Config\\ConfigCtrl' => __DIR__ . '/../..' . '/src/Config/class.ConfigCtrl.php',
         'srag\\Plugins\\HelpMe\\Config\\ConfigFormGUI' => __DIR__ . '/../..' . '/src/Config/ConfigFormGUI.php',
         'srag\\Plugins\\HelpMe\\Config\\Factory' => __DIR__ . '/../..' . '/src/Config/Factory.php',
         'srag\\Plugins\\HelpMe\\Config\\Repository' => __DIR__ . '/../..' . '/src/Config/Repository.php',

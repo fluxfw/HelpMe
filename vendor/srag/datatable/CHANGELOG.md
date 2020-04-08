@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.28.1]
+- Improve filter
+
 ## [0.28.0]
 - Refactoring
 

@@ -5,11 +5,11 @@ namespace srag\DataTableUI\HelpMe\Implementation\Format\Browser;
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Component\Glyph\Factory as GlyphFactory54;
 use ILIAS\UI\Component\Input\Container\Filter\Standard as FilterStandard;
-use ILIAS\UI\Component\Input\Container\Form\Standard as FilterStandard54;
 use ILIAS\UI\Component\Link\Standard;
 use ILIAS\UI\Component\Symbol\Glyph\Factory as GlyphFactory;
 use ilUtil;
 use LogicException;
+use srag\CustomInputGUIs\HelpMe\FormBuilder\FormBuilder;
 use srag\CustomInputGUIs\HelpMe\Template\Template;
 use srag\DataTableUI\HelpMe\Component\Column\Column;
 use srag\DataTableUI\HelpMe\Component\Data\Data;
@@ -34,7 +34,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
 {
 
     /**
-     * @var FilterStandard|FilterStandard54|null
+     * @var FilterStandard|FormBuilder|null
      */
     protected $filter_form = null;
     /**
@@ -233,18 +233,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
                         array_fill(0, count($filter_fields), false),
                         true, true);
             } else {
-                foreach ($filter_fields as $key => &$field) {
-                    try {
-                        $field = $field->withValue($settings->getFilterFieldValue($key));
-                    } catch (Throwable $ex) {
-
-                    }
-                }
-
-                $this->filter_form = self::dic()->ui()->factory()->input()->container()->form()
-                    ->standard($this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_FILTER_FIELD_VALUES => true], $component->getTableId()), [
-                        "filter" => self::dic()->ui()->factory()->input()->field()->section($filter_fields, $component->getPlugin()->translate("filter", Table::LANG_MODULE))
-                    ]);
+                $this->filter_form = self::dataTableUI()->format()->browser()->filter()->formBuilder($this, $component, $settings);
             }
         }
     }
@@ -303,24 +292,35 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
 
                 $this->initFilterForm($component, $settings);
 
-                try {
-                    if (self::version()->is60()) {
-                        $data = self::dic()->uiService()->filter()->getData($this->filter_form) ?? [];
-                    } else {
-                        $this->filter_form = $this->filter_form->withRequest(self::dic()->http()->request());
-                        $data = ($this->filter_form->getData() ?? [])["filter"] ?? [];
+                if (self::version()->is60()) {
+                    try {
+                        $settings->withFilterFieldValues(self::dic()->uiService()->filter()->getData($this->filter_form) ?? []);
+
+                        $this->filter_form = null;
+                    } catch (Throwable $ex) {
+
                     }
-                } catch (Throwable $ex) {
-                    $data = [];
+                } else {
+                    if ($this->filter_form->storeForm()) {
+                        $settings = $this->filter_form->getSettings();
+
+                        $this->filter_form = null;
+                    }
                 }
 
-                $settings = $settings->withFilterFieldValues($data);
-
-                if (!empty(array_filter($data))) {
+                if (!empty(array_filter($settings->getFilterFieldValues()))) {
                     $settings = $settings->withFilterSet(true);
 
                     $settings = $settings->withCurrentPage(); // Reset current page on filter change
                 }
+            }
+
+            $reset_filter_field_values = boolval(filter_input(INPUT_GET, $this->actionParameter(SettingsStorage::VAR_RESET_FILTER_FIELD_VALUES, $component->getTableId())));
+            if ($reset_filter_field_values) {
+
+                $settings = $settings->withFilterFieldValues([]);
+
+                $settings = $settings->withCurrentPage(); // Reset current page on filter change
 
                 $this->filter_form = null;
             }
@@ -343,17 +343,6 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
         $this->initFilterForm($component, $settings);
 
         $filter_form = self::output()->getHTML($this->filter_form);
-
-        if (!self::version()->is60()) {
-            $filter_form = preg_replace_callback('/(<button\s+class\s*=\s*"btn btn-default"\s+data-action\s*=\s*"#"\s+id\s*=\s*"[a-z0-9_]+"\s*>)(.+)(<\/button\s*>)/',
-                function (array $matches) use ($component): string {
-                    return self::output()->getHTML([
-                        self::dic()->ui()->factory()->legacy($matches[1] . $component->getPlugin()->translate("apply_filter", Table::LANG_MODULE) . $matches[3] . "&nbsp;"),
-                        self::dic()->ui()->factory()->button()->standard($component->getPlugin()->translate("reset_filter", Table::LANG_MODULE),
-                            $component->getBrowserFormat()->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_FILTER_FIELD_VALUES => true], $component->getTableId()))
-                    ]);
-                }, $filter_form);
-        }
 
         $this->tpl->setCurrentBlock("filter");
 

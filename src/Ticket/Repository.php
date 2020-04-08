@@ -10,6 +10,7 @@ use ilHelpMePlugin;
 use ilUtil;
 use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Config\ConfigCtrl;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
 use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
@@ -376,13 +377,13 @@ final class Repository
 
             if (!self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN)[$usage_id]) {
 
-                $text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE);
+                $text = self::plugin()->translate($usage_id, ConfigCtrl::LANG_MODULE);
 
-                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
+                self::dic()->ctrl()->setParameterByClass(ConfigCtrl::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
                 $hide_button = self::dic()->ui()->factory()->button()->standard(self::plugin()
-                    ->translate("usage_hide", ilHelpMeConfigGUI::LANG_MODULE), self::dic()->ctrl()
-                    ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::CMD_HIDE_USAGE));
-                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, null);
+                    ->translate("usage_hide", ConfigCtrl::LANG_MODULE), self::dic()->ctrl()
+                    ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ConfigCtrl::class, ConfigCtrl::CMD_HIDE_USAGE));
+                self::dic()->ctrl()->setParameterByClass(ConfigCtrl::class, TicketsGUI::GET_PARAM_USAGE_ID, null);
 
                 if (self::version()->is54()) {
                     $info[] = self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button]);

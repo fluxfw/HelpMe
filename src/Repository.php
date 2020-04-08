@@ -101,7 +101,7 @@ final class Repository
     {
         $user_id = $this->ilias()->users()->getUserId();
 
-        $user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
+        $user_roles = self::dic()->rbac()->review()->assignedGlobalRoles($user_id);
         $config_roles = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_ROLES);
 
         foreach ($user_roles as $user_role) {

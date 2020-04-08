@@ -1,18 +1,19 @@
 <?php
 
-namespace srag\DataTableUI\HelpMe\Implementation\Format\Browser;
+namespace srag\DataTableUI\HelpMe\Implementation\Format\Browser\Filter;
 
+use srag\CustomInputGUIs\HelpMe\FormBuilder\FormBuilder as FormBuilderInterface;
 use srag\DataTableUI\HelpMe\Component\Format\Browser\BrowserFormat;
-use srag\DataTableUI\HelpMe\Component\Format\Browser\Factory as FactoryInterface;
-use srag\DataTableUI\HelpMe\Component\Format\Browser\Filter\Factory as FilterFactoryInterface;
-use srag\DataTableUI\HelpMe\Implementation\Format\Browser\Filter\Factory as FilterFactory;
+use srag\DataTableUI\HelpMe\Component\Format\Browser\Filter\Factory as FactoryInterface;
+use srag\DataTableUI\HelpMe\Component\Settings\Settings;
+use srag\DataTableUI\HelpMe\Component\Table;
 use srag\DataTableUI\HelpMe\Implementation\Utils\DataTableUITrait;
 use srag\DIC\HelpMe\DICTrait;
 
 /**
  * Class Factory
  *
- * @package srag\DataTableUI\HelpMe\Implementation\Format\Browser
+ * @package srag\DataTableUI\HelpMe\Implementation\Format\Browser\Filter
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
@@ -52,17 +53,8 @@ class Factory implements FactoryInterface
     /**
      * @inheritDoc
      */
-    public function default() : BrowserFormat
+    public function formBuilder(BrowserFormat $parent, Table $component, Settings $settings) : FormBuilderInterface
     {
-        return new DefaultBrowserFormat();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function filter() : FilterFactoryInterface
-    {
-        return FilterFactory::getInstance();
+        return new FormBuilder($parent, $component, $settings);
     }
 }

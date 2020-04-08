@@ -57,7 +57,7 @@ final class Roles
          * @var array $roles
          */
 
-        $global_roles = self::dic()->rbacreview()->getRolesForIDs(self::dic()->rbacreview()->getGlobalRoles(), false);
+        $global_roles = self::dic()->rbac()->review()->getRolesForIDs(self::dic()->rbac()->review()->getGlobalRoles(), false);
 
         $roles = [];
         foreach ($global_roles as $global_role) {

@@ -13,7 +13,7 @@ return array(
     'srag\\LibrariesNamespaceChanger\\' => array($vendorDir . '/srag/librariesnamespacechanger/src'),
     'srag\\JiraCurl\\HelpMe\\' => array($vendorDir . '/srag/jiracurl/src'),
     'srag\\DataTableUI\\' => array($vendorDir . '/srag/datatable/src'),
-    'srag\\DIC\\' => array($vendorDir . '/srag/dic/src'),
+    'srag\\DIC\\HelpMe\\' => array($vendorDir . '/srag/dic/src'),
     'srag\\CustomInputGUIs\\' => array($vendorDir . '/srag/custominputguis/src'),
     'srag\\ActiveRecordConfig\\HelpMe\\' => array($vendorDir . '/srag/activerecordconfig/src'),
 );

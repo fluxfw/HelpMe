@@ -46,6 +46,10 @@ interface SettingsStorage
     /**
      * @var string
      */
+    const VAR_RESET_FILTER_FIELD_VALUES = "reset_filter_field_values";
+    /**
+     * @var string
+     */
     const VAR_SELECTED_COLUMNS = "selected_columns";
     /**
      * @var string

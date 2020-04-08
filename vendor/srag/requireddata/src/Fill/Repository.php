@@ -71,7 +71,7 @@ final class Repository
     /**
      * @param string $fill_id
      */
-    protected function deleteFillStorages(string $fill_id)/* : void*/
+    public function deleteFillStorages(string $fill_id)/* : void*/
     {
         foreach ($this->getFillStorages($fill_id) as $fill_storage) {
             $this->deleteFillStorage($fill_storage);
