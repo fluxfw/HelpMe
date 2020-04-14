@@ -9,13 +9,13 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
-            'srag\\RequiredData\\' => 18,
+            'srag\\RequiredData\\HelpMe\\' => 25,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\' => 26,
+            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
-            'srag\\DataTableUI\\' => 17,
+            'srag\\DataTableUI\\HelpMe\\' => 24,
             'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
@@ -23,7 +23,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
     );
 
     public static $prefixDirsPsr4 = array (
-        'srag\\RequiredData\\' => 
+        'srag\\RequiredData\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/requireddata/src',
         ),
@@ -35,7 +35,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\' => 
+        'srag\\Notifications4Plugin\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
@@ -47,7 +47,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
-        'srag\\DataTableUI\\' => 
+        'srag\\DataTableUI\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),

@@ -3,10 +3,13 @@
 namespace srag\CustomInputGUIs\HelpMe\FormBuilder;
 
 use Closure;
+use Exception;
 use ilFormPropertyDispatchGUI;
 use ILIAS\UI\Component\Input\Container\Form\Form;
+use ILIAS\UI\Component\Input\Field\DependantGroupProviding;
 use ILIAS\UI\Implementation\Component\Input\Field\Group;
 use ilSubmitButton;
+use ilUtil;
 use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
 use srag\DIC\HelpMe\DICTrait;
 use Throwable;
@@ -188,8 +191,34 @@ abstract class AbstractFormBuilder implements FormBuilder
         $inputs = $form->getInputs()["form"]->getInputs();
         foreach ($inputs as $key => $field) {
             if (isset($data[$key])) {
+                if ($field instanceof DependantGroupProviding && !empty($field->getDependantGroup())) {
+                    $inputs2 = $field->getDependantGroup()->getInputs();
+                    if (!empty($inputs2)) {
+                        if (isset($data[$key]["value"])) {
+                            try {
+                                $inputs[$key] = $field = $field->withValue($data[$key]["value"]);
+                            } catch (Throwable $ex) {
+
+                            }
+                        }
+                        $data2 = (isset($data[$key]["group_values"]) ? $data[$key]["group_values"] : $data[$key])["dependant_group"];
+                        foreach ($inputs2 as $key2 => $field2) {
+                            if (isset($data2[$key2])) {
+                                try {
+                                    $inputs2[$key2] = $field2 = $field2->withValue($data2[$key2]);
+                                } catch (Throwable $ex) {
+
+                                }
+                            }
+                        }
+                        Closure::bind(function () use ($inputs2): void {
+                            $this->inputs = $inputs2;
+                        }, $field->getDependantGroup(), Group::class)();
+                        continue;
+                    }
+                }
                 try {
-                    $inputs[$key] = $field->withValue($data[$key]);
+                    $inputs[$key] = $field = $field->withValue($data[$key]);
                 } catch (Throwable $ex) {
 
                 }
@@ -212,11 +241,13 @@ abstract class AbstractFormBuilder implements FormBuilder
             $data = $this->form->getData();
 
             if (empty($data)) {
-                return false;
+                throw new Exception();
             }
 
             $this->storeData($data["form"] ?? []);
         } catch (Throwable $ex) {
+            ilUtil::sendFailure(self::dic()->language()->txt("form_input_not_valid"));
+
             return false;
         }
 
