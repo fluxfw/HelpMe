@@ -7,7 +7,9 @@ use Exception;
 use ilFormPropertyDispatchGUI;
 use ILIAS\UI\Component\Input\Container\Form\Form;
 use ILIAS\UI\Component\Input\Field\DependantGroupProviding;
+use ILIAS\UI\Component\Input\Field\Radio as RadioInterface;
 use ILIAS\UI\Implementation\Component\Input\Field\Group;
+use ILIAS\UI\Implementation\Component\Input\Field\Radio;
 use ilSubmitButton;
 use ilUtil;
 use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
@@ -216,12 +218,39 @@ abstract class AbstractFormBuilder implements FormBuilder
                         }, $field->getDependantGroup(), Group::class)();
                         continue;
                     }
-                }
-                try {
-                    $inputs[$key] = $field = $field->withValue($data[$key]);
-                } catch (Throwable $ex) {
+                } else {
+                    if ($field instanceof RadioInterface
+                        && isset($data[$key]["value"])
+                        && !empty($inputs2 = Closure::bind(function () use ($data, $key) : array {
+                            return $this->dependant_fields[$data[$key]["value"]];
+                        }, $field, Radio::class)())
+                    ) {
+                        try {
+                            $inputs[$key] = $field = $field->withValue($data[$key]["value"]);
+                        } catch (Throwable $ex) {
 
+                        }
+                        $data2 = $data[$key]["group_values"];
+                        foreach ($inputs2 as $key2 => $field2) {
+                            if (isset($data2[$key2])) {
+                                try {
+                                    $inputs2[$key2] = $field2 = $field2->withValue($data2[$key2]);
+                                } catch (Throwable $ex) {
+
+                                }
+                            }
+                        }
+                        Closure::bind(function () use ($data, $key, $inputs2): void {
+                            $this->dependant_fields[$data[$key]["value"]] = $inputs2;
+                        }, $field, Radio::class)();
+                        continue;
+                    }
                 }
+            }
+            try {
+                $inputs[$key] = $field = $field->withValue($data[$key]);
+            } catch (Throwable $ex) {
+
             }
         }
         Closure::bind(function () use ($inputs): void {

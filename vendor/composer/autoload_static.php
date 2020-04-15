@@ -443,6 +443,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Notifications4Plugin\\HelpMe\\Exception\\Notifications4PluginException' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Exception/Notifications4PluginException.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Factory' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Factory.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\FactoryInterface' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/FactoryInterface.php',
+        'srag\\Notifications4Plugin\\HelpMe\\Notification\\Form\\NotificationFormBuilder' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Form/NotificationFormBuilder.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Language\\NotificationLanguage' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Language/NotificationLanguage.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Notification' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Notification.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationCtrl' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/class.NotificationCtrl.php',

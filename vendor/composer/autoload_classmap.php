@@ -373,6 +373,7 @@ return array(
     'srag\\Notifications4Plugin\\HelpMe\\Exception\\Notifications4PluginException' => $vendorDir . '/srag/notifications4plugin/src/Exception/Notifications4PluginException.php',
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\Factory' => $vendorDir . '/srag/notifications4plugin/src/Notification/Factory.php',
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\FactoryInterface' => $vendorDir . '/srag/notifications4plugin/src/Notification/FactoryInterface.php',
+    'srag\\Notifications4Plugin\\HelpMe\\Notification\\Form\\NotificationFormBuilder' => $vendorDir . '/srag/notifications4plugin/src/Notification/Form/NotificationFormBuilder.php',
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\Language\\NotificationLanguage' => $vendorDir . '/srag/notifications4plugin/src/Notification/Language/NotificationLanguage.php',
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\Notification' => $vendorDir . '/srag/notifications4plugin/src/Notification/Notification.php',
     'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationCtrl' => $vendorDir . '/srag/notifications4plugin/src/Notification/class.NotificationCtrl.php',
