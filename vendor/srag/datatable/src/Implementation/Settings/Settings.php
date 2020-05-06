@@ -23,6 +23,7 @@ class Settings implements SettingsInterface
     use ComponentHelper;
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var Pagination
      */

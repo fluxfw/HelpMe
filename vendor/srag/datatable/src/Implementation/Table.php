@@ -28,6 +28,7 @@ class Table implements TableInterface
     use ComponentHelper;
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var PluginInterface
      */

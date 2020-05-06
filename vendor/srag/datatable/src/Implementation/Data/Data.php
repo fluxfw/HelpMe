@@ -21,6 +21,7 @@ class Data implements DataInterface
     use ComponentHelper;
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var RowData[]
      */

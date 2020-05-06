@@ -26,7 +26,6 @@ class Renderer extends AbstractComponentRenderer
     use DICTrait;
     use DataTableUITrait;
 
-
     /**
      * @inheritDoc
      */

@@ -49,24 +49,24 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "v0.34.4",
-        "version_normalized": "0.34.4.0",
+        "version": "v0.34.9",
+        "version_normalized": "0.34.9.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "31b52172d13eb2a6f470f779aa22784975dcf348"
+            "reference": "f01c18bbfe8f697a70a4e01521833efdb6c2ec21"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/31b52172d13eb2a6f470f779aa22784975dcf348",
-            "reference": "31b52172d13eb2a6f470f779aa22784975dcf348",
+            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/f01c18bbfe8f697a70a4e01521833efdb6c2ec21",
+            "reference": "f01c18bbfe8f697a70a4e01521833efdb6c2ec21",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2020-04-15T09:40:19+00:00",
+        "time": "2020-05-06T05:16:14+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -98,17 +98,17 @@
     },
     {
         "name": "srag/datatable",
-        "version": "v0.28.1",
-        "version_normalized": "0.28.1.0",
+        "version": "v0.28.2",
+        "version_normalized": "0.28.2.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/DataTableUI.git",
-            "reference": "35c777c3f1cdde1915b03067edc3bc3bdb8a564d"
+            "reference": "1f7aa5fa3763fd2800a3d156adeffcdf55f7d3fb"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DataTableUI/zipball/35c777c3f1cdde1915b03067edc3bc3bdb8a564d",
-            "reference": "35c777c3f1cdde1915b03067edc3bc3bdb8a564d",
+            "url": "https://api.github.com/repos/studer-raimann/DataTableUI/zipball/1f7aa5fa3763fd2800a3d156adeffcdf55f7d3fb",
+            "reference": "1f7aa5fa3763fd2800a3d156adeffcdf55f7d3fb",
             "shasum": ""
         },
         "require": {
@@ -116,7 +116,7 @@
             "srag/custominputguis": ">=0.1.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2020-04-08T05:52:05+00:00",
+        "time": "2020-04-23T11:35:23+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -146,23 +146,23 @@
     },
     {
         "name": "srag/dic",
-        "version": "v0.20.4",
-        "version_normalized": "0.20.4.0",
+        "version": "v0.20.5",
+        "version_normalized": "0.20.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/DIC.git",
-            "reference": "b5f107eddf513280f7c9ca7e05e7a42eb8d9fc95"
+            "reference": "aec9eca4d4ec4085fe39b86155f792621b97b135"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/b5f107eddf513280f7c9ca7e05e7a42eb8d9fc95",
-            "reference": "b5f107eddf513280f7c9ca7e05e7a42eb8d9fc95",
+            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/aec9eca4d4ec4085fe39b86155f792621b97b135",
+            "reference": "aec9eca4d4ec4085fe39b86155f792621b97b135",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0"
         },
-        "time": "2020-03-26T12:38:05+00:00",
+        "time": "2020-04-30T08:33:52+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

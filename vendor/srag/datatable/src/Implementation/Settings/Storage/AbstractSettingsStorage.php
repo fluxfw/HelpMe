@@ -23,7 +23,6 @@ abstract class AbstractSettingsStorage implements SettingsStorage
     use DICTrait;
     use DataTableUITrait;
 
-
     /**
      * AbstractSettingsStorage constructor
      */

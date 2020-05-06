@@ -21,6 +21,7 @@ class Column implements ColumnInterface
 
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var string
      */

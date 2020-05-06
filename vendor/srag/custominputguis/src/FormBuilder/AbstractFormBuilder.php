@@ -8,10 +8,11 @@ use ilFormPropertyDispatchGUI;
 use ILIAS\UI\Component\Input\Container\Form\Form;
 use ILIAS\UI\Component\Input\Field\DependantGroupProviding;
 use ILIAS\UI\Component\Input\Field\Radio as RadioInterface;
+use ILIAS\UI\Component\Input\Field\Section;
+use ILIAS\UI\Component\MessageBox\MessageBox;
 use ILIAS\UI\Implementation\Component\Input\Field\Group;
 use ILIAS\UI\Implementation\Component\Input\Field\Radio;
 use ilSubmitButton;
-use ilUtil;
 use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
 use srag\DIC\HelpMe\DICTrait;
 use Throwable;
@@ -29,6 +30,7 @@ abstract class AbstractFormBuilder implements FormBuilder
 {
 
     use DICTrait;
+
     /**
      * @var object
      */
@@ -37,6 +39,10 @@ abstract class AbstractFormBuilder implements FormBuilder
      * @var Form|null
      */
     protected $form = null;
+    /**
+     * @var MessageBox[]
+     */
+    protected $messages = [];
 
 
     /**
@@ -147,7 +153,7 @@ abstract class AbstractFormBuilder implements FormBuilder
 
         $html = $this->setButtonsToForm($html);
 
-        return $html;
+        return self::output()->getHTML([$this->messages, $html]);
     }
 
 
@@ -158,7 +164,7 @@ abstract class AbstractFormBuilder implements FormBuilder
      */
     protected function setButtonsToForm(string $html) : string
     {
-        $html = preg_replace_callback('/(<button\s+class\s*=\s*"btn btn-default"\s+data-action\s*=\s*"#"\s+id\s*=\s*"[a-z0-9_]+"\s*>)(.+)(<\/button\s*>)/',
+        $html = preg_replace_callback('/(<button\s+class\s*=\s*"btn btn-default"\s+data-action\s*=\s*"#?"(\s+id\s*=\s*"[a-z0-9_]+")?\s*>)(.+)(<\/button\s*>)/',
             function (array $matches) : string {
                 $buttons = [];
 
@@ -213,17 +219,17 @@ abstract class AbstractFormBuilder implements FormBuilder
                                 }
                             }
                         }
-                        Closure::bind(function () use ($inputs2): void {
+                        Closure::bind(function (array $inputs2)/* : void*/ {
                             $this->inputs = $inputs2;
-                        }, $field->getDependantGroup(), Group::class)();
+                        }, $field->getDependantGroup(), Group::class)($inputs2);
                         continue;
                     }
                 } else {
                     if ($field instanceof RadioInterface
                         && isset($data[$key]["value"])
-                        && !empty($inputs2 = Closure::bind(function () use ($data, $key) : array {
+                        && !empty($inputs2 = Closure::bind(function (array $data, string $key) : array {
                             return $this->dependant_fields[$data[$key]["value"]];
-                        }, $field, Radio::class)())
+                        }, $field, Radio::class)($data, $key))
                     ) {
                         try {
                             $inputs[$key] = $field = $field->withValue($data[$key]["value"]);
@@ -240,10 +246,30 @@ abstract class AbstractFormBuilder implements FormBuilder
                                 }
                             }
                         }
-                        Closure::bind(function () use ($data, $key, $inputs2): void {
+                        Closure::bind(function (array $data, string $key, array $inputs2)/* : void*/ {
                             $this->dependant_fields[$data[$key]["value"]] = $inputs2;
-                        }, $field, Radio::class)();
+                        }, $field, Radio::class)($data, $key, $inputs2);
                         continue;
+                    } else {
+                        if ($field instanceof Section) {
+                            $inputs2 = $field->getInputs();
+                            if (!empty($inputs2)) {
+                                $data2 = $data[$key];
+                                foreach ($inputs2 as $key2 => $field2) {
+                                    if (isset($data2[$key2])) {
+                                        try {
+                                            $inputs2[$key2] = $field2 = $field2->withValue($data2[$key2]);
+                                        } catch (Throwable $ex) {
+
+                                        }
+                                    }
+                                }
+                                Closure::bind(function (array $inputs2)/* : void*/ {
+                                    $this->inputs = $inputs2;
+                                }, $field, Group::class)($inputs2);
+                                continue;
+                            }
+                        }
                     }
                 }
             }
@@ -253,9 +279,9 @@ abstract class AbstractFormBuilder implements FormBuilder
 
             }
         }
-        Closure::bind(function () use ($inputs): void {
+        Closure::bind(function (array $inputs)/* : void*/ {
             $this->inputs = $inputs;
-        }, $form->getInputs()["form"], Group::class)();
+        }, $form->getInputs()["form"], Group::class)($inputs);
     }
 
 
@@ -273,9 +299,15 @@ abstract class AbstractFormBuilder implements FormBuilder
                 throw new Exception();
             }
 
-            $this->storeData($data["form"] ?? []);
+            $data = $data["form"] ?? [];
+
+            if (!$this->validateData($data)) {
+                throw new Exception();
+            }
+
+            $this->storeData($data);
         } catch (Throwable $ex) {
-            ilUtil::sendFailure(self::dic()->language()->txt("form_input_not_valid"));
+            $this->messages[] = self::dic()->ui()->factory()->messageBox()->failure(self::dic()->language()->txt("form_input_not_valid"));
 
             return false;
         }
@@ -288,4 +320,15 @@ abstract class AbstractFormBuilder implements FormBuilder
      * @param array $data
      */
     protected abstract function storeData(array $data)/* : void*/;
+
+
+    /**
+     * @param array $data
+     *
+     * @return bool
+     */
+    protected function validateData(array $data) : bool
+    {
+        return true;
+    }
 }

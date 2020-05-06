@@ -22,6 +22,7 @@ class Factory implements FactoryInterface
 
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var self|null
      */

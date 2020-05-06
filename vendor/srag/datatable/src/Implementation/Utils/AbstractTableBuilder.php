@@ -18,6 +18,7 @@ abstract class AbstractTableBuilder implements TableBuilder
 
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var object
      */

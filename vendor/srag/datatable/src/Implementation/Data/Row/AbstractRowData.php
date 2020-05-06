@@ -18,6 +18,7 @@ abstract class AbstractRowData implements RowData
 
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var string
      */

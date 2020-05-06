@@ -20,7 +20,6 @@ abstract class AbstractDataFetcher implements DataFetcher
     use DICTrait;
     use DataTableUITrait;
 
-
     /**
      * AbstractDataFetcher constructor
      */

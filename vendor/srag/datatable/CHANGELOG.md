@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.28.2]
+- Fix
+
 ## [0.28.1]
 - Improve filter
 

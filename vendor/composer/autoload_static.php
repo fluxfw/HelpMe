@@ -15,8 +15,8 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
             'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
-            'srag\\DataTableUI\\HelpMe\\' => 24,
-            'srag\\DIC\\HelpMe\\' => 16,
+            'srag\\DataTableUI\\' => 17,
+            'srag\\DIC\\' => 9,
             'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
@@ -47,11 +47,11 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
-        'srag\\DataTableUI\\HelpMe\\' => 
+        'srag\\DataTableUI\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
-        'srag\\DIC\\HelpMe\\' => 
+        'srag\\DIC\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
@@ -443,7 +443,6 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Notifications4Plugin\\HelpMe\\Exception\\Notifications4PluginException' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Exception/Notifications4PluginException.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Factory' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Factory.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\FactoryInterface' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/FactoryInterface.php',
-        'srag\\Notifications4Plugin\\HelpMe\\Notification\\Form\\NotificationFormBuilder' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Form/NotificationFormBuilder.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Language\\NotificationLanguage' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Language/NotificationLanguage.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Notification' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Notification.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationCtrl' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/class.NotificationCtrl.php',

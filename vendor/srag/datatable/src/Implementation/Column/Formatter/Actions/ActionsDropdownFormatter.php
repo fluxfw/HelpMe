@@ -33,23 +33,23 @@ class ActionsDropdownFormatter extends DefaultFormatter implements ActionsFormat
         return self::output()->getHTML(self::dic()->ui()->factory()->dropdown()
             ->standard(array_map(function (Component $button) use ($format, $row, $table_id): Component {
                 if ($button instanceof Shy) {
-                    return Closure::bind(function () use ($button, $format, $row, $table_id): Shy {
+                    return Closure::bind(function (Format $format, RowData $row, string $table_id) : Shy {
                         if (!empty($this->action) && empty($this->triggered_signals["click"])) {
                             $this->action = $format->getActionUrlWithParams($this->action, [Table::ACTION_GET_VAR => $row->getRowId()], $table_id);
                         }
 
                         return $this;
-                    }, $button, Button::class)();
+                    }, $button, Button::class)($format, $row, $table_id);
                 }
 
                 if ($button instanceof StandardInterface) {
-                    return Closure::bind(function () use ($button, $format, $row, $table_id): StandardInterface {
+                    return Closure::bind(function (Format $format, RowData $row, string $table_id) : StandardInterface {
                         if (!empty($this->action)) {
                             $this->action = $format->getActionUrlWithParams($this->action, [Table::ACTION_GET_VAR => $row->getRowId()], $table_id);
                         }
 
                         return $this;
-                    }, $button, Standard::class)();
+                    }, $button, Standard::class)($format, $row, $table_id);
                 }
 
                 return $button;

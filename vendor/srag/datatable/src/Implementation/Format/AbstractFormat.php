@@ -24,6 +24,7 @@ abstract class AbstractFormat implements Format
 
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var object
      */

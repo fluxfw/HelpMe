@@ -19,7 +19,6 @@ abstract class AbstractFormatter implements Formatter
     use DICTrait;
     use DataTableUITrait;
 
-
     /**
      * AbstractFormatter constructor
      */

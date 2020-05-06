@@ -71,7 +71,7 @@ $table->getBrowserFormat()->getMultipleActionRowIds($table->getTableId());
 In ILIAS 5.4 a default container form ui is used for the filter, in ILIAS 6, the new filter ui is used
 
 ### Requirements
-* ILIAS 5.4 or ILIAS 6.0
+* ILIAS 5.4 or ILIAS 6
 * PHP >=7.2
 
 ### Adjustment suggestions

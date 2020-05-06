@@ -20,6 +20,7 @@ class FormBuilder extends AbstractFormBuilder
 {
 
     use DataTableUITrait;
+
     /**
      * @var Table
      */

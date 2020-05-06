@@ -20,6 +20,7 @@ class SortField implements SortFieldInterface
 
     use DICTrait;
     use DataTableUITrait;
+
     /**
      * @var string
      */
