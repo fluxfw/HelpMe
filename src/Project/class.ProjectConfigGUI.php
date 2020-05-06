@@ -107,7 +107,7 @@ class ProjectConfigGUI
                 self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("edit_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
                     ->getLinkTarget($this, self::CMD_EDIT_PROJECT));
 
-                self::dic()->locator()->addItem($this->project->getTitle(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_PROJECT));
+                self::dic()->locator()->addItem($this->project->getProjectName(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_PROJECT));
             }
         } else {
             $this->project = self::helpMe()->projects()->factory()->newInstance();
