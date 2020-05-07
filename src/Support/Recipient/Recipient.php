@@ -27,6 +27,7 @@ abstract class Recipient
 
     use DICTrait;
     use HelpMeTrait;
+
     const SEND_EMAIL = "send_email";
     const CREATE_JIRA_TICKET = "create_jira_ticket";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;

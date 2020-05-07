@@ -18,6 +18,7 @@ class ProjectField extends AbstractField
 {
 
     use HelpMeTrait;
+
     const TABLE_NAME_SUFFIX = "pr";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

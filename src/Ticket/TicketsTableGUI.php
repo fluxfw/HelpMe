@@ -20,6 +20,7 @@ class TicketsTableGUI extends TableGUI
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const LANG_MODULE = TicketsGUI::LANG_MODULE;
 

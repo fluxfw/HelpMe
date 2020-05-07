@@ -23,6 +23,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_GET_ISSUE_TYPES_OF_PROJECT = "getIssueTypesOfProject";
     /**

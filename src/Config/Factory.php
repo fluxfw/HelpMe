@@ -17,6 +17,7 @@ final class Factory extends AbstractFactory
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var self|null

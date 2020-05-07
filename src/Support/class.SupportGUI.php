@@ -27,6 +27,7 @@ class SupportGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_ADD_SUPPORT = "addSupport";
     const CMD_NEW_SUPPORT = "newSupport";

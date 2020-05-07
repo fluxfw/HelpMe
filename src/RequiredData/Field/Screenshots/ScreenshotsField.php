@@ -18,6 +18,7 @@ class ScreenshotsField extends AbstractField
 {
 
     use HelpMeTrait;
+
     const TABLE_NAME_SUFFIX = "scsh";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

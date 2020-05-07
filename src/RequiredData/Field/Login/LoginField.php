@@ -18,6 +18,7 @@ class LoginField extends DynamicValueField
 {
 
     use HelpMeTrait;
+
     const TABLE_NAME_SUFFIX = "lgn";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

@@ -18,6 +18,7 @@ class ProjectsTableGUI extends TableGUI
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE;
 

@@ -19,6 +19,7 @@ final class Repository extends AbstractRepository
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var self|null

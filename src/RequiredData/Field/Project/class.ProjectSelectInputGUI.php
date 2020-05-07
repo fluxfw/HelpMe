@@ -23,6 +23,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT = "getShowTicketsLinkOfProject";
     /**

@@ -20,6 +20,7 @@ class TicketsGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_APPLY_FILTER = "applyFilter";
     const CMD_LIST_TICKETS = "listTickets";

@@ -22,6 +22,7 @@ class ilHelpMeUIHookGUI extends ilUIHookPluginGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const MAIN_TEMPLATE_ID = "tpl.main.html";
     const MAIN_MENU_TEMPLATE_ID = "Services/MainMenu/tpl.main_menu.html";

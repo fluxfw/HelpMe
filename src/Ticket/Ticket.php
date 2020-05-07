@@ -20,6 +20,7 @@ class Ticket extends ActiveRecord
 
     use DICTrait;
     use HelpMeTrait;
+
     const TABLE_NAME = "ui_uihk_" . ilHelpMePlugin::PLUGIN_ID . "_ticket";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

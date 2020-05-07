@@ -19,6 +19,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
 
     use PluginUninstallTrait;
     use HelpMeTrait;
+
     const PLUGIN_ID = "srsu";
     const PLUGIN_NAME = "HelpMe";
     const PLUGIN_CLASS_NAME = self::class;

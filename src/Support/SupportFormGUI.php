@@ -22,6 +22,7 @@ class SupportFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const LANG_MODULE = SupportGUI::LANG_MODULE;
     /**

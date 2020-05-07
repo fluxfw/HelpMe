@@ -20,6 +20,7 @@ class CreatedDateTimeField extends DynamicValueField
 {
 
     use HelpMeTrait;
+
     const TABLE_NAME_SUFFIX = "dati";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

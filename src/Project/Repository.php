@@ -22,6 +22,7 @@ final class Repository
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var self|null

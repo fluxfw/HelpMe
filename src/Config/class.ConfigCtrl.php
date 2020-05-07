@@ -22,6 +22,7 @@ class ConfigCtrl
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_CONFIGURE = "configure";
     const CMD_HIDE_USAGE = "hideUsage";

@@ -44,6 +44,7 @@ final class Repository
     use RequiredDataTrait {
         requiredData as protected _requiredData;
     }
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var self|null

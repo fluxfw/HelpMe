@@ -22,6 +22,7 @@ class ProjectConfigGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_ADD_PROJECT = "addProject";
     const CMD_BACK = "back";

@@ -41,6 +41,7 @@ class ConfigFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const KEY_EMAIL_FIELD = "email_field";
     /**

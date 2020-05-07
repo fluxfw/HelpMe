@@ -18,6 +18,7 @@ class SystemInfosField extends DynamicValueField
 {
 
     use HelpMeTrait;
+
     const TABLE_NAME_SUFFIX = "syin";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

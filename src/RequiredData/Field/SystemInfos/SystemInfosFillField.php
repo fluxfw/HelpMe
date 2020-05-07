@@ -17,6 +17,7 @@ class SystemInfosFillField extends DynamicValueFillField
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var SystemInfosField

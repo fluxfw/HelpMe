@@ -24,6 +24,7 @@ class Support
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const REQUIRED_DATA_PARENT_CONTEXT_CONFIG = 1;
     /**

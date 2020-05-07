@@ -23,6 +23,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_CONFIGURE = "configure";
 

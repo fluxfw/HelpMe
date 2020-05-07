@@ -18,6 +18,7 @@ class IssueTypeFillField extends AbstractFillField
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var IssueTypeField

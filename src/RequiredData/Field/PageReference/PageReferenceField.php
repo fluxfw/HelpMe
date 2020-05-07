@@ -18,6 +18,7 @@ class PageReferenceField extends DynamicValueField
 {
 
     use HelpMeTrait;
+
     const TABLE_NAME_SUFFIX = "pgrf";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

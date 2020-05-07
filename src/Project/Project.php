@@ -20,6 +20,7 @@ class Project extends ActiveRecord
 
     use DICTrait;
     use HelpMeTrait;
+
     const TABLE_NAME = "ui_uihk_" . ilHelpMePlugin::PLUGIN_ID . "_project";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const DEFAULT_ISSUE_TYPE = "Support";

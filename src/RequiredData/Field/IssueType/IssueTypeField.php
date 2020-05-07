@@ -18,6 +18,7 @@ class IssueTypeField extends AbstractField
 {
 
     use HelpMeTrait;
+
     const TABLE_NAME_SUFFIX = "isty";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 

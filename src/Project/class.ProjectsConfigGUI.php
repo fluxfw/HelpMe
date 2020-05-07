@@ -20,6 +20,7 @@ class ProjectsConfigGUI
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_LIST_PROJECTS = "listProjects";
     const LANG_MODULE = "projects";

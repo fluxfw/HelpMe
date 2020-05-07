@@ -20,6 +20,7 @@ class FetchJiraTicketsJob extends ilCronJob
 
     use DICTrait;
     use HelpMeTrait;
+
     const CRON_JOB_ID = ilHelpMePlugin::PLUGIN_ID . "_fetch_jira_tickets";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
