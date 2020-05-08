@@ -1,1 +1,1 @@
-## HelpMe Documentation
+# HelpMe ILIAS Plugin Documentation
