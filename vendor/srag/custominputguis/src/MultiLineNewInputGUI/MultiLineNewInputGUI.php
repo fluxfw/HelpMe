@@ -92,7 +92,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
 
         self::init();
 
-        if (self::version()->is60()) {
+        if (self::version()->is6()) {
             $this->glyph_factory = self::dic()->ui()->factory()->symbol()->glyph();
         } else {
             $this->glyph_factory = self::dic()->ui()->factory()->glyph();

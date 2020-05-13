@@ -50,7 +50,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     {
         parent::__construct();
 
-        if (self::version()->is60()) {
+        if (self::version()->is6()) {
             $this->glyph_factory = self::dic()->ui()->factory()->symbol()->glyph();
         } else {
             $this->glyph_factory = self::dic()->ui()->factory()->glyph();
@@ -226,7 +226,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
         if ($this->filter_form === null) {
             $filter_fields = $component->getFilterFields();
 
-            if (self::version()->is60()) {
+            if (self::version()->is6()) {
                 $this->filter_form = self::dic()->uiService()->filter()
                     ->standard($component->getTableId(), $this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_FILTER_FIELD_VALUES => true], $component->getTableId()),
                         $filter_fields,
@@ -292,7 +292,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
 
                 $this->initFilterForm($component, $settings);
 
-                if (self::version()->is60()) {
+                if (self::version()->is6()) {
                     try {
                         $settings->withFilterFieldValues(self::dic()->uiService()->filter()->getData($this->filter_form) ?? []);
 

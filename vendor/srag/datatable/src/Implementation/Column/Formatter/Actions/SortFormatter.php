@@ -25,7 +25,7 @@ class SortFormatter extends DefaultFormatter implements ActionsFormatter
      */
     public function formatRowCell(Format $format, $actions, Column $column, RowData $row, string $table_id) : string
     {
-        if (self::version()->is60()) {
+        if (self::version()->is6()) {
             $glyph_factory = self::dic()->ui()->factory()->symbol()->glyph();
         } else {
             $glyph_factory = self::dic()->ui()->factory()->glyph();

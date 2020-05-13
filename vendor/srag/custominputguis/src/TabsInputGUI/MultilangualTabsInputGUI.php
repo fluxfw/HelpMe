@@ -18,7 +18,6 @@ class MultilangualTabsInputGUI
 
     use DICTrait;
 
-
     /**
      * @param array $items
      * @param bool  $default_language

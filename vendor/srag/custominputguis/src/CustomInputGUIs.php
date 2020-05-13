@@ -29,6 +29,7 @@ final class CustomInputGUIs
 {
 
     use DICTrait;
+
     /**
      * @var self|null
      */
@@ -75,7 +76,7 @@ final class CustomInputGUIs
      */
     public function pieChart(array $pieChartItems)
     {
-        /*if (self::version()->is60()) {
+        /*if (self::version()->is6()) {
             return new PieChartCore($pieChartItems);
         } else {*/
         return new PieChart($pieChartItems);
@@ -95,7 +96,7 @@ final class CustomInputGUIs
      */
     public function pieChartItem(string $name, float $value, Color $color, /*?*/ Color $textColor = null)
     {
-        /*if (self::version()->is60()) {
+        /*if (self::version()->is6()) {
             return new PieChartItemCore($name, $value, $color, $textColor);
         } else {*/
         return new PieChartItem($name, $value, $color, $textColor);

@@ -467,6 +467,15 @@ final class ILIAS54DIC extends AbstractDIC
     /**
      * @inheritDoc
      */
+    public function repositoryTree() : ilTree
+    {
+        return $this->dic->repositoryTree();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function session() : Session
     {
         return $this->dic["sess"];
@@ -520,10 +529,12 @@ final class ILIAS54DIC extends AbstractDIC
 
     /**
      * @inheritDoc
+     *
+     * @deprecated Please use `self::dic()->repositoryTree()`
      */
     public function tree() : ilTree
     {
-        return $this->dic->repositoryTree();
+        return $this->repositoryTree();
     }
 
 

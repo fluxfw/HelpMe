@@ -17,6 +17,7 @@ class AjaxCheckbox
 {
 
     use DICTrait;
+
     const GET_PARAM_CHECKED = "checked";
     /**
      * @var bool

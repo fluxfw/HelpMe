@@ -1,8 +1,10 @@
+# DataTableUI Library for ILIAS Plugins
+
 ILIAS Data Table UI Component
 
-### Usage
+## Usage
 
-#### Composer
+### Composer
 First add the following to your `composer.json` file:
 ```json
 "require": {
@@ -17,10 +19,10 @@ Tip: Because of multiple autoloaders of plugins, it could be, that different ver
 
 So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
-#### PHP 7.0
+### PHP 7.0
 You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
 
-#### Using trait
+## Using trait
 Your class in this you want to use DataTableUI needs to use the trait `DataTableUITrait`
 ```php
 ...
@@ -34,7 +36,7 @@ use DataTableUITrait;
 
 You can also use `AbstractTableBuilder` for build your table
 
-#### Languages
+## Languages
 Expand you plugin class for installing languages of the library to your plugin
 ```php
 ...
@@ -49,7 +51,7 @@ Expand you plugin class for installing languages of the library to your plugin
 ...
 ```
 
-#### Use
+## Use
 In your code
 ```php
 ...
@@ -67,14 +69,14 @@ Get multiple selected action row ids
 $table->getBrowserFormat()->getMultipleActionRowIds($table->getTableId());
 ```
 
-### Limitations
+## Limitations
 In ILIAS 5.4 a default container form ui is used for the filter, in ILIAS 6, the new filter ui is used
 
-### Requirements
+## Requirements
 * ILIAS 5.4 or ILIAS 6
 * PHP >=7.2
 
-### Adjustment suggestions
+## Adjustment suggestions
 * External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LTABLEUI
 * Adjustment suggestions by pull requests via github
 * Customer of studer + raimann ag: 

@@ -249,7 +249,7 @@ class Table implements TableInterface
      */
     public function withFilterFields(array $filter_fields) : TableInterface
     {
-        if (self::version()->is60()) {
+        if (self::version()->is6()) {
             $classes = [FilterInput::class];
         } else {
 

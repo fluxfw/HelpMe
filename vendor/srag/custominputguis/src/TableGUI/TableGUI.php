@@ -26,6 +26,7 @@ abstract class TableGUI extends ilTable2GUI
 {
 
     use DICTrait;
+
     /**
      * @var string
      *

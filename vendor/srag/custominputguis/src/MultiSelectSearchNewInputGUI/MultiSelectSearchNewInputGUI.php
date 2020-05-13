@@ -20,6 +20,7 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
 {
 
     use DICTrait;
+
     /**
      * @var bool
      */

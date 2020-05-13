@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.4.4]
+- Fixed exceptions in internal mail sender
+
 ## [5.4.3]
 - Fix
 

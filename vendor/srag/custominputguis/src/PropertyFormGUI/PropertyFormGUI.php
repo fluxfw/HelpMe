@@ -30,6 +30,7 @@ abstract class PropertyFormGUI extends ilPropertyFormGUI
 {
 
     use DICTrait;
+
     /**
      * @var string
      *

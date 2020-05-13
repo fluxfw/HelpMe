@@ -54,6 +54,8 @@ interface SortField extends JsonSerializable
 
 
     /**
+     * @inheritDoc
+     *
      * @return stdClass
      */
     public function jsonSerialize() : stdClass;

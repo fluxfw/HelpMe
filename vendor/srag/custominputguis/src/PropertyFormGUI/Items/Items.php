@@ -33,6 +33,7 @@ final class Items
 {
 
     use DICTrait;
+
     /**
      * @var bool
      */

@@ -15,6 +15,7 @@ abstract class AbstractAjaxAutoCompleteCtrl
 {
 
     use DICTrait;
+
     const CMD_AJAX_AUTO_COMPLETE = "ajaxAutoComplete";
 
 
