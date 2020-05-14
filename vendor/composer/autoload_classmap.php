@@ -206,6 +206,7 @@ return array(
     'srag\\CustomInputGUIs\\HelpMe\\FormBuilder\\FormBuilder' => $vendorDir . '/srag/custominputguis/src/FormBuilder/FormBuilder.php',
     'srag\\CustomInputGUIs\\HelpMe\\GlyphGUI\\GlyphGUI' => $vendorDir . '/srag/custominputguis/src/GlyphGUI/GlyphGUI.php',
     'srag\\CustomInputGUIs\\HelpMe\\HiddenInputGUI\\HiddenInputGUI' => $vendorDir . '/srag/custominputguis/src/HiddenInputGUI/HiddenInputGUI.php',
+    'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\AbstractRenderer' => $vendorDir . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/Renderer.php',
     'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraint' => $vendorDir . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraint.php',
     'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraint54' => $vendorDir . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraint54.php',
     'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraintTrait' => $vendorDir . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraintTrait.php',

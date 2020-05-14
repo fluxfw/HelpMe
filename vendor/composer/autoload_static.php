@@ -12,11 +12,11 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
             'srag\\RequiredData\\HelpMe\\' => 25,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\' => 26,
+            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
-            'srag\\JiraCurl\\' => 14,
-            'srag\\DataTableUI\\' => 17,
-            'srag\\DIC\\' => 9,
+            'srag\\JiraCurl\\HelpMe\\' => 21,
+            'srag\\DataTableUI\\HelpMe\\' => 24,
+            'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
@@ -35,7 +35,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\' => 
+        'srag\\Notifications4Plugin\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
@@ -43,15 +43,15 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src',
         ),
-        'srag\\JiraCurl\\' => 
+        'srag\\JiraCurl\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
-        'srag\\DataTableUI\\' => 
+        'srag\\DataTableUI\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
-        'srag\\DIC\\' => 
+        'srag\\DIC\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
@@ -276,6 +276,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\CustomInputGUIs\\HelpMe\\FormBuilder\\FormBuilder' => __DIR__ . '/..' . '/srag/custominputguis/src/FormBuilder/FormBuilder.php',
         'srag\\CustomInputGUIs\\HelpMe\\GlyphGUI\\GlyphGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/GlyphGUI/GlyphGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\HiddenInputGUI\\HiddenInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/HiddenInputGUI/HiddenInputGUI.php',
+        'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\AbstractRenderer' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/Renderer.php',
         'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraint' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraint.php',
         'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraint54' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraint54.php',
         'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraintTrait' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraintTrait.php',

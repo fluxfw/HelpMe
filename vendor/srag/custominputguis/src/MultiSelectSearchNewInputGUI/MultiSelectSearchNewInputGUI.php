@@ -21,6 +21,7 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
 
     use DICTrait;
 
+    const EMPTY_PLACEHOLDER = "__empty_placeholder__";
     /**
      * @var bool
      */
@@ -106,6 +107,8 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
             $values = [];
         }
 
+        $values = $this->cleanValues($values);
+
         if ($this->getRequired() && empty($values)) {
             $this->setAlert(self::dic()->language()->txt("msg_input_is_required"));
 
@@ -135,6 +138,19 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
         }
 
         return true;
+    }
+
+
+    /**
+     * @param array $values
+     *
+     * @return array
+     */
+    protected function cleanValues(array $values) : array
+    {
+        return array_values(array_filter($values, function ($value) : bool {
+            return ($value !== self::EMPTY_PLACEHOLDER);
+        }));
     }
 
 
@@ -229,6 +245,8 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
 
         $tpl->setVariableEscaped("POST_VAR", $this->getPostVar());
 
+        $tpl->setVariableEscaped("EMPTY_PLACEHOLDER", self::EMPTY_PLACEHOLDER); // ILIAS 6 will not set `null` value to input
+
         $config = [
             "maximumSelectionLength" => $this->getLimitCount(),
             "minimumInputLength"     => $this->getMinimumInputLength()
@@ -310,7 +328,7 @@ class MultiSelectSearchNewInputGUI extends ilFormPropertyGUI implements ilTableF
     public function setValue(/*array*/ $value)/*: void*/
     {
         if (is_array($value)) {
-            $this->value = $value;
+            $this->value = $this->cleanValues($value);
         } else {
             $this->value = [];
         }
