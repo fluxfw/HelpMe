@@ -27,7 +27,7 @@ grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
 ## Requirements
-* ILIAS 5.3 or ILIAS 5.4
+* ILIAS 5.4 or ILIAS 6
 * PHP >=7.0
 
 ## Adjustment suggestions

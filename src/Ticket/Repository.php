@@ -386,14 +386,7 @@ final class Repository
                     ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ConfigCtrl::class, ConfigCtrl::CMD_HIDE_USAGE));
                 self::dic()->ctrl()->setParameterByClass(ConfigCtrl::class, TicketsGUI::GET_PARAM_USAGE_ID, null);
 
-                if (self::version()->is54()) {
-                    $info[] = self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button]);
-                } else {
-                    $info[] = $text;
-                    $info[] = "<br>";
-                    $info[] = $hide_button;
-                    $info[] = "<br><br>";
-                }
+                $info[] = self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button]);
             }
         }
         if (!empty($info)) {
