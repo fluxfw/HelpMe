@@ -18,7 +18,6 @@ abstract class AbstractParser implements Parser
     use DICTrait;
     use Notifications4PluginTrait;
 
-
     /**
      * AbstractParser constructor
      */

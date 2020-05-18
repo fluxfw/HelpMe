@@ -12,11 +12,11 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
             'srag\\RequiredData\\HelpMe\\' => 25,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
+            'srag\\Notifications4Plugin\\' => 26,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DataTableUI\\HelpMe\\' => 24,
-            'srag\\DIC\\HelpMe\\' => 16,
+            'srag\\DIC\\' => 9,
             'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
@@ -35,7 +35,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\HelpMe\\' => 
+        'srag\\Notifications4Plugin\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
@@ -51,7 +51,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
-        'srag\\DIC\\HelpMe\\' => 
+        'srag\\DIC\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
@@ -276,7 +276,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\CustomInputGUIs\\HelpMe\\FormBuilder\\FormBuilder' => __DIR__ . '/..' . '/srag/custominputguis/src/FormBuilder/FormBuilder.php',
         'srag\\CustomInputGUIs\\HelpMe\\GlyphGUI\\GlyphGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/GlyphGUI/GlyphGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\HiddenInputGUI\\HiddenInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/HiddenInputGUI/HiddenInputGUI.php',
-        'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\AbstractRenderer' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/Renderer.php',
+        'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\AbstractRenderer' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/AbstractRenderer.php',
         'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraint' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraint.php',
         'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraint54' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraint54.php',
         'srag\\CustomInputGUIs\\HelpMe\\InputGUIWrapperUIInputComponent\\InputGUIWrapperConstraintTrait' => __DIR__ . '/..' . '/srag/custominputguis/src/InputGUIWrapperUIInputComponent/InputGUIWrapperConstraintTrait.php',
@@ -443,10 +443,10 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Notifications4Plugin\\HelpMe\\Exception\\Notifications4PluginException' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Exception/Notifications4PluginException.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Factory' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Factory.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\FactoryInterface' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/FactoryInterface.php',
+        'srag\\Notifications4Plugin\\HelpMe\\Notification\\Form\\FormBuilder' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Form/FormBuilder.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Language\\NotificationLanguage' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Language/NotificationLanguage.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Notification' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Notification.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationCtrl' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/class.NotificationCtrl.php',
-        'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationFormGUI' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/NotificationFormGUI.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationInterface' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/NotificationInterface.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\NotificationsCtrl' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/class.NotificationsCtrl.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Repository' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Repository.php',

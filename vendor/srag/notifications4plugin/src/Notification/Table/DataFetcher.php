@@ -21,7 +21,6 @@ class DataFetcher extends AbstractDataFetcher
 
     use Notifications4PluginTrait;
 
-
     /**
      * @inheritDoc
      */

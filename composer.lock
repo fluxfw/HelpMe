@@ -54,16 +54,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.34.12",
+            "version": "v0.34.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "55e310f2021863ac2727fd40a835f7082900cf6c"
+                "reference": "4f7fb65e5d3310b0a3c84f83867667112dfdff2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/55e310f2021863ac2727fd40a835f7082900cf6c",
-                "reference": "55e310f2021863ac2727fd40a835f7082900cf6c",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/4f7fb65e5d3310b0a3c84f83867667112dfdff2a",
+                "reference": "4f7fb65e5d3310b0a3c84f83867667112dfdff2a",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-05-14T06:53:44+00:00"
+            "time": "2020-05-18T09:59:03+00:00"
         },
         {
             "name": "srag/datatable",
@@ -147,16 +147,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.21.0",
+            "version": "v0.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "d56b98201b1b826802e7272fb5ee685b4a507394"
+                "reference": "9003c1cab384449ba70cd0a26607099c7c00b722"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/d56b98201b1b826802e7272fb5ee685b4a507394",
-                "reference": "d56b98201b1b826802e7272fb5ee685b4a507394",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/9003c1cab384449ba70cd0a26607099c7c00b722",
+                "reference": "9003c1cab384449ba70cd0a26607099c7c00b722",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\HelpMe\\": "src/"
+                    "srag\\DIC\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -188,7 +188,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-05-13T05:51:15+00:00"
+            "time": "2020-05-18T08:07:31+00:00"
         },
         {
             "name": "srag/jiracurl",
@@ -280,16 +280,16 @@
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "v5.4.4",
+            "version": "v5.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-                "reference": "95dc83ee2521153da462f2855a338c32a2b2194e"
+                "reference": "7dc575578e7922922360fb014cdede6f68d3adad"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/95dc83ee2521153da462f2855a338c32a2b2194e",
-                "reference": "95dc83ee2521153da462f2855a338c32a2b2194e",
+                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/7dc575578e7922922360fb014cdede6f68d3adad",
+                "reference": "7dc575578e7922922360fb014cdede6f68d3adad",
                 "shasum": ""
             },
             "require": {
@@ -302,7 +302,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
+                    "srag\\Notifications4Plugin\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -323,7 +323,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2020-05-06T13:13:12+00:00"
+            "time": "2020-05-18T10:30:32+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",

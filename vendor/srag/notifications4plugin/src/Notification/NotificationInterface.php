@@ -109,8 +109,6 @@ interface NotificationInterface
     /**
      * @param string $key
      * @param mixed  $value
-     *
-     * @return mixed
      */
     public function setParserOption(string $key, $value)/* : void*/;
 

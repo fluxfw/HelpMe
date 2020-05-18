@@ -17,6 +17,7 @@ class NotificationsCtrl
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     const CMD_LIST_NOTIFICATIONS = "listNotifications";
     const LANG_MODULE = "notifications4plugin";
     const TAB_NOTIFICATIONS = "notifications";

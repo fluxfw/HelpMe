@@ -26,6 +26,7 @@ final class Repository implements RepositoryInterface
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     /**
      * @var RepositoryInterface|null
      */

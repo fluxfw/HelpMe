@@ -24,6 +24,7 @@ class Notification extends ActiveRecord implements NotificationInterface
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     const TABLE_NAME_SUFFIX = "not";
 
 

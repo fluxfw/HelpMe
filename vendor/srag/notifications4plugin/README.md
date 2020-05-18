@@ -1,12 +1,14 @@
+# Notifications4Plugin Library for ILIAS Plugins
+
 This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the ui of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic
 
 The text of the notifications is parsed by default with the [Twig template engine!](https://twig.symfony.com/doc/1.x/templates.html), meaning the developer can replace placeholders and use if statements and loops
 
 The development interface offers easy methods to create, modify and send notifications
 
-### Usage
+## Usage
 
-#### Composer
+### Composer
 First add the following to your `composer.json` file:
 ```json
 "require": {
@@ -21,10 +23,10 @@ Tip: Because of multiple autoloaders of plugins, it could be, that different ver
 
 So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
-#### PHP 7.0
+### PHP 7.0
 You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
 
-#### Using trait
+## Using trait
 Your class in this you want to use Notifications4Plugin needs to use the trait `Notifications4PluginTrait`
 ```php
 ...
@@ -36,7 +38,7 @@ use Notifications4PluginTrait;
 ...
 ```
 
-#### Notification ActiveRecord
+## Notification ActiveRecord
 First you need to init the `Notification` and `NotificationLanguage` active record classes with your own table name prefix. Please add this very early in your plugin code
 ```php
 self::notifications4plugin()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlugin(self::plugin())->withPlaceholderTypes([
@@ -60,7 +62,7 @@ and not forget to add an uninstaller step in your plugin class too
 self::notifications4plugin()->notifications()->dropTables();
 ```
 
-#### Ctrl classes
+## Ctrl classes
 ```php
 ...
 /**
@@ -74,7 +76,7 @@ class x
 }
 ```
 
-#### Languages
+## Languages
 Expand you plugin class for installing languages of the library to your plugin
 ```php
 ...
@@ -89,7 +91,7 @@ Expand you plugin class for installing languages of the library to your plugin
 ...
 ```
 
-#### Migrate from old global plugin
+## Migrate from old global plugin
 Add to your `dbupdate.php` like:
 ```php
 if (\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
@@ -104,7 +106,7 @@ if (\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->
 }
 ```
 
-##### Get notification(s)
+## Get notification(s)
 Main
 ```php
 // Get the notification by name
@@ -120,7 +122,7 @@ $notification = self::notifications4plugin()->notifications()->getNotificationBy
 $notifications = self::notifications4plugin()->notifications()->getNotifications();
 ```
 
-##### Send a notification
+## Send a notification
 ```php
 // Send the notification as external mail
 $sender = self::notifications4plugin()->sender()->factory()->externalMail('from_email', 'to_email');
@@ -149,7 +151,7 @@ self::notifications4plugin()->sender()->send($sender, $notification, $placeholde
 self::notifications4plugin()->sender()->send($sender, $notification, $placeholders, 'de');
 ```
 
-##### Create a notification
+## Create a notification
 ```php
 $notification = self::notifications4plugin()->notifications()->factory()->newInstance();
 
@@ -167,17 +169,17 @@ $notification->setText('Sie sind nun Mitglied in folgendem Kurs {{ course.getTit
 self::notifications4plugin()->notifications()->storeNotification($notification);
 ```
 
-##### Duplicate a notification
+## Duplicate a notification
 ```php
 $duplicated_notification = self::notifications4plugin()->notifications()->duplicateNotification($notification);
 ```
 
-##### Delete a notification
+## Delete a notification
 ```php
 self::notifications4plugin()->notifications()->deleteNotification($notification);
 ```
 
-##### Get parsed subject and text of a notification
+## Get parsed subject and text of a notification
 You can get the parsed subject and text from a notification, for example to display it on screen.
 
 ```php
@@ -192,7 +194,7 @@ $subject = self::notifications4plugin()->parser()->parseSubject($parser, $notifi
 $text = self::notifications4plugin()->parser()->parseText($parser, $notification, $placeholders);
 ```
 
-##### Implement a custom parser
+## Implement a custom parser
 Your class must extends `srag\Notifications4Plugin\HelpMe\x\Parser\AbstractParser`
 
 You can add it
@@ -200,11 +202,11 @@ You can add it
 self::notifications4plugin()->parser()->addParser(new CustomParser());
 ```
 
-### Requirements
-* ILIAS 5.3 or ILIAS 5.4
+## Requirements
+* ILIAS 5.4 or ILIAS 6
 * PHP >=7.2
 
-### Adjustment suggestions
+## Adjustment suggestions
 * External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLNOTIFICATION
 * Adjustment suggestions by pull requests via github
 * Customer of studer + raimann ag: 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.5.1]
+- Fix
+
+## [5.5.0]
+- New form
+- ILIAS 6 support
+- Remove ILIAS 5.3 support
+
 ## [5.4.4]
 - Fixed exceptions in internal mail sender
 

@@ -24,8 +24,9 @@ class vcalendarSender implements Sender
 
     use DICTrait;
     use Notifications4PluginTrait;
-    CONST METHOD_REQUEST = "REQUEST";
-    CONST METHOD_CANCEL = "CANCEL";
+
+    const METHOD_REQUEST = "REQUEST";
+    const METHOD_CANCEL = "CANCEL";
     /**
      * @var string
      */

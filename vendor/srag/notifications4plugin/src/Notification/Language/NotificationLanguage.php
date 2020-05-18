@@ -23,6 +23,7 @@ class NotificationLanguage extends ActiveRecord
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     /**
      * @var string
      *

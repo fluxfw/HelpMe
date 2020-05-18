@@ -20,7 +20,6 @@ class TableBuilder extends AbstractTableBuilder
 
     use Notifications4PluginTrait;
 
-
     /**
      * @inheritDoc
      *

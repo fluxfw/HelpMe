@@ -28,6 +28,7 @@ final class Repository implements RepositoryInterface
     use DICTrait;
     use Notifications4PluginTrait;
     use DataTableUITrait;
+
     /**
      * @var RepositoryInterface|null
      */

@@ -22,6 +22,7 @@ class ExternalMailSender implements Sender
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     /**
      * @var string
      */
