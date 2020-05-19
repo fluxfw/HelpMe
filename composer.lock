@@ -54,16 +54,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.34.14",
+            "version": "v0.34.15",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "223faf655cb4be1111c13d2c26a0571005b75087"
+                "reference": "a745b4c4f34c180fbca38966fc01284d69fe054f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/223faf655cb4be1111c13d2c26a0571005b75087",
-                "reference": "223faf655cb4be1111c13d2c26a0571005b75087",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/a745b4c4f34c180fbca38966fc01284d69fe054f",
+                "reference": "a745b4c4f34c180fbca38966fc01284d69fe054f",
                 "shasum": ""
             },
             "require": {
@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -97,7 +97,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-05-19T10:35:02+00:00"
+            "time": "2020-05-19T12:58:10+00:00"
         },
         {
             "name": "srag/datatable",
@@ -395,7 +395,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\": "src/"
+                    "srag\\RequiredData\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
