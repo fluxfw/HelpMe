@@ -4,7 +4,7 @@ namespace srag\Plugins\HelpMe\Support;
 
 use ilHelpMePlugin;
 use ilLogLevel;
-use ilPropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\FormBuilder\AbstractFormBuilder;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
@@ -68,11 +68,11 @@ class SupportGUI
 
         switch (strtolower($next_class)) {
             case strtolower(ProjectSelectInputGUI::class):
-                self::dic()->ctrl()->forwardCommand(self::helpMe()->support()->factory()->newFormInstance($this, $this->support)->extractProjectSelector());
+                self::dic()->ctrl()->forwardCommand(self::helpMe()->support()->factory()->newFormBuilderInstance($this, $this->support)->extractProjectSelector());
                 break;
 
             case strtolower(IssueTypeSelectInputGUI::class):
-                self::dic()->ctrl()->forwardCommand(self::helpMe()->support()->factory()->newFormInstance($this, $this->support)->extractIssueTypeSelector());
+                self::dic()->ctrl()->forwardCommand(self::helpMe()->support()->factory()->newFormBuilderInstance($this, $this->support)->extractIssueTypeSelector());
                 break;
 
             default:
@@ -102,10 +102,10 @@ class SupportGUI
 
 
     /**
-     * @param string|null       $message
-     * @param ilPropertyFormGUI $form
+     * @param string|null         $message
+     * @param AbstractFormBuilder $form
      */
-    protected function show(?string $message, ilPropertyFormGUI $form) : void
+    protected function show(?string $message, AbstractFormBuilder $form) : void
     {
         $tpl = self::plugin()->template("helpme_modal.html");
 
@@ -131,7 +131,7 @@ class SupportGUI
     {
         $message = null;
 
-        $form = self::helpMe()->support()->factory()->newFormInstance($this, $this->support);
+        $form = self::helpMe()->support()->factory()->newFormBuilderInstance($this, $this->support);
 
         $this->show($message, $form);
     }
@@ -144,7 +144,7 @@ class SupportGUI
     {
         $message = null;
 
-        $form = self::helpMe()->support()->factory()->newFormInstance($this, $this->support);
+        $form = self::helpMe()->support()->factory()->newFormBuilderInstance($this, $this->support);
 
         if (!$form->storeForm()) {
             $this->show($message, $form);
@@ -164,7 +164,7 @@ class SupportGUI
                     ->translate("sent_success_confirmation_email", self::LANG_MODULE)));
             }
 
-            $form = self::helpMe()->support()->factory()->newSuccessFormInstance($this, $this->support);
+            $form = self::helpMe()->support()->factory()->newSuccessFormBuilderInstance($this, $this->support);
         } catch (Throwable $ex) {
             self::dic()->logger()->root()->log($ex->__toString(), ilLogLevel::ERROR);
 

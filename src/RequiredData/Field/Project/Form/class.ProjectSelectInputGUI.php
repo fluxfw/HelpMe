@@ -6,7 +6,7 @@ use ilHelpMePlugin;
 use ilSelectInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Project\Project;
-use srag\Plugins\HelpMe\Support\SupportFormGUI;
+use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -122,7 +122,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
         if (self::helpMe()->tickets()->isEnabled() && $project !== null && $project->isProjectShowTickets()) {
 
             return self::output()->getHTML(self::dic()->ui()->factory()->link()->standard(self::plugin()
-                ->translate("show_tickets_of_selected_project", SupportFormGUI::LANG_MODULE), self::helpMe()->tickets()->getLink($project->getProjectUrlKey()))
+                ->translate("show_tickets_of_selected_project", SupportGUI::LANG_MODULE), self::helpMe()->tickets()->getLink($project->getProjectUrlKey()))
                 ->withOpenInNewViewport(true));
         }
 

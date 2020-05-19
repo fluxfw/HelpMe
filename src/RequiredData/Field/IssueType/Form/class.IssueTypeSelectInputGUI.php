@@ -6,7 +6,7 @@ use ilHelpMePlugin;
 use ilSelectInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Project\Project;
-use srag\Plugins\HelpMe\Support\SupportFormGUI;
+use srag\Plugins\HelpMe\Support\Form\SupportFormBuilder;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -27,7 +27,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_GET_ISSUE_TYPES_OF_PROJECT = "getIssueTypesOfProject";
     /**
-     * @var SupportFormGUI
+     * @var SupportFormBuilder
      */
     public $parent_gui;
 

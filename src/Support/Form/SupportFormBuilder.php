@@ -1,30 +1,30 @@
 <?php
 
-namespace srag\Plugins\HelpMe\Support;
+namespace srag\Plugins\HelpMe\Support\Form;
 
 use ilHelpMePlugin;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\FormBuilder\AbstractFormBuilder;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form\IssueTypeSelectInputGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
 use srag\Plugins\HelpMe\RequiredData\Field\Project\Form\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
+use srag\Plugins\HelpMe\Support\Support;
+use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
- * Class SupportFormGUI
+ * Class SupportFormBuilder
  *
- * @package srag\Plugins\HelpMe\Support
+ * @package srag\Plugins\HelpMe\Support\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class SupportFormGUI extends PropertyFormGUI
+class SupportFormBuilder extends AbstractFormBuilder
 {
 
     use HelpMeTrait;
 
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    const LANG_MODULE = SupportGUI::LANG_MODULE;
     /**
      * @var Support
      */
@@ -32,7 +32,7 @@ class SupportFormGUI extends PropertyFormGUI
 
 
     /**
-     * SupportFormGUI constructor
+     * SupportFormBuilder constructor
      *
      * @param SupportGUI $parent
      * @param Support    $support
@@ -48,83 +48,104 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function getValue(/*string*/ $key)
+    protected function getAction() : string
     {
-        switch (true) {
-            case (strpos($key, "field_") === 0):
-                $field_id = substr($key, strlen("field_"));
+        return self::dic()->ctrl()->getFormAction($this->parent, "", "", true);
+    }
 
-                return $this->support->getFieldValueById($field_id, null);
 
-            default:
-                return Items::getter($this->support, $key);
+    /**
+     * @inheritDoc
+     */
+    protected function getButtons() : array
+    {
+        $buttons = [];
+
+        return $buttons;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function getData() : array
+    {
+        $data = [];
+
+        foreach (array_keys($this->getFields()) as $key) {
+            $field_id = substr($key, strlen("field_"));
+            $data[$key] = $this->support->getFieldValueById($field_id, null);
         }
+
+        return $data;
     }
 
 
     /**
      * @inheritDoc
      */
-    protected final function initAction() : void
+    protected function getFields() : array
     {
-        $this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
+        $fields = self::helpMe()->requiredData()->fills()->getFormFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG);
+
+        return $fields;
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initCommands() : void
+    protected function getTitle() : string
     {
-        $this->addCommandButton(SupportGUI::CMD_NEW_SUPPORT, $this->txt("submit"), "helpme_submit");
-
-        $this->addCommandButton("", $this->txt("cancel"), "helpme_cancel");
-
-        $this->setShowTopButtons(false);
+        return "";
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initFields() : void
+    public function render() : string
     {
-        $this->fields = self::helpMe()->requiredData()->fills()->getFormFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG);
+        return self::output()->getHTML([
+            '<div id="form_helpme_form">',
+            parent::render(),
+            '</div>'
+        ]);
     }
 
 
     /**
      * @inheritDoc
      */
-    protected final function initId() : void
+    protected function setButtonsToForm(string $html) : string
     {
-        $this->setId("helpme_form");
+        $first = true;
+
+        $html = preg_replace_callback('/(<button\s+class\s*=\s*"btn btn-default"\s+data-action\s*=\s*"#?"(\s+id\s*=\s*"[a-z0-9_]+")?\s*>)(.+)(<\/button\s*>)/',
+            function (array $matches) use (&$first) : string {
+                if ($first) {
+                    $first = false;
+
+                    return "";
+                } else {
+                    return '<input class="btn btn-default btn-sm" type="submit" name="cmd[' . SupportGUI::CMD_NEW_SUPPORT . ']" value="' . self::plugin()->translate("submit", SupportGUI::LANG_MODULE)
+                        . '" id="helpme_submit">&nbsp;<input class="btn btn-default btn-sm" type="submit" name="cmd[]" value="' . self::plugin()->translate("cancel", SupportGUI::LANG_MODULE)
+                        . '" id="helpme_cancel">';
+                }
+            }, $html);
+
+        return $html;
     }
 
 
     /**
      * @inheritDoc
      */
-    protected final function initTitle() : void
+    protected function storeData(array $data) : void
     {
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function storeValue(/*string*/ $key, $value) : void
-    {
-        switch ($key) {
-            case (strpos($key, "field_") === 0):
-                $field_id = substr($key, strlen("field_"));
-
-                $this->support->setFieldValueById($field_id, $value);
-                break;
-
-            default:
-                Items::setter($this->support, $key, $value);
-                break;
+        foreach (array_keys($this->getFields()) as $key) {
+            $field_id = substr($key, strlen("field_"));
+            $this->support->setFieldValueById($field_id, $data[$key]);
         }
     }
 

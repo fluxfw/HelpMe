@@ -9,7 +9,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
-            'srag\\RequiredData\\' => 18,
+            'srag\\RequiredData\\HelpMe\\' => 25,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\Notifications4Plugin\\HelpMe\\' => 33,
@@ -17,13 +17,13 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DataTableUI\\HelpMe\\' => 24,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\' => 21,
+            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'srag\\RequiredData\\' => 
+        'srag\\RequiredData\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/requireddata/src',
         ),
@@ -55,7 +55,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\' => 
+        'srag\\CustomInputGUIs\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
@@ -514,6 +514,8 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         'srag\\Plugins\\HelpMe\\RequiredData\\Field\\SystemInfos\\SystemInfosField' => __DIR__ . '/../..' . '/src/RequiredData/Field/SystemInfos/SystemInfosField.php',
         'srag\\Plugins\\HelpMe\\RequiredData\\Field\\SystemInfos\\SystemInfosFillField' => __DIR__ . '/../..' . '/src/RequiredData/Field/SystemInfos/SystemInfosFillField.php',
         'srag\\Plugins\\HelpMe\\Support\\Factory' => __DIR__ . '/../..' . '/src/Support/Factory.php',
+        'srag\\Plugins\\HelpMe\\Support\\Form\\SuccessFormBuilder' => __DIR__ . '/../..' . '/src/Support/Form/SuccessFormBuilder.php',
+        'srag\\Plugins\\HelpMe\\Support\\Form\\SupportFormBuilder' => __DIR__ . '/../..' . '/src/Support/Form/SupportFormBuilder.php',
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\Factory' => __DIR__ . '/../..' . '/src/Support/Recipient/Factory.php',
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\Recipient' => __DIR__ . '/../..' . '/src/Support/Recipient/Recipient.php',
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\RecipientCreateJiraTicket' => __DIR__ . '/../..' . '/src/Support/Recipient/RecipientCreateJiraTicket.php',
@@ -521,10 +523,8 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\RecipientSendMailSender' => __DIR__ . '/../..' . '/src/Support/Recipient/RecipientSendMailSender.php',
         'srag\\Plugins\\HelpMe\\Support\\Recipient\\Repository' => __DIR__ . '/../..' . '/src/Support/Recipient/Repository.php',
         'srag\\Plugins\\HelpMe\\Support\\Repository' => __DIR__ . '/../..' . '/src/Support/Repository.php',
-        'srag\\Plugins\\HelpMe\\Support\\SuccessFormGUI' => __DIR__ . '/../..' . '/src/Support/SuccessFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\Support' => __DIR__ . '/../..' . '/src/Support/Support.php',
         'srag\\Plugins\\HelpMe\\Support\\SupportField' => __DIR__ . '/../..' . '/src/Support/SupportField.php',
-        'srag\\Plugins\\HelpMe\\Support\\SupportFormGUI' => __DIR__ . '/../..' . '/src/Support/SupportFormGUI.php',
         'srag\\Plugins\\HelpMe\\Support\\SupportGUI' => __DIR__ . '/../..' . '/src/Support/class.SupportGUI.php',
         'srag\\Plugins\\HelpMe\\Ticket\\Factory' => __DIR__ . '/../..' . '/src/Ticket/Factory.php',
         'srag\\Plugins\\HelpMe\\Ticket\\FetchJiraTicketsJob' => __DIR__ . '/../..' . '/src/Ticket/FetchJiraTicketsJob.php',

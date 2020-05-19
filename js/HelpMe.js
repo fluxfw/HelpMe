@@ -201,7 +201,7 @@ il.HelpMe = {
                 this.screenshots = null;
             }
 
-            var $form = $("#form_helpme_form");
+            var $form = $("#form_helpme_form > form");
             $form.submit(this.submit.bind(this));
 
             var $cancel = $("#helpme_cancel");
@@ -229,7 +229,7 @@ il.HelpMe = {
      * @returns {boolean}
      */
     submit: function () {
-        var $form = $("#form_helpme_form");
+        var $form = $("#form_helpme_form > form");
         var $submit = $("#helpme_submit");
 
         var post_url = $form.attr("action");
