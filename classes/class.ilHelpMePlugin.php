@@ -5,6 +5,7 @@ if (file_exists(__DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload
     require_once __DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php";
 }
 
+use ILIAS\GlobalScreen\Provider\PluginProviderCollection;
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
@@ -43,13 +44,34 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
 
 
     /**
+     * @var PluginProviderCollection|null
+     */
+    protected static $pluginProviderCollection = null;
+
+
+    /**
+     * @return PluginProviderCollection
+     */
+    protected static function getPluginProviderCollection() : PluginProviderCollection
+    {
+        if (self::$pluginProviderCollection === null) {
+            self::$pluginProviderCollection = new PluginProviderCollection();
+
+            self::$pluginProviderCollection->setMetaBarProvider(self::helpMe()->metaBar());
+        }
+
+        return self::$pluginProviderCollection;
+    }
+
+
+    /**
      * ilHelpMePlugin constructor
      */
     public function __construct()
     {
         parent::__construct();
 
-        $this->provider_collection->setMetaBarProvider(self::helpMe()->metaBar());
+        $this->provider_collection = self::getPluginProviderCollection(); // Fix overflow
     }
 
 

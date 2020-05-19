@@ -4,6 +4,8 @@ namespace srag\Plugins\HelpMe\Support;
 
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Support\Form\SuccessFormBuilder;
+use srag\Plugins\HelpMe\Support\Form\SupportFormBuilder;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -79,11 +81,11 @@ final class Factory
      * @param SupportGUI $parent
      * @param Support    $support
      *
-     * @return SupportFormGUI
+     * @return SupportFormBuilder
      */
-    public function newFormInstance(SupportGUI $parent, Support $support) : SupportFormGUI
+    public function newFormBuilderInstance(SupportGUI $parent, Support $support) : SupportFormBuilder
     {
-        $form = new SupportFormGUI($parent, $support);
+        $form = new SupportFormBuilder($parent, $support);
 
         return $form;
     }
@@ -93,11 +95,11 @@ final class Factory
      * @param SupportGUI $parent
      * @param Support    $support
      *
-     * @return SuccessFormGUI
+     * @return SuccessFormBuilder
      */
-    public function newSuccessFormInstance(SupportGUI $parent, Support $support) : SuccessFormGUI
+    public function newSuccessFormBuilderInstance(SupportGUI $parent, Support $support) : SuccessFormBuilder
     {
-        $form = new SuccessFormGUI($parent, $support);
+        $form = new SuccessFormBuilder($parent, $support);
 
         return $form;
     }
