@@ -4,6 +4,7 @@ namespace srag\RequiredData\HelpMe\Field\Table;
 
 use srag\DataTableUI\HelpMe\Component\Table;
 use srag\DataTableUI\HelpMe\Implementation\Utils\AbstractTableBuilder;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupCtrl;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
 use srag\RequiredData\HelpMe\Field\FieldsCtrl;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
@@ -19,7 +20,6 @@ class TableBuilder extends AbstractTableBuilder
 {
 
     use RequiredDataTrait;
-
 
     /**
      * @inheritDoc
@@ -63,21 +63,28 @@ class TableBuilder extends AbstractTableBuilder
                 self::requiredData()->getPlugin()->translate("actions", FieldsCtrl::LANG_MODULE))->withFormatter(self::dataTableUI()->column()->formatter()->actions()->actionsDropdown())
         ]);
 
+        $multiple_actions = [
+            self::requiredData()->getPlugin()->translate("enable_fields", FieldsCtrl::LANG_MODULE)  => self::dic()
+                ->ctrl()
+                ->getLinkTarget($this->parent, FieldsCtrl::CMD_ENABLE_FIELDS, "", false, false),
+            self::requiredData()->getPlugin()->translate("disable_fields", FieldsCtrl::LANG_MODULE) => self::dic()
+                ->ctrl()
+                ->getLinkTarget($this->parent, FieldsCtrl::CMD_DISABLE_FIELD, "", false, false),
+            self::requiredData()->getPlugin()->translate("remove_fields", FieldsCtrl::LANG_MODULE)  => self::dic()
+                ->ctrl()
+                ->getLinkTarget($this->parent, FieldsCtrl::CMD_REMOVE_FIELDS_CONFIRM, "", false, false)
+        ];
+        if (self::requiredData()->isEnableGroups() && !($this->parent instanceof GroupCtrl)) {
+            $multiple_actions[self::requiredData()->getPlugin()->translate("create_group_of_fields", FieldsCtrl::LANG_MODULE)] = self::dic()
+                ->ctrl()
+                ->getLinkTarget($this->parent, FieldsCtrl::CMD_CREATE_GROUP_OF_FIELDS, "", false, false);
+        }
+
         $table = self::dataTableUI()->table("fields_" . self::requiredData()->getPlugin()->getPluginObject()->getId(),
             self::dic()->ctrl()->getLinkTarget($this->parent, FieldsCtrl::CMD_LIST_FIELDS, "", false, false),
             self::requiredData()->getPlugin()->translate("fields", FieldsCtrl::LANG_MODULE), $columns, new DataFetcher($this->parent))
             ->withPlugin(self::requiredData()->getPlugin())
-            ->withMultipleActions([
-                self::requiredData()->getPlugin()->translate("enable_fields", FieldsCtrl::LANG_MODULE)  => self::dic()
-                    ->ctrl()
-                    ->getLinkTarget($this->parent, FieldsCtrl::CMD_ENABLE_FIELDS, "", false, false),
-                self::requiredData()->getPlugin()->translate("disable_fields", FieldsCtrl::LANG_MODULE) => self::dic()
-                    ->ctrl()
-                    ->getLinkTarget($this->parent, FieldsCtrl::CMD_DISABLE_FIELD, "", false, false),
-                self::requiredData()->getPlugin()->translate("remove_fields", FieldsCtrl::LANG_MODULE)  => self::dic()
-                    ->ctrl()
-                    ->getLinkTarget($this->parent, FieldsCtrl::CMD_REMOVE_FIELDS_CONFIRM, "", false, false)
-            ]);
+            ->withMultipleActions($multiple_actions);
 
         return $table;
     }
@@ -89,7 +96,7 @@ class TableBuilder extends AbstractTableBuilder
     public function render() : string
     {
         self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard(self::requiredData()->getPlugin()->translate("add_field", FieldsCtrl::LANG_MODULE),
-            self::dic()->ctrl()->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_ADD_FIELD)));
+            self::dic()->ctrl()->getLinkTargetByClass($this->parent->getFieldCtrlClass(), FieldCtrl::CMD_ADD_FIELD)));
 
         return parent::render();
     }

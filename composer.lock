@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -147,16 +147,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.22.0",
+            "version": "v0.23.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "9003c1cab384449ba70cd0a26607099c7c00b722"
+                "reference": "2f977f7d53c42b1f72b78624a1d68fb4d4a9162f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/9003c1cab384449ba70cd0a26607099c7c00b722",
-                "reference": "9003c1cab384449ba70cd0a26607099c7c00b722",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/2f977f7d53c42b1f72b78624a1d68fb4d4a9162f",
+                "reference": "2f977f7d53c42b1f72b78624a1d68fb4d4a9162f",
                 "shasum": ""
             },
             "require": {
@@ -188,7 +188,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-05-18T08:07:31+00:00"
+            "time": "2020-05-19T07:32:47+00:00"
         },
         {
             "name": "srag/jiracurl",
@@ -302,7 +302,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -374,16 +374,16 @@
         },
         {
             "name": "srag/requireddata",
-            "version": "v0.12.3",
+            "version": "v0.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RequiredData.git",
-                "reference": "6566854b02116415d53554a474f9c4c6329aa68d"
+                "reference": "d3a606d18dc7defb279451c007df6428f87228ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/6566854b02116415d53554a474f9c4c6329aa68d",
-                "reference": "6566854b02116415d53554a474f9c4c6329aa68d",
+                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/d3a606d18dc7defb279451c007df6428f87228ab",
+                "reference": "d3a606d18dc7defb279451c007df6428f87228ab",
                 "shasum": ""
             },
             "require": {
@@ -395,7 +395,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\HelpMe\\": "src/"
+                    "srag\\RequiredData\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -417,7 +417,7 @@
                 "field",
                 "required"
             ],
-            "time": "2020-03-31T08:48:28+00:00"
+            "time": "2020-05-19T08:18:19+00:00"
         },
         {
             "name": "twig/twig",

@@ -1,6 +1,8 @@
-### Usage
+# RequiredData Library for ILIAS Plugins
 
-#### Composer
+## Usage
+
+### Composer
 First add the following to your `composer.json` file:
 ```json
 "require": {
@@ -15,10 +17,10 @@ Tip: Because of multiple autoloaders of plugins, it could be, that different ver
 
 So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
-#### PHP 7.0
+### PHP 7.0
 You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
 
-#### Using trait
+## Using trait
 Your class in this you want to use RequiredData needs to use the trait `RequiredDataTrait`
 ```php
 ...
@@ -30,10 +32,10 @@ use RequiredDataTrait;
 ...
 ```
 
-#### RequiredData ActiveRecord
+## RequiredData ActiveRecord
 First you need to init the `RequiredData` active record classes with your own table name prefix. Please add this very early in your plugin code
 ```php
-self::requiredData()->configs()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlugin(self::plugin());
+self::requiredData()->withTableNamePrefix(ilXPlugin::PLUGIN_ID)->withPlugin(self::plugin());
 ```
 
 Add an update step to your `dbupdate.php`
@@ -47,10 +49,10 @@ Add an update step to your `dbupdate.php`
 
 and not forget to add an uninstaller step in your plugin class too
 ```php
-self::requiredData()->configs()->dropTables();
+self::requiredData()->dropTables();
 ```
 
-#### Ctrl classes
+## Ctrl classes
 ```php
 ...
 /**
@@ -97,7 +99,7 @@ class FillCtrl extends AbstractFillCtrl
 }
 ```
 
-#### Languages
+## Languages
 Expand you plugin class for installing languages of the library to your plugin
 ```php
 ...
@@ -107,13 +109,13 @@ Expand you plugin class for installing languages of the library to your plugin
     public function updateLanguages(/*?array*/ $a_lang_keys = null)/*:void*/ {
 		parent::updateLanguages($a_lang_keys);
 
-		self::requiredData()->configs()->installLanguages();
+		self::requiredData()->installLanguages();
 	}
 ...
 ```
 
-### Own fields
-Extend `AbstractField`, `AbstractFieldFormGUI` and `AbstractFillField` (In same folder).
+## Own fields
+Extend `AbstractField`, `AbstractFieldFormBuilder` and `AbstractFillField` (In same folder).
 
 You need to implement a new language variable `required_data_type_x` in your plugin language file.
 
@@ -124,17 +126,17 @@ Add your `AbstractField` very early in your plugin code (After you call `withTab
 self::requiredData()->fields()->factory()->addClass(XField::class);
 ```
 
-#### Deliver multi search select with own static options
+### Deliver multi search select with own static options
 Just extends the `StaticMultiSearchSelect` classes
 
-#### Deliver value which user can't change
+### Deliver value which user can't change
 Just extends the `DynamicValue` classes
 
-### Requirements
-* ILIAS 5.3 or ILIAS 5.4
+## Requirements
+* ILIAS 5.4 or ILIAS 6
 * PHP >=7.2
 
-### Adjustment suggestions
+## Adjustment suggestions
 * External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LREQDATA
 * Adjustment suggestions by pull requests via github
 * Customer of studer + raimann ag: 

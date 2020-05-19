@@ -5,6 +5,7 @@ required_data_added_field#:#Field %s added
 required_data_back#:#Back
 required_data_cancel#:#Cancel
 required_data_count_decimals#:#Restrict decimal parts
+required_data_create_group_of_fields#:#Create group of fields
 required_data_description#:#Description
 required_data_disable_fields#:#Disable fields
 required_data_disabled_fields#:#Fields disabled
@@ -41,6 +42,7 @@ required_data_type_checkboxfield#:#Checkbox
 required_data_type_datefield#:#Date
 required_data_type_emailfield#:#Email
 required_data_type_floatfield#:#Float
+required_data_type_groupfield#:#Group
 required_data_type_integerfield#:#Integer
 required_data_type_multilinetextfield#:#Multiline text
 required_data_type_multisearchselectfield#:#Multi search select
@@ -49,4 +51,5 @@ required_data_type_radiofield#:#Radio
 required_data_type_searchselectfield#:#Search select
 required_data_type_selectfield#:#Select
 required_data_type_textfield#:#Text
+required_data_ungroup#:#Ungroup
 required_data_value#:#Value

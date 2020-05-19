@@ -21,6 +21,7 @@ class DataFetcher extends AbstractDataFetcher
 {
 
     use RequiredDataTrait;
+
     /**
      * @var FieldsCtrl
      */

@@ -8,6 +8,8 @@ use ILIAS\UI\Component\Component;
 use LogicException;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupCtrl;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupField;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
 /**
@@ -22,6 +24,7 @@ abstract class AbstractField extends ActiveRecord
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
      * @var string
      *
@@ -307,18 +310,27 @@ abstract class AbstractField extends ActiveRecord
 
 
     /**
+     * @return string
+     */
+    protected function getFieldCtrlClass() : string
+    {
+        return (intval($this->parent_context) === GroupField::PARENT_CONTEXT_FIELD_GROUP ? GroupCtrl::class : FieldCtrl::class);
+    }
+
+
+    /**
      * @return Component[]
      */
     public function getActions() : array
     {
-        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $this->getType());
-        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $this->field_id);
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_TYPE . $this->parent_context, $this->getType());
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_ID . $this->parent_context, $this->field_id);
 
         return [
             self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("edit_field", FieldsCtrl::LANG_MODULE),
-                self::dic()->ctrl()->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_EDIT_FIELD)),
+                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_EDIT_FIELD)),
             self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("remove_field", FieldsCtrl::LANG_MODULE),
-                self::dic()->ctrl()->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_REMOVE_FIELD_CONFIRM))
+                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_REMOVE_FIELD_CONFIRM))
         ];
     }
 
@@ -328,12 +340,12 @@ abstract class AbstractField extends ActiveRecord
      */
     public function getSortUpActionUrl() : string
     {
-        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $this->getType());
-        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $this->field_id);
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_TYPE . $this->parent_context, $this->getType());
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_ID . $this->parent_context, $this->field_id);
 
         return self::dic()
             ->ctrl()
-            ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_UP, "", true);
+            ->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_MOVE_FIELD_UP, "", true);
     }
 
 
@@ -342,12 +354,12 @@ abstract class AbstractField extends ActiveRecord
      */
     public function getSortDownActionUrl() : string
     {
-        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_TYPE, $this->getType());
-        self::dic()->ctrl()->setParameterByClass(FieldCtrl::class, FieldCtrl::GET_PARAM_FIELD_ID, $this->field_id);
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_TYPE . $this->parent_context, $this->getType());
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_ID . $this->parent_context, $this->field_id);
 
         return self::dic()
             ->ctrl()
-            ->getLinkTargetByClass(FieldCtrl::class, FieldCtrl::CMD_MOVE_FIELD_DOWN, "", true);
+            ->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_MOVE_FIELD_DOWN, "", true);
     }
 
 

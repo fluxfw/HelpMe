@@ -18,6 +18,7 @@ abstract class AbstractFillCtrl
 
     use DICTrait;
     use RequiredDataTrait;
+
     const CMD_BACK = "back";
     const CMD_CANCEL = "cancel";
     const CMD_FILL_FIELDS = "fillFields";
@@ -103,7 +104,7 @@ abstract class AbstractFillCtrl
      */
     protected function fillFields()/* : void*/
     {
-        $form = self::requiredData()->fills()->factory()->newFillFormInstance($this);
+        $form = self::requiredData()->fills()->factory()->newFormBuilderInstance($this);
 
         self::output()->output($form, true);
     }
@@ -114,7 +115,7 @@ abstract class AbstractFillCtrl
      */
     protected function saveFields()/* : void*/
     {
-        $form = self::requiredData()->fills()->factory()->newFillFormInstance($this);
+        $form = self::requiredData()->fills()->factory()->newFormBuilderInstance($this);
 
         if (!$form->storeForm()) {
             self::output()->output($form, true);

@@ -19,6 +19,7 @@ class FillStorage extends ActiveRecord
 
     use DICTrait;
     use RequiredDataTrait;
+
     const TABLE_NAME_SUFFIX = "store";
 
 

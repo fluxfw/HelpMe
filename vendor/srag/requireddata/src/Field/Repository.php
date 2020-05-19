@@ -3,6 +3,7 @@
 namespace srag\RequiredData\HelpMe\Field;
 
 use srag\DIC\HelpMe\DICTrait;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupField;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
 /**
@@ -17,6 +18,7 @@ final class Repository
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
      * @var self|null
      */
@@ -42,6 +44,50 @@ final class Repository
     private function __construct()
     {
 
+    }
+
+
+    /**
+     * @param AbstractField[] $fields
+     *
+     * @return GroupField|null
+     */
+    public function createGroupOfFields(array $fields)/* : ?GroupField*/
+    {
+        $fields = array_filter($fields, function (AbstractField $field) : bool {
+            return !($field instanceof GroupField);
+        });
+        if (empty($fields)) {
+            return null;
+        }
+
+        $first_field = current($fields);
+
+        $fields = array_filter($fields, function (AbstractField $field) use ($first_field): bool {
+            return ($field->getType() === $first_field->getType() && $field->getParentContext() === $first_field->getParentContext() && $field->getParentId() === $first_field->getParentId());
+        });
+        if (empty($fields)) {
+            return null;
+        }
+
+        /**
+         * @var GroupField $group
+         */
+        $group = $this->factory()->newInstance(GroupField::getType());
+
+        $group->setParentContext($first_field->getParentContext());
+        $group->setParentId($first_field->getParentId());
+        $this->storeField($group);
+
+        foreach ($fields as $field) {
+            $field->setParentContext(GroupField::PARENT_CONTEXT_FIELD_GROUP);
+            $field->setParentId($group->getFieldId());
+            $this->storeField($field);
+        }
+
+        $this->storeField($group);
+
+        return $group;
     }
 
 
@@ -249,5 +295,26 @@ final class Repository
         }
 
         $field->store();
+    }
+
+
+    /**
+     * @param GroupField $group
+     *
+     * @return AbstractField[]
+     */
+    public function ungroup(GroupField $group) : array
+    {
+        $fields = $this->getFields(GroupField::PARENT_CONTEXT_FIELD_GROUP, $group->getFieldId(), null, false);
+
+        foreach ($fields as $field) {
+            $field->setParentContext($group->getParentContext());
+            $field->setParentId($group->getParentId());
+            $this->storeField($field);
+        }
+
+        $this->deleteField($group);
+
+        return $fields;
     }
 }
