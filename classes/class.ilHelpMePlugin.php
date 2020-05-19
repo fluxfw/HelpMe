@@ -48,6 +48,10 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     public function __construct()
     {
         parent::__construct();
+
+        if (self::version()->is60()) {
+            $this->provider_collection->setMetaBarProvider(self::helpMe()->metaBar());
+        }
     }
 
 

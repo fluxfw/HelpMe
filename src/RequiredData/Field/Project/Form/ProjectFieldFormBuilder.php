@@ -1,20 +1,21 @@
 <?php
 
-namespace srag\Plugins\HelpMe\RequiredData\Field\Project;
+namespace srag\Plugins\HelpMe\RequiredData\Field\Project\Form;
 
 use ilHelpMePlugin;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\AbstractFieldFormGUI;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
+use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
 
 /**
- * Class ProjectFieldFormGUI
+ * Class ProjectFieldFormBuilder
  *
- * @package srag\Plugins\HelpMe\RequiredData\Field\Project
+ * @package srag\Plugins\HelpMe\RequiredData\Field\Project\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ProjectFieldFormGUI extends AbstractFieldFormGUI
+class ProjectFieldFormBuilder extends AbstractFieldFormBuilder
 {
 
     use HelpMeTrait;

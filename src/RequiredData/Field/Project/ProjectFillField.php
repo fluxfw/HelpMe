@@ -3,7 +3,9 @@
 namespace srag\Plugins\HelpMe\RequiredData\Field\Project;
 
 use ilHelpMePlugin;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use ILIAS\UI\Component\Input\Field\Input;
+use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\Form\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RequiredData\HelpMe\Fill\AbstractFillField;
@@ -39,19 +41,18 @@ class ProjectFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getFormFields() : array
+    public function getInput() : Input
     {
-        $field = [
-            PropertyFormGUI::PROPERTY_CLASS    => ProjectSelectInputGUI::class,
-            PropertyFormGUI::PROPERTY_REQUIRED => true,
-            PropertyFormGUI::PROPERTY_OPTIONS  => ($this->field->isRequired() && count(self::helpMe()->projects()->getProjectsOptions()) === 1
-                    ? []
-                    : [
-                        "" => "&lt;" . self::requiredData()
-                                ->getPlugin()
-                                ->translate("please_select", SupportGUI::LANG_MODULE) . "&gt;"
-                    ]) + self::helpMe()->projects()->getProjectsOptions()
-        ];
+        $input = (new InputGUIWrapperUIInputComponent(new ProjectSelectInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())
+            ->withRequired($this->field->isRequired());
+
+        $input->getInput()->setOptions(($this->field->isRequired() && count(self::helpMe()->projects()->getProjectsOptions()) === 1
+                ? []
+                : [
+                    "" => "&lt;" . self::requiredData()
+                            ->getPlugin()
+                            ->translate("please_select", SupportGUI::LANG_MODULE) . "&gt;"
+                ]) + self::helpMe()->projects()->getProjectsOptions());
 
         $project = null;
 
@@ -69,11 +70,11 @@ class ProjectFillField extends AbstractFillField
         }
 
         if ($project !== null) {
-            $field["setProject"] = $project;
-            $field[PropertyFormGUI::PROPERTY_VALUE] = $project->getProjectUrlKey();
+            $input->getInput()->setProject($project);
+            $input->getInput()->setValue($project->getProjectUrlKey());
         }
 
-        return $field;
+        return $input;
     }
 
 

@@ -5,10 +5,10 @@ namespace srag\Plugins\HelpMe\Support;
 use ilHelpMePlugin;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form\IssueTypeSelectInputGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
-use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeSelectInputGUI;
+use srag\Plugins\HelpMe\RequiredData\Field\Project\Form\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
-use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**

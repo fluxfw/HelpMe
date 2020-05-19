@@ -1,20 +1,21 @@
 <?php
 
-namespace srag\Plugins\HelpMe\RequiredData\Field\Login;
+namespace srag\Plugins\HelpMe\RequiredData\Field\Login\Form;
 
 use ilHelpMePlugin;
+use srag\Plugins\HelpMe\RequiredData\Field\Login\LoginField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\DynamicValue\DynamicValueFieldFormGUI;
+use srag\RequiredData\HelpMe\Field\Field\DynamicValue\Form\DynamicValueFieldFormBuilder;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
 
 /**
- * Class LoginFieldFormGUI
+ * Class LoginFieldFormBuilder
  *
- * @package srag\Plugins\HelpMe\RequiredData\Field\Login
+ * @package srag\Plugins\HelpMe\RequiredData\Field\Login\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class LoginFieldFormGUI extends DynamicValueFieldFormGUI
+class LoginFieldFormBuilder extends DynamicValueFieldFormBuilder
 {
 
     use HelpMeTrait;

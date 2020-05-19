@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\Plugins\HelpMe\RequiredData\Field\IssueType;
+namespace srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form;
 
 use ilHelpMePlugin;
 use ilSelectInputGUI;
@@ -12,11 +12,11 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 /**
  * Class IssueTypeSelectInputGUI
  *
- * @package           srag\Plugins\HelpMe\RequiredData\Field\IssueType
+ * @package           srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form
  *
  * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  *
- * @ilCtrl_isCalledBy srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeSelectInputGUI: srag\Plugins\HelpMe\Support\SupportGUI
+ * @ilCtrl_isCalledBy srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form\IssueTypeSelectInputGUI: srag\Plugins\HelpMe\Support\SupportGUI
  */
 class IssueTypeSelectInputGUI extends ilSelectInputGUI
 {

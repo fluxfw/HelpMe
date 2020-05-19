@@ -24,11 +24,11 @@ use srag\Plugins\HelpMe\Support\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RequiredData\HelpMe\Field\AbstractField;
-use srag\RequiredData\HelpMe\Field\Email\EmailField;
-use srag\RequiredData\HelpMe\Field\Radio\RadioField;
-use srag\RequiredData\HelpMe\Field\SearchSelect\SearchSelectField;
-use srag\RequiredData\HelpMe\Field\Select\SelectField;
-use srag\RequiredData\HelpMe\Field\Text\TextField;
+use srag\RequiredData\HelpMe\Field\Field\Email\EmailField;
+use srag\RequiredData\HelpMe\Field\Field\Radio\RadioField;
+use srag\RequiredData\HelpMe\Field\Field\SearchSelect\SearchSelectField;
+use srag\RequiredData\HelpMe\Field\Field\Select\SelectField;
+use srag\RequiredData\HelpMe\Field\Field\Text\TextField;
 
 /**
  * Class ConfigFormGUI

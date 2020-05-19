@@ -1,20 +1,21 @@
 <?php
 
-namespace srag\Plugins\HelpMe\RequiredData\Field\SystemInfos;
+namespace srag\Plugins\HelpMe\RequiredData\Field\SystemInfos\Form;
 
 use ilHelpMePlugin;
+use srag\Plugins\HelpMe\RequiredData\Field\SystemInfos\SystemInfosField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\DynamicValue\DynamicValueFieldFormGUI;
+use srag\RequiredData\HelpMe\Field\Field\DynamicValue\Form\DynamicValueFieldFormBuilder;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
 
 /**
- * Class SystemInfosFieldFormGUI
+ * Class SystemInfosFieldFormBuilder
  *
- * @package srag\Plugins\HelpMe\RequiredData\Field\SystemInfos
+ * @package srag\Plugins\HelpMe\RequiredData\Field\SystemInfos\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class SystemInfosFieldFormGUI extends DynamicValueFieldFormGUI
+class SystemInfosFieldFormBuilder extends DynamicValueFieldFormBuilder
 {
 
     use HelpMeTrait;

@@ -3,7 +3,9 @@
 namespace srag\Plugins\HelpMe\RequiredData\Field\IssueType;
 
 use ilHelpMePlugin;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use ILIAS\UI\Component\Input\Field\Input;
+use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form\IssueTypeSelectInputGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RequiredData\HelpMe\Fill\AbstractFillField;
 
@@ -38,13 +40,11 @@ class IssueTypeFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getFormFields() : array
+    public function getInput() : Input
     {
-        return [
-            PropertyFormGUI::PROPERTY_CLASS    => IssueTypeSelectInputGUI::class,
-            PropertyFormGUI::PROPERTY_OPTIONS  => [],
-            PropertyFormGUI::PROPERTY_DISABLED => true
-        ];
+        return (new InputGUIWrapperUIInputComponent(new IssueTypeSelectInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())
+            ->withRequired($this->field->isRequired())
+            ->withDisabled(true);
     }
 
 

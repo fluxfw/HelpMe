@@ -1,20 +1,21 @@
 <?php
 
-namespace srag\Plugins\HelpMe\RequiredData\Field\PageReference;
+namespace srag\Plugins\HelpMe\RequiredData\Field\PageReference\Form;
 
 use ilHelpMePlugin;
+use srag\Plugins\HelpMe\RequiredData\Field\PageReference\PageReferenceField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\DynamicValue\DynamicValueFieldFormGUI;
+use srag\RequiredData\HelpMe\Field\Field\DynamicValue\Form\DynamicValueFieldFormBuilder;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
 
 /**
- * Class PageReferenceFieldFormGUI
+ * Class PageReferenceFieldFormBuilder
  *
- * @package srag\Plugins\HelpMe\RequiredData\Field\PageReference
+ * @package srag\Plugins\HelpMe\RequiredData\Field\PageReference\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class PageReferenceFieldFormGUI extends DynamicValueFieldFormGUI
+class PageReferenceFieldFormBuilder extends DynamicValueFieldFormBuilder
 {
 
     use HelpMeTrait;
