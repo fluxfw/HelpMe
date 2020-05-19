@@ -153,7 +153,7 @@ class Ticket extends ActiveRecord
     /**
      * @param int $ticket_id
      */
-    public function setTicketId(int $ticket_id)/*: void*/
+    public function setTicketId(int $ticket_id) : void
     {
         $this->ticket_id = $ticket_id;
     }
@@ -171,7 +171,7 @@ class Ticket extends ActiveRecord
     /**
      * @param string $ticket_key
      */
-    public function setTicketKey(string $ticket_key)/*: void*/
+    public function setTicketKey(string $ticket_key) : void
     {
         $this->ticket_key = $ticket_key;
     }
@@ -189,7 +189,7 @@ class Ticket extends ActiveRecord
     /**
      * @param string $ticket_project_url_key
      */
-    public function setTicketProjectUrlKey(string $ticket_project_url_key)/*: void*/
+    public function setTicketProjectUrlKey(string $ticket_project_url_key) : void
     {
         $this->ticket_project_url_key = $ticket_project_url_key;
     }
@@ -207,7 +207,7 @@ class Ticket extends ActiveRecord
     /**
      * @param string $ticket_title
      */
-    public function setTicketTitle(string $ticket_title)/*: void*/
+    public function setTicketTitle(string $ticket_title) : void
     {
         $this->ticket_title = $ticket_title;
     }
@@ -225,7 +225,7 @@ class Ticket extends ActiveRecord
     /**
      * @param string $ticket_issue_type
      */
-    public function setTicketIssueType(string $ticket_issue_type)/*: void*/
+    public function setTicketIssueType(string $ticket_issue_type) : void
     {
         $this->ticket_issue_type = $ticket_issue_type;
     }
@@ -243,7 +243,7 @@ class Ticket extends ActiveRecord
     /**
      * @param string $ticket_priority
      */
-    public function setTicketPriority(string $ticket_priority)/*: void*/
+    public function setTicketPriority(string $ticket_priority) : void
     {
         $this->ticket_priority = $ticket_priority;
     }

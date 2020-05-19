@@ -65,7 +65,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected final function initAction()/*: void*/
+    protected final function initAction() : void
     {
         $this->setFormAction(self::dic()->ctrl()->getFormAction($this->parent, "", "", true));
     }
@@ -74,7 +74,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
         $this->addCommandButton(SupportGUI::CMD_NEW_SUPPORT, $this->txt("submit"), "helpme_submit");
 
@@ -87,7 +87,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields() : void
     {
         $this->fields = self::helpMe()->requiredData()->fills()->getFormFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG);
     }
@@ -96,7 +96,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected final function initId()/*: void*/
+    protected final function initId() : void
     {
         $this->setId("helpme_form");
     }
@@ -105,7 +105,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected final function initTitle()/*: void*/
+    protected final function initTitle() : void
     {
     }
 
@@ -113,7 +113,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value) : void
     {
         switch ($key) {
             case (strpos($key, "field_") === 0):
@@ -150,7 +150,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @return ProjectSelectInputGUI|null
      */
-    public function extractProjectSelector()/* : ?ProjectSelectInputGUI*/
+    public function extractProjectSelector() : ?ProjectSelectInputGUI
     {
         $field = current(self::helpMe()
             ->requiredData()
@@ -171,7 +171,7 @@ class SupportFormGUI extends PropertyFormGUI
     /**
      * @return IssueTypeSelectInputGUI|null
      */
-    public function extractIssueTypeSelector()/* : ?IssueTypeSelectInputGUI*/
+    public function extractIssueTypeSelector() : ?IssueTypeSelectInputGUI
     {
         $field = current(self::helpMe()
             ->requiredData()

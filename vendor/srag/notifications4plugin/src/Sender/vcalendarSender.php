@@ -118,7 +118,7 @@ class vcalendarSender implements Sender
     /**
      * @inheritDoc
      */
-    public function send()/* : void*/
+    public function send() : void
     {
         $this->mailer = new ilMail($this->getUserFrom());
 

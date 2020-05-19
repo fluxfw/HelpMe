@@ -20,7 +20,7 @@ class GroupCtrl extends FieldCtrl
     /**
      * @inheritDoc
      */
-    protected function ungroup()/* : void*/
+    protected function ungroup() : void
     {
         die();
     }

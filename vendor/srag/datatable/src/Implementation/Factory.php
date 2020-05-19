@@ -107,7 +107,7 @@ class Factory implements FactoryInterface
     /**
      * @inheritDoc
      */
-    public function installLanguages(PluginInterface $plugin)/* : void*/
+    public function installLanguages(PluginInterface $plugin) : void
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($plugin)->withLibraryLanguageDirectory(__DIR__
             . "/../../lang")->updateLanguages();

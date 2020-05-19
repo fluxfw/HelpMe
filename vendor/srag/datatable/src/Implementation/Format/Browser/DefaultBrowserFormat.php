@@ -79,7 +79,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     /**
      * @inheritDoc
      */
-    public function deliverDownload(string $data, Table $component)/* : void*/
+    public function deliverDownload(string $data, Table $component) : void
     {
         throw new LogicException("Seperate deliver download browser format not possible!");
     }
@@ -90,7 +90,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      *
      * @return string|null
      */
-    public function getInputFormatId(Table $component)/* : ?string*/
+    public function getInputFormatId(Table $component) : ?string
     {
         return filter_input(INPUT_GET, $this->actionParameter(SettingsStorage::VAR_EXPORT_FORMAT_ID, $component->getTableId()));
     }
@@ -108,7 +108,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     /**
      * @inheritDoc
      */
-    protected function initTemplate(Table $component, /*?Data*/ $data, Settings $settings)/* : void*/
+    protected function initTemplate(Table $component, ?Data $data, Settings $settings) : void
     {
         parent::initTemplate($component, $data, $settings);
 
@@ -125,7 +125,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     /**
      * @inheritDoc
      */
-    protected function handleColumns(Table $component, array $columns, Settings $settings)/* : void*/
+    protected function handleColumns(Table $component, array $columns, Settings $settings) : void
     {
         if (count($component->getMultipleActions()) > 0) {
             $this->tpl->setCurrentBlock("header");
@@ -142,7 +142,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     /**
      * @inheritDoc
      */
-    protected function handleColumn(string $formatted_column, Table $component, Column $column, Settings $settings)/* : void*/
+    protected function handleColumn(string $formatted_column, Table $component, Column $column, Settings $settings) : void
     {
         $deselect_button = self::dic()->ui()->factory()->legacy("");
         $sort_button = $formatted_column;
@@ -201,7 +201,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     /**
      * @inheritDoc
      */
-    protected function handleRowTemplate(Table $component, RowData $row)/* : void*/
+    protected function handleRowTemplate(Table $component, RowData $row) : void
     {
         parent::handleRowTemplate($component, $row);
 
@@ -221,7 +221,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      * @param Table    $component
      * @param Settings $settings
      */
-    protected function initFilterForm(Table $component, Settings $settings)/* : void*/
+    protected function initFilterForm(Table $component, Settings $settings) : void
     {
         if ($this->filter_form === null) {
             $filter_fields = $component->getFilterFields();
@@ -334,7 +334,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      * @param Table    $component
      * @param Settings $settings
      */
-    protected function handleFilterForm(Table $component, Settings $settings)/* : void*/
+    protected function handleFilterForm(Table $component, Settings $settings) : void
     {
         if (empty($component->getFilterFields())) {
             return;
@@ -357,7 +357,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      * @param Settings  $settings
      * @param Data|null $data
      */
-    protected function handleActionsPanel(Table $component, Settings $settings, /*?Data*/ $data)/* : void*/
+    protected function handleActionsPanel(Table $component, Settings $settings, ?Data $data) : void
     {
         $this->tpl->setCurrentBlock("actions");
 
@@ -379,7 +379,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      *
      * @return Component
      */
-    protected function getPagesSelector(Table $component, Settings $settings, /*?Data*/ $data) : Component
+    protected function getPagesSelector(Table $component, Settings $settings, ?Data $data) : Component
     {
         return $settings->getPagination($data)
             ->withTargetURL($component->getActionUrl(), $this->actionParameter(SettingsStorage::VAR_CURRENT_PAGE, $component->getTableId()));
@@ -451,7 +451,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      * @param Settings  $settings
      * @param Data|null $data
      */
-    protected function handleDisplayCount(Table $component, Settings $settings, /*?Data*/ $data)/* : void*/
+    protected function handleDisplayCount(Table $component, Settings $settings, ?Data $data) : void
     {
         $count = $component->getPlugin()->translate("count", Table::LANG_MODULE, [
             ($data !== null && $data->getDataCount() > 0 ? ($settings->getOffset() + 1) : 0),
@@ -471,7 +471,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     /**
      * @param Table $component
      */
-    protected function handleMultipleActions(Table $component)/* : void*/
+    protected function handleMultipleActions(Table $component) : void
     {
         if (empty($component->getMultipleActions())) {
             return;

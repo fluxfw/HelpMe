@@ -175,7 +175,7 @@ class Project extends ActiveRecord
     /**
      * @param int $project_id
      */
-    public function setProjectId(int $project_id)/*: void*/
+    public function setProjectId(int $project_id) : void
     {
         $this->project_id = $project_id;
     }
@@ -193,7 +193,7 @@ class Project extends ActiveRecord
     /**
      * @param string $project_key
      */
-    public function setProjectKey(string $project_key)/*: void*/
+    public function setProjectKey(string $project_key) : void
     {
         $this->project_key = $project_key;
     }
@@ -211,7 +211,7 @@ class Project extends ActiveRecord
     /**
      * @param string $project_url_key
      */
-    public function setProjectUrlKey(string $project_url_key)/*: void*/
+    public function setProjectUrlKey(string $project_url_key) : void
     {
         $this->project_url_key = $project_url_key;
     }
@@ -229,7 +229,7 @@ class Project extends ActiveRecord
     /**
      * @param string $project_name
      */
-    public function setProjectName(string $project_name)/*: void*/
+    public function setProjectName(string $project_name) : void
     {
         $this->project_name = $project_name;
     }
@@ -247,7 +247,7 @@ class Project extends ActiveRecord
     /**
      * @param array $project_issue_types
      */
-    public function setProjectIssueTypes(array $project_issue_types)/*: void*/
+    public function setProjectIssueTypes(array $project_issue_types) : void
     {
         $this->project_issue_types = $project_issue_types;
     }
@@ -265,7 +265,7 @@ class Project extends ActiveRecord
     /**
      * @param bool $project_show_tickets
      */
-    public function setProjectShowTickets(bool $project_show_tickets)/*: void*/
+    public function setProjectShowTickets(bool $project_show_tickets) : void
     {
         $this->project_show_tickets = $project_show_tickets;
     }

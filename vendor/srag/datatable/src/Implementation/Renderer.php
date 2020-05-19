@@ -74,7 +74,7 @@ class Renderer extends AbstractComponentRenderer
     /**
      * @inheritDoc
      */
-    public function registerResources(ResourceRegistry $registry)/* : void*/
+    public function registerResources(ResourceRegistry $registry) : void
     {
         parent::registerResources($registry);
 
@@ -102,7 +102,7 @@ class Renderer extends AbstractComponentRenderer
      *
      * @return Data|null
      */
-    protected function handleFetchData(Table $component, Settings $settings)/* : ?Data*/
+    protected function handleFetchData(Table $component, Settings $settings) : ?Data
     {
         if (!$component->getDataFetcher()->isFetchDataNeedsFilterFirstSet() || $settings->isFilterSet()) {
             $data = $component->getDataFetcher()->fetchData($settings);
@@ -121,7 +121,7 @@ class Renderer extends AbstractComponentRenderer
      *
      * @return string
      */
-    protected function handleFormat(Table $component, /*?Data*/ $data, Settings $settings) : string
+    protected function handleFormat(Table $component, ?Data $data, Settings $settings) : string
     {
         $input_format_id = $component->getBrowserFormat()->getInputFormatId($component);
 

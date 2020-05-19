@@ -34,7 +34,7 @@ abstract class AbstractTableBuilder implements TableBuilder
      *
      * @param object $parent
      */
-    public function __construct(/*object*/ $parent)
+    public function __construct(object $parent)
     {
         $this->parent = $parent;
     }

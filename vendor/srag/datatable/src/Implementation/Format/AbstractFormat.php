@@ -61,7 +61,7 @@ abstract class AbstractFormat implements Format
     /**
      * @inheritDoc
      */
-    public function getTemplate()/* : object*/
+    public function getTemplate() : object
     {
         return $this->tpl;
     }
@@ -76,7 +76,7 @@ abstract class AbstractFormat implements Format
     /**
      * @inheritDoc
      */
-    public function render(Table $component, /*?Data*/ $data, Settings $settings) : string
+    public function render(Table $component, ?Data $data, Settings $settings) : string
     {
         $this->initTemplate($component, $data, $settings);
 
@@ -93,7 +93,7 @@ abstract class AbstractFormat implements Format
     /**
      * @inheritDoc
      */
-    public function deliverDownload(string $data, Table $component)/* : void*/
+    public function deliverDownload(string $data, Table $component) : void
     {
         $filename = $component->getTitle() . "." . $this->getFileExtension();
 
@@ -150,7 +150,7 @@ abstract class AbstractFormat implements Format
      * @param Data|null $data
      * @param Settings  $settings
      */
-    protected abstract function initTemplate(Table $component, /*?Data*/ $data, Settings $settings)/* : void*/;
+    protected abstract function initTemplate(Table $component, ?Data $data, Settings $settings) : void;
 
 
     /**
@@ -158,7 +158,7 @@ abstract class AbstractFormat implements Format
      * @param Column[] $columns
      * @param Settings $settings
      */
-    protected function handleColumns(Table $component, array $columns, Settings $settings)/* : void*/
+    protected function handleColumns(Table $component, array $columns, Settings $settings) : void
     {
         foreach ($columns as $column) {
             $this->handleColumn($column->getFormatter()->formatHeaderCell($this, $column, $component->getTableId()), $component, $column, $settings);
@@ -172,7 +172,7 @@ abstract class AbstractFormat implements Format
      * @param Column   $column
      * @param Settings $settings
      */
-    protected abstract function handleColumn(string $formatted_column, Table $component, Column $column, Settings $settings)/* : void*/;
+    protected abstract function handleColumn(string $formatted_column, Table $component, Column $column, Settings $settings) : void;
 
 
     /**
@@ -180,7 +180,7 @@ abstract class AbstractFormat implements Format
      * @param Column[]  $columns
      * @param Data|null $data
      */
-    protected function handleRows(Table $component, array $columns, /*?Data*/ $data)/* : void*/
+    protected function handleRows(Table $component, array $columns, ?Data $data) : void
     {
         if ($data !== null) {
             foreach ($data->getData() as $row) {
@@ -195,7 +195,7 @@ abstract class AbstractFormat implements Format
      * @param Column[] $columns
      * @param RowData  $row
      */
-    protected function handleRow(Table $component, array $columns, RowData $row)/* : void*/
+    protected function handleRow(Table $component, array $columns, RowData $row) : void
     {
         foreach ($columns as $column) {
             $this->handleRowColumn($column->getFormatter()->formatRowCell($this, $row($column->getKey()), $column, $row, $component->getTableId()));

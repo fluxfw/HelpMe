@@ -2,7 +2,8 @@
 
 ## [x]
 - ILIAS 6 support
-- Remove ILIAS 5.3 support
+- Min. PHP 7.2
+- Remove ILIAS 5.3 & ILIAS 5.4 support
 
 ## [6.0.5]
 - Fix

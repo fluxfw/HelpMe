@@ -226,7 +226,7 @@ abstract class AbstractField extends ActiveRecord
      *
      * @return string
      */
-    public function getLabel(/*?string*/ $lang_key = null, bool $use_default_if_not_set = true) : string
+    public function getLabel(?string $lang_key = null, bool $use_default_if_not_set = true) : string
     {
         return strval(MultilangualTabsInputGUI::getValueForLang($this->label, $lang_key, "label", $use_default_if_not_set));
     }
@@ -235,7 +235,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param array $labels
      */
-    public function setLabels(array $labels)/* : void*/
+    public function setLabels(array $labels) : void
     {
         $this->label = $labels;
     }
@@ -245,7 +245,7 @@ abstract class AbstractField extends ActiveRecord
      * @param string $label
      * @param string $lang_key
      */
-    public function setLabel(string $label, string $lang_key)/* : void*/
+    public function setLabel(string $label, string $lang_key) : void
     {
         MultilangualTabsInputGUI::setValueForLang($this->label, $label, $lang_key, "label");
     }
@@ -266,7 +266,7 @@ abstract class AbstractField extends ActiveRecord
      *
      * @return string
      */
-    public function getDescription(/*?string*/ $lang_key = null, bool $use_default_if_not_set = true) : string
+    public function getDescription(?string $lang_key = null, bool $use_default_if_not_set = true) : string
     {
         return nl2br(strval(MultilangualTabsInputGUI::getValueForLang($this->description, $lang_key, "description", $use_default_if_not_set)), false);
     }
@@ -275,7 +275,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param array $descriptions
      */
-    public function setDescriptions(array $descriptions)/* : void*/
+    public function setDescriptions(array $descriptions) : void
     {
         $this->description = $descriptions;
     }
@@ -285,7 +285,7 @@ abstract class AbstractField extends ActiveRecord
      * @param string $description
      * @param string $lang_key
      */
-    public function setDescription(string $description, string $lang_key)/* : void*/
+    public function setDescription(string $description, string $lang_key) : void
     {
         MultilangualTabsInputGUI::setValueForLang($this->description, $description, $lang_key, "description");
     }
@@ -419,7 +419,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $field_id
      */
-    public function setFieldId(int $field_id)/* : void*/
+    public function setFieldId(int $field_id) : void
     {
         $this->field_id = $field_id;
     }
@@ -437,7 +437,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param bool $enabled
      */
-    public function setEnabled(bool $enabled)/* : void*/
+    public function setEnabled(bool $enabled) : void
     {
         $this->enabled = $enabled;
     }
@@ -455,7 +455,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $parent_context
      */
-    public function setParentContext(int $parent_context)/* : void*/
+    public function setParentContext(int $parent_context) : void
     {
         $this->parent_context = $parent_context;
     }
@@ -473,7 +473,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $parent_id
      */
-    public function setParentId(int $parent_id)/* : void*/
+    public function setParentId(int $parent_id) : void
     {
         $this->parent_id = $parent_id;
     }
@@ -491,7 +491,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $sort
      */
-    public function setSort(int $sort)/* : void*/
+    public function setSort(int $sort) : void
     {
         $this->sort = $sort;
     }
@@ -500,7 +500,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @return string|null
      */
-    public function getName()/* : ?string*/
+    public function getName() : ?string
     {
         return $this->name;
     }
@@ -509,7 +509,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param string|null $name
      */
-    public function setName(/*?string*/ $name = null)/* : void*/
+    public function setName(?string $name = null) : void
     {
         $this->name = $name;
     }
@@ -527,7 +527,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param bool $required
      */
-    public function setRequired(bool $required)/* : void*/
+    public function setRequired(bool $required) : void
     {
         $this->required = $required;
     }
@@ -549,7 +549,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param bool $multi_lang
      */
-    public function setMultiLang(bool $multi_lang)/* : void*/
+    public function setMultiLang(bool $multi_lang) : void
     {
         $this->multi_lang = $multi_lang;
     }

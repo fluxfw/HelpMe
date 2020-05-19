@@ -55,7 +55,7 @@ class NotificationCtrl
     /**
      *
      */
-    public function executeCommand()/* : void*/
+    public function executeCommand() : void
     {
         $this->notification = self::notifications4plugin()->notifications()->getNotificationById(intval(filter_input(INPUT_GET, self::GET_PARAM_NOTIFICATION_ID)));
         if ($this->notification === null) {
@@ -95,7 +95,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function setTabs()/* : void*/
+    protected function setTabs() : void
     {
 
     }
@@ -104,7 +104,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function back()/* : void*/
+    protected function back() : void
     {
         self::dic()->ctrl()->redirect($this->parent, NotificationsCtrl::CMD_LIST_NOTIFICATIONS);
     }
@@ -113,7 +113,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function addNotification()/* : void*/
+    protected function addNotification() : void
     {
         $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
 
@@ -124,7 +124,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function createNotification()/* : void*/
+    protected function createNotification() : void
     {
         $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
 
@@ -145,7 +145,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function editNotification()/* : void*/
+    protected function editNotification() : void
     {
         $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
 
@@ -156,7 +156,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function updateNotification()/* : void*/
+    protected function updateNotification() : void
     {
         $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
 
@@ -175,7 +175,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function duplicateNotification()/* : void*/
+    protected function duplicateNotification() : void
     {
         $cloned_notification = self::notifications4plugin()->notifications()->duplicateNotification($this->notification);
 
@@ -191,7 +191,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function deleteNotificationConfirm()/* : void*/
+    protected function deleteNotificationConfirm() : void
     {
         $confirmation = new ilConfirmationGUI();
 
@@ -212,7 +212,7 @@ class NotificationCtrl
     /**
      *
      */
-    protected function deleteNotification()/* : void*/
+    protected function deleteNotification() : void
     {
         self::notifications4plugin()->notifications()->deleteNotification($this->notification);
 

@@ -19,7 +19,7 @@ class GroupsCtrl extends FieldsCtrl
     /**
      * @inheritDoc
      */
-    protected function setTabs()/* : void*/
+    protected function setTabs() : void
     {
         parent::setTabs();
 
@@ -39,7 +39,7 @@ class GroupsCtrl extends FieldsCtrl
     /**
      * @inheritDoc
      */
-    protected function createGroupOfFields()/* : void*/
+    protected function createGroupOfFields() : void
     {
         die();
     }

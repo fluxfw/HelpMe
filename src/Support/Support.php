@@ -131,7 +131,7 @@ class Support
     /**
      * @param array $field_values
      */
-    public function setFieldValues(array $field_values)/* : void*/
+    public function setFieldValues(array $field_values) : void
     {
         $this->field_values = $field_values;
     }
@@ -141,7 +141,7 @@ class Support
      * @param string $field_id
      * @param mixed  $value
      */
-    public function setFieldValueById(string $field_id, $value)/* : void*/
+    public function setFieldValueById(string $field_id, $value) : void
     {
         $this->field_values[$field_id] = $value;
     }
@@ -207,7 +207,7 @@ class Support
     /**
      * @return Project|null
      */
-    public function getProject()/* : ?Project*/
+    public function getProject() : ?Project
     {
         return self::helpMe()->projects()->getProjectByUrlKey($this->getFieldValueByType(ProjectField::getType(), ""));
     }

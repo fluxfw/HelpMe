@@ -94,7 +94,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initColumns()/*: void*/
+    protected function initColumns() : void
     {
         parent::initColumns();
 
@@ -105,7 +105,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
         self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_project"), self::dic()->ctrl()
             ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_ADD_PROJECT)));
@@ -115,7 +115,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initData()/*: void*/
+    protected function initData() : void
     {
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
@@ -130,7 +130,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initFilterFields()/*: void*/
+    protected function initFilterFields() : void
     {
         $this->filter_fields = [];
     }
@@ -139,7 +139,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
         $this->setId(ilHelpMePlugin::PLUGIN_ID . "_projects");
     }
@@ -148,7 +148,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt("projects"));
     }
@@ -159,8 +159,7 @@ class ProjectsTableGUI extends TableGUI
      */
     protected function fillRow(/*Project*/
         $project
-    )/*: void*/
-    {
+    ) : void {
         self::dic()->ctrl()->setParameterByClass(ProjectConfigGUI::class, ProjectConfigGUI::GET_PARAM_PROJECT_ID, $project->getProjectId());
 
         parent::fillRow($project);

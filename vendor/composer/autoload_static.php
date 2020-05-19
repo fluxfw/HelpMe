@@ -4,30 +4,30 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
+class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
 {
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
-            'srag\\RequiredData\\HelpMe\\' => 25,
-            'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
+            'srag\\RequiredData\\' => 18,
+            'srag\\RemovePluginDataConfirm\\' => 29,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
+            'srag\\Notifications4Plugin\\' => 26,
             'srag\\LibrariesNamespaceChanger\\' => 31,
-            'srag\\JiraCurl\\HelpMe\\' => 21,
-            'srag\\DataTableUI\\HelpMe\\' => 24,
-            'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
-            'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
+            'srag\\JiraCurl\\' => 14,
+            'srag\\DataTableUI\\' => 17,
+            'srag\\DIC\\' => 9,
+            'srag\\CustomInputGUIs\\' => 21,
+            'srag\\ActiveRecordConfig\\' => 24,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'srag\\RequiredData\\HelpMe\\' => 
+        'srag\\RequiredData\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/requireddata/src',
         ),
-        'srag\\RemovePluginDataConfirm\\HelpMe\\' => 
+        'srag\\RemovePluginDataConfirm\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src',
         ),
@@ -35,7 +35,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\HelpMe\\' => 
+        'srag\\Notifications4Plugin\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
@@ -43,23 +43,23 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         array (
             0 => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src',
         ),
-        'srag\\JiraCurl\\HelpMe\\' => 
+        'srag\\JiraCurl\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
-        'srag\\DataTableUI\\HelpMe\\' => 
+        'srag\\DataTableUI\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
-        'srag\\DIC\\HelpMe\\' => 
+        'srag\\DIC\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\HelpMe\\' => 
+        'srag\\CustomInputGUIs\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
-        'srag\\ActiveRecordConfig\\HelpMe\\' => 
+        'srag\\ActiveRecordConfig\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
         ),
@@ -607,10 +607,10 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199::$classMap;
 
         }, null, ClassLoader::class);
     }

@@ -143,7 +143,7 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
     /**
      * @inheritDoc
      */
-    protected function storeData(array $data)/* : void*/
+    protected function storeData(array $data) : void
     {
         if (self::version()->is6()) {
             if (!empty($data["min_value"]["value"])) {

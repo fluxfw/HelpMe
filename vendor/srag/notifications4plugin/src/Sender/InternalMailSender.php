@@ -94,7 +94,7 @@ class InternalMailSender implements Sender
      * @throws Throwable
      * @throws Notifications4PluginException
      */
-    public function send()/* : void*/
+    public function send() : void
     {
         $this->mailer = new ilMail($this->getUserFrom());
 

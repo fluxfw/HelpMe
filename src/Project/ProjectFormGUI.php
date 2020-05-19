@@ -59,7 +59,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
         if (!empty($this->project->getProjectId())) {
             $this->addCommandButton(ProjectConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
@@ -74,7 +74,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields() : void
     {
         $this->fields = [
             "project_key"          => [
@@ -122,7 +122,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
 
     }
@@ -131,7 +131,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt(!empty($this->project->getProjectId()) ? "edit_project" : "add_project"));
     }
@@ -140,7 +140,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value) : void
     {
         switch ($key) {
             case "project_issue_types":

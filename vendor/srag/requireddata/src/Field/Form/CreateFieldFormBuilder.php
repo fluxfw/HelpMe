@@ -95,7 +95,7 @@ class CreateFieldFormBuilder extends AbstractFormBuilder
     /**
      * @inheritDoc
      */
-    protected function storeData(array $data)/* : void*/
+    protected function storeData(array $data) : void
     {
         $this->field = self::requiredData()->fields()->factory()->newInstance(strval($data["type"]));
 

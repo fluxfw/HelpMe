@@ -35,7 +35,7 @@ class RecipientSendMail extends Recipient
     /**
      * @inheritDoc
      */
-    public function sendSupportToRecipient()/*: void*/
+    public function sendSupportToRecipient() : void
     {
         $this->sendEmail();
 
@@ -52,7 +52,7 @@ class RecipientSendMail extends Recipient
      * @throws Notifications4PluginException
      * @throws phpmailerException
      */
-    protected function sendEmail()/*: void*/
+    protected function sendEmail() : void
     {
         $mailer = new ilMimeMail();
 

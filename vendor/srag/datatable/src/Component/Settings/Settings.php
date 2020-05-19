@@ -74,7 +74,7 @@ interface Settings
      *
      * @return SortField|null
      */
-    public function getSortField(string $sort_field)/* : ?SortField*/;
+    public function getSortField(string $sort_field) : ?SortField;
 
 
     /**
@@ -186,5 +186,5 @@ interface Settings
      *
      * @internal
      */
-    public function getPagination(/*?Data*/ $data) : Pagination;
+    public function getPagination(?Data $data) : Pagination;
 }

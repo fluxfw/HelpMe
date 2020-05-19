@@ -87,7 +87,7 @@ class FormBuilder extends AbstractFormBuilder
     /**
      * @inheritDoc
      */
-    protected function storeData(array $data)/* : void*/
+    protected function storeData(array $data) : void
     {
         $this->fill_values = self::requiredData()->fills()->formatAsJsons($this->parent->getParentContext(), $this->parent->getParentId(), $data);
 

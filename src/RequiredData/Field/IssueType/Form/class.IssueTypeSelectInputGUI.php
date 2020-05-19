@@ -81,7 +81,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
@@ -105,7 +105,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     /**
      *
      */
-    protected function getIssueTypesOfProject()/*: void*/
+    protected function getIssueTypesOfProject() : void
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
@@ -123,7 +123,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     /**
      * @param Project|null $project
      */
-    protected function setIssueTypesOptions(/*?*/ Project $project = null)/*: void*/
+    protected function setIssueTypesOptions(?Project $project = null) : void
     {
         $options = [
             "" => "&lt;" . $this->parent_gui->txt("please_select") . "&gt;"

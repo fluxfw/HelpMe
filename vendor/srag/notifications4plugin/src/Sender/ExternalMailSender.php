@@ -74,7 +74,7 @@ class ExternalMailSender implements Sender
     /**
      * @inheritDoc
      */
-    public function send()/* : void*/
+    public function send() : void
     {
         $from = ($this->from) ? $this->from : self::dic()->ilias()->getSetting("mail_external_sender_noreply");
         $this->mailer->From(self::dic()->mailMimeSenderFactory()->userByEmailAddress($from));

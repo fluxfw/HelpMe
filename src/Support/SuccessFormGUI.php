@@ -17,8 +17,7 @@ class SuccessFormGUI extends SupportFormGUI
      */
     protected function getValue(/*string*/
         $key
-    )/*: void*/
-    {
+    ) : void {
 
     }
 
@@ -26,7 +25,7 @@ class SuccessFormGUI extends SupportFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
         $this->addCommandButton("", $this->txt("close"), "helpme_cancel");
 
@@ -37,7 +36,7 @@ class SuccessFormGUI extends SupportFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields() : void
     {
 
     }
@@ -58,8 +57,7 @@ class SuccessFormGUI extends SupportFormGUI
     protected function storeValue(/*string*/
         $key,
         $value
-    )/*: void*/
-    {
+    ) : void {
 
     }
 }

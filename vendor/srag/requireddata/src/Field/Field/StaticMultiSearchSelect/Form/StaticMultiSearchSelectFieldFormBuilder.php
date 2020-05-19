@@ -69,7 +69,7 @@ abstract class StaticMultiSearchSelectFieldFormBuilder extends MultiSearchSelect
     /**
      * @inheritDoc
      */
-    public function storeData(array $data)/* : void*/
+    public function storeData(array $data) : void
     {
         $data["options"] = array_map(function (string $value) : array {
             return [

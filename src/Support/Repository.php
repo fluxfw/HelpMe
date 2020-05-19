@@ -70,7 +70,7 @@ final class Repository
     /**
      * @internal
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         $this->recipients()->dropTables();
     }
@@ -123,7 +123,7 @@ final class Repository
     /**
      * @return int|null
      */
-    public function getRefId()/*: ?int*/
+    public function getRefId() : ?int
     {
         $obj_ref_id = filter_input(INPUT_GET, self::GET_PARAM_REF_ID);
 
@@ -161,7 +161,7 @@ final class Repository
     /**
      *
      */
-    public function initDefaultFields()/*:void*/
+    public function initDefaultFields() : void
     {
         if (empty(self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG))) {
 
@@ -261,7 +261,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         $this->recipients()->installTables();
 

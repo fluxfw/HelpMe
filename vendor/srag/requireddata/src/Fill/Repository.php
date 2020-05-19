@@ -55,7 +55,7 @@ final class Repository
     /**
      *
      */
-    public function clearTempFillValues()/* : void*/
+    public function clearTempFillValues() : void
     {
         ilSession::clear(self::SESSION_TEMP_FILL_VALUES_STORAGE);
     }
@@ -64,7 +64,7 @@ final class Repository
     /**
      * @param FillStorage $fill_storage
      */
-    protected function deleteFillStorage(FillStorage $fill_storage)/* : void*/
+    protected function deleteFillStorage(FillStorage $fill_storage) : void
     {
         $fill_storage->delete();
     }
@@ -73,7 +73,7 @@ final class Repository
     /**
      * @param string $fill_id
      */
-    public function deleteFillStorages(string $fill_id)/* : void*/
+    public function deleteFillStorages(string $fill_id) : void
     {
         foreach ($this->getFillStorages($fill_id) as $fill_storage) {
             $this->deleteFillStorage($fill_storage);
@@ -84,7 +84,7 @@ final class Repository
     /**
      * @internal
      */
-    public function dropTables()/* : void*/
+    public function dropTables() : void
     {
         self::dic()->database()->dropTable(FillStorage::getTableName(), false);
     }
@@ -195,7 +195,7 @@ final class Repository
      *
      * @return FillStorage|null
      */
-    protected function getFillStorageByField(string $fill_id, string $field_id)/* : ?FillStorage*/
+    protected function getFillStorageByField(string $fill_id, string $field_id) : ?FillStorage
     {
         /**
          * @var FillStorage|null $fill_storage
@@ -215,7 +215,7 @@ final class Repository
      *
      * @return array
      */
-    public function getFillValues(/*?string*/ $fill_id = null) : array
+    public function getFillValues(?string $fill_id = null) : array
     {
         if ($fill_id === null) {
             if (isset($_SESSION[self::SESSION_TEMP_FILL_VALUES_STORAGE])) {
@@ -294,7 +294,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/* : void*/
+    public function installTables() : void
     {
         FillStorage::updateDB();
     }
@@ -304,7 +304,7 @@ final class Repository
      * @param string|null $fill_id
      * @param array|null  $fill_values
      */
-    public function storeFillValues(/*?string*/ $fill_id = null, /*?array*/ $fill_values = null)/* : void*/
+    public function storeFillValues(?string $fill_id = null, ?array $fill_values = null) : void
     {
         if ($fill_id !== null) {
             if ($fill_values === null) {
@@ -352,7 +352,7 @@ final class Repository
     /**
      * @param FillStorage $fill_storage
      */
-    protected function storeFillStorage(FillStorage $fill_storage)/* : void*/
+    protected function storeFillStorage(FillStorage $fill_storage) : void
     {
         $fill_storage->store();
     }

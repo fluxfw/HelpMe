@@ -75,7 +75,7 @@ final class Repository implements Pluginable
     /**
      *
      */
-    public function dropTables()/* : void*/
+    public function dropTables() : void
     {
         $this->fields()->dropTables();
         $this->fills()->dropTables();
@@ -129,7 +129,7 @@ final class Repository implements Pluginable
     /**
      *
      */
-    public function installLanguages()/* : void*/
+    public function installLanguages() : void
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($this->getPlugin())->withLibraryLanguageDirectory(__DIR__
             . "/../lang")->updateLanguages();
@@ -141,7 +141,7 @@ final class Repository implements Pluginable
     /**
      *
      */
-    public function installTables()/* : void*/
+    public function installTables() : void
     {
         $this->fields()->installTables();
         $this->fills()->installTables();

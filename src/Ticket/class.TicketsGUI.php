@@ -42,7 +42,7 @@ class TicketsGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         if (!self::helpMe()->currentUserHasRole() || !self::helpMe()->tickets()->isEnabled()) {
             die();
@@ -75,7 +75,7 @@ class TicketsGUI
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs() : void
     {
 
     }
@@ -84,7 +84,7 @@ class TicketsGUI
     /**
      *
      */
-    protected function listTickets()/*: void*/
+    protected function listTickets() : void
     {
         $table = self::helpMe()->tickets()->factory()->newTableInstance($this);
 
@@ -95,7 +95,7 @@ class TicketsGUI
     /**
      *
      */
-    protected function applyFilter()/*: void*/
+    protected function applyFilter() : void
     {
         $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_APPLY_FILTER);
 
@@ -111,7 +111,7 @@ class TicketsGUI
     /**
      *
      */
-    protected function resetFilter()/*: void*/
+    protected function resetFilter() : void
     {
         $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
 
@@ -127,7 +127,7 @@ class TicketsGUI
     /**
      *
      */
-    protected function setProjectFilter()/*: void*/
+    protected function setProjectFilter() : void
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 

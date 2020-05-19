@@ -18,7 +18,7 @@ interface Factory
      *
      * @return RowData
      */
-    public function getter(string $row_id, /*object*/ $original_data) : RowData;
+    public function getter(string $row_id, object $original_data) : RowData;
 
 
     /**
@@ -27,5 +27,5 @@ interface Factory
      *
      * @return RowData
      */
-    public function property(string $row_id, /*object*/ $original_data) : RowData;
+    public function property(string $row_id, object $original_data) : RowData;
 }

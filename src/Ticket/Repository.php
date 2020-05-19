@@ -63,7 +63,7 @@ final class Repository
     /**
      * @internal
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         self::dic()->database()->dropTable(Ticket::TABLE_NAME, false);
     }
@@ -128,7 +128,7 @@ final class Repository
      *
      * @return Ticket|null
      */
-    public function getTicketById(int $ticket_id)/*: ?Ticket*/
+    public function getTicketById(int $ticket_id) : ?Ticket
     {
         /**
          * @var Ticket|null $ticket
@@ -145,7 +145,7 @@ final class Repository
      *
      * @return Ticket|null
      */
-    public function getTicketByKey(string $ticket_key)/*: ?Ticket*/
+    public function getTicketByKey(string $ticket_key) : ?Ticket
     {
         /**
          * @var Ticket|null $ticket
@@ -286,7 +286,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         Ticket::updateDB();
     }
@@ -310,7 +310,7 @@ final class Repository
     /**
      *
      */
-    public function removeTickets()/*: void*/
+    public function removeTickets() : void
     {
         Ticket::truncateDB();
     }
@@ -319,7 +319,7 @@ final class Repository
     /**
      * @param Ticket[] $tickets
      */
-    public function replaceWith(array $tickets)/*: void*/
+    public function replaceWith(array $tickets) : void
     {
         $this->removeTickets();
 
@@ -332,7 +332,7 @@ final class Repository
     /**
      *
      */
-    public function showUsageConfigHint()/*: void*/
+    public function showUsageConfigHint() : void
     {
         $usage_ids = [];
 
@@ -398,7 +398,7 @@ final class Repository
     /**
      * @param Ticket $ticket
      */
-    public function storeTicket(Ticket $ticket)/*: void*/
+    public function storeTicket(Ticket $ticket) : void
     {
         $ticket->store();
     }

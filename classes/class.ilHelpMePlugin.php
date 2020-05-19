@@ -49,9 +49,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     {
         parent::__construct();
 
-        if (self::version()->is60()) {
-            $this->provider_collection->setMetaBarProvider(self::helpMe()->metaBar());
-        }
+        $this->provider_collection->setMetaBarProvider(self::helpMe()->metaBar());
     }
 
 
@@ -67,7 +65,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     /**
      * @inheritDoc
      */
-    public function updateLanguages(/*?array*/ $a_lang_keys = null)/*:void*/
+    public function updateLanguages(/*?array*/ $a_lang_keys = null) : void
     {
         parent::updateLanguages($a_lang_keys);
 
@@ -85,7 +83,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     /**
      * @inheritDoc
      */
-    protected function deleteData()/*: void*/
+    protected function deleteData() : void
     {
         self::helpMe()->dropTables();
     }

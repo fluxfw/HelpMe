@@ -64,7 +64,7 @@ class RecipientCreateJiraTicket extends Recipient
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
      */
-    public function sendSupportToRecipient()/*: void*/
+    public function sendSupportToRecipient() : void
     {
         if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_CREATE_SERVICE_DESK_REQUEST)) {
             if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_CREATE_AS_CUSTOMER)) {
@@ -107,7 +107,7 @@ class RecipientCreateJiraTicket extends Recipient
      * @throws JiraCurlException
      * @throws Notifications4PluginException
      */
-    protected function createServiceDeskRequest()/*:void*/
+    protected function createServiceDeskRequest() : void
     {
         $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_ID),
             self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
@@ -121,7 +121,7 @@ class RecipientCreateJiraTicket extends Recipient
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
      */
-    protected function addScreenshotsToServiceDeskRequest()/*: void*/
+    protected function addScreenshotsToServiceDeskRequest() : void
     {
         $this->jira_curl->addAttachmentsToServiceDeskRequest(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_ID), $this->service_desk_ticket_key,
             $this->support->getScreenshots());
@@ -137,7 +137,7 @@ class RecipientCreateJiraTicket extends Recipient
      * @throws JiraCurlException
      * @throws Notifications4PluginException
      */
-    protected function createJiraTicket()/*: void*/
+    protected function createJiraTicket() : void
     {
         $this->ticket_title = $this->getSubject(self::CREATE_JIRA_TICKET);
 
@@ -152,7 +152,7 @@ class RecipientCreateJiraTicket extends Recipient
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
      */
-    protected function addScreenshots()/*: void*/
+    protected function addScreenshots() : void
     {
         $this->jira_curl->addAttachmentsToIssue($this->ticket_key, $this->support->getScreenshots());
     }
@@ -166,7 +166,7 @@ class RecipientCreateJiraTicket extends Recipient
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
      */
-    protected function linkServiceDeskAndProjectTicket()/*:void*/
+    protected function linkServiceDeskAndProjectTicket() : void
     {
         $this->jira_curl->linkTickets($this->service_desk_ticket_key, $this->ticket_key, self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_LINK_TYPE));
     }

@@ -57,7 +57,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         $this->project = self::helpMe()->projects()->getProjectById(intval(filter_input(INPUT_GET, self::GET_PARAM_PROJECT_ID)));
 
@@ -93,7 +93,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs() : void
     {
         self::dic()->tabs()->clearTargets();
 
@@ -122,7 +122,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function back()/*: void*/
+    protected function back() : void
     {
         self::dic()->ctrl()->redirectByClass(ProjectsConfigGUI::class, ProjectsConfigGUI::CMD_LIST_PROJECTS);
     }
@@ -131,7 +131,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function addProject()/*: void*/
+    protected function addProject() : void
     {
         $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
@@ -142,7 +142,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function createProject()/*: void*/
+    protected function createProject() : void
     {
         $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
@@ -163,7 +163,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function editProject()/*: void*/
+    protected function editProject() : void
     {
         self::dic()->tabs()->activateTab(self::TAB_EDIT_PROJECT);
 
@@ -176,7 +176,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function updateProject()/*: void*/
+    protected function updateProject() : void
     {
         self::dic()->tabs()->activateTab(self::TAB_EDIT_PROJECT);
 
@@ -197,7 +197,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function removeProjectConfirm()/*: void*/
+    protected function removeProjectConfirm() : void
     {
         $confirmation = new ilConfirmationGUI();
 
@@ -217,7 +217,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function removeProject()/*: void*/
+    protected function removeProject() : void
     {
         self::helpMe()->projects()->deleteProject($this->project);
 

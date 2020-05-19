@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb9cfcdc180b6dd11b1afa3a04c672bc",
+    "content-hash": "22ccaf57c2fdb20621e6e25688efda74",
     "packages": [
         {
             "name": "srag/activerecordconfig",
@@ -28,7 +28,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
+                    "srag\\ActiveRecordConfig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
+                    "srag\\CustomInputGUIs\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -121,7 +121,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DataTableUI\\HelpMe\\": "src/"
+                    "srag\\DataTableUI\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -211,7 +211,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\HelpMe\\": "src/"
+                    "srag\\JiraCurl\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -302,7 +302,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
+                    "srag\\Notifications4Plugin\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -346,7 +346,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\RemovePluginDataConfirm\\HelpMe\\": "src/"
+                    "srag\\RemovePluginDataConfirm\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -484,7 +484,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0"
+        "php": ">=7.2"
     },
     "platform-dev": []
 }

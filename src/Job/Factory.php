@@ -66,7 +66,7 @@ final class Factory
      *
      * @return ilCronJob|null
      */
-    public function newInstanceById(string $job_id)/*: ?ilCronJob*/
+    public function newInstanceById(string $job_id) : ?ilCronJob
     {
         switch ($job_id) {
             case FetchJiraTicketsJob::CRON_JOB_ID:

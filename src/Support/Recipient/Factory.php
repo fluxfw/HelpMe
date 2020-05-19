@@ -58,7 +58,7 @@ final class Factory
      *
      * @throws ActiveRecordConfigException
      */
-    public function newInstance(string $recipient, Support $support)/*: ?Recipient*/
+    public function newInstance(string $recipient, Support $support) : ?Recipient
     {
         switch ($recipient) {
             case Recipient::SEND_EMAIL:

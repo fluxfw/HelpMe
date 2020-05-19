@@ -27,8 +27,8 @@ grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
 ## Requirements
-* ILIAS 5.4 or ILIAS 6
-* PHP >=7.0
+* ILIAS 6
+* PHP >=7.2
 
 ## Adjustment suggestions
 * External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLHM

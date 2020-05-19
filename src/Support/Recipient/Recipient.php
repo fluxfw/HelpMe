@@ -57,7 +57,7 @@ abstract class Recipient
      * @throws Notifications4PluginException
      * @throws phpmailerException
      */
-    protected function sendConfirmationMail()/*: void*/
+    protected function sendConfirmationMail() : void
     {
         if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL)) {
             $mailer = new ilMimeMail();
@@ -139,5 +139,5 @@ abstract class Recipient
      * @throws Notifications4PluginException
      * @throws phpmailerException
      */
-    public abstract function sendSupportToRecipient()/*: void*/ ;
+    public abstract function sendSupportToRecipient() : void;
 }

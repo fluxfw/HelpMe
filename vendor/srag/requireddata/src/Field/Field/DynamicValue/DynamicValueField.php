@@ -113,7 +113,7 @@ abstract class DynamicValueField extends AbstractField
     /**
      * @param bool $hide
      */
-    public function setHide(bool $hide)/* : void*/
+    public function setHide(bool $hide) : void
     {
         $this->hide = $hide;
     }

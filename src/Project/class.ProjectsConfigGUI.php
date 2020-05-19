@@ -39,7 +39,7 @@ class ProjectsConfigGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         $this->setTabs();
 
@@ -69,7 +69,7 @@ class ProjectsConfigGUI
     /**
      *
      */
-    public static function addTabs()/*: void*/
+    public static function addTabs() : void
     {
         self::dic()->tabs()->addTab(self::TAB_LIST_PROJECTS, self::plugin()->translate("projects", self::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTargetByClass(self::class, self::CMD_LIST_PROJECTS));
@@ -79,7 +79,7 @@ class ProjectsConfigGUI
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs() : void
     {
 
     }
@@ -88,7 +88,7 @@ class ProjectsConfigGUI
     /**
      *
      */
-    protected function listProjects()/*: void*/
+    protected function listProjects() : void
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_PROJECTS);
 

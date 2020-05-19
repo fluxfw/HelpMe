@@ -99,5 +99,5 @@ interface SettingsStorage
      * @param string   $table_id
      * @param int      $user_id
      */
-    public function store(Settings $settings, string $table_id, int $user_id)/* : void*/;
+    public function store(Settings $settings, string $table_id, int $user_id) : void;
 }

@@ -51,7 +51,7 @@ class SupportGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         $this->support = self::helpMe()->support()->factory()->newInstance();
 
@@ -95,7 +95,7 @@ class SupportGUI
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs() : void
     {
 
     }
@@ -105,7 +105,7 @@ class SupportGUI
      * @param string|null       $message
      * @param ilPropertyFormGUI $form
      */
-    protected function show(/*?string*/ $message, ilPropertyFormGUI $form)/*: void*/
+    protected function show(?string $message, ilPropertyFormGUI $form) : void
     {
         $tpl = self::plugin()->template("helpme_modal.html");
 
@@ -127,7 +127,7 @@ class SupportGUI
     /**
      *
      */
-    protected function addSupport()/*: void*/
+    protected function addSupport() : void
     {
         $message = null;
 
@@ -140,7 +140,7 @@ class SupportGUI
     /**
      *
      */
-    protected function newSupport()/*: void*/
+    protected function newSupport() : void
     {
         $message = null;
 

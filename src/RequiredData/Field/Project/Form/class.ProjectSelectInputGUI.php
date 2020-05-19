@@ -78,7 +78,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
@@ -102,7 +102,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     /**
      *
      */
-    protected function getShowTicketsLinkOfProject()/*: void*/
+    protected function getShowTicketsLinkOfProject() : void
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
@@ -117,7 +117,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
      *
      * @return string
      */
-    protected function getShowTicketsLink(/*?*/ Project $project = null) : string
+    protected function getShowTicketsLink(?Project $project = null) : string
     {
         if (self::helpMe()->tickets()->isEnabled() && $project !== null && $project->isProjectShowTickets()) {
 
@@ -133,7 +133,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     /**
      * @return Project|null
      */
-    public function getProject()/* : ?Project*/
+    public function getProject() : ?Project
     {
         return $this->project;
     }
@@ -142,7 +142,7 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     /**
      * @param Project|null $project
      */
-    public function setProject(/*?*/ Project $project = null)/* : void*/
+    public function setProject(?Project $project = null) : void
     {
         $this->project = $project;
     }
