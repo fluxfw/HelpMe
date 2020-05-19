@@ -4,7 +4,7 @@ namespace srag\Plugins\HelpMe\RequiredData\Field\CreatedDateTime;
 
 use ilHelpMePlugin;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\DynamicValue\DynamicValueFillField;
+use srag\RequiredData\HelpMe\Field\Field\DynamicValue\DynamicValueFillField;
 
 /**
  * Class CreatedDateTimeFillField

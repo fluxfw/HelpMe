@@ -33,7 +33,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
      */
     public function __construct()
     {
-
+        self::helpMe();
     }
 
 
@@ -87,8 +87,7 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
     {
         ConfigCtrl::addTabs();
 
-        self::dic()->tabs()->addTab(FieldsCtrl::TAB_LIST_FIELDS, self::plugin()->translate("fields", ConfigCtrl::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTargetByClass(FieldsCtrl::class, FieldsCtrl::CMD_LIST_FIELDS));
+        FieldsCtrl::addTabs();
 
         ProjectsConfigGUI::addTabs();
 

@@ -1,20 +1,21 @@
 <?php
 
-namespace srag\Plugins\HelpMe\RequiredData\Field\IssueType;
+namespace srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form;
 
 use ilHelpMePlugin;
+use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\AbstractFieldFormGUI;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
+use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
 
 /**
- * Class IssueTypeFieldFormGUI
+ * Class IssueTypeFieldFormBuilder
  *
- * @package srag\Plugins\HelpMe\RequiredData\Field\IssueType
+ * @package srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class IssueTypeFieldFormGUI extends AbstractFieldFormGUI
+class IssueTypeFieldFormBuilder extends AbstractFieldFormBuilder
 {
 
     use HelpMeTrait;

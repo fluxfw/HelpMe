@@ -1,20 +1,21 @@
 <?php
 
-namespace srag\Plugins\HelpMe\RequiredData\Field\Screenshots;
+namespace srag\Plugins\HelpMe\RequiredData\Field\Screenshots\Form;
 
 use ilHelpMePlugin;
+use srag\Plugins\HelpMe\RequiredData\Field\Screenshots\ScreenshotsField;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\AbstractFieldFormGUI;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
+use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
 
 /**
- * Class ScreenshotsFieldFormGUI
+ * Class ScreenshotsFieldFormBuilder
  *
- * @package srag\Plugins\HelpMe\RequiredData\Field\Screenshots
+ * @package srag\Plugins\HelpMe\RequiredData\Field\Screenshots\Form
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
-class ScreenshotsFieldFormGUI extends AbstractFieldFormGUI
+class ScreenshotsFieldFormBuilder extends AbstractFieldFormBuilder
 {
 
     use HelpMeTrait;

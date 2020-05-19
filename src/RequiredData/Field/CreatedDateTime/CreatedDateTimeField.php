@@ -7,7 +7,7 @@ use ilDateTime;
 use ilHelpMePlugin;
 use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\DynamicValue\DynamicValueField;
+use srag\RequiredData\HelpMe\Field\Field\DynamicValue\DynamicValueField;
 
 /**
  * Class CreatedDateTimeField

@@ -10,6 +10,7 @@ use srag\Plugins\HelpMe\Access\Ilias;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Config\Repository as ConfigRepository;
 use srag\Plugins\HelpMe\Job\Repository as JobsRepository;
+use srag\Plugins\HelpMe\MetaBar\MetaBar;
 use srag\Plugins\HelpMe\Project\Repository as ProjectsRepository;
 use srag\Plugins\HelpMe\RequiredData\Field\CreatedDateTime\CreatedDateTimeField;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
@@ -160,6 +161,15 @@ final class Repository
     public function jobs() : JobsRepository
     {
         return JobsRepository::getInstance();
+    }
+
+
+    /**
+     * @return MetaBar
+     */
+    public function metaBar() : MetaBar
+    {
+        return new MetaBar(self::dic()->dic(), self::plugin()->getPluginObject());
     }
 
 

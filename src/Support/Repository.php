@@ -18,10 +18,10 @@ use srag\Plugins\HelpMe\RequiredData\Field\SystemInfos\SystemInfosField;
 use srag\Plugins\HelpMe\Support\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\Recipient\Repository as RecipientsRepository;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\Email\EmailField;
-use srag\RequiredData\HelpMe\Field\MultilineText\MultilineTextField;
-use srag\RequiredData\HelpMe\Field\Select\SelectField;
-use srag\RequiredData\HelpMe\Field\Text\TextField;
+use srag\RequiredData\HelpMe\Field\Field\Email\EmailField;
+use srag\RequiredData\HelpMe\Field\Field\MultilineText\MultilineTextField;
+use srag\RequiredData\HelpMe\Field\Field\Select\SelectField;
+use srag\RequiredData\HelpMe\Field\Field\Text\TextField;
 
 /**
  * Class Repository

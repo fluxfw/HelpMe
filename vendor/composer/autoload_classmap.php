@@ -411,6 +411,7 @@ return array(
     'srag\\Plugins\\HelpMe\\Exception\\HelpMeException' => $baseDir . '/src/Exception/HelpMeException.php',
     'srag\\Plugins\\HelpMe\\Job\\Factory' => $baseDir . '/src/Job/Factory.php',
     'srag\\Plugins\\HelpMe\\Job\\Repository' => $baseDir . '/src/Job/Repository.php',
+    'srag\\Plugins\\HelpMe\\MetaBar\\MetaBar' => $baseDir . '/src/MetaBar/MetaBar.php',
     'srag\\Plugins\\HelpMe\\Project\\Factory' => $baseDir . '/src/Project/Factory.php',
     'srag\\Plugins\\HelpMe\\Project\\Project' => $baseDir . '/src/Project/Project.php',
     'srag\\Plugins\\HelpMe\\Project\\ProjectConfigGUI' => $baseDir . '/src/Project/class.ProjectConfigGUI.php',

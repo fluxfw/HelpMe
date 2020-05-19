@@ -481,6 +481,7 @@ class ComposerStaticInit0e120b3bd4edf8c7c82b79cde4a6099c
         'srag\\Plugins\\HelpMe\\Exception\\HelpMeException' => __DIR__ . '/../..' . '/src/Exception/HelpMeException.php',
         'srag\\Plugins\\HelpMe\\Job\\Factory' => __DIR__ . '/../..' . '/src/Job/Factory.php',
         'srag\\Plugins\\HelpMe\\Job\\Repository' => __DIR__ . '/../..' . '/src/Job/Repository.php',
+        'srag\\Plugins\\HelpMe\\MetaBar\\MetaBar' => __DIR__ . '/../..' . '/src/MetaBar/MetaBar.php',
         'srag\\Plugins\\HelpMe\\Project\\Factory' => __DIR__ . '/../..' . '/src/Project/Factory.php',
         'srag\\Plugins\\HelpMe\\Project\\Project' => __DIR__ . '/../..' . '/src/Project/Project.php',
         'srag\\Plugins\\HelpMe\\Project\\ProjectConfigGUI' => __DIR__ . '/../..' . '/src/Project/class.ProjectConfigGUI.php',

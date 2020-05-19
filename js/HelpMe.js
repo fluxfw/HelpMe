@@ -3,14 +3,9 @@
  */
 il.HelpMe = {
     /**
-     * @type {Array}
+     * @type {string}
      */
-    IDS: [
-        "ilMMSearch",
-        "userlog",
-        "mm_lang_sel"
-    ],
-
+    BUTTON_ID: "",
     /**
      * @type {string}
      */
@@ -27,11 +22,6 @@ il.HelpMe = {
     MODAL_TEMPLATE: "",
 
     /**
-     * @type {string}
-     */
-    SUPPORT_BUTTON_TEMPLATE: "",
-
-    /**
      * @type {boolean}
      */
     autoOpen: false,
@@ -40,11 +30,6 @@ il.HelpMe = {
      * @type {jQuery|null}
      */
     button: null,
-
-    /**
-     * @type {jQuery|null}
-     */
-    li: null,
 
     /**
      * @type {jQuery|null}
@@ -71,16 +56,10 @@ il.HelpMe = {
     },
 
     /**
-     * @param {Event|null} e
      *
-     * @returns {boolean}
      */
-    click: function (e = null) {
-        if (e !== null) {
-            e.preventDefault();
-        }
-
-        var get_url = this.button.attr("href");
+    click: function () {
+        var get_url = this.button.data("action");
 
         $.get(get_url, this.show.bind(this));
     },
@@ -116,36 +95,9 @@ il.HelpMe = {
      *
      */
     initButton: function () {
-        this.li = $(this.SUPPORT_BUTTON_TEMPLATE);
+        this.button = $("#" + this.BUTTON_ID);
 
-        if (this.li.hasClass("dropdown")) {
-            this.button = $("li > a:first", this.li); // Support button is the first link  in the dropdown
-        } else {
-            this.button = $("> a:first", this.li)
-        }
-
-        this.button.click(this.click.bind(this));
-
-        // Checks insert support button near a exists ID, depends which ILIAS page
-        var append_at_end = this.IDS.every(function (id) {
-            var beforeLi = document.getElementById(id);
-
-            if (beforeLi !== null) {
-                if (beforeLi.tagName.toLowerCase() !== "li") {
-                    beforeLi = beforeLi.parentElement;
-                }
-
-                $(beforeLi).before(this.li);
-
-                return false;
-            }
-
-            return true;
-        }, this);
-
-        if (append_at_end) {
-            $("#ilTopBarNav").append(this.li);
-        }
+        this.button.off("click").click(this.click.bind(this));
     },
 
     /**
