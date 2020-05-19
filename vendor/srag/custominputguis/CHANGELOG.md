@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.34.14]
+- Fix ILIAS 6
+
 ## [0.34.13]
 - Fix ILIAS 6
 

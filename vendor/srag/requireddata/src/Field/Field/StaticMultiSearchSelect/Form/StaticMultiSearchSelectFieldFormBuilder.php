@@ -6,6 +6,7 @@ use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperU
 use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\AbstractAjaxAutoCompleteCtrl;
 use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNewInputGUI;
 use srag\RequiredData\HelpMe\Field\Field\MultiSearchSelect\Form\MultiSearchSelectFieldFormBuilder;
+use srag\RequiredData\HelpMe\Field\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl;
 use srag\RequiredData\HelpMe\Field\Field\StaticMultiSearchSelect\StaticMultiSearchSelectField;
 use srag\RequiredData\HelpMe\Field\FieldCtrl;
 use srag\RequiredData\HelpMe\Field\FieldsCtrl;
@@ -57,9 +58,9 @@ abstract class StaticMultiSearchSelectFieldFormBuilder extends MultiSearchSelect
     {
         $fields = parent::getFields();
 
-        $fields += [
-            "options" => (new InputGUIWrapperUIInputComponent(new MultiSelectSearchNewInputGUI(self::requiredData()->getPlugin()->translate("options", FieldsCtrl::LANG_MODULE))))->withRequired(true)
-        ];
+        $fields["options"] = (new InputGUIWrapperUIInputComponent(new MultiSelectSearchNewInputGUI(self::requiredData()
+            ->getPlugin()
+            ->translate("options", FieldsCtrl::LANG_MODULE))))->withRequired(true);
         $fields["options"]->getInput()->setAjaxAutoCompleteCtrl(new SMSSAjaxAutoCompleteCtrl($this->parent));
 
         return $fields;
