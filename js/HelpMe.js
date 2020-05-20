@@ -280,6 +280,8 @@ il.HelpMe = {
         var $form = $("#form_helpme_form");
         var $submit = $("#helpme_submit");
 
+        $submit.prop("disabled", true);
+
         var post_url = $form.attr("action");
 
         var data = new FormData($form[0]); // Supports files upload
