@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -121,7 +121,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DataTableUI\\": "src/"
+                    "srag\\DataTableUI\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -147,16 +147,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.23.0",
+            "version": "v0.24.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "2f977f7d53c42b1f72b78624a1d68fb4d4a9162f"
+                "reference": "f3560603a494b552ef1e99d362077f42c735c96f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/2f977f7d53c42b1f72b78624a1d68fb4d4a9162f",
-                "reference": "2f977f7d53c42b1f72b78624a1d68fb4d4a9162f",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/f3560603a494b552ef1e99d362077f42c735c96f",
+                "reference": "f3560603a494b552ef1e99d362077f42c735c96f",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\HelpMe\\": "src/"
+                    "srag\\DIC\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -188,7 +188,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-05-19T07:32:47+00:00"
+            "time": "2020-05-25T08:51:46+00:00"
         },
         {
             "name": "srag/jiracurl",
