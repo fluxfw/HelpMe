@@ -121,18 +121,17 @@ class SupportFormBuilder extends AbstractFormBuilder
     {
         $first = true;
 
-        $html = preg_replace_callback('/(<button\s+class\s*=\s*"btn btn-default"\s+data-action\s*=\s*"#?"(\s+id\s*=\s*"[a-z0-9_]+")?\s*>)(.+)(<\/button\s*>)/',
-            function (array $matches) use (&$first) : string {
-                if ($first) {
-                    $first = false;
+        $html = preg_replace_callback(self::REPLACE_BUTTONS_REG_EXP, function (array $matches) use (&$first) : string {
+            if ($first) {
+                $first = false;
 
-                    return "";
-                } else {
-                    return '<input class="btn btn-default btn-sm" type="submit" name="cmd[' . SupportGUI::CMD_NEW_SUPPORT . ']" value="' . self::plugin()->translate("submit", SupportGUI::LANG_MODULE)
-                        . '" id="helpme_submit">&nbsp;<input class="btn btn-default btn-sm" type="submit" name="cmd[]" value="' . self::plugin()->translate("cancel", SupportGUI::LANG_MODULE)
-                        . '" id="helpme_cancel">';
-                }
-            }, $html);
+                return "";
+            } else {
+                return '<input class="btn btn-default btn-sm" type="submit" name="cmd[' . SupportGUI::CMD_NEW_SUPPORT . ']" value="' . self::plugin()->translate("submit", SupportGUI::LANG_MODULE)
+                    . '" id="helpme_submit">&nbsp;<input class="btn btn-default btn-sm" type="submit" name="cmd[]" value="' . self::plugin()->translate("cancel", SupportGUI::LANG_MODULE)
+                    . '" id="helpme_cancel">';
+            }
+        }, $html);
 
         return $html;
     }

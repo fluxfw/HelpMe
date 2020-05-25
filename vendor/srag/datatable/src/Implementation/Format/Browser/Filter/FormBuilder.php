@@ -99,7 +99,7 @@ class FormBuilder extends AbstractFormBuilder
      */
     protected function setButtonsToForm(string $html) : string
     {
-        $html = preg_replace_callback('/(<button\s+class\s*=\s*"btn btn-default"\s+data-action\s*=\s*"#"\s+id\s*=\s*"[a-z0-9_]+"\s*>)(.+)(<\/button\s*>)/',
+        $html = preg_replace_callback(self::REPLACE_BUTTONS_REG_EXP,
             function (array $matches) : string {
                 return self::output()->getHTML([
                     self::dic()->ui()->factory()->legacy($matches[1] . $this->component->getPlugin()->translate("apply_filter", Table::LANG_MODULE) . $matches[3] . "&nbsp;"),
