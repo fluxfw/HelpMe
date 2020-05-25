@@ -99,14 +99,13 @@ class FormBuilder extends AbstractFormBuilder
      */
     protected function setButtonsToForm(string $html) : string
     {
-        $html = preg_replace_callback(self::REPLACE_BUTTONS_REG_EXP,
-            function (array $matches) : string {
-                return self::output()->getHTML([
-                    self::dic()->ui()->factory()->legacy($matches[1] . $this->component->getPlugin()->translate("apply_filter", Table::LANG_MODULE) . $matches[3] . "&nbsp;"),
-                    self::dic()->ui()->factory()->button()->standard($this->component->getPlugin()->translate("reset_filter", Table::LANG_MODULE),
-                        $this->parent->getActionUrlWithParams($this->component->getActionUrl(), [SettingsStorage::VAR_RESET_FILTER_FIELD_VALUES => true], $this->component->getTableId()))
-                ]);
-            }, $html);
+        $html = preg_replace_callback(self::REPLACE_BUTTONS_REG_EXP, function (array $matches) : string {
+            return self::output()->getHTML([
+                self::dic()->ui()->factory()->legacy($matches[1] . $this->component->getPlugin()->translate("apply_filter", Table::LANG_MODULE) . $matches[3] . "&nbsp;"),
+                self::dic()->ui()->factory()->button()->standard($this->component->getPlugin()->translate("reset_filter", Table::LANG_MODULE),
+                    $this->parent->getActionUrlWithParams($this->component->getActionUrl(), [SettingsStorage::VAR_RESET_FILTER_FIELD_VALUES => true], $this->component->getTableId()))
+            ]);
+        }, $html);
 
         return $html;
     }

@@ -54,16 +54,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.34.15",
+            "version": "v0.34.16",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "a745b4c4f34c180fbca38966fc01284d69fe054f"
+                "reference": "4d055034a9e55ba3e5968afcdf415201f8f07f5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/a745b4c4f34c180fbca38966fc01284d69fe054f",
-                "reference": "a745b4c4f34c180fbca38966fc01284d69fe054f",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/4d055034a9e55ba3e5968afcdf415201f8f07f5f",
+                "reference": "4d055034a9e55ba3e5968afcdf415201f8f07f5f",
                 "shasum": ""
             },
             "require": {
@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
+                    "srag\\CustomInputGUIs\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -97,20 +97,20 @@
                 "input",
                 "table"
             ],
-            "time": "2020-05-19T12:58:10+00:00"
+            "time": "2020-05-25T05:57:02+00:00"
         },
         {
             "name": "srag/datatable",
-            "version": "v0.28.3",
+            "version": "v0.28.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DataTableUI.git",
-                "reference": "b00a544ae33a2f6376f6aa9da331e6be022711b3"
+                "reference": "1b47239ef843696eb05f6500df96d625647fc63d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DataTableUI/zipball/b00a544ae33a2f6376f6aa9da331e6be022711b3",
-                "reference": "b00a544ae33a2f6376f6aa9da331e6be022711b3",
+                "url": "https://api.github.com/repos/studer-raimann/DataTableUI/zipball/1b47239ef843696eb05f6500df96d625647fc63d",
+                "reference": "1b47239ef843696eb05f6500df96d625647fc63d",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DataTableUI\\HelpMe\\": "src/"
+                    "srag\\DataTableUI\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -143,7 +143,7 @@
                 "table",
                 "ui"
             ],
-            "time": "2020-05-13T05:56:17+00:00"
+            "time": "2020-05-25T05:58:40+00:00"
         },
         {
             "name": "srag/dic",

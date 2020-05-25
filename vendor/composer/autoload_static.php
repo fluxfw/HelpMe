@@ -15,9 +15,9 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
             'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
-            'srag\\DataTableUI\\HelpMe\\' => 24,
+            'srag\\DataTableUI\\' => 17,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
+            'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
     );
@@ -47,7 +47,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
-        'srag\\DataTableUI\\HelpMe\\' => 
+        'srag\\DataTableUI\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
@@ -55,7 +55,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\HelpMe\\' => 
+        'srag\\CustomInputGUIs\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
@@ -269,6 +269,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         'srag\\ActiveRecordConfig\\HelpMe\\Exception\\ActiveRecordConfigException' => __DIR__ . '/..' . '/srag/activerecordconfig/src/Exception/ActiveRecordConfigException.php',
         'srag\\CustomInputGUIs\\HelpMe\\CheckboxInputGUI\\AjaxCheckbox' => __DIR__ . '/..' . '/srag/custominputguis/src/AjaxCheckbox/AjaxCheckbox.php',
         'srag\\CustomInputGUIs\\HelpMe\\CheckboxInputGUI\\CheckboxInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/CheckboxInputGUI/CheckboxInputGUI.php',
+        'srag\\CustomInputGUIs\\HelpMe\\ColorPickerInputGUI\\ColorPickerInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/ColorPickerInputGUI/ColorPickerInputGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\CustomInputGUIs' => __DIR__ . '/..' . '/srag/custominputguis/src/CustomInputGUIs.php',
         'srag\\CustomInputGUIs\\HelpMe\\CustomInputGUIsTrait' => __DIR__ . '/..' . '/srag/custominputguis/src/CustomInputGUIsTrait.php',
         'srag\\CustomInputGUIs\\HelpMe\\DateDurationInputGUI\\DateDurationInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/DateDurationInputGUI/DateDurationInputGUI.php',
