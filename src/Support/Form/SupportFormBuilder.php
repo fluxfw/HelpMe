@@ -72,9 +72,8 @@ class SupportFormBuilder extends AbstractFormBuilder
     {
         $data = [];
 
-        foreach (array_keys($this->getFields()) as $key) {
-            $field_id = substr($key, strlen("field_"));
-            $data[$key] = $this->support->getFieldValueById($field_id, null);
+        foreach (array_keys($this->getFields()) as $field_id) {
+            $data[$field_id] = $this->support->getFieldValueById($field_id, null);
         }
 
         return $data;
@@ -142,9 +141,8 @@ class SupportFormBuilder extends AbstractFormBuilder
      */
     protected function storeData(array $data) : void
     {
-        foreach (array_keys($this->getFields()) as $key) {
-            $field_id = substr($key, strlen("field_"));
-            $this->support->setFieldValueById($field_id, $data[$key]);
+        foreach (array_keys($this->getFields()) as $field_id) {
+            $this->support->setFieldValueById($field_id, $data[$field_id]);
         }
     }
 
@@ -178,7 +176,7 @@ class SupportFormBuilder extends AbstractFormBuilder
             ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [ProjectField::getType()]));
 
         if ($field) {
-            $item = $this->getItemByPostVar("field_" . $field->getId());
+            $item = $this->getItemByPostVar($field->getId());
             if ($item !== false) {
                 return $item;
             }
@@ -199,7 +197,7 @@ class SupportFormBuilder extends AbstractFormBuilder
             ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [IssueTypeField::getType()]));
 
         if ($field) {
-            $item = $this->getItemByPostVar("field_" . $field->getId());
+            $item = $this->getItemByPostVar($field->getId());
             if ($item !== false) {
                 return $item;
             }

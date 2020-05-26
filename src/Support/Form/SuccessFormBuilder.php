@@ -49,7 +49,7 @@ class SuccessFormBuilder extends SupportFormBuilder
 
                 return "";
             } else {
-                return '<input class="btn btn-default btn-sm" type="submit" name="cmd[]" value="' . self::plugin()->translate("cancel", SupportGUI::LANG_MODULE)
+                return '<input class="btn btn-default btn-sm" type="submit" name="cmd[]" value="' . self::plugin()->translate("close", SupportGUI::LANG_MODULE)
                     . '" id="helpme_cancel">';
             }
         }, $html);
