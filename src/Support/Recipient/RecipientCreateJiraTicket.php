@@ -111,7 +111,7 @@ class RecipientCreateJiraTicket extends Recipient
     {
         $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_ID),
             self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
-            $this->getSubject(self::CREATE_JIRA_TICKET), $this->getBody(self::CREATE_JIRA_TICKET), $this->service_desk_customer);
+            $this->getSubject(self::CREATE_JIRA_TICKET), $this->fixLineBreaks($this->getBody(self::CREATE_JIRA_TICKET)), $this->service_desk_customer);
     }
 
 
@@ -139,10 +139,11 @@ class RecipientCreateJiraTicket extends Recipient
      */
     protected function createJiraTicket() : void
     {
-        $this->ticket_title = $this->getSubject(self::CREATE_JIRA_TICKET);
+        $this->ticket_title = $this->fixLineBreaks($this->getSubject(self::CREATE_JIRA_TICKET));
 
         $this->ticket_key = $this->jira_curl->createJiraIssueTicket($this->support->getProject()
-            ->getProjectKey(), $this->support->getIssueType(), $this->ticket_title, $this->getBody(self::CREATE_JIRA_TICKET), $this->support->getPriority(), $this->support->getFixVersion());
+            ->getProjectKey(), $this->support->getIssueType(), $this->ticket_title, $this->fixLineBreaks($this->getBody(self::CREATE_JIRA_TICKET)), $this->support->getPriority(),
+            $this->support->getFixVersion());
     }
 
 
@@ -169,5 +170,16 @@ class RecipientCreateJiraTicket extends Recipient
     protected function linkServiceDeskAndProjectTicket() : void
     {
         $this->jira_curl->linkTickets($this->service_desk_ticket_key, $this->ticket_key, self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_LINK_TYPE));
+    }
+
+
+    /**
+     * @param string $html
+     *
+     * @return string
+     */
+    protected function fixLineBreaks(string $html) : string
+    {
+        return str_ireplace(["<br>", "<br/>", "<br />"], ["", "", ""], $html);
     }
 }
