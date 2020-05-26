@@ -1,5 +1,9 @@
 # Changelog
 
+## [6.0.6]
+- Disable submit button on submit for prevent multiple support requests
+- Fix escaped html line breaks
+
 ## [6.0.5]
 - Fix
 

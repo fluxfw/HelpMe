@@ -22,6 +22,7 @@ notifications4plugin_parser_option_autoescape_info_1#:#If enabled, HTML through 
 notifications4plugin_parser_option_autoescape_info_2#:#If not enabled, HTML through placeholders is allowed by default but need to escaped manually with the filter %s
 notifications4plugin_parser_option_autoescape_info_3#:#Please be sure that user inputs are escaped to avoid a XSS injection
 notifications4plugin_placeholder_types_info#:#Following placeholders can be used in the notification template. Below, its data type is displayed. How to use them, please refer by the data type and the documentation of the selected parser
+notifications4plugin_parser_option_autoescape_info_4#:#Regardless of whether activated/deactivated, line breaks are always permitted in HTML
 notifications4plugin_save#:#Save
 notifications4plugin_saved_notification#:#Notification %s saved
 notifications4plugin_subject#:#Subject
