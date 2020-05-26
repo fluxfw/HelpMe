@@ -109,7 +109,7 @@ final class Repository
     public function formatAsJsons(int $parent_context, int $parent_id, array $fill_values) : array
     {
         foreach ($fill_values as $field_id => &$value) {
-            list($_, $type, $field_id) = explode("_", $field_id);
+            list($type, $field_id) = explode("_", $field_id);
 
             $field = self::requiredData()->fields()->getFieldById($parent_context, $parent_id, $type, $field_id);
 
@@ -143,7 +143,7 @@ final class Repository
         $formatted_fill_values = [];
 
         foreach ($fill_values as $field_id => $value) {
-            list($_, $type, $field_id) = explode("_", $field_id);
+            list($type, $field_id) = explode("_", $field_id);
 
             $field = self::requiredData()->fields()->getFieldById($parent_context, $parent_id, $type, $field_id);
 
@@ -270,7 +270,7 @@ final class Repository
             if (isset($fill_values[$field->getId()])) {
                 $input = $input->withValue($field->isMultiLang() ? array_map(function ($value) use ($field): array {
                     return [
-                        "field_" . $field->getId() . "_" => $value
+                        $field->getId() . "_" => $value
                     ];
                 }, $fill_values[$field->getId()]) : $fill_values[$field->getId()]);
             }
@@ -279,12 +279,12 @@ final class Repository
                 $tabs = (new InputGUIWrapperUIInputComponent(new TabsInputGUI($input->getLabel())))->withByline($input->getByline())->withRequired($input->isRequired())->withValue($input->getValue());
                 $input = $input->withLabel("")->withByline("")->withValue(null);
                 MultilangualTabsInputGUI::generateLegacy($tabs->getInput(), [
-                    "field_" . $field->getId() . "_" => $input
+                    $field->getId() . "_" => $input
                 ]);
                 $input = $tabs;
             }
 
-            $fields["field_" . $field->getId()] = $input;
+            $fields[$field->getId()] = $input;
         }
 
         return $fields;

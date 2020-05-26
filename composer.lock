@@ -54,16 +54,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.34.16",
+            "version": "v0.34.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "4d055034a9e55ba3e5968afcdf415201f8f07f5f"
+                "reference": "868b91ffda32408585ed826f93798b7960640cce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/4d055034a9e55ba3e5968afcdf415201f8f07f5f",
-                "reference": "4d055034a9e55ba3e5968afcdf415201f8f07f5f",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/868b91ffda32408585ed826f93798b7960640cce",
+                "reference": "868b91ffda32408585ed826f93798b7960640cce",
                 "shasum": ""
             },
             "require": {
@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
+                    "srag\\CustomInputGUIs\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -97,7 +97,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-05-25T05:57:02+00:00"
+            "time": "2020-05-26T07:21:09+00:00"
         },
         {
             "name": "srag/datatable",
@@ -165,7 +165,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -374,16 +374,16 @@
         },
         {
             "name": "srag/requireddata",
-            "version": "v0.13.1",
+            "version": "v0.13.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RequiredData.git",
-                "reference": "1c07db4ceea98287167541d4d97cb094070f9c0c"
+                "reference": "70b51f552b02474be7cfa6a8649363b2fb237d11"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/1c07db4ceea98287167541d4d97cb094070f9c0c",
-                "reference": "1c07db4ceea98287167541d4d97cb094070f9c0c",
+                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/70b51f552b02474be7cfa6a8649363b2fb237d11",
+                "reference": "70b51f552b02474be7cfa6a8649363b2fb237d11",
                 "shasum": ""
             },
             "require": {
@@ -395,7 +395,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\HelpMe\\": "src/"
+                    "srag\\RequiredData\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -417,7 +417,7 @@
                 "field",
                 "required"
             ],
-            "time": "2020-05-19T10:35:54+00:00"
+            "time": "2020-05-26T07:24:06+00:00"
         },
         {
             "name": "twig/twig",
