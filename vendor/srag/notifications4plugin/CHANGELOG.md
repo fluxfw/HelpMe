@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.5.2]
+- Fix escaped html line breaks
+
 ## [5.5.1]
 - Fix
 

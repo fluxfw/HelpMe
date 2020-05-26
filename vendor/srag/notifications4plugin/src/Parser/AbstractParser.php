@@ -52,4 +52,15 @@ abstract class AbstractParser implements Parser
     {
         return static::DOC_LINK;
     }
+
+
+    /**
+     * @param string $html
+     *
+     * @return string
+     */
+    protected function fixLineBreaks(string $html) : string
+    {
+        return str_ireplace(["&lt;br&gt;", "&lt;br/&gt;", "&lt;br /&gt;"], ["<br>", "<br/>", "<br />"], $html);
+    }
 }
