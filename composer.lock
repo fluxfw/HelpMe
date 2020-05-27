@@ -54,16 +54,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.34.17",
+            "version": "v0.34.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "868b91ffda32408585ed826f93798b7960640cce"
+                "reference": "301417fcadb88278266732f04deb2b16040930a2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/868b91ffda32408585ed826f93798b7960640cce",
-                "reference": "868b91ffda32408585ed826f93798b7960640cce",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/301417fcadb88278266732f04deb2b16040930a2",
+                "reference": "301417fcadb88278266732f04deb2b16040930a2",
                 "shasum": ""
             },
             "require": {
@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
+                    "srag\\CustomInputGUIs\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -97,7 +97,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-05-26T07:21:09+00:00"
+            "time": "2020-05-27T13:05:08+00:00"
         },
         {
             "name": "srag/datatable",
@@ -302,7 +302,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
