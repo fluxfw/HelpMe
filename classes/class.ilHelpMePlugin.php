@@ -5,7 +5,9 @@ if (file_exists(__DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload
     require_once __DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php";
 }
 
+use ILIAS\DI\Container;
 use ILIAS\GlobalScreen\Provider\PluginProviderCollection;
+use srag\CustomInputGUIs\HelpMe\Loader\CustomInputGUIsLoaderDetector;
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
@@ -108,5 +110,14 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     protected function deleteData() : void
     {
         self::helpMe()->dropTables();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function exchangeUIRendererAfterInitialization(Container $dic) : Closure
+    {
+        return CustomInputGUIsLoaderDetector::exchangeUIRendererAfterInitialization();
     }
 }

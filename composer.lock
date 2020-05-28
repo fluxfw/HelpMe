@@ -54,16 +54,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.34.18",
+            "version": "v0.35.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "301417fcadb88278266732f04deb2b16040930a2"
+                "reference": "d14b23952543e4c172f2b79526acb2e8d8882f3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/301417fcadb88278266732f04deb2b16040930a2",
-                "reference": "301417fcadb88278266732f04deb2b16040930a2",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/d14b23952543e4c172f2b79526acb2e8d8882f3d",
+                "reference": "d14b23952543e4c172f2b79526acb2e8d8882f3d",
                 "shasum": ""
             },
             "require": {
@@ -97,7 +97,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-05-27T13:05:08+00:00"
+            "time": "2020-05-28T06:50:28+00:00"
         },
         {
             "name": "srag/datatable",
@@ -147,16 +147,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.24.0",
+            "version": "v0.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "f3560603a494b552ef1e99d362077f42c735c96f"
+                "reference": "9b2638c7e8e97a99e5b76cf6d3a7d4140369cf43"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/f3560603a494b552ef1e99d362077f42c735c96f",
-                "reference": "f3560603a494b552ef1e99d362077f42c735c96f",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/9b2638c7e8e97a99e5b76cf6d3a7d4140369cf43",
+                "reference": "9b2638c7e8e97a99e5b76cf6d3a7d4140369cf43",
                 "shasum": ""
             },
             "require": {
@@ -188,7 +188,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-05-25T08:51:46+00:00"
+            "time": "2020-05-28T05:38:40+00:00"
         },
         {
             "name": "srag/jiracurl",
@@ -486,5 +486,6 @@
     "platform": {
         "php": ">=7.2"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
