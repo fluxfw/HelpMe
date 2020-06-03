@@ -10,14 +10,14 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         's' => 
         array (
             'srag\\RequiredData\\HelpMe\\' => 25,
-            'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
+            'srag\\RemovePluginDataConfirm\\' => 29,
             'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DataTableUI\\HelpMe\\' => 24,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\' => 21,
+            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
     );
@@ -27,7 +27,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         array (
             0 => __DIR__ . '/..' . '/srag/requireddata/src',
         ),
-        'srag\\RemovePluginDataConfirm\\HelpMe\\' => 
+        'srag\\RemovePluginDataConfirm\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src',
         ),
@@ -55,7 +55,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\' => 
+        'srag\\CustomInputGUIs\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
