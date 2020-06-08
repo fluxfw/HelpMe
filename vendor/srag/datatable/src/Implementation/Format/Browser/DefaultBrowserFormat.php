@@ -5,7 +5,6 @@ namespace srag\DataTableUI\HelpMe\Implementation\Format\Browser;
 use ILIAS\UI\Component\Component;
 use ILIAS\UI\Component\Glyph\Factory as GlyphFactory54;
 use ILIAS\UI\Component\Input\Container\Filter\Standard as FilterStandard;
-use ILIAS\UI\Component\Link\Standard;
 use ILIAS\UI\Component\Symbol\Glyph\Factory as GlyphFactory;
 use ilUtil;
 use LogicException;
@@ -149,8 +148,8 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
         $remove_sort_button = self::dic()->ui()->factory()->legacy("");
 
         if ($column->isSelectable()) {
-            $deselect_button = self::dic()->ui()->factory()->link()->standard(self::output()->getHTML($this->glyph_factory->remove()),
-                $this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_DESELECT_COLUMN => $column->getKey()], $component->getTableId()));
+            $deselect_button = $this->glyph_factory->remove($this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_DESELECT_COLUMN => $column->getKey()],
+                $component->getTableId()));
         }
 
         if ($column->isSortable()) {
@@ -395,12 +394,12 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     protected function getColumnsSelector(Table $component, Settings $settings) : Component
     {
         return self::dic()->ui()->factory()->dropdown()
-            ->standard(array_map(function (Column $column) use ($component, $settings): Standard {
+            ->standard(array_map(function (Column $column) use ($component, $settings) : Component {
                 return self::dic()->ui()->factory()->link()->standard(self::output()->getHTML([
-                    $this->glyph_factory->add(),
+                    str_replace(["<a ", "</a>"], ["<span ", "</span>"], self::output()->getHTML($this->glyph_factory->add())),
                     self::dic()->ui()->factory()->legacy($column->getTitle())
                 ]), $this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_SELECT_COLUMN => $column->getKey()], $component->getTableId()));
-            }, array_filter($component->getColumns(), function (Column $column) use ($settings): bool {
+            }, array_filter($component->getColumns(), function (Column $column) use ($settings) : bool {
                 return ($column->isSelectable() && !in_array($column->getKey(), $settings->getSelectedColumns()));
             })))->withLabel($component->getPlugin()->translate("add_columns", Table::LANG_MODULE));
     }
@@ -415,7 +414,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     protected function getRowsPerPageSelector(Table $component, Settings $settings) : Component
     {
         return self::dic()->ui()->factory()->dropdown()
-            ->standard(array_map(function (int $count) use ($component, $settings): Component {
+            ->standard(array_map(function (int $count) use ($component, $settings) : Component {
                 if ($settings->getRowsCount() === $count) {
                     return self::dic()->ui()->factory()->legacy(self::output()->getHTML([
                         $this->glyph_factory->apply(),
@@ -439,7 +438,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      */
     protected function getExportsSelector(Table $component) : Component
     {
-        return self::dic()->ui()->factory()->dropdown()->standard(array_map(function (Format $format) use ($component): Standard {
+        return self::dic()->ui()->factory()->dropdown()->standard(array_map(function (Format $format) use ($component) : Component {
             return self::dic()->ui()->factory()->link()->standard($format->getDisplayTitle($component),
                 $this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_EXPORT_FORMAT_ID => $format->getFormatId()], $component->getTableId()));
         }, $component->getFormats()))->withLabel($component->getPlugin()->translate("export", Table::LANG_MODULE));
@@ -484,7 +483,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
         $multiple_actions = [
             self::dic()->ui()->factory()->legacy(self::output()->getHTML($tpl_checkbox)),
             self::dic()->ui()->factory()->legacy($component->getPlugin()->translate("select_all", Table::LANG_MODULE)),
-            self::dic()->ui()->factory()->dropdown()->standard(array_map(function (string $title, string $action) : Standard {
+            self::dic()->ui()->factory()->dropdown()->standard(array_map(function (string $title, string $action) : Component {
                 return self::dic()->ui()->factory()->link()->standard($title, $action);
             }, array_keys($component->getMultipleActions()), $component->getMultipleActions()))->withLabel($component->getPlugin()
                 ->translate("multiple_actions", Table::LANG_MODULE))
@@ -509,7 +508,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     protected function validateColumnKey(Table $component, string $key) : bool
     {
         return (!empty($key)
-            && !empty(array_filter($component->getColumns(), function (Column $column) use ($key): bool {
+            && !empty(array_filter($component->getColumns(), function (Column $column) use ($key) : bool {
                 return ($column->getKey() === $key);
             })));
     }

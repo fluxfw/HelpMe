@@ -128,7 +128,7 @@ class Renderer extends AbstractComponentRenderer
         /**
          * @var Format $format
          */
-        $format = current(array_filter($component->getFormats(), function (Format $format) use ($input_format_id): bool {
+        $format = current(array_filter($component->getFormats(), function (Format $format) use ($input_format_id) : bool {
             return ($format->getFormatId() === $input_format_id);
         }));
 

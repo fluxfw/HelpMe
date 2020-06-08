@@ -40,11 +40,8 @@ class ProjectsTableGUI extends TableGUI
      *
      * @param Project $project
      */
-    protected function getColumnValue(/*string*/
-        $column, /*Project*/
-        $project, /*int*/
-        $format = self::DEFAULT_FORMAT
-    ) : string {
+    protected function getColumnValue(string $column, /*Project*/ $project, int $format = self::DEFAULT_FORMAT) : string
+    {
         switch ($column) {
             case "support_link":
                 $support_link = self::helpMe()->support()->getLink($project->getProjectUrlKey());
@@ -157,9 +154,8 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @param Project $project
      */
-    protected function fillRow(/*Project*/
-        $project
-    ) : void {
+    protected function fillRow(/*Project*/ $project) : void
+    {
         self::dic()->ctrl()->setParameterByClass(ProjectConfigGUI::class, ProjectConfigGUI::GET_PARAM_PROJECT_ID, $project->getProjectId());
 
         parent::fillRow($project);

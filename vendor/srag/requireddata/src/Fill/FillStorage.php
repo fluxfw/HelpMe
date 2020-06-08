@@ -113,7 +113,7 @@ class FillStorage extends ActiveRecord
                 return json_encode($field_value);
 
             default:
-                return null;
+                return parent::sleep($field_name);
         }
     }
 
@@ -128,7 +128,7 @@ class FillStorage extends ActiveRecord
                 return json_decode($field_value, true);
 
             default:
-                return null;
+                return parent::wakeUp($field_name, $field_value);
         }
     }
 

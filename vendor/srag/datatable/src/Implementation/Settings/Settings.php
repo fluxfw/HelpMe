@@ -102,7 +102,7 @@ class Settings implements SettingsInterface
      */
     public function getSortField(string $sort_field) : ?SortField
     {
-        $sort_field = current(array_filter($this->sort_fields, function (SortField $sort_field_) use ($sort_field): bool {
+        $sort_field = current(array_filter($this->sort_fields, function (SortField $sort_field_) use ($sort_field) : bool {
             return ($sort_field_->getSortField() === $sort_field);
         }));
 
@@ -138,7 +138,7 @@ class Settings implements SettingsInterface
         $clone = clone $this;
 
         if ($this->getSortField($sort_field->getSortField()) !== null) {
-            $clone->sort_fields = array_reduce($clone->sort_fields, function (array $sort_fields, SortField $sort_field_) use ($sort_field): array {
+            $clone->sort_fields = array_reduce($clone->sort_fields, function (array $sort_fields, SortField $sort_field_) use ($sort_field) : array {
                 if ($sort_field_->getSortField() === $sort_field->getSortField()) {
                     $sort_field_ = $sort_field;
                 }
@@ -162,7 +162,7 @@ class Settings implements SettingsInterface
     {
         $clone = clone $this;
 
-        $clone->sort_fields = array_values(array_filter($clone->sort_fields, function (SortField $sort_field_) use ($sort_field): bool {
+        $clone->sort_fields = array_values(array_filter($clone->sort_fields, function (SortField $sort_field_) use ($sort_field) : bool {
             return ($sort_field_->getSortField() !== $sort_field);
         }));
 
@@ -214,7 +214,7 @@ class Settings implements SettingsInterface
     {
         $clone = clone $this;
 
-        $clone->selected_columns = array_values(array_filter($clone->selected_columns, function (string $selected_column_) use ($selected_column): bool {
+        $clone->selected_columns = array_values(array_filter($clone->selected_columns, function (string $selected_column_) use ($selected_column) : bool {
             return ($selected_column_ !== $selected_column);
         }));
 

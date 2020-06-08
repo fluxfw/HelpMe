@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.28.5]
+- Fix double `<a>` in icons
+
 ## [0.28.4]
 - Fix
 

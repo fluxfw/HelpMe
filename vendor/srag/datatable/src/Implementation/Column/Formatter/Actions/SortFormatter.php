@@ -32,7 +32,7 @@ class SortFormatter extends DefaultFormatter implements ActionsFormatter
         }
 
         return self::output()->getHTML([
-            $glyph_factory->sortAscending()->withAdditionalOnLoadCode(function (string $id) use ($format, $row, $column, $table_id): string {
+            $glyph_factory->sortAscending()->withAdditionalOnLoadCode(function (string $id) use ($format, $row, $column, $table_id) : string {
                 Waiter::init(Waiter::TYPE_WAITER);
 
                 return '

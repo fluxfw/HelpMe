@@ -109,7 +109,7 @@ abstract class AbstractFormat implements Format
      */
     protected function getColumnsBase(Table $component, Settings $settings) : array
     {
-        return array_filter($component->getColumns(), function (Column $column) use ($settings): bool {
+        return array_filter($component->getColumns(), function (Column $column) use ($settings) : bool {
             if ($column->isSelectable()) {
                 return in_array($column->getKey(), $settings->getSelectedColumns());
             } else {

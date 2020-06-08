@@ -37,6 +37,7 @@ class IntegerFillField extends AbstractFillField
      */
     public function getInput() : Input
     {
+        // self::dic()->ui()->factory()->input()->field()->numeric has no min and max value?!
         $input = (new InputGUIWrapperUIInputComponent(new ilNumberInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())->withRequired($this->field->isRequired());
 
         if ($this->field->getMinValue() !== null) {

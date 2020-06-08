@@ -40,11 +40,8 @@ class TicketsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function getColumnValue(/*string*/
-        $column, /*array*/
-        $row, /*int*/
-        $format = self::DEFAULT_FORMAT
-    ) : string {
+    protected function getColumnValue(string $column, /*array*/ $row, int $format = self::DEFAULT_FORMAT) : string
+    {
         switch ($column) {
             case "ticket_project_url_key":
                 $column = htmlspecialchars($row["ticket_project"]->getProjectName());

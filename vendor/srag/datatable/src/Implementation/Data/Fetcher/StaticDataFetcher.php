@@ -48,7 +48,7 @@ class StaticDataFetcher extends AbstractDataFetcher
      */
     public function fetchData(Settings $settings) : Data
     {
-        $data = array_filter($this->data, function (stdClass $data) use ($settings): bool {
+        $data = array_filter($this->data, function (stdClass $data) use ($settings) : bool {
             $match = true;
 
             foreach ($settings->getFilterFieldValues() as $key => $value) {
@@ -81,7 +81,7 @@ class StaticDataFetcher extends AbstractDataFetcher
             return $match;
         });
 
-        usort($data, function (stdClass $o1, stdClass $o2) use ($settings): int {
+        usort($data, function (stdClass $o1, stdClass $o2) use ($settings) : int {
             foreach ($settings->getSortFields() as $sort_field) {
                 $s1 = strval($o1->{$sort_field->getSortField()});
                 $s2 = strval($o2->{$sort_field->getSortField()});

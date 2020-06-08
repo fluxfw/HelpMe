@@ -38,7 +38,7 @@ abstract class AbstractSettingsStorage implements SettingsStorage
     public function handleDefaultSettings(Settings $settings, Table $component) : Settings
     {
         if (!$settings->isFilterSet() && empty($settings->getSortFields())) {
-            $settings = $settings->withSortFields(array_map(function (Column $column) use ($component): SortField {
+            $settings = $settings->withSortFields(array_map(function (Column $column) use ($component) : SortField {
                 return self::dataTableUI()->settings()->sort()->sortField($column->getKey(), $column->getDefaultSortDirection());
             }, array_filter($component->getColumns(), function (Column $column) : bool {
                 return ($column->isSortable() && $column->isDefaultSort());

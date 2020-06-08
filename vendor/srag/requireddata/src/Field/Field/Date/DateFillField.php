@@ -40,6 +40,7 @@ class DateFillField extends AbstractFillField
      */
     public function getInput() : Input
     {
+        // self::dic()->ui()->factory()->input()->field()->dateTime not possible without time?!
         return (new InputGUIWrapperUIInputComponent(new ilDateTimeInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())->withRequired($this->field->isRequired());
     }
 
