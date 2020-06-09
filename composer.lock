@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "22ccaf57c2fdb20621e6e25688efda74",
+    "content-hash": "aba4ba3e3fb75afc3a0e114fa72d1985",
     "packages": [
         {
             "name": "srag/activerecordconfig",
@@ -28,7 +28,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\": "src/"
+                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -121,7 +121,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DataTableUI\\": "src/"
+                    "srag\\DataTableUI\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -147,16 +147,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.25.0",
+            "version": "v0.25.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "9b2638c7e8e97a99e5b76cf6d3a7d4140369cf43"
+                "reference": "022cb0b92b003096380055a450597a5dbdbbe831"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/9b2638c7e8e97a99e5b76cf6d3a7d4140369cf43",
-                "reference": "9b2638c7e8e97a99e5b76cf6d3a7d4140369cf43",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/022cb0b92b003096380055a450597a5dbdbbe831",
+                "reference": "022cb0b92b003096380055a450597a5dbdbbe831",
                 "shasum": ""
             },
             "require": {
@@ -188,7 +188,7 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-05-28T05:38:40+00:00"
+            "time": "2020-06-09T05:30:37+00:00"
         },
         {
             "name": "srag/jiracurl",
@@ -237,16 +237,16 @@
         },
         {
             "name": "srag/librariesnamespacechanger",
-            "version": "v0.8.7",
+            "version": "v0.9.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-                "reference": "47b6984e436ab5dfca4da42fdbe85a4ce653e7e2"
+                "reference": "2eb5fb7e13d4f785667c13620d6764249517ec20"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/47b6984e436ab5dfca4da42fdbe85a4ce653e7e2",
-                "reference": "47b6984e436ab5dfca4da42fdbe85a4ce653e7e2",
+                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/2eb5fb7e13d4f785667c13620d6764249517ec20",
+                "reference": "2eb5fb7e13d4f785667c13620d6764249517ec20",
                 "shasum": ""
             },
             "require": {
@@ -276,7 +276,7 @@
                 "ILIAS",
                 "libraries"
             ],
-            "time": "2020-06-08T06:55:31+00:00"
+            "time": "2020-06-09T06:35:22+00:00"
         },
         {
             "name": "srag/notifications4plugin",
@@ -302,7 +302,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -395,7 +395,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\": "src/"
+                    "srag\\RequiredData\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
