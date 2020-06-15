@@ -54,19 +54,6 @@ final class Repository
 
 
     /**
-     * @return self
-     */
-    public static function getInstance() : self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-
-    /**
      * Repository constructor
      */
     private function __construct()
@@ -84,6 +71,19 @@ final class Repository
         $this->requiredData()->fields()->factory()->addClass(ProjectField::class);
         $this->requiredData()->fields()->factory()->addClass(ScreenshotsField::class);
         $this->requiredData()->fields()->factory()->addClass(SystemInfosField::class);
+    }
+
+
+    /**
+     * @return self
+     */
+    public static function getInstance() : self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
 

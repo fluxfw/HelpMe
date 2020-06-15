@@ -23,11 +23,11 @@ class ConfigCtrl
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_CONFIGURE = "configure";
     const CMD_HIDE_USAGE = "hideUsage";
     const CMD_UPDATE_CONFIGURE = "updateConfigure";
     const LANG_MODULE = "config";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const TAB_CONFIGURATION = "configuration";
 
 
@@ -37,6 +37,16 @@ class ConfigCtrl
     public function __construct()
     {
 
+    }
+
+
+    /**
+     *
+     */
+    public static function addTabs() : void
+    {
+        self::dic()->tabs()->addTab(self::TAB_CONFIGURATION, self::plugin()->translate("configuration", self::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTargetByClass(self::class, self::CMD_CONFIGURE));
     }
 
 
@@ -71,10 +81,32 @@ class ConfigCtrl
     /**
      *
      */
-    public static function addTabs() : void
+    protected function configure() : void
     {
-        self::dic()->tabs()->addTab(self::TAB_CONFIGURATION, self::plugin()->translate("configuration", self::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTargetByClass(self::class, self::CMD_CONFIGURE));
+        self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
+
+        $form = self::helpMe()->config()->factory()->newFormInstance($this);
+
+        self::output()->output($form);
+    }
+
+
+    /**
+     *
+     */
+    protected function hideUsage() : void
+    {
+        $usage_id = strval(filter_input(INPUT_GET, TicketsGUI::GET_PARAM_USAGE_ID));
+
+        if (!empty($usage_id)) {
+            $usage_hidden = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN);
+            $usage_hidden[$usage_id] = true;
+            self::helpMe()->config()->setValue(ConfigFormGUI::KEY_USAGE_HIDDEN, $usage_hidden);
+
+            ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE), true);
+        }
+
+        self::dic()->ctrl()->redirectByClass(self::class, self::CMD_CONFIGURE);
     }
 
 
@@ -84,19 +116,6 @@ class ConfigCtrl
     protected function setTabs() : void
     {
 
-    }
-
-
-    /**
-     *
-     */
-    protected function configure() : void
-    {
-        self::dic()->tabs()->activateTab(self::TAB_CONFIGURATION);
-
-        $form = self::helpMe()->config()->factory()->newFormInstance($this);
-
-        self::output()->output($form);
     }
 
 
@@ -118,24 +137,5 @@ class ConfigCtrl
         ilUtil::sendSuccess(self::plugin()->translate("configuration_saved", self::LANG_MODULE), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_CONFIGURE);
-    }
-
-
-    /**
-     *
-     */
-    protected function hideUsage() : void
-    {
-        $usage_id = strval(filter_input(INPUT_GET, TicketsGUI::GET_PARAM_USAGE_ID));
-
-        if (!empty($usage_id)) {
-            $usage_hidden = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN);
-            $usage_hidden[$usage_id] = true;
-            self::helpMe()->config()->setValue(ConfigFormGUI::KEY_USAGE_HIDDEN, $usage_hidden);
-
-            ilUtil::sendSuccess(self::plugin()->translate("usage_hidden", self::LANG_MODULE), true);
-        }
-
-        self::dic()->ctrl()->redirectByClass(self::class, self::CMD_CONFIGURE);
     }
 }

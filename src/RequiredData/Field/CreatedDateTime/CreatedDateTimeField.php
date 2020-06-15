@@ -21,16 +21,16 @@ class CreatedDateTimeField extends DynamicValueField
 
     use HelpMeTrait;
 
-    const TABLE_NAME_SUFFIX = "dati";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const TABLE_NAME_SUFFIX = "dati";
 
 
     /**
      * @inheritDoc
      */
-    public function getTypeTitle() : string
+    public static function canBeAddedOnlyOnce() : bool
     {
-        return self::plugin()->translate("createddatetime", SupportGUI::LANG_MODULE);
+        return true;
     }
 
 
@@ -56,16 +56,16 @@ class CreatedDateTimeField extends DynamicValueField
     /**
      * @inheritDoc
      */
-    protected function getInitHide() : bool
+    public function getTypeTitle() : string
     {
-        return true;
+        return self::plugin()->translate("createddatetime", SupportGUI::LANG_MODULE);
     }
 
 
     /**
      * @inheritDoc
      */
-    public static function canBeAddedOnlyOnce() : bool
+    protected function getInitHide() : bool
     {
         return true;
     }

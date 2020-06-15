@@ -27,6 +27,15 @@ final class Ilias
 
 
     /**
+     * Ilias constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -36,15 +45,6 @@ final class Ilias
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Ilias constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

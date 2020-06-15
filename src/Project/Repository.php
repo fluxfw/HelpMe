@@ -31,6 +31,15 @@ final class Repository
 
 
     /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -40,15 +49,6 @@ final class Repository
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -115,23 +115,6 @@ final class Repository
 
 
     /**
-     * @param bool $only_show_tickets
-     *
-     * @return Project[]
-     */
-    public function getProjects(bool $only_show_tickets = false) : array
-    {
-        $where = Project::where([]);
-
-        if ($only_show_tickets) {
-            $where = $where->where(["project_show_tickets" => true]);
-        }
-
-        return $where->orderBy("project_name", "ASC")->get();
-    }
-
-
-    /**
      * @param int $project_id
      *
      * @return Project|null
@@ -179,6 +162,23 @@ final class Repository
         $project = Project::where(["project_url_key" => $project_url_key])->first();
 
         return $project;
+    }
+
+
+    /**
+     * @param bool $only_show_tickets
+     *
+     * @return Project[]
+     */
+    public function getProjects(bool $only_show_tickets = false) : array
+    {
+        $where = Project::where([]);
+
+        if ($only_show_tickets) {
+            $where = $where->where(["project_show_tickets" => true]);
+        }
+
+        return $where->orderBy("project_name", "ASC")->get();
     }
 
 

@@ -21,33 +21,11 @@ class Project extends ActiveRecord
     use DICTrait;
     use HelpMeTrait;
 
-    const TABLE_NAME = "ui_uihk_" . ilHelpMePlugin::PLUGIN_ID . "_project";
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    const DEFAULT_ISSUE_TYPE = "Support";
-    //const DEFAULT_FIX_VERSION = "Backlog";
     const DEFAULT_FIX_VERSION = "";
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getConnectorContainerName() : string
-    {
-        return self::TABLE_NAME;
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated
-     */
-    public static function returnDbTableName() : string
-    {
-        return self::TABLE_NAME;
-    }
-
-
+    const DEFAULT_ISSUE_TYPE = "Support";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    //const DEFAULT_FIX_VERSION = "Backlog";
+    const TABLE_NAME = "ui_uihk_" . ilHelpMePlugin::PLUGIN_ID . "_project";
     /**
      * @var int
      *
@@ -59,30 +37,6 @@ class Project extends ActiveRecord
      * @con_sequence     true
      */
     protected $project_id;
-    /**
-     * @var string
-     *
-     * @con_has_field    true
-     * @con_fieldtype    text
-     * @con_is_notnull   true
-     */
-    protected $project_key = "";
-    /**
-     * @var string
-     *
-     * @con_has_field    true
-     * @con_fieldtype    text
-     * @con_is_notnull   true
-     */
-    protected $project_url_key = "";
-    /**
-     * @var string
-     *
-     * @con_has_field    true
-     * @con_fieldtype    text
-     * @con_is_notnull   true
-     */
-    protected $project_name = "";
     /**
      * @var array
      *
@@ -98,6 +52,22 @@ class Project extends ActiveRecord
             ]
         ];
     /**
+     * @var string
+     *
+     * @con_has_field    true
+     * @con_fieldtype    text
+     * @con_is_notnull   true
+     */
+    protected $project_key = "";
+    /**
+     * @var string
+     *
+     * @con_has_field    true
+     * @con_fieldtype    text
+     * @con_is_notnull   true
+     */
+    protected $project_name = "";
+    /**
      * @var bool
      *
      * @con_has_field    true
@@ -106,6 +76,14 @@ class Project extends ActiveRecord
      * @con_is_notnull   true
      */
     protected $project_show_tickets = false;
+    /**
+     * @var string
+     *
+     * @con_has_field    true
+     * @con_fieldtype    text
+     * @con_is_notnull   true
+     */
+    protected $project_url_key = "";
 
 
     /**
@@ -119,6 +97,134 @@ class Project extends ActiveRecord
         arConnector $connector = null
     ) {
         parent::__construct($primary_key_value, $connector);
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    public static function returnDbTableName() : string
+    {
+        return self::TABLE_NAME;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getConnectorContainerName() : string
+    {
+        return self::TABLE_NAME;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getProjectId() : int
+    {
+        return $this->project_id;
+    }
+
+
+    /**
+     * @param int $project_id
+     */
+    public function setProjectId(int $project_id) : void
+    {
+        $this->project_id = $project_id;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getProjectIssueTypes() : array
+    {
+        return $this->project_issue_types;
+    }
+
+
+    /**
+     * @param array $project_issue_types
+     */
+    public function setProjectIssueTypes(array $project_issue_types) : void
+    {
+        $this->project_issue_types = $project_issue_types;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getProjectKey() : string
+    {
+        return $this->project_key;
+    }
+
+
+    /**
+     * @param string $project_key
+     */
+    public function setProjectKey(string $project_key) : void
+    {
+        $this->project_key = $project_key;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getProjectName() : string
+    {
+        return $this->project_name;
+    }
+
+
+    /**
+     * @param string $project_name
+     */
+    public function setProjectName(string $project_name) : void
+    {
+        $this->project_name = $project_name;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getProjectUrlKey() : string
+    {
+        return $this->project_url_key;
+    }
+
+
+    /**
+     * @param string $project_url_key
+     */
+    public function setProjectUrlKey(string $project_url_key) : void
+    {
+        $this->project_url_key = $project_url_key;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isProjectShowTickets() : bool
+    {
+        return $this->project_show_tickets;
+    }
+
+
+    /**
+     * @param bool $project_show_tickets
+     */
+    public function setProjectShowTickets(bool $project_show_tickets) : void
+    {
+        $this->project_show_tickets = $project_show_tickets;
     }
 
 
@@ -160,113 +266,5 @@ class Project extends ActiveRecord
             default:
                 return parent::wakeUp($field_name, $field_value);
         }
-    }
-
-
-    /**
-     * @return int
-     */
-    public function getProjectId() : int
-    {
-        return $this->project_id;
-    }
-
-
-    /**
-     * @param int $project_id
-     */
-    public function setProjectId(int $project_id) : void
-    {
-        $this->project_id = $project_id;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getProjectKey() : string
-    {
-        return $this->project_key;
-    }
-
-
-    /**
-     * @param string $project_key
-     */
-    public function setProjectKey(string $project_key) : void
-    {
-        $this->project_key = $project_key;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getProjectUrlKey() : string
-    {
-        return $this->project_url_key;
-    }
-
-
-    /**
-     * @param string $project_url_key
-     */
-    public function setProjectUrlKey(string $project_url_key) : void
-    {
-        $this->project_url_key = $project_url_key;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getProjectName() : string
-    {
-        return $this->project_name;
-    }
-
-
-    /**
-     * @param string $project_name
-     */
-    public function setProjectName(string $project_name) : void
-    {
-        $this->project_name = $project_name;
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getProjectIssueTypes() : array
-    {
-        return $this->project_issue_types;
-    }
-
-
-    /**
-     * @param array $project_issue_types
-     */
-    public function setProjectIssueTypes(array $project_issue_types) : void
-    {
-        $this->project_issue_types = $project_issue_types;
-    }
-
-
-    /**
-     * @return bool
-     */
-    public function isProjectShowTickets() : bool
-    {
-        return $this->project_show_tickets;
-    }
-
-
-    /**
-     * @param bool $project_show_tickets
-     */
-    public function setProjectShowTickets(bool $project_show_tickets) : void
-    {
-        $this->project_show_tickets = $project_show_tickets;
     }
 }

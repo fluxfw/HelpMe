@@ -27,6 +27,15 @@ final class Roles
 
 
     /**
+     * Roles constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -36,15 +45,6 @@ final class Roles
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Roles constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

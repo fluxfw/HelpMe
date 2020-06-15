@@ -24,8 +24,8 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_GET_SHOW_TICKETS_LINK_OF_PROJECT = "getShowTicketsLinkOfProject";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var Project|null
      */
@@ -56,26 +56,6 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
 
 
     /**
-     * @inheritDoc
-     */
-    public function render(/*string*/ $a_mode = "") : string
-    {
-        if (self::helpMe()->tickets()->isEnabled()) {
-
-            $tpl = self::plugin()->template("project_select_input.html");
-
-            $tpl->setVariable("SELECT", parent::render($a_mode));
-
-            $tpl->setVariable("SHOW_TICKETS_LINK", $this->getShowTicketsLink($this->project));
-
-            return self::output()->getHTML($tpl);
-        }
-
-        return parent::render($a_mode);
-    }
-
-
-    /**
      *
      */
     public function executeCommand() : void
@@ -100,15 +80,40 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
 
 
     /**
-     *
+     * @return Project|null
      */
-    protected function getShowTicketsLinkOfProject() : void
+    public function getProject() : ?Project
     {
-        $project_url_key = filter_input(INPUT_GET, "project_url_key");
+        return $this->project;
+    }
 
-        $project = self::helpMe()->projects()->getProjectByUrlKey($project_url_key);
 
-        self::output()->output($this->getShowTicketsLink($project));
+    /**
+     * @param Project|null $project
+     */
+    public function setProject(?Project $project = null) : void
+    {
+        $this->project = $project;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function render(/*string*/ $a_mode = "") : string
+    {
+        if (self::helpMe()->tickets()->isEnabled()) {
+
+            $tpl = self::plugin()->template("project_select_input.html");
+
+            $tpl->setVariable("SELECT", parent::render($a_mode));
+
+            $tpl->setVariable("SHOW_TICKETS_LINK", $this->getShowTicketsLink($this->project));
+
+            return self::output()->getHTML($tpl);
+        }
+
+        return parent::render($a_mode);
     }
 
 
@@ -131,19 +136,14 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
 
 
     /**
-     * @return Project|null
+     *
      */
-    public function getProject() : ?Project
+    protected function getShowTicketsLinkOfProject() : void
     {
-        return $this->project;
-    }
+        $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
+        $project = self::helpMe()->projects()->getProjectByUrlKey($project_url_key);
 
-    /**
-     * @param Project|null $project
-     */
-    public function setProject(?Project $project = null) : void
-    {
-        $this->project = $project;
+        self::output()->output($this->getShowTicketsLink($project));
     }
 }

@@ -27,11 +27,11 @@ class SupportField
     /**
      * @var string
      */
-    public $name = "";
+    public $label = "";
     /**
      * @var string
      */
-    public $label = "";
+    public $name = "";
     /**
      * @var string
      */

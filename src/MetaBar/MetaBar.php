@@ -56,6 +56,26 @@ class MetaBar extends AbstractStaticMetaBarPluginProvider
 
 
     /**
+     * @return string
+     */
+    protected function getModal() : string
+    {
+        $modal = self::output()->getHTML(self::dic()->ui()->factory()->modal()->roundtrip(self::plugin()
+            ->translate("support", SupportGUI::LANG_MODULE), self::dic()->ui()->factory()->legacy("")));
+
+        // HelpMe needs so patches on the new roundtrip modal ui
+
+        // Large modal
+        $modal = str_replace('<div class="modal-dialog"', '<div class="modal-dialog modal-lg"', $modal);
+
+        // Buttons will delivered over the form gui
+        $modal = str_replace('<div class="modal-footer">', '<div class="modal-footer" style="display:none;">', $modal);
+
+        return $modal;
+    }
+
+
+    /**
      * @return Component
      */
     protected function getSupportChildrenButtons() : Component
@@ -115,25 +135,5 @@ il.HelpMe.init();
         }
 
         return self::dic()->ui()->factory()->legacy(self::output()->getHTML($buttons));
-    }
-
-
-    /**
-     * @return string
-     */
-    protected function getModal() : string
-    {
-        $modal = self::output()->getHTML(self::dic()->ui()->factory()->modal()->roundtrip(self::plugin()
-            ->translate("support", SupportGUI::LANG_MODULE), self::dic()->ui()->factory()->legacy("")));
-
-        // HelpMe needs so patches on the new roundtrip modal ui
-
-        // Large modal
-        $modal = str_replace('<div class="modal-dialog"', '<div class="modal-dialog modal-lg"', $modal);
-
-        // Buttons will delivered over the form gui
-        $modal = str_replace('<div class="modal-footer">', '<div class="modal-footer" style="display:none;">', $modal);
-
-        return $modal;
     }
 }

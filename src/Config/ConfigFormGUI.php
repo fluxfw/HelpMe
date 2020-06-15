@@ -42,7 +42,6 @@ class ConfigFormGUI extends PropertyFormGUI
 
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const KEY_EMAIL_FIELD = "email_field";
     /**
      * @var string
@@ -50,8 +49,8 @@ class ConfigFormGUI extends PropertyFormGUI
      * @deprecated
      */
     const KEY_INFO = "info";
-    const KEY_INFO_TEXTS = "info_texts";
     const KEY_INFO_TEXT = "info_text";
+    const KEY_INFO_TEXTS = "info_texts";
     const KEY_JIRA_ACCESS_TOKEN = "jira_access_token";
     const KEY_JIRA_AUTHORIZATION = "jira_authorization";
     const KEY_JIRA_CONSUMER_KEY = "jira_consumer_key";
@@ -86,6 +85,7 @@ class ConfigFormGUI extends PropertyFormGUI
     const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
     const KEY_USAGE_HIDDEN = "usage_hidden";
     const LANG_MODULE = ConfigCtrl::LANG_MODULE;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
@@ -96,6 +96,30 @@ class ConfigFormGUI extends PropertyFormGUI
     public function __construct(ConfigCtrl $parent)
     {
         parent::__construct($parent);
+    }
+
+
+    /**
+     * @param string $template_name
+     *
+     * @return array
+     */
+    protected function getTemplateSelection(string $template_name) : array
+    {
+        return [
+            self::KEY_RECIPIENT_TEMPLATES . "_" . $template_name => [
+                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
+                self::PROPERTY_REQUIRED => true,
+                self::PROPERTY_OPTIONS  => ["" => ""] + array_combine(array_map(function (NotificationInterface $notification) : string {
+                        return $notification->getName();
+                    }, self::helpMe()->notifications4plugin()->notifications()
+                        ->getNotifications()), array_map(function (NotificationInterface $notification) : string {
+                        return $notification->getTitle();
+                    }, self::helpMe()->notifications4plugin()->notifications()
+                        ->getNotifications())),
+                "setTitle"              => self::plugin()->translate("template_selection", NotificationsCtrl::LANG_MODULE)
+            ]
+        ];
     }
 
 
@@ -328,29 +352,5 @@ class ConfigFormGUI extends PropertyFormGUI
                 self::helpMe()->config()->setValue($key, $value);
                 break;
         }
-    }
-
-
-    /**
-     * @param string $template_name
-     *
-     * @return array
-     */
-    protected function getTemplateSelection(string $template_name) : array
-    {
-        return [
-            self::KEY_RECIPIENT_TEMPLATES . "_" . $template_name => [
-                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
-                self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_OPTIONS  => ["" => ""] + array_combine(array_map(function (NotificationInterface $notification) : string {
-                        return $notification->getName();
-                    }, self::helpMe()->notifications4plugin()->notifications()
-                        ->getNotifications()), array_map(function (NotificationInterface $notification) : string {
-                        return $notification->getTitle();
-                    }, self::helpMe()->notifications4plugin()->notifications()
-                        ->getNotifications())),
-                "setTitle"              => self::plugin()->translate("template_selection", NotificationsCtrl::LANG_MODULE)
-            ]
-        ];
     }
 }

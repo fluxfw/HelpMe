@@ -21,8 +21,8 @@ class TicketsTableGUI extends TableGUI
 
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const LANG_MODULE = TicketsGUI::LANG_MODULE;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
@@ -34,25 +34,6 @@ class TicketsTableGUI extends TableGUI
     public function __construct(TicketsGUI $parent, string $parent_cmd)
     {
         parent::__construct($parent, $parent_cmd);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getColumnValue(string $column, /*array*/ $row, int $format = self::DEFAULT_FORMAT) : string
-    {
-        switch ($column) {
-            case "ticket_project_url_key":
-                $column = htmlspecialchars($row["ticket_project"]->getProjectName());
-                break;
-
-            default:
-                $column = htmlspecialchars($row[$column]);
-                break;
-        }
-
-        return strval($column);
     }
 
 
@@ -77,6 +58,25 @@ class TicketsTableGUI extends TableGUI
         }, $columns);
 
         return $columns;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function getColumnValue(string $column, /*array*/ $row, int $format = self::DEFAULT_FORMAT) : string
+    {
+        switch ($column) {
+            case "ticket_project_url_key":
+                $column = htmlspecialchars($row["ticket_project"]->getProjectName());
+                break;
+
+            default:
+                $column = htmlspecialchars($row[$column]);
+                break;
+        }
+
+        return strval($column);
     }
 
 

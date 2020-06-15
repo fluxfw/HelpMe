@@ -37,6 +37,33 @@ class FetchJiraTicketsJob extends ilCronJob
     /**
      * @inheritDoc
      */
+    public function getDefaultScheduleType() : int
+    {
+        return self::SCHEDULE_TYPE_IN_HOURS;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getDefaultScheduleValue() : ?int
+    {
+        return 1;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getDescription() : string
+    {
+        return self::plugin()->translate("fetch_jira_tickets_description", TicketsGUI::LANG_MODULE);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getId() : string
     {
         return self::CRON_JOB_ID;
@@ -55,15 +82,6 @@ class FetchJiraTicketsJob extends ilCronJob
     /**
      * @inheritDoc
      */
-    public function getDescription() : string
-    {
-        return self::plugin()->translate("fetch_jira_tickets_description", TicketsGUI::LANG_MODULE);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function hasAutoActivation() : bool
     {
         return true;
@@ -76,24 +94,6 @@ class FetchJiraTicketsJob extends ilCronJob
     public function hasFlexibleSchedule() : bool
     {
         return true;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getDefaultScheduleType() : int
-    {
-        return self::SCHEDULE_TYPE_IN_HOURS;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getDefaultScheduleValue() : ?int
-    {
-        return 1;
     }
 
 

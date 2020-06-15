@@ -41,19 +41,6 @@ class ScreenshotsFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        $input = (new InputGUIWrapperUIInputComponent(new ScreenshotsInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())->withRequired($this->field->isRequired());
-
-        $input->getInput()->withPlugin(self::plugin());
-
-        return $input;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return (array) $fill_value;
@@ -68,5 +55,18 @@ class ScreenshotsFillField extends AbstractFillField
         return nl2br(implode("\n", array_map(function (UploadResult $screenshot) : string {
             return htmlspecialchars($screenshot->getName());
         }, (array) $fill_value)), false);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        $input = (new InputGUIWrapperUIInputComponent(new ScreenshotsInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())->withRequired($this->field->isRequired());
+
+        $input->getInput()->withPlugin(self::plugin());
+
+        return $input;
     }
 }

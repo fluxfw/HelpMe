@@ -29,6 +29,15 @@ final class Factory
 
 
     /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -38,15 +47,6 @@ final class Factory
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -116,6 +116,17 @@ final class Factory
 
 
     /**
+     * @return FetchJiraTicketsJob
+     */
+    public function newFetchJiraTicketsJobInstance() : FetchJiraTicketsJob
+    {
+        $job = new FetchJiraTicketsJob();
+
+        return $job;
+    }
+
+
+    /**
      * @return Ticket
      */
     public function newInstance() : Ticket
@@ -137,16 +148,5 @@ final class Factory
         $table = new TicketsTableGUI($parent, $cmd);
 
         return $table;
-    }
-
-
-    /**
-     * @return FetchJiraTicketsJob
-     */
-    public function newFetchJiraTicketsJobInstance() : FetchJiraTicketsJob
-    {
-        $job = new FetchJiraTicketsJob();
-
-        return $job;
     }
 }

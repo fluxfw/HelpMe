@@ -51,11 +51,35 @@ class Support
 
 
     /**
-     * @return array
+     * @param string $name
+     * @param array  $arguments
+     *
+     * @return mixed
      */
-    public function getFieldValues() : array
+    public function __call(string $name, array $arguments)
     {
-        return $this->field_values;
+        return $this->getFieldValueByName($name, "");
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getEmail() : string
+    {
+        return $this->getFieldValueByConfigKey(ConfigFormGUI::KEY_EMAIL_FIELD, (self::helpMe()->ilias()->users()->getUserId() !== intval(ANONYMOUS_USER_ID) ? self::dic()->user()->getEmail() : ""));
+    }
+
+
+    /**
+     * @param string $config_key
+     * @param mixed  $default_value
+     *
+     * @return mixed
+     */
+    public function getFieldValueByConfigKey(string $config_key, $default_value)
+    {
+        return $this->getFieldValueById(self::helpMe()->config()->getValue($config_key), $default_value);
     }
 
 
@@ -74,18 +98,6 @@ class Support
         }
 
         return $field_value;
-    }
-
-
-    /**
-     * @param string $config_key
-     * @param mixed  $default_value
-     *
-     * @return mixed
-     */
-    public function getFieldValueByConfigKey(string $config_key, $default_value)
-    {
-        return $this->getFieldValueById(self::helpMe()->config()->getValue($config_key), $default_value);
     }
 
 
@@ -129,6 +141,15 @@ class Support
 
 
     /**
+     * @return array
+     */
+    public function getFieldValues() : array
+    {
+        return $this->field_values;
+    }
+
+
+    /**
      * @param array $field_values
      */
     public function setFieldValues(array $field_values) : void
@@ -138,12 +159,11 @@ class Support
 
 
     /**
-     * @param string $field_id
-     * @param mixed  $value
+     * @return string
      */
-    public function setFieldValueById(string $field_id, $value) : void
+    public function getFixVersion() : string
     {
-        $this->field_values[$field_id] = $value;
+        return self::helpMe()->projects()->getFixVersionForIssueType($this->getProject(), $this->getIssueType());
     }
 
 
@@ -156,24 +176,6 @@ class Support
             ->requiredData()
             ->fills()
             ->formatAsStrings(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, $this->field_values, true);
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getEmail() : string
-    {
-        return $this->getFieldValueByConfigKey(ConfigFormGUI::KEY_EMAIL_FIELD, (self::helpMe()->ilias()->users()->getUserId() !== intval(ANONYMOUS_USER_ID) ? self::dic()->user()->getEmail() : ""));
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getFixVersion() : string
-    {
-        return self::helpMe()->projects()->getFixVersionForIssueType($this->getProject(), $this->getIssueType());
     }
 
 
@@ -223,13 +225,11 @@ class Support
 
 
     /**
-     * @param string $name
-     * @param array  $arguments
-     *
-     * @return mixed
+     * @param string $field_id
+     * @param mixed  $value
      */
-    public function __call(string $name, array $arguments)
+    public function setFieldValueById(string $field_id, $value) : void
     {
-        return $this->getFieldValueByName($name, "");
+        $this->field_values[$field_id] = $value;
     }
 }

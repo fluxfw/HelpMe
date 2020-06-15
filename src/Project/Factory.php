@@ -27,6 +27,15 @@ final class Factory
 
 
     /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -40,11 +49,16 @@ final class Factory
 
 
     /**
-     * Factory constructor
+     * @param ProjectConfigGUI $parent
+     * @param Project          $project
+     *
+     * @return ProjectFormGUI
      */
-    private function __construct()
+    public function newFormInstance(ProjectConfigGUI $parent, Project $project) : ProjectFormGUI
     {
+        $form = new ProjectFormGUI($parent, $project);
 
+        return $form;
     }
 
 
@@ -70,19 +84,5 @@ final class Factory
         $table = new ProjectsTableGUI($parent, $cmd);
 
         return $table;
-    }
-
-
-    /**
-     * @param ProjectConfigGUI $parent
-     * @param Project          $project
-     *
-     * @return ProjectFormGUI
-     */
-    public function newFormInstance(ProjectConfigGUI $parent, Project $project) : ProjectFormGUI
-    {
-        $form = new ProjectFormGUI($parent, $project);
-
-        return $form;
     }
 }

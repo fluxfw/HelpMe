@@ -17,6 +17,15 @@ class SuccessFormBuilder extends SupportFormBuilder
     /**
      * @inheritDoc
      */
+    public function storeForm() : bool
+    {
+        return false;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function getData() : array
     {
         $data = [];
@@ -64,14 +73,5 @@ class SuccessFormBuilder extends SupportFormBuilder
     protected function storeData(array $data) : void
     {
 
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function storeForm() : bool
-    {
-        return false;
     }
 }

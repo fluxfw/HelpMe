@@ -36,13 +36,22 @@ final class Repository
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const GET_PARAM_REF_ID = "ref_id";
     const GET_PARAM_TARGET = "target";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -55,15 +64,6 @@ final class Repository
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

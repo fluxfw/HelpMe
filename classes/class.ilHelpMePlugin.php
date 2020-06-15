@@ -23,13 +23,28 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     use PluginUninstallTrait;
     use HelpMeTrait;
 
+    const PLUGIN_CLASS_NAME = self::class;
     const PLUGIN_ID = "srsu";
     const PLUGIN_NAME = "HelpMe";
-    const PLUGIN_CLASS_NAME = self::class;
     /**
      * @var self|null
      */
     protected static $instance = null;
+    /**
+     * @var PluginProviderCollection|null
+     */
+    protected static $pluginProviderCollection = null;
+
+
+    /**
+     * ilHelpMePlugin constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->provider_collection = self::getPluginProviderCollection(); // Fix overflow
+    }
 
 
     /**
@@ -43,12 +58,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
 
         return self::$instance;
     }
-
-
-    /**
-     * @var PluginProviderCollection|null
-     */
-    protected static $pluginProviderCollection = null;
 
 
     /**
@@ -67,13 +76,11 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
 
 
     /**
-     * ilHelpMePlugin constructor
+     * @inheritDoc
      */
-    public function __construct()
+    public function exchangeUIRendererAfterInitialization(Container $dic) : Closure
     {
-        parent::__construct();
-
-        $this->provider_collection = self::getPluginProviderCollection(); // Fix overflow
+        return CustomInputGUIsLoaderDetector::exchangeUIRendererAfterInitialization();
     }
 
 
@@ -83,15 +90,6 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     public function getPluginName() : string
     {
         return self::PLUGIN_NAME;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function shouldUseOneUpdateStepOnly() : bool
-    {
-        return true;
     }
 
 
@@ -125,8 +123,8 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     /**
      * @inheritDoc
      */
-    public function exchangeUIRendererAfterInitialization(Container $dic) : Closure
+    protected function shouldUseOneUpdateStepOnly() : bool
     {
-        return CustomInputGUIsLoaderDetector::exchangeUIRendererAfterInitialization();
+        return true;
     }
 }

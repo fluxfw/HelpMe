@@ -99,19 +99,14 @@ class RecipientCreateJiraTicket extends Recipient
 
 
     /**
-     * Create service desk request
+     * Add screenshots to Jira ticket
      *
-     * @throws ActiveRecordConfigException
-     * @throws DICException
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
-     * @throws Notifications4PluginException
      */
-    protected function createServiceDeskRequest() : void
+    protected function addScreenshots() : void
     {
-        $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_ID),
-            self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
-            $this->getSubject(self::CREATE_JIRA_TICKET), $this->fixLineBreaks($this->getBody(self::CREATE_JIRA_TICKET)), $this->service_desk_customer);
+        $this->jira_curl->addAttachmentsToIssue($this->ticket_key, $this->support->getScreenshots());
     }
 
 
@@ -148,14 +143,30 @@ class RecipientCreateJiraTicket extends Recipient
 
 
     /**
-     * Add screenshots to Jira ticket
+     * Create service desk request
      *
+     * @throws ActiveRecordConfigException
+     * @throws DICException
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
+     * @throws Notifications4PluginException
      */
-    protected function addScreenshots() : void
+    protected function createServiceDeskRequest() : void
     {
-        $this->jira_curl->addAttachmentsToIssue($this->ticket_key, $this->support->getScreenshots());
+        $this->service_desk_ticket_key = $this->jira_curl->createServiceDeskRequest(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_ID),
+            self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_REQUEST_TYPE_ID),
+            $this->getSubject(self::CREATE_JIRA_TICKET), $this->fixLineBreaks($this->getBody(self::CREATE_JIRA_TICKET)), $this->service_desk_customer);
+    }
+
+
+    /**
+     * @param string $html
+     *
+     * @return string
+     */
+    protected function fixLineBreaks(string $html) : string
+    {
+        return str_ireplace(["<br>", "<br/>", "<br />"], ["", "", ""], $html);
     }
 
 
@@ -170,16 +181,5 @@ class RecipientCreateJiraTicket extends Recipient
     protected function linkServiceDeskAndProjectTicket() : void
     {
         $this->jira_curl->linkTickets($this->service_desk_ticket_key, $this->ticket_key, self::helpMe()->config()->getValue(ConfigFormGUI::KEY_JIRA_SERVICE_DESK_LINK_TYPE));
-    }
-
-
-    /**
-     * @param string $html
-     *
-     * @return string
-     */
-    protected function fixLineBreaks(string $html) : string
-    {
-        return str_ireplace(["<br>", "<br/>", "<br />"], ["", "", ""], $html);
     }
 }

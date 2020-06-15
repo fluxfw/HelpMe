@@ -21,13 +21,13 @@ class TicketsGUI
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_APPLY_FILTER = "applyFilter";
     const CMD_LIST_TICKETS = "listTickets";
     const CMD_RESET_FILTER = "resetFilter";
     const CMD_SET_PROJECT_FILTER = "setProjectFilter";
     const GET_PARAM_USAGE_ID = "usage_id";
     const LANG_MODULE = "tickets";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
@@ -75,9 +75,16 @@ class TicketsGUI
     /**
      *
      */
-    protected function setTabs() : void
+    protected function applyFilter() : void
     {
+        $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_APPLY_FILTER);
 
+        $table->writeFilterToSession();
+
+        $table->resetOffset();
+
+        //self::dic()->ctrl()->redirect($this, self::CMD_LIST_TICKETS);
+        $this->listTickets(); // Fix reset offset
     }
 
 
@@ -89,22 +96,6 @@ class TicketsGUI
         $table = self::helpMe()->tickets()->factory()->newTableInstance($this);
 
         self::output()->output($table, true);
-    }
-
-
-    /**
-     *
-     */
-    protected function applyFilter() : void
-    {
-        $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_APPLY_FILTER);
-
-        $table->writeFilterToSession();
-
-        $table->resetOffset();
-
-        //self::dic()->ctrl()->redirect($this, self::CMD_LIST_TICKETS);
-        $this->listTickets(); // Fix reset offset
     }
 
 
@@ -137,5 +128,14 @@ class TicketsGUI
 
         $_POST["ticket_project_url_key"] = $project_url_key;
         $this->applyFilter();
+    }
+
+
+    /**
+     *
+     */
+    protected function setTabs() : void
+    {
+
     }
 }

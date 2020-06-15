@@ -28,9 +28,9 @@ abstract class Recipient
     use DICTrait;
     use HelpMeTrait;
 
-    const SEND_EMAIL = "send_email";
     const CREATE_JIRA_TICKET = "create_jira_ticket";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const SEND_EMAIL = "send_email";
     /**
      * @var Support
      */
@@ -46,6 +46,65 @@ abstract class Recipient
     {
         $this->support = $support;
     }
+
+
+    /**
+     * @param string $template_name
+     *
+     * @return string
+     *
+     * @throws ActiveRecordConfigException
+     * @throws DICException
+     * @throws Notifications4PluginException
+     */
+    public function getBody(string $template_name) : string
+    {
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+
+        $fields = [];
+        foreach ($this->support->getFormattedFieldValues() as $key => $value) {
+            if (is_array($value)) {
+                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $value[0], $value[1], $value[2]);
+            } else {
+                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
+            }
+        }
+
+        return self::helpMe()->notifications4plugin()->parser()->parseText(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
+            "support" => $this->support,
+            "fields"  => $fields
+        ]);
+    }
+
+
+    /**
+     * @param string $template_name
+     *
+     * @return string
+     *
+     * @throws ActiveRecordConfigException
+     * @throws Notifications4PluginException
+     */
+    public function getSubject(string $template_name) : string
+    {
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+
+        return self::helpMe()->notifications4plugin()->parser()->parseSubject(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
+            "support" => $this->support
+        ]);
+    }
+
+
+    /**
+     * Send support to recipient
+     *
+     * @throws ActiveRecordConfigException
+     * @throws DICException
+     * @throws HelpMeException
+     * @throws Notifications4PluginException
+     * @throws phpmailerException
+     */
+    public abstract function sendSupportToRecipient() : void;
 
 
     /**
@@ -81,63 +140,4 @@ abstract class Recipient
             }
         }
     }
-
-
-    /**
-     * @param string $template_name
-     *
-     * @return string
-     *
-     * @throws ActiveRecordConfigException
-     * @throws Notifications4PluginException
-     */
-    public function getSubject(string $template_name) : string
-    {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
-
-        return self::helpMe()->notifications4plugin()->parser()->parseSubject(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
-            "support" => $this->support
-        ]);
-    }
-
-
-    /**
-     * @param string $template_name
-     *
-     * @return string
-     *
-     * @throws ActiveRecordConfigException
-     * @throws DICException
-     * @throws Notifications4PluginException
-     */
-    public function getBody(string $template_name) : string
-    {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
-
-        $fields = [];
-        foreach ($this->support->getFormattedFieldValues() as $key => $value) {
-            if (is_array($value)) {
-                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $value[0], $value[1], $value[2]);
-            } else {
-                $fields[] = self::helpMe()->support()->factory()->newFieldInstance($key, $key, self::plugin()->translate($key, SupportGUI::LANG_MODULE), $value);
-            }
-        }
-
-        return self::helpMe()->notifications4plugin()->parser()->parseText(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
-            "support" => $this->support,
-            "fields"  => $fields
-        ]);
-    }
-
-
-    /**
-     * Send support to recipient
-     *
-     * @throws ActiveRecordConfigException
-     * @throws DICException
-     * @throws HelpMeException
-     * @throws Notifications4PluginException
-     * @throws phpmailerException
-     */
-    public abstract function sendSupportToRecipient() : void;
 }

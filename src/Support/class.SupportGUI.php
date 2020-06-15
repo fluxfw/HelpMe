@@ -28,11 +28,11 @@ class SupportGUI
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_ADD_SUPPORT = "addSupport";
     const CMD_NEW_SUPPORT = "newSupport";
     const GET_PARAM_PROJECT_URL_KEY = "project_url_key";
     const LANG_MODULE = "support";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var Support
      */
@@ -95,38 +95,6 @@ class SupportGUI
     /**
      *
      */
-    protected function setTabs() : void
-    {
-
-    }
-
-
-    /**
-     * @param string|null         $message
-     * @param AbstractFormBuilder $form
-     */
-    protected function show(?string $message, AbstractFormBuilder $form) : void
-    {
-        $tpl = self::plugin()->template("helpme_modal.html");
-
-        $tpl->setCurrentBlock("helpme_info");
-        $tpl->setVariable("INFO_TEXT", MultilangualTabsInputGUI::getValueForLang(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_INFO_TEXTS), null, ConfigFormGUI::KEY_INFO_TEXT));
-
-        if ($message !== null) {
-            $tpl->setCurrentBlock("helpme_message");
-            $tpl->setVariable("MESSAGE", $message);
-        }
-
-        $tpl->setCurrentBlock("helpme_form");
-        $tpl->setVariable("FORM", self::output()->getHTML($form));
-
-        self::output()->output($tpl);
-    }
-
-
-    /**
-     *
-     */
     protected function addSupport() : void
     {
         $message = null;
@@ -173,5 +141,37 @@ class SupportGUI
         }
 
         $this->show($message, $form);
+    }
+
+
+    /**
+     *
+     */
+    protected function setTabs() : void
+    {
+
+    }
+
+
+    /**
+     * @param string|null         $message
+     * @param AbstractFormBuilder $form
+     */
+    protected function show(?string $message, AbstractFormBuilder $form) : void
+    {
+        $tpl = self::plugin()->template("helpme_modal.html");
+
+        $tpl->setCurrentBlock("helpme_info");
+        $tpl->setVariable("INFO_TEXT", MultilangualTabsInputGUI::getValueForLang(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_INFO_TEXTS), null, ConfigFormGUI::KEY_INFO_TEXT));
+
+        if ($message !== null) {
+            $tpl->setCurrentBlock("helpme_message");
+            $tpl->setVariable("MESSAGE", $message);
+        }
+
+        $tpl->setCurrentBlock("helpme_form");
+        $tpl->setVariable("FORM", self::output()->getHTML($form));
+
+        self::output()->output($tpl);
     }
 }

@@ -41,6 +41,30 @@ class ProjectFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
+    public function formatAsJson($fill_value)
+    {
+        return strval($fill_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function formatAsString($fill_value) : string
+    {
+        $project = self::helpMe()->projects()->getProjectByUrlKey($fill_value);
+
+        if ($project !== null) {
+            return htmlspecialchars($project->getProjectName());
+        } else {
+            return "";
+        }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getInput() : Input
     {
         $input = (new InputGUIWrapperUIInputComponent(new ProjectSelectInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())
@@ -75,29 +99,5 @@ class ProjectFillField extends AbstractFillField
         }
 
         return $input;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function formatAsJson($fill_value)
-    {
-        return strval($fill_value);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function formatAsString($fill_value) : string
-    {
-        $project = self::helpMe()->projects()->getProjectByUrlKey($fill_value);
-
-        if ($project !== null) {
-            return htmlspecialchars($project->getProjectName());
-        } else {
-            return "";
-        }
     }
 }

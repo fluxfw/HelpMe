@@ -40,17 +40,6 @@ class IssueTypeFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        return (new InputGUIWrapperUIInputComponent(new IssueTypeSelectInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())
-            ->withRequired($this->field->isRequired())
-            ->withDisabled(true);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return strval($fill_value);
@@ -63,5 +52,16 @@ class IssueTypeFillField extends AbstractFillField
     public function formatAsString($fill_value) : string
     {
         return htmlspecialchars($fill_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        return (new InputGUIWrapperUIInputComponent(new IssueTypeSelectInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())
+            ->withRequired($this->field->isRequired())
+            ->withDisabled(true);
     }
 }

@@ -24,8 +24,8 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_CONFIGURE = "configure";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
@@ -83,6 +83,15 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
     /**
      *
      */
+    protected function configure() : void
+    {
+        self::dic()->ctrl()->redirectByClass(ConfigCtrl::class, ConfigCtrl::CMD_CONFIGURE);
+    }
+
+
+    /**
+     *
+     */
     protected function setTabs() : void
     {
         ConfigCtrl::addTabs();
@@ -97,14 +106,5 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
         self::dic()->locator()->addItem(ilHelpMePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTarget($this, self::CMD_CONFIGURE));
 
         self::helpMe()->tickets()->showUsageConfigHint();
-    }
-
-
-    /**
-     *
-     */
-    protected function configure() : void
-    {
-        self::dic()->ctrl()->redirectByClass(ConfigCtrl::class, ConfigCtrl::CMD_CONFIGURE);
     }
 }

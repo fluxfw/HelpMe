@@ -46,6 +46,79 @@ class SupportFormBuilder extends AbstractFormBuilder
 
 
     /**
+     * @return IssueTypeSelectInputGUI|null
+     */
+    public function extractIssueTypeSelector() : ?IssueTypeSelectInputGUI
+    {
+        $field = current(self::helpMe()
+            ->requiredData()
+            ->fields()
+            ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [IssueTypeField::getType()]));
+
+        if ($field) {
+            $item = $this->getItemByPostVar($field->getId());
+            if ($item !== false) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
+
+
+    /**
+     * @return ProjectSelectInputGUI|null
+     */
+    public function extractProjectSelector() : ?ProjectSelectInputGUI
+    {
+        $field = current(self::helpMe()
+            ->requiredData()
+            ->fields()
+            ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [ProjectField::getType()]));
+
+        if ($field) {
+            $item = $this->getItemByPostVar($field->getId());
+            if ($item !== false) {
+                return $item;
+            }
+        }
+
+        return null;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function render() : string
+    {
+        return self::output()->getHTML([
+            '<div id="form_helpme_form">',
+            parent::render(),
+            '</div>'
+        ]);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function storeForm() : bool
+    {
+        if (!parent::storeForm()) {
+            return false;
+        }
+
+        $this->support->setFieldValues(self::helpMe()
+            ->requiredData()
+            ->fills()
+            ->formatAsJsons(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, $this->support->getFieldValues()));
+
+        return true;
+    }
+
+
+    /**
      * @inheritDoc
      */
     protected function getAction() : string
@@ -103,19 +176,6 @@ class SupportFormBuilder extends AbstractFormBuilder
     /**
      * @inheritDoc
      */
-    public function render() : string
-    {
-        return self::output()->getHTML([
-            '<div id="form_helpme_form">',
-            parent::render(),
-            '</div>'
-        ]);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     protected function setButtonsToForm(string $html) : string
     {
         $first = true;
@@ -144,65 +204,5 @@ class SupportFormBuilder extends AbstractFormBuilder
         foreach (array_keys($this->getFields()) as $field_id) {
             $this->support->setFieldValueById($field_id, $data[$field_id]);
         }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function storeForm() : bool
-    {
-        if (!parent::storeForm()) {
-            return false;
-        }
-
-        $this->support->setFieldValues(self::helpMe()
-            ->requiredData()
-            ->fills()
-            ->formatAsJsons(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, $this->support->getFieldValues()));
-
-        return true;
-    }
-
-
-    /**
-     * @return ProjectSelectInputGUI|null
-     */
-    public function extractProjectSelector() : ?ProjectSelectInputGUI
-    {
-        $field = current(self::helpMe()
-            ->requiredData()
-            ->fields()
-            ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [ProjectField::getType()]));
-
-        if ($field) {
-            $item = $this->getItemByPostVar($field->getId());
-            if ($item !== false) {
-                return $item;
-            }
-        }
-
-        return null;
-    }
-
-
-    /**
-     * @return IssueTypeSelectInputGUI|null
-     */
-    public function extractIssueTypeSelector() : ?IssueTypeSelectInputGUI
-    {
-        $field = current(self::helpMe()
-            ->requiredData()
-            ->fields()
-            ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [IssueTypeField::getType()]));
-
-        if ($field) {
-            $item = $this->getItemByPostVar($field->getId());
-            if ($item !== false) {
-                return $item;
-            }
-        }
-
-        return null;
     }
 }

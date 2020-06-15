@@ -24,8 +24,8 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_GET_ISSUE_TYPES_OF_PROJECT = "getIssueTypesOfProject";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var SupportFormBuilder
      */
@@ -41,21 +41,6 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     public function __construct(string $a_title = "", string $a_postvar = "")
     {
         parent::__construct($a_title, $a_postvar);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function render(/*string*/ $a_mode = "") : string
-    {
-        $project_select = $this->parent_gui->extractProjectSelector();
-
-        if ($project_select !== null) {
-            $this->setIssueTypesOptions($project_select->getProject());
-        }
-
-        return parent::render($a_mode);
     }
 
 
@@ -99,6 +84,21 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
                 }
                 break;
         }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function render(/*string*/ $a_mode = "") : string
+    {
+        $project_select = $this->parent_gui->extractProjectSelector();
+
+        if ($project_select !== null) {
+            $this->setIssueTypesOptions($project_select->getProject());
+        }
+
+        return parent::render($a_mode);
     }
 
 

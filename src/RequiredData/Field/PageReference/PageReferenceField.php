@@ -19,16 +19,16 @@ class PageReferenceField extends DynamicValueField
 
     use HelpMeTrait;
 
-    const TABLE_NAME_SUFFIX = "pgrf";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const TABLE_NAME_SUFFIX = "pgrf";
 
 
     /**
      * @inheritDoc
      */
-    public function getTypeTitle() : string
+    public static function canBeAddedOnlyOnce() : bool
     {
-        return self::plugin()->translate("page_reference", SupportGUI::LANG_MODULE);
+        return true;
     }
 
 
@@ -44,17 +44,17 @@ class PageReferenceField extends DynamicValueField
     /**
      * @inheritDoc
      */
-    protected function getInitHide() : bool
+    public function getTypeTitle() : string
     {
-        return false;
+        return self::plugin()->translate("page_reference", SupportGUI::LANG_MODULE);
     }
 
 
     /**
      * @inheritDoc
      */
-    public static function canBeAddedOnlyOnce() : bool
+    protected function getInitHide() : bool
     {
-        return true;
+        return false;
     }
 }

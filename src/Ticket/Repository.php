@@ -39,6 +39,15 @@ final class Repository
 
 
     /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -48,15 +57,6 @@ final class Repository
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -224,66 +224,6 @@ final class Repository
 
 
     /**
-     * @param string|null $sort_by
-     * @param string|null $sort_by_direction
-     * @param int|null    $limit_start
-     * @param int|null    $limit_end
-     * @param string      $ticket_title
-     * @param string      $ticket_project_url_key
-     * @param string      $ticket_issue_type
-     * @param string      $ticket_priority
-     *
-     * @return string
-     */
-    private function getTicketsQuery(
-        string $sort_by = null,
-        string $sort_by_direction = null,
-        int $limit_start = null,
-        int $limit_end = null,
-        string $ticket_title = "",
-        string $ticket_project_url_key = "",
-        string $ticket_issue_type = "",
-        string $ticket_priority = ""
-    ) : string {
-
-        $sql = ' FROM ' . Ticket::TABLE_NAME;
-
-        $wheres = [];
-
-        if (!empty($ticket_title)) {
-            $wheres[] = self::dic()->database()->like("ticket_title", ilDBConstants::T_TEXT, '%' . $ticket_title . '%');
-        }
-
-        if (!empty($ticket_project_url_key)) {
-            $wheres[] = 'ticket_project_url_key=' . self::dic()->database()->quote($ticket_project_url_key, ilDBConstants::T_TEXT);
-        }
-
-        if (!empty($ticket_issue_type)) {
-            $wheres[] = 'ticket_issue_type=' . self::dic()->database()->quote($ticket_issue_type, ilDBConstants::T_TEXT);
-        }
-
-        if (!empty($ticket_priority)) {
-            $wheres[] = 'ticket_priority=' . self::dic()->database()->quote($ticket_priority, ilDBConstants::T_TEXT);
-        }
-
-        if (count($wheres) > 0) {
-            $sql .= ' WHERE ' . implode(" AND ", $wheres);
-        }
-
-        if ($sort_by !== null && $sort_by_direction !== null) {
-            $sql .= ' ORDER BY ' . self::dic()->database()->quoteIdentifier($sort_by) . ' ' . $sort_by_direction;
-        }
-
-        if ($limit_start !== null && $limit_end !== null) {
-            $sql .= ' LIMIT ' . self::dic()->database()->quote($limit_start, ilDBConstants::T_INTEGER) . ',' . self::dic()->database()
-                    ->quote($limit_end, ilDBConstants::T_INTEGER);
-        }
-
-        return $sql;
-    }
-
-
-    /**
      * @internal
      */
     public function installTables() : void
@@ -401,5 +341,65 @@ final class Repository
     public function storeTicket(Ticket $ticket) : void
     {
         $ticket->store();
+    }
+
+
+    /**
+     * @param string|null $sort_by
+     * @param string|null $sort_by_direction
+     * @param int|null    $limit_start
+     * @param int|null    $limit_end
+     * @param string      $ticket_title
+     * @param string      $ticket_project_url_key
+     * @param string      $ticket_issue_type
+     * @param string      $ticket_priority
+     *
+     * @return string
+     */
+    private function getTicketsQuery(
+        string $sort_by = null,
+        string $sort_by_direction = null,
+        int $limit_start = null,
+        int $limit_end = null,
+        string $ticket_title = "",
+        string $ticket_project_url_key = "",
+        string $ticket_issue_type = "",
+        string $ticket_priority = ""
+    ) : string {
+
+        $sql = ' FROM ' . Ticket::TABLE_NAME;
+
+        $wheres = [];
+
+        if (!empty($ticket_title)) {
+            $wheres[] = self::dic()->database()->like("ticket_title", ilDBConstants::T_TEXT, '%' . $ticket_title . '%');
+        }
+
+        if (!empty($ticket_project_url_key)) {
+            $wheres[] = 'ticket_project_url_key=' . self::dic()->database()->quote($ticket_project_url_key, ilDBConstants::T_TEXT);
+        }
+
+        if (!empty($ticket_issue_type)) {
+            $wheres[] = 'ticket_issue_type=' . self::dic()->database()->quote($ticket_issue_type, ilDBConstants::T_TEXT);
+        }
+
+        if (!empty($ticket_priority)) {
+            $wheres[] = 'ticket_priority=' . self::dic()->database()->quote($ticket_priority, ilDBConstants::T_TEXT);
+        }
+
+        if (count($wheres) > 0) {
+            $sql .= ' WHERE ' . implode(" AND ", $wheres);
+        }
+
+        if ($sort_by !== null && $sort_by_direction !== null) {
+            $sql .= ' ORDER BY ' . self::dic()->database()->quoteIdentifier($sort_by) . ' ' . $sort_by_direction;
+        }
+
+        if ($limit_start !== null && $limit_end !== null) {
+            $sql .= ' LIMIT ' . self::dic()->database()->quote($limit_start, ilDBConstants::T_INTEGER) . ',' . self::dic()->database()
+                    ->quote($limit_end, ilDBConstants::T_INTEGER);
+        }
+
+        return $sql;
     }
 }

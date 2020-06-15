@@ -19,16 +19,16 @@ class IssueTypeField extends AbstractField
 
     use HelpMeTrait;
 
-    const TABLE_NAME_SUFFIX = "isty";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const TABLE_NAME_SUFFIX = "isty";
 
 
     /**
      * @inheritDoc
      */
-    public function getTypeTitle() : string
+    public static function canBeAddedOnlyOnce() : bool
     {
-        return self::plugin()->translate("issue_type", SupportGUI::LANG_MODULE);
+        return true;
     }
 
 
@@ -44,8 +44,8 @@ class IssueTypeField extends AbstractField
     /**
      * @inheritDoc
      */
-    public static function canBeAddedOnlyOnce() : bool
+    public function getTypeTitle() : string
     {
-        return true;
+        return self::plugin()->translate("issue_type", SupportGUI::LANG_MODULE);
     }
 }

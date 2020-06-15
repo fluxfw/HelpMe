@@ -21,9 +21,9 @@ class ProjectsConfigGUI
     use DICTrait;
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const CMD_LIST_PROJECTS = "listProjects";
     const LANG_MODULE = "projects";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const TAB_LIST_PROJECTS = "list_projects";
 
 
@@ -33,6 +33,16 @@ class ProjectsConfigGUI
     public function __construct()
     {
 
+    }
+
+
+    /**
+     *
+     */
+    public static function addTabs() : void
+    {
+        self::dic()->tabs()->addTab(self::TAB_LIST_PROJECTS, self::plugin()->translate("projects", self::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTargetByClass(self::class, self::CMD_LIST_PROJECTS));
     }
 
 
@@ -69,10 +79,13 @@ class ProjectsConfigGUI
     /**
      *
      */
-    public static function addTabs() : void
+    protected function listProjects() : void
     {
-        self::dic()->tabs()->addTab(self::TAB_LIST_PROJECTS, self::plugin()->translate("projects", self::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTargetByClass(self::class, self::CMD_LIST_PROJECTS));
+        self::dic()->tabs()->activateTab(self::TAB_LIST_PROJECTS);
+
+        $table = self::helpMe()->projects()->factory()->newTableInstance($this);
+
+        self::output()->output($table);
     }
 
 
@@ -82,18 +95,5 @@ class ProjectsConfigGUI
     protected function setTabs() : void
     {
 
-    }
-
-
-    /**
-     *
-     */
-    protected function listProjects() : void
-    {
-        self::dic()->tabs()->activateTab(self::TAB_LIST_PROJECTS);
-
-        $table = self::helpMe()->projects()->factory()->newTableInstance($this);
-
-        self::output()->output($table);
     }
 }

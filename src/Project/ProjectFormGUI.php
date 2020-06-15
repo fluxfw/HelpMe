@@ -22,8 +22,8 @@ class ProjectFormGUI extends PropertyFormGUI
 
     use HelpMeTrait;
 
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var Project
      */
@@ -41,6 +41,21 @@ class ProjectFormGUI extends PropertyFormGUI
         $this->project = $project;
 
         parent::__construct($parent);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function storeForm() : bool
+    {
+        if (!parent::storeForm()) {
+            return false;
+        }
+
+        self::helpMe()->projects()->storeProject($this->project);
+
+        return true;
     }
 
 
@@ -151,20 +166,5 @@ class ProjectFormGUI extends PropertyFormGUI
                 Items::setter($this->project, $key, $value);
                 break;
         }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function storeForm() : bool
-    {
-        if (!parent::storeForm()) {
-            return false;
-        }
-
-        self::helpMe()->projects()->storeProject($this->project);
-
-        return true;
     }
 }

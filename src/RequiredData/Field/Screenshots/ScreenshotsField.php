@@ -19,16 +19,16 @@ class ScreenshotsField extends AbstractField
 
     use HelpMeTrait;
 
-    const TABLE_NAME_SUFFIX = "scsh";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const TABLE_NAME_SUFFIX = "scsh";
 
 
     /**
      * @inheritDoc
      */
-    public function getTypeTitle() : string
+    public static function canBeAddedOnlyOnce() : bool
     {
-        return self::plugin()->translate("screenshots", SupportGUI::LANG_MODULE);
+        return true;
     }
 
 
@@ -44,8 +44,8 @@ class ScreenshotsField extends AbstractField
     /**
      * @inheritDoc
      */
-    public static function canBeAddedOnlyOnce() : bool
+    public function getTypeTitle() : string
     {
-        return true;
+        return self::plugin()->translate("screenshots", SupportGUI::LANG_MODULE);
     }
 }
