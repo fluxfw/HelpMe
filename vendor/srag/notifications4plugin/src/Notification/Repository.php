@@ -34,6 +34,15 @@ final class Repository implements RepositoryInterface
 
 
     /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return RepositoryInterface
      */
     public static function getInstance() : RepositoryInterface
@@ -43,15 +52,6 @@ final class Repository implements RepositoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -79,25 +79,6 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @deprecated
-     */
-    protected function dropTablesLanguage() : void
-    {
-        if (self::dic()->database()->sequenceExists(NotificationLanguage::getTableName() . "g")) {
-            self::dic()->database()->dropSequence(NotificationLanguage::getTableName() . "g");
-        }
-        self::dic()->database()->dropTable(NotificationLanguage::getTableName() . "g", false);
-        self::dic()->database()->dropAutoIncrementTable(NotificationLanguage::getTableName() . "g");
-
-        if (self::dic()->database()->sequenceExists(NotificationLanguage::getTableName())) {
-            self::dic()->database()->dropSequence(NotificationLanguage::getTableName());
-        }
-        self::dic()->database()->dropTable(NotificationLanguage::getTableName(), false);
-        self::dic()->database()->dropAutoIncrementTable(NotificationLanguage::getTableName());
-    }
-
-
-    /**
      * @inheritDoc
      */
     public function duplicateNotification(NotificationInterface $notification) : NotificationInterface
@@ -119,29 +100,6 @@ final class Repository implements RepositoryInterface
     public function factory() : FactoryInterface
     {
         return Factory::getInstance();
-    }
-
-
-    /**
-     * @param int    $notification_id
-     * @param string $language
-     *
-     * @return stdClass|null
-     *
-     * @deprecated
-     */
-    protected function getLanguageForNotification(int $notification_id, string $language) : ?stdClass
-    {
-        /**
-         * @var stdClass|null $l
-         */
-        $l = self::dic()->database()->fetchObjectClass(self::dic()->database()->queryF('SELECT * FROM ' . self::dic()->database()
-                ->quoteIdentifier(NotificationLanguage::getTableName()) . ' WHERE notification_id=%s AND language=%s', [
-            ilDBConstants::T_INTEGER,
-            ilDBConstants::T_TEXT
-        ], [$notification_id, $language]), stdClass::class);
-
-        return $l;
     }
 
 
@@ -215,33 +173,6 @@ final class Repository implements RepositoryInterface
         }
 
         return 0;
-    }
-
-
-    /**
-     * @param Settings|null $settings
-     *
-     * @return string
-     */
-    private function getNotificationsQuery(?Settings $settings = null) : string
-    {
-
-        $sql = ' FROM ' . self::dic()->database()->quoteIdentifier(Notification::getTableName());
-
-        if ($settings !== null) {
-            if (!empty($settings->getSortFields())) {
-                $sql .= ' ORDER BY ' . implode(", ",
-                        array_map(function (SortField $sort_field) : string {
-                            return self::dic()->database()->quoteIdentifier($sort_field->getSortField()) . ' ' . ($sort_field->getSortFieldDirection()
-                                === SortField::SORT_DIRECTION_DOWN ? 'DESC' : 'ASC');
-                        }, $settings->getSortFields()));
-            }
-
-            $sql .= ' LIMIT ' . self::dic()->database()->quote($settings->getOffset(), ilDBConstants::T_INTEGER) . ',' . self::dic()->database()
-                    ->quote($settings->getRowsCount(), ilDBConstants::T_INTEGER);
-        }
-
-        return $sql;
     }
 
 
@@ -336,6 +267,75 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
+    public function storeNotification(NotificationInterface $notification) : void
+    {
+        $date = new ilDateTime(time(), IL_CAL_UNIX);
+
+        if (empty($notification->getId())) {
+            $notification->setCreatedAt($date);
+        }
+
+        $notification->setUpdatedAt($date);
+
+        $notification->setId(self::dic()->database()->store(Notification::getTableName(), [
+            "name"           => [ilDBConstants::T_TEXT, $notification->getName()],
+            "title"          => [ilDBConstants::T_TEXT, $notification->getTitle()],
+            "description"    => [ilDBConstants::T_TEXT, $notification->getDescription()],
+            "parser"         => [ilDBConstants::T_TEXT, $notification->getParser()],
+            "parser_options" => [ilDBConstants::T_TEXT, json_encode($notification->getParserOptions())],
+            "subject"        => [ilDBConstants::T_TEXT, json_encode($notification->getSubjects())],
+            "text"           => [ilDBConstants::T_TEXT, json_encode($notification->getTexts())],
+            "created_at"     => [ilDBConstants::T_TEXT, $notification->getCreatedAt()->get(IL_CAL_DATETIME)],
+            "updated_at"     => [ilDBConstants::T_TEXT, $notification->getUpdatedAt()->get(IL_CAL_DATETIME)]
+        ], "id", $notification->getId()));
+    }
+
+
+    /**
+     * @deprecated
+     */
+    protected function dropTablesLanguage() : void
+    {
+        if (self::dic()->database()->sequenceExists(NotificationLanguage::getTableName() . "g")) {
+            self::dic()->database()->dropSequence(NotificationLanguage::getTableName() . "g");
+        }
+        self::dic()->database()->dropTable(NotificationLanguage::getTableName() . "g", false);
+        self::dic()->database()->dropAutoIncrementTable(NotificationLanguage::getTableName() . "g");
+
+        if (self::dic()->database()->sequenceExists(NotificationLanguage::getTableName())) {
+            self::dic()->database()->dropSequence(NotificationLanguage::getTableName());
+        }
+        self::dic()->database()->dropTable(NotificationLanguage::getTableName(), false);
+        self::dic()->database()->dropAutoIncrementTable(NotificationLanguage::getTableName());
+    }
+
+
+    /**
+     * @param int    $notification_id
+     * @param string $language
+     *
+     * @return stdClass|null
+     *
+     * @deprecated
+     */
+    protected function getLanguageForNotification(int $notification_id, string $language) : ?stdClass
+    {
+        /**
+         * @var stdClass|null $l
+         */
+        $l = self::dic()->database()->fetchObjectClass(self::dic()->database()->queryF('SELECT * FROM ' . self::dic()->database()
+                ->quoteIdentifier(NotificationLanguage::getTableName()) . ' WHERE notification_id=%s AND language=%s', [
+            ilDBConstants::T_INTEGER,
+            ilDBConstants::T_TEXT
+        ], [$notification_id, $language]), stdClass::class);
+
+        return $l;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function migrateLanguages() : void
     {
         if (self::dic()->database()->tableExists(NotificationLanguage::getTableName() . "g")) {
@@ -370,28 +370,28 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @inheritDoc
+     * @param Settings|null $settings
+     *
+     * @return string
      */
-    public function storeNotification(NotificationInterface $notification) : void
+    private function getNotificationsQuery(?Settings $settings = null) : string
     {
-        $date = new ilDateTime(time(), IL_CAL_UNIX);
 
-        if (empty($notification->getId())) {
-            $notification->setCreatedAt($date);
+        $sql = ' FROM ' . self::dic()->database()->quoteIdentifier(Notification::getTableName());
+
+        if ($settings !== null) {
+            if (!empty($settings->getSortFields())) {
+                $sql .= ' ORDER BY ' . implode(", ",
+                        array_map(function (SortField $sort_field) : string {
+                            return self::dic()->database()->quoteIdentifier($sort_field->getSortField()) . ' ' . ($sort_field->getSortFieldDirection()
+                                === SortField::SORT_DIRECTION_DOWN ? 'DESC' : 'ASC');
+                        }, $settings->getSortFields()));
+            }
+
+            $sql .= ' LIMIT ' . self::dic()->database()->quote($settings->getOffset(), ilDBConstants::T_INTEGER) . ',' . self::dic()->database()
+                    ->quote($settings->getRowsCount(), ilDBConstants::T_INTEGER);
         }
 
-        $notification->setUpdatedAt($date);
-
-        $notification->setId(self::dic()->database()->store(Notification::getTableName(), [
-            "name"           => [ilDBConstants::T_TEXT, $notification->getName()],
-            "title"          => [ilDBConstants::T_TEXT, $notification->getTitle()],
-            "description"    => [ilDBConstants::T_TEXT, $notification->getDescription()],
-            "parser"         => [ilDBConstants::T_TEXT, $notification->getParser()],
-            "parser_options" => [ilDBConstants::T_TEXT, json_encode($notification->getParserOptions())],
-            "subject"        => [ilDBConstants::T_TEXT, json_encode($notification->getSubjects())],
-            "text"           => [ilDBConstants::T_TEXT, json_encode($notification->getTexts())],
-            "created_at"     => [ilDBConstants::T_TEXT, $notification->getCreatedAt()->get(IL_CAL_DATETIME)],
-            "updated_at"     => [ilDBConstants::T_TEXT, $notification->getUpdatedAt()->get(IL_CAL_DATETIME)]
-        ], "id", $notification->getId()));
+        return $sql;
     }
 }

@@ -25,16 +25,24 @@ class vcalendarSender implements Sender
     use DICTrait;
     use Notifications4PluginTrait;
 
-    const METHOD_REQUEST = "REQUEST";
     const METHOD_CANCEL = "CANCEL";
+    const METHOD_REQUEST = "REQUEST";
     /**
-     * @var string
+     * @var array
      */
-    protected $message = "";
+    protected $attachments = [];
     /**
-     * @var string
+     * @var string|array
      */
-    protected $subject = "";
+    protected $bcc = [];
+    /**
+     * @var string|array
+     */
+    protected $cc = [];
+    /**
+     * @var int
+     */
+    protected $endTime = 0;
     /**
      * @var string
      */
@@ -44,47 +52,39 @@ class vcalendarSender implements Sender
      */
     protected $mailer;
     /**
-     * User-ID or login of sender
-     *
-     * @var int|string
+     * @var string
      */
-    protected $user_from = 0;
-    /**
-     * @var string|array
-     */
-    protected $to;
+    protected $message = "";
     /**
      * @var string
      */
     protected $method = self::METHOD_REQUEST;
     /**
-     * @var string
+     * @var int
      */
-    protected $uid = "";
+    protected $sequence = 0;
     /**
      * @var int
      */
     protected $startTime = 0;
     /**
-     * @var int
+     * @var string
      */
-    protected $endTime = 0;
-    /**
-     * @var int
-     */
-    protected $sequence = 0;
-    /**
-     * @var array
-     */
-    protected $attachments = [];
+    protected $subject = "";
     /**
      * @var string|array
      */
-    protected $cc = [];
+    protected $to = "";
     /**
-     * @var string|array
+     * @var string
      */
-    protected $bcc = [];
+    protected $uid = "";
+    /**
+     * User-ID or login of sender
+     *
+     * @var int|string
+     */
+    protected $user_from = 0;
 
 
     /**
@@ -116,108 +116,17 @@ class vcalendarSender implements Sender
 
 
     /**
-     * @inheritDoc
+     * Add an attachment
+     *
+     * @param string $file Full path of the file to attach
+     *
+     * @return $this
      */
-    public function send() : void
+    public function addAttachment($file)
     {
-        $this->mailer = new ilMail($this->getUserFrom());
-
-        $mbox = new ilMailbox($this->getUserFrom());
-        $sent_folder_id = $mbox->getSentFolder();
-
-        //Create Email Headers
-        $mime_boundary = "----Meeting Booking----" . MD5(TIME());
-
-        $this->mailer->sendInternalMail($sent_folder_id, $this->getUserFrom(), "", $this->to, "", "", "read", "email", 0, $this->subject, $this->getIcalEvent($mime_boundary), $this->getUserFrom(), 0);
-
-        $this->mailer = new ilMail($this->getUserFrom());
-
-        $iluser = new ilObjUser($this->getUserFrom());
-        $headers = "From: " . $iluser->getEmail() . " <" . $iluser->getEmail() . ">\n";
-        $headers .= "Reply-To: " . $iluser->getEmail() . " <" . $iluser->getEmail() . ">\n";
-        $headers .= "MIME-Version: 1.0\n";
-        $headers .= "Content-Type: multipart/alternative; boundary=\"$mime_boundary\"\n";
-        $headers .= "Content-class: urn:content-classes:calendarmessage\n";
-
-        $result = false;
-        if (!intval(self::dic()->settings()->get("prevent_smtp_globally"))) {
-            $result = mail($this->to, $this->subject, $this->getIcalEvent($mime_boundary), $headers);
+        if (is_file($file)) {
+            $this->attachments[] = $file;
         }
-
-        if (!$result) {
-            throw new Notifications4PluginException("Mailer not returns true");
-        }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setSubject($subject)
-    {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setFrom($from)
-    {
-        $this->setUserFrom($from);
-
-        return $this;
-    }
-
-
-    /**
-     * @return array|string
-     */
-    public function getTo()
-    {
-        return $this->to;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setTo($to)
-    {
-        $this->to = $to;
-
-        return $this;
-    }
-
-
-    /**
-     * @return array|string
-     */
-    public function getCc()
-    {
-        return $this->cc;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setCc($cc)
-    {
-        $this->cc = $cc;
 
         return $this;
     }
@@ -242,53 +151,20 @@ class vcalendarSender implements Sender
 
 
     /**
+     * @return array|string
+     */
+    public function getCc()
+    {
+        return $this->cc;
+    }
+
+
+    /**
      * @inheritDoc
      */
-    public function reset()
+    public function setCc($cc)
     {
-        $this->from = "";
-        $this->to = "";
-        $this->subject = "";
-        $this->message = "";
-        $this->uid = "";
-        $this->method = self::METHOD_REQUEST;
-        $this->sequence = 0;
-        $this->startTime = 0;
-        $this->endTime = 0;
-        $this->attachments = [];
-        $this->cc = [];
-        $this->bcc = [];
-        $this->mailer = new ilMimeMail();
-
-        return $this;
-    }
-
-
-    /**
-     * @return int|string
-     */
-    public function getUserFrom()
-    {
-        return $this->user_from;
-    }
-
-
-    /**
-     * @param int|string|ilObjUser $user_from
-     *
-     * @return $this
-     */
-    public function setUserFrom($user_from)
-    {
-        if ($user_from instanceof ilObjUser) {
-            $user_from = $user_from->getId();
-        } else {
-            if (is_string($user_from) && !is_numeric($user_from)) {
-                // Need user-ID
-                $user_from = ilObjUser::_lookupId($user_from);
-            }
-        }
-        $this->user_from = intval($user_from);
+        $this->cc = $cc;
 
         return $this;
     }
@@ -342,17 +218,119 @@ class vcalendarSender implements Sender
 
 
     /**
-     * Add an attachment
-     *
-     * @param string $file Full path of the file to attach
+     * @return array|string
+     */
+    public function getTo()
+    {
+        return $this->to;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setTo($to)
+    {
+        $this->to = $to;
+
+        return $this;
+    }
+
+
+    /**
+     * @return int|string
+     */
+    public function getUserFrom()
+    {
+        return $this->user_from;
+    }
+
+
+    /**
+     * @param int|string|ilObjUser $user_from
      *
      * @return $this
      */
-    public function addAttachment($file)
+    public function setUserFrom($user_from)
     {
-        if (is_file($file)) {
-            $this->attachments[] = $file;
+        if ($user_from instanceof ilObjUser) {
+            $user_from = $user_from->getId();
+        } else {
+            if (is_string($user_from) && !is_numeric($user_from)) {
+                // Need user-ID
+                $user_from = ilObjUser::_lookupId($user_from);
+            }
         }
+        $this->user_from = intval($user_from);
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function reset()
+    {
+        $this->from = "";
+        $this->to = "";
+        $this->subject = "";
+        $this->message = "";
+        $this->uid = "";
+        $this->method = self::METHOD_REQUEST;
+        $this->sequence = 0;
+        $this->startTime = 0;
+        $this->endTime = 0;
+        $this->attachments = [];
+        $this->cc = [];
+        $this->bcc = [];
+        $this->mailer = new ilMimeMail();
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function send() : void
+    {
+        $this->mailer = new ilMail($this->getUserFrom());
+
+        $mbox = new ilMailbox($this->getUserFrom());
+        $sent_folder_id = $mbox->getSentFolder();
+
+        //Create Email Headers
+        $mime_boundary = "----Meeting Booking----" . MD5(TIME());
+
+        $this->mailer->sendInternalMail($sent_folder_id, $this->getUserFrom(), "", $this->to, "", "", "read", "email", 0, $this->subject, $this->getIcalEvent($mime_boundary), $this->getUserFrom(), 0);
+
+        $this->mailer = new ilMail($this->getUserFrom());
+
+        $iluser = new ilObjUser($this->getUserFrom());
+        $headers = "From: " . $iluser->getEmail() . " <" . $iluser->getEmail() . ">\n";
+        $headers .= "Reply-To: " . $iluser->getEmail() . " <" . $iluser->getEmail() . ">\n";
+        $headers .= "MIME-Version: 1.0\n";
+        $headers .= "Content-Type: multipart/alternative; boundary=\"$mime_boundary\"\n";
+        $headers .= "Content-class: urn:content-classes:calendarmessage\n";
+
+        $result = false;
+        if (!intval(self::dic()->settings()->get("prevent_smtp_globally"))) {
+            $result = mail($this->to, $this->subject, $this->getIcalEvent($mime_boundary), $headers);
+        }
+
+        if (!$result) {
+            throw new Notifications4PluginException("Mailer not returns true");
+        }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setFrom($from)
+    {
+        $this->setUserFrom($from);
 
         return $this;
     }
@@ -368,6 +346,28 @@ class vcalendarSender implements Sender
     public function setLocation($location)
     {
         $this->location = $location;
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setSubject($subject)
+    {
+        $this->subject = $subject;
 
         return $this;
     }

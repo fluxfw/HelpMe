@@ -50,7 +50,7 @@ final class RemovePHP72Backport
      *
      * @internal
      */
-    public static function RemovePHP72Backport(Event $event)/*: void*/
+    public static function removePHP72Backport(Event $event)/*: void*/
     {
         self::getInstance($event)->doRemovePHP72Backport();
     }
@@ -143,6 +143,10 @@ final class RemovePHP72Backport
                 $path = $folder . "/" . $file;
 
                 if (is_dir($path)) {
+                    if (in_array($file, ["templates", "vendor"])) {
+                        continue;
+                    }
+
                     $this->getFiles($path, $files);
                 } else {
                     $ext = strtolower(pathinfo($path, PATHINFO_EXTENSION));

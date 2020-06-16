@@ -39,18 +39,18 @@ abstract class AbstractParser implements Parser
     /**
      * @inheritDoc
      */
-    public function getName() : string
+    public function getDocLink() : string
     {
-        return static::NAME;
+        return static::DOC_LINK;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function getDocLink() : string
+    public function getName() : string
     {
-        return static::DOC_LINK;
+        return static::NAME;
     }
 
 

@@ -34,12 +34,6 @@ interface RepositoryInterface
 
 
     /**
-     * @return Parser[]
-     */
-    public function getPossibleParsers() : array;
-
-
-    /**
      * @param string $parser_class
      *
      * @return Parser
@@ -57,6 +51,12 @@ interface RepositoryInterface
      * @throws Notifications4PluginException
      */
     public function getParserForNotification(NotificationInterface $notification) : Parser;
+
+
+    /**
+     * @return Parser[]
+     */
+    public function getPossibleParsers() : array;
 
 
     /**

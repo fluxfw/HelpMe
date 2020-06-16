@@ -18,8 +18,8 @@ use Twig_Loader_String;
 class twigParser extends AbstractParser
 {
 
-    const NAME = "twig";
     const DOC_LINK = "https://twig.symfony.com/doc/1.x/templates.html";
+    const NAME = "twig";
 
 
     /**

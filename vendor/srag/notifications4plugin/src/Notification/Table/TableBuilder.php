@@ -34,6 +34,18 @@ class TableBuilder extends AbstractTableBuilder
     /**
      * @inheritDoc
      */
+    public function render() : string
+    {
+        self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard(self::notifications4plugin()->getPlugin()->translate("add_notification", NotificationsCtrl::LANG_MODULE),
+            self::dic()->ctrl()->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_ADD_NOTIFICATION, "", false, false)));
+
+        return parent::render();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function buildTable() : Table
     {
         $table = self::dataTableUI()->table("notifications4plugin_" . self::notifications4plugin()->getPlugin()->getPluginObject()->getId(),
@@ -54,17 +66,5 @@ class TableBuilder extends AbstractTableBuilder
             ], new DataFetcher())->withPlugin(self::notifications4plugin()->getPlugin());
 
         return $table;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function render() : string
-    {
-        self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard(self::notifications4plugin()->getPlugin()->translate("add_notification", NotificationsCtrl::LANG_MODULE),
-            self::dic()->ctrl()->getLinkTargetByClass(NotificationCtrl::class, NotificationCtrl::CMD_ADD_NOTIFICATION, "", false, false)));
-
-        return parent::render();
     }
 }

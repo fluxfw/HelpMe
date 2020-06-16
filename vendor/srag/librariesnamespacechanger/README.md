@@ -63,20 +63,32 @@ Generate `plugin.php` and `plugin.xml` for ILIAS plugins from `composer.json`
 
 Complete your `composer.json` with
 ```json
-...
+  ...
   "version": "x.y.z",
+  ...
   "ilias_plugin": {
     "id": "x",
     "ilias_min_version": "x.y.z",
     "ilias_max_version": "x.y.z",
+    "learning_progress": true,
+    "supports_export": true,
     "events": [
       {
         "id": "X/Y",
         "type": "listen|raise"
       }
     ]
-  }
-...
+  },
+  ...
+  "authors": [
+    {
+      "name": "...",
+      "email": "...",
+      "homepage": "...",
+      "role": "Developer"
+    }
+  ],
+  ...
 ```
 
 ## UpdatePluginReadme

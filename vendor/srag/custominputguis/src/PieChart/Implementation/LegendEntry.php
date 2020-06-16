@@ -20,18 +20,6 @@ class LegendEntry implements LegendEntryInterface
     use ComponentHelper;
 
     /**
-     * @var string
-     */
-    private $title;
-    /**
-     * @var float
-     */
-    private $y_percentage;
-    /**
-     * @var float
-     */
-    private $text_y_percentage;
-    /**
      * @var float
      */
     private $square_size;
@@ -39,6 +27,18 @@ class LegendEntry implements LegendEntryInterface
      * @var float
      */
     private $text_size;
+    /**
+     * @var float
+     */
+    private $text_y_percentage;
+    /**
+     * @var string
+     */
+    private $title;
+    /**
+     * @var float
+     */
+    private $y_percentage;
 
 
     /**
@@ -57,6 +57,51 @@ class LegendEntry implements LegendEntryInterface
         $this->title = $title;
         $this->calcCoords($numSections, $index);
         $this->calcSizes($numSections, $title);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getSquareSize() : float
+    {
+        return $this->square_size;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getTextSize() : float
+    {
+        return $this->text_size;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getTextYPercentage() : float
+    {
+        return $this->text_y_percentage;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getTitle() : string
+    {
+        return $this->title;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getYPercentage() : float
+    {
+        return $this->y_percentage;
     }
 
 
@@ -89,50 +134,5 @@ class LegendEntry implements LegendEntryInterface
         }
 
         $this->text_size = 1.5;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getYPercentage() : float
-    {
-        return $this->y_percentage;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getTextYPercentage() : float
-    {
-        return $this->text_y_percentage;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getSquareSize() : float
-    {
-        return $this->square_size;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getTextSize() : float
-    {
-        return $this->text_size;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getTitle() : string
-    {
-        return $this->title;
     }
 }

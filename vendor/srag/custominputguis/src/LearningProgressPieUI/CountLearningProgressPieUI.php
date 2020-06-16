@@ -34,6 +34,17 @@ class CountLearningProgressPieUI extends AbstractLearningProgressPieUI
     /**
      * @inheritDoc
      */
+    protected function getCount() : int
+    {
+        return array_reduce($this->count, function (int $sum, int $count) : int {
+            return ($sum + $count);
+        }, 0);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function parseData() : array
     {
         if (count($this->count) > 0) {
@@ -41,16 +52,5 @@ class CountLearningProgressPieUI extends AbstractLearningProgressPieUI
         } else {
             return [];
         }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getCount() : int
-    {
-        return array_reduce($this->count, function (int $sum, int $count) : int {
-            return ($sum + $count);
-        }, 0);
     }
 }

@@ -22,21 +22,21 @@ class PieChartItem implements PieChartItemInterface
     use ComponentHelper;
 
     /**
-     * @var string
-     */
-    protected $name;
-    /**
-     * @var float
-     */
-    protected $value;
-    /**
      * @var Color
      */
     protected $color;
     /**
+     * @var string
+     */
+    protected $name;
+    /**
      * @var Color
      */
     protected $textColor;
+    /**
+     * @var float
+     */
+    protected $value;
 
 
     /**
@@ -73,24 +73,6 @@ class PieChartItem implements PieChartItemInterface
     /**
      * @inheritDoc
      */
-    public function getName() : string
-    {
-        return $this->name;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getValue() : float
-    {
-        return $this->value;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function getColor() : Color
     {
         return $this->color;
@@ -100,8 +82,26 @@ class PieChartItem implements PieChartItemInterface
     /**
      * @inheritDoc
      */
+    public function getName() : string
+    {
+        return $this->name;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getTextColor() : Color
     {
         return $this->textColor;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getValue() : float
+    {
+        return $this->value;
     }
 }

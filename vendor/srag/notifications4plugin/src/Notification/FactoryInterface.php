@@ -25,6 +25,15 @@ interface FactoryInterface
 
 
     /**
+     * @param NotificationCtrl      $parent
+     * @param NotificationInterface $notification
+     *
+     * @return FormBuilder
+     */
+    public function newFormBuilderInstance(NotificationCtrl $parent, NotificationInterface $notification) : FormBuilder;
+
+
+    /**
      * @return NotificationInterface
      */
     public function newInstance() : NotificationInterface;
@@ -36,13 +45,4 @@ interface FactoryInterface
      * @return TableBuilder
      */
     public function newTableBuilderInstance(NotificationsCtrl $parent) : TableBuilder;
-
-
-    /**
-     * @param NotificationCtrl      $parent
-     * @param NotificationInterface $notification
-     *
-     * @return FormBuilder
-     */
-    public function newFormBuilderInstance(NotificationCtrl $parent, NotificationInterface $notification) : FormBuilder;
 }

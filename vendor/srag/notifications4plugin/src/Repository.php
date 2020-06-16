@@ -33,6 +33,27 @@ final class Repository implements RepositoryInterface
      * @var RepositoryInterface|null
      */
     protected static $instance = null;
+    /**
+     * @var array
+     */
+    protected $placeholder_types;
+    /**
+     * @var PluginInterface
+     */
+    protected $plugin;
+    /**
+     * @var string
+     */
+    protected $table_name_prefix = "";
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -45,29 +66,6 @@ final class Repository implements RepositoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * @var string
-     */
-    protected $table_name_prefix = "";
-    /**
-     * @var PluginInterface
-     */
-    protected $plugin;
-    /**
-     * @var array
-     */
-    protected $placeholder_types;
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

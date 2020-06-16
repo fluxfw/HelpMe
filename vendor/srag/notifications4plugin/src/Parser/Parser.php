@@ -21,13 +21,13 @@ interface Parser
      *
      * @abstract
      */
-    const NAME = "";
+    const DOC_LINK = "";
     /**
      * @var string
      *
      * @abstract
      */
-    const DOC_LINK = "";
+    const NAME = "";
 
 
     /**
@@ -39,13 +39,13 @@ interface Parser
     /**
      * @return string
      */
-    public function getName() : string;
+    public function getDocLink() : string;
 
 
     /**
      * @return string
      */
-    public function getDocLink() : string;
+    public function getName() : string;
 
 
     /**

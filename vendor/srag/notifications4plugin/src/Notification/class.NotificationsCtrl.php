@@ -65,19 +65,19 @@ class NotificationsCtrl
     /**
      *
      */
-    protected function setTabs() : void
+    protected function listNotifications() : void
     {
+        $table = self::notifications4plugin()->notifications()->factory()->newTableBuilderInstance($this);
 
+        self::output()->output($table);
     }
 
 
     /**
      *
      */
-    protected function listNotifications() : void
+    protected function setTabs() : void
     {
-        $table = self::notifications4plugin()->notifications()->factory()->newTableBuilderInstance($this);
 
-        self::output()->output($table);
     }
 }

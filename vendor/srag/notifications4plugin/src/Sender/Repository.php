@@ -26,6 +26,15 @@ final class Repository implements RepositoryInterface
 
 
     /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return RepositoryInterface
      */
     public static function getInstance() : RepositoryInterface
@@ -35,15 +44,6 @@ final class Repository implements RepositoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

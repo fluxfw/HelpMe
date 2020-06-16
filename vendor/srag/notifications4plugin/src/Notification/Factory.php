@@ -29,6 +29,15 @@ final class Factory implements FactoryInterface
 
 
     /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return FactoryInterface
      */
     public static function getInstance() : FactoryInterface
@@ -38,15 +47,6 @@ final class Factory implements FactoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -79,6 +79,17 @@ final class Factory implements FactoryInterface
     /**
      * @inheritDoc
      */
+    public function newFormBuilderInstance(NotificationCtrl $parent, NotificationInterface $notification) : FormBuilder
+    {
+        $form = new FormBuilder($parent, $notification);
+
+        return $form;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function newInstance() : NotificationInterface
     {
         $notification = new Notification();
@@ -95,16 +106,5 @@ final class Factory implements FactoryInterface
         $table = new TableBuilder($parent);
 
         return $table;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function newFormBuilderInstance(NotificationCtrl $parent, NotificationInterface $notification) : FormBuilder
-    {
-        $form = new FormBuilder($parent, $notification);
-
-        return $form;
     }
 }

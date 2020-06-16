@@ -24,21 +24,6 @@ final class Repository implements RepositoryInterface
      * @var RepositoryInterface|null
      */
     protected static $instance = null;
-
-
-    /**
-     * @return RepositoryInterface
-     */
-    public static function getInstance() : RepositoryInterface
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-
     /**
      * @var Parser[]
      */
@@ -51,6 +36,19 @@ final class Repository implements RepositoryInterface
     private function __construct()
     {
         $this->addParser($this->factory()->twig());
+    }
+
+
+    /**
+     * @return RepositoryInterface
+     */
+    public static function getInstance() : RepositoryInterface
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
 
@@ -84,15 +82,6 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function getPossibleParsers() : array
-    {
-        return $this->parsers;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function getParserByClass(string $parser_class) : Parser
     {
         if (isset($this->getPossibleParsers()[$parser_class])) {
@@ -109,6 +98,15 @@ final class Repository implements RepositoryInterface
     public function getParserForNotification(NotificationInterface $notification) : Parser
     {
         return $this->getParserByClass($notification->getParser());
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getPossibleParsers() : array
+    {
+        return $this->parsers;
     }
 
 

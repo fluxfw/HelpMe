@@ -25,6 +25,15 @@ final class Factory implements FactoryInterface
 
 
     /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return FactoryInterface
      */
     public static function getInstance() : FactoryInterface
@@ -34,15 +43,6 @@ final class Factory implements FactoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

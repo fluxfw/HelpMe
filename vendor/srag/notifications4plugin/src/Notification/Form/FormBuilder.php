@@ -53,6 +53,21 @@ class FormBuilder extends AbstractFormBuilder
     /**
      * @inheritDoc
      */
+    public function render() : string
+    {
+        $this->messages[] = self::dic()->ui()->factory()->messageBox()->info(self::output()->getHTML([
+            htmlspecialchars(self::notifications4plugin()->getPlugin()->translate("placeholder_types_info", NotificationsCtrl::LANG_MODULE)),
+            "<br><br>",
+            self::dic()->ui()->factory()->listing()->descriptive(self::notifications4plugin()->getPlaceholderTypes())
+        ]));
+
+        return parent::render();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function getButtons() : array
     {
         $buttons = [];
@@ -211,20 +226,5 @@ class FormBuilder extends AbstractFormBuilder
         }
 
         self::notifications4plugin()->notifications()->storeNotification($this->notification);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function render() : string
-    {
-        $this->messages[] = self::dic()->ui()->factory()->messageBox()->info(self::output()->getHTML([
-            htmlspecialchars(self::notifications4plugin()->getPlugin()->translate("placeholder_types_info", NotificationsCtrl::LANG_MODULE)),
-            "<br><br>",
-            self::dic()->ui()->factory()->listing()->descriptive(self::notifications4plugin()->getPlaceholderTypes())
-        ]));
-
-        return parent::render();
     }
 }

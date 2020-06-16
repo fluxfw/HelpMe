@@ -28,9 +28,31 @@ class InternalMailSender implements Sender
     use Notifications4PluginTrait;
 
     /**
+     * User-ID or login of bcc
+     *
+     * @var string|int
+     */
+    protected $bcc = "";
+    /**
+     * User-ID or login of cc
+     *
+     * @var string|int
+     */
+    protected $cc = "";
+    /**
+     * @var ilMail
+     */
+    protected $mailer;
+    /**
      * @var string
      */
     protected $message = "";
+    /**
+     * Store the mail in the sent box of the sender
+     *
+     * @var bool
+     */
+    protected $save_in_sent_box = true;
     /**
      * @var string
      */
@@ -47,28 +69,6 @@ class InternalMailSender implements Sender
      * @var int|string
      */
     protected $user_to = "";
-    /**
-     * @var ilMail
-     */
-    protected $mailer;
-    /**
-     * User-ID or login of cc
-     *
-     * @var string|int
-     */
-    protected $cc;
-    /**
-     * User-ID or login of bcc
-     *
-     * @var string|int
-     */
-    protected $bcc;
-    /**
-     * Store the mail in the sent box of the sender
-     *
-     * @var bool
-     */
-    protected $save_in_sent_box = true;
 
 
     /**
@@ -89,95 +89,20 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @inheritDoc
-     * @throws ilMailException
-     * @throws Throwable
-     * @throws Notifications4PluginException
+     * @return array|string
      */
-    public function send() : void
+    public function getBcc()
     {
-        $this->mailer = new ilMail($this->getUserFrom());
-
-        $this->mailer->setSaveInSentbox($this->isSaveInSentBox());
-
-        $errors = $this->mailer->sendMail($this->getUserTo(), $this->getCc(), $this->getBcc(), $this->getSubject(), $this->getMessage(), [], ["normal"]);
-
-        if (!empty($errors)) {
-            $error = $errors[0];
-            if ($error instanceof ilMailError) {
-                throw new ilMailException(self::dic()->language()->txt($error->getLanguageVariable()));
-            } else {
-                if ($error instanceof Throwable) {
-                    throw $error;
-                } else {
-                    if (is_string($error)) {
-                        throw new Notifications4PluginException($error);
-                    } else {
-                        throw new Notifications4PluginException('Unknown exception when sending mail.');
-                    }
-                }
-            }
-        }
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getSubject()
-    {
-        return $this->subject;
+        return $this->bcc;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function setSubject($subject)
+    public function setBcc($bcc)
     {
-        $this->subject = $subject;
-
-        return $this;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getMessage()
-    {
-        return $this->message;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setMessage($message)
-    {
-        $this->message = $message;
-
-        return $this;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setFrom($from)
-    {
-        $this->setUserFrom($from);
-
-        return $this;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function setTo($to)
-    {
-        $this->setUserTo($to);
+        $this->bcc = $this->idOrUser2login($bcc);
 
         return $this;
     }
@@ -204,84 +129,42 @@ class InternalMailSender implements Sender
 
 
     /**
-     * @return array|string
+     * @return string
      */
-    public function getBcc()
+    public function getMessage()
     {
-        return $this->bcc;
+        return $this->message;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function setBcc($bcc)
+    public function setMessage($message)
     {
-        $this->bcc = $this->idOrUser2login($bcc);
+        $this->message = $message;
 
         return $this;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getSubject()
+    {
+        return $this->subject;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function reset()
+    public function setSubject($subject)
     {
-        $this->message = "";
-        $this->subject = "";
-        $this->user_from = 0;
-        $this->user_to = "";
-        $this->bcc = "";
-        $this->bcc = "";
-        $this->save_in_sent_box = true;
-        $this->mailer = null;
+        $this->subject = $subject;
 
         return $this;
-    }
-
-
-    /**
-     * Save email in sent box of sender?
-     *
-     * @param bool $state
-     */
-    public function setSaveInSentBox($state)
-    {
-        $this->save_in_sent_box = $state;
-    }
-
-
-    /**
-     * @return boolean
-     */
-    public function isSaveInSentBox()
-    {
-        return $this->save_in_sent_box;
-    }
-
-
-    /**
-     * Convert User-ID to login
-     *
-     * @param int|string|ilObjUser $id_or_user
-     *
-     * @return mixed
-     */
-    protected function idOrUser2login($id_or_user)
-    {
-        if ($id_or_user instanceof ilObjUser) {
-            return $id_or_user->getLogin();
-        } else {
-            if (is_numeric($id_or_user)) {
-                // Need login
-                $data = ilObjUser::_lookupName($id_or_user);
-
-                return $data["login"];
-            }
-        }
-
-        return $id_or_user;
     }
 
 
@@ -334,5 +217,126 @@ class InternalMailSender implements Sender
         $this->user_to = $this->idOrUser2login($user_to);
 
         return $this;
+    }
+
+
+    /**
+     * @return boolean
+     */
+    public function isSaveInSentBox()
+    {
+        return $this->save_in_sent_box;
+    }
+
+
+    /**
+     * Save email in sent box of sender?
+     *
+     * @param bool $state
+     */
+    public function setSaveInSentBox($state)
+    {
+        $this->save_in_sent_box = $state;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function reset()
+    {
+        $this->message = "";
+        $this->subject = "";
+        $this->user_from = 0;
+        $this->user_to = "";
+        $this->bcc = "";
+        $this->bcc = "";
+        $this->save_in_sent_box = true;
+        $this->mailer = null;
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     * @throws ilMailException
+     * @throws Throwable
+     * @throws Notifications4PluginException
+     */
+    public function send() : void
+    {
+        $this->mailer = new ilMail($this->getUserFrom());
+
+        $this->mailer->setSaveInSentbox($this->isSaveInSentBox());
+
+        if (self::version()->is6()) {
+            $errors = $this->mailer->sendMail($this->getUserTo(), $this->getCc(), $this->getBcc(), $this->getSubject(), $this->getMessage(), [], false);
+        } else {
+            $errors = $this->mailer->sendMail($this->getUserTo(), $this->getCc(), $this->getBcc(), $this->getSubject(), $this->getMessage(), [], ["normal"]);
+        }
+
+        if (!empty($errors)) {
+            $error = $errors[0];
+            if ($error instanceof ilMailError) {
+                throw new ilMailException(self::dic()->language()->txt($error->getLanguageVariable()));
+            } else {
+                if ($error instanceof Throwable) {
+                    throw $error;
+                } else {
+                    if (is_string($error)) {
+                        throw new Notifications4PluginException($error);
+                    } else {
+                        throw new Notifications4PluginException('Unknown exception when sending mail.');
+                    }
+                }
+            }
+        }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setFrom($from)
+    {
+        $this->setUserFrom($from);
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function setTo($to)
+    {
+        $this->setUserTo($to);
+
+        return $this;
+    }
+
+
+    /**
+     * Convert User-ID to login
+     *
+     * @param int|string|ilObjUser $id_or_user
+     *
+     * @return mixed
+     */
+    protected function idOrUser2login($id_or_user)
+    {
+        if ($id_or_user instanceof ilObjUser) {
+            return $id_or_user->getLogin();
+        } else {
+            if (is_numeric($id_or_user)) {
+                // Need login
+                $data = ilObjUser::_lookupName($id_or_user);
+
+                return $data["login"];
+            }
+        }
+
+        return $id_or_user;
     }
 }

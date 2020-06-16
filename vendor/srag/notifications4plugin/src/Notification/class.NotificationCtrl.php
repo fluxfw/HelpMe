@@ -32,13 +32,13 @@ class NotificationCtrl
     const CMD_UPDATE_NOTIFICATION = "updateNotification";
     const GET_PARAM_NOTIFICATION_ID = "notification_id";
     /**
-     * @var NotificationsCtrl
-     */
-    protected $parent;
-    /**
      * @var Notification
      */
     protected $notification;
+    /**
+     * @var NotificationsCtrl
+     */
+    protected $parent;
 
 
     /**
@@ -93,20 +93,11 @@ class NotificationCtrl
 
 
     /**
-     *
+     * @return NotificationsCtrl
      */
-    protected function setTabs() : void
+    public function getParent() : NotificationsCtrl
     {
-
-    }
-
-
-    /**
-     *
-     */
-    protected function back() : void
-    {
-        self::dic()->ctrl()->redirect($this->parent, NotificationsCtrl::CMD_LIST_NOTIFICATIONS);
+        return $this->parent;
     }
 
 
@@ -118,6 +109,15 @@ class NotificationCtrl
         $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
 
         self::output()->output($form);
+    }
+
+
+    /**
+     *
+     */
+    protected function back() : void
+    {
+        self::dic()->ctrl()->redirect($this->parent, NotificationsCtrl::CMD_LIST_NOTIFICATIONS);
     }
 
 
@@ -145,44 +145,11 @@ class NotificationCtrl
     /**
      *
      */
-    protected function editNotification() : void
+    protected function deleteNotification() : void
     {
-        $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
+        self::notifications4plugin()->notifications()->deleteNotification($this->notification);
 
-        self::output()->output($form);
-    }
-
-
-    /**
-     *
-     */
-    protected function updateNotification() : void
-    {
-        $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
-
-        if (!$form->storeForm()) {
-            self::output()->output($form);
-
-            return;
-        }
-
-        ilUtil::sendSuccess(self::notifications4plugin()->getPlugin()->translate("saved_notification", NotificationsCtrl::LANG_MODULE, [$this->notification->getTitle()]), true);
-
-        self::dic()->ctrl()->redirect($this, self::CMD_EDIT_NOTIFICATION);
-    }
-
-
-    /**
-     *
-     */
-    protected function duplicateNotification() : void
-    {
-        $cloned_notification = self::notifications4plugin()->notifications()->duplicateNotification($this->notification);
-
-        self::notifications4plugin()->notifications()->storeNotification($cloned_notification);
-
-        ilUtil::sendSuccess(self::notifications4plugin()->getPlugin()
-            ->translate("duplicated_notification", NotificationsCtrl::LANG_MODULE, [$cloned_notification->getTitle()]), true);
+        ilUtil::sendSuccess(self::notifications4plugin()->getPlugin()->translate("deleted_notification", NotificationsCtrl::LANG_MODULE, [$this->notification->getTitle()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_BACK);
     }
@@ -212,21 +179,54 @@ class NotificationCtrl
     /**
      *
      */
-    protected function deleteNotification() : void
+    protected function duplicateNotification() : void
     {
-        self::notifications4plugin()->notifications()->deleteNotification($this->notification);
+        $cloned_notification = self::notifications4plugin()->notifications()->duplicateNotification($this->notification);
 
-        ilUtil::sendSuccess(self::notifications4plugin()->getPlugin()->translate("deleted_notification", NotificationsCtrl::LANG_MODULE, [$this->notification->getTitle()]), true);
+        self::notifications4plugin()->notifications()->storeNotification($cloned_notification);
+
+        ilUtil::sendSuccess(self::notifications4plugin()->getPlugin()
+            ->translate("duplicated_notification", NotificationsCtrl::LANG_MODULE, [$cloned_notification->getTitle()]), true);
 
         self::dic()->ctrl()->redirect($this, self::CMD_BACK);
     }
 
 
     /**
-     * @return NotificationsCtrl
+     *
      */
-    public function getParent() : NotificationsCtrl
+    protected function editNotification() : void
     {
-        return $this->parent;
+        $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
+
+        self::output()->output($form);
+    }
+
+
+    /**
+     *
+     */
+    protected function setTabs() : void
+    {
+
+    }
+
+
+    /**
+     *
+     */
+    protected function updateNotification() : void
+    {
+        $form = self::notifications4plugin()->notifications()->factory()->newFormBuilderInstance($this, $this->notification);
+
+        if (!$form->storeForm()) {
+            self::output()->output($form);
+
+            return;
+        }
+
+        ilUtil::sendSuccess(self::notifications4plugin()->getPlugin()->translate("saved_notification", NotificationsCtrl::LANG_MODULE, [$this->notification->getTitle()]), true);
+
+        self::dic()->ctrl()->redirect($this, self::CMD_EDIT_NOTIFICATION);
     }
 }

@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.9.0]
+- Min. PHP 7.2
+- `assignIssueToUser`
+- `getTicketByKey`
+
 ## [0.8.4]
 - Fix
 

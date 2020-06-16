@@ -26,9 +26,14 @@ class Renderer extends AbstractComponentRenderer
     /**
      * @inheritDoc
      */
-    protected function getComponentInterfaceName() : array
+    public function registerResources(ResourceRegistry $registry)/*: void*/
     {
-        return [PieChartInterface::class];
+        parent::registerResources($registry);
+
+        $dir = __DIR__;
+        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/..";
+
+        $registry->register($dir . "/css/piechart.css");
     }
 
 
@@ -40,6 +45,24 @@ class Renderer extends AbstractComponentRenderer
         $this->checkComponent($component);
 
         return $this->renderStandard($component, $default_renderer);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function getComponentInterfaceName() : array
+    {
+        return [PieChartInterface::class];
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function getTemplatePath(/*string*/ $name) : string
+    {
+        return __DIR__ . "/../templates/" . $name;
     }
 
 
@@ -100,28 +123,5 @@ class Renderer extends AbstractComponentRenderer
         $tpl->parseCurrentBlock();
 
         return self::output()->getHTML($tpl);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function registerResources(ResourceRegistry $registry)/*: void*/
-    {
-        parent::registerResources($registry);
-
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/..";
-
-        $registry->register($dir . "/css/piechart.css");
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getTemplatePath(/*string*/ $name) : string
-    {
-        return __DIR__ . "/../templates/" . $name;
     }
 }

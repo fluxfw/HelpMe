@@ -20,6 +20,10 @@ class SectionValue implements SectionValueInterface
     use ComponentHelper;
 
     /**
+     * @var int
+     */
+    private $text_size;
+    /**
      * @var float
      */
     private $value;
@@ -31,10 +35,6 @@ class SectionValue implements SectionValueInterface
      * @var float
      */
     private $y_percentage;
-    /**
-     * @var int
-     */
-    private $text_size;
 
 
     /**
@@ -58,30 +58,11 @@ class SectionValue implements SectionValueInterface
 
 
     /**
-     * @param float $stroke_dasharray
-     * @param float $stroke_dashoffset
+     * @inheritDoc
      */
-    private function calcChartCoords(float $stroke_dasharray, float $stroke_dashoffset)/*: void*/
+    public function getTextSize() : int
     {
-        $angle_dasharray = abs($stroke_dasharray) * 3.6 * 2.549;
-        $angle_dashoffset = abs($stroke_dashoffset) * 3.6 * 2.549;
-        $final_angle_rad = deg2rad(360 - ($angle_dashoffset + $angle_dasharray / 2));
-
-        $this->x_percentage = (0.25 + (cos($final_angle_rad) * 0.135)) * 100;
-        $this->y_percentage = (0.5 - (sin($final_angle_rad) * 0.275)) * 100;
-    }
-
-
-    /**
-     * @param float $section_percentage
-     */
-    private function calcTextSize(float $section_percentage)/*: void*/
-    {
-        if ($section_percentage <= 7) {
-            $this->text_size = 0;
-        } else {
-            $this->text_size = 3;
-        }
+        return $this->text_size;
     }
 
 
@@ -113,10 +94,29 @@ class SectionValue implements SectionValueInterface
 
 
     /**
-     * @inheritDoc
+     * @param float $stroke_dasharray
+     * @param float $stroke_dashoffset
      */
-    public function getTextSize() : int
+    private function calcChartCoords(float $stroke_dasharray, float $stroke_dashoffset)/*: void*/
     {
-        return $this->text_size;
+        $angle_dasharray = abs($stroke_dasharray) * 3.6 * 2.549;
+        $angle_dashoffset = abs($stroke_dashoffset) * 3.6 * 2.549;
+        $final_angle_rad = deg2rad(360 - ($angle_dashoffset + $angle_dasharray / 2));
+
+        $this->x_percentage = (0.25 + (cos($final_angle_rad) * 0.135)) * 100;
+        $this->y_percentage = (0.5 - (sin($final_angle_rad) * 0.275)) * 100;
+    }
+
+
+    /**
+     * @param float $section_percentage
+     */
+    private function calcTextSize(float $section_percentage)/*: void*/
+    {
+        if ($section_percentage <= 7) {
+            $this->text_size = 0;
+        } else {
+            $this->text_size = 3;
+        }
     }
 }

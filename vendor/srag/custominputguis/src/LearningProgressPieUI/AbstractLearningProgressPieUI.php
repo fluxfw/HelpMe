@@ -40,17 +40,17 @@ abstract class AbstractLearningProgressPieUI
      */
     protected static $init = false;
     /**
-     * @var bool
+     * @var array|null
      */
-    protected $show_legend = true;
+    protected $cache = null;
     /**
      * @var bool
      */
     protected $show_empty = false;
     /**
-     * @var array|null
+     * @var bool
      */
-    protected $cache = null;
+    protected $show_legend = true;
 
 
     /**
@@ -59,43 +59,6 @@ abstract class AbstractLearningProgressPieUI
     public function __construct()
     {
 
-    }
-
-
-    /**
-     * @param bool show_legend
-     *
-     * @return self
-     */
-    public function withShowLegend(bool $show_legend) : self
-    {
-        $this->show_legend = $show_legend;
-
-        return $this;
-    }
-
-
-    /**
-     * @param bool $show_empty
-     *
-     * @return self
-     */
-    public function withShowEmpty(bool $show_empty) : self
-    {
-        $this->show_empty = $show_empty;
-
-        return $this;
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getTitles() : array
-    {
-        return array_map(function (int $status) : string {
-            return $this->getText($status);
-        }, self::LP_STATUS);
     }
 
 
@@ -133,6 +96,17 @@ abstract class AbstractLearningProgressPieUI
 
 
     /**
+     * @return array
+     */
+    public function getTitles() : array
+    {
+        return array_map(function (int $status) : string {
+            return $this->getText($status);
+        }, self::LP_STATUS);
+    }
+
+
+    /**
      * @return string
      */
     public function render() : string
@@ -159,6 +133,44 @@ abstract class AbstractLearningProgressPieUI
 
 
     /**
+     * @param bool $show_empty
+     *
+     * @return self
+     */
+    public function withShowEmpty(bool $show_empty) : self
+    {
+        $this->show_empty = $show_empty;
+
+        return $this;
+    }
+
+
+    /**
+     * @param bool show_legend
+     *
+     * @return self
+     */
+    public function withShowLegend(bool $show_legend) : self
+    {
+        $this->show_legend = $show_legend;
+
+        return $this;
+    }
+
+
+    /**
+     * @return int
+     */
+    protected abstract function getCount() : int;
+
+
+    /**
+     * @return int[]
+     */
+    protected abstract function parseData() : array;
+
+
+    /**
      * @param int $status
      *
      * @return string
@@ -169,16 +181,4 @@ abstract class AbstractLearningProgressPieUI
 
         return ilLearningProgressBaseGUI::_getStatusText($status);
     }
-
-
-    /**
-     * @return int[]
-     */
-    protected abstract function parseData() : array;
-
-
-    /**
-     * @return int
-     */
-    protected abstract function getCount() : int;
 }

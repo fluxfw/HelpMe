@@ -22,9 +22,17 @@ class PieChart implements PieChartInterface
     use ComponentHelper;
 
     /**
+     * @var float|null
+     */
+    private $customTotalValue = null;
+    /**
      * @var Section[]
      */
     private $sections = [];
+    /**
+     * @var bool
+     */
+    private $showLegend = true;
     /**
      * @var float
      */
@@ -33,14 +41,6 @@ class PieChart implements PieChartInterface
      * @var bool
      */
     private $valuesInLegend = false;
-    /**
-     * @var bool
-     */
-    private $showLegend = true;
-    /**
-     * @var float|null
-     */
-    private $customTotalValue = null;
 
 
     /**
@@ -64,41 +64,11 @@ class PieChart implements PieChartInterface
 
 
     /**
-     * @param PieChartItemInterface[] $pieChartItems
-     */
-    protected function createSections(array $pieChartItems)/*: void*/
-    {
-        $currentOffset = 0;
-        $index = 1;
-
-        foreach ($pieChartItems as $item) {
-            $section = new Section($item, $this->totalValue, count($pieChartItems), $index, $currentOffset);
-            $this->sections[] = $section;
-            $currentOffset += $section->getStrokeLength();
-            $index++;
-        }
-    }
-
-
-    /**
-     * @param PieChartItemInterface[] $pieChartItems
-     */
-    protected function calcTotalValue(array $pieChartItems)/*: void*/
-    {
-        $total = 0;
-        foreach ($pieChartItems as $item) {
-            $total += $item->getValue();
-        }
-        $this->totalValue = $total;
-    }
-
-
-    /**
      * @inheritDoc
      */
-    public function getTotalValue() : float
+    public function getCustomTotalValue() : /*?*/ float
     {
-        return $this->totalValue;
+        return $this->customTotalValue;
     }
 
 
@@ -114,35 +84,9 @@ class PieChart implements PieChartInterface
     /**
      * @inheritDoc
      */
-    public function withValuesInLegend(bool $state) : PieChartInterface
+    public function getTotalValue() : float
     {
-        //$this->checkBoolArg("state", $state);
-        $clone = clone $this;
-        $clone->valuesInLegend = $state;
-
-        return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function isValuesInLegend() : bool
-    {
-        return $this->valuesInLegend;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withShowLegend(bool $state) : PieChartInterface
-    {
-        //$this->checkBoolArg("state", $state);
-        $clone = clone $this;
-        $clone->showLegend = $state;
-
-        return $clone;
+        return $this->totalValue;
     }
 
 
@@ -152,6 +96,15 @@ class PieChart implements PieChartInterface
     public function isShowLegend() : bool
     {
         return $this->showLegend;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function isValuesInLegend() : bool
+    {
+        return $this->valuesInLegend;
     }
 
 
@@ -173,8 +126,55 @@ class PieChart implements PieChartInterface
     /**
      * @inheritDoc
      */
-    public function getCustomTotalValue() : /*?*/ float
+    public function withShowLegend(bool $state) : PieChartInterface
     {
-        return $this->customTotalValue;
+        //$this->checkBoolArg("state", $state);
+        $clone = clone $this;
+        $clone->showLegend = $state;
+
+        return $clone;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withValuesInLegend(bool $state) : PieChartInterface
+    {
+        //$this->checkBoolArg("state", $state);
+        $clone = clone $this;
+        $clone->valuesInLegend = $state;
+
+        return $clone;
+    }
+
+
+    /**
+     * @param PieChartItemInterface[] $pieChartItems
+     */
+    protected function calcTotalValue(array $pieChartItems)/*: void*/
+    {
+        $total = 0;
+        foreach ($pieChartItems as $item) {
+            $total += $item->getValue();
+        }
+        $this->totalValue = $total;
+    }
+
+
+    /**
+     * @param PieChartItemInterface[] $pieChartItems
+     */
+    protected function createSections(array $pieChartItems)/*: void*/
+    {
+        $currentOffset = 0;
+        $index = 1;
+
+        foreach ($pieChartItems as $item) {
+            $section = new Section($item, $this->totalValue, count($pieChartItems), $index, $currentOffset);
+            $this->sections[] = $section;
+            $currentOffset += $section->getStrokeLength();
+            $index++;
+        }
     }
 }
