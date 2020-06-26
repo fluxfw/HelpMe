@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.9.1]
+- Fix post
+
 ## [0.9.0]
 - Min. PHP 7.2
 - `assignIssueToUser`

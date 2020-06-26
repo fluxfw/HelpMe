@@ -193,24 +193,24 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "v0.9.0",
-        "version_normalized": "0.9.0.0",
+        "version": "v0.9.1",
+        "version_normalized": "0.9.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "7ce18b2c6dfa0819332b653c4151b22a82168491"
+            "reference": "7d8512354a635d07c496db6708ca305797e4efb0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/7ce18b2c6dfa0819332b653c4151b22a82168491",
-            "reference": "7ce18b2c6dfa0819332b653c4151b22a82168491",
+            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/7d8512354a635d07c496db6708ca305797e4efb0",
+            "reference": "7d8512354a635d07c496db6708ca305797e4efb0",
             "shasum": ""
         },
         "require": {
             "php": ">=7.2",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2020-06-15T11:27:47+00:00",
+        "time": "2020-06-26T11:03:33+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -285,17 +285,17 @@
     },
     {
         "name": "srag/notifications4plugin",
-        "version": "v5.5.4",
-        "version_normalized": "5.5.4.0",
+        "version": "v5.5.5",
+        "version_normalized": "5.5.5.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-            "reference": "459e0a70e28e8dd04781ea3076da9c2a89272b01"
+            "reference": "9fe51f46732131c6fd4370c75d2b445607fbd4ab"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/459e0a70e28e8dd04781ea3076da9c2a89272b01",
-            "reference": "459e0a70e28e8dd04781ea3076da9c2a89272b01",
+            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/9fe51f46732131c6fd4370c75d2b445607fbd4ab",
+            "reference": "9fe51f46732131c6fd4370c75d2b445607fbd4ab",
             "shasum": ""
         },
         "require": {
@@ -305,7 +305,7 @@
             "srag/dic": ">=0.1.0",
             "twig/twig": "1.18.0"
         },
-        "time": "2020-06-16T12:27:36+00:00",
+        "time": "2020-06-26T05:52:41+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

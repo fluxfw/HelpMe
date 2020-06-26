@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.5.5]
+- Update `migrateFromOldGlobalPlugin`
+
 ## [5.5.4]
 - Fix ILIAS 6 internal mail
 

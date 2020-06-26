@@ -234,14 +234,14 @@ final class Repository implements RepositoryInterface
 
                     $notification = $this->factory()->newInstance();
 
-                    $notification->setName($row["name"]);
-                    $notification->setTitle($row["title"]);
-                    $notification->setDescription($row["description"]);
+                    $notification->setName(strval($row["name"]));
+                    $notification->setTitle(strval($row["title"]));
+                    $notification->setDescription(strval($row["description"]));
 
                     if (empty($row["parser"]) || $row["parser"] === $global_plugin_twig_parser_class) {
                         $notification->setParser(twigParser::class);
                     } else {
-                        $notification->setParser($row["parser"]);
+                        $notification->setParser(strval($row["parser"]));
                     }
 
                     $result2 = self::dic()->database()->queryF('SELECT * FROM ' . self::dic()->database()
@@ -249,8 +249,13 @@ final class Repository implements RepositoryInterface
                         . ' WHERE notification_id=%s', [ilDBConstants::T_INTEGER], [$row["id"]]);
 
                     while (($row2 = $result2->fetchAssoc()) !== false) {
-                        $notification->setSubject($row2["subject"], $row2["language"]);
-                        $notification->setText($row2["text"], $row2["language"]);
+                        $notification->setSubject(strval($row2["subject"]), strval($row2["language"]));
+                        $notification->setText(strval($row2["text"]), strval($row2["language"]));
+                    }
+
+                    if (!empty($row["default_language"])) {
+                        $notification->setSubject($notification->getSubject(strval($row["default_language"]), false), "default");
+                        $notification->setText($notification->getText(strval($row["default_language"]), false), "default");
                     }
 
                     $this->storeNotification($notification);

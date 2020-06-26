@@ -633,7 +633,7 @@ class JiraCurl
             $curlConnection = $this->initCurlConnection($url, $headers);
 
             if ($post_data !== null) {
-                $curlConnection->setOpt(CURLOPT_PUT, true);
+                $curlConnection->setOpt(CURLOPT_POST, true);
                 $curlConnection->setOpt(CURLOPT_POSTFIELDS, $post_data);
             } else {
                 if ($put_data !== null) {
