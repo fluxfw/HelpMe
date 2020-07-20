@@ -18,11 +18,21 @@ final class Repository
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -39,18 +49,9 @@ final class Repository
 
 
     /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @internal
      */
-    public function dropTables()/*: void*/
+    public function dropTables() : void
     {
 
     }
@@ -68,7 +69,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/*: void*/
+    public function installTables() : void
     {
 
     }

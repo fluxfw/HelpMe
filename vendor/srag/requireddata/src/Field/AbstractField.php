@@ -4,9 +4,12 @@ namespace srag\RequiredData\HelpMe\Field;
 
 use ActiveRecord;
 use arConnector;
+use ILIAS\UI\Component\Component;
 use LogicException;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupCtrl;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupField;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
 /**
@@ -21,6 +24,7 @@ abstract class AbstractField extends ActiveRecord
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
      * @var string
      *
@@ -67,7 +71,9 @@ abstract class AbstractField extends ActiveRecord
      */
     public static function getType() : string
     {
-        return strtolower(end(explode("\\", static::class)));
+        $parts = explode("\\", static::class);
+
+        return strtolower(end($parts));
     }
 
 
@@ -151,6 +157,15 @@ abstract class AbstractField extends ActiveRecord
      * @con_is_notnull   true
      */
     protected $description = [];
+    /**
+     * @var bool
+     *
+     * @con_has_field    true
+     * @con_fieldtype    integer
+     * @con_length       1
+     * @con_is_notnull   true
+     */
+    protected $multi_lang = false;
 
 
     /**
@@ -159,7 +174,7 @@ abstract class AbstractField extends ActiveRecord
      * @param int              $primary_key_value
      * @param arConnector|null $connector
      */
-    public function __construct(/*int*/ $primary_key_value = 0, arConnector $connector = null)
+    public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null)
     {
         parent::__construct($primary_key_value, $connector);
     }
@@ -213,7 +228,7 @@ abstract class AbstractField extends ActiveRecord
      *
      * @return string
      */
-    public function getLabel(/*?*/ string $lang_key = null, bool $use_default_if_not_set = true) : string
+    public function getLabel(?string $lang_key = null, bool $use_default_if_not_set = true) : string
     {
         return strval(MultilangualTabsInputGUI::getValueForLang($this->label, $lang_key, "label", $use_default_if_not_set));
     }
@@ -222,7 +237,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param array $labels
      */
-    public function setLabels(array $labels)/*:void*/
+    public function setLabels(array $labels) : void
     {
         $this->label = $labels;
     }
@@ -232,7 +247,7 @@ abstract class AbstractField extends ActiveRecord
      * @param string $label
      * @param string $lang_key
      */
-    public function setLabel(string $label, string $lang_key)/*: void*/
+    public function setLabel(string $label, string $lang_key) : void
     {
         MultilangualTabsInputGUI::setValueForLang($this->label, $label, $lang_key, "label");
     }
@@ -253,7 +268,7 @@ abstract class AbstractField extends ActiveRecord
      *
      * @return string
      */
-    public function getDescription(/*?*/ string $lang_key = null, bool $use_default_if_not_set = true) : string
+    public function getDescription(?string $lang_key = null, bool $use_default_if_not_set = true) : string
     {
         return nl2br(strval(MultilangualTabsInputGUI::getValueForLang($this->description, $lang_key, "description", $use_default_if_not_set)), false);
     }
@@ -262,7 +277,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param array $descriptions
      */
-    public function setDescriptions(array $descriptions)/*:void*/
+    public function setDescriptions(array $descriptions) : void
     {
         $this->description = $descriptions;
     }
@@ -272,7 +287,7 @@ abstract class AbstractField extends ActiveRecord
      * @param string $description
      * @param string $lang_key
      */
-    public function setDescription(string $description, string $lang_key)/*: void*/
+    public function setDescription(string $description, string $lang_key) : void
     {
         MultilangualTabsInputGUI::setValueForLang($this->description, $description, $lang_key, "description");
     }
@@ -288,6 +303,69 @@ abstract class AbstractField extends ActiveRecord
 
 
     /**
+     * @return bool
+     */
+    public function supportsMultiLang() : bool
+    {
+        return false;
+    }
+
+
+    /**
+     * @return string
+     */
+    protected function getFieldCtrlClass() : string
+    {
+        return (intval($this->parent_context) === GroupField::PARENT_CONTEXT_FIELD_GROUP ? GroupCtrl::class : FieldCtrl::class);
+    }
+
+
+    /**
+     * @return Component[]
+     */
+    public function getActions() : array
+    {
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_TYPE . $this->parent_context, $this->getType());
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_ID . $this->parent_context, $this->field_id);
+
+        return [
+            self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("edit_field", FieldsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_EDIT_FIELD)),
+            self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("remove_field", FieldsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_REMOVE_FIELD_CONFIRM))
+        ];
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getSortUpActionUrl() : string
+    {
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_TYPE . $this->parent_context, $this->getType());
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_ID . $this->parent_context, $this->field_id);
+
+        return self::dic()
+            ->ctrl()
+            ->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_MOVE_FIELD_UP, "", true);
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getSortDownActionUrl() : string
+    {
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_TYPE . $this->parent_context, $this->getType());
+        self::dic()->ctrl()->setParameterByClass($this->getFieldCtrlClass(), FieldCtrl::GET_PARAM_FIELD_ID . $this->parent_context, $this->field_id);
+
+        return self::dic()
+            ->ctrl()
+            ->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_MOVE_FIELD_DOWN, "", true);
+    }
+
+
+    /**
      * @inheritDoc
      */
     public function sleep(/*string*/ $field_name)
@@ -296,6 +374,7 @@ abstract class AbstractField extends ActiveRecord
 
         switch ($field_name) {
             case "enabled":
+            case "multi_lang":
             case "required":
                 return ($field_value ? 1 : 0);
 
@@ -304,7 +383,7 @@ abstract class AbstractField extends ActiveRecord
                 return json_encode($field_value);
 
             default:
-                return null;
+                return parent::sleep($field_name);
         }
     }
 
@@ -316,6 +395,7 @@ abstract class AbstractField extends ActiveRecord
     {
         switch ($field_name) {
             case "enabled":
+            case "multi_lang":
             case "required":
                 return boolval($field_value);
 
@@ -324,7 +404,7 @@ abstract class AbstractField extends ActiveRecord
                 return json_decode($field_value, true);
 
             default:
-                return null;
+                return parent::wakeUp($field_name, $field_value);
         }
     }
 
@@ -341,7 +421,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $field_id
      */
-    public function setFieldId(int $field_id)/*: void*/
+    public function setFieldId(int $field_id) : void
     {
         $this->field_id = $field_id;
     }
@@ -359,7 +439,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param bool $enabled
      */
-    public function setEnabled(bool $enabled)/*: void*/
+    public function setEnabled(bool $enabled) : void
     {
         $this->enabled = $enabled;
     }
@@ -377,7 +457,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $parent_context
      */
-    public function setParentContext(int $parent_context)/* : void*/
+    public function setParentContext(int $parent_context) : void
     {
         $this->parent_context = $parent_context;
     }
@@ -395,7 +475,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $parent_id
      */
-    public function setParentId(int $parent_id)/* : void*/
+    public function setParentId(int $parent_id) : void
     {
         $this->parent_id = $parent_id;
     }
@@ -413,7 +493,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param int $sort
      */
-    public function setSort(int $sort)/*: void*/
+    public function setSort(int $sort) : void
     {
         $this->sort = $sort;
     }
@@ -422,7 +502,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @return string|null
      */
-    public function getName()/* : ?string*/
+    public function getName() : ?string
     {
         return $this->name;
     }
@@ -431,7 +511,7 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param string|null $name
      */
-    public function setName(/*?*/ string $name = null)/* : void*/
+    public function setName(?string $name = null) : void
     {
         $this->name = $name;
     }
@@ -449,8 +529,30 @@ abstract class AbstractField extends ActiveRecord
     /**
      * @param bool $required
      */
-    public function setRequired(bool $required)/* : void*/
+    public function setRequired(bool $required) : void
     {
         $this->required = $required;
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isMultiLang() : bool
+    {
+        if (!$this->supportsMultiLang()) {
+            return false;
+        }
+
+        return $this->multi_lang;
+    }
+
+
+    /**
+     * @param bool $multi_lang
+     */
+    public function setMultiLang(bool $multi_lang) : void
+    {
+        $this->multi_lang = $multi_lang;
     }
 }

@@ -3,6 +3,7 @@
 namespace srag\Notifications4Plugin\HelpMe;
 
 use LogicException;
+use srag\DataTableUI\HelpMe\Implementation\Utils\DataTableUITrait;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Plugin\PluginInterface;
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
@@ -12,6 +13,7 @@ use srag\Notifications4Plugin\HelpMe\Parser\Repository as ParserRepository;
 use srag\Notifications4Plugin\HelpMe\Parser\RepositoryInterface as ParserRepositoryInterface;
 use srag\Notifications4Plugin\HelpMe\Sender\Repository as SenderRepository;
 use srag\Notifications4Plugin\HelpMe\Sender\RepositoryInterface as SenderRepositoryInterface;
+use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 
 /**
  * Class Repository
@@ -24,10 +26,34 @@ final class Repository implements RepositoryInterface
 {
 
     use DICTrait;
+    use Notifications4PluginTrait;
+    use DataTableUITrait;
+
     /**
      * @var RepositoryInterface|null
      */
     protected static $instance = null;
+    /**
+     * @var array
+     */
+    protected $placeholder_types;
+    /**
+     * @var PluginInterface
+     */
+    protected $plugin;
+    /**
+     * @var string
+     */
+    protected $table_name_prefix = "";
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -44,32 +70,9 @@ final class Repository implements RepositoryInterface
 
 
     /**
-     * @var string
-     */
-    protected $table_name_prefix = "";
-    /**
-     * @var PluginInterface
-     */
-    protected $plugin;
-    /**
-     * @var array
-     */
-    protected $placeholder_types;
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @inheritDoc
      */
-    public function dropTables()/*: void*/
+    public function dropTables() : void
     {
         $this->notifications()->dropTables();
         $this->parser()->dropTables();
@@ -119,17 +122,19 @@ final class Repository implements RepositoryInterface
     /**
      * @inheritDoc
      */
-    public function installLanguages()/*:void*/
+    public function installLanguages() : void
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($this->getPlugin())->withLibraryLanguageDirectory(__DIR__
             . "/../lang")->updateLanguages();
+
+        self::dataTableUI()->installLanguages($this->plugin);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         $this->notifications()->installTables();
         $this->parser()->installTables();

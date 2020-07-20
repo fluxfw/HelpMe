@@ -18,11 +18,21 @@ final class Users
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Users constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -35,15 +45,6 @@ final class Users
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Users constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

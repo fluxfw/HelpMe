@@ -20,11 +20,21 @@ final class Factory
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -37,15 +47,6 @@ final class Factory
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -115,6 +116,17 @@ final class Factory
 
 
     /**
+     * @return FetchJiraTicketsJob
+     */
+    public function newFetchJiraTicketsJobInstance() : FetchJiraTicketsJob
+    {
+        $job = new FetchJiraTicketsJob();
+
+        return $job;
+    }
+
+
+    /**
      * @return Ticket
      */
     public function newInstance() : Ticket
@@ -136,16 +148,5 @@ final class Factory
         $table = new TicketsTableGUI($parent, $cmd);
 
         return $table;
-    }
-
-
-    /**
-     * @return FetchJiraTicketsJob
-     */
-    public function newFetchJiraTicketsJobInstance() : FetchJiraTicketsJob
-    {
-        $job = new FetchJiraTicketsJob();
-
-        return $job;
     }
 }

@@ -2,7 +2,6 @@
 
 namespace srag\Plugins\HelpMe\Config;
 
-use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use srag\ActiveRecordConfig\HelpMe\Config\AbstractFactory;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -18,11 +17,21 @@ final class Factory extends AbstractFactory
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Factory constructor
+     */
+    protected function __construct()
+    {
+        parent::__construct();
+    }
 
 
     /**
@@ -39,20 +48,11 @@ final class Factory extends AbstractFactory
 
 
     /**
-     * Factory constructor
-     */
-    protected function __construct()
-    {
-        parent::__construct();
-    }
-
-
-    /**
-     * @param ilHelpMeConfigGUI $parent
+     * @param ConfigCtrl $parent
      *
      * @return ConfigFormGUI
      */
-    public function newFormInstance(ilHelpMeConfigGUI $parent) : ConfigFormGUI
+    public function newFormInstance(ConfigCtrl $parent) : ConfigFormGUI
     {
         $form = new ConfigFormGUI($parent);
 

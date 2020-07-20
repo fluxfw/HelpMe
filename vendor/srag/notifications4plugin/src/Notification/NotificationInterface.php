@@ -27,39 +27,9 @@ interface NotificationInterface
 
 
     /**
-     * @return int
+     * @return ilDateTime
      */
-    public function getId() : int;
-
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)/*: void*/ ;
-
-
-    /**
-     * @return string
-     */
-    public function getName() : string;
-
-
-    /**
-     * @param string $name
-     */
-    public function setName(string $name)/*: void*/ ;
-
-
-    /**
-     * @return string
-     */
-    public function getTitle() : string;
-
-
-    /**
-     * @param string $title
-     */
-    public function setTitle(string $title)/*: void*/ ;
+    public function getCreatedAt() : ilDateTime;
 
 
     /**
@@ -69,27 +39,21 @@ interface NotificationInterface
 
 
     /**
-     * @param string $description
+     * @return int
      */
-    public function setDescription(string $description)/*: void*/ ;
+    public function getId() : int;
+
+
+    /**
+     * @return string
+     */
+    public function getName() : string;
 
 
     /**
      * @return string
      */
     public function getParser() : string;
-
-
-    /**
-     * @param string $parser
-     */
-    public function setParser(string $parser)/*: void*/ ;
-
-
-    /**
-     * @return array
-     */
-    public function getParserOptions() : array;
 
 
     /**
@@ -101,42 +65,18 @@ interface NotificationInterface
 
 
     /**
-     * @param array $parser_options
+     * @return array
      */
-    public function setParserOptions(array $parser_options = self::DEFAULT_PARSER_OPTIONS)/* : void*/ ;
+    public function getParserOptions() : array;
 
 
     /**
-     * @param string $key
-     * @param mixed  $value
+     * @param string|null $lang_key
+     * @param bool        $use_default_if_not_set
      *
-     * @return mixed
+     * @return string
      */
-    public function setParserOption(string $key, $value)/* : void*/ ;
-
-
-    /**
-     * @return ilDateTime
-     */
-    public function getCreatedAt() : ilDateTime;
-
-
-    /**
-     * @param ilDateTime $created_at
-     */
-    public function setCreatedAt(ilDateTime $created_at)/*: void*/ ;
-
-
-    /**
-     * @return ilDateTime
-     */
-    public function getUpdatedAt() : ilDateTime;
-
-
-    /**
-     * @param ilDateTime $updated_at
-     */
-    public function setUpdatedAt(ilDateTime $updated_at)/*: void*/ ;
+    public function getSubject(?string $lang_key = null, bool $use_default_if_not_set = true) : string;
 
 
     /**
@@ -151,20 +91,7 @@ interface NotificationInterface
      *
      * @return string
      */
-    public function getSubject(/*?*/ string $lang_key = null, bool $use_default_if_not_set = true) : string;
-
-
-    /**
-     * @param array $subjects
-     */
-    public function setSubjects(array $subjects)/* : void*/ ;
-
-
-    /**
-     * @param string $subject
-     * @param string $lang_key
-     */
-    public function setSubject(string $subject, string $lang_key)/*: void*/ ;
+    public function getText(?string $lang_key = null, bool $use_default_if_not_set = true) : string;
 
 
     /**
@@ -174,23 +101,94 @@ interface NotificationInterface
 
 
     /**
-     * @param string|null $lang_key
-     * @param bool        $use_default_if_not_set
-     *
      * @return string
      */
-    public function getText(/*?*/ string $lang_key = null, bool $use_default_if_not_set = true) : string;
+    public function getTitle() : string;
 
 
     /**
-     * @param array $texts
+     * @return ilDateTime
      */
-    public function setTexts(array $texts)/* : void*/ ;
+    public function getUpdatedAt() : ilDateTime;
+
+
+    /**
+     * @param ilDateTime $created_at
+     */
+    public function setCreatedAt(ilDateTime $created_at) : void;
+
+
+    /**
+     * @param string $description
+     */
+    public function setDescription(string $description) : void;
+
+
+    /**
+     * @param int $id
+     */
+    public function setId(int $id) : void;
+
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name) : void;
+
+
+    /**
+     * @param string $parser
+     */
+    public function setParser(string $parser) : void;
+
+
+    /**
+     * @param string $key
+     * @param mixed  $value
+     */
+    public function setParserOption(string $key, $value) : void;
+
+
+    /**
+     * @param array $parser_options
+     */
+    public function setParserOptions(array $parser_options = self::DEFAULT_PARSER_OPTIONS) : void;
+
+
+    /**
+     * @param string $subject
+     * @param string $lang_key
+     */
+    public function setSubject(string $subject, string $lang_key) : void;
+
+
+    /**
+     * @param array $subjects
+     */
+    public function setSubjects(array $subjects) : void;
 
 
     /**
      * @param string $text
      * @param string $lang_key
      */
-    public function setText(string $text, string $lang_key)/*: void*/ ;
+    public function setText(string $text, string $lang_key) : void;
+
+
+    /**
+     * @param array $texts
+     */
+    public function setTexts(array $texts) : void;
+
+
+    /**
+     * @param string $title
+     */
+    public function setTitle(string $title) : void;
+
+
+    /**
+     * @param ilDateTime $updated_at
+     */
+    public function setUpdatedAt(ilDateTime $updated_at) : void;
 }

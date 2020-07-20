@@ -55,6 +55,15 @@ class ObjIdsLearningProgressPieUI extends AbstractLearningProgressPieUI
     /**
      * @inheritDoc
      */
+    protected function getCount() : int
+    {
+        return count($this->obj_ids);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function parseData() : array
     {
         if (count($this->obj_ids) > 0) {
@@ -72,15 +81,6 @@ class ObjIdsLearningProgressPieUI extends AbstractLearningProgressPieUI
         } else {
             return [];
         }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getCount() : int
-    {
-        return count($this->obj_ids);
     }
 
 

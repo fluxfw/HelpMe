@@ -3,18 +3,22 @@
 namespace srag\RequiredData\HelpMe\Field;
 
 use srag\DIC\HelpMe\DICTrait;
-use srag\RequiredData\HelpMe\Field\Checkbox\CheckboxField;
-use srag\RequiredData\HelpMe\Field\Date\DateField;
-use srag\RequiredData\HelpMe\Field\Email\EmailField;
-use srag\RequiredData\HelpMe\Field\Float\FloatField;
-use srag\RequiredData\HelpMe\Field\Integer\IntegerField;
-use srag\RequiredData\HelpMe\Field\MultilineText\MultilineTextField;
-use srag\RequiredData\HelpMe\Field\MultiSearchSelect\MultiSearchSelectField;
-use srag\RequiredData\HelpMe\Field\MultiSelect\MultiSelectField;
-use srag\RequiredData\HelpMe\Field\Radio\RadioField;
-use srag\RequiredData\HelpMe\Field\SearchSelect\SearchSelectField;
-use srag\RequiredData\HelpMe\Field\Select\SelectField;
-use srag\RequiredData\HelpMe\Field\Text\TextField;
+use srag\RequiredData\HelpMe\Field\Field\Checkbox\CheckboxField;
+use srag\RequiredData\HelpMe\Field\Field\Date\DateField;
+use srag\RequiredData\HelpMe\Field\Field\Email\EmailField;
+use srag\RequiredData\HelpMe\Field\Field\Float\FloatField;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupField;
+use srag\RequiredData\HelpMe\Field\Field\Integer\IntegerField;
+use srag\RequiredData\HelpMe\Field\Field\MultilineText\MultilineTextField;
+use srag\RequiredData\HelpMe\Field\Field\MultiSearchSelect\MultiSearchSelectField;
+use srag\RequiredData\HelpMe\Field\Field\MultiSelect\MultiSelectField;
+use srag\RequiredData\HelpMe\Field\Field\Radio\RadioField;
+use srag\RequiredData\HelpMe\Field\Field\SearchSelect\SearchSelectField;
+use srag\RequiredData\HelpMe\Field\Field\Select\SelectField;
+use srag\RequiredData\HelpMe\Field\Field\Text\TextField;
+use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
+use srag\RequiredData\HelpMe\Field\Form\CreateFieldFormBuilder;
+use srag\RequiredData\HelpMe\Field\Table\TableBuilder;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
 /**
@@ -29,8 +33,9 @@ final class Factory
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
@@ -57,6 +62,7 @@ final class Factory
             DateField::class,
             EmailField::class,
             FloatField::class,
+            GroupField::class,
             IntegerField::class,
             MultilineTextField::class,
             MultiSearchSelectField::class,
@@ -80,7 +86,7 @@ final class Factory
     /**
      * @param string $class
      */
-    public function addClass(string $class)/*:void*/
+    public function addClass(string $class) : void
     {
         if (!in_array($class, $this->classes)) {
             $this->classes[] = $class;
@@ -95,7 +101,7 @@ final class Factory
      *
      * @return string[]
      */
-    public function getClasses(bool $check_can_be_added_only_once = false,/*?*/ int $parent_context = null, /*?*/ int $parent_id = null) : array
+    public function getClasses(bool $check_can_be_added_only_once = false, ?int $parent_context = null, ?int $parent_id = null) : array
     {
         $classes = array_combine(array_map(function (string $class) : string {
             return $class::getType();
@@ -103,6 +109,12 @@ final class Factory
 
         if ($check_can_be_added_only_once) {
             $classes = array_filter($classes, function (string $class) use ($parent_context, $parent_id): bool {
+                if ($class === GroupField::class) {
+                    if (!self::requiredData()->isEnableGroups() || $parent_context === GroupField::PARENT_CONTEXT_FIELD_GROUP) {
+                        return false;
+                    }
+                }
+
                 if ($class::canBeAddedOnlyOnce()) {
                     return empty(self::requiredData()->fields()->getFields($parent_context, $parent_id, [
                         $class::getType()
@@ -124,7 +136,7 @@ final class Factory
      *
      * @return AbstractField|null
      */
-    public function newInstance(string $type) /*: ?AbstractField*/
+    public function newInstance(string $type) : ?AbstractField
     {
         $field = null;
 
@@ -141,13 +153,12 @@ final class Factory
 
     /**
      * @param FieldsCtrl $parent
-     * @param string     $cmd
      *
-     * @return FieldsTableGUI
+     * @return TableBuilder
      */
-    public function newTableInstance(FieldsCtrl $parent, string $cmd = FieldsCtrl::CMD_LIST_FIELDS) : FieldsTableGUI
+    public function newTableBuilderInstance(FieldsCtrl $parent) : TableBuilder
     {
-        $table = new FieldsTableGUI($parent, $cmd);
+        $table = new TableBuilder($parent);
 
         return $table;
     }
@@ -156,11 +167,11 @@ final class Factory
     /**
      * @param FieldCtrl $parent
      *
-     * @return CreateFieldFormGUI
+     * @return CreateFieldFormBuilder
      */
-    public function newCreateFormInstance(FieldCtrl $parent) : CreateFieldFormGUI
+    public function newCreateFormBuilderInstance(FieldCtrl $parent) : CreateFieldFormBuilder
     {
-        $form = new CreateFieldFormGUI($parent);
+        $form = new CreateFieldFormBuilder($parent);
 
         return $form;
     }
@@ -170,11 +181,13 @@ final class Factory
      * @param FieldCtrl     $parent
      * @param AbstractField $field
      *
-     * @return AbstractFieldFormGUI
+     * @return AbstractFieldFormBuilder
      */
-    public function newFormInstance(FieldCtrl $parent, AbstractField $field) : AbstractFieldFormGUI
+    public function newFormBuilderInstance(FieldCtrl $parent, AbstractField $field) : AbstractFieldFormBuilder
     {
-        $class = get_class($field) . "FormGUI";
+        $class = get_class($field) . "FormBuilder";
+
+        $class = substr_replace($class, "\\Form\\", strrpos($class, "\\"), 1);
 
         $form = new $class($parent, $field);
 

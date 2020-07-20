@@ -20,11 +20,21 @@ final class Factory
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -41,11 +51,19 @@ final class Factory
 
 
     /**
-     * Factory constructor
+     * @param string $job_id
+     *
+     * @return ilCronJob|null
      */
-    private function __construct()
+    public function newInstanceById(string $job_id) : ?ilCronJob
     {
+        switch ($job_id) {
+            case FetchJiraTicketsJob::CRON_JOB_ID:
+                return self::helpMe()->tickets()->factory()->newFetchJiraTicketsJobInstance();
 
+            default:
+                return null;
+        }
     }
 
 
@@ -57,22 +75,5 @@ final class Factory
         return [
             self::helpMe()->tickets()->factory()->newFetchJiraTicketsJobInstance()
         ];
-    }
-
-
-    /**
-     * @param string $job_id
-     *
-     * @return ilCronJob|null
-     */
-    public function newInstanceById(string $job_id)/*: ?ilCronJob*/
-    {
-        switch ($job_id) {
-            case FetchJiraTicketsJob::CRON_JOB_ID:
-                return self::helpMe()->tickets()->factory()->newFetchJiraTicketsJobInstance();
-
-            default:
-                return null;
-        }
     }
 }

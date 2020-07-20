@@ -18,11 +18,21 @@ final class Ilias
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Ilias constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -35,15 +45,6 @@ final class Ilias
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Ilias constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

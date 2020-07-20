@@ -10,6 +10,7 @@ use srag\Plugins\HelpMe\Access\Ilias;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\Config\Repository as ConfigRepository;
 use srag\Plugins\HelpMe\Job\Repository as JobsRepository;
+use srag\Plugins\HelpMe\MetaBar\MetaBar;
 use srag\Plugins\HelpMe\Project\Repository as ProjectsRepository;
 use srag\Plugins\HelpMe\RequiredData\Field\CreatedDateTime\CreatedDateTimeField;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
@@ -44,24 +45,12 @@ final class Repository
     use RequiredDataTrait {
         requiredData as protected _requiredData;
     }
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
-
-
-    /**
-     * @return self
-     */
-    public static function getInstance() : self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
 
 
     /**
@@ -86,6 +75,19 @@ final class Repository
 
 
     /**
+     * @return self
+     */
+    public static function getInstance() : self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
+    }
+
+
+    /**
      * @return ConfigRepository
      */
     public function config() : ConfigRepository
@@ -101,7 +103,7 @@ final class Repository
     {
         $user_id = $this->ilias()->users()->getUserId();
 
-        $user_roles = self::dic()->rbacreview()->assignedGlobalRoles($user_id);
+        $user_roles = self::dic()->rbac()->review()->assignedGlobalRoles($user_id);
         $config_roles = self::helpMe()->config()->getValue(ConfigFormGUI::KEY_ROLES);
 
         foreach ($user_roles as $user_role) {
@@ -117,7 +119,7 @@ final class Repository
     /**
      *
      */
-    public function dropTables()/*: void*/
+    public function dropTables() : void
     {
         $this->config()->dropTables();
         $this->jobs()->dropTables();
@@ -141,7 +143,7 @@ final class Repository
     /**
      *
      */
-    public function installTables()/*: void*/
+    public function installTables() : void
     {
         $this->config()->installTables();
         $this->jobs()->installTables();
@@ -159,6 +161,15 @@ final class Repository
     public function jobs() : JobsRepository
     {
         return JobsRepository::getInstance();
+    }
+
+
+    /**
+     * @return MetaBar
+     */
+    public function metaBar() : MetaBar
+    {
+        return new MetaBar(self::dic()->dic(), self::plugin()->getPluginObject());
     }
 
 

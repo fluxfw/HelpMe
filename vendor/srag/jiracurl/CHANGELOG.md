@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.9.1]
+- Fix post
+
+## [0.9.0]
+- Min. PHP 7.2
+- `assignIssueToUser`
+- `getTicketByKey`
+
+## [0.8.4]
+- Fix
+
 ## [0.8.3]
 - Fix if no tickets
 

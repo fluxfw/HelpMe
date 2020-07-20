@@ -22,15 +22,16 @@ class ProjectConfigGUI
 
     use DICTrait;
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const CMD_ADD_PROJECT = "addProject";
     const CMD_BACK = "back";
     const CMD_CREATE_PROJECT = "createProject";
     const CMD_EDIT_PROJECT = "editProject";
-    const CMD_UPDATE_PROJECT = "updateProject";
-    const CMD_REMOVE_PROJECT_CONFIRM = "removeProjectConfirm";
     const CMD_REMOVE_PROJECT = "removeProject";
+    const CMD_REMOVE_PROJECT_CONFIRM = "removeProjectConfirm";
+    const CMD_UPDATE_PROJECT = "updateProject";
     const GET_PARAM_PROJECT_ID = "project_id";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const TAB_EDIT_PROJECT = "edit_project";
     /**
      * @var ProjectsConfigGUI
@@ -56,7 +57,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         $this->project = self::helpMe()->projects()->getProjectById(intval(filter_input(INPUT_GET, self::GET_PARAM_PROJECT_ID)));
 
@@ -92,45 +93,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function setTabs()/*: void*/
-    {
-        self::dic()->tabs()->clearTargets();
-
-        self::dic()->tabs()->setBackTarget(self::plugin()->translate("projects", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTarget($this, self::CMD_BACK));
-
-        if ($this->project !== null) {
-            if (self::dic()->ctrl()->getCmd() === self::CMD_REMOVE_PROJECT_CONFIRM) {
-                self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("remove_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
-                    ->getLinkTarget($this, self::CMD_REMOVE_PROJECT_CONFIRM));
-            } else {
-                self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("edit_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
-                    ->getLinkTarget($this, self::CMD_EDIT_PROJECT));
-
-                self::dic()->locator()->addItem($this->project->getTitle(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_PROJECT));
-            }
-        } else {
-            $this->project = self::helpMe()->projects()->factory()->newInstance();
-
-            self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("add_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
-                ->getLinkTarget($this, self::CMD_ADD_PROJECT));
-        }
-    }
-
-
-    /**
-     *
-     */
-    protected function back()/*: void*/
-    {
-        self::dic()->ctrl()->redirectByClass(ProjectsConfigGUI::class, ProjectsConfigGUI::CMD_LIST_PROJECTS);
-    }
-
-
-    /**
-     *
-     */
-    protected function addProject()/*: void*/
+    protected function addProject() : void
     {
         $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
@@ -141,7 +104,16 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function createProject()/*: void*/
+    protected function back() : void
+    {
+        self::dic()->ctrl()->redirectByClass(ProjectsConfigGUI::class, ProjectsConfigGUI::CMD_LIST_PROJECTS);
+    }
+
+
+    /**
+     *
+     */
+    protected function createProject() : void
     {
         $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
 
@@ -162,7 +134,7 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function editProject()/*: void*/
+    protected function editProject() : void
     {
         self::dic()->tabs()->activateTab(self::TAB_EDIT_PROJECT);
 
@@ -175,28 +147,20 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function updateProject()/*: void*/
+    protected function removeProject() : void
     {
-        self::dic()->tabs()->activateTab(self::TAB_EDIT_PROJECT);
+        self::helpMe()->projects()->deleteProject($this->project);
 
-        $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
+        ilUtil::sendSuccess(self::plugin()->translate("removed_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
 
-        if (!$form->storeForm()) {
-            self::output()->output($form);
-
-            return;
-        }
-
-        ilUtil::sendSuccess(self::plugin()->translate("saved_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
-
-        self::dic()->ctrl()->redirect($this, self::CMD_EDIT_PROJECT);
+        self::dic()->ctrl()->redirect($this, self::CMD_BACK);
     }
 
 
     /**
      *
      */
-    protected function removeProjectConfirm()/*: void*/
+    protected function removeProjectConfirm() : void
     {
         $confirmation = new ilConfirmationGUI();
 
@@ -216,12 +180,49 @@ class ProjectConfigGUI
     /**
      *
      */
-    protected function removeProject()/*: void*/
+    protected function setTabs() : void
     {
-        self::helpMe()->projects()->deleteProject($this->project);
+        self::dic()->tabs()->clearTargets();
 
-        ilUtil::sendSuccess(self::plugin()->translate("removed_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
+        self::dic()->tabs()->setBackTarget(self::plugin()->translate("projects", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTarget($this, self::CMD_BACK));
 
-        self::dic()->ctrl()->redirect($this, self::CMD_BACK);
+        if ($this->project !== null) {
+            if (self::dic()->ctrl()->getCmd() === self::CMD_REMOVE_PROJECT_CONFIRM) {
+                self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("remove_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
+                    ->getLinkTarget($this, self::CMD_REMOVE_PROJECT_CONFIRM));
+            } else {
+                self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("edit_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
+                    ->getLinkTarget($this, self::CMD_EDIT_PROJECT));
+
+                self::dic()->locator()->addItem($this->project->getProjectName(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_PROJECT));
+            }
+        } else {
+            $this->project = self::helpMe()->projects()->factory()->newInstance();
+
+            self::dic()->tabs()->addTab(self::TAB_EDIT_PROJECT, self::plugin()->translate("add_project", ProjectsConfigGUI::LANG_MODULE), self::dic()->ctrl()
+                ->getLinkTarget($this, self::CMD_ADD_PROJECT));
+        }
+    }
+
+
+    /**
+     *
+     */
+    protected function updateProject() : void
+    {
+        self::dic()->tabs()->activateTab(self::TAB_EDIT_PROJECT);
+
+        $form = self::helpMe()->projects()->factory()->newFormInstance($this, $this->project);
+
+        if (!$form->storeForm()) {
+            self::output()->output($form);
+
+            return;
+        }
+
+        ilUtil::sendSuccess(self::plugin()->translate("saved_project", ProjectsConfigGUI::LANG_MODULE, [$this->project->getProjectName()]), true);
+
+        self::dic()->ctrl()->redirect($this, self::CMD_EDIT_PROJECT);
     }
 }

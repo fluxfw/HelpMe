@@ -20,6 +20,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
 {
 
     use DICTrait;
+
     /**
      * @var string
      *
@@ -112,7 +113,7 @@ abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI
      *
      * @deprecated
      */
-    public final function performCommand(/*string*/ $cmd)/*: void*/
+    public /*final*/ function performCommand(/*string*/ $cmd)/*: void*/
     {
         $this->setTabs();
 

@@ -20,8 +20,9 @@ class TicketsTableGUI extends TableGUI
 {
 
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const LANG_MODULE = TicketsGUI::LANG_MODULE;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
@@ -33,28 +34,6 @@ class TicketsTableGUI extends TableGUI
     public function __construct(TicketsGUI $parent, string $parent_cmd)
     {
         parent::__construct($parent, $parent_cmd);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getColumnValue(/*string*/
-        $column, /*array*/
-        $row, /*int*/
-        $format = self::DEFAULT_FORMAT
-    ) : string {
-        switch ($column) {
-            case "ticket_project_url_key":
-                $column = htmlspecialchars($row["ticket_project"]->getProjectName());
-                break;
-
-            default:
-                $column = htmlspecialchars($row[$column]);
-                break;
-        }
-
-        return strval($column);
     }
 
 
@@ -85,7 +64,26 @@ class TicketsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function getColumnValue(string $column, /*array*/ $row, int $format = self::DEFAULT_FORMAT) : string
+    {
+        switch ($column) {
+            case "ticket_project_url_key":
+                $column = htmlspecialchars($row["ticket_project"]->getProjectName());
+                break;
+
+            default:
+                $column = htmlspecialchars($row[$column]);
+                break;
+        }
+
+        return strval($column);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function initCommands() : void
     {
 
     }
@@ -94,7 +92,7 @@ class TicketsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initData()/*: void*/
+    protected function initData() : void
     {
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
@@ -126,7 +124,7 @@ class TicketsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initFilterFields()/*: void*/
+    protected function initFilterFields() : void
     {
         $this->filter_fields = [
             "ticket_title"           => [
@@ -151,16 +149,16 @@ class TicketsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
-        $this->setId("srsu_tickets");
+        $this->setId(ilHelpMePlugin::PLUGIN_ID . "_tickets");
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt("tickets"));
     }

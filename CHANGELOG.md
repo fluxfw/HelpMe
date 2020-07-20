@@ -1,5 +1,10 @@
 # Changelog
 
+## [6.1.0]
+- ILIAS 6 support
+- Min. PHP 7.2
+- Remove ILIAS 5.3 & ILIAS 5.4 support
+
 ## [6.0.6]
 - Disable submit button on submit for prevent multiple support requests for one
 - Fix escaped html line breaks

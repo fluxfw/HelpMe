@@ -18,8 +18,9 @@ class ProjectsTableGUI extends TableGUI
 {
 
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
@@ -31,33 +32,6 @@ class ProjectsTableGUI extends TableGUI
     public function __construct(ProjectsConfigGUI $parent, string $parent_cmd)
     {
         parent::__construct($parent, $parent_cmd);
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @param Project $project
-     */
-    protected function getColumnValue(/*string*/
-        $column, /*Project*/
-        $project, /*int*/
-        $format = self::DEFAULT_FORMAT
-    ) : string {
-        switch ($column) {
-            case "support_link":
-                $support_link = self::helpMe()->support()->getLink($project->getProjectUrlKey());
-
-                $column = self::output()->getHTML(self::dic()->ui()->factory()->link()->standard($support_link, $support_link)
-                    ->withOpenInNewViewport(true));
-                break;
-
-            default:
-                $column = htmlspecialchars(Items::getter($project, $column));
-                break;
-        }
-
-        return strval($column);
     }
 
 
@@ -91,9 +65,51 @@ class ProjectsTableGUI extends TableGUI
 
 
     /**
+     * @param Project $project
+     */
+    protected function fillRow(/*Project*/ $project) : void
+    {
+        self::dic()->ctrl()->setParameterByClass(ProjectConfigGUI::class, ProjectConfigGUI::GET_PARAM_PROJECT_ID, $project->getProjectId());
+
+        parent::fillRow($project);
+
+        $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
+            self::dic()->ui()->factory()->link()->standard($this->txt("edit_project"), self::dic()->ctrl()
+                ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_EDIT_PROJECT)),
+            self::dic()->ui()->factory()->link()->standard($this->txt("remove_project"), self::dic()->ctrl()
+                ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
+        ])->withLabel($this->txt("actions"))));
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @param Project $project
+     */
+    protected function getColumnValue(string $column, /*Project*/ $project, int $format = self::DEFAULT_FORMAT) : string
+    {
+        switch ($column) {
+            case "support_link":
+                $support_link = self::helpMe()->support()->getLink($project->getProjectUrlKey());
+
+                $column = self::output()->getHTML(self::dic()->ui()->factory()->link()->standard($support_link, $support_link)
+                    ->withOpenInNewViewport(true));
+                break;
+
+            default:
+                $column = htmlspecialchars(Items::getter($project, $column));
+                break;
+        }
+
+        return strval($column);
+    }
+
+
+    /**
      * @inheritDoc
      */
-    protected function initColumns()/*: void*/
+    protected function initColumns() : void
     {
         parent::initColumns();
 
@@ -104,7 +120,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
         self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard($this->txt("add_project"), self::dic()->ctrl()
             ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_ADD_PROJECT)));
@@ -114,7 +130,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initData()/*: void*/
+    protected function initData() : void
     {
         $this->setExternalSegmentation(true);
         $this->setExternalSorting(true);
@@ -129,7 +145,7 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initFilterFields()/*: void*/
+    protected function initFilterFields() : void
     {
         $this->filter_fields = [];
     }
@@ -138,37 +154,17 @@ class ProjectsTableGUI extends TableGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
-        $this->setId("srsu_projects");
+        $this->setId(ilHelpMePlugin::PLUGIN_ID . "_projects");
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt("projects"));
-    }
-
-
-    /**
-     * @param Project $project
-     */
-    protected function fillRow(/*Project*/
-        $project
-    )/*: void*/
-    {
-        self::dic()->ctrl()->setParameterByClass(ProjectConfigGUI::class, ProjectConfigGUI::GET_PARAM_PROJECT_ID, $project->getProjectId());
-
-        parent::fillRow($project);
-
-        $this->tpl->setVariable("COLUMN", self::output()->getHTML(self::dic()->ui()->factory()->dropdown()->standard([
-            self::dic()->ui()->factory()->link()->standard($this->txt("edit_project"), self::dic()->ctrl()
-                ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_EDIT_PROJECT)),
-            self::dic()->ui()->factory()->link()->standard($this->txt("remove_project"), self::dic()->ctrl()
-                ->getLinkTargetByClass(ProjectConfigGUI::class, ProjectConfigGUI::CMD_REMOVE_PROJECT_CONFIRM))
-        ])->withLabel($this->txt("actions"))));
     }
 }

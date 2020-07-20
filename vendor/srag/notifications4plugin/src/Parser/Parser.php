@@ -2,6 +2,7 @@
 
 namespace srag\Notifications4Plugin\HelpMe\Parser;
 
+use ILIAS\UI\Component\Input\Field\Input;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
 
 /**
@@ -20,13 +21,13 @@ interface Parser
      *
      * @abstract
      */
-    const NAME = "";
+    const DOC_LINK = "";
     /**
      * @var string
      *
      * @abstract
      */
-    const DOC_LINK = "";
+    const NAME = "";
 
 
     /**
@@ -38,17 +39,17 @@ interface Parser
     /**
      * @return string
      */
-    public function getName() : string;
+    public function getDocLink() : string;
 
 
     /**
      * @return string
      */
-    public function getDocLink() : string;
+    public function getName() : string;
 
 
     /**
-     * @return array
+     * @return Input[]
      */
     public function getOptionsFields() : array;
 

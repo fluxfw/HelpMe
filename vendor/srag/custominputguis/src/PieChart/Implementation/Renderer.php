@@ -23,6 +23,30 @@ class Renderer extends AbstractComponentRenderer
 
     use DICTrait;
 
+    /**
+     * @inheritDoc
+     */
+    public function registerResources(ResourceRegistry $registry)/*: void*/
+    {
+        parent::registerResources($registry);
+
+        $dir = __DIR__;
+        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/..";
+
+        $registry->register($dir . "/css/piechart.css");
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function render(Component $component, RendererInterface $default_renderer) : string
+    {
+        $this->checkComponent($component);
+
+        return $this->renderStandard($component, $default_renderer);
+    }
+
 
     /**
      * @inheritDoc
@@ -36,11 +60,9 @@ class Renderer extends AbstractComponentRenderer
     /**
      * @inheritDoc
      */
-    public function render(Component $component, RendererInterface $default_renderer) : string
+    protected function getTemplatePath(/*string*/ $name) : string
     {
-        $this->checkComponent($component);
-
-        return $this->renderStandard($component, $default_renderer);
+        return __DIR__ . "/../templates/" . $name;
     }
 
 
@@ -101,28 +123,5 @@ class Renderer extends AbstractComponentRenderer
         $tpl->parseCurrentBlock();
 
         return self::output()->getHTML($tpl);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function registerResources(ResourceRegistry $registry)/*: void*/
-    {
-        parent::registerResources($registry);
-
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/..";
-
-        $registry->register($dir . "/css/piechart.css");
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getTemplatePath(/*string*/ $name) : string
-    {
-        return __DIR__ . "/../templates/" . $name;
     }
 }

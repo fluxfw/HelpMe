@@ -55,6 +55,15 @@ class UsrIdsLearningProgressPieUI extends AbstractLearningProgressPieUI
     /**
      * @inheritDoc
      */
+    protected function getCount() : int
+    {
+        return count($this->usr_ids);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function parseData() : array
     {
         if (count($this->usr_ids) > 0) {
@@ -72,15 +81,6 @@ class UsrIdsLearningProgressPieUI extends AbstractLearningProgressPieUI
         } else {
             return [];
         }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getCount() : int
-    {
-        return count($this->usr_ids);
     }
 
 

@@ -5,6 +5,9 @@ if (file_exists(__DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload
     require_once __DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php";
 }
 
+use ILIAS\DI\Container;
+use ILIAS\GlobalScreen\Provider\PluginProviderCollection;
+use srag\CustomInputGUIs\HelpMe\Loader\CustomInputGUIsLoaderDetector;
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
@@ -19,13 +22,29 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
 
     use PluginUninstallTrait;
     use HelpMeTrait;
+
+    const PLUGIN_CLASS_NAME = self::class;
     const PLUGIN_ID = "srsu";
     const PLUGIN_NAME = "HelpMe";
-    const PLUGIN_CLASS_NAME = self::class;
     /**
      * @var self|null
      */
     protected static $instance = null;
+    /**
+     * @var PluginProviderCollection|null
+     */
+    protected static $pluginProviderCollection = null;
+
+
+    /**
+     * ilHelpMePlugin constructor
+     */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->provider_collection = self::getPluginProviderCollection(); // Fix overflow
+    }
 
 
     /**
@@ -42,11 +61,26 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
 
 
     /**
-     * ilHelpMePlugin constructor
+     * @return PluginProviderCollection
      */
-    public function __construct()
+    protected static function getPluginProviderCollection() : PluginProviderCollection
     {
-        parent::__construct();
+        if (self::$pluginProviderCollection === null) {
+            self::$pluginProviderCollection = new PluginProviderCollection();
+
+            self::$pluginProviderCollection->setMetaBarProvider(self::helpMe()->metaBar());
+        }
+
+        return self::$pluginProviderCollection;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function exchangeUIRendererAfterInitialization(Container $dic) : Closure
+    {
+        return CustomInputGUIsLoaderDetector::exchangeUIRendererAfterInitialization();
     }
 
 
@@ -62,7 +96,7 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     /**
      * @inheritDoc
      */
-    public function updateLanguages(/*?array*/ $a_lang_keys = null)/*:void*/
+    public function updateLanguages(/*?array*/ $a_lang_keys = null) : void
     {
         parent::updateLanguages($a_lang_keys);
 
@@ -80,8 +114,17 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
     /**
      * @inheritDoc
      */
-    protected function deleteData()/*: void*/
+    protected function deleteData() : void
     {
         self::helpMe()->dropTables();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function shouldUseOneUpdateStepOnly() : bool
+    {
+        return true;
     }
 }

@@ -18,11 +18,21 @@ final class Roles
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Roles constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -39,15 +49,6 @@ final class Roles
 
 
     /**
-     * Roles constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @return array
      */
     public function getAllRoles() : array
@@ -57,7 +58,7 @@ final class Roles
          * @var array $roles
          */
 
-        $global_roles = self::dic()->rbacreview()->getRolesForIDs(self::dic()->rbacreview()->getGlobalRoles(), false);
+        $global_roles = self::dic()->rbac()->review()->getRolesForIDs(self::dic()->rbac()->review()->getGlobalRoles(), false);
 
         $roles = [];
         foreach ($global_roles as $global_role) {

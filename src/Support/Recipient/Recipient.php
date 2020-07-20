@@ -27,9 +27,10 @@ abstract class Recipient
 
     use DICTrait;
     use HelpMeTrait;
-    const SEND_EMAIL = "send_email";
+
     const CREATE_JIRA_TICKET = "create_jira_ticket";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const SEND_EMAIL = "send_email";
     /**
      * @var Support
      */
@@ -44,59 +45,6 @@ abstract class Recipient
     protected function __construct(Support $support)
     {
         $this->support = $support;
-    }
-
-
-    /**
-     * Send confirmation email
-     *
-     * @throws ActiveRecordConfigException
-     * @throws DICException
-     * @throws HelpMeException
-     * @throws Notifications4PluginException
-     * @throws phpmailerException
-     */
-    protected function sendConfirmationMail()/*: void*/
-    {
-        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL)) {
-            $mailer = new ilMimeMail();
-
-            $mailer->From(self::dic()->mailMimeSenderFactory()->system());
-
-            $mailer->To($this->support->getEmail());
-
-            $mailer->Subject($this->getSubject(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
-
-            $mailer->Body($this->getBody(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
-
-            foreach ($this->support->getScreenshots() as $screenshot) {
-                $mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
-            }
-
-            $sent = $mailer->Send();
-
-            if (!$sent) {
-                throw new HelpMeException("Mailer not returns true");
-            }
-        }
-    }
-
-
-    /**
-     * @param string $template_name
-     *
-     * @return string
-     *
-     * @throws ActiveRecordConfigException
-     * @throws Notifications4PluginException
-     */
-    public function getSubject(string $template_name) : string
-    {
-        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
-
-        return self::helpMe()->notifications4plugin()->parser()->parseSubject(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
-            "support" => $this->support
-        ]);
     }
 
 
@@ -130,6 +78,24 @@ abstract class Recipient
 
 
     /**
+     * @param string $template_name
+     *
+     * @return string
+     *
+     * @throws ActiveRecordConfigException
+     * @throws Notifications4PluginException
+     */
+    public function getSubject(string $template_name) : string
+    {
+        $notification = self::helpMe()->notifications4plugin()->notifications()->getNotificationByName(self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT_TEMPLATES)[$template_name]);
+
+        return self::helpMe()->notifications4plugin()->parser()->parseSubject(self::helpMe()->notifications4plugin()->parser()->getParserForNotification($notification), $notification, [
+            "support" => $this->support
+        ]);
+    }
+
+
+    /**
      * Send support to recipient
      *
      * @throws ActiveRecordConfigException
@@ -138,5 +104,40 @@ abstract class Recipient
      * @throws Notifications4PluginException
      * @throws phpmailerException
      */
-    public abstract function sendSupportToRecipient()/*: void*/ ;
+    public abstract function sendSupportToRecipient() : void;
+
+
+    /**
+     * Send confirmation email
+     *
+     * @throws ActiveRecordConfigException
+     * @throws DICException
+     * @throws HelpMeException
+     * @throws Notifications4PluginException
+     * @throws phpmailerException
+     */
+    protected function sendConfirmationMail() : void
+    {
+        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL)) {
+            $mailer = new ilMimeMail();
+
+            $mailer->From(self::dic()->mailMimeSenderFactory()->system());
+
+            $mailer->To($this->support->getEmail());
+
+            $mailer->Subject($this->getSubject(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
+
+            $mailer->Body($this->getBody(ConfigFormGUI::KEY_SEND_CONFIRMATION_EMAIL));
+
+            foreach ($this->support->getScreenshots() as $screenshot) {
+                $mailer->Attach($screenshot->getPath(), $screenshot->getMimeType(), "attachment", $screenshot->getName());
+            }
+
+            $sent = $mailer->Send();
+
+            if (!$sent) {
+                throw new HelpMeException("Mailer not returns true");
+            }
+        }
+    }
 }

@@ -1,5 +1,39 @@
 # Changelog
 
+## [0.13.3]
+- Fix
+
+## [0.13.2]
+- Fix
+
+## [0.13.1]
+- Fix
+
+## [0.13.0]
+- Group fields
+- New form
+- ILIAS 6 support
+- Remove ILIAS 5.3 support
+
+## [0.12.3]
+- Fix
+
+## [0.12.2]
+- Fix
+
+## [0.12.1]
+- Fix
+
+## [0.12.0]
+- Use `srag/datatable`
+
+## [0.11.0]
+- Min. PHP 7.2
+- Multilingual
+
+## [0.10.9]
+- Improve
+
 ## [0.10.8]
 - Remove formatted value html escape because it's depends on output context
 

@@ -20,9 +20,10 @@ class ProjectsConfigGUI
 
     use DICTrait;
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const CMD_LIST_PROJECTS = "listProjects";
     const LANG_MODULE = "projects";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     const TAB_LIST_PROJECTS = "list_projects";
 
 
@@ -38,14 +39,24 @@ class ProjectsConfigGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public static function addTabs() : void
+    {
+        self::dic()->tabs()->addTab(self::TAB_LIST_PROJECTS, self::plugin()->translate("projects", self::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTargetByClass(self::class, self::CMD_LIST_PROJECTS));
+    }
+
+
+    /**
+     *
+     */
+    public function executeCommand() : void
     {
         $this->setTabs();
 
         $next_class = self::dic()->ctrl()->getNextClass($this);
 
         switch (strtolower($next_class)) {
-            case strtolower(ProjectConfigGUI::class);
+            case strtolower(ProjectConfigGUI::class):
                 self::dic()->ctrl()->forwardCommand(new ProjectConfigGUI($this));
                 break;
 
@@ -68,31 +79,21 @@ class ProjectsConfigGUI
     /**
      *
      */
-    public static function addTabs()/*: void*/
-    {
-        self::dic()->tabs()->addTab(self::TAB_LIST_PROJECTS, self::plugin()->translate("projects", self::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTargetByClass(self::class, self::CMD_LIST_PROJECTS));
-    }
-
-
-    /**
-     *
-     */
-    protected function setTabs()/*: void*/
-    {
-
-    }
-
-
-    /**
-     *
-     */
-    protected function listProjects()/*: void*/
+    protected function listProjects() : void
     {
         self::dic()->tabs()->activateTab(self::TAB_LIST_PROJECTS);
 
         $table = self::helpMe()->projects()->factory()->newTableInstance($this);
 
         self::output()->output($table);
+    }
+
+
+    /**
+     *
+     */
+    protected function setTabs() : void
+    {
+
     }
 }

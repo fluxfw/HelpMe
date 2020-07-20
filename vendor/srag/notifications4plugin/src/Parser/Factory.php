@@ -17,10 +17,20 @@ final class Factory implements FactoryInterface
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     /**
      * @var FactoryInterface|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -33,15 +43,6 @@ final class Factory implements FactoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 

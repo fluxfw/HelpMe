@@ -25,6 +25,7 @@ class RecipientSendMailSender extends ilMailMimeSenderUser
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 

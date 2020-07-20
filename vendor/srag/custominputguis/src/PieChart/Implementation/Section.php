@@ -22,26 +22,7 @@ class Section implements SectionInterface
 {
 
     use ComponentHelper;
-    /**
-     * @var string
-     */
-    protected $name;
-    /**
-     * @var SectionValueInterface
-     */
-    protected $value;
-    /**
-     * @var float
-     */
-    protected $percentage;
-    /**
-     * @var float
-     */
-    protected $stroke_length;
-    /**
-     * @var float
-     */
-    protected $offset;
+
     /**
      * @var Color
      */
@@ -51,9 +32,29 @@ class Section implements SectionInterface
      */
     protected $legend;
     /**
+     * @var string
+     */
+    protected $name;
+    /**
+     * @var float
+     */
+    protected $offset;
+    /**
+     * @var float
+     */
+    protected $percentage;
+    /**
+     * @var float
+     */
+    protected $stroke_length;
+    /**
      * @var Color
      */
     protected $textColor;
+    /**
+     * @var SectionValueInterface
+     */
+    protected $value;
 
 
     /**
@@ -93,21 +94,20 @@ class Section implements SectionInterface
 
 
     /**
-     * @param float $totalValue
-     * @param float $sectionValue
+     * @inheritDoc
      */
-    private function calcPercentage(float $totalValue, float $sectionValue)/*: void*/
+    public function getColor() : Color
     {
-        $this->percentage = $sectionValue / $totalValue * 100;
+        return $this->color;
     }
 
 
     /**
-     *
+     * @inheritDoc
      */
-    private function calcStrokeLength()/*: void*/
+    public function getLegendEntry() : LegendEntryInterface
     {
-        $this->stroke_length = $this->percentage / 2.549;
+        return $this->legend;
     }
 
 
@@ -123,9 +123,9 @@ class Section implements SectionInterface
     /**
      * @inheritDoc
      */
-    public function getValue() : SectionValueInterface
+    public function getOffset() : float
     {
-        return $this->value;
+        return $this->offset;
     }
 
 
@@ -148,38 +148,20 @@ class Section implements SectionInterface
 
 
     /**
-     * @inheritDoc
-     */
-    public function getOffset() : float
-    {
-        return $this->offset;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getColor() : Color
-    {
-        return $this->color;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getLegendEntry() : LegendEntryInterface
-    {
-        return $this->legend;
-    }
-
-
-    /**
      * @return Color
      */
     public function getTextColor() : Color
     {
         return $this->textColor;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getValue() : SectionValueInterface
+    {
+        return $this->value;
     }
 
 
@@ -192,5 +174,24 @@ class Section implements SectionInterface
         $clone->textColor = $textColor;
 
         return $clone;
+    }
+
+
+    /**
+     * @param float $totalValue
+     * @param float $sectionValue
+     */
+    private function calcPercentage(float $totalValue, float $sectionValue)/*: void*/
+    {
+        $this->percentage = $sectionValue / $totalValue * 100;
+    }
+
+
+    /**
+     *
+     */
+    private function calcStrokeLength()/*: void*/
+    {
+        $this->stroke_length = $this->percentage / 2.549;
     }
 }

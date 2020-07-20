@@ -4,6 +4,8 @@ namespace srag\Plugins\HelpMe\Support;
 
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Support\Form\SuccessFormBuilder;
+use srag\Plugins\HelpMe\Support\Form\SupportFormBuilder;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -18,24 +20,12 @@ final class Factory
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
-
-
-    /**
-     * @return self
-     */
-    public static function getInstance() : self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
 
 
     /**
@@ -48,13 +38,15 @@ final class Factory
 
 
     /**
-     * @return Support
+     * @return self
      */
-    public function newInstance() : Support
+    public static function getInstance() : self
     {
-        $support = new Support();
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
 
-        return $support;
+        return self::$instance;
     }
 
 
@@ -78,13 +70,24 @@ final class Factory
      * @param SupportGUI $parent
      * @param Support    $support
      *
-     * @return SupportFormGUI
+     * @return SupportFormBuilder
      */
-    public function newFormInstance(SupportGUI $parent, Support $support) : SupportFormGUI
+    public function newFormBuilderInstance(SupportGUI $parent, Support $support) : SupportFormBuilder
     {
-        $form = new SupportFormGUI($parent, $support);
+        $form = new SupportFormBuilder($parent, $support);
 
         return $form;
+    }
+
+
+    /**
+     * @return Support
+     */
+    public function newInstance() : Support
+    {
+        $support = new Support();
+
+        return $support;
     }
 
 
@@ -92,11 +95,11 @@ final class Factory
      * @param SupportGUI $parent
      * @param Support    $support
      *
-     * @return SuccessFormGUI
+     * @return SuccessFormBuilder
      */
-    public function newSuccessFormInstance(SupportGUI $parent, Support $support) : SuccessFormGUI
+    public function newSuccessFormBuilderInstance(SupportGUI $parent, Support $support) : SuccessFormBuilder
     {
-        $form = new SuccessFormGUI($parent, $support);
+        $form = new SuccessFormBuilder($parent, $support);
 
         return $form;
     }

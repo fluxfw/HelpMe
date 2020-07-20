@@ -21,8 +21,9 @@ class ProjectFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const LANG_MODULE = ProjectsConfigGUI::LANG_MODULE;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var Project
      */
@@ -46,6 +47,21 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
+    public function storeForm() : bool
+    {
+        if (!parent::storeForm()) {
+            return false;
+        }
+
+        self::helpMe()->projects()->storeProject($this->project);
+
+        return true;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function getValue(/*string*/ $key)
     {
         switch ($key) {
@@ -58,7 +74,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
         if (!empty($this->project->getProjectId())) {
             $this->addCommandButton(ProjectConfigGUI::CMD_UPDATE_PROJECT, $this->txt("save"));
@@ -73,7 +89,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields() : void
     {
         $this->fields = [
             "project_key"          => [
@@ -121,7 +137,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
 
     }
@@ -130,7 +146,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt(!empty($this->project->getProjectId()) ? "edit_project" : "add_project"));
     }
@@ -139,7 +155,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value) : void
     {
         switch ($key) {
             case "project_issue_types":
@@ -150,20 +166,5 @@ class ProjectFormGUI extends PropertyFormGUI
                 Items::setter($this->project, $key, $value);
                 break;
         }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function storeForm() : bool
-    {
-        if (!parent::storeForm()) {
-            return false;
-        }
-
-        self::helpMe()->projects()->storeProject($this->project);
-
-        return true;
     }
 }

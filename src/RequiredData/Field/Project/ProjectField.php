@@ -18,16 +18,17 @@ class ProjectField extends AbstractField
 {
 
     use HelpMeTrait;
-    const TABLE_NAME_SUFFIX = "pr";
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+    const TABLE_NAME_SUFFIX = "pr";
 
 
     /**
      * @inheritDoc
      */
-    public function getTypeTitle() : string
+    public static function canBeAddedOnlyOnce() : bool
     {
-        return self::plugin()->translate("project", SupportGUI::LANG_MODULE);
+        return true;
     }
 
 
@@ -43,8 +44,8 @@ class ProjectField extends AbstractField
     /**
      * @inheritDoc
      */
-    public static function canBeAddedOnlyOnce() : bool
+    public function getTypeTitle() : string
     {
-        return true;
+        return self::plugin()->translate("project", SupportGUI::LANG_MODULE);
     }
 }

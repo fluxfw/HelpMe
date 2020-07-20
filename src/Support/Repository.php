@@ -18,10 +18,10 @@ use srag\Plugins\HelpMe\RequiredData\Field\SystemInfos\SystemInfosField;
 use srag\Plugins\HelpMe\Support\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\Recipient\Repository as RecipientsRepository;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
-use srag\RequiredData\HelpMe\Field\Email\EmailField;
-use srag\RequiredData\HelpMe\Field\MultilineText\MultilineTextField;
-use srag\RequiredData\HelpMe\Field\Select\SelectField;
-use srag\RequiredData\HelpMe\Field\Text\TextField;
+use srag\RequiredData\HelpMe\Field\Field\Email\EmailField;
+use srag\RequiredData\HelpMe\Field\Field\MultilineText\MultilineTextField;
+use srag\RequiredData\HelpMe\Field\Field\Select\SelectField;
+use srag\RequiredData\HelpMe\Field\Field\Text\TextField;
 
 /**
  * Class Repository
@@ -35,13 +35,23 @@ final class Repository
 
     use DICTrait;
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const GET_PARAM_REF_ID = "ref_id";
     const GET_PARAM_TARGET = "target";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -58,18 +68,9 @@ final class Repository
 
 
     /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @internal
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         $this->recipients()->dropTables();
     }
@@ -122,7 +123,7 @@ final class Repository
     /**
      * @return int|null
      */
-    public function getRefId()/*: ?int*/
+    public function getRefId() : ?int
     {
         $obj_ref_id = filter_input(INPUT_GET, self::GET_PARAM_REF_ID);
 
@@ -160,7 +161,7 @@ final class Repository
     /**
      *
      */
-    public function initDefaultFields()/*:void*/
+    public function initDefaultFields() : void
     {
         if (empty(self::helpMe()->requiredData()->fields()->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG))) {
 
@@ -260,7 +261,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         $this->recipients()->installTables();
 

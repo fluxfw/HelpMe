@@ -1,5 +1,46 @@
 # Changelog
 
+## [5.5.5]
+- Update `migrateFromOldGlobalPlugin`
+
+## [5.5.4]
+- Fix ILIAS 6 internal mail
+
+## [5.5.3]
+- Fix
+
+## [5.5.2]
+- Fix escaped html line breaks
+
+## [5.5.1]
+- Fix
+
+## [5.5.0]
+- New form
+- ILIAS 6 support
+- Remove ILIAS 5.3 support
+
+## [5.4.4]
+- Fixed exceptions in internal mail sender
+
+## [5.4.3]
+- Fix
+
+## [5.4.2]
+- Fix
+
+## [5.4.1]
+- Fix
+
+## [5.4.0]
+- Use `srag/datatable`
+
+## [5.3.0]
+- Min. PHP 7.2
+
+## [5.2.1]
+- Fix multiple notification tabs
+
 ## [5.2.0]
 - Auto escape twig parser option
 

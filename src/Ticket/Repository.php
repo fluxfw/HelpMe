@@ -10,6 +10,7 @@ use ilHelpMePlugin;
 use ilUtil;
 use srag\DIC\HelpMe\DICStatic;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Plugins\HelpMe\Config\ConfigCtrl;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\IssueTypeField;
 use srag\Plugins\HelpMe\RequiredData\Field\Project\ProjectField;
@@ -29,11 +30,21 @@ final class Repository
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -50,18 +61,9 @@ final class Repository
 
 
     /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @internal
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         self::dic()->database()->dropTable(Ticket::TABLE_NAME, false);
     }
@@ -126,7 +128,7 @@ final class Repository
      *
      * @return Ticket|null
      */
-    public function getTicketById(int $ticket_id)/*: ?Ticket*/
+    public function getTicketById(int $ticket_id) : ?Ticket
     {
         /**
          * @var Ticket|null $ticket
@@ -143,7 +145,7 @@ final class Repository
      *
      * @return Ticket|null
      */
-    public function getTicketByKey(string $ticket_key)/*: ?Ticket*/
+    public function getTicketByKey(string $ticket_key) : ?Ticket
     {
         /**
          * @var Ticket|null $ticket
@@ -222,6 +224,127 @@ final class Repository
 
 
     /**
+     * @internal
+     */
+    public function installTables() : void
+    {
+        Ticket::updateDB();
+    }
+
+
+    /**
+     * @param bool $check_has_one_project_at_least_read_access
+     *
+     * @return bool
+     */
+    public function isEnabled(bool $check_has_one_project_at_least_read_access = true) : bool
+    {
+        return (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
+            && (!$check_has_one_project_at_least_read_access || self::helpMe()->projects()->hasOneProjectAtLeastReadAccess())
+            && file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
+            && DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
+            && ilCronManager::isJobActive(FetchJiraTicketsJob::CRON_JOB_ID));
+    }
+
+
+    /**
+     *
+     */
+    public function removeTickets() : void
+    {
+        Ticket::truncateDB();
+    }
+
+
+    /**
+     * @param Ticket[] $tickets
+     */
+    public function replaceWith(array $tickets) : void
+    {
+        $this->removeTickets();
+
+        foreach ($tickets as $ticket) {
+            $this->storeTicket($ticket);
+        }
+    }
+
+
+    /**
+     *
+     */
+    public function showUsageConfigHint() : void
+    {
+        $usage_ids = [];
+
+        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
+
+            if (!$this->isEnabled(false)) {
+
+                $usage_ids[] = "usage_1_info";
+            }
+
+            if (!$this->isEnabled()) {
+
+                $usage_ids[] = "usage_2_info";
+            }
+        }
+
+        if (!empty(self::helpMe()->projects()->getProjects())) {
+
+            if (empty(self::helpMe()
+                ->requiredData()
+                ->fields()
+                ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [ProjectField::getType()]))
+            ) {
+
+                $usage_ids[] = "usage_3_info";
+            }
+
+            if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
+
+                if (empty(self::helpMe()
+                    ->requiredData()
+                    ->fields()
+                    ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [IssueTypeField::getType()]))
+                ) {
+
+                    $usage_ids[] = "usage_4_info";
+                }
+            }
+        }
+
+        $info = [];
+        foreach ($usage_ids as $usage_id) {
+
+            if (!self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN)[$usage_id]) {
+
+                $text = self::plugin()->translate($usage_id, ConfigCtrl::LANG_MODULE);
+
+                self::dic()->ctrl()->setParameterByClass(ConfigCtrl::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
+                $hide_button = self::dic()->ui()->factory()->button()->standard(self::plugin()
+                    ->translate("usage_hide", ConfigCtrl::LANG_MODULE), self::dic()->ctrl()
+                    ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ConfigCtrl::class, ConfigCtrl::CMD_HIDE_USAGE));
+                self::dic()->ctrl()->setParameterByClass(ConfigCtrl::class, TicketsGUI::GET_PARAM_USAGE_ID, null);
+
+                $info[] = self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button]);
+            }
+        }
+        if (!empty($info)) {
+            ilUtil::sendInfo(self::output()->getHTML($info));
+        }
+    }
+
+
+    /**
+     * @param Ticket $ticket
+     */
+    public function storeTicket(Ticket $ticket) : void
+    {
+        $ticket->store();
+    }
+
+
+    /**
      * @param string|null $sort_by
      * @param string|null $sort_by_direction
      * @param int|null    $limit_start
@@ -278,133 +401,5 @@ final class Repository
         }
 
         return $sql;
-    }
-
-
-    /**
-     * @internal
-     */
-    public function installTables()/*:void*/
-    {
-        Ticket::updateDB();
-    }
-
-
-    /**
-     * @param bool $check_has_one_project_at_least_read_access
-     *
-     * @return bool
-     */
-    public function isEnabled(bool $check_has_one_project_at_least_read_access = true) : bool
-    {
-        return (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
-            && (!$check_has_one_project_at_least_read_access || self::helpMe()->projects()->hasOneProjectAtLeastReadAccess())
-            && file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
-            && DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
-            && ilCronManager::isJobActive(FetchJiraTicketsJob::CRON_JOB_ID));
-    }
-
-
-    /**
-     *
-     */
-    public function removeTickets()/*: void*/
-    {
-        Ticket::truncateDB();
-    }
-
-
-    /**
-     * @param Ticket[] $tickets
-     */
-    public function replaceWith(array $tickets)/*: void*/
-    {
-        $this->removeTickets();
-
-        foreach ($tickets as $ticket) {
-            $this->storeTicket($ticket);
-        }
-    }
-
-
-    /**
-     *
-     */
-    public function showUsageConfigHint()/*: void*/
-    {
-        $usage_ids = [];
-
-        if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
-
-            if (!$this->isEnabled(false)) {
-
-                $usage_ids[] = "usage_1_info";
-            }
-
-            if (!$this->isEnabled()) {
-
-                $usage_ids[] = "usage_2_info";
-            }
-        }
-
-        if (!empty(self::helpMe()->projects()->getProjects())) {
-
-            if (empty(self::helpMe()
-                ->requiredData()
-                ->fields()
-                ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [ProjectField::getType()]))
-            ) {
-
-                $usage_ids[] = "usage_3_info";
-            }
-
-            if (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET) {
-
-                if (empty(self::helpMe()
-                    ->requiredData()
-                    ->fields()
-                    ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [IssueTypeField::getType()]))
-                ) {
-
-                    $usage_ids[] = "usage_4_info";
-                }
-            }
-        }
-
-        $info = [];
-        foreach ($usage_ids as $usage_id) {
-
-            if (!self::helpMe()->config()->getValue(ConfigFormGUI::KEY_USAGE_HIDDEN)[$usage_id]) {
-
-                $text = self::plugin()->translate($usage_id, ilHelpMeConfigGUI::LANG_MODULE);
-
-                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, $usage_id);
-                $hide_button = self::dic()->ui()->factory()->button()->standard(self::plugin()
-                    ->translate("usage_hide", ilHelpMeConfigGUI::LANG_MODULE), self::dic()->ctrl()
-                    ->getLinkTargetByClass(ilHelpMeConfigGUI::class, ilHelpMeConfigGUI::CMD_HIDE_USAGE));
-                self::dic()->ctrl()->setParameterByClass(ilHelpMeConfigGUI::class, TicketsGUI::GET_PARAM_USAGE_ID, null);
-
-                if (self::version()->is54()) {
-                    $info[] = self::dic()->ui()->factory()->messageBox()->info($text)->withButtons([$hide_button]);
-                } else {
-                    $info[] = $text;
-                    $info[] = "<br>";
-                    $info[] = $hide_button;
-                    $info[] = "<br><br>";
-                }
-            }
-        }
-        if (!empty($info)) {
-            ilUtil::sendInfo(self::output()->getHTML($info));
-        }
-    }
-
-
-    /**
-     * @param Ticket $ticket
-     */
-    public function storeTicket(Ticket $ticket)/*: void*/
-    {
-        $ticket->store();
     }
 }

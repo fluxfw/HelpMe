@@ -2,8 +2,11 @@
 
 namespace srag\RequiredData\HelpMe\Fill;
 
+use ILIAS\UI\Component\Input\Field\Input;
 use ilSession;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
+use srag\CustomInputGUIs\HelpMe\TabsInputGUI\MultilangualTabsInputGUI;
+use srag\CustomInputGUIs\HelpMe\TabsInputGUI\TabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
@@ -20,8 +23,9 @@ final class Repository
     const SESSION_TEMP_FILL_VALUES_STORAGE = "required_data_temp_fill_values";
     use DICTrait;
     use RequiredDataTrait;
+
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
@@ -51,7 +55,7 @@ final class Repository
     /**
      *
      */
-    public function clearTempFillValues()/*:void*/
+    public function clearTempFillValues() : void
     {
         ilSession::clear(self::SESSION_TEMP_FILL_VALUES_STORAGE);
     }
@@ -60,7 +64,7 @@ final class Repository
     /**
      * @param FillStorage $fill_storage
      */
-    protected function deleteFillStorage(FillStorage $fill_storage)/*: void*/
+    protected function deleteFillStorage(FillStorage $fill_storage) : void
     {
         $fill_storage->delete();
     }
@@ -69,7 +73,7 @@ final class Repository
     /**
      * @param string $fill_id
      */
-    protected function deleteFillStorages(string $fill_id)/*: void*/
+    public function deleteFillStorages(string $fill_id) : void
     {
         foreach ($this->getFillStorages($fill_id) as $fill_storage) {
             $this->deleteFillStorage($fill_storage);
@@ -80,7 +84,7 @@ final class Repository
     /**
      * @internal
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         self::dic()->database()->dropTable(FillStorage::getTableName(), false);
     }
@@ -110,7 +114,15 @@ final class Repository
             $field = self::requiredData()->fields()->getFieldById($parent_context, $parent_id, $type, $field_id);
 
             if ($field !== null) {
-                $value = $this->factory()->newFillFieldInstance($field)->formatAsJson($value);
+
+                if ($field->isMultiLang()) {
+                    $value = (array) $value;
+                    $value = array_map(function ($value) use ($field) {
+                        return $this->factory()->newFillFieldInstance($field)->formatAsJson(current((array) $value));
+                    }, $value);
+                } else {
+                    $value = $this->factory()->newFillFieldInstance($field)->formatAsJson($value);
+                }
             }
         }
 
@@ -136,7 +148,16 @@ final class Repository
             $field = self::requiredData()->fields()->getFieldById($parent_context, $parent_id, $type, $field_id);
 
             if ($field !== null) {
-                $value = $this->factory()->newFillFieldInstance($field)->formatAsString($value);
+
+                if ($field->isMultiLang()) {
+                    $value = (array) $value;
+                    $value = nl2br(implode("\n", array_map(function (string $lang_key, $value) use ($field) {
+                        return strtoupper($lang_key) . ": " . $this->factory()->newFillFieldInstance($field)->formatAsString(current((array) $value));
+                    }, array_keys($value), $value)), false);
+                } else {
+                    $value = $this->factory()->newFillFieldInstance($field)->formatAsString($value);
+                }
+
                 if ($keep_field_id) {
                     if (self::requiredData()->isEnableNames()) {
                         $formatted_fill_values[$type . "_" . $field_id] = [$field->getName(), $field->getLabel(), $value];
@@ -174,7 +195,7 @@ final class Repository
      *
      * @return FillStorage|null
      */
-    protected function getFillStorageByField(string $fill_id, string $field_id)/*:?FillStorage*/
+    protected function getFillStorageByField(string $fill_id, string $field_id) : ?FillStorage
     {
         /**
          * @var FillStorage|null $fill_storage
@@ -194,7 +215,7 @@ final class Repository
      *
      * @return array
      */
-    public function getFillValues(/*?*/ string $fill_id = null) : array
+    public function getFillValues(?string $fill_id = null) : array
     {
         if ($fill_id === null) {
             if (isset($_SESSION[self::SESSION_TEMP_FILL_VALUES_STORAGE])) {
@@ -233,25 +254,37 @@ final class Repository
 
 
     /**
-     * @param int $parent_context
-     * @param int $parent_id
+     * @param int   $parent_context
+     * @param int   $parent_id
+     * @param array $fill_values
      *
-     * @return array
+     * @return Input[]
      */
-    public function getFormFields(int $parent_context, int $parent_id) : array
+    public function getFormFields(int $parent_context, int $parent_id, array $fill_values = []) : array
     {
         $fields = [];
 
         foreach (self::requiredData()->fields()->getFields($parent_context, $parent_id) as $field) {
-            $fields["field_" . $field->getId()] = array_merge(
-                [
-                    "setTitle" => $field->getLabel(),
-                    "setInfo"  => $field->getDescription()
-                ],
-                self::requiredData()->fills()->factory()->newFillFieldInstance($field)->getFormFields(),
-                [
-                    PropertyFormGUI::PROPERTY_REQUIRED => $field->isRequired()
+            $input = self::requiredData()->fills()->factory()->newFillFieldInstance($field)->getInput();
+
+            if (isset($fill_values[$field->getId()])) {
+                $input = $input->withValue($field->isMultiLang() ? array_map(function ($value) use ($field): array {
+                    return [
+                        $field->getId() . "_" => $value
+                    ];
+                }, $fill_values[$field->getId()]) : $fill_values[$field->getId()]);
+            }
+
+            if ($field->isMultiLang()) {
+                $tabs = (new InputGUIWrapperUIInputComponent(new TabsInputGUI($input->getLabel())))->withByline($input->getByline())->withRequired($input->isRequired())->withValue($input->getValue());
+                $input = $input->withLabel("")->withByline("")->withValue(null);
+                MultilangualTabsInputGUI::generateLegacy($tabs->getInput(), [
+                    $field->getId() . "_" => $input
                 ]);
+                $input = $tabs;
+            }
+
+            $fields[$field->getId()] = $input;
         }
 
         return $fields;
@@ -261,7 +294,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         FillStorage::updateDB();
     }
@@ -271,7 +304,7 @@ final class Repository
      * @param string|null $fill_id
      * @param array|null  $fill_values
      */
-    public function storeFillValues(/*?*/ string $fill_id = null, /*?*/ array $fill_values = null)/*:void*/
+    public function storeFillValues(?string $fill_id = null, ?array $fill_values = null) : void
     {
         if ($fill_id !== null) {
             if ($fill_values === null) {
@@ -319,7 +352,7 @@ final class Repository
     /**
      * @param FillStorage $fill_storage
      */
-    protected function storeFillStorage(FillStorage $fill_storage)/*:void*/
+    protected function storeFillStorage(FillStorage $fill_storage) : void
     {
         $fill_storage->store();
     }

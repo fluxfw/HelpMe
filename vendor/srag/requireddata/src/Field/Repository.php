@@ -3,6 +3,7 @@
 namespace srag\RequiredData\HelpMe\Field;
 
 use srag\DIC\HelpMe\DICTrait;
+use srag\RequiredData\HelpMe\Field\Field\Group\GroupField;
 use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
 
 /**
@@ -17,8 +18,9 @@ final class Repository
 
     use DICTrait;
     use RequiredDataTrait;
+
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
@@ -46,9 +48,53 @@ final class Repository
 
 
     /**
+     * @param AbstractField[] $fields
+     *
+     * @return GroupField|null
+     */
+    public function createGroupOfFields(array $fields) : ?GroupField
+    {
+        $fields = array_filter($fields, function (AbstractField $field) : bool {
+            return !($field instanceof GroupField);
+        });
+        if (empty($fields)) {
+            return null;
+        }
+
+        $first_field = current($fields);
+
+        $fields = array_filter($fields, function (AbstractField $field) use ($first_field): bool {
+            return ($field->getType() === $first_field->getType() && $field->getParentContext() === $first_field->getParentContext() && $field->getParentId() === $first_field->getParentId());
+        });
+        if (empty($fields)) {
+            return null;
+        }
+
+        /**
+         * @var GroupField $group
+         */
+        $group = $this->factory()->newInstance(GroupField::getType());
+
+        $group->setParentContext($first_field->getParentContext());
+        $group->setParentId($first_field->getParentId());
+        $this->storeField($group);
+
+        foreach ($fields as $field) {
+            $field->setParentContext(GroupField::PARENT_CONTEXT_FIELD_GROUP);
+            $field->setParentId($group->getFieldId());
+            $this->storeField($field);
+        }
+
+        $this->storeField($group);
+
+        return $group;
+    }
+
+
+    /**
      * @param AbstractField $field
      */
-    public function deleteField(AbstractField $field)/*: void*/
+    public function deleteField(AbstractField $field) : void
     {
         $field->delete();
 
@@ -60,7 +106,7 @@ final class Repository
      * @param int $parent_context
      * @param int $parent_id
      */
-    public function deleteFields(int $parent_context, int $parent_id)/*: void*/
+    public function deleteFields(int $parent_context, int $parent_id) : void
     {
         foreach ($this->getFields($parent_context, $parent_id, null, false) as $field) {
             $this->deleteField($field);
@@ -71,7 +117,7 @@ final class Repository
     /**
      * @internal
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         foreach ($this->factory()->getClasses() as $class) {
             self::dic()->database()->dropTable($class::getTableName(), false);
@@ -96,7 +142,7 @@ final class Repository
      *
      * @return AbstractField|null
      */
-    public function getFieldById(int $parent_context, int $parent_id, string $type, int $field_id)/*: ?AbstractField*/
+    public function getFieldById(int $parent_context, int $parent_id, string $type, int $field_id) : ?AbstractField
     {
         foreach ($this->factory()->getClasses() as $type_class => $class) {
             if ($type_class === $type) {
@@ -120,7 +166,7 @@ final class Repository
      *
      * @return AbstractField|null
      */
-    public function getFieldByName(int $parent_context, int $parent_id, string $name)/*: ?AbstractField*/
+    public function getFieldByName(int $parent_context, int $parent_id, string $name) : ?AbstractField
     {
         foreach ($this->factory()->getClasses() as $type_class => $class) {
             /**
@@ -145,7 +191,7 @@ final class Repository
      *
      * @return AbstractField[]
      */
-    public function getFields(int $parent_context, int $parent_id, /*?*/ array $types = null, bool $only_enabled = true) : array
+    public function getFields(int $parent_context, int $parent_id, ?array $types = null, bool $only_enabled = true) : array
     {
         $fields = [];
 
@@ -186,7 +232,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         foreach ($this->factory()->getClasses() as $class) {
             $class::updateDB();
@@ -197,7 +243,7 @@ final class Repository
     /**
      * @param AbstractField $field
      */
-    public function moveFieldUp(AbstractField $field)/*: void*/
+    public function moveFieldUp(AbstractField $field) : void
     {
         $field->setSort($field->getSort() - 15);
 
@@ -210,7 +256,7 @@ final class Repository
     /**
      * @param AbstractField $field
      */
-    public function moveFieldDown(AbstractField $field)/*: void*/
+    public function moveFieldDown(AbstractField $field) : void
     {
         $field->setSort($field->getSort() + 15);
 
@@ -224,7 +270,7 @@ final class Repository
      * @param int $parent_context
      * @param int $parent_id
      */
-    protected function reSortFields(int $parent_context, int $parent_id)/*: void*/
+    protected function reSortFields(int $parent_context, int $parent_id) : void
     {
         $fields = $this->getFields($parent_context, $parent_id, null, false);
 
@@ -242,12 +288,33 @@ final class Repository
     /**
      * @param AbstractField $field
      */
-    public function storeField(AbstractField $field)/*: void*/
+    public function storeField(AbstractField $field) : void
     {
         if (empty($field->getFieldId())) {
             $field->setSort(((count($this->getFields($field->getParentContext(), $field->getParentId(), null, false)) + 1) * 10));
         }
 
         $field->store();
+    }
+
+
+    /**
+     * @param GroupField $group
+     *
+     * @return AbstractField[]
+     */
+    public function ungroup(GroupField $group) : array
+    {
+        $fields = $this->getFields(GroupField::PARENT_CONTEXT_FIELD_GROUP, $group->getFieldId(), null, false);
+
+        foreach ($fields as $field) {
+            $field->setParentContext($group->getParentContext());
+            $field->setParentId($group->getParentId());
+            $this->storeField($field);
+        }
+
+        $this->deleteField($group);
+
+        return $fields;
     }
 }

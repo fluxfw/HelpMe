@@ -4,7 +4,8 @@ namespace srag\Plugins\HelpMe\RequiredData\Field\Screenshots;
 
 use ilHelpMePlugin;
 use ILIAS\FileUpload\DTO\UploadResult;
-use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\PropertyFormGUI;
+use ILIAS\UI\Component\Input\Field\Input;
+use srag\CustomInputGUIs\HelpMe\InputGUIWrapperUIInputComponent\InputGUIWrapperUIInputComponent;
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RequiredData\HelpMe\Fill\AbstractFillField;
@@ -20,6 +21,7 @@ class ScreenshotsFillField extends AbstractFillField
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var ScreenshotsField
@@ -33,18 +35,6 @@ class ScreenshotsFillField extends AbstractFillField
     public function __construct(ScreenshotsField $field)
     {
         parent::__construct($field);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getFormFields() : array
-    {
-        return [
-            PropertyFormGUI::PROPERTY_CLASS => ScreenshotsInputGUI::class,
-            "withPlugin"                    => self::plugin()
-        ];
     }
 
 
@@ -65,5 +55,18 @@ class ScreenshotsFillField extends AbstractFillField
         return nl2br(implode("\n", array_map(function (UploadResult $screenshot) : string {
             return htmlspecialchars($screenshot->getName());
         }, (array) $fill_value)), false);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        $input = (new InputGUIWrapperUIInputComponent(new ScreenshotsInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())->withRequired($this->field->isRequired());
+
+        $input->getInput()->withPlugin(self::plugin());
+
+        return $input;
     }
 }

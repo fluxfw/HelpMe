@@ -18,6 +18,7 @@ class SupportField
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
      * @var string
@@ -26,11 +27,11 @@ class SupportField
     /**
      * @var string
      */
-    public $name = "";
+    public $label = "";
     /**
      * @var string
      */
-    public $label = "";
+    public $name = "";
     /**
      * @var string
      */

@@ -3,6 +3,7 @@
 namespace srag\RequiredData\HelpMe;
 
 use LogicException;
+use srag\DataTableUI\HelpMe\Implementation\Utils\DataTableUITrait;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Plugin\Pluginable;
 use srag\DIC\HelpMe\Plugin\PluginInterface;
@@ -23,8 +24,10 @@ final class Repository implements Pluginable
 
     use DICTrait;
     use RequiredDataTrait;
+    use DataTableUITrait;
+
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
 
@@ -53,6 +56,10 @@ final class Repository implements Pluginable
     /**
      * @var bool
      */
+    protected $enableGroups = false;
+    /**
+     * @var bool
+     */
     protected $enableNames = false;
 
 
@@ -68,7 +75,7 @@ final class Repository implements Pluginable
     /**
      *
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         $this->fields()->dropTables();
         $this->fills()->dropTables();
@@ -122,20 +129,31 @@ final class Repository implements Pluginable
     /**
      *
      */
-    public function installLanguages()/*:void*/
+    public function installLanguages() : void
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($this->getPlugin())->withLibraryLanguageDirectory(__DIR__
             . "/../lang")->updateLanguages();
+
+        self::dataTableUI()->installLanguages($this->plugin);
     }
 
 
     /**
      *
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         $this->fields()->installTables();
         $this->fills()->installTables();
+    }
+
+
+    /**
+     * @return bool
+     */
+    public function isEnableGroups() : bool
+    {
+        return $this->enableGroups;
     }
 
 
@@ -167,6 +185,19 @@ final class Repository implements Pluginable
     public function withTableNamePrefix(string $table_name_prefix) : self
     {
         $this->table_name_prefix = $table_name_prefix;
+
+        return $this;
+    }
+
+
+    /**
+     * @param bool $enableGroups
+     *
+     * @return self
+     */
+    public function withEnableGroups(bool $enableGroups) : self
+    {
+        $this->enableGroups = $enableGroups;
 
         return $this;
     }

@@ -4,7 +4,6 @@ namespace srag\Plugins\HelpMe\Config;
 
 use ilCheckboxInputGUI;
 use ilEMailInputGUI;
-use ilHelpMeConfigGUI;
 use ilHelpMePlugin;
 use ilNumberInputGUI;
 use ilPasswordInputGUI;
@@ -25,11 +24,11 @@ use srag\Plugins\HelpMe\Support\Recipient\Recipient;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RequiredData\HelpMe\Field\AbstractField;
-use srag\RequiredData\HelpMe\Field\Email\EmailField;
-use srag\RequiredData\HelpMe\Field\Radio\RadioField;
-use srag\RequiredData\HelpMe\Field\SearchSelect\SearchSelectField;
-use srag\RequiredData\HelpMe\Field\Select\SelectField;
-use srag\RequiredData\HelpMe\Field\Text\TextField;
+use srag\RequiredData\HelpMe\Field\Field\Email\EmailField;
+use srag\RequiredData\HelpMe\Field\Field\Radio\RadioField;
+use srag\RequiredData\HelpMe\Field\Field\SearchSelect\SearchSelectField;
+use srag\RequiredData\HelpMe\Field\Field\Select\SelectField;
+use srag\RequiredData\HelpMe\Field\Field\Text\TextField;
 
 /**
  * Class ConfigFormGUI
@@ -42,7 +41,7 @@ class ConfigFormGUI extends PropertyFormGUI
 {
 
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const KEY_EMAIL_FIELD = "email_field";
     /**
      * @var string
@@ -50,8 +49,8 @@ class ConfigFormGUI extends PropertyFormGUI
      * @deprecated
      */
     const KEY_INFO = "info";
-    const KEY_INFO_TEXTS = "info_texts";
     const KEY_INFO_TEXT = "info_text";
+    const KEY_INFO_TEXTS = "info_texts";
     const KEY_JIRA_ACCESS_TOKEN = "jira_access_token";
     const KEY_JIRA_AUTHORIZATION = "jira_authorization";
     const KEY_JIRA_CONSUMER_KEY = "jira_consumer_key";
@@ -85,17 +84,42 @@ class ConfigFormGUI extends PropertyFormGUI
     const KEY_SEND_CONFIRMATION_EMAIL = "send_confirmation_email";
     const KEY_SEND_EMAIL_ADDRESS = "send_email_address";
     const KEY_USAGE_HIDDEN = "usage_hidden";
-    const LANG_MODULE = ilHelpMeConfigGUI::LANG_MODULE;
+    const LANG_MODULE = ConfigCtrl::LANG_MODULE;
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
      * ConfigFormGUI constructor
      *
-     * @param ilHelpMeConfigGUI $parent
+     * @param ConfigCtrl $parent
      */
-    public function __construct(ilHelpMeConfigGUI $parent)
+    public function __construct(ConfigCtrl $parent)
     {
         parent::__construct($parent);
+    }
+
+
+    /**
+     * @param string $template_name
+     *
+     * @return array
+     */
+    protected function getTemplateSelection(string $template_name) : array
+    {
+        return [
+            self::KEY_RECIPIENT_TEMPLATES . "_" . $template_name => [
+                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
+                self::PROPERTY_REQUIRED => true,
+                self::PROPERTY_OPTIONS  => ["" => ""] + array_combine(array_map(function (NotificationInterface $notification) : string {
+                        return $notification->getName();
+                    }, self::helpMe()->notifications4plugin()->notifications()
+                        ->getNotifications()), array_map(function (NotificationInterface $notification) : string {
+                        return $notification->getTitle();
+                    }, self::helpMe()->notifications4plugin()->notifications()
+                        ->getNotifications())),
+                "setTitle"              => self::plugin()->translate("template_selection", NotificationsCtrl::LANG_MODULE)
+            ]
+        ];
     }
 
 
@@ -122,16 +146,16 @@ class ConfigFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initCommands()/*: void*/
+    protected function initCommands() : void
     {
-        $this->addCommandButton(ilHelpMeConfigGUI::CMD_UPDATE_CONFIGURE, $this->txt("save"));
+        $this->addCommandButton(ConfigCtrl::CMD_UPDATE_CONFIGURE, $this->txt("save"));
     }
 
 
     /**
      * @inheritDoc
      */
-    protected function initFields()/*: void*/
+    protected function initFields() : void
     {
         $this->fields = [
             self::KEY_NAME_FIELD                                  => [
@@ -287,7 +311,7 @@ class ConfigFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initId()/*: void*/
+    protected function initId() : void
     {
 
     }
@@ -296,7 +320,7 @@ class ConfigFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function initTitle()/*: void*/
+    protected function initTitle() : void
     {
         $this->setTitle($this->txt("configuration"));
     }
@@ -305,7 +329,7 @@ class ConfigFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value)/*: void*/
+    protected function storeValue(/*string*/ $key, $value) : void
     {
         switch (true) {
             case (strpos($key, self::KEY_RECIPIENT_TEMPLATES . "_") === 0):
@@ -328,29 +352,5 @@ class ConfigFormGUI extends PropertyFormGUI
                 self::helpMe()->config()->setValue($key, $value);
                 break;
         }
-    }
-
-
-    /**
-     * @param string $template_name
-     *
-     * @return array
-     */
-    protected function getTemplateSelection(string $template_name) : array
-    {
-        return [
-            self::KEY_RECIPIENT_TEMPLATES . "_" . $template_name => [
-                self::PROPERTY_CLASS    => ilSelectInputGUI::class,
-                self::PROPERTY_REQUIRED => true,
-                self::PROPERTY_OPTIONS  => ["" => ""] + array_combine(array_map(function (NotificationInterface $notification) : string {
-                        return $notification->getName();
-                    }, self::helpMe()->notifications4plugin()->notifications()
-                        ->getNotifications()), array_map(function (NotificationInterface $notification) : string {
-                        return $notification->getTitle();
-                    }, self::helpMe()->notifications4plugin()->notifications()
-                        ->getNotifications())),
-                "setTitle"              => self::plugin()->translate("template_selection", NotificationsCtrl::LANG_MODULE)
-            ]
-        ];
     }
 }

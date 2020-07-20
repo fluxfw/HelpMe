@@ -4,6 +4,8 @@ namespace srag\Notifications4Plugin\HelpMe\Notification;
 
 use ilDateTime;
 use srag\DIC\HelpMe\DICTrait;
+use srag\Notifications4Plugin\HelpMe\Notification\Form\FormBuilder;
+use srag\Notifications4Plugin\HelpMe\Notification\Table\TableBuilder;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 use stdClass;
 
@@ -19,10 +21,20 @@ final class Factory implements FactoryInterface
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     /**
      * @var FactoryInterface|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -35,15 +47,6 @@ final class Factory implements FactoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -76,6 +79,17 @@ final class Factory implements FactoryInterface
     /**
      * @inheritDoc
      */
+    public function newFormBuilderInstance(NotificationCtrl $parent, NotificationInterface $notification) : FormBuilder
+    {
+        $form = new FormBuilder($parent, $notification);
+
+        return $form;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function newInstance() : NotificationInterface
     {
         $notification = new Notification();
@@ -87,21 +101,10 @@ final class Factory implements FactoryInterface
     /**
      * @inheritDoc
      */
-    public function newTableInstance(NotificationsCtrl $parent, string $cmd = NotificationsCtrl::CMD_LIST_NOTIFICATIONS) : NotificationsTableGUI
+    public function newTableBuilderInstance(NotificationsCtrl $parent) : TableBuilder
     {
-        $table = new NotificationsTableGUI($parent, $cmd);
+        $table = new TableBuilder($parent);
 
         return $table;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function newFormInstance(NotificationCtrl $parent, NotificationInterface $notification) : NotificationFormGUI
-    {
-        $form = new NotificationFormGUI($parent, $notification);
-
-        return $form;
     }
 }

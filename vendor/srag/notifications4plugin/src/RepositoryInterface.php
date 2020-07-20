@@ -20,7 +20,7 @@ interface RepositoryInterface extends Pluginable
     /**
      *
      */
-    public function dropTables()/*: void*/ ;
+    public function dropTables() : void;
 
 
     /**
@@ -38,13 +38,13 @@ interface RepositoryInterface extends Pluginable
     /**
      *
      */
-    public function installLanguages()/*:void*/ ;
+    public function installLanguages() : void;
 
 
     /**
      *
      */
-    public function installTables()/*:void*/ ;
+    public function installTables() : void;
 
 
     /**

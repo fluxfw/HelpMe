@@ -20,11 +20,21 @@ final class Factory
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -41,15 +51,6 @@ final class Factory
 
 
     /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @param string  $recipient
      * @param Support $support
      *
@@ -57,7 +58,7 @@ final class Factory
      *
      * @throws ActiveRecordConfigException
      */
-    public function newInstance(string $recipient, Support $support)/*: ?Recipient*/
+    public function newInstance(string $recipient, Support $support) : ?Recipient
     {
         switch ($recipient) {
             case Recipient::SEND_EMAIL:

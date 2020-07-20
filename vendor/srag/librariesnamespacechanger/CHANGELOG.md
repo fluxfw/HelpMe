@@ -1,5 +1,55 @@
 # Changelog
 
+## [0.9.7]
+- Add some regexp to `PHP72Backport`
+- Skip some folders
+
+## [0.9.6]
+- `GeneratePluginPhpAndXml`: No empty `<events>`
+
+## [0.9.5]
+- `GeneratePluginPhpAndXml`: `learning_progress` and `supports_export`
+
+## [0.9.4]
+- Fix
+
+## [0.9.3]
+- Fix
+
+## [0.9.2]
+- `UpdatePluginReadme`
+
+## [0.9.1]
+- Fix
+
+## [0.9.0]
+- `GeneratePluginPhpAndXml`
+
+## [0.8.7]
+- Fix
+
+## [0.8.6]
+- Fix
+
+## [0.8.5]
+- Fix
+
+## [0.8.4]
+- Fix
+
+## [0.8.3]
+- Fix
+
+## [0.8.2]
+- Fix
+
+## [0.8.1]
+- Fix
+
+## [0.8.0]
+- Min. PHP 7.0
+- PHP72Backport
+
 ## [0.7.0]
 - Support all srag libraries
 

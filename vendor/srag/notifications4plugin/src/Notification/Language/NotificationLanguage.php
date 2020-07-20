@@ -23,47 +23,23 @@ class NotificationLanguage extends ActiveRecord
 
     use DICTrait;
     use Notifications4PluginTrait;
+
     /**
      * @var string
      *
      * @deprecated
      */
     const TABLE_NAME_SUFFIX = "not_lan";
-
-
     /**
-     * @inheritDoc
+     * @var ilDateTime
+     *
+     * @con_has_field    true
+     * @con_fieldtype    timestamp
+     * @con_is_notnull   true
      *
      * @deprecated
      */
-    public static function getTableName() : string
-    {
-        return self::notifications4plugin()->getTableNamePrefix() . "_" . self::TABLE_NAME_SUFFIX;
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated
-     */
-    public function getConnectorContainerName() : string
-    {
-        return self::getTableName();
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated
-     */
-    public static function returnDbTableName() : string
-    {
-        return self::getTableName();
-    }
-
-
+    protected $created_at;
     /**
      * @var int
      *
@@ -77,17 +53,6 @@ class NotificationLanguage extends ActiveRecord
      */
     protected $id = 0;
     /**
-     * @var int
-     *
-     * @con_has_field    true
-     * @con_fieldtype    integer
-     * @con_length       8
-     * @con_is_notnull   true
-     *
-     * @deprecated
-     */
-    protected $notification_id;
-    /**
      * @var string
      *
      * @con_has_field    true
@@ -98,6 +63,17 @@ class NotificationLanguage extends ActiveRecord
      * @deprecated
      */
     protected $language = "";
+    /**
+     * @var int
+     *
+     * @con_has_field    true
+     * @con_fieldtype    integer
+     * @con_length       8
+     * @con_is_notnull   true
+     *
+     * @deprecated
+     */
+    protected $notification_id;
     /**
      * @var string
      *
@@ -129,16 +105,6 @@ class NotificationLanguage extends ActiveRecord
      *
      * @deprecated
      */
-    protected $created_at;
-    /**
-     * @var ilDateTime
-     *
-     * @con_has_field    true
-     * @con_fieldtype    timestamp
-     * @con_is_notnull   true
-     *
-     * @deprecated
-     */
     protected $updated_at;
 
 
@@ -153,6 +119,39 @@ class NotificationLanguage extends ActiveRecord
     public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null)
     {
         //parent::__construct($primary_key_value, $connector);
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    public static function getTableName() : string
+    {
+        return self::notifications4plugin()->getTableNamePrefix() . "_" . self::TABLE_NAME_SUFFIX;
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    public static function returnDbTableName() : string
+    {
+        return self::getTableName();
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    public function getConnectorContainerName() : string
+    {
+        return self::getTableName();
     }
 
 

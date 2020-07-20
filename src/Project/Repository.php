@@ -22,11 +22,21 @@ final class Repository
 
     use DICTrait;
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -43,18 +53,9 @@ final class Repository
 
 
     /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      * @param Project $project
      */
-    public function deleteProject(Project $project)/*: void*/
+    public function deleteProject(Project $project) : void
     {
         $project->delete();
     }
@@ -63,7 +64,7 @@ final class Repository
     /**
      * @internal
      */
-    public function dropTables()/*:void*/
+    public function dropTables() : void
     {
         self::dic()->database()->dropTable(Project::TABLE_NAME, false);
     }
@@ -114,28 +115,11 @@ final class Repository
 
 
     /**
-     * @param bool $only_show_tickets
-     *
-     * @return Project[]
-     */
-    public function getProjects(bool $only_show_tickets = false) : array
-    {
-        $where = Project::where([]);
-
-        if ($only_show_tickets) {
-            $where = $where->where(["project_show_tickets" => true]);
-        }
-
-        return $where->orderBy("project_name", "ASC")->get();
-    }
-
-
-    /**
      * @param int $project_id
      *
      * @return Project|null
      */
-    public function getProjectById(int $project_id)/*: ?Project*/
+    public function getProjectById(int $project_id) : ?Project
     {
         /**
          * @var Project|null $project
@@ -152,7 +136,7 @@ final class Repository
      *
      * @return Project|null
      */
-    public function getProjectByKey(string $project_key)/*: ?Project*/
+    public function getProjectByKey(string $project_key) : ?Project
     {
         /**
          * @var Project|null $project
@@ -169,7 +153,7 @@ final class Repository
      *
      * @return Project|null
      */
-    public function getProjectByUrlKey(string $project_url_key)/*: ?Project*/
+    public function getProjectByUrlKey(string $project_url_key) : ?Project
     {
         /**
          * @var Project|null $project
@@ -178,6 +162,23 @@ final class Repository
         $project = Project::where(["project_url_key" => $project_url_key])->first();
 
         return $project;
+    }
+
+
+    /**
+     * @param bool $only_show_tickets
+     *
+     * @return Project[]
+     */
+    public function getProjects(bool $only_show_tickets = false) : array
+    {
+        $where = Project::where([]);
+
+        if ($only_show_tickets) {
+            $where = $where->where(["project_show_tickets" => true]);
+        }
+
+        return $where->orderBy("project_name", "ASC")->get();
     }
 
 
@@ -215,7 +216,7 @@ final class Repository
     /**
      * @internal
      */
-    public function installTables()/*:void*/
+    public function installTables() : void
     {
         Project::updateDB();
 
@@ -385,7 +386,7 @@ final class Repository
     /**
      * @param Project $project
      */
-    public function storeProject(Project $project)/*: void*/
+    public function storeProject(Project $project) : void
     {
         $project->store();
     }

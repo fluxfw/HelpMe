@@ -19,11 +19,21 @@ final class Repository extends AbstractRepository
 {
 
     use HelpMeTrait;
+
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
-     * @var self
+     * @var self|null
      */
     protected static $instance = null;
+
+
+    /**
+     * Repository constructor
+     */
+    protected function __construct()
+    {
+        parent::__construct();
+    }
 
 
     /**
@@ -40,15 +50,6 @@ final class Repository extends AbstractRepository
 
 
     /**
-     * Repository constructor
-     */
-    protected function __construct()
-    {
-        parent::__construct();
-    }
-
-
-    /**
      * @inheritDoc
      *
      * @return Factory
@@ -56,15 +57,6 @@ final class Repository extends AbstractRepository
     public function factory() : AbstractFactory
     {
         return Factory::getInstance();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getTableName() : string
-    {
-        return "ui_uihk_" . ilHelpMePlugin::PLUGIN_ID . "_config_n";
     }
 
 
@@ -101,5 +93,14 @@ final class Repository extends AbstractRepository
             ConfigFormGUI::KEY_SEND_EMAIL_ADDRESS                     => Config::TYPE_STRING,
             ConfigFormGUI::KEY_USAGE_HIDDEN                           => [Config::TYPE_JSON, [], true]
         ];
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function getTableName() : string
+    {
+        return "ui_uihk_" . ilHelpMePlugin::PLUGIN_ID . "_config_n";
     }
 }

@@ -21,7 +21,7 @@
     "issues": "https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL"
   },
   "require": {
-    "php": ">=7.0",
+    "php": ">=7.2",
     "srag/dic": ">=0.1.0"
   },
   "autoload": {

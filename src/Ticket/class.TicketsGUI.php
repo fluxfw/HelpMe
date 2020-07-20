@@ -20,13 +20,14 @@ class TicketsGUI
 
     use DICTrait;
     use HelpMeTrait;
-    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
+
     const CMD_APPLY_FILTER = "applyFilter";
     const CMD_LIST_TICKETS = "listTickets";
     const CMD_RESET_FILTER = "resetFilter";
     const CMD_SET_PROJECT_FILTER = "setProjectFilter";
     const GET_PARAM_USAGE_ID = "usage_id";
     const LANG_MODULE = "tickets";
+    const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
 
 
     /**
@@ -41,7 +42,7 @@ class TicketsGUI
     /**
      *
      */
-    public function executeCommand()/*: void*/
+    public function executeCommand() : void
     {
         if (!self::helpMe()->currentUserHasRole() || !self::helpMe()->tickets()->isEnabled()) {
             die();
@@ -74,27 +75,7 @@ class TicketsGUI
     /**
      *
      */
-    protected function setTabs()/*: void*/
-    {
-
-    }
-
-
-    /**
-     *
-     */
-    protected function listTickets()/*: void*/
-    {
-        $table = self::helpMe()->tickets()->factory()->newTableInstance($this);
-
-        self::output()->output($table, true);
-    }
-
-
-    /**
-     *
-     */
-    protected function applyFilter()/*: void*/
+    protected function applyFilter() : void
     {
         $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_APPLY_FILTER);
 
@@ -110,7 +91,18 @@ class TicketsGUI
     /**
      *
      */
-    protected function resetFilter()/*: void*/
+    protected function listTickets() : void
+    {
+        $table = self::helpMe()->tickets()->factory()->newTableInstance($this);
+
+        self::output()->output($table, true);
+    }
+
+
+    /**
+     *
+     */
+    protected function resetFilter() : void
     {
         $table = self::helpMe()->tickets()->factory()->newTableInstance($this, self::CMD_RESET_FILTER);
 
@@ -126,7 +118,7 @@ class TicketsGUI
     /**
      *
      */
-    protected function setProjectFilter()/*: void*/
+    protected function setProjectFilter() : void
     {
         $project_url_key = filter_input(INPUT_GET, "project_url_key");
 
@@ -136,5 +128,14 @@ class TicketsGUI
 
         $_POST["ticket_project_url_key"] = $project_url_key;
         $this->applyFilter();
+    }
+
+
+    /**
+     *
+     */
+    protected function setTabs() : void
+    {
+
     }
 }
