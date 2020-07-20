@@ -16,9 +16,9 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
             'srag\\RequiredData\\HelpMe\\' => 25,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\' => 26,
+            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
             'srag\\LibrariesNamespaceChanger\\' => 31,
-            'srag\\JiraCurl\\' => 14,
+            'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DataTableUI\\HelpMe\\' => 24,
             'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\HelpMe\\' => 28,
@@ -39,7 +39,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\' => 
+        'srag\\Notifications4Plugin\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
         ),
@@ -47,7 +47,7 @@ class ComposerStaticInit7d3eb5e19e27010424cc0f181c61d199
         array (
             0 => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src',
         ),
-        'srag\\JiraCurl\\' => 
+        'srag\\JiraCurl\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
