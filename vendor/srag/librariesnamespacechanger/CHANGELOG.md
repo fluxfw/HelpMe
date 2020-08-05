@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.10.0]
+- Auto update `LuceneObjectDefinition.xml` for repository objects
+- Auto update slot path in `README.md`
+- Update missing infos in `composer.json` before generate
+- Log changes
+
 ## [0.9.7]
 - Add some regexp to `PHP72Backport`
 - Skip some folders

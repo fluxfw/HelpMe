@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.10.0]
+- Update issue
+
 ## [0.9.1]
 - Fix post
 

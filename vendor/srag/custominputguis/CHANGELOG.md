@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.37.0]
+- Move `PieChart` and `LearningProgressPieUI` to seperate libraries
+
 ## [0.36.4]
 - Fix
 
