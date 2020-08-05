@@ -4,6 +4,7 @@
   "version": "6.1.0",
   "ilias_plugin": {
     "id": "srsu",
+    "name": "HelpMe",
     "ilias_min_version": "6.0",
     "ilias_max_version": "6.999",
     "slot": "Services/UIComponent/UserInterfaceHook"
