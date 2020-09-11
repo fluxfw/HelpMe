@@ -258,6 +258,7 @@ return array(
     'srag\\DIC\\HelpMe\\Database\\DatabaseInterface' => $vendorDir . '/srag/dic/src/Database/DatabaseInterface.php',
     'srag\\DIC\\HelpMe\\Database\\PdoContextHelper' => $vendorDir . '/srag/dic/src/Database/PdoContextHelper.php',
     'srag\\DIC\\HelpMe\\Database\\PdoStatementContextHelper' => $vendorDir . '/srag/dic/src/Database/PdoStatementContextHelper.php',
+    'srag\\DIC\\HelpMe\\DevTools\\DevToolsCtrl' => $vendorDir . '/srag/dic/src/DevTools/class.DevToolsCtrl.php',
     'srag\\DIC\\HelpMe\\Exception\\DICException' => $vendorDir . '/srag/dic/src/Exception/DICException.php',
     'srag\\DIC\\HelpMe\\Loader\\AbstractLoaderDetector' => $vendorDir . '/srag/dic/src/Loader/AbstractLoaderDetector.php',
     'srag\\DIC\\HelpMe\\Output\\Output' => $vendorDir . '/srag/dic/src/Output/Output.php',

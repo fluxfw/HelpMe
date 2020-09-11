@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.1.1]
+- Dev tools
+
 ## [6.1.0]
 - ILIAS 6 support
 - Min. PHP 7.2
