@@ -62,7 +62,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function getValue(/*string*/ $key)
+    protected function getValue(string $key)
     {
         switch ($key) {
             default:
@@ -155,7 +155,7 @@ class ProjectFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value) : void
+    protected function storeValue(string $key, $value) : void
     {
         switch ($key) {
             case "project_issue_types":

@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.10.3]
+- PHP72Backport fix `&`
+
+## [0.10.2]
+- Remove repository object check
+
+## [0.10.1]
+- Add plugin name to `composer.json`
+
+## [0.10.0]
+- Auto update `LuceneObjectDefinition.xml` for repository objects
+- Auto update slot path in `README.md`
+- Update missing infos in `composer.json` before generate
+- Log changes
+
 ## [0.9.7]
 - Add some regexp to `PHP72Backport`
 - Skip some folders

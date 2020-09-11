@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "aba4ba3e3fb75afc3a0e114fa72d1985",
+    "content-hash": "3ea2003643c966caf7f1ac30c9775665",
     "packages": [
         {
             "name": "srag/activerecordconfig",
@@ -54,16 +54,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "v0.36.4",
+            "version": "v0.39.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "641ae0b77aea016e62dc210404b6c7c636613e3f"
+                "reference": "ed5104c739424334a27d14d0fa8ffb765051444b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/641ae0b77aea016e62dc210404b6c7c636613e3f",
-                "reference": "641ae0b77aea016e62dc210404b6c7c636613e3f",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/ed5104c739424334a27d14d0fa8ffb765051444b",
+                "reference": "ed5104c739424334a27d14d0fa8ffb765051444b",
                 "shasum": ""
             },
             "require": {
@@ -73,7 +73,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
+                    "srag\\CustomInputGUIs\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -97,7 +97,7 @@
                 "input",
                 "table"
             ],
-            "time": "2020-06-15T12:55:41+00:00"
+            "time": "2020-09-02T06:57:44+00:00"
         },
         {
             "name": "srag/datatable",
@@ -147,16 +147,16 @@
         },
         {
             "name": "srag/dic",
-            "version": "v0.25.1",
+            "version": "v0.26.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DIC.git",
-                "reference": "022cb0b92b003096380055a450597a5dbdbbe831"
+                "reference": "51afc373d1c9c8ee0fd26c381ed1a81e295afb3f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/022cb0b92b003096380055a450597a5dbdbbe831",
-                "reference": "022cb0b92b003096380055a450597a5dbdbbe831",
+                "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/51afc373d1c9c8ee0fd26c381ed1a81e295afb3f",
+                "reference": "51afc373d1c9c8ee0fd26c381ed1a81e295afb3f",
                 "shasum": ""
             },
             "require": {
@@ -165,7 +165,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\HelpMe\\": "src/"
+                    "srag\\DIC\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -188,20 +188,20 @@
                 "globals",
                 "trait"
             ],
-            "time": "2020-06-09T05:30:37+00:00"
+            "time": "2020-09-10T10:49:18+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "v0.9.1",
+            "version": "v0.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/JiraCurl.git",
-                "reference": "7d8512354a635d07c496db6708ca305797e4efb0"
+                "reference": "8121558d6d34b9eb8f57fbb5a10e1660c1851bb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/7d8512354a635d07c496db6708ca305797e4efb0",
-                "reference": "7d8512354a635d07c496db6708ca305797e4efb0",
+                "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/8121558d6d34b9eb8f57fbb5a10e1660c1851bb6",
+                "reference": "8121558d6d34b9eb8f57fbb5a10e1660c1851bb6",
                 "shasum": ""
             },
             "require": {
@@ -211,7 +211,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\": "src/"
+                    "srag\\JiraCurl\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -233,20 +233,20 @@
                 "curl",
                 "jira"
             ],
-            "time": "2020-06-26T11:03:33+00:00"
+            "time": "2020-08-04T09:52:49+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
-            "version": "v0.9.7",
+            "version": "v0.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-                "reference": "26d8eebf415afe713e18600cb6d1d4ade1ed35a8"
+                "reference": "d0bf77414b86c2e830e1592f73f37a03406f3266"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/26d8eebf415afe713e18600cb6d1d4ade1ed35a8",
-                "reference": "26d8eebf415afe713e18600cb6d1d4ade1ed35a8",
+                "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/d0bf77414b86c2e830e1592f73f37a03406f3266",
+                "reference": "d0bf77414b86c2e830e1592f73f37a03406f3266",
                 "shasum": ""
             },
             "require": {
@@ -276,7 +276,7 @@
                 "ILIAS",
                 "libraries"
             ],
-            "time": "2020-06-15T05:33:10+00:00"
+            "time": "2020-09-03T12:54:11+00:00"
         },
         {
             "name": "srag/notifications4plugin",
@@ -302,7 +302,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -327,16 +327,16 @@
         },
         {
             "name": "srag/removeplugindataconfirm",
-            "version": "v0.6.4",
+            "version": "v0.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RemovePluginDataConfirm.git",
-                "reference": "fa45bd96920e5a28577810c3d28900dc8083fc6f"
+                "reference": "2e07afde4d42c73a8d66b5dcff9b45e517a93e24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/fa45bd96920e5a28577810c3d28900dc8083fc6f",
-                "reference": "fa45bd96920e5a28577810c3d28900dc8083fc6f",
+                "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/2e07afde4d42c73a8d66b5dcff9b45e517a93e24",
+                "reference": "2e07afde4d42c73a8d66b5dcff9b45e517a93e24",
                 "shasum": ""
             },
             "require": {
@@ -346,7 +346,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\RemovePluginDataConfirm\\HelpMe\\": "src/"
+                    "srag\\RemovePluginDataConfirm\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -370,7 +370,7 @@
                 "plugin",
                 "uninstall"
             ],
-            "time": "2020-06-02T12:52:50+00:00"
+            "time": "2020-09-10T07:00:17+00:00"
         },
         {
             "name": "srag/requireddata",

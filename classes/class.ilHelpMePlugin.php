@@ -8,6 +8,7 @@ if (file_exists(__DIR__ . "/../../../../Cron/CronHook/HelpMeCron/vendor/autoload
 use ILIAS\DI\Container;
 use ILIAS\GlobalScreen\Provider\PluginProviderCollection;
 use srag\CustomInputGUIs\HelpMe\Loader\CustomInputGUIsLoaderDetector;
+use srag\DIC\HelpMe\DevTools\DevToolsCtrl;
 use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
@@ -108,6 +109,8 @@ class ilHelpMePlugin extends ilUserInterfaceHookPlugin
         self::helpMe()->notifications4plugin()->installLanguages();
 
         self::helpMe()->requiredData()->installLanguages();
+
+        DevToolsCtrl::installLanguages(self::plugin());
     }
 
 

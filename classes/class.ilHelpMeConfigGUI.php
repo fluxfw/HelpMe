@@ -2,6 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
+use srag\DIC\HelpMe\DevTools\DevToolsCtrl;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
 use srag\Plugins\HelpMe\Config\ConfigCtrl;
@@ -17,6 +18,7 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
  *
  * @ilCtrl_isCalledBy srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl: ilHelpMeConfigGUI
  * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\FieldsCtrl: ilHelpMeConfigGUI
+ * @ilCtrl_isCalledBy srag\DIC\HelpMe\DevTools\DevToolsCtrl: ilHelpMeConfigGUI
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI
 {
@@ -49,6 +51,10 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
         switch (strtolower($next_class)) {
             case strtolower(ConfigCtrl::class):
                 self::dic()->ctrl()->forwardCommand(new ConfigCtrl());
+                break;
+
+            case strtolower(DevToolsCtrl::class):
+                self::dic()->ctrl()->forwardCommand(new DevToolsCtrl($this, self::plugin()));
                 break;
 
             case strtolower(FieldsCtrl::class):
@@ -102,6 +108,8 @@ class ilHelpMeConfigGUI extends ilPluginConfigGUI
 
         self::dic()->tabs()->addTab(NotificationsCtrl::TAB_NOTIFICATIONS, self::plugin()->translate("notifications", NotificationsCtrl::LANG_MODULE), self::dic()->ctrl()
             ->getLinkTargetByClass(NotificationsCtrl::class, NotificationsCtrl::CMD_LIST_NOTIFICATIONS));
+
+        DevToolsCtrl::addTabs(self::plugin());
 
         self::dic()->locator()->addItem(ilHelpMePlugin::PLUGIN_NAME, self::dic()->ctrl()->getLinkTarget($this, self::CMD_CONFIGURE));
 

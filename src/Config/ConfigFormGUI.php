@@ -126,7 +126,7 @@ class ConfigFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function getValue(/*string*/ $key)
+    protected function getValue(string $key)
     {
         switch (true) {
             case (strpos($key, self::KEY_RECIPIENT_TEMPLATES . "_") === 0):
@@ -329,7 +329,7 @@ class ConfigFormGUI extends PropertyFormGUI
     /**
      * @inheritDoc
      */
-    protected function storeValue(/*string*/ $key, $value) : void
+    protected function storeValue(string $key, $value) : void
     {
         switch (true) {
             case (strpos($key, self::KEY_RECIPIENT_TEMPLATES . "_") === 0):

@@ -23,10 +23,6 @@ final class PHP72Backport
     const REGEXP_NAME = "\\\\?[A-Za-z_][A-Za-z0-9_\\\\]*";
     const REGEXP_PARAM = "\s*(\/\*)?\s*\??\s*(\*\/)?\s*(" . self::REGEXP_NAME . ")?\s*(\*\/)?\s*&?\s*?\\$" . self::REGEXP_NAME . "(\s*=\s*" . self::REGEXP_EXPRESSION . ")?\s*";
     /**
-     * @var self|null
-     */
-    private static $instance = null;
-    /**
      * @var array
      */
     private static $exts
@@ -35,23 +31,27 @@ final class PHP72Backport
             "php"
         ];
     /**
+     * @var self|null
+     */
+    private static $instance = null;
+    /**
      * @var string
      */
     private static $plugin_root = "";
+    /**
+     * @var Event
+     */
+    private $event;
 
 
     /**
-     * @param Event $event
+     * PHP72Backport constructor
      *
-     * @return self
+     * @param Event $event
      */
-    private static function getInstance(Event $event) : self
+    private function __construct(Event $event)
     {
-        if (self::$instance === null) {
-            self::$instance = new self($event);
-        }
-
-        return self::$instance;
+        $this->event = $event;
     }
 
 
@@ -71,38 +71,17 @@ final class PHP72Backport
 
 
     /**
-     * @var Event
-     */
-    private $event;
-
-
-    /**
-     * PHP72Backport constructor
-     *
      * @param Event $event
-     */
-    private function __construct(Event $event)
-    {
-        $this->event = $event;
-    }
-
-
-    /**
      *
+     * @return self
      */
-    private function doPHP72Backport()/*: void*/
+    private static function getInstance(Event $event) : self
     {
-        $files = [];
-
-        $this->getFiles(self::$plugin_root, $files);
-
-        foreach ($files as $file) {
-            $code = file_get_contents($file);
-
-            $code = $this->convertPHP72To70($code);
-
-            file_put_contents($file, $code);
+        if (self::$instance === null) {
+            self::$instance = new self($event);
         }
+
+        return self::$instance;
     }
 
 
@@ -130,7 +109,7 @@ final class PHP72Backport
             $function = preg_replace("/([(,]\s*)(object)(\s*\\$" . self::REGEXP_NAME . ")/", '$1/*$2*/$3', $function);
 
             // ?type $param
-            $function = preg_replace("/([(,]\s*)(\?\s*" . self::REGEXP_NAME . ")(\s*\\$" . self::REGEXP_NAME . ")/", '$1/*$2*/$3', $function);
+            $function = preg_replace("/([(,]\s*)(\?\s*" . self::REGEXP_NAME . ")(\s*&?\s*?\\$" . self::REGEXP_NAME . ")/", '$1/*$2*/$3', $function);
 
             return $function;
         }, $code);
@@ -140,6 +119,25 @@ final class PHP72Backport
         } else {
             // TODO: PREG_BACKTRACK_LIMIT_ERROR on PHP 7.0 code?
             return $code;
+        }
+    }
+
+
+    /**
+     *
+     */
+    private function doPHP72Backport()/*: void*/
+    {
+        $files = [];
+
+        $this->getFiles(self::$plugin_root, $files);
+
+        foreach ($files as $file) {
+            $code = file_get_contents($file);
+
+            $code = $this->convertPHP72To70($code);
+
+            file_put_contents($file, $code);
         }
     }
 
