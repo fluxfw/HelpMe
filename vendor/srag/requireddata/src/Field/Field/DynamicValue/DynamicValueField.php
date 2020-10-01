@@ -39,6 +39,12 @@ abstract class DynamicValueField extends AbstractField
 
 
     /**
+     * @return string
+     */
+    public abstract function deliverDynamicValue() : string;
+
+
+    /**
      * @inheritDoc
      */
     public function getFieldDescription() : string
@@ -58,15 +64,21 @@ abstract class DynamicValueField extends AbstractField
 
 
     /**
-     * @return string
+     * @return bool
      */
-    public abstract function deliverDynamicValue() : string;
+    public function isHide() : bool
+    {
+        return $this->hide;
+    }
 
 
     /**
-     * @return bool
+     * @param bool $hide
      */
-    protected abstract function getInitHide() : bool;
+    public function setHide(bool $hide) : void
+    {
+        $this->hide = $hide;
+    }
 
 
     /**
@@ -104,17 +116,5 @@ abstract class DynamicValueField extends AbstractField
     /**
      * @return bool
      */
-    public function isHide() : bool
-    {
-        return $this->hide;
-    }
-
-
-    /**
-     * @param bool $hide
-     */
-    public function setHide(bool $hide) : void
-    {
-        $this->hide = $hide;
-    }
+    protected abstract function getInitHide() : bool;
 }

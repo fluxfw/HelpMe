@@ -33,21 +33,6 @@ class MultiSelectFillField extends SelectFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        return self::dic()
-            ->ui()
-            ->factory()
-            ->input()
-            ->field()
-            ->multiSelect($this->field->getLabel(), $this->field->getSelectOptions(), $this->field->getDescription())
-            ->withRequired($this->field->isRequired());
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return (array) ($fill_value);
@@ -62,5 +47,20 @@ class MultiSelectFillField extends SelectFillField
         return nl2br(implode("\n", array_map(function (string $value) : string {
             return strval($this->field->getSelectOptions()[$value]);
         }, (array) ($fill_value))), false);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        return self::dic()
+            ->ui()
+            ->factory()
+            ->input()
+            ->field()
+            ->multiSelect($this->field->getLabel(), $this->field->getSelectOptions(), $this->field->getDescription())
+            ->withRequired($this->field->isRequired());
     }
 }

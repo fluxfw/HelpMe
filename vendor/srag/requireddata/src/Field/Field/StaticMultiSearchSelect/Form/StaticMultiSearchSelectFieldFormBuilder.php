@@ -37,6 +37,32 @@ abstract class StaticMultiSearchSelectFieldFormBuilder extends MultiSearchSelect
 
 
     /**
+     * @return AbstractAjaxAutoCompleteCtrl
+     */
+    public abstract function getAjaxAutoCompleteCtrl() : AbstractAjaxAutoCompleteCtrl;
+
+
+    /**
+     * @inheritDoc
+     */
+    public function storeData(array $data) : void
+    {
+        $data["options"] = array_map(function (string $value) : array {
+            return [
+                "label" => [
+                    "default" => [
+                        "label" => current($this->getAjaxAutoCompleteCtrl()->fillOptions([$value]))
+                    ]
+                ],
+                "value" => $value
+            ];
+        }, MultiSelectSearchNewInputGUI::cleanValues((array) $data["options"]));
+
+        parent::storeData($data);
+    }
+
+
+    /**
      * @inheritDoc
      */
     protected function getData() : array
@@ -65,30 +91,4 @@ abstract class StaticMultiSearchSelectFieldFormBuilder extends MultiSearchSelect
 
         return $fields;
     }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function storeData(array $data) : void
-    {
-        $data["options"] = array_map(function (string $value) : array {
-            return [
-                "label" => [
-                    "default" => [
-                        "label" => current($this->getAjaxAutoCompleteCtrl()->fillOptions([$value]))
-                    ]
-                ],
-                "value" => $value
-            ];
-        }, (array) $data["options"]);
-
-        parent::storeData($data);
-    }
-
-
-    /**
-     * @return AbstractAjaxAutoCompleteCtrl
-     */
-    public abstract function getAjaxAutoCompleteCtrl() : AbstractAjaxAutoCompleteCtrl;
 }

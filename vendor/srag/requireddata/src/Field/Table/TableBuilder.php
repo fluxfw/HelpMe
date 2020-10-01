@@ -35,6 +35,18 @@ class TableBuilder extends AbstractTableBuilder
     /**
      * @inheritDoc
      */
+    public function render() : string
+    {
+        self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard(self::requiredData()->getPlugin()->translate("add_field", FieldsCtrl::LANG_MODULE),
+            self::dic()->ctrl()->getLinkTargetByClass($this->parent->getFieldCtrlClass(), FieldCtrl::CMD_ADD_FIELD)));
+
+        return parent::render();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     protected function buildTable() : Table
     {
         $columns = [
@@ -87,17 +99,5 @@ class TableBuilder extends AbstractTableBuilder
             ->withMultipleActions($multiple_actions);
 
         return $table;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function render() : string
-    {
-        self::dic()->toolbar()->addComponent(self::dic()->ui()->factory()->button()->standard(self::requiredData()->getPlugin()->translate("add_field", FieldsCtrl::LANG_MODULE),
-            self::dic()->ctrl()->getLinkTargetByClass($this->parent->getFieldCtrlClass(), FieldCtrl::CMD_ADD_FIELD)));
-
-        return parent::render();
     }
 }

@@ -49,24 +49,24 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "v0.39.0",
-        "version_normalized": "0.39.0.0",
+        "version": "v0.39.1",
+        "version_normalized": "0.39.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "ed5104c739424334a27d14d0fa8ffb765051444b"
+            "reference": "be9e4867480a3879c6fe4154248aad50ea76995b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/ed5104c739424334a27d14d0fa8ffb765051444b",
-            "reference": "ed5104c739424334a27d14d0fa8ffb765051444b",
+            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/be9e4867480a3879c6fe4154248aad50ea76995b",
+            "reference": "be9e4867480a3879c6fe4154248aad50ea76995b",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2020-09-02T06:57:44+00:00",
+        "time": "2020-10-01T05:37:14+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {
@@ -383,17 +383,17 @@
     },
     {
         "name": "srag/requireddata",
-        "version": "v0.13.3",
-        "version_normalized": "0.13.3.0",
+        "version": "v0.13.4",
+        "version_normalized": "0.13.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/RequiredData.git",
-            "reference": "f71076b7c60f4f71c98b899354be61412334f7ab"
+            "reference": "32af99f2030364672755485db0ba3d0d7e847f37"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/f71076b7c60f4f71c98b899354be61412334f7ab",
-            "reference": "f71076b7c60f4f71c98b899354be61412334f7ab",
+            "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/32af99f2030364672755485db0ba3d0d7e847f37",
+            "reference": "32af99f2030364672755485db0ba3d0d7e847f37",
             "shasum": ""
         },
         "require": {
@@ -402,7 +402,7 @@
             "srag/datatable": ">=0.1.0",
             "srag/dic": ">=0.1.0"
         },
-        "time": "2020-06-08T06:42:51+00:00",
+        "time": "2020-10-01T05:48:54+00:00",
         "type": "library",
         "installation-source": "dist",
         "autoload": {

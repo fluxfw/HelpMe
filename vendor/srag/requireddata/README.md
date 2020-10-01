@@ -139,6 +139,3 @@ Just extends the `DynamicValue` classes
 ## Adjustment suggestions
 * External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LREQDATA
 * Adjustment suggestions by pull requests via github
-* Customer of studer + raimann ag: 
-	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LREQDATA
-	* Bug reports under https://jira.studer-raimann.ch/projects/LREQDATA

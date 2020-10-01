@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.39.1]
+- Make `cleanValues` static in `MultiSelectSearchNewInputGUI`
+
 ## [0.39.0]
 - Support `MultiLineNewInputGUI` in `TableGUI`
 

@@ -33,6 +33,15 @@ class FloatFillField extends IntegerFillField
     /**
      * @inheritDoc
      */
+    public function formatAsJson($fill_value)
+    {
+        return floatval($fill_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getInput() : Input
     {
         $input = parent::getInput();
@@ -44,14 +53,5 @@ class FloatFillField extends IntegerFillField
         }
 
         return $input;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function formatAsJson($fill_value)
-    {
-        return floatval($fill_value);
     }
 }

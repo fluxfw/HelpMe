@@ -40,13 +40,13 @@ class FieldCtrl
     const GET_PARAM_FIELD_TYPE = "field_type_";
     const TAB_EDIT_FIELD = "field_data";
     /**
-     * @var FieldsCtrl
-     */
-    protected $parent;
-    /**
      * @var AbstractField|null
      */
     protected $field;
+    /**
+     * @var FieldsCtrl
+     */
+    protected $parent;
 
 
     /**
@@ -114,62 +114,20 @@ class FieldCtrl
 
 
     /**
-     *
+     * @return AbstractField
      */
-    protected function setTabs() : void
+    public function getField() : AbstractField
     {
-        self::dic()->tabs()->clearTargets();
-
-        self::dic()->tabs()->setBackTarget(self::requiredData()->getPlugin()->translate("fields", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTarget($this, self::CMD_BACK));
-
-        if ($this->field !== null) {
-            if (self::dic()->ctrl()->getCmd() === self::CMD_REMOVE_FIELD_CONFIRM) {
-                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("remove_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
-                    ->getLinkTarget($this, self::CMD_REMOVE_FIELD_CONFIRM));
-            } else {
-                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("edit_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
-                    ->getLinkTarget($this, self::CMD_EDIT_FIELD));
-
-                self::dic()->locator()->addItem($this->field->getFieldTitle(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_FIELD));
-            }
-        } else {
-            self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("add_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
-                ->getLinkTarget($this, self::CMD_ADD_FIELD));
-        }
-
-        self::dic()->tabs()->activateTab(self::TAB_EDIT_FIELD);
+        return $this->field;
     }
 
 
     /**
-     *
+     * @return FieldsCtrl
      */
-    protected function back() : void
+    public function getParent() : FieldsCtrl
     {
-        self::dic()->ctrl()->redirect($this->parent, FieldsCtrl::CMD_LIST_FIELDS);
-    }
-
-
-    /**
-     *
-     */
-    protected function moveFieldDown()
-    {
-        self::requiredData()->fields()->moveFieldDown($this->field);
-
-        exit;
-    }
-
-
-    /**
-     *
-     */
-    protected function moveFieldUp()
-    {
-        self::requiredData()->fields()->moveFieldUp($this->field);
-
-        exit;
+        return $this->parent;
     }
 
 
@@ -181,6 +139,15 @@ class FieldCtrl
         $form = self::requiredData()->fields()->factory()->newCreateFormBuilderInstance($this);
 
         self::output()->output($form);
+    }
+
+
+    /**
+     *
+     */
+    protected function back() : void
+    {
+        self::dic()->ctrl()->redirect($this->parent, FieldsCtrl::CMD_LIST_FIELDS);
     }
 
 
@@ -222,19 +189,35 @@ class FieldCtrl
     /**
      *
      */
-    protected function updateField() : void
+    protected function moveFieldDown()
     {
-        $form = self::requiredData()->fields()->factory()->newFormBuilderInstance($this, $this->field);
+        self::requiredData()->fields()->moveFieldDown($this->field);
 
-        if (!$form->storeForm()) {
-            self::output()->output($form);
+        exit;
+    }
 
-            return;
-        }
 
-        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("saved_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
+    /**
+     *
+     */
+    protected function moveFieldUp()
+    {
+        self::requiredData()->fields()->moveFieldUp($this->field);
 
-        self::dic()->ctrl()->redirect($this, self::CMD_EDIT_FIELD);
+        exit;
+    }
+
+
+    /**
+     *
+     */
+    protected function removeField() : void
+    {
+        self::requiredData()->fields()->deleteField($this->field);
+
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("removed_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
+
+        self::dic()->ctrl()->redirect($this, self::CMD_BACK);
     }
 
 
@@ -262,13 +245,29 @@ class FieldCtrl
     /**
      *
      */
-    protected function removeField() : void
+    protected function setTabs() : void
     {
-        self::requiredData()->fields()->deleteField($this->field);
+        self::dic()->tabs()->clearTargets();
 
-        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("removed_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
+        self::dic()->tabs()->setBackTarget(self::requiredData()->getPlugin()->translate("fields", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTarget($this, self::CMD_BACK));
 
-        self::dic()->ctrl()->redirect($this, self::CMD_BACK);
+        if ($this->field !== null) {
+            if (self::dic()->ctrl()->getCmd() === self::CMD_REMOVE_FIELD_CONFIRM) {
+                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("remove_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+                    ->getLinkTarget($this, self::CMD_REMOVE_FIELD_CONFIRM));
+            } else {
+                self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("edit_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+                    ->getLinkTarget($this, self::CMD_EDIT_FIELD));
+
+                self::dic()->locator()->addItem($this->field->getFieldTitle(), self::dic()->ctrl()->getLinkTarget($this, self::CMD_EDIT_FIELD));
+            }
+        } else {
+            self::dic()->tabs()->addTab(self::TAB_EDIT_FIELD, self::requiredData()->getPlugin()->translate("add_field", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+                ->getLinkTarget($this, self::CMD_ADD_FIELD));
+        }
+
+        self::dic()->tabs()->activateTab(self::TAB_EDIT_FIELD);
     }
 
 
@@ -286,19 +285,20 @@ class FieldCtrl
 
 
     /**
-     * @return AbstractField
+     *
      */
-    public function getField() : AbstractField
+    protected function updateField() : void
     {
-        return $this->field;
-    }
+        $form = self::requiredData()->fields()->factory()->newFormBuilderInstance($this, $this->field);
 
+        if (!$form->storeForm()) {
+            self::output()->output($form);
 
-    /**
-     * @return FieldsCtrl
-     */
-    public function getParent() : FieldsCtrl
-    {
-        return $this->parent;
+            return;
+        }
+
+        ilUtil::sendSuccess(self::requiredData()->getPlugin()->translate("saved_field", FieldsCtrl::LANG_MODULE, [$this->field->getFieldTitle()]), true);
+
+        self::dic()->ctrl()->redirect($this, self::CMD_EDIT_FIELD);
     }
 }

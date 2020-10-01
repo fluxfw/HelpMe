@@ -14,7 +14,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
-            'srag\\RequiredData\\HelpMe\\' => 25,
+            'srag\\RequiredData\\' => 18,
             'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
             'srag\\Notifications4Plugin\\HelpMe\\' => 33,
@@ -22,13 +22,13 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
             'srag\\JiraCurl\\HelpMe\\' => 21,
             'srag\\DataTableUI\\HelpMe\\' => 24,
             'srag\\DIC\\HelpMe\\' => 16,
-            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
+            'srag\\CustomInputGUIs\\' => 21,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'srag\\RequiredData\\HelpMe\\' => 
+        'srag\\RequiredData\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/requireddata/src',
         ),
@@ -60,7 +60,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\HelpMe\\' => 
+        'srag\\CustomInputGUIs\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
@@ -318,7 +318,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\CustomInputGUIs\\HelpMe\\TextInputGUI\\TextInputGUIWithModernAutoComplete' => __DIR__ . '/..' . '/srag/custominputguis/src/TextInputGUI/TextInputGUIWithModernAutoComplete.php',
         'srag\\CustomInputGUIs\\HelpMe\\UIInputComponentWrapperInputGUI\\UIInputComponentWrapperInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/UIInputComponentWrapperInputGUI/UIInputComponentWrapperInputGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\UIInputComponentWrapperInputGUI\\UIInputComponentWrapperNameSource' => __DIR__ . '/..' . '/srag/custominputguis/src/UIInputComponentWrapperInputGUI/UIInputComponentWrapperNameSource.php',
-        'srag\\CustomInputGUIs\\HelpMe\\ViewControlModeUI\\ViewControlModeUI' => __DIR__ . '/..' . '/srag/custominputguis/src/ViewControlModeGUI/ViewControlModeUI.php',
+        'srag\\CustomInputGUIs\\HelpMe\\ViewControlModeUI\\ViewControlModeUI' => __DIR__ . '/..' . '/srag/custominputguis/src/ViewControlModeUI/ViewControlModeUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\Waiter\\Waiter' => __DIR__ . '/..' . '/srag/custominputguis/src/Waiter/Waiter.php',
         'srag\\CustomInputGUIs\\HelpMe\\WeekdayInputGUI\\WeekdayInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/WeekdayInputGUI/WeekdayInputGUI.php',
         'srag\\DIC\\HelpMe\\DICStatic' => __DIR__ . '/..' . '/srag/dic/src/DICStatic.php',

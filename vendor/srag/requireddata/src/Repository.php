@@ -30,6 +30,31 @@ final class Repository implements Pluginable
      * @var self|null
      */
     protected static $instance = null;
+    /**
+     * @var bool
+     */
+    protected $enableGroups = false;
+    /**
+     * @var bool
+     */
+    protected $enableNames = false;
+    /**
+     * @var PluginInterface
+     */
+    protected $plugin;
+    /**
+     * @var string
+     */
+    protected $table_name_prefix = "";
+
+
+    /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
 
 
     /**
@@ -42,33 +67,6 @@ final class Repository implements Pluginable
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * @var string
-     */
-    protected $table_name_prefix = "";
-    /**
-     * @var PluginInterface
-     */
-    protected $plugin;
-    /**
-     * @var bool
-     */
-    protected $enableGroups = false;
-    /**
-     * @var bool
-     */
-    protected $enableNames = false;
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -167,30 +165,6 @@ final class Repository implements Pluginable
 
 
     /**
-     * @inheritDoc
-     */
-    public function withPlugin(PluginInterface $plugin) : self
-    {
-        $this->plugin = $plugin;
-
-        return $this;
-    }
-
-
-    /**
-     * @param string $table_name_prefix
-     *
-     * @return self
-     */
-    public function withTableNamePrefix(string $table_name_prefix) : self
-    {
-        $this->table_name_prefix = $table_name_prefix;
-
-        return $this;
-    }
-
-
-    /**
      * @param bool $enableGroups
      *
      * @return self
@@ -211,6 +185,30 @@ final class Repository implements Pluginable
     public function withEnableNames(bool $enableNames) : self
     {
         $this->enableNames = $enableNames;
+
+        return $this;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withPlugin(PluginInterface $plugin) : self
+    {
+        $this->plugin = $plugin;
+
+        return $this;
+    }
+
+
+    /**
+     * @param string $table_name_prefix
+     *
+     * @return self
+     */
+    public function withTableNamePrefix(string $table_name_prefix) : self
+    {
+        $this->table_name_prefix = $table_name_prefix;
 
         return $this;
     }

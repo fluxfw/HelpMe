@@ -38,16 +38,6 @@ class DateFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        // self::dic()->ui()->factory()->input()->field()->dateTime not possible without time?!
-        return (new InputGUIWrapperUIInputComponent(new ilDateTimeInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())->withRequired($this->field->isRequired());
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return intval($fill_value instanceof ilDateTime ? $fill_value->getUnixTime() : $fill_value);
@@ -60,5 +50,15 @@ class DateFillField extends AbstractFillField
     public function formatAsString($fill_value) : string
     {
         return strval(ilDatePresentation::formatDate(new ilDate(intval($fill_value), IL_CAL_UNIX)));
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        // self::dic()->ui()->factory()->input()->field()->dateTime not possible without time?!
+        return (new InputGUIWrapperUIInputComponent(new ilDateTimeInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())->withRequired($this->field->isRequired());
     }
 }

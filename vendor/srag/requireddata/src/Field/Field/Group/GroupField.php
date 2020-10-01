@@ -16,8 +16,20 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
 class GroupField extends AbstractField
 {
 
-    const TABLE_NAME_SUFFIX = "group";
     const PARENT_CONTEXT_FIELD_GROUP = 1000;
+    const TABLE_NAME_SUFFIX = "group";
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getActions() : array
+    {
+        return array_merge(parent::getActions(), [
+            self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("ungroup", FieldsCtrl::LANG_MODULE),
+                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_UNGROUP))
+        ]);
+    }
 
 
     /**
@@ -32,17 +44,5 @@ class GroupField extends AbstractField
         return nl2br(implode("\n", array_map(function (string $description) : string {
             return htmlspecialchars($description);
         }, $descriptions)), false);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getActions() : array
-    {
-        return array_merge(parent::getActions(), [
-            self::dic()->ui()->factory()->link()->standard(self::requiredData()->getPlugin()->translate("ungroup", FieldsCtrl::LANG_MODULE),
-                self::dic()->ctrl()->getLinkTargetByClass($this->getFieldCtrlClass(), FieldCtrl::CMD_UNGROUP)),
-        ]);
     }
 }

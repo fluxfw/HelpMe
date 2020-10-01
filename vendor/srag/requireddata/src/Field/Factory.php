@@ -38,21 +38,6 @@ final class Factory
      * @var self|null
      */
     protected static $instance = null;
-
-
-    /**
-     * @return self
-     */
-    public static function getInstance() : self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-
     /**
      * @var array
      */
@@ -80,6 +65,19 @@ final class Factory
     private function __construct()
     {
 
+    }
+
+
+    /**
+     * @return self
+     */
+    public static function getInstance() : self
+    {
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
+
+        return self::$instance;
     }
 
 
@@ -132,6 +130,37 @@ final class Factory
 
 
     /**
+     * @param FieldCtrl $parent
+     *
+     * @return CreateFieldFormBuilder
+     */
+    public function newCreateFormBuilderInstance(FieldCtrl $parent) : CreateFieldFormBuilder
+    {
+        $form = new CreateFieldFormBuilder($parent);
+
+        return $form;
+    }
+
+
+    /**
+     * @param FieldCtrl     $parent
+     * @param AbstractField $field
+     *
+     * @return AbstractFieldFormBuilder
+     */
+    public function newFormBuilderInstance(FieldCtrl $parent, AbstractField $field) : AbstractFieldFormBuilder
+    {
+        $class = get_class($field) . "FormBuilder";
+
+        $class = substr_replace($class, "\\Form\\", strrpos($class, "\\"), 1);
+
+        $form = new $class($parent, $field);
+
+        return $form;
+    }
+
+
+    /**
      * @param string $type
      *
      * @return AbstractField|null
@@ -161,36 +190,5 @@ final class Factory
         $table = new TableBuilder($parent);
 
         return $table;
-    }
-
-
-    /**
-     * @param FieldCtrl $parent
-     *
-     * @return CreateFieldFormBuilder
-     */
-    public function newCreateFormBuilderInstance(FieldCtrl $parent) : CreateFieldFormBuilder
-    {
-        $form = new CreateFieldFormBuilder($parent);
-
-        return $form;
-    }
-
-
-    /**
-     * @param FieldCtrl     $parent
-     * @param AbstractField $field
-     *
-     * @return AbstractFieldFormBuilder
-     */
-    public function newFormBuilderInstance(FieldCtrl $parent, AbstractField $field) : AbstractFieldFormBuilder
-    {
-        $class = get_class($field) . "FormBuilder";
-
-        $class = substr_replace($class, "\\Form\\", strrpos($class, "\\"), 1);
-
-        $form = new $class($parent, $field);
-
-        return $form;
     }
 }

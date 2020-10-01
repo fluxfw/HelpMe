@@ -34,21 +34,6 @@ class SelectFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        return self::dic()->ui()->factory()->input()->field()->select($this->field->getLabel(), ($this->field->isRequired() && count($this->field->getSelectOptions()) === 1
-                ? []
-                : [
-                    "&lt;" . self::requiredData()
-                        ->getPlugin()
-                        ->translate("please_select", FieldsCtrl::LANG_MODULE) . "&gt;"
-                ]) + $this->field->getSelectOptions(), $this->field->getDescription())->withRequired($this->field->isRequired());
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return strval($fill_value);
@@ -61,5 +46,20 @@ class SelectFillField extends AbstractFillField
     public function formatAsString($fill_value) : string
     {
         return strval($this->field->getSelectOptions()[strval($fill_value)]);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        return self::dic()->ui()->factory()->input()->field()->select($this->field->getLabel(), ($this->field->isRequired() && count($this->field->getSelectOptions()) === 1
+                ? []
+                : [
+                    "&lt;" . self::requiredData()
+                        ->getPlugin()
+                        ->translate("please_select", FieldsCtrl::LANG_MODULE) . "&gt;"
+                ]) + $this->field->getSelectOptions(), $this->field->getDescription())->withRequired($this->field->isRequired());
     }
 }

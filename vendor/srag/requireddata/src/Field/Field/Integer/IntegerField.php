@@ -23,7 +23,7 @@ class IntegerField extends AbstractField
      * @con_length       8
      * @con_is_notnull   false
      */
-    protected $min_value = null;
+    protected $max_value = null;
     /**
      * @var int|null
      *
@@ -32,7 +32,7 @@ class IntegerField extends AbstractField
      * @con_length       8
      * @con_is_notnull   false
      */
-    protected $max_value = null;
+    protected $min_value = null;
 
 
     /**
@@ -61,24 +61,6 @@ class IntegerField extends AbstractField
     /**
      * @return int|null
      */
-    public function getMinValue() : ?int
-    {
-        return $this->min_value;
-    }
-
-
-    /**
-     * @param int|null $min_value
-     */
-    public function setMinValue(?int $min_value = null) : void
-    {
-        $this->min_value = $min_value;
-    }
-
-
-    /**
-     * @return int|null
-     */
     public function getMaxValue() : ?int
     {
         return $this->max_value;
@@ -91,5 +73,23 @@ class IntegerField extends AbstractField
     public function setMaxValue(?int $max_value = null) : void
     {
         $this->max_value = $max_value;
+    }
+
+
+    /**
+     * @return int|null
+     */
+    public function getMinValue() : ?int
+    {
+        return $this->min_value;
+    }
+
+
+    /**
+     * @param int|null $min_value
+     */
+    public function setMinValue(?int $min_value = null) : void
+    {
+        $this->min_value = $min_value;
     }
 }

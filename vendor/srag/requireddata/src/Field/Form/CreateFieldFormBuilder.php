@@ -39,6 +39,15 @@ class CreateFieldFormBuilder extends AbstractFormBuilder
 
 
     /**
+     * @return AbstractField
+     */
+    public function getField() : AbstractField
+    {
+        return $this->field;
+    }
+
+
+    /**
      * @inheritDoc
      */
     protected function getButtons() : array
@@ -103,14 +112,5 @@ class CreateFieldFormBuilder extends AbstractFormBuilder
         $this->field->setParentId($this->parent->getParent()->getParentId());
 
         self::requiredData()->fields()->storeField($this->field);
-    }
-
-
-    /**
-     * @return AbstractField
-     */
-    public function getField() : AbstractField
-    {
-        return $this->field;
     }
 }

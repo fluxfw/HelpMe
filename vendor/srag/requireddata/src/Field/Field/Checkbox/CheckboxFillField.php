@@ -34,15 +34,6 @@ class CheckboxFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        return self::dic()->ui()->factory()->input()->field()->checkbox($this->field->getLabel(), $this->field->getDescription())->withRequired($this->field->isRequired());
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return boolval($fill_value);
@@ -63,5 +54,14 @@ class CheckboxFillField extends AbstractFillField
         $img_path = ILIAS_HTTP_PATH . substr($img_path, 1);
 
         return self::output()->getHTML(self::dic()->ui()->factory()->image()->standard($img_path, ""));
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        return self::dic()->ui()->factory()->input()->field()->checkbox($this->field->getLabel(), $this->field->getDescription())->withRequired($this->field->isRequired());
     }
 }
