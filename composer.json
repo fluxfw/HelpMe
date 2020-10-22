@@ -2,12 +2,14 @@
   "name": "srag/plugins/helpme",
   "description": "",
   "version": "6.1.2",
-  "ilias_plugin": {
-    "id": "srsu",
-    "name": "HelpMe",
-    "ilias_min_version": "6.0",
-    "ilias_max_version": "6.999",
-    "slot": "Services/UIComponent/UserInterfaceHook"
+  "extra": {
+    "ilias_plugin": {
+      "id": "srsu",
+      "name": "HelpMe",
+      "ilias_min_version": "6.0",
+      "ilias_max_version": "6.999",
+      "slot": "Services/UIComponent/UserInterfaceHook"
+    }
   },
   "type": "project",
   "keywords": [
@@ -59,7 +61,7 @@
     "pre-autoload-dump": [
       "srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger::rewriteLibrariesNamespaces",
       "srag\\LibrariesNamespaceChanger\\GeneratePluginPhpAndXml::generatePluginPhpAndXml",
-      "srag\\LibrariesNamespaceChanger\\UpdatePluginReadme::updatePluginReadme"
+      "srag\\LibrariesNamespaceChanger\\GeneratePluginReadme::generatePluginReadme"
     ]
   }
 }

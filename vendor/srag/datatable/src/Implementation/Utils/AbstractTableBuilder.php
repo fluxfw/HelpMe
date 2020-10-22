@@ -41,12 +41,6 @@ abstract class AbstractTableBuilder implements TableBuilder
 
 
     /**
-     * @return Table
-     */
-    protected abstract function buildTable() : Table;
-
-
-    /**
      * @inheritDoc
      */
     public function getTable() : Table
@@ -66,4 +60,10 @@ abstract class AbstractTableBuilder implements TableBuilder
     {
         return self::output()->getHTML($this->getTable());
     }
+
+
+    /**
+     * @return Table
+     */
+    protected abstract function buildTable() : Table;
 }

@@ -29,9 +29,16 @@ class Renderer extends AbstractComponentRenderer
     /**
      * @inheritDoc
      */
-    protected function getComponentInterfaceName() : array
+    public function registerResources(ResourceRegistry $registry) : void
     {
-        return [Table::class];
+        parent::registerResources($registry);
+
+        $dir = __DIR__;
+        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/../..";
+
+        $registry->register($dir . "/css/datatableui.css");
+
+        $registry->register($dir . "/js/datatableui.min.js");
     }
 
 
@@ -51,39 +58,11 @@ class Renderer extends AbstractComponentRenderer
 
 
     /**
-     * @param Table $component
-     *
-     * @return string
-     */
-    protected function renderDataTable(Table $component) : string
-    {
-        $settings = $component->getSettingsStorage()->read($component->getTableId(), intval(self::dic()->user()->getId()));
-        $settings = $component->getBrowserFormat()->handleSettingsInput($component, $settings);
-        $settings = $component->getSettingsStorage()->handleDefaultSettings($settings, $component);
-
-        $data = $this->handleFetchData($component, $settings);
-
-        $html = $this->handleFormat($component, $data, $settings);
-
-        $component->getSettingsStorage()->store($settings, $component->getTableId(), intval(self::dic()->user()->getId()));
-
-        return $html;
-    }
-
-
-    /**
      * @inheritDoc
      */
-    public function registerResources(ResourceRegistry $registry) : void
+    protected function getComponentInterfaceName() : array
     {
-        parent::registerResources($registry);
-
-        $dir = __DIR__;
-        $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/../..";
-
-        $registry->register($dir . "/css/datatableui.css");
-
-        $registry->register($dir . "/js/datatableui.min.js");
+        return [Table::class];
     }
 
 
@@ -148,5 +127,26 @@ class Renderer extends AbstractComponentRenderer
             default:
                 return $rendered_data;
         }
+    }
+
+
+    /**
+     * @param Table $component
+     *
+     * @return string
+     */
+    protected function renderDataTable(Table $component) : string
+    {
+        $settings = $component->getSettingsStorage()->read($component->getTableId(), intval(self::dic()->user()->getId()));
+        $settings = $component->getBrowserFormat()->handleSettingsInput($component, $settings);
+        $settings = $component->getSettingsStorage()->handleDefaultSettings($settings, $component);
+
+        $data = $this->handleFetchData($component, $settings);
+
+        $html = $this->handleFormat($component, $data, $settings);
+
+        $component->getSettingsStorage()->store($settings, $component->getTableId(), intval(self::dic()->user()->getId()));
+
+        return $html;
     }
 }

@@ -46,11 +46,9 @@ class CsvFormat extends AbstractFormat
     /**
      * @inheritDoc
      */
-    protected function initTemplate(Table $component, ?Data $data, Settings $settings) : void
+    protected function handleColumn(string $formatted_column, Table $component, Column $column, Settings $settings) : void
     {
-        $this->tpl = new ilCSVWriter();
-
-        $this->tpl->setSeparator(";");
+        $this->tpl->addColumn($formatted_column);
     }
 
 
@@ -62,15 +60,6 @@ class CsvFormat extends AbstractFormat
         parent::handleColumns($component, $columns, $settings);
 
         $this->tpl->addRow();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function handleColumn(string $formatted_column, Table $component, Column $column, Settings $settings) : void
-    {
-        $this->tpl->addColumn($formatted_column);
     }
 
 
@@ -91,6 +80,17 @@ class CsvFormat extends AbstractFormat
     protected function handleRowColumn(string $formatted_row_column) : void
     {
         $this->tpl->addColumn($formatted_row_column);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function initTemplate(Table $component, ?Data $data, Settings $settings) : void
+    {
+        $this->tpl = new ilCSVWriter();
+
+        $this->tpl->setSeparator(";");
     }
 
 

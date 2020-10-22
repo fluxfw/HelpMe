@@ -79,6 +79,3 @@ In ILIAS 5.4 a default container form ui is used for the filter, in ILIAS 6, the
 ## Adjustment suggestions
 * External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LTABLEUI
 * Adjustment suggestions by pull requests via github
-* Customer of studer + raimann ag: 
-	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LTABLEUI
-	* Bug reports under https://jira.studer-raimann.ch/projects/LTABLEUI

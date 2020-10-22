@@ -30,21 +30,13 @@ class Table implements TableInterface
     use DataTableUITrait;
 
     /**
-     * @var PluginInterface
-     */
-    protected $plugin;
-    /**
-     * @var string
-     */
-    protected $table_id = "";
-    /**
      * @var string
      */
     protected $action_url = "";
     /**
-     * @var string
+     * @var BrowserFormat
      */
-    protected $title = "";
+    protected $browser_format;
     /**
      * @var Column[]
      */
@@ -58,10 +50,6 @@ class Table implements TableInterface
      */
     protected $filter_fields = [];
     /**
-     * @var BrowserFormat
-     */
-    protected $browser_format;
-    /**
      * @var Format[]
      */
     protected $formats = [];
@@ -70,9 +58,21 @@ class Table implements TableInterface
      */
     protected $multiple_actions = [];
     /**
+     * @var PluginInterface
+     */
+    protected $plugin;
+    /**
      * @var SettingsStorage
      */
     protected $settings_storage;
+    /**
+     * @var string
+     */
+    protected $table_id = "";
+    /**
+     * @var string
+     */
+    protected $title = "";
 
 
     /**
@@ -103,6 +103,73 @@ class Table implements TableInterface
     /**
      * @inheritDoc
      */
+    public function getActionUrl() : string
+    {
+        return $this->action_url;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getBrowserFormat() : BrowserFormat
+    {
+        if ($this->browser_format === null) {
+            $this->browser_format = self::dataTableUI()->format()->browser()->default();
+        }
+
+        return $this->browser_format;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getColumns() : array
+    {
+        return $this->columns;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getDataFetcher() : DataFetcher
+    {
+        return $this->data_fetcher;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getFilterFields() : array
+    {
+        return $this->filter_fields;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getFormats() : array
+    {
+        return $this->formats;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getMultipleActions() : array
+    {
+        return $this->multiple_actions;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getPlugin() : PluginInterface
     {
         return $this->plugin;
@@ -112,13 +179,13 @@ class Table implements TableInterface
     /**
      * @inheritDoc
      */
-    public function withPlugin(PluginInterface $plugin) : TableInterface
+    public function getSettingsStorage() : SettingsStorage
     {
-        $clone = clone $this;
+        if ($this->settings_storage === null) {
+            $this->settings_storage = self::dataTableUI()->settings()->storage()->default();
+        }
 
-        $clone->plugin = $plugin;
-
-        return $clone;
+        return $this->settings_storage;
     }
 
 
@@ -134,22 +201,9 @@ class Table implements TableInterface
     /**
      * @inheritDoc
      */
-    public function withTableId(string $table_id) : TableInterface
+    public function getTitle() : string
     {
-        $clone = clone $this;
-
-        $clone->table_id = $table_id;
-
-        return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getActionUrl() : string
-    {
-        return $this->action_url;
+        return $this->title;
     }
 
 
@@ -169,31 +223,13 @@ class Table implements TableInterface
     /**
      * @inheritDoc
      */
-    public function getTitle() : string
-    {
-        return $this->title;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withTitle(string $title) : TableInterface
+    public function withBrowserFormat(BrowserFormat $browser_format) : TableInterface
     {
         $clone = clone $this;
 
-        $clone->title = $title;
+        $clone->browser_format = $browser_format;
 
         return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getColumns() : array
-    {
-        return $this->columns;
     }
 
 
@@ -216,15 +252,6 @@ class Table implements TableInterface
     /**
      * @inheritDoc
      */
-    public function getDataFetcher() : DataFetcher
-    {
-        return $this->data_fetcher;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function withFetchData(DataFetcher $data_fetcher) : TableInterface
     {
         $clone = clone $this;
@@ -232,15 +259,6 @@ class Table implements TableInterface
         $clone->data_fetcher = $data_fetcher;
 
         return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getFilterFields() : array
-    {
-        return $this->filter_fields;
     }
 
 
@@ -268,41 +286,6 @@ class Table implements TableInterface
     /**
      * @inheritDoc
      */
-    public function getBrowserFormat() : BrowserFormat
-    {
-        if ($this->browser_format === null) {
-            $this->browser_format = self::dataTableUI()->format()->browser()->default();
-        }
-
-        return $this->browser_format;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withBrowserFormat(BrowserFormat $browser_format) : TableInterface
-    {
-        $clone = clone $this;
-
-        $clone->browser_format = $browser_format;
-
-        return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getFormats() : array
-    {
-        return $this->formats;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function withFormats(array $formats) : TableInterface
     {
         $classes = [Format::class];
@@ -313,15 +296,6 @@ class Table implements TableInterface
         $clone->formats = $formats;
 
         return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getMultipleActions() : array
-    {
-        return $this->multiple_actions;
     }
 
 
@@ -341,13 +315,13 @@ class Table implements TableInterface
     /**
      * @inheritDoc
      */
-    public function getSettingsStorage() : SettingsStorage
+    public function withPlugin(PluginInterface $plugin) : TableInterface
     {
-        if ($this->settings_storage === null) {
-            $this->settings_storage = self::dataTableUI()->settings()->storage()->default();
-        }
+        $clone = clone $this;
 
-        return $this->settings_storage;
+        $clone->plugin = $plugin;
+
+        return $clone;
     }
 
 
@@ -359,6 +333,32 @@ class Table implements TableInterface
         $clone = clone $this;
 
         $clone->settings_storage = $settings_storage;
+
+        return $clone;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withTableId(string $table_id) : TableInterface
+    {
+        $clone = clone $this;
+
+        $clone->table_id = $table_id;
+
+        return $clone;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withTitle(string $title) : TableInterface
+    {
+        $clone = clone $this;
+
+        $clone->title = $title;
 
         return $clone;
     }

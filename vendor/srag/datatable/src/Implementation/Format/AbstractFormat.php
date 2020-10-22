@@ -43,6 +43,17 @@ abstract class AbstractFormat implements Format
     /**
      * @inheritDoc
      */
+    public function deliverDownload(string $data, Table $component) : void
+    {
+        $filename = $component->getTitle() . "." . $this->getFileExtension();
+
+        ilUtil::deliverData($data, $filename);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getDisplayTitle(Table $component) : string
     {
         return $component->getPlugin()->translate("format_" . $this->getFormatId(), Table::LANG_MODULE);
@@ -68,12 +79,6 @@ abstract class AbstractFormat implements Format
 
 
     /**
-     * @return string
-     */
-    protected abstract function getFileExtension() : string;
-
-
-    /**
      * @inheritDoc
      */
     public function render(Table $component, ?Data $data, Settings $settings) : string
@@ -91,13 +96,14 @@ abstract class AbstractFormat implements Format
 
 
     /**
-     * @inheritDoc
+     * @param Table    $component
+     * @param Settings $settings
+     *
+     * @return Column[]
      */
-    public function deliverDownload(string $data, Table $component) : void
+    protected function getColumns(Table $component, Settings $settings) : array
     {
-        $filename = $component->getTitle() . "." . $this->getFileExtension();
-
-        ilUtil::deliverData($data, $filename);
+        return $this->getColumnsForExport($component, $settings);
     }
 
 
@@ -134,36 +140,9 @@ abstract class AbstractFormat implements Format
 
 
     /**
-     * @param Table    $component
-     * @param Settings $settings
-     *
-     * @return Column[]
+     * @return string
      */
-    protected function getColumns(Table $component, Settings $settings) : array
-    {
-        return $this->getColumnsForExport($component, $settings);
-    }
-
-
-    /**
-     * @param Table     $component
-     * @param Data|null $data
-     * @param Settings  $settings
-     */
-    protected abstract function initTemplate(Table $component, ?Data $data, Settings $settings) : void;
-
-
-    /**
-     * @param Table    $component
-     * @param Column[] $columns
-     * @param Settings $settings
-     */
-    protected function handleColumns(Table $component, array $columns, Settings $settings) : void
-    {
-        foreach ($columns as $column) {
-            $this->handleColumn($column->getFormatter()->formatHeaderCell($this, $column, $component->getTableId()), $component, $column, $settings);
-        }
-    }
+    protected abstract function getFileExtension() : string;
 
 
     /**
@@ -176,16 +155,14 @@ abstract class AbstractFormat implements Format
 
 
     /**
-     * @param Table     $component
-     * @param Column[]  $columns
-     * @param Data|null $data
+     * @param Table    $component
+     * @param Column[] $columns
+     * @param Settings $settings
      */
-    protected function handleRows(Table $component, array $columns, ?Data $data) : void
+    protected function handleColumns(Table $component, array $columns, Settings $settings) : void
     {
-        if ($data !== null) {
-            foreach ($data->getData() as $row) {
-                $this->handleRow($component, $columns, $row);
-            }
+        foreach ($columns as $column) {
+            $this->handleColumn($column->getFormatter()->formatHeaderCell($this, $column, $component->getTableId()), $component, $column, $settings);
         }
     }
 
@@ -207,6 +184,29 @@ abstract class AbstractFormat implements Format
      * @param string $formatted_row_column
      */
     protected abstract function handleRowColumn(string $formatted_row_column);
+
+
+    /**
+     * @param Table     $component
+     * @param Column[]  $columns
+     * @param Data|null $data
+     */
+    protected function handleRows(Table $component, array $columns, ?Data $data) : void
+    {
+        if ($data !== null) {
+            foreach ($data->getData() as $row) {
+                $this->handleRow($component, $columns, $row);
+            }
+        }
+    }
+
+
+    /**
+     * @param Table     $component
+     * @param Data|null $data
+     * @param Settings  $settings
+     */
+    protected abstract function initTemplate(Table $component, ?Data $data, Settings $settings) : void;
 
 
     /**
