@@ -343,6 +343,7 @@ return array(
     'srag\\DataTableUI\\HelpMe\\Implementation\\Table' => $vendorDir . '/srag/datatable/src/Implementation/Table.php',
     'srag\\DataTableUI\\HelpMe\\Implementation\\Utils\\AbstractTableBuilder' => $vendorDir . '/srag/datatable/src/Implementation/Utils/AbstractTableBuilder.php',
     'srag\\DataTableUI\\HelpMe\\Implementation\\Utils\\DataTableUITrait' => $vendorDir . '/srag/datatable/src/Implementation/Utils/DataTableUITrait.php',
+    'srag\\DevTools\\HelpMe\\DevToolsCtrl' => $vendorDir . '/srag/devtools/src/class.DevToolsCtrl.php',
     'srag\\JiraCurl\\HelpMe\\Exception\\JiraCurlException' => $vendorDir . '/srag/jiracurl/src/Exception/JiraCurlException.php',
     'srag\\JiraCurl\\HelpMe\\JiraCurl' => $vendorDir . '/srag/jiracurl/src/JiraCurl.php',
     'srag\\LibrariesNamespaceChanger\\GeneratePluginPhpAndXml' => $vendorDir . '/srag/librariesnamespacechanger/src/GeneratePluginPhpAndXml.php',

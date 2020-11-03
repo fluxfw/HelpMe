@@ -2,7 +2,7 @@
 
 require_once __DIR__ . "/../vendor/autoload.php";
 
-use srag\DIC\HelpMe\DevTools\DevToolsCtrl;
+use srag\DevTools\HelpMe\DevToolsCtrl;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl;
 use srag\Plugins\HelpMe\Config\ConfigCtrl;
@@ -18,7 +18,7 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
  *
  * @ilCtrl_isCalledBy srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl: ilHelpMeConfigGUI
  * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\FieldsCtrl: ilHelpMeConfigGUI
- * @ilCtrl_isCalledBy srag\DIC\HelpMe\DevTools\DevToolsCtrl: ilHelpMeConfigGUI
+ * @ilCtrl_isCalledBy srag\DevTools\HelpMe\DevToolsCtrl: ilHelpMeConfigGUI
  */
 class ilHelpMeConfigGUI extends ilPluginConfigGUI
 {
