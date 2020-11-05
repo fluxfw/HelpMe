@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "226f5991ba08e2ef117c72495e0d11c9",
+    "content-hash": "7542a40f8c1c5419fc83971fe6fb8fb6",
     "packages": [
         {
             "name": "srag/activerecordconfig",
@@ -166,7 +166,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\DevTools\\": "src/"
+                    "srag\\DevTools\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -235,6 +235,51 @@
                 "trait"
             ],
             "time": "2020-10-16T08:38:17+00:00"
+        },
+        {
+            "name": "srag/generateplugininfoshelper",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/studer-raimann/GeneratePluginInfosHelper.git",
+                "reference": "e01f92d111045a39fa2504d78e67505ea3663238"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/studer-raimann/GeneratePluginInfosHelper/zipball/e01f92d111045a39fa2504d78e67505ea3663238",
+                "reference": "e01f92d111045a39fa2504d78e67505ea3663238",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "srag\\GeneratePluginInfosHelper\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "studer + raimann ag - Team Custom 1",
+                    "email": "support-custom1@studer-raimann.ch",
+                    "homepage": "https://studer-raimann.ch",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Generate plugin infos helper",
+            "homepage": "https://github.com/studer-raimann/GeneratePluginInfosHelper",
+            "keywords": [
+                "Infos",
+                "generate",
+                "helper",
+                "plugin"
+            ],
+            "time": "2020-11-05T07:11:14+00:00"
         },
         {
             "name": "srag/jiracurl",
