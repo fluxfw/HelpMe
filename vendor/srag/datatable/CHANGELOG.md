@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.29.2]
+- Move LibraryLanguageInstaller to separate package
+
 ## [0.29.1]
 - Responsive image
 

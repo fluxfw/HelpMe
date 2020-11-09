@@ -4,7 +4,7 @@ namespace srag\RemovePluginDataConfirm\HelpMe;
 
 use ilUIPluginRouterGUI;
 use srag\DIC\HelpMe\DICTrait;
-use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
+use srag\LibraryLanguageInstaller\HelpMe\LibraryLanguageInstaller;
 
 /**
  * Trait BasePluginUninstallTrait

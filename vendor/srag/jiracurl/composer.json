@@ -1,6 +1,7 @@
 {
   "name": "srag/jiracurl",
   "description": "Connect to Jira via Curl",
+  "version": "0.10.1",
   "type": "library",
   "keywords": [
     "ILIAS",

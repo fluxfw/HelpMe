@@ -30,6 +30,3 @@ You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/li
 ## Adjustment suggestions
 * External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
 * Adjustment suggestions by pull requests via github
-* Customer of studer + raimann ag: 
-	* Adjustment suggestions which are not yet worked out in detail by Jira tasks under https://jira.studer-raimann.ch/projects/LJIRACURL
-	* Bug reports under https://jira.studer-raimann.ch/projects/LJIRACURL

@@ -1,6 +1,7 @@
 {
   "name": "srag/datatable",
   "description": "ILIAS Data Table UI Component",
+  "version": "0.29.2",
   "type": "library",
   "keywords": [
     "ILIAS",
@@ -23,7 +24,8 @@
   "require": {
     "php": ">=7.2",
     "srag/custominputguis": ">=0.1.0",
-    "srag/dic": ">=0.1.0"
+    "srag/dic": ">=0.1.0",
+    "srag/librarylanguageinstaller": ">=0.1.0"
   },
   "autoload": {
     "psr-4": {

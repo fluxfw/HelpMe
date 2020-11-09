@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.13.5]
+- Move LibraryLanguageInstaller to separate package
+
 ## [0.13.4]
 - Fix `cleanValues` with `MultiSelectSearchNewInputGUI`
 

@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.5.6]
+- Move LibraryLanguageInstaller to separate package
+
 ## [5.5.5]
 - Update `migrateFromOldGlobalPlugin`
 

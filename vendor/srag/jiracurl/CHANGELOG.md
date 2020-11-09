@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.10.1]
+- Fix
+
 ## [0.10.0]
 - Update issue
 
