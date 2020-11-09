@@ -53,7 +53,7 @@ Config project:
 ![Config project](./doc/images/config_project.png)
 
 ## Notifications config
-You have a `support` property (See more in [Class Support](./doc/src/Support/Support.php)) for specific fields in both subject and body.
+You have a `support` property (See more in [Class Support](./src/Support/Support.php)) for specific fields in both subject and body.
 
 In body you have also a `fields` (Array of [Class SupportField](src/Support/SupportField.php)) for dynamic fields.
 

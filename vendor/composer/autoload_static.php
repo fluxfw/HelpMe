@@ -24,7 +24,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
             'srag\\GeneratePluginInfosHelper\\HelpMe\\' => 38,
             'srag\\DevTools\\HelpMe\\' => 21,
             'srag\\DataTableUI\\HelpMe\\' => 24,
-            'srag\\DIC\\' => 9,
+            'srag\\DIC\\HelpMe\\' => 16,
             'srag\\CustomInputGUIs\\HelpMe\\' => 28,
             'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
@@ -71,7 +71,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
-        'srag\\DIC\\' => 
+        'srag\\DIC\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),

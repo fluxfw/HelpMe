@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.6.1]
+- Generate readme
+
+## [5.6.0]
+- Generate readme
+
 ## [5.5.6]
 - Move LibraryLanguageInstaller to separate package
 

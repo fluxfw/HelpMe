@@ -16,7 +16,7 @@ return array(
     'srag\\GeneratePluginInfosHelper\\HelpMe\\' => array($vendorDir . '/srag/generateplugininfoshelper/src'),
     'srag\\DevTools\\HelpMe\\' => array($vendorDir . '/srag/devtools/src'),
     'srag\\DataTableUI\\HelpMe\\' => array($vendorDir . '/srag/datatable/src'),
-    'srag\\DIC\\' => array($vendorDir . '/srag/dic/src'),
+    'srag\\DIC\\HelpMe\\' => array($vendorDir . '/srag/dic/src'),
     'srag\\CustomInputGUIs\\HelpMe\\' => array($vendorDir . '/srag/custominputguis/src'),
     'srag\\ActiveRecordConfig\\HelpMe\\' => array($vendorDir . '/srag/activerecordconfig/src'),
 );
