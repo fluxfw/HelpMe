@@ -6,7 +6,7 @@ use ILIAS\DI\Container;
 use ILIAS\GlobalScreen\Provider\PluginProviderCollection;
 use srag\CustomInputGUIs\HelpMe\Loader\CustomInputGUIsLoaderDetector;
 use srag\DevTools\HelpMe\DevToolsCtrl;
-use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
+use srag\LibraryLanguageInstaller\HelpMe\LibraryLanguageInstaller;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 use srag\RemovePluginDataConfirm\HelpMe\PluginUninstallTrait;
 
