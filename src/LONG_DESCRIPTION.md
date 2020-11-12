@@ -8,25 +8,25 @@ grep HelpMe /var/iliasdata/ilias/ilias.log
 ```
 
 Support button:
-![Support button](./images/support_button.png)
+![Support button](../doc/images/support_button.png)
 
 Support button with enabled show tickets:
-![Support button with enabled show tickets](./images/support_button_dropdown.png)
+![Support button with enabled show tickets](../doc/images/support_button_dropdown.png)
 
 Support UI:
-![Support UI](./images/support_ui.png)
+![Support UI](../doc/images/support_ui.png)
 
 Show tickets UI:
-![Show tickets UI](./images/show_tickets_ui.png)
+![Show tickets UI](../doc/images/show_tickets_ui.png)
 
 Config:
-![Config](./images/config.png)
+![Config](../doc/images/config.png)
 
 Config projects table:
-![Config projects table](./images/config_projects_table.png)
+![Config projects table](../doc/images/config_projects_table.png)
 
 Config project:
-![Config project](./images/config_project.png)
+![Config project](../doc/images/config_project.png)
 
 ## Notifications config
 You have a `support` property (See more in [Class Support](./src/Support/Support.php)) for specific fields in both subject and body.
