@@ -197,7 +197,7 @@ return array(
     'srag\\ActiveRecordConfig\\HelpMe\\Config\\AbstractRepository' => $vendorDir . '/srag/activerecordconfig/src/Config/AbstractRepository.php',
     'srag\\ActiveRecordConfig\\HelpMe\\Config\\Config' => $vendorDir . '/srag/activerecordconfig/src/Config/Config.php',
     'srag\\ActiveRecordConfig\\HelpMe\\Exception\\ActiveRecordConfigException' => $vendorDir . '/srag/activerecordconfig/src/Exception/ActiveRecordConfigException.php',
-    'srag\\CustomInputGUIs\\HelpMe\\CheckboxInputGUI\\AjaxCheckbox' => $vendorDir . '/srag/custominputguis/src/AjaxCheckbox/AjaxCheckbox.php',
+    'srag\\CustomInputGUIs\\HelpMe\\AjaxCheckbox\\AjaxCheckbox' => $vendorDir . '/srag/custominputguis/src/AjaxCheckbox/AjaxCheckbox.php',
     'srag\\CustomInputGUIs\\HelpMe\\CheckboxInputGUI\\CheckboxInputGUI' => $vendorDir . '/srag/custominputguis/src/CheckboxInputGUI/CheckboxInputGUI.php',
     'srag\\CustomInputGUIs\\HelpMe\\ColorPickerInputGUI\\ColorPickerInputGUI' => $vendorDir . '/srag/custominputguis/src/ColorPickerInputGUI/ColorPickerInputGUI.php',
     'srag\\CustomInputGUIs\\HelpMe\\CustomInputGUIs' => $vendorDir . '/srag/custominputguis/src/CustomInputGUIs.php',

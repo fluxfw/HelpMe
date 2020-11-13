@@ -1,5 +1,9 @@
 # Changelog
 
+## [5.6.2]
+- Fix composer 2
+- Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
+
 ## [5.6.1]
 - Generate readme
 

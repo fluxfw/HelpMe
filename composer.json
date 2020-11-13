@@ -1,5 +1,5 @@
 {
-  "name": "srag/plugins/helpme",
+  "name": "srag/helpme",
   "description": "",
   "version": "6.1.2",
   "extra": {
@@ -48,7 +48,14 @@
       "srag\\Plugins\\HelpMe\\": "src/"
     },
     "classmap": [
-      "classes/"
+      "classes/",
+      "src/Config/class.ConfigCtrl.php",
+      "src/Project/class.ProjectsConfigGUI.php",
+      "src/Project/class.ProjectConfigGUI.php",
+      "src/RequiredData/Field/IssueType/Form/class.IssueTypeSelectInputGUI.php",
+      "src/RequiredData/Field/Project/Form/class.ProjectSelectInputGUI.php",
+      "src/Support/class.SupportGUI.php",
+      "src/Ticket/class.TicketsGUI.php"
     ],
     "files": [
       "vendor/srag/dic/src/PHPVersionChecker.php",

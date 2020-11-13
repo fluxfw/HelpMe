@@ -1,7 +1,7 @@
 {
   "name": "srag/jiracurl",
   "description": "Connect to Jira via Curl",
-  "version": "0.11.1",
+  "version": "0.11.2",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",

@@ -1,7 +1,7 @@
 {
   "name": "srag/requireddata",
   "description": "Config and fill required data",
-  "version": "0.14.1",
+  "version": "0.14.2",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -42,7 +42,14 @@
   "autoload": {
     "psr-4": {
       "srag\\RequiredData\\HelpMe\\": "src/"
-    }
+    },
+    "classmap": [
+      "src/Field/class.FieldsCtrl.php",
+      "src/Field/class.FieldCtrl.php",
+      "src/Field/Field/Group/class.GroupsCtrl.php",
+      "src/Field/Field/Group/class.GroupCtrl.php",
+      "src/Field/Field/StaticMultiSearchSelect/class.SMSSAjaxAutoCompleteCtrl.php"
+    ]
   },
   "config": {
     "classmap-authoritative": true,

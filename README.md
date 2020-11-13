@@ -8,6 +8,11 @@ This is an OpenSource project by studer + raimann ag, CH-Burgdorf (https://stude
 
 This project is licensed under the GPL-3.0-only license
 
+## Requirements
+
+* ILIAS 6.0 - 6.999
+* PHP >=7.2
+
 ## Installation
 
 Start at your ILIAS root directory
@@ -92,11 +97,6 @@ or both mixed like:
 ```
 
 Note: For safety reasons Jira API does not supports HTML and will escape HTML
-
-## Requirements
-
-* ILIAS 6.0 - 6.999
-* PHP >=7.2
 
 ## Adjustment suggestions
 
