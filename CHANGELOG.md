@@ -2,6 +2,7 @@
 
 ## [x]
 - Ping after each object for not ILIAS auto set inactive cron job if during longer
+- Update readme
 
 ## [6.1.2]
 - `Ilias7PreWarn`
