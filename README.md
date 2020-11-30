@@ -100,8 +100,9 @@ Note: For safety reasons Jira API does not supports HTML and will escape HTML
 
 ## Adjustment suggestions
 
-* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLHM
-* Adjustment suggestions by pull requests via github
+You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLHM
+
+There is no guarantee this can be fixed or implemented
 
 ## ILIAS Plugin SLA
 
