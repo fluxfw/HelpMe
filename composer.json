@@ -14,8 +14,10 @@
   },
   "type": "project",
   "keywords": [
-    "ILIAS",
-    "Plugin"
+    "ilias",
+    "interface",
+    "plugin",
+    "user"
   ],
   "homepage": "https://github.com/studer-raimann/HelpMe",
   "license": "GPL-3.0-only",
