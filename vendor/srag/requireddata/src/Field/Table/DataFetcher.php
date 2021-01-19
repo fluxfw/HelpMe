@@ -46,9 +46,13 @@ class DataFetcher extends AbstractDataFetcher
     {
         $data = self::requiredData()->fields()->getFields($this->parent->getParentContext(), $this->parent->getParentId(), null, false);
 
+        $max_count = count($data);
+
+        $data = array_slice($data, $settings->getOffset(), $settings->getRowsCount());
+
         return self::dataTableUI()->data()->data(array_map(function (AbstractField $field
         ) : RowData {
             return self::dataTableUI()->data()->row()->getter($field->getId(), $field);
-        }, $data), count($data));
+        }, $data), $max_count);
     }
 }

@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.31.0]
+- `MultilineFormatter`
+
+## [0.30.3]
+- Supports arrays and raw method name in `ChainGetterFormatter`
+
 ## [0.30.2]
 - Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
 

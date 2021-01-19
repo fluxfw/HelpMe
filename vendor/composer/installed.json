@@ -124,17 +124,17 @@
     },
     {
         "name": "srag/datatable",
-        "version": "0.30.2",
-        "version_normalized": "0.30.2.0",
+        "version": "0.31.0",
+        "version_normalized": "0.31.0.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/DataTableUI.git",
-            "reference": "24e91f3bf5af6045ce2e8144c90596eb28c87671"
+            "reference": "e0947464e5428b06c1ccbe145a45de94247f764f"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DataTableUI/zipball/24e91f3bf5af6045ce2e8144c90596eb28c87671",
-            "reference": "24e91f3bf5af6045ce2e8144c90596eb28c87671",
+            "url": "https://api.github.com/repos/studer-raimann/DataTableUI/zipball/e0947464e5428b06c1ccbe145a45de94247f764f",
+            "reference": "e0947464e5428b06c1ccbe145a45de94247f764f",
             "shasum": ""
         },
         "require": {
@@ -146,7 +146,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2020-11-13T09:15:30+00:00",
+        "time": "2021-01-13T08:07:07+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -245,17 +245,17 @@
     },
     {
         "name": "srag/dic",
-        "version": "0.31.0",
-        "version_normalized": "0.31.0.0",
+        "version": "0.31.3",
+        "version_normalized": "0.31.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/DIC.git",
-            "reference": "de8dd1ff734ba8dc42178180dcdaee20058c10aa"
+            "reference": "05671be74b361e1cc95862323836d13af411996b"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/de8dd1ff734ba8dc42178180dcdaee20058c10aa",
-            "reference": "de8dd1ff734ba8dc42178180dcdaee20058c10aa",
+            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/05671be74b361e1cc95862323836d13af411996b",
+            "reference": "05671be74b361e1cc95862323836d13af411996b",
             "shasum": ""
         },
         "require": {
@@ -264,7 +264,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2020-11-25T11:02:47+00:00",
+        "time": "2020-12-10T12:28:26+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -352,17 +352,17 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "0.11.2",
-        "version_normalized": "0.11.2.0",
+        "version": "0.11.3",
+        "version_normalized": "0.11.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "0fb608b019c4440e71deb9039c6f3f4105bc05df"
+            "reference": "39c0f30212be61089d76b27230b94c43629237ad"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/0fb608b019c4440e71deb9039c6f3f4105bc05df",
-            "reference": "0fb608b019c4440e71deb9039c6f3f4105bc05df",
+            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/39c0f30212be61089d76b27230b94c43629237ad",
+            "reference": "39c0f30212be61089d76b27230b94c43629237ad",
             "shasum": ""
         },
         "require": {
@@ -372,7 +372,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2020-11-13T09:10:12+00:00",
+        "time": "2021-01-19T12:34:03+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -646,17 +646,17 @@
     },
     {
         "name": "srag/requireddata",
-        "version": "0.14.2",
-        "version_normalized": "0.14.2.0",
+        "version": "0.14.3",
+        "version_normalized": "0.14.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/studer-raimann/RequiredData.git",
-            "reference": "0bea95748a583e696c98378aa63c46b6cfcb9023"
+            "reference": "a579bd59783a7efd9ecc76e4307f94fb4752d997"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/0bea95748a583e696c98378aa63c46b6cfcb9023",
-            "reference": "0bea95748a583e696c98378aa63c46b6cfcb9023",
+            "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/a579bd59783a7efd9ecc76e4307f94fb4752d997",
+            "reference": "a579bd59783a7efd9ecc76e4307f94fb4752d997",
             "shasum": ""
         },
         "require": {
@@ -669,7 +669,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2020-11-13T09:32:06+00:00",
+        "time": "2021-01-13T08:58:13+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {

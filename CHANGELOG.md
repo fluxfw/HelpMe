@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.1.5]
+- Fix attach screenshots to issue
+
 ## [6.1.4]
 - Fix project and issue selector
 

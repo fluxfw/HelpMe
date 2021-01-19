@@ -1,7 +1,7 @@
 {
   "name": "srag/jiracurl",
   "description": "Connect to Jira via Curl",
-  "version": "0.11.2",
+  "version": "0.11.3",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -11,9 +11,9 @@
   },
   "type": "library",
   "keywords": [
-    "ILIAS",
-    "Jira",
-    "Curl"
+    "curl",
+    "ilias",
+    "jira"
   ],
   "homepage": "https://github.com/studer-raimann/JiraCurl",
   "license": "GPL-3.0-only",

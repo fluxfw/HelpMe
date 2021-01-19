@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.14.3]
+- Fix table pagination
+
 ## [0.14.2]
 - Fix composer 2
 - Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md

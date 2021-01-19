@@ -311,6 +311,7 @@ return array(
     'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LanguageVariableFormatter' => $vendorDir . '/srag/datatable/src/Implementation/Column/Formatter/LanguageVariableFormatter.php',
     'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LearningProgressFormatter' => $vendorDir . '/srag/datatable/src/Implementation/Column/Formatter/LearningProgressFormatter.php',
     'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LinkFormatter' => $vendorDir . '/srag/datatable/src/Implementation/Column/Formatter/LinkFormatter.php',
+    'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\MultilineFormatter' => $vendorDir . '/srag/datatable/src/Implementation/Column/Formatter/MultilineFormatter.php',
     'srag\\DataTableUI\\HelpMe\\Implementation\\Data\\Data' => $vendorDir . '/srag/datatable/src/Implementation/Data/Data.php',
     'srag\\DataTableUI\\HelpMe\\Implementation\\Data\\Factory' => $vendorDir . '/srag/datatable/src/Implementation/Data/Factory.php',
     'srag\\DataTableUI\\HelpMe\\Implementation\\Data\\Fetcher\\AbstractDataFetcher' => $vendorDir . '/srag/datatable/src/Implementation/Data/Fetcher/AbstractDataFetcher.php',

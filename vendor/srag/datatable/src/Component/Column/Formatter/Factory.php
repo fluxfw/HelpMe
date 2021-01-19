@@ -70,4 +70,10 @@ interface Factory
      * @return Formatter
      */
     public function link() : Formatter;
+
+
+    /**
+     * @return Formatter
+     */
+    public function multiline() : Formatter;
 }

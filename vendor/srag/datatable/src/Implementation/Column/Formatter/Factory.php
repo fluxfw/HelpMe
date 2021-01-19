@@ -129,4 +129,13 @@ class Factory implements FactoryInterface
     {
         return new LinkFormatter();
     }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function multiline() : Formatter
+    {
+        return new MultilineFormatter();
+    }
 }
