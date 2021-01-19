@@ -21,37 +21,22 @@ class FillStorage extends ActiveRecord
     use RequiredDataTrait;
 
     const TABLE_NAME_SUFFIX = "store";
-
-
     /**
-     * @return string
-     */
-    public static function getTableName() : string
-    {
-        return self::requiredData()->getTableNamePrefix() . "_fll_" . self::TABLE_NAME_SUFFIX;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getConnectorContainerName() : string
-    {
-        return self::getTableName();
-    }
-
-
-    /**
-     * @inheritDoc
+     * @var string
      *
-     * @deprecated
+     * @con_has_field    true
+     * @con_fieldtype    text
+     * @con_is_notnull   true
      */
-    public static function returnDbTableName() : string
-    {
-        return self::getTableName();
-    }
-
-
+    protected $field_id;
+    /**
+     * @var string
+     *
+     * @con_has_field    true
+     * @con_fieldtype    text
+     * @con_is_notnull   true
+     */
+    protected $fill_id;
     /**
      * @var int
      *
@@ -63,22 +48,6 @@ class FillStorage extends ActiveRecord
      * @con_sequence     true
      */
     protected $fill_storage_id;
-    /**
-     * @var string
-     *
-     * @con_has_field    true
-     * @con_fieldtype    text
-     * @con_is_notnull   true
-     */
-    protected $fill_id;
-    /**
-     * @var string
-     *
-     * @con_has_field    true
-     * @con_fieldtype    text
-     * @con_is_notnull   true
-     */
-    protected $field_id;
     /**
      * @var mixed
      *
@@ -98,6 +67,107 @@ class FillStorage extends ActiveRecord
     public function __construct(/*int*/ $primary_key_value = 0, /*?*/ arConnector $connector = null)
     {
         parent::__construct($primary_key_value, $connector);
+    }
+
+
+    /**
+     * @return string
+     */
+    public static function getTableName() : string
+    {
+        return self::requiredData()->getTableNamePrefix() . "_fll_" . self::TABLE_NAME_SUFFIX;
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @deprecated
+     */
+    public static function returnDbTableName() : string
+    {
+        return self::getTableName();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getConnectorContainerName() : string
+    {
+        return self::getTableName();
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getFieldId() : string
+    {
+        return $this->field_id;
+    }
+
+
+    /**
+     * @param string $field_id
+     */
+    public function setFieldId(string $field_id) : void
+    {
+        $this->field_id = $field_id;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getFillId() : string
+    {
+        return $this->fill_id;
+    }
+
+
+    /**
+     * @param string $fill_id
+     */
+    public function setFillId(string $fill_id) : void
+    {
+        $this->fill_id = $fill_id;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getFillStorageId() : int
+    {
+        return $this->fill_storage_id;
+    }
+
+
+    /**
+     * @param int $fill_storage_id
+     */
+    public function setFillStorageId(int $fill_storage_id) : void
+    {
+        $this->fill_storage_id = $fill_storage_id;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getFillValue()
+    {
+        return $this->fill_value;
+    }
+
+
+    /**
+     * @param mixed $fill_value
+     */
+    public function setFillValue($fill_value) : void
+    {
+        $this->fill_value = $fill_value;
     }
 
 
@@ -130,77 +200,5 @@ class FillStorage extends ActiveRecord
             default:
                 return parent::wakeUp($field_name, $field_value);
         }
-    }
-
-
-    /**
-     * @return int
-     */
-    public function getFillStorageId() : int
-    {
-        return $this->fill_storage_id;
-    }
-
-
-    /**
-     * @param int $fill_storage_id
-     */
-    public function setFillStorageId(int $fill_storage_id) : void
-    {
-        $this->fill_storage_id = $fill_storage_id;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getFillId() : string
-    {
-        return $this->fill_id;
-    }
-
-
-    /**
-     * @param string $fill_id
-     */
-    public function setFillId(string $fill_id) : void
-    {
-        $this->fill_id = $fill_id;
-    }
-
-
-    /**
-     * @return string
-     */
-    public function getFieldId() : string
-    {
-        return $this->field_id;
-    }
-
-
-    /**
-     * @param string $field_id
-     */
-    public function setFieldId(string $field_id) : void
-    {
-        $this->field_id = $field_id;
-    }
-
-
-    /**
-     * @return mixed
-     */
-    public function getFillValue()
-    {
-        return $this->fill_value;
-    }
-
-
-    /**
-     * @param mixed $fill_value
-     */
-    public function setFillValue($fill_value) : void
-    {
-        $this->fill_value = $fill_value;
     }
 }

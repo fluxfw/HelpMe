@@ -33,15 +33,6 @@ class TextFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        return self::dic()->ui()->factory()->input()->field()->text($this->field->getLabel(), $this->field->getDescription())->withRequired($this->field->isRequired());
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return strval($fill_value);
@@ -54,5 +45,14 @@ class TextFillField extends AbstractFillField
     public function formatAsString($fill_value) : string
     {
         return strval($fill_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        return self::dic()->ui()->factory()->input()->field()->text($this->field->getLabel(), $this->field->getDescription())->withRequired($this->field->isRequired());
     }
 }

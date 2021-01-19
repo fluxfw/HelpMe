@@ -48,6 +48,15 @@ class FormBuilder extends AbstractFormBuilder
 
 
     /**
+     * @return Settings
+     */
+    public function getSettings() : Settings
+    {
+        return $this->settings;
+    }
+
+
+    /**
      * @inheritDoc
      */
     protected function getAction() : string
@@ -117,14 +126,5 @@ class FormBuilder extends AbstractFormBuilder
     protected function storeData(array $data) : void
     {
         $this->settings = $this->settings->withFilterFieldValues($data);
-    }
-
-
-    /**
-     * @return Settings
-     */
-    public function getSettings() : Settings
-    {
-        return $this->settings;
     }
 }

@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.14.2]
+- Fix composer 2
+- Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
+
+## [0.14.1]
+- Generate readme
+
+## [0.14.0]
+- Generate readme
+
+## [0.13.5]
+- Move LibraryLanguageInstaller to separate package
+
+## [0.13.4]
+- Fix `cleanValues` with `MultiSelectSearchNewInputGUI`
+
 ## [0.13.3]
 - Fix
 

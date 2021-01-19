@@ -40,21 +40,21 @@ class SMSSAjaxAutoCompleteCtrl extends AbstractAjaxAutoCompleteCtrl
     /**
      * @inheritDoc
      */
-    public function searchOptions(string $search = null) : array
+    public function fillOptions(array $ids) : array
     {
         $form = self::requiredData()->fields()->factory()->newFormBuilderInstance($this->parent, $this->parent->getField());
 
-        return $form->getAjaxAutoCompleteCtrl()->searchOptions($search);
+        return $form->getAjaxAutoCompleteCtrl()->fillOptions($ids);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function fillOptions(array $ids) : array
+    public function searchOptions(/*?*/ string $search = null) : array
     {
         $form = self::requiredData()->fields()->factory()->newFormBuilderInstance($this->parent, $this->parent->getField());
 
-        return $form->getAjaxAutoCompleteCtrl()->fillOptions($ids);
+        return $form->getAjaxAutoCompleteCtrl()->searchOptions($search);
     }
 }

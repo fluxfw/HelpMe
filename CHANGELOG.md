@@ -1,5 +1,10 @@
 # Changelog
 
+## [6.1.3]
+- Fix project and issue selector
+- Ping after each object for not ILIAS auto set inactive cron job if during longer
+- Update readme and keywords
+
 ## [6.1.2]
 - `Ilias7PreWarn`
 

@@ -38,12 +38,6 @@ abstract class AbstractFillField
 
 
     /**
-     * @return Input
-     */
-    public abstract function getInput() : Input;
-
-
-    /**
      * @param mixed $fill_value
      *
      * @return mixed
@@ -57,4 +51,10 @@ abstract class AbstractFillField
      * @return string
      */
     public abstract function formatAsString($fill_value) : string;
+
+
+    /**
+     * @return Input
+     */
+    public abstract function getInput() : Input;
 }

@@ -26,6 +26,10 @@ class SupportFormBuilder extends AbstractFormBuilder
 
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
     /**
+     * @var self|null
+     */
+    protected static $form_parent = null;
+    /**
      * @var Support
      */
     protected $support;
@@ -46,6 +50,24 @@ class SupportFormBuilder extends AbstractFormBuilder
 
 
     /**
+     * @return self|null
+     */
+    public static function getFormParent() : ?self
+    {
+        return self::$form_parent;
+    }
+
+
+    /**
+     * @param self $form_parent
+     */
+    public static function setFormParent(self $form_parent) : void
+    {
+        self::$form_parent = $form_parent;
+    }
+
+
+    /**
      * @return IssueTypeSelectInputGUI|null
      */
     public function extractIssueTypeSelector() : ?IssueTypeSelectInputGUI
@@ -56,9 +78,9 @@ class SupportFormBuilder extends AbstractFormBuilder
             ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [IssueTypeField::getType()]));
 
         if ($field) {
-            $item = $this->getItemByPostVar($field->getId());
-            if ($item !== false) {
-                return $item;
+            $item = $this->getForm()->getInputs()["form"]->getInputs()[$field->getId()];
+            if ($item !== null) {
+                return $item->getInput();
             }
         }
 
@@ -77,9 +99,9 @@ class SupportFormBuilder extends AbstractFormBuilder
             ->getFields(Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, Support::REQUIRED_DATA_PARENT_CONTEXT_CONFIG, [ProjectField::getType()]));
 
         if ($field) {
-            $item = $this->getItemByPostVar($field->getId());
-            if ($item !== false) {
-                return $item;
+            $item = $this->getForm()->getInputs()["form"]->getInputs()[$field->getId()];
+            if ($item !== null) {
+                return $item->getInput();
             }
         }
 

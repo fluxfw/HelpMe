@@ -40,6 +40,24 @@ class SelectField extends AbstractField
     /**
      * @return array
      */
+    public function getOptions() : array
+    {
+        return $this->options;
+    }
+
+
+    /**
+     * @param array $options
+     */
+    public function setOptions(array $options) : void
+    {
+        $this->options = $options;
+    }
+
+
+    /**
+     * @return array
+     */
     public function getSelectOptions(?string $lang_key = null, bool $use_default_if_not_set = true) : array
     {
         $options = [];
@@ -81,23 +99,5 @@ class SelectField extends AbstractField
             default:
                 return parent::wakeUp($field_name, $field_value);
         }
-    }
-
-
-    /**
-     * @return array
-     */
-    public function getOptions() : array
-    {
-        return $this->options;
-    }
-
-
-    /**
-     * @param array $options
-     */
-    public function setOptions(array $options) : void
-    {
-        $this->options = $options;
     }
 }

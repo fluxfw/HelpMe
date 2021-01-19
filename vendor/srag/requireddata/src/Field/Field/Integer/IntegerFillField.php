@@ -35,6 +35,24 @@ class IntegerFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
+    public function formatAsJson($fill_value)
+    {
+        return intval($fill_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function formatAsString($fill_value) : string
+    {
+        return strval($fill_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getInput() : Input
     {
         // self::dic()->ui()->factory()->input()->field()->numeric has no min and max value?!
@@ -49,23 +67,5 @@ class IntegerFillField extends AbstractFillField
         }
 
         return $input;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function formatAsJson($fill_value)
-    {
-        return intval($fill_value);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function formatAsString($fill_value) : string
-    {
-        return strval($fill_value);
     }
 }

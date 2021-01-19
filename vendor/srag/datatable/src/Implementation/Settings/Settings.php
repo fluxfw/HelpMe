@@ -25,25 +25,25 @@ class Settings implements SettingsInterface
     use DataTableUITrait;
 
     /**
-     * @var Pagination
-     */
-    protected $pagination;
-    /**
      * @var mixed[]
      */
     protected $filter_field_values = [];
     /**
-     * @var SortField[]
+     * @var bool
      */
-    protected $sort_fields = [];
+    protected $filter_set = false;
+    /**
+     * @var Pagination
+     */
+    protected $pagination;
     /**
      * @var string[]
      */
     protected $selected_columns = [];
     /**
-     * @var bool
+     * @var SortField[]
      */
-    protected $filter_set = false;
+    protected $sort_fields = [];
 
 
     /**
@@ -54,79 +54,6 @@ class Settings implements SettingsInterface
     public function __construct(Pagination $pagination)
     {
         $this->pagination = $pagination->withPageSize(self::DEFAULT_ROWS_COUNT);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getFilterFieldValues() : array
-    {
-        return $this->filter_field_values;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getFilterFieldValue(string $key)
-    {
-        return $this->filter_field_values[$key] ?? null;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withFilterFieldValues(array $filter_field_values) : SettingsInterface
-    {
-        $clone = clone $this;
-
-        $clone->filter_field_values = $filter_field_values;
-
-        return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getSortFields() : array
-    {
-        return $this->sort_fields;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getSortField(string $sort_field) : ?SortField
-    {
-        $sort_field = current(array_filter($this->sort_fields, function (SortField $sort_field_) use ($sort_field) : bool {
-            return ($sort_field_->getSortField() === $sort_field);
-        }));
-
-        if ($sort_field !== false) {
-            return $sort_field;
-        } else {
-            return null;
-        }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withSortFields(array $sort_fields) : SettingsInterface
-    {
-        $classes = [SortField::class];
-        $this->checkArgListElements("sort_fields", $sort_fields, $classes);
-
-        $clone = clone $this;
-
-        $clone->sort_fields = $sort_fields;
-
-        return $clone;
     }
 
 
@@ -158,15 +85,71 @@ class Settings implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function removeSortField(string $sort_field) : SettingsInterface
+    public function deselectColumn(string $selected_column) : SettingsInterface
     {
         $clone = clone $this;
 
-        $clone->sort_fields = array_values(array_filter($clone->sort_fields, function (SortField $sort_field_) use ($sort_field) : bool {
-            return ($sort_field_->getSortField() !== $sort_field);
+        $clone->selected_columns = array_values(array_filter($clone->selected_columns, function (string $selected_column_) use ($selected_column) : bool {
+            return ($selected_column_ !== $selected_column);
         }));
 
         return $clone;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getCurrentPage() : int
+    {
+        return $this->pagination->getCurrentPage();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getFilterFieldValue(string $key)
+    {
+        return $this->filter_field_values[$key] ?? null;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getFilterFieldValues() : array
+    {
+        return $this->filter_field_values;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getOffset() : int
+    {
+        return $this->pagination->getOffset();
+    }
+
+
+    /**
+     * @inheritDoc
+     *
+     * @internal
+     */
+    public function getPagination(?Data $data) : Pagination
+    {
+        return $this->pagination->withTotalEntries($data === null ? 0 : $data->getMaxCount());
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getRowsCount() : int
+    {
+        return $this->pagination->getPageSize();
     }
 
 
@@ -182,11 +165,48 @@ class Settings implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function withSelectedColumns(array $selected_columns) : SettingsInterface
+    public function getSortField(string $sort_field) : ?SortField
+    {
+        $sort_field = current(array_filter($this->sort_fields, function (SortField $sort_field_) use ($sort_field) : bool {
+            return ($sort_field_->getSortField() === $sort_field);
+        }));
+
+        if ($sort_field !== false) {
+            return $sort_field;
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getSortFields() : array
+    {
+        return $this->sort_fields;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function isFilterSet() : bool
+    {
+        return $this->filter_set;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function removeSortField(string $sort_field) : SettingsInterface
     {
         $clone = clone $this;
 
-        $clone->selected_columns = $selected_columns;
+        $clone->sort_fields = array_values(array_filter($clone->sort_fields, function (SortField $sort_field_) use ($sort_field) : bool {
+            return ($sort_field_->getSortField() !== $sort_field);
+        }));
 
         return $clone;
     }
@@ -210,13 +230,11 @@ class Settings implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function deselectColumn(string $selected_column) : SettingsInterface
+    public function withCurrentPage(int $current_page = 0) : SettingsInterface
     {
         $clone = clone $this;
 
-        $clone->selected_columns = array_values(array_filter($clone->selected_columns, function (string $selected_column_) use ($selected_column) : bool {
-            return ($selected_column_ !== $selected_column);
-        }));
+        $clone->pagination = $clone->pagination->withCurrentPage($current_page);
 
         return $clone;
     }
@@ -225,9 +243,13 @@ class Settings implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function isFilterSet() : bool
+    public function withFilterFieldValues(array $filter_field_values) : SettingsInterface
     {
-        return $this->filter_set;
+        $clone = clone $this;
+
+        $clone->filter_field_values = $filter_field_values;
+
+        return $clone;
     }
 
 
@@ -247,15 +269,6 @@ class Settings implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function getRowsCount() : int
-    {
-        return $this->pagination->getPageSize();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function withRowsCount(int $rows_count = self::DEFAULT_ROWS_COUNT) : SettingsInterface
     {
         $clone = clone $this;
@@ -269,20 +282,11 @@ class Settings implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function getCurrentPage() : int
-    {
-        return $this->pagination->getCurrentPage();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withCurrentPage(int $current_page = 0) : SettingsInterface
+    public function withSelectedColumns(array $selected_columns) : SettingsInterface
     {
         $clone = clone $this;
 
-        $clone->pagination = $clone->pagination->withCurrentPage($current_page);
+        $clone->selected_columns = $selected_columns;
 
         return $clone;
     }
@@ -291,19 +295,15 @@ class Settings implements SettingsInterface
     /**
      * @inheritDoc
      */
-    public function getOffset() : int
+    public function withSortFields(array $sort_fields) : SettingsInterface
     {
-        return $this->pagination->getOffset();
-    }
+        $classes = [SortField::class];
+        $this->checkArgListElements("sort_fields", $sort_fields, $classes);
 
+        $clone = clone $this;
 
-    /**
-     * @inheritDoc
-     *
-     * @internal
-     */
-    public function getPagination(?Data $data) : Pagination
-    {
-        return $this->pagination->withTotalEntries($data === null ? 0 : $data->getMaxCount());
+        $clone->sort_fields = $sort_fields;
+
+        return $clone;
     }
 }

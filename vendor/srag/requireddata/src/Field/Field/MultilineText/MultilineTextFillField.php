@@ -33,17 +33,17 @@ class MultilineTextFillField extends TextFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
+    public function formatAsString($fill_value) : string
     {
-        return self::dic()->ui()->factory()->input()->field()->textarea($this->field->getLabel(), $this->field->getDescription())->withRequired($this->field->isRequired());
+        return nl2br(parent::formatAsString($fill_value), false);
     }
 
 
     /**
      * @inheritDoc
      */
-    public function formatAsString($fill_value) : string
+    public function getInput() : Input
     {
-        return nl2br(parent::formatAsString($fill_value), false);
+        return self::dic()->ui()->factory()->input()->field()->textarea($this->field->getLabel(), $this->field->getDescription())->withRequired($this->field->isRequired());
     }
 }

@@ -1,1 +1,0 @@
-# HelpMe ILIAS Plugin Documentation

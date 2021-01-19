@@ -27,19 +27,6 @@ final class Factory
 
 
     /**
-     * @return self
-     */
-    public static function getInstance() : self
-    {
-        if (self::$instance === null) {
-            self::$instance = new self();
-        }
-
-        return self::$instance;
-    }
-
-
-    /**
      * Factory constructor
      */
     private function __construct()
@@ -49,15 +36,15 @@ final class Factory
 
 
     /**
-     * @param AbstractFillCtrl $parent
-     *
-     * @return FormBuilder
+     * @return self
      */
-    public function newFormBuilderInstance(AbstractFillCtrl $parent) : FormBuilder
+    public static function getInstance() : self
     {
-        $form = new FormBuilder($parent);
+        if (self::$instance === null) {
+            self::$instance = new self();
+        }
 
-        return $form;
+        return self::$instance;
     }
 
 
@@ -86,5 +73,18 @@ final class Factory
         $fill_storage = new FillStorage();
 
         return $fill_storage;
+    }
+
+
+    /**
+     * @param AbstractFillCtrl $parent
+     *
+     * @return FormBuilder
+     */
+    public function newFormBuilderInstance(AbstractFillCtrl $parent) : FormBuilder
+    {
+        $form = new FormBuilder($parent);
+
+        return $form;
     }
 }

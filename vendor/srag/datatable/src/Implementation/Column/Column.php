@@ -23,21 +23,9 @@ class Column implements ColumnInterface
     use DataTableUITrait;
 
     /**
-     * @var string
-     */
-    protected $key = "";
-    /**
-     * @var string
-     */
-    protected $title = "";
-    /**
-     * @var Formatter
-     */
-    protected $formatter;
-    /**
      * @var bool
      */
-    protected $sortable = true;
+    protected $default_selected = true;
     /**
      * @var bool
      */
@@ -49,15 +37,27 @@ class Column implements ColumnInterface
     /**
      * @var bool
      */
+    protected $exportable = true;
+    /**
+     * @var Formatter
+     */
+    protected $formatter;
+    /**
+     * @var string
+     */
+    protected $key = "";
+    /**
+     * @var bool
+     */
     protected $selectable = true;
     /**
      * @var bool
      */
-    protected $default_selected = true;
+    protected $sortable = true;
     /**
-     * @var bool
+     * @var string
      */
-    protected $exportable = true;
+    protected $title = "";
 
 
     /**
@@ -74,22 +74,31 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function getKey() : string
+    public function getDefaultSortDirection() : int
     {
-        return $this->key;
+        return $this->default_sort_direction;
     }
 
 
     /**
      * @inheritDoc
      */
-    public function withKey(string $key) : ColumnInterface
+    public function getFormatter() : Formatter
     {
-        $clone = clone $this;
+        if ($this->formatter === null) {
+            $this->formatter = self::dataTableUI()->column()->formatter()->default();
+        }
 
-        $clone->key = $key;
+        return $this->formatter;
+    }
 
-        return $clone;
+
+    /**
+     * @inheritDoc
+     */
+    public function getKey() : string
+    {
+        return $this->key;
     }
 
 
@@ -105,11 +114,56 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function withTitle(string $title) : ColumnInterface
+    public function isDefaultSelected() : bool
+    {
+        return $this->default_selected;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function isDefaultSort() : bool
+    {
+        return $this->default_sort;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function isExportable() : bool
+    {
+        return $this->exportable;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function isSelectable() : bool
+    {
+        return $this->selectable;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function isSortable() : bool
+    {
+        return $this->sortable;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withDefaultSelected(bool $default_selected = true) : ColumnInterface
     {
         $clone = clone $this;
 
-        $clone->title = $title;
+        $clone->default_selected = $default_selected;
 
         return $clone;
     }
@@ -118,13 +172,39 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function getFormatter() : Formatter
+    public function withDefaultSort(bool $default_sort = false) : ColumnInterface
     {
-        if ($this->formatter === null) {
-            $this->formatter = self::dataTableUI()->column()->formatter()->default();
-        }
+        $clone = clone $this;
 
-        return $this->formatter;
+        $clone->default_sort = $default_sort;
+
+        return $clone;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withDefaultSortDirection(int $default_sort_direction = SortField::SORT_DIRECTION_UP) : ColumnInterface
+    {
+        $clone = clone $this;
+
+        $clone->default_sort_direction = $default_sort_direction;
+
+        return $clone;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withExportable(bool $exportable = true) : ColumnInterface
+    {
+        $clone = clone $this;
+
+        $clone->exportable = $exportable;
+
+        return $clone;
     }
 
 
@@ -150,75 +230,13 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function isSortable() : bool
-    {
-        return $this->sortable;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withSortable(bool $sortable = true) : ColumnInterface
+    public function withKey(string $key) : ColumnInterface
     {
         $clone = clone $this;
 
-        $clone->sortable = $sortable;
+        $clone->key = $key;
 
         return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function isDefaultSort() : bool
-    {
-        return $this->default_sort;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withDefaultSort(bool $default_sort = false) : ColumnInterface
-    {
-        $clone = clone $this;
-
-        $clone->default_sort = $default_sort;
-
-        return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function getDefaultSortDirection() : int
-    {
-        return $this->default_sort_direction;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withDefaultSortDirection(int $default_sort_direction = SortField::SORT_DIRECTION_UP) : ColumnInterface
-    {
-        $clone = clone $this;
-
-        $clone->default_sort_direction = $default_sort_direction;
-
-        return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function isSelectable() : bool
-    {
-        return $this->selectable;
     }
 
 
@@ -238,20 +256,11 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function isDefaultSelected() : bool
-    {
-        return $this->default_selected;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withDefaultSelected(bool $default_selected = true) : ColumnInterface
+    public function withSortable(bool $sortable = true) : ColumnInterface
     {
         $clone = clone $this;
 
-        $clone->default_selected = $default_selected;
+        $clone->sortable = $sortable;
 
         return $clone;
     }
@@ -260,20 +269,11 @@ class Column implements ColumnInterface
     /**
      * @inheritDoc
      */
-    public function isExportable() : bool
-    {
-        return $this->exportable;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withExportable(bool $exportable = true) : ColumnInterface
+    public function withTitle(string $title) : ColumnInterface
     {
         $clone = clone $this;
 
-        $clone->exportable = $exportable;
+        $clone->title = $title;
 
         return $clone;
     }

@@ -47,6 +47,12 @@ interface Factory
 
 
     /**
+     * @return Formatter
+     */
+    public function image() : Formatter;
+
+
+    /**
      * @param string $prefix
      *
      * @return Formatter

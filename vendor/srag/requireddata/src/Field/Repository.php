@@ -26,6 +26,15 @@ final class Repository
 
 
     /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -35,15 +44,6 @@ final class Repository
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -243,19 +243,6 @@ final class Repository
     /**
      * @param AbstractField $field
      */
-    public function moveFieldUp(AbstractField $field) : void
-    {
-        $field->setSort($field->getSort() - 15);
-
-        $this->storeField($field);
-
-        $this->reSortFields($field->getParentContext(), $field->getParentId());
-    }
-
-
-    /**
-     * @param AbstractField $field
-     */
     public function moveFieldDown(AbstractField $field) : void
     {
         $field->setSort($field->getSort() + 15);
@@ -267,21 +254,15 @@ final class Repository
 
 
     /**
-     * @param int $parent_context
-     * @param int $parent_id
+     * @param AbstractField $field
      */
-    protected function reSortFields(int $parent_context, int $parent_id) : void
+    public function moveFieldUp(AbstractField $field) : void
     {
-        $fields = $this->getFields($parent_context, $parent_id, null, false);
+        $field->setSort($field->getSort() - 15);
 
-        $i = 1;
-        foreach ($fields as $field) {
-            $field->setSort($i * 10);
+        $this->storeField($field);
 
-            $this->storeField($field);
-
-            $i++;
-        }
+        $this->reSortFields($field->getParentContext(), $field->getParentId());
     }
 
 
@@ -316,5 +297,24 @@ final class Repository
         $this->deleteField($group);
 
         return $fields;
+    }
+
+
+    /**
+     * @param int $parent_context
+     * @param int $parent_id
+     */
+    protected function reSortFields(int $parent_context, int $parent_id) : void
+    {
+        $fields = $this->getFields($parent_context, $parent_id, null, false);
+
+        $i = 1;
+        foreach ($fields as $field) {
+            $field->setSort($i * 10);
+
+            $this->storeField($field);
+
+            $i++;
+        }
     }
 }

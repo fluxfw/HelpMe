@@ -7,32 +7,35 @@ namespace Composer\Autoload;
 class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
 {
     public static $files = array (
-        '81ba6c71ec243bd503e18a84d5f2c9e5' => __DIR__ . '/..' . '/srag/dic/src/PHPVersionChecker.php',
-        'fb95884c9dc7216d290fb1397b55ee7a' => __DIR__ . '/..' . '/srag/dic/src/Ilias7PreWarn.php',
+        '0a59f15aab4ebd284a4f037c78a9baab' => __DIR__ . '/..' . '/srag/dic/src/PHPVersionChecker.php',
+        'bd959a3aa570469f3fe6a610eeb59be8' => __DIR__ . '/..' . '/srag/dic/src/Ilias7PreWarn.php',
     );
 
     public static $prefixLengthsPsr4 = array (
         's' => 
         array (
-            'srag\\RequiredData\\' => 18,
-            'srag\\RemovePluginDataConfirm\\' => 29,
+            'srag\\RequiredData\\HelpMe\\' => 25,
+            'srag\\RemovePluginDataConfirm\\HelpMe\\' => 36,
             'srag\\Plugins\\HelpMe\\' => 20,
-            'srag\\Notifications4Plugin\\' => 26,
+            'srag\\Notifications4Plugin\\HelpMe\\' => 33,
+            'srag\\LibraryLanguageInstaller\\HelpMe\\' => 37,
             'srag\\LibrariesNamespaceChanger\\' => 31,
-            'srag\\JiraCurl\\' => 14,
-            'srag\\DataTableUI\\' => 17,
-            'srag\\DIC\\' => 9,
-            'srag\\CustomInputGUIs\\' => 21,
-            'srag\\ActiveRecordConfig\\' => 24,
+            'srag\\JiraCurl\\HelpMe\\' => 21,
+            'srag\\GeneratePluginInfosHelper\\HelpMe\\' => 38,
+            'srag\\DevTools\\HelpMe\\' => 21,
+            'srag\\DataTableUI\\HelpMe\\' => 24,
+            'srag\\DIC\\HelpMe\\' => 16,
+            'srag\\CustomInputGUIs\\HelpMe\\' => 28,
+            'srag\\ActiveRecordConfig\\HelpMe\\' => 31,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'srag\\RequiredData\\' => 
+        'srag\\RequiredData\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/requireddata/src',
         ),
-        'srag\\RemovePluginDataConfirm\\' => 
+        'srag\\RemovePluginDataConfirm\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/removeplugindataconfirm/src',
         ),
@@ -40,31 +43,43 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
-        'srag\\Notifications4Plugin\\' => 
+        'srag\\Notifications4Plugin\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/notifications4plugin/src',
+        ),
+        'srag\\LibraryLanguageInstaller\\HelpMe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/librarylanguageinstaller/src',
         ),
         'srag\\LibrariesNamespaceChanger\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src',
         ),
-        'srag\\JiraCurl\\' => 
+        'srag\\JiraCurl\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/jiracurl/src',
         ),
-        'srag\\DataTableUI\\' => 
+        'srag\\GeneratePluginInfosHelper\\HelpMe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/generateplugininfoshelper/src',
+        ),
+        'srag\\DevTools\\HelpMe\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/srag/devtools/src',
+        ),
+        'srag\\DataTableUI\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/datatable/src',
         ),
-        'srag\\DIC\\' => 
+        'srag\\DIC\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/dic/src',
         ),
-        'srag\\CustomInputGUIs\\' => 
+        'srag\\CustomInputGUIs\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/custominputguis/src',
         ),
-        'srag\\ActiveRecordConfig\\' => 
+        'srag\\ActiveRecordConfig\\HelpMe\\' => 
         array (
             0 => __DIR__ . '/..' . '/srag/activerecordconfig/src',
         ),
@@ -272,7 +287,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\ActiveRecordConfig\\HelpMe\\Config\\AbstractRepository' => __DIR__ . '/..' . '/srag/activerecordconfig/src/Config/AbstractRepository.php',
         'srag\\ActiveRecordConfig\\HelpMe\\Config\\Config' => __DIR__ . '/..' . '/srag/activerecordconfig/src/Config/Config.php',
         'srag\\ActiveRecordConfig\\HelpMe\\Exception\\ActiveRecordConfigException' => __DIR__ . '/..' . '/srag/activerecordconfig/src/Exception/ActiveRecordConfigException.php',
-        'srag\\CustomInputGUIs\\HelpMe\\CheckboxInputGUI\\AjaxCheckbox' => __DIR__ . '/..' . '/srag/custominputguis/src/AjaxCheckbox/AjaxCheckbox.php',
+        'srag\\CustomInputGUIs\\HelpMe\\AjaxCheckbox\\AjaxCheckbox' => __DIR__ . '/..' . '/srag/custominputguis/src/AjaxCheckbox/AjaxCheckbox.php',
         'srag\\CustomInputGUIs\\HelpMe\\CheckboxInputGUI\\CheckboxInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/CheckboxInputGUI/CheckboxInputGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\ColorPickerInputGUI\\ColorPickerInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/ColorPickerInputGUI/ColorPickerInputGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\CustomInputGUIs' => __DIR__ . '/..' . '/srag/custominputguis/src/CustomInputGUIs.php',
@@ -318,9 +333,10 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\CustomInputGUIs\\HelpMe\\TextInputGUI\\TextInputGUIWithModernAutoComplete' => __DIR__ . '/..' . '/srag/custominputguis/src/TextInputGUI/TextInputGUIWithModernAutoComplete.php',
         'srag\\CustomInputGUIs\\HelpMe\\UIInputComponentWrapperInputGUI\\UIInputComponentWrapperInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/UIInputComponentWrapperInputGUI/UIInputComponentWrapperInputGUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\UIInputComponentWrapperInputGUI\\UIInputComponentWrapperNameSource' => __DIR__ . '/..' . '/srag/custominputguis/src/UIInputComponentWrapperInputGUI/UIInputComponentWrapperNameSource.php',
-        'srag\\CustomInputGUIs\\HelpMe\\ViewControlModeUI\\ViewControlModeUI' => __DIR__ . '/..' . '/srag/custominputguis/src/ViewControlModeGUI/ViewControlModeUI.php',
+        'srag\\CustomInputGUIs\\HelpMe\\ViewControlModeUI\\ViewControlModeUI' => __DIR__ . '/..' . '/srag/custominputguis/src/ViewControlModeUI/ViewControlModeUI.php',
         'srag\\CustomInputGUIs\\HelpMe\\Waiter\\Waiter' => __DIR__ . '/..' . '/srag/custominputguis/src/Waiter/Waiter.php',
         'srag\\CustomInputGUIs\\HelpMe\\WeekdayInputGUI\\WeekdayInputGUI' => __DIR__ . '/..' . '/srag/custominputguis/src/WeekdayInputGUI/WeekdayInputGUI.php',
+        'srag\\DIC\\HelpMe\\Cron\\FixUITemplateInCronContext' => __DIR__ . '/..' . '/srag/dic/src/Cron/FixUITemplateInCronContext.php',
         'srag\\DIC\\HelpMe\\DICStatic' => __DIR__ . '/..' . '/srag/dic/src/DICStatic.php',
         'srag\\DIC\\HelpMe\\DICStaticInterface' => __DIR__ . '/..' . '/srag/dic/src/DICStaticInterface.php',
         'srag\\DIC\\HelpMe\\DICTrait' => __DIR__ . '/..' . '/srag/dic/src/DICTrait.php',
@@ -333,7 +349,6 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\DIC\\HelpMe\\Database\\DatabaseInterface' => __DIR__ . '/..' . '/srag/dic/src/Database/DatabaseInterface.php',
         'srag\\DIC\\HelpMe\\Database\\PdoContextHelper' => __DIR__ . '/..' . '/srag/dic/src/Database/PdoContextHelper.php',
         'srag\\DIC\\HelpMe\\Database\\PdoStatementContextHelper' => __DIR__ . '/..' . '/srag/dic/src/Database/PdoStatementContextHelper.php',
-        'srag\\DIC\\HelpMe\\DevTools\\DevToolsCtrl' => __DIR__ . '/..' . '/srag/dic/src/DevTools/class.DevToolsCtrl.php',
         'srag\\DIC\\HelpMe\\Exception\\DICException' => __DIR__ . '/..' . '/srag/dic/src/Exception/DICException.php',
         'srag\\DIC\\HelpMe\\Ilias7PreWarn' => __DIR__ . '/..' . '/srag/dic/src/Ilias7PreWarn.php',
         'srag\\DIC\\HelpMe\\Loader\\AbstractLoaderDetector' => __DIR__ . '/..' . '/srag/dic/src/Loader/AbstractLoaderDetector.php',
@@ -343,7 +358,6 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\DIC\\HelpMe\\Plugin\\Plugin' => __DIR__ . '/..' . '/srag/dic/src/Plugin/Plugin.php',
         'srag\\DIC\\HelpMe\\Plugin\\PluginInterface' => __DIR__ . '/..' . '/srag/dic/src/Plugin/PluginInterface.php',
         'srag\\DIC\\HelpMe\\Plugin\\Pluginable' => __DIR__ . '/..' . '/srag/dic/src/Plugin/Pluginable.php',
-        'srag\\DIC\\HelpMe\\Util\\LibraryLanguageInstaller' => __DIR__ . '/..' . '/srag/dic/src/Util/LibraryLanguageInstaller.php',
         'srag\\DIC\\HelpMe\\Version\\Version' => __DIR__ . '/..' . '/srag/dic/src/Version/Version.php',
         'srag\\DIC\\HelpMe\\Version\\VersionInterface' => __DIR__ . '/..' . '/srag/dic/src/Version/VersionInterface.php',
         'srag\\DataTableUI\\HelpMe\\Component\\Column\\Column' => __DIR__ . '/..' . '/srag/datatable/src/Component/Column/Column.php',
@@ -383,6 +397,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\DateFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/DateFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\DefaultFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/DefaultFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/Factory.php',
+        'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\ImageFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/ImageFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LanguageVariableFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/LanguageVariableFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LearningProgressFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/LearningProgressFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LinkFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/LinkFormatter.php',
@@ -417,14 +432,16 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\DataTableUI\\HelpMe\\Implementation\\Table' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Table.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Utils\\AbstractTableBuilder' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Utils/AbstractTableBuilder.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Utils\\DataTableUITrait' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Utils/DataTableUITrait.php',
+        'srag\\DevTools\\HelpMe\\DevToolsCtrl' => __DIR__ . '/..' . '/srag/devtools/src/class.DevToolsCtrl.php',
+        'srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginPhpAndXml' => __DIR__ . '/..' . '/srag/generateplugininfoshelper/src/GeneratePluginPhpAndXml.php',
+        'srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme' => __DIR__ . '/..' . '/srag/generateplugininfoshelper/src/GeneratePluginReadme.php',
         'srag\\JiraCurl\\HelpMe\\Exception\\JiraCurlException' => __DIR__ . '/..' . '/srag/jiracurl/src/Exception/JiraCurlException.php',
         'srag\\JiraCurl\\HelpMe\\JiraCurl' => __DIR__ . '/..' . '/srag/jiracurl/src/JiraCurl.php',
-        'srag\\LibrariesNamespaceChanger\\GeneratePluginPhpAndXml' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/GeneratePluginPhpAndXml.php',
         'srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/LibrariesNamespaceChanger.php',
         'srag\\LibrariesNamespaceChanger\\PHP72Backport' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/PHP72Backport.php',
         'srag\\LibrariesNamespaceChanger\\PHP7Backport' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/PHP7Backport.php',
         'srag\\LibrariesNamespaceChanger\\RemovePHP72Backport' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/RemovePHP72Backport.php',
-        'srag\\LibrariesNamespaceChanger\\UpdatePluginReadme' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/UpdatePluginReadme.php',
+        'srag\\LibraryLanguageInstaller\\HelpMe\\LibraryLanguageInstaller' => __DIR__ . '/..' . '/srag/librarylanguageinstaller/src/LibraryLanguageInstaller.php',
         'srag\\Notifications4Plugin\\HelpMe\\Exception\\Notifications4PluginException' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Exception/Notifications4PluginException.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\Factory' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/Factory.php',
         'srag\\Notifications4Plugin\\HelpMe\\Notification\\FactoryInterface' => __DIR__ . '/..' . '/srag/notifications4plugin/src/Notification/FactoryInterface.php',

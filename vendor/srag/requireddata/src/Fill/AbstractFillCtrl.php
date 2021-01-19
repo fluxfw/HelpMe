@@ -25,6 +25,10 @@ abstract class AbstractFillCtrl
     const CMD_SAVE_FIELDS = "saveFields";
     const TAB_FILL_FIELDS = "fill_fields";
     /**
+     * @var string|null
+     */
+    protected $fill_id;
+    /**
      * @var int
      */
     protected $parent_context;
@@ -32,10 +36,6 @@ abstract class AbstractFillCtrl
      * @var int
      */
     protected $parent_id;
-    /**
-     * @var string|null
-     */
-    protected $fill_id;
 
 
     /**
@@ -83,20 +83,42 @@ abstract class AbstractFillCtrl
 
 
     /**
+     * @return string|null
+     */
+    public function getFillId() : ?string
+    {
+        return $this->fill_id;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getParentContext() : int
+    {
+        return $this->parent_context;
+    }
+
+
+    /**
+     * @return int
+     */
+    public function getParentId() : int
+    {
+        return $this->parent_id;
+    }
+
+
+    /**
      *
      */
-    protected function setTabs() : void
-    {
-        self::dic()->tabs()->clearTargets();
+    protected abstract function back() : void;
 
-        self::dic()->tabs()->setBackTarget(self::requiredData()->getPlugin()->translate("back", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTarget($this, self::CMD_CANCEL));
 
-        self::dic()->tabs()->addTab(self::TAB_FILL_FIELDS, self::requiredData()->getPlugin()->translate("fill_fields", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
-            ->getLinkTarget($this, self::CMD_FILL_FIELDS));
-
-        self::dic()->tabs()->activateTab(self::TAB_FILL_FIELDS);
-    }
+    /**
+     *
+     */
+    protected abstract function cancel() : void;
 
 
     /**
@@ -128,40 +150,18 @@ abstract class AbstractFillCtrl
 
 
     /**
-     * @return int
-     */
-    public function getParentContext() : int
-    {
-        return $this->parent_context;
-    }
-
-
-    /**
-     * @return int
-     */
-    public function getParentId() : int
-    {
-        return $this->parent_id;
-    }
-
-
-    /**
-     * @return string|null
-     */
-    public function getFillId() : ?string
-    {
-        return $this->fill_id;
-    }
-
-
-    /**
      *
      */
-    protected abstract function back() : void;
+    protected function setTabs() : void
+    {
+        self::dic()->tabs()->clearTargets();
 
+        self::dic()->tabs()->setBackTarget(self::requiredData()->getPlugin()->translate("back", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTarget($this, self::CMD_CANCEL));
 
-    /**
-     *
-     */
-    protected abstract function cancel() : void;
+        self::dic()->tabs()->addTab(self::TAB_FILL_FIELDS, self::requiredData()->getPlugin()->translate("fill_fields", FieldsCtrl::LANG_MODULE), self::dic()->ctrl()
+            ->getLinkTarget($this, self::CMD_FILL_FIELDS));
+
+        self::dic()->tabs()->activateTab(self::TAB_FILL_FIELDS);
+    }
 }

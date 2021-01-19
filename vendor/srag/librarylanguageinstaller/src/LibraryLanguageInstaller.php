@@ -1,6 +1,6 @@
 <?php
 
-namespace srag\DIC\HelpMe\Util;
+namespace srag\LibraryLanguageInstaller\HelpMe;
 
 use ilDBConstants;
 use ilGlobalCache;
@@ -12,7 +12,7 @@ use srag\DIC\HelpMe\Plugin\PluginInterface;
 /**
  * Class LibraryLanguageInstaller
  *
- * @package srag\DIC\HelpMe\Util
+ * @package srag\LibraryLanguageInstaller\HelpMe
  *
  * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */

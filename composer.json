@@ -1,18 +1,25 @@
 {
-  "name": "srag/plugins/helpme",
+  "name": "srag/helpme",
   "description": "",
-  "version": "6.1.2",
-  "ilias_plugin": {
-    "id": "srsu",
-    "name": "HelpMe",
-    "ilias_min_version": "6.0",
-    "ilias_max_version": "6.999",
-    "slot": "Services/UIComponent/UserInterfaceHook"
+  "version": "6.1.3",
+  "extra": {
+    "ilias_plugin": {
+      "id": "srsu",
+      "name": "HelpMe",
+      "ilias_min_version": "6.0",
+      "ilias_max_version": "6.999",
+      "slot": "Services/UIComponent/UserInterfaceHook"
+    },
+    "generate_plugin_readme_template": "SRAG_ILIAS_PLUGIN"
   },
   "type": "project",
   "keywords": [
-    "ILIAS",
-    "Plugin"
+    "help",
+    "ilias",
+    "interface",
+    "plugin",
+    "support",
+    "user"
   ],
   "homepage": "https://github.com/studer-raimann/HelpMe",
   "license": "GPL-3.0-only",
@@ -31,7 +38,9 @@
     "php": ">=7.2",
     "srag/activerecordconfig": ">=0.1.0",
     "srag/custominputguis": ">=0.1.0",
+    "srag/devtools": ">=0.1.0",
     "srag/dic": ">=0.1.0",
+    "srag/generateplugininfoshelper": ">=0.1.0",
     "srag/jiracurl": ">=0.1.0",
     "srag/librariesnamespacechanger": ">=0.1.0",
     "srag/notifications4plugin": ">=0.1.0",
@@ -43,7 +52,14 @@
       "srag\\Plugins\\HelpMe\\": "src/"
     },
     "classmap": [
-      "classes/"
+      "classes/",
+      "src/Config/class.ConfigCtrl.php",
+      "src/Project/class.ProjectsConfigGUI.php",
+      "src/Project/class.ProjectConfigGUI.php",
+      "src/RequiredData/Field/IssueType/Form/class.IssueTypeSelectInputGUI.php",
+      "src/RequiredData/Field/Project/Form/class.ProjectSelectInputGUI.php",
+      "src/Support/class.SupportGUI.php",
+      "src/Ticket/class.TicketsGUI.php"
     ],
     "files": [
       "vendor/srag/dic/src/PHPVersionChecker.php",
@@ -58,8 +74,8 @@
   "scripts": {
     "pre-autoload-dump": [
       "srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger::rewriteLibrariesNamespaces",
-      "srag\\LibrariesNamespaceChanger\\GeneratePluginPhpAndXml::generatePluginPhpAndXml",
-      "srag\\LibrariesNamespaceChanger\\UpdatePluginReadme::updatePluginReadme"
+      "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginPhpAndXml::generatePluginPhpAndXml",
+      "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme::generatePluginReadme"
     ]
   }
 }

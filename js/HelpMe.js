@@ -116,10 +116,10 @@ il.HelpMe = {
      */
     projectChangeIssueTypes: function () {
         // First empty previous project issue types (Without "please select")
-        var $old_issue_type_select = $('select[id^="field_issuetypefield_"]', this.modal);
+        var $old_issue_type_select = $('.form_helpme_form_issuetypefield select', this.modal);
         $old_issue_type_select.prop("disabled", true);
 
-        var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
+        var $projects_select = $('.form_helpme_form_projectfield select', this.modal);
         var project_url_key = $projects_select.val();
 
         var get_url = this.GET_ISSUE_TYPES_OF_PROJECT_URL;
@@ -132,11 +132,11 @@ il.HelpMe = {
      * @param {string} new_issue_types_select_html
      */
     projectChangeIssueTypesShow: function (new_issue_types_select_html) {
-        var $old_issue_type_select = $('select[id^="field_issuetypefield_"]', this.modal);
+        var $old_issue_type_select = $('.form_helpme_form_issuetypefield select', this.modal);
 
         $old_issue_type_select.replaceWith(new_issue_types_select_html);
 
-        $('input[type="hidden"][name^="field_issuetypefield_"]', this.modal).remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
+        $('.form_helpme_form_issuetypefield input[type="hidden"]', this.modal).remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
     },
 
     /**
@@ -144,7 +144,7 @@ il.HelpMe = {
      */
     projectChangeShowTickets: function () {
         // First delete previous tickets link
-        var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
+        var $projects_select = $('.form_helpme_form_projectfield select', this.modal);
         $projects_select.next().remove();
 
         var project_url_key = $projects_select.val();
@@ -159,7 +159,7 @@ il.HelpMe = {
      * @param {string} new_tickets_link_html
      */
     projectChangeShowTicketsShow: function (new_tickets_link_html) {
-        var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
+        var $projects_select = $('.form_helpme_form_projectfield select', this.modal);
 
         $projects_select.after(new_tickets_link_html);
     },
@@ -207,10 +207,10 @@ il.HelpMe = {
             var $cancel = $("#helpme_cancel");
             $cancel.click(this.cancel.bind(this));
 
-            var $projects_select = $('select[id^="field_projectfield_"]', this.modal);
+            var $projects_select = $('.form_helpme_form_projectfield select', this.modal);
             if ($projects_select.length === 1) {
                 // Update project ticket issues
-                if ($('select[id^="field_issuetypefield_"]', this.modal).length === 1) {
+                if ($('.form_helpme_form_issuetypefield select', this.modal).length === 1) {
                     $projects_select.change(this.projectChangeIssueTypes.bind(this));
                 }
 
@@ -219,7 +219,7 @@ il.HelpMe = {
                     $projects_select.change(this.projectChangeShowTickets.bind(this));
                 }
             }
-            $('input[type="hidden"][name^="field_projectfield_"],input[type="hidden"][name^="field_issuetypefield_"]', this.modal).remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
+            $('.form_helpme_form_projectfield input[type="hidden"],.form_helpme_form_issuetypefield input[type="hidden"]', this.modal).remove(); // ILIAS hidden field for disabled fields will cause problems and always get empty value
         }
 
         this.modal.modal("show");

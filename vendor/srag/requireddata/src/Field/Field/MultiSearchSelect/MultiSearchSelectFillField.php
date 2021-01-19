@@ -35,6 +35,24 @@ class MultiSearchSelectFillField extends MultiSelectFillField
     /**
      * @inheritDoc
      */
+    public function formatAsJson($fill_value)
+    {
+        return MultiSelectSearchNewInputGUI::cleanValues(parent::formatAsJson($fill_value));
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function formatAsString($fill_value) : string
+    {
+        return parent::formatAsString(MultiSelectSearchNewInputGUI::cleanValues((array) $fill_value));
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function getInput() : Input
     {
         $input = (new InputGUIWrapperUIInputComponent(new MultiSelectSearchNewInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())

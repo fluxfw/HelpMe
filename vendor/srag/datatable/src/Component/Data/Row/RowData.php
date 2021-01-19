@@ -13,23 +13,23 @@ interface RowData
 {
 
     /**
-     * @return string
-     */
-    public function getRowId() : string;
-
-
-    /**
-     * @param string $row_id
+     * @param string $key
      *
-     * @return self
+     * @return mixed
      */
-    public function withRowId(string $row_id) : self;
+    public function __invoke(string $key);
 
 
     /**
      * @return object
      */
     public function getOriginalData() : object;
+
+
+    /**
+     * @return string
+     */
+    public function getRowId() : string;
 
 
     /**
@@ -41,9 +41,9 @@ interface RowData
 
 
     /**
-     * @param string $key
+     * @param string $row_id
      *
-     * @return mixed
+     * @return self
      */
-    public function __invoke(string $key);
+    public function withRowId(string $row_id) : self;
 }

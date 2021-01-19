@@ -20,10 +20,6 @@ class ExcelFormat extends AbstractFormat
 {
 
     /**
-     * @var ilExcel
-     */
-    protected $tpl;
-    /**
      * @var int
      */
     protected $current_col = 0;
@@ -31,6 +27,10 @@ class ExcelFormat extends AbstractFormat
      * @var int
      */
     protected $current_row = 1;
+    /**
+     * @var ilExcel
+     */
+    protected $tpl;
 
 
     /**
@@ -39,26 +39,6 @@ class ExcelFormat extends AbstractFormat
     public function getFormatId() : string
     {
         return self::FORMAT_EXCEL;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function getFileExtension() : string
-    {
-        return "xlsx";
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    protected function initTemplate(Table $component, ?Data $data, Settings $settings) : void
-    {
-        $this->tpl = new ilExcel();
-
-        $this->tpl->addSheet($component->getTitle());
     }
 
 
@@ -78,13 +58,9 @@ class ExcelFormat extends AbstractFormat
     /**
      * @inheritDoc
      */
-    protected function handleColumns(Table $component, array $columns, Settings $settings) : void
+    protected function getFileExtension() : string
     {
-        $this->current_col = 0;
-
-        parent::handleColumns($component, $columns, $settings);
-
-        $this->current_row++;
+        return "xlsx";
     }
 
 
@@ -96,6 +72,19 @@ class ExcelFormat extends AbstractFormat
         $this->tpl->setCell($this->current_row, $this->current_col, $formatted_column);
 
         $this->current_col++;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function handleColumns(Table $component, array $columns, Settings $settings) : void
+    {
+        $this->current_col = 0;
+
+        parent::handleColumns($component, $columns, $settings);
+
+        $this->current_row++;
     }
 
 
@@ -120,6 +109,17 @@ class ExcelFormat extends AbstractFormat
         $this->tpl->setCell($this->current_row, $this->current_col, $formatted_row_column);
 
         $this->current_col++;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function initTemplate(Table $component, ?Data $data, Settings $settings) : void
+    {
+        $this->tpl = new ilExcel();
+
+        $this->tpl->addSheet($component->getTitle());
     }
 
 

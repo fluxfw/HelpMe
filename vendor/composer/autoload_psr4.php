@@ -6,14 +6,17 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'srag\\RequiredData\\' => array($vendorDir . '/srag/requireddata/src'),
-    'srag\\RemovePluginDataConfirm\\' => array($vendorDir . '/srag/removeplugindataconfirm/src'),
+    'srag\\RequiredData\\HelpMe\\' => array($vendorDir . '/srag/requireddata/src'),
+    'srag\\RemovePluginDataConfirm\\HelpMe\\' => array($vendorDir . '/srag/removeplugindataconfirm/src'),
     'srag\\Plugins\\HelpMe\\' => array($baseDir . '/src'),
-    'srag\\Notifications4Plugin\\' => array($vendorDir . '/srag/notifications4plugin/src'),
+    'srag\\Notifications4Plugin\\HelpMe\\' => array($vendorDir . '/srag/notifications4plugin/src'),
+    'srag\\LibraryLanguageInstaller\\HelpMe\\' => array($vendorDir . '/srag/librarylanguageinstaller/src'),
     'srag\\LibrariesNamespaceChanger\\' => array($vendorDir . '/srag/librariesnamespacechanger/src'),
-    'srag\\JiraCurl\\' => array($vendorDir . '/srag/jiracurl/src'),
-    'srag\\DataTableUI\\' => array($vendorDir . '/srag/datatable/src'),
-    'srag\\DIC\\' => array($vendorDir . '/srag/dic/src'),
-    'srag\\CustomInputGUIs\\' => array($vendorDir . '/srag/custominputguis/src'),
-    'srag\\ActiveRecordConfig\\' => array($vendorDir . '/srag/activerecordconfig/src'),
+    'srag\\JiraCurl\\HelpMe\\' => array($vendorDir . '/srag/jiracurl/src'),
+    'srag\\GeneratePluginInfosHelper\\HelpMe\\' => array($vendorDir . '/srag/generateplugininfoshelper/src'),
+    'srag\\DevTools\\HelpMe\\' => array($vendorDir . '/srag/devtools/src'),
+    'srag\\DataTableUI\\HelpMe\\' => array($vendorDir . '/srag/datatable/src'),
+    'srag\\DIC\\HelpMe\\' => array($vendorDir . '/srag/dic/src'),
+    'srag\\CustomInputGUIs\\HelpMe\\' => array($vendorDir . '/srag/custominputguis/src'),
+    'srag\\ActiveRecordConfig\\HelpMe\\' => array($vendorDir . '/srag/activerecordconfig/src'),
 );

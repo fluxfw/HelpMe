@@ -31,6 +31,15 @@ final class Repository
 
 
     /**
+     * Repository constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -44,29 +53,11 @@ final class Repository
 
 
     /**
-     * Repository constructor
-     */
-    private function __construct()
-    {
-
-    }
-
-
-    /**
      *
      */
     public function clearTempFillValues() : void
     {
         ilSession::clear(self::SESSION_TEMP_FILL_VALUES_STORAGE);
-    }
-
-
-    /**
-     * @param FillStorage $fill_storage
-     */
-    protected function deleteFillStorage(FillStorage $fill_storage) : void
-    {
-        $fill_storage->delete();
     }
 
 
@@ -176,37 +167,19 @@ final class Repository
 
     /**
      * @param string $fill_id
-     *
-     * @return FillStorage[]
-     */
-    protected function getFillStorages(string $fill_id) : array
-    {
-        $fill_storages = FillStorage::where([
-            "fill_id" => $fill_id
-        ])->get();
-
-        return $fill_storages;
-    }
-
-
-    /**
-     * @param string $fill_id
      * @param string $field_id
      *
-     * @return FillStorage|null
+     * @return mixed
      */
-    protected function getFillStorageByField(string $fill_id, string $field_id) : ?FillStorage
+    public function getFillValueByField(string $fill_id, string $field_id)
     {
-        /**
-         * @var FillStorage|null $fill_storage
-         */
+        $fill_storage = $this->getFillStorageByField($fill_id, $field_id);
 
-        $fill_storage = FillStorage::where([
-            "fill_id"  => $fill_id,
-            "field_id" => $field_id
-        ])->first();
+        if ($fill_storage !== null) {
+            return $fill_storage->getFillValue();
+        }
 
-        return $fill_storage;
+        return null;
     }
 
 
@@ -232,24 +205,6 @@ final class Repository
         }
 
         return $fill_values;
-    }
-
-
-    /**
-     * @param string $fill_id
-     * @param string $field_id
-     *
-     * @return mixed
-     */
-    public function getFillValueByField(string $fill_id, string $field_id)
-    {
-        $fill_storage = $this->getFillStorageByField($fill_id, $field_id);
-
-        if ($fill_storage !== null) {
-            return $fill_storage->getFillValue();
-        }
-
-        return null;
     }
 
 
@@ -301,6 +256,29 @@ final class Repository
 
 
     /**
+     * @param string $fill_id
+     * @param string $field_id
+     * @param mixed  $fill_value
+     */
+    public function storeFillValue(string $fill_id, string $field_id, $fill_value)
+    {
+        $fill_storage = $this->getFillStorageByField($fill_id, $field_id);
+
+        if ($fill_storage === null) {
+            $fill_storage = $this->factory()->newFillStorageInstance();
+
+            $fill_storage->setFillId($fill_id);
+
+            $fill_storage->setFieldId($field_id);
+        }
+
+        $fill_storage->setFillValue($fill_value);
+
+        $this->storeFillStorage($fill_storage);
+    }
+
+
+    /**
      * @param string|null $fill_id
      * @param array|null  $fill_values
      */
@@ -327,25 +305,47 @@ final class Repository
 
 
     /**
+     * @param FillStorage $fill_storage
+     */
+    protected function deleteFillStorage(FillStorage $fill_storage) : void
+    {
+        $fill_storage->delete();
+    }
+
+
+    /**
      * @param string $fill_id
      * @param string $field_id
-     * @param mixed  $fill_value
+     *
+     * @return FillStorage|null
      */
-    public function storeFillValue(string $fill_id, string $field_id, $fill_value)
+    protected function getFillStorageByField(string $fill_id, string $field_id) : ?FillStorage
     {
-        $fill_storage = $this->getFillStorageByField($fill_id, $field_id);
+        /**
+         * @var FillStorage|null $fill_storage
+         */
 
-        if ($fill_storage === null) {
-            $fill_storage = $this->factory()->newFillStorageInstance();
+        $fill_storage = FillStorage::where([
+            "fill_id"  => $fill_id,
+            "field_id" => $field_id
+        ])->first();
 
-            $fill_storage->setFillId($fill_id);
+        return $fill_storage;
+    }
 
-            $fill_storage->setFieldId($field_id);
-        }
 
-        $fill_storage->setFillValue($fill_value);
+    /**
+     * @param string $fill_id
+     *
+     * @return FillStorage[]
+     */
+    protected function getFillStorages(string $fill_id) : array
+    {
+        $fill_storages = FillStorage::where([
+            "fill_id" => $fill_id
+        ])->get();
 
-        $this->storeFillStorage($fill_storage);
+        return $fill_storages;
     }
 
 

@@ -4,6 +4,7 @@ namespace srag\Plugins\HelpMe\Ticket;
 
 use ilCronJob;
 use ilCronJobResult;
+use ilCronManager;
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -118,11 +119,15 @@ class FetchJiraTicketsJob extends ilCronJob
         foreach ($projects as $project) {
             $jsons = array_merge($jsons, $jira_curl->getTicketsOfProject($project->getProjectKey(), self::helpMe()->projects()
                 ->getIssueTypesOptions($project)));
+
+            ilCronManager::ping($this->getId());
         }
 
         $tickets = [];
         foreach ($jsons as $json) {
             $tickets[] = self::helpMe()->tickets()->factory()->fromJiraJson($json);
+
+            ilCronManager::ping($this->getId());
         }
 
         self::helpMe()->tickets()->replaceWith($tickets);

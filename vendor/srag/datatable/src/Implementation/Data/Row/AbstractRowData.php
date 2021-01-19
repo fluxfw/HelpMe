@@ -20,13 +20,13 @@ abstract class AbstractRowData implements RowData
     use DataTableUITrait;
 
     /**
-     * @var string
-     */
-    protected $row_id = "";
-    /**
      * @var object
      */
     protected $original_data;
+    /**
+     * @var string
+     */
+    protected $row_id = "";
 
 
     /**
@@ -45,31 +45,18 @@ abstract class AbstractRowData implements RowData
     /**
      * @inheritDoc
      */
-    public function getRowId() : string
-    {
-        return $this->row_id;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function withRowId(string $row_id) : RowData
-    {
-        $clone = clone $this;
-
-        $clone->row_id = $row_id;
-
-        return $clone;
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function getOriginalData() : object
     {
         return $this->original_data;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getRowId() : string
+    {
+        return $this->row_id;
     }
 
 
@@ -81,6 +68,19 @@ abstract class AbstractRowData implements RowData
         $clone = clone $this;
 
         $clone->original_data = $original_data;
+
+        return $clone;
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function withRowId(string $row_id) : RowData
+    {
+        $clone = clone $this;
+
+        $clone->row_id = $row_id;
 
         return $clone;
     }

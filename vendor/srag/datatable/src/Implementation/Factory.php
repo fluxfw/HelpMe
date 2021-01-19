@@ -16,7 +16,7 @@ use srag\DataTableUI\HelpMe\Implementation\Settings\Factory as SettingsFactory;
 use srag\DataTableUI\HelpMe\Implementation\Utils\DataTableUITrait;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Plugin\PluginInterface;
-use srag\DIC\HelpMe\Util\LibraryLanguageInstaller;
+use srag\LibraryLanguageInstaller\HelpMe\LibraryLanguageInstaller;
 
 /**
  * Class Factory
@@ -38,6 +38,15 @@ class Factory implements FactoryInterface
 
 
     /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -47,15 +56,6 @@ class Factory implements FactoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -89,6 +89,16 @@ class Factory implements FactoryInterface
     /**
      * @inheritDoc
      */
+    public function installLanguages(PluginInterface $plugin) : void
+    {
+        LibraryLanguageInstaller::getInstance()->withPlugin($plugin)->withLibraryLanguageDirectory(__DIR__
+            . "/../../lang")->updateLanguages();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
     public function settings() : SettingsFactoryInterface
     {
         return SettingsFactory::getInstance();
@@ -101,15 +111,5 @@ class Factory implements FactoryInterface
     public function table(string $table_id, string $action_url, string $title, array $columns, DataFetcher $data_fetcher) : TableInterface
     {
         return new Table($table_id, $action_url, $title, $columns, $data_fetcher);
-    }
-
-
-    /**
-     * @inheritDoc
-     */
-    public function installLanguages(PluginInterface $plugin) : void
-    {
-        LibraryLanguageInstaller::getInstance()->withPlugin($plugin)->withLibraryLanguageDirectory(__DIR__
-            . "/../../lang")->updateLanguages();
     }
 }

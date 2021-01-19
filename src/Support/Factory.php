@@ -76,6 +76,8 @@ final class Factory
     {
         $form = new SupportFormBuilder($parent, $support);
 
+        SupportFormBuilder::setFormParent($form);
+
         return $form;
     }
 

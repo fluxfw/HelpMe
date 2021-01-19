@@ -19,17 +19,6 @@ class GroupsCtrl extends FieldsCtrl
     /**
      * @inheritDoc
      */
-    protected function setTabs() : void
-    {
-        parent::setTabs();
-
-        self::addTabs();
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function getFieldCtrlClass() : string
     {
         return GroupCtrl::class;
@@ -42,5 +31,16 @@ class GroupsCtrl extends FieldsCtrl
     protected function createGroupOfFields() : void
     {
         die();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function setTabs() : void
+    {
+        parent::setTabs();
+
+        self::addTabs();
     }
 }

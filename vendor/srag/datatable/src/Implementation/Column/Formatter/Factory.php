@@ -29,6 +29,15 @@ class Factory implements FactoryInterface
 
 
     /**
+     * Factory constructor
+     */
+    private function __construct()
+    {
+
+    }
+
+
+    /**
      * @return self
      */
     public static function getInstance() : self
@@ -38,15 +47,6 @@ class Factory implements FactoryInterface
         }
 
         return self::$instance;
-    }
-
-
-    /**
-     * Factory constructor
-     */
-    private function __construct()
-    {
-
     }
 
 
@@ -92,6 +92,15 @@ class Factory implements FactoryInterface
     public function default() : Formatter
     {
         return new DefaultFormatter();
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function image() : Formatter
+    {
+        return new ImageFormatter();
     }
 
 

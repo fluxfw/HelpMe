@@ -36,23 +36,6 @@ abstract class DynamicValueFillField extends AbstractFillField
     /**
      * @inheritDoc
      */
-    public function getInput() : Input
-    {
-        if ($this->field->isHide()) {
-            return (new InputGUIWrapperUIInputComponent(new HiddenInputGUI()))->withLabel($this->field->getLabel())
-                ->withByline($this->field->getDescription())
-                ->withRequired($this->field->isRequired());
-        } else {
-            return (new InputGUIWrapperUIInputComponent(new ilNonEditableValueGUI($this->field->getLabel())))->withByline($this->field->getDescription())
-                ->withRequired($this->field->isRequired())
-                ->withValue($this->field->deliverDynamicValue());
-        }
-    }
-
-
-    /**
-     * @inheritDoc
-     */
     public function formatAsJson($fill_value)
     {
         return $this->field->deliverDynamicValue();
@@ -65,5 +48,22 @@ abstract class DynamicValueFillField extends AbstractFillField
     public function formatAsString($fill_value) : string
     {
         return strval($fill_value);
+    }
+
+
+    /**
+     * @inheritDoc
+     */
+    public function getInput() : Input
+    {
+        if ($this->field->isHide()) {
+            return (new InputGUIWrapperUIInputComponent(new HiddenInputGUI()))->withLabel($this->field->getLabel())
+                ->withByline($this->field->getDescription())
+                ->withRequired($this->field->isRequired());
+        } else {
+            return (new InputGUIWrapperUIInputComponent(new ilNonEditableValueGUI($this->field->getLabel())))->withByline($this->field->getDescription())
+                ->withRequired($this->field->isRequired())
+                ->withValue($this->field->deliverDynamicValue());
+        }
     }
 }

@@ -7,6 +7,7 @@ use ilSelectInputGUI;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Project\Project;
 use srag\Plugins\HelpMe\Support\Form\SupportFormBuilder;
+use srag\Plugins\HelpMe\Support\SupportGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
 
 /**
@@ -26,10 +27,6 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
 
     const CMD_GET_ISSUE_TYPES_OF_PROJECT = "getIssueTypesOfProject";
     const PLUGIN_CLASS_NAME = ilHelpMePlugin::class;
-    /**
-     * @var SupportFormBuilder
-     */
-    public $parent_gui;
 
 
     /**
@@ -49,7 +46,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
      */
     public function checkInput() : bool
     {
-        $project_select = $this->parent_gui->extractProjectSelector();
+        $project_select = SupportFormBuilder::getFormParent()->extractProjectSelector();
 
         // First validate project
         if ($project_select !== null && $project_select->checkInput()) {
@@ -92,13 +89,17 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
      */
     public function render(/*string*/ $a_mode = "") : string
     {
-        $project_select = $this->parent_gui->extractProjectSelector();
+        $project_select = SupportFormBuilder::getFormParent()->extractProjectSelector();
 
         if ($project_select !== null) {
             $this->setIssueTypesOptions($project_select->getProject());
         }
 
-        return parent::render($a_mode);
+        return self::output()->getHTML([
+            '<div class="form_helpme_form_issuetypefield">',
+            parent::render($a_mode) .
+            '</div>'
+        ]);
     }
 
 
@@ -111,7 +112,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
 
         $project = self::helpMe()->projects()->getProjectByUrlKey($project_url_key);
 
-        $project_select = $this->parent_gui->extractProjectSelector();
+        $project_select = SupportFormBuilder::getFormParent()->extractProjectSelector();
         if ($project_select !== null) {
             $project_select->setProject($project);
         }
@@ -126,7 +127,7 @@ class IssueTypeSelectInputGUI extends ilSelectInputGUI
     protected function setIssueTypesOptions(?Project $project = null) : void
     {
         $options = [
-            "" => "&lt;" . $this->parent_gui->txt("please_select") . "&gt;"
+            "" => "&lt;" . self::plugin()->translate("please_select", SupportGUI::LANG_MODULE) . "&gt;"
         ];
 
         if ($project !== null) {
