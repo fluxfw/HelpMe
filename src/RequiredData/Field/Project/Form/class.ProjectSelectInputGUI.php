@@ -113,7 +113,11 @@ class ProjectSelectInputGUI extends ilSelectInputGUI
             return self::output()->getHTML($tpl);
         }
 
-        return parent::render($a_mode);
+        return self::output()->getHTML([
+            '<div class="form_helpme_form_projectfield">',
+            parent::render($a_mode) .
+            '</div>'
+        ]);
     }
 
 

@@ -1,7 +1,7 @@
 {
   "name": "srag/helpme",
   "description": "",
-  "version": "6.1.2",
+  "version": "6.1.3",
   "extra": {
     "ilias_plugin": {
       "id": "srsu",
@@ -14,9 +14,11 @@
   },
   "type": "project",
   "keywords": [
+    "help",
     "ilias",
     "interface",
     "plugin",
+    "support",
     "user"
   ],
   "homepage": "https://github.com/studer-raimann/HelpMe",
