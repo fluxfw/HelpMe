@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.1.4]
+- Fix project and issue selector
+
 ## [6.1.3]
 - Fix project and issue selector
 - Ping after each object for not ILIAS auto set inactive cron job if during longer
