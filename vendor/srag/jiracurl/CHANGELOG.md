@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.11.3]
+- Fix attach screenshots to issue
+
 ## [0.11.2]
 - Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md
 

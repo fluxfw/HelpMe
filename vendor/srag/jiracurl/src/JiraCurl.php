@@ -106,7 +106,7 @@ class JiraCurl
                 "file" => new CURLFile($attachment->getPath(), $attachment->getMimeType(), $attachment->getName())
             ];
 
-            $this->doRequest("rest/api/2/issue/" . $issue_key . "/attachments", $headers, json_encode($post_data));
+            $this->doRequest("rest/api/2/issue/" . $issue_key . "/attachments", $headers, $post_data);
         }
     }
 

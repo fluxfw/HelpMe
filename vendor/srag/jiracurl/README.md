@@ -39,5 +39,6 @@ You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/li
 
 ## Adjustment suggestions
 
-* External users can report suggestions and bugs at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
-* Adjustment suggestions by pull requests via github
+You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
+
+There is no guarantee this can be fixed or implemented

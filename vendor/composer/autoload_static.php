@@ -401,6 +401,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LanguageVariableFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/LanguageVariableFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LearningProgressFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/LearningProgressFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\LinkFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/LinkFormatter.php',
+        'srag\\DataTableUI\\HelpMe\\Implementation\\Column\\Formatter\\MultilineFormatter' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Column/Formatter/MultilineFormatter.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Data\\Data' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Data/Data.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Data\\Factory' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Data/Factory.php',
         'srag\\DataTableUI\\HelpMe\\Implementation\\Data\\Fetcher\\AbstractDataFetcher' => __DIR__ . '/..' . '/srag/datatable/src/Implementation/Data/Fetcher/AbstractDataFetcher.php',
