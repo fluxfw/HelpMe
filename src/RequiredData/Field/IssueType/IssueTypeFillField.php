@@ -61,7 +61,6 @@ class IssueTypeFillField extends AbstractFillField
     public function getInput() : Input
     {
         return (new InputGUIWrapperUIInputComponent(new IssueTypeSelectInputGUI($this->field->getLabel())))->withByline($this->field->getDescription())
-            ->withRequired($this->field->isRequired())
-            ->withDisabled(true);
+            ->withRequired($this->field->isRequired());
     }
 }
