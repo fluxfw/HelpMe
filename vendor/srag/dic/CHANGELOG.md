@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.31.4]
+- Remove `Ilias7PreWarn`
+
 ## [0.31.3]
 - Cache `ilMMItemRepository`
 
