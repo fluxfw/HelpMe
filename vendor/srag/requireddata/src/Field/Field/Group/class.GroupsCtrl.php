@@ -2,6 +2,8 @@
 
 namespace srag\RequiredData\HelpMe\Field\Field\Group;
 
+require_once __DIR__ . "/../../../../../../autoload.php";
+
 use srag\RequiredData\HelpMe\Field\FieldsCtrl;
 
 /**

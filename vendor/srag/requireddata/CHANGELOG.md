@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.14.4]
+- Add require compose in ctrl entry classes
+
 ## [0.14.3]
 - Fix table pagination
 

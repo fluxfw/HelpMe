@@ -2,6 +2,8 @@
 
 namespace srag\Plugins\HelpMe\Support;
 
+require_once __DIR__ . "/../../vendor/autoload.php";
+
 use ilHelpMePlugin;
 use ilLogLevel;
 use srag\CustomInputGUIs\HelpMe\FormBuilder\AbstractFormBuilder;

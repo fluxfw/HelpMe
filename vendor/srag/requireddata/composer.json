@@ -1,20 +1,21 @@
 {
   "name": "srag/requireddata",
   "description": "Config and fill required data",
-  "version": "0.14.3",
+  "version": "0.14.4",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
       "ilias_max_version": "6.999"
     },
-    "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+    "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+    "long_description_template": "src/LONG_DESCRIPTION.md"
   },
   "type": "library",
   "keywords": [
-    "ILIAS",
-    "Required",
-    "Data",
-    "Field"
+    "data",
+    "field",
+    "ilias",
+    "required"
   ],
   "homepage": "https://github.com/studer-raimann/RequiredData",
   "license": "GPL-3.0-only",

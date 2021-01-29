@@ -2,6 +2,8 @@
 
 namespace srag\Notifications4Plugin\HelpMe\Notification;
 
+require_once __DIR__ . "/../../../../autoload.php";
+
 use srag\DIC\HelpMe\DICTrait;
 use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
 

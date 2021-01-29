@@ -2,6 +2,8 @@
 
 namespace srag\RequiredData\HelpMe\Field;
 
+require_once __DIR__ . "/../../../../autoload.php";
+
 use ilConfirmationGUI;
 use ilUtil;
 use srag\DIC\HelpMe\DICTrait;

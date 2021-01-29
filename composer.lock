@@ -64,16 +64,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "0.41.3",
+            "version": "0.41.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-                "reference": "26384f04d1a0ae72c53e0598c6e3580dcfedd88c"
+                "reference": "b0c186f51a65bbd1b59ac14acb349c2a5e477ae7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/26384f04d1a0ae72c53e0598c6e3580dcfedd88c",
-                "reference": "26384f04d1a0ae72c53e0598c6e3580dcfedd88c",
+                "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/b0c186f51a65bbd1b59ac14acb349c2a5e477ae7",
+                "reference": "b0c186f51a65bbd1b59ac14acb349c2a5e477ae7",
                 "shasum": ""
             },
             "require": {
@@ -89,7 +89,8 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
@@ -123,7 +124,7 @@
                 "input",
                 "table"
             ],
-            "time": "2021-01-20T06:25:40+00:00"
+            "time": "2021-01-29T13:57:19+00:00"
         },
         {
             "name": "srag/datatable",
@@ -184,16 +185,16 @@
         },
         {
             "name": "srag/devtools",
-            "version": "1.2.4",
+            "version": "1.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/DevTools.git",
-                "reference": "8d10dc999437d8831dee3d4498870ea5fcc2e79c"
+                "reference": "c053a7772c5a591127610158c0b3ad8c355485f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/DevTools/zipball/8d10dc999437d8831dee3d4498870ea5fcc2e79c",
-                "reference": "8d10dc999437d8831dee3d4498870ea5fcc2e79c",
+                "url": "https://api.github.com/repos/studer-raimann/DevTools/zipball/c053a7772c5a591127610158c0b3ad8c355485f7",
+                "reference": "c053a7772c5a591127610158c0b3ad8c355485f7",
                 "shasum": ""
             },
             "require": {
@@ -241,7 +242,7 @@
                 "plugin",
                 "tools"
             ],
-            "time": "2021-01-21T13:41:08+00:00"
+            "time": "2021-01-29T13:58:23+00:00"
         },
         {
             "name": "srag/dic",
@@ -274,7 +275,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -323,7 +324,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\GeneratePluginInfosHelper\\": "src/"
+                    "srag\\GeneratePluginInfosHelper\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -512,16 +513,16 @@
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "5.6.2",
+            "version": "5.6.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-                "reference": "445b6d266ff3a7811d05e66b6fc9b2adf49b2a79"
+                "reference": "415db6b1c2ad16fca6f03d8891ed3dd4461b61fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/445b6d266ff3a7811d05e66b6fc9b2adf49b2a79",
-                "reference": "445b6d266ff3a7811d05e66b6fc9b2adf49b2a79",
+                "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/415db6b1c2ad16fca6f03d8891ed3dd4461b61fa",
+                "reference": "415db6b1c2ad16fca6f03d8891ed3dd4461b61fa",
                 "shasum": ""
             },
             "require": {
@@ -541,11 +542,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
+                    "srag\\Notifications4Plugin\\": "src/"
                 },
                 "classmap": [
                     "src/Notification/class.NotificationsCtrl.php",
@@ -570,7 +572,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2020-11-13T09:47:26+00:00"
+            "time": "2021-01-29T14:00:27+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
@@ -635,16 +637,16 @@
         },
         {
             "name": "srag/requireddata",
-            "version": "0.14.3",
+            "version": "0.14.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RequiredData.git",
-                "reference": "a579bd59783a7efd9ecc76e4307f94fb4752d997"
+                "reference": "a6703bdf4f7a610e080cbcacd3ffdc9ff46d10ee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/a579bd59783a7efd9ecc76e4307f94fb4752d997",
-                "reference": "a579bd59783a7efd9ecc76e4307f94fb4752d997",
+                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/a6703bdf4f7a610e080cbcacd3ffdc9ff46d10ee",
+                "reference": "a6703bdf4f7a610e080cbcacd3ffdc9ff46d10ee",
                 "shasum": ""
             },
             "require": {
@@ -663,11 +665,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\HelpMe\\": "src/"
+                    "srag\\RequiredData\\": "src/"
                 },
                 "classmap": [
                     "src/Field/class.FieldsCtrl.php",
@@ -697,7 +700,7 @@
                 "field",
                 "required"
             ],
-            "time": "2021-01-13T08:58:13+00:00"
+            "time": "2021-01-29T14:01:46+00:00"
         },
         {
             "name": "twig/twig",
