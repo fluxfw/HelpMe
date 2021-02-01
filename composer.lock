@@ -94,7 +94,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/MultiSelectSearchNewInputGUI/class.ObjectChildrenAjaxAutoCompleteCtrl.php",
@@ -216,7 +216,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DevTools\\": "src/"
+                    "srag\\DevTools\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/class.DevToolsCtrl.php"
@@ -547,7 +547,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/Notification/class.NotificationsCtrl.php",
@@ -637,16 +637,16 @@
         },
         {
             "name": "srag/requireddata",
-            "version": "0.14.4",
+            "version": "0.14.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/studer-raimann/RequiredData.git",
-                "reference": "a6703bdf4f7a610e080cbcacd3ffdc9ff46d10ee"
+                "reference": "599216d4dc7a3f2b8cddf1a34f737b704fe2d688"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/a6703bdf4f7a610e080cbcacd3ffdc9ff46d10ee",
-                "reference": "a6703bdf4f7a610e080cbcacd3ffdc9ff46d10ee",
+                "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/599216d4dc7a3f2b8cddf1a34f737b704fe2d688",
+                "reference": "599216d4dc7a3f2b8cddf1a34f737b704fe2d688",
                 "shasum": ""
             },
             "require": {
@@ -700,7 +700,7 @@
                 "field",
                 "required"
             ],
-            "time": "2021-01-29T14:01:46+00:00"
+            "time": "2021-02-01T08:02:11+00:00"
         },
         {
             "name": "twig/twig",

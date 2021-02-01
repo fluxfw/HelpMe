@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.14.5]
+- Fix ctrl definitions in wrong file
+
 ## [0.14.4]
 - Add require compose in ctrl entry classes
 
