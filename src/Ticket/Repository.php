@@ -242,6 +242,7 @@ final class Repository
         return (self::helpMe()->config()->getValue(ConfigFormGUI::KEY_RECIPIENT) === Recipient::CREATE_JIRA_TICKET
             && (!$check_has_one_project_at_least_read_access || self::helpMe()->projects()->hasOneProjectAtLeastReadAccess())
             && file_exists(__DIR__ . "/../../../../../Cron/CronHook/HelpMeCron/vendor/autoload.php")
+            && class_exists(ilHelpMeCronPlugin::class)
             && DICStatic::plugin(ilHelpMeCronPlugin::class)->getPluginObject()->isActive()
             && ilCronManager::isJobActive(FetchJiraTicketsJob::CRON_JOB_ID));
     }
