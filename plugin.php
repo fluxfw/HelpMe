@@ -4,7 +4,7 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 $id = "srsu";
-$version = "6.1.5";
+$version = "6.1.6";
 $ilias_min_version = "6.0";
 $ilias_max_version = "6.999";
 $responsible = "studer + raimann ag - Team Custom 1";

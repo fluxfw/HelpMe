@@ -1,7 +1,7 @@
 # Changelog
 
-## [x]
-- Fix checking exists `ilHelpMeCronPlugin`
+## [6.1.6]
+- Update project url
 
 ## [6.1.5]
 - Fix attach screenshots to issue
