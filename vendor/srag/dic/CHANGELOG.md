@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.31.5]
+- Update project url
+
 ## [0.31.4]
 - Remove `Ilias7PreWarn`
 

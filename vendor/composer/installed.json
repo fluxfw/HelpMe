@@ -1,17 +1,17 @@
 [
     {
         "name": "srag/activerecordconfig",
-        "version": "0.20.2",
-        "version_normalized": "0.20.2.0",
+        "version": "0.20.3",
+        "version_normalized": "0.20.3.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/ActiveRecordConfig.git",
-            "reference": "e182738290d2819c4e9d4a997bfd2ca2362ba9b6"
+            "url": "https://github.com/fluxfw/ActiveRecordConfig.git",
+            "reference": "358df38d014e2538dd439a128e26674769b22f81"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/ActiveRecordConfig/zipball/e182738290d2819c4e9d4a997bfd2ca2362ba9b6",
-            "reference": "e182738290d2819c4e9d4a997bfd2ca2362ba9b6",
+            "url": "https://api.github.com/repos/fluxfw/ActiveRecordConfig/zipball/358df38d014e2538dd439a128e26674769b22f81",
+            "reference": "358df38d014e2538dd439a128e26674769b22f81",
             "shasum": ""
         },
         "require": {
@@ -22,14 +22,15 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2020-11-13T09:58:37+00:00",
+        "time": "2021-03-03T09:52:27+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
                 "ilias_min_version": "5.4.0",
                 "ilias_max_version": "6.999"
             },
-            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+            "long_description_template": "src/LONG_DESCRIPTION.md"
         },
         "installation-source": "dist",
         "autoload": {
@@ -50,7 +51,7 @@
             }
         ],
         "description": "Simple ActiveRecord config for ILIAS plugins",
-        "homepage": "https://github.com/studer-raimann/ActiveRecordConfig",
+        "homepage": "https://github.com/fluxfw/ActiveRecordConfig",
         "keywords": [
             "ILIAS",
             "activerecord",
@@ -59,17 +60,17 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "0.41.4",
-        "version_normalized": "0.41.4.0",
+        "version": "0.42.1",
+        "version_normalized": "0.42.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/CustomInputGUIs.git",
-            "reference": "b0c186f51a65bbd1b59ac14acb349c2a5e477ae7"
+            "url": "https://github.com/fluxfw/CustomInputGUIs.git",
+            "reference": "c76dd4471c4a4b712614eab257a7f697ab45cec5"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/CustomInputGUIs/zipball/b0c186f51a65bbd1b59ac14acb349c2a5e477ae7",
-            "reference": "b0c186f51a65bbd1b59ac14acb349c2a5e477ae7",
+            "url": "https://api.github.com/repos/fluxfw/CustomInputGUIs/zipball/c76dd4471c4a4b712614eab257a7f697ab45cec5",
+            "reference": "c76dd4471c4a4b712614eab257a7f697ab45cec5",
             "shasum": ""
         },
         "require": {
@@ -79,7 +80,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-01-29T13:57:19+00:00",
+        "time": "2021-03-03T09:42:36+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -114,7 +115,7 @@
             }
         ],
         "description": "Custom Input-GUI's",
-        "homepage": "https://github.com/studer-raimann/CustomInputGUIs",
+        "homepage": "https://github.com/fluxfw/CustomInputGUIs",
         "keywords": [
             "ILIAS",
             "PropertyForm",
@@ -125,17 +126,17 @@
     },
     {
         "name": "srag/datatable",
-        "version": "0.31.0",
-        "version_normalized": "0.31.0.0",
+        "version": "0.31.1",
+        "version_normalized": "0.31.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/DataTableUI.git",
-            "reference": "e0947464e5428b06c1ccbe145a45de94247f764f"
+            "url": "https://github.com/fluxfw/DataTableUI.git",
+            "reference": "60db05a7c94fa24e9f23d81cea4d432d64604138"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DataTableUI/zipball/e0947464e5428b06c1ccbe145a45de94247f764f",
-            "reference": "e0947464e5428b06c1ccbe145a45de94247f764f",
+            "url": "https://api.github.com/repos/fluxfw/DataTableUI/zipball/60db05a7c94fa24e9f23d81cea4d432d64604138",
+            "reference": "60db05a7c94fa24e9f23d81cea4d432d64604138",
             "shasum": ""
         },
         "require": {
@@ -147,14 +148,15 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-01-13T08:07:07+00:00",
+        "time": "2021-03-03T09:50:53+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
                 "ilias_min_version": "5.4.0",
                 "ilias_max_version": "6.999"
             },
-            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+            "long_description_template": "src/LONG_DESCRIPTION.md"
         },
         "installation-source": "dist",
         "autoload": {
@@ -175,7 +177,7 @@
             }
         ],
         "description": "ILIAS Data Table UI Component",
-        "homepage": "https://github.com/studer-raimann/DataTableUI",
+        "homepage": "https://github.com/fluxfw/DataTableUI",
         "keywords": [
             "ILIAS",
             "table",
@@ -184,17 +186,17 @@
     },
     {
         "name": "srag/devtools",
-        "version": "1.2.5",
-        "version_normalized": "1.2.5.0",
+        "version": "1.2.6",
+        "version_normalized": "1.2.6.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/DevTools.git",
-            "reference": "c053a7772c5a591127610158c0b3ad8c355485f7"
+            "url": "https://github.com/fluxfw/DevTools.git",
+            "reference": "39731508c607a0b7b4800d998cc6a0cb336f1ab0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DevTools/zipball/c053a7772c5a591127610158c0b3ad8c355485f7",
-            "reference": "c053a7772c5a591127610158c0b3ad8c355485f7",
+            "url": "https://api.github.com/repos/fluxfw/DevTools/zipball/39731508c607a0b7b4800d998cc6a0cb336f1ab0",
+            "reference": "39731508c607a0b7b4800d998cc6a0cb336f1ab0",
             "shasum": ""
         },
         "require": {
@@ -205,7 +207,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-01-29T13:58:23+00:00",
+        "time": "2021-03-03T09:47:36+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -237,7 +239,7 @@
             }
         ],
         "description": "Add some dev tools to ILIAS plugin config, if core dev mode is enabled, like reload ctrl structure",
-        "homepage": "https://github.com/studer-raimann/DevTools",
+        "homepage": "https://github.com/fluxfw/DevTools",
         "keywords": [
             "ILIAS",
             "dev",
@@ -247,17 +249,17 @@
     },
     {
         "name": "srag/dic",
-        "version": "0.31.4",
-        "version_normalized": "0.31.4.0",
+        "version": "0.31.5",
+        "version_normalized": "0.31.5.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/DIC.git",
-            "reference": "615326c06d6f9e27805907c1b92ac19c7f116178"
+            "url": "https://github.com/fluxfw/DIC.git",
+            "reference": "cb78c7a3db369b434e29d65e873df9c6e05ec6ef"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/DIC/zipball/615326c06d6f9e27805907c1b92ac19c7f116178",
-            "reference": "615326c06d6f9e27805907c1b92ac19c7f116178",
+            "url": "https://api.github.com/repos/fluxfw/DIC/zipball/cb78c7a3db369b434e29d65e873df9c6e05ec6ef",
+            "reference": "cb78c7a3db369b434e29d65e873df9c6e05ec6ef",
             "shasum": ""
         },
         "require": {
@@ -266,7 +268,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-01-29T11:32:02+00:00",
+        "time": "2021-03-03T09:46:07+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -295,7 +297,7 @@
             }
         ],
         "description": "Use all ILIAS globals in your class",
-        "homepage": "https://github.com/studer-raimann/DIC",
+        "homepage": "https://github.com/fluxfw/DIC",
         "keywords": [
             "ILIAS",
             "dic",
@@ -305,23 +307,23 @@
     },
     {
         "name": "srag/generateplugininfoshelper",
-        "version": "2.8.0",
-        "version_normalized": "2.8.0.0",
+        "version": "2.9.4",
+        "version_normalized": "2.9.4.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/GeneratePluginInfosHelper.git",
-            "reference": "7ff2f5e06faf8e4f4562724a758633d8d11b9fac"
+            "url": "https://github.com/fluxfw/GeneratePluginInfosHelper.git",
+            "reference": "0fda4a1cb03f588afe1fef352fde9601648f6c4e"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/GeneratePluginInfosHelper/zipball/7ff2f5e06faf8e4f4562724a758633d8d11b9fac",
-            "reference": "7ff2f5e06faf8e4f4562724a758633d8d11b9fac",
+            "url": "https://api.github.com/repos/fluxfw/GeneratePluginInfosHelper/zipball/0fda4a1cb03f588afe1fef352fde9601648f6c4e",
+            "reference": "0fda4a1cb03f588afe1fef352fde9601648f6c4e",
             "shasum": ""
         },
         "require": {
             "php": ">=7.0"
         },
-        "time": "2021-01-25T06:24:01+00:00",
+        "time": "2021-03-03T09:17:27+00:00",
         "type": "library",
         "extra": {
             "generate_plugin_readme_template": "SRAG_LIBRARY",
@@ -346,7 +348,7 @@
             }
         ],
         "description": "Automatic generate plugin infos such README.md, plugin.php, plugin.xml, ... from composer.json",
-        "homepage": "https://github.com/studer-raimann/GeneratePluginInfosHelper",
+        "homepage": "https://github.com/fluxfw/GeneratePluginInfosHelper",
         "keywords": [
             "Infos",
             "generate",
@@ -356,17 +358,17 @@
     },
     {
         "name": "srag/jiracurl",
-        "version": "0.11.3",
-        "version_normalized": "0.11.3.0",
+        "version": "0.11.4",
+        "version_normalized": "0.11.4.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/JiraCurl.git",
-            "reference": "39c0f30212be61089d76b27230b94c43629237ad"
+            "url": "https://github.com/fluxfw/JiraCurl.git",
+            "reference": "4d63c9c60b848f403eaa5d5fb105dc72955566c0"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/JiraCurl/zipball/39c0f30212be61089d76b27230b94c43629237ad",
-            "reference": "39c0f30212be61089d76b27230b94c43629237ad",
+            "url": "https://api.github.com/repos/fluxfw/JiraCurl/zipball/4d63c9c60b848f403eaa5d5fb105dc72955566c0",
+            "reference": "4d63c9c60b848f403eaa5d5fb105dc72955566c0",
             "shasum": ""
         },
         "require": {
@@ -376,14 +378,15 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-01-19T12:34:03+00:00",
+        "time": "2021-03-03T09:48:29+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
                 "ilias_min_version": "5.4.0",
                 "ilias_max_version": "6.999"
             },
-            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+            "long_description_template": "src/LONG_DESCRIPTION.md"
         },
         "installation-source": "dist",
         "autoload": {
@@ -404,7 +407,7 @@
             }
         ],
         "description": "Connect to Jira via Curl",
-        "homepage": "https://github.com/studer-raimann/JiraCurl",
+        "homepage": "https://github.com/fluxfw/JiraCurl",
         "keywords": [
             "ILIAS",
             "curl",
@@ -413,17 +416,17 @@
     },
     {
         "name": "srag/librariesnamespacechanger",
-        "version": "0.15.0",
-        "version_normalized": "0.15.0.0",
+        "version": "0.15.1",
+        "version_normalized": "0.15.1.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/LibrariesNamespaceChanger.git",
-            "reference": "37b73f814b319a9a05664df994423c412e2b52f3"
+            "url": "https://github.com/fluxfw/LibrariesNamespaceChanger.git",
+            "reference": "4d9567c0e83f325849e948960382c9cde612d474"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/LibrariesNamespaceChanger/zipball/37b73f814b319a9a05664df994423c412e2b52f3",
-            "reference": "37b73f814b319a9a05664df994423c412e2b52f3",
+            "url": "https://api.github.com/repos/fluxfw/LibrariesNamespaceChanger/zipball/4d9567c0e83f325849e948960382c9cde612d474",
+            "reference": "4d9567c0e83f325849e948960382c9cde612d474",
             "shasum": ""
         },
         "require": {
@@ -432,7 +435,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-01-25T06:48:05+00:00",
+        "time": "2021-03-03T09:56:22+00:00",
         "type": "library",
         "extra": {
             "generate_plugin_readme_template": "SRAG_LIBRARY",
@@ -457,7 +460,7 @@
             }
         ],
         "description": "Change namespace of libraries to plugin namespace",
-        "homepage": "https://github.com/studer-raimann/LibrariesNamespaceChanger",
+        "homepage": "https://github.com/fluxfw/LibrariesNamespaceChanger",
         "keywords": [
             "changer",
             "libraries",
@@ -466,17 +469,17 @@
     },
     {
         "name": "srag/librarylanguageinstaller",
-        "version": "1.1.2",
-        "version_normalized": "1.1.2.0",
+        "version": "1.1.3",
+        "version_normalized": "1.1.3.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/LibraryLanguageInstaller.git",
-            "reference": "8f484ac9bbeb0aea0157d1dc93283f75922a373f"
+            "url": "https://github.com/fluxfw/LibraryLanguageInstaller.git",
+            "reference": "0de37a9ae176e8b086d83d6b564902f08f1b81c7"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/LibraryLanguageInstaller/zipball/8f484ac9bbeb0aea0157d1dc93283f75922a373f",
-            "reference": "8f484ac9bbeb0aea0157d1dc93283f75922a373f",
+            "url": "https://api.github.com/repos/fluxfw/LibraryLanguageInstaller/zipball/0de37a9ae176e8b086d83d6b564902f08f1b81c7",
+            "reference": "0de37a9ae176e8b086d83d6b564902f08f1b81c7",
             "shasum": ""
         },
         "require": {
@@ -486,14 +489,15 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2020-11-13T09:56:56+00:00",
+        "time": "2021-03-03T09:55:23+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
                 "ilias_min_version": "5.4.0",
                 "ilias_max_version": "6.999"
             },
-            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+            "long_description_template": "src/LONG_DESCRIPTION.md"
         },
         "installation-source": "dist",
         "autoload": {
@@ -514,7 +518,7 @@
             }
         ],
         "description": "Install additional and external lang files for a plugin",
-        "homepage": "https://github.com/studer-raimann/LibraryLanguageInstaller",
+        "homepage": "https://github.com/fluxfw/LibraryLanguageInstaller",
         "keywords": [
             "ILIAS",
             "installer",
@@ -524,17 +528,17 @@
     },
     {
         "name": "srag/notifications4plugin",
-        "version": "5.6.3",
-        "version_normalized": "5.6.3.0",
+        "version": "5.6.4",
+        "version_normalized": "5.6.4.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/Notifications4Plugin.git",
-            "reference": "415db6b1c2ad16fca6f03d8891ed3dd4461b61fa"
+            "url": "https://github.com/fluxfw/Notifications4Plugin.git",
+            "reference": "56f51c880aed033b0f19852e694e5209121d18ed"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/Notifications4Plugin/zipball/415db6b1c2ad16fca6f03d8891ed3dd4461b61fa",
-            "reference": "415db6b1c2ad16fca6f03d8891ed3dd4461b61fa",
+            "url": "https://api.github.com/repos/fluxfw/Notifications4Plugin/zipball/56f51c880aed033b0f19852e694e5209121d18ed",
+            "reference": "56f51c880aed033b0f19852e694e5209121d18ed",
             "shasum": ""
         },
         "require": {
@@ -548,7 +552,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-01-29T14:00:27+00:00",
+        "time": "2021-03-03T09:53:09+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -581,7 +585,7 @@
             }
         ],
         "description": "This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the config screen of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic",
-        "homepage": "https://github.com/studer-raimann/Notifications4Plugin",
+        "homepage": "https://github.com/fluxfw/Notifications4Plugin",
         "keywords": [
             "ILIAS",
             "notifications"
@@ -589,17 +593,17 @@
     },
     {
         "name": "srag/removeplugindataconfirm",
-        "version": "0.7.2",
-        "version_normalized": "0.7.2.0",
+        "version": "0.7.3",
+        "version_normalized": "0.7.3.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/RemovePluginDataConfirm.git",
-            "reference": "be5e7b4e3fdff8bd2a32151f116020f135886e79"
+            "url": "https://github.com/fluxfw/RemovePluginDataConfirm.git",
+            "reference": "f15f2fa7da7b7f3336bf166c12fc2eaccc5b510c"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/RemovePluginDataConfirm/zipball/be5e7b4e3fdff8bd2a32151f116020f135886e79",
-            "reference": "be5e7b4e3fdff8bd2a32151f116020f135886e79",
+            "url": "https://api.github.com/repos/fluxfw/RemovePluginDataConfirm/zipball/f15f2fa7da7b7f3336bf166c12fc2eaccc5b510c",
+            "reference": "f15f2fa7da7b7f3336bf166c12fc2eaccc5b510c",
             "shasum": ""
         },
         "require": {
@@ -610,14 +614,15 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2020-11-13T09:48:50+00:00",
+        "time": "2021-03-03T09:54:44+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
                 "ilias_min_version": "5.4.0",
                 "ilias_max_version": "6.999"
             },
-            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+            "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+            "long_description_template": "src/LONG_DESCRIPTION.md"
         },
         "installation-source": "dist",
         "autoload": {
@@ -641,7 +646,7 @@
             }
         ],
         "description": "Demand if plugin data should be removed on uninstall",
-        "homepage": "https://github.com/studer-raimann/RemovePluginDataConfirm",
+        "homepage": "https://github.com/fluxfw/RemovePluginDataConfirm",
         "keywords": [
             "ILIAS",
             "confirm",
@@ -652,17 +657,17 @@
     },
     {
         "name": "srag/requireddata",
-        "version": "0.14.5",
-        "version_normalized": "0.14.5.0",
+        "version": "0.14.6",
+        "version_normalized": "0.14.6.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/studer-raimann/RequiredData.git",
-            "reference": "599216d4dc7a3f2b8cddf1a34f737b704fe2d688"
+            "url": "https://github.com/fluxfw/RequiredData.git",
+            "reference": "65b4ef6adce97f475e66d0cf588257eb75cbba87"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/studer-raimann/RequiredData/zipball/599216d4dc7a3f2b8cddf1a34f737b704fe2d688",
-            "reference": "599216d4dc7a3f2b8cddf1a34f737b704fe2d688",
+            "url": "https://api.github.com/repos/fluxfw/RequiredData/zipball/65b4ef6adce97f475e66d0cf588257eb75cbba87",
+            "reference": "65b4ef6adce97f475e66d0cf588257eb75cbba87",
             "shasum": ""
         },
         "require": {
@@ -675,7 +680,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-02-01T08:02:11+00:00",
+        "time": "2021-03-03T09:51:37+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -711,7 +716,7 @@
             }
         ],
         "description": "Config and fill required data",
-        "homepage": "https://github.com/studer-raimann/RequiredData",
+        "homepage": "https://github.com/fluxfw/RequiredData",
         "keywords": [
             "ILIAS",
             "data",

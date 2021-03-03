@@ -1,7 +1,7 @@
 {
   "name": "srag/dic",
   "description": "Use all ILIAS globals in your class",
-  "version": "0.31.4",
+  "version": "0.31.5",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -17,7 +17,7 @@
     "ilias",
     "trait"
   ],
-  "homepage": "https://github.com/studer-raimann/DIC",
+  "homepage": "https://github.com/fluxfw/DIC",
   "license": "GPL-3.0-only",
   "authors": [
     {

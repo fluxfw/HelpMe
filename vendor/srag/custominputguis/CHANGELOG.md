@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.42.1]
+- Fix Waiter on ILIAS 6
+- Update project url
+
+## [0.42.0]
+- Add `Waiter.setBytes`
+- Add possibility to pass own tpl to `Waiter.init`
+
 ## [0.41.4]
 - Add require compose in ctrl entry classes
 

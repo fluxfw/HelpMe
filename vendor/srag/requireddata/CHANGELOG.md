@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.14.6]
+- Update project url
+
 ## [0.14.5]
 - Fix ctrl definitions in wrong file
 

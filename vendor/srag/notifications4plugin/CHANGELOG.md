@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.6.4]
+- Update project url
+
 ## [5.6.3]
 - Add require compose in ctrl entry classes
 

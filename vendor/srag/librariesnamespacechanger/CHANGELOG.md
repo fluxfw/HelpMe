@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.15.1]
+- Update project url
+
 ## [0.15.0]
 - Possibility to run without composer script
 - Deprecate `PHP72Backport`

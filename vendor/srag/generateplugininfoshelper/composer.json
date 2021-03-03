@@ -1,7 +1,7 @@
 {
   "name": "srag/generateplugininfoshelper",
   "description": "Automatic generate plugin infos such README.md, plugin.php, plugin.xml, ... from composer.json",
-  "version": "2.8.0",
+  "version": "2.9.4",
   "extra": {
     "generate_plugin_readme_template": "SRAG_LIBRARY",
     "long_description_template": "src/LONG_DESCRIPTION.md"
@@ -13,7 +13,7 @@
     "infos",
     "plugin"
   ],
-  "homepage": "https://github.com/studer-raimann/GeneratePluginInfosHelper",
+  "homepage": "https://github.com/fluxfw/GeneratePluginInfosHelper",
   "license": "GPL-3.0-only",
   "authors": [
     {

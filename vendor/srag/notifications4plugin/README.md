@@ -115,15 +115,15 @@ Expand you plugin class for installing languages of the library to your plugin
 Add to your `dbupdate.php` like:
 
 ```php
-if (\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
+use srag\Notifications4Plugin\HelpMe\x\Notification\Repository;if (Repository::getInstance()->migrateFromOldGlobalPlugin(x::TEMPLATE_NAME) === null) {
 
-	$notification = \srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->factory()->newInstance();
+	$notification = Repository::getInstance()->factory()->newInstance();
 
 	$notification->setName(x::TEMPLATE_NAME);
 
 	// TODO: Fill $notification with your default values
 
-	\srag\Notifications4Plugin\HelpMe\x\Notification\Repository::getInstance()->storeNotification($notification);
+	Repository::getInstance()->storeNotification($notification);
 }
 ```
 

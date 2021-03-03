@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.7.3]
+- Update project url
+
 ## [0.7.2]
 - Fix composer 2
 - Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md

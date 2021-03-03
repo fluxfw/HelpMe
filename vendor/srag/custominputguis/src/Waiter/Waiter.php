@@ -2,6 +2,7 @@
 
 namespace srag\CustomInputGUIs\HelpMe\Waiter;
 
+use ilTemplate;
 use srag\DIC\HelpMe\DICTrait;
 
 /**
@@ -40,21 +41,24 @@ final class Waiter
 
 
     /**
-     * @param string $type
+     * @param string          $type
+     * @param ilTemplate|ilGlobalPageTemplate|null $tpl
      */
-    public static final function init(string $type)/*: void*/
+    public static final function init(string $type, /*?ilGlobalPageTemplate*/ $tpl = null)/*: void*/
     {
+        $tpl = $tpl ?? self::dic()->ui()->mainTemplate();
+
         if (self::$init === false) {
             self::$init = true;
 
             $dir = __DIR__;
             $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
 
-            self::dic()->ui()->mainTemplate()->addCss($dir . "/css/waiter.css");
+            $tpl->addCss($dir . "/css/waiter.css");
 
-            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/js/waiter.min.js");
+            $tpl->addJavaScript($dir . "/js/waiter.min.js");
         }
 
-        self::dic()->ui()->mainTemplate()->addOnLoadCode('il.waiter.init("' . $type . '");');
+        $tpl->addOnLoadCode('il.waiter.init("' . $type . '");');
     }
 }
