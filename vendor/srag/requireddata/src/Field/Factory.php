@@ -106,7 +106,7 @@ final class Factory
         }, $this->classes), $this->classes);
 
         if ($check_can_be_added_only_once) {
-            $classes = array_filter($classes, function (string $class) use ($parent_context, $parent_id): bool {
+            $classes = array_filter($classes, function (string $class) use ($parent_context, $parent_id) : bool {
                 if ($class === GroupField::class) {
                     if (!self::requiredData()->isEnableGroups() || $parent_context === GroupField::PARENT_CONTEXT_FIELD_GROUP) {
                         return false;

@@ -2,6 +2,8 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
+require_once __DIR__ . "/../../vendor/autoload.php";
+
 use ilConfirmationGUI;
 use ilHelpMePlugin;
 use ilUtil;

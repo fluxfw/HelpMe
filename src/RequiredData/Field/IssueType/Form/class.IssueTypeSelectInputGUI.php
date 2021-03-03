@@ -2,6 +2,8 @@
 
 namespace srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form;
 
+require_once __DIR__ . "/../../../../../vendor/autoload.php";
+
 use ilHelpMePlugin;
 use ilSelectInputGUI;
 use srag\DIC\HelpMe\DICTrait;

@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.31.1]
+- Update project url
+
 ## [0.31.0]
 - `MultilineFormatter`
 

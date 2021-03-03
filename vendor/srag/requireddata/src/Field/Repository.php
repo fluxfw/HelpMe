@@ -63,7 +63,7 @@ final class Repository
 
         $first_field = current($fields);
 
-        $fields = array_filter($fields, function (AbstractField $field) use ($first_field): bool {
+        $fields = array_filter($fields, function (AbstractField $field) use ($first_field) : bool {
             return ($field->getType() === $first_field->getType() && $field->getParentContext() === $first_field->getParentContext() && $field->getParentId() === $first_field->getParentId());
         });
         if (empty($fields)) {

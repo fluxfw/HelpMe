@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . "/../vendor/autoload.php";
+
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Ticket\TicketsGUI;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;

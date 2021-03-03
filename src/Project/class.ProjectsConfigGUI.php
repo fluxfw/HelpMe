@@ -2,6 +2,8 @@
 
 namespace srag\Plugins\HelpMe\Project;
 
+require_once __DIR__ . "/../../vendor/autoload.php";
+
 use ilHelpMePlugin;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;

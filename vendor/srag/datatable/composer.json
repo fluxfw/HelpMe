@@ -1,21 +1,22 @@
 {
   "name": "srag/datatable",
   "description": "ILIAS Data Table UI Component",
-  "version": "0.31.0",
+  "version": "0.31.1",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
       "ilias_max_version": "6.999"
     },
-    "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY"
+    "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+    "long_description_template": "src/LONG_DESCRIPTION.md"
   },
   "type": "library",
   "keywords": [
-    "ILIAS",
-    "Table",
-    "UI"
+    "ilias",
+    "table",
+    "ui"
   ],
-  "homepage": "https://github.com/studer-raimann/DataTableUI",
+  "homepage": "https://github.com/fluxfw/DataTableUI",
   "license": "GPL-3.0-only",
   "authors": [
     {

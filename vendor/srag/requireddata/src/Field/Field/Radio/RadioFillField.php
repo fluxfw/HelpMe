@@ -38,7 +38,7 @@ class RadioFillField extends SelectFillField
     {
         $options = $this->field->getSelectOptions();
 
-        return array_reduce(array_values($options), function (Radio $radio, string $value) use ($options): Radio {
+        return array_reduce(array_values($options), function (Radio $radio, string $value) use ($options) : Radio {
             $radio = $radio->withOption($value, $options[$value]);
 
             return $radio;

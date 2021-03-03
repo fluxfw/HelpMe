@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.14.6]
+- Update project url
+
+## [0.14.5]
+- Fix ctrl definitions in wrong file
+
+## [0.14.4]
+- Add require compose in ctrl entry classes
+
 ## [0.14.3]
 - Fix table pagination
 

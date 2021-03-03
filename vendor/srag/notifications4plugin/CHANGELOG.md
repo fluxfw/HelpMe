@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.6.4]
+- Update project url
+
+## [5.6.3]
+- Add require compose in ctrl entry classes
+
 ## [5.6.2]
 - Fix composer 2
 - Move doc/DESCRIPTION.md to src/LONG_DESCRIPTION.md

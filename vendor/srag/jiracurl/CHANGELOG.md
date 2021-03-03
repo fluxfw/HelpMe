@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.11.4]
+- Update project url
+
 ## [0.11.3]
 - Fix attach screenshots to issue
 

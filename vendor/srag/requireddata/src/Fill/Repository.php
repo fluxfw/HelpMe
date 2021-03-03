@@ -223,7 +223,7 @@ final class Repository
             $input = self::requiredData()->fills()->factory()->newFillFieldInstance($field)->getInput();
 
             if (isset($fill_values[$field->getId()])) {
-                $input = $input->withValue($field->isMultiLang() ? array_map(function ($value) use ($field): array {
+                $input = $input->withValue($field->isMultiLang() ? array_map(function ($value) use ($field) : array {
                     return [
                         $field->getId() . "_" => $value
                     ];
