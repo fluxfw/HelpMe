@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.10.0]
+- `UpdateVersion`
+
 ## [2.9.4]
 - Update project url
 

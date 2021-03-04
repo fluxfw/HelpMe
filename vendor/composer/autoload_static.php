@@ -434,6 +434,7 @@ class ComposerStaticInit5442ec5781a14ac47d3a9a82d72dbdbc
         'srag\\DevTools\\HelpMe\\DevToolsCtrl' => __DIR__ . '/..' . '/srag/devtools/src/class.DevToolsCtrl.php',
         'srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginPhpAndXml' => __DIR__ . '/..' . '/srag/generateplugininfoshelper/src/GeneratePluginPhpAndXml.php',
         'srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme' => __DIR__ . '/..' . '/srag/generateplugininfoshelper/src/GeneratePluginReadme.php',
+        'srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion' => __DIR__ . '/..' . '/srag/generateplugininfoshelper/src/UpdateVersion.php',
         'srag\\JiraCurl\\HelpMe\\Exception\\JiraCurlException' => __DIR__ . '/..' . '/srag/jiracurl/src/Exception/JiraCurlException.php',
         'srag\\JiraCurl\\HelpMe\\JiraCurl' => __DIR__ . '/..' . '/srag/jiracurl/src/JiraCurl.php',
         'srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger' => __DIR__ . '/..' . '/srag/librariesnamespacechanger/src/LibrariesNamespaceChanger.php',

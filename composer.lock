@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8e1a089f546584d93ecc95fe0f2eaee9",
+    "content-hash": "8ab131e2479c6a87abbf65428e21f6f0",
     "packages": [
         {
             "name": "srag/activerecordconfig",
@@ -39,7 +39,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\": "src/"
+                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -95,7 +95,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/MultiSelectSearchNewInputGUI/class.ObjectChildrenAjaxAutoCompleteCtrl.php",
@@ -161,7 +161,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DataTableUI\\": "src/"
+                    "srag\\DataTableUI\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -218,7 +218,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DevTools\\": "src/"
+                    "srag\\DevTools\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/class.DevToolsCtrl.php"
@@ -277,7 +277,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -304,16 +304,16 @@
         },
         {
             "name": "srag/generateplugininfoshelper",
-            "version": "2.9.4",
+            "version": "2.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/GeneratePluginInfosHelper.git",
-                "reference": "0fda4a1cb03f588afe1fef352fde9601648f6c4e"
+                "reference": "c3150682e3f60cca586c182c5ccd90ae78d9b9e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/GeneratePluginInfosHelper/zipball/0fda4a1cb03f588afe1fef352fde9601648f6c4e",
-                "reference": "0fda4a1cb03f588afe1fef352fde9601648f6c4e",
+                "url": "https://api.github.com/repos/fluxfw/GeneratePluginInfosHelper/zipball/c3150682e3f60cca586c182c5ccd90ae78d9b9e4",
+                "reference": "c3150682e3f60cca586c182c5ccd90ae78d9b9e4",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +326,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\GeneratePluginInfosHelper\\": "src/"
+                    "srag\\GeneratePluginInfosHelper\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -349,7 +349,7 @@
                 "helper",
                 "plugin"
             ],
-            "time": "2021-03-03T09:17:27+00:00"
+            "time": "2021-03-04T13:43:47+00:00"
         },
         {
             "name": "srag/jiracurl",
@@ -383,7 +383,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\": "src/"
+                    "srag\\JiraCurl\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -490,7 +490,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\LibraryLanguageInstaller\\": "src/"
+                    "srag\\LibraryLanguageInstaller\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -551,7 +551,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\": "src/"
+                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/Notification/class.NotificationsCtrl.php",
@@ -611,7 +611,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\RemovePluginDataConfirm\\": "src/"
+                    "srag\\RemovePluginDataConfirm\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/class.RemovePluginDataConfirmCtrl.php"
@@ -675,7 +675,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\": "src/"
+                    "srag\\RequiredData\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/Field/class.FieldsCtrl.php",

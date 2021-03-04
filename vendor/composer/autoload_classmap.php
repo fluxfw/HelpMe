@@ -345,6 +345,7 @@ return array(
     'srag\\DevTools\\HelpMe\\DevToolsCtrl' => $vendorDir . '/srag/devtools/src/class.DevToolsCtrl.php',
     'srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginPhpAndXml' => $vendorDir . '/srag/generateplugininfoshelper/src/GeneratePluginPhpAndXml.php',
     'srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme' => $vendorDir . '/srag/generateplugininfoshelper/src/GeneratePluginReadme.php',
+    'srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion' => $vendorDir . '/srag/generateplugininfoshelper/src/UpdateVersion.php',
     'srag\\JiraCurl\\HelpMe\\Exception\\JiraCurlException' => $vendorDir . '/srag/jiracurl/src/Exception/JiraCurlException.php',
     'srag\\JiraCurl\\HelpMe\\JiraCurl' => $vendorDir . '/srag/jiracurl/src/JiraCurl.php',
     'srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger' => $vendorDir . '/srag/librariesnamespacechanger/src/LibrariesNamespaceChanger.php',
