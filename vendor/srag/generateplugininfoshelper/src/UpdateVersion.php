@@ -20,16 +20,18 @@ final class UpdateVersion
 
     const CHANGELOG_INIT = "# Changelog" . self::LINE_BREAK_SEPARATOR . self::LINE_BREAK_SEPARATOR;
     const CHANGELOG_MD = "CHANGELOG.md";
-    const CHANGELOG_TODO = "- TODO" . self::LINE_BREAK_SEPARATOR . self::LINE_BREAK_SEPARATOR;
+    const CHANGELOG_TODO = "TODO";
+    const CHANGELOG_TODO_AFTER = self::LINE_BREAK_SEPARATOR . self::LINE_BREAK_SEPARATOR;
+    const CHANGELOG_TODO_BEFORE = "- ";
     const CHANGELOG_VERSION_AFTER = "]" . self::LINE_BREAK_SEPARATOR;
     const CHANGELOG_VERSION_BEFORE = "## [";
     const CHANGELOG_VERSION_X = "x";
     const COMPOSER_JSON = "composer.json";
     const LINE_BREAK_SEPARATOR = "\n";
     const UPDATE_TYPE_AUTO = 0;
-    const UPDATE_TYPE_NONE = 1;
     const UPDATE_TYPE_MAJOR = 2;
     const UPDATE_TYPE_MINOR = 3;
+    const UPDATE_TYPE_NONE = 1;
     const UPDATE_TYPE_PATCH = 4;
     const VERSION_INIT = "1" . self::VERSION_SEPARATOR . "0" . self::VERSION_SEPARATOR . "0";
     const VERSION_SEPARATOR = ".";
@@ -72,16 +74,17 @@ final class UpdateVersion
             return $this->baseDir;
         }, $event->getComposer()->getConfig(), Config::class)(), "/");
 
-        self::getInstance()->doUpdateVersion($project_root, intval($event->getArguments()[0] ?? self::UPDATE_TYPE_AUTO), true);
+        self::getInstance()->doUpdateVersion($project_root, intval($event->getArguments()[0] ?? self::UPDATE_TYPE_AUTO), strval($event->getArguments()[1] ?? ""), true);
     }
 
 
     /**
-     * @param string $project_root
-     * @param int    $update_type
-     * @param bool   $log
+     * @param string      $project_root
+     * @param int         $update_type
+     * @param string|null $todo_changelog
+     * @param bool        $log
      */
-    public function doUpdateVersion(string $project_root, int $update_type = self::UPDATE_TYPE_AUTO, bool $log = false)/*: void*/
+    public function doUpdateVersion(string $project_root, int $update_type = self::UPDATE_TYPE_AUTO, /*?*/ string $todo_changelog = null, bool $log = false)/*: void*/
     {
         $old_composer_json = file_get_contents($project_root . "/" . self::COMPOSER_JSON);
         $composer_json = json_decode($old_composer_json, true);
@@ -202,7 +205,13 @@ final class UpdateVersion
                     echo "Add version " . $version . " to " . self::CHANGELOG_MD . "
 ";
                 }
-                $new_changelog = self::CHANGELOG_INIT . self::CHANGELOG_VERSION_BEFORE . $version . self::CHANGELOG_VERSION_AFTER . self::CHANGELOG_TODO . substr($new_changelog,
+
+                if (empty($todo_changelog)) {
+                    $todo_changelog = self::CHANGELOG_TODO;
+                }
+
+                $new_changelog = self::CHANGELOG_INIT . self::CHANGELOG_VERSION_BEFORE . $version . self::CHANGELOG_VERSION_AFTER . self::CHANGELOG_TODO_BEFORE . $todo_changelog
+                    . self::CHANGELOG_TODO_AFTER . substr($new_changelog,
                         strlen(self::CHANGELOG_INIT));
             }
         }

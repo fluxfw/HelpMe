@@ -304,16 +304,16 @@
         },
         {
             "name": "srag/generateplugininfoshelper",
-            "version": "2.10.0",
+            "version": "2.10.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/GeneratePluginInfosHelper.git",
-                "reference": "c3150682e3f60cca586c182c5ccd90ae78d9b9e4"
+                "reference": "fe1a056d91a98442b8dd777aa2a9b0e8d00bd203"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/GeneratePluginInfosHelper/zipball/c3150682e3f60cca586c182c5ccd90ae78d9b9e4",
-                "reference": "c3150682e3f60cca586c182c5ccd90ae78d9b9e4",
+                "url": "https://api.github.com/repos/fluxfw/GeneratePluginInfosHelper/zipball/fe1a056d91a98442b8dd777aa2a9b0e8d00bd203",
+                "reference": "fe1a056d91a98442b8dd777aa2a9b0e8d00bd203",
                 "shasum": ""
             },
             "require": {
@@ -326,7 +326,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\GeneratePluginInfosHelper\\HelpMe\\": "src/"
+                    "srag\\GeneratePluginInfosHelper\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -349,7 +349,7 @@
                 "helper",
                 "plugin"
             ],
-            "time": "2021-03-04T13:43:47+00:00"
+            "time": "2021-03-05T14:06:43+00:00"
         },
         {
             "name": "srag/jiracurl",

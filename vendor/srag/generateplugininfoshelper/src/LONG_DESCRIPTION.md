@@ -183,7 +183,7 @@ Auto update version in `composer.json` and `CHANGELOG.md`
 ```
 
 ```bash
-composer run update-version
+composer run update-version [update_type] [todo_changelog]
 ```
 
 #### In code
@@ -192,6 +192,6 @@ composer run update-version
 ...
 use srag\GeneratePluginInfosHelper\HelpMe\x\UpdateVersion; 
 ...
-UpdateVersion::getInstance()->doGeneratePluginReadme(string $project_root, int $update_type = UpdateVersion::UPDATE_TYPE_PATCH|UpdateVersion::UPDATE_TYPE_MINOR|UpdateVersion::UPDATE_TYPE_MAJOR, bool $log = false);
+UpdateVersion::getInstance()->doGeneratePluginReadme(string $project_root, int $update_type = UpdateVersion::UPDATE_TYPE_PATCH|UpdateVersion::UPDATE_TYPE_MINOR|UpdateVersion::UPDATE_TYPE_MAJOR, ?string $todo_changelog = null, bool $log = false);
 ...
 ```
