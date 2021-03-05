@@ -5,6 +5,8 @@ namespace srag\CustomInputGUIs\HelpMe\AjaxCheckbox;
 use srag\CustomInputGUIs\HelpMe\Template\Template;
 use srag\CustomInputGUIs\HelpMe\Waiter\Waiter;
 use srag\DIC\HelpMe\DICTrait;
+use srag\DIC\HelpMe\Plugin\PluginInterface;
+use srag\DIC\HelpMe\Version\PluginVersionParameter;
 
 /**
  * Class AjaxCheckbox
@@ -35,27 +37,34 @@ class AjaxCheckbox
 
     /**
      * AjaxCheckbox constructor
+     *
+     * @param PluginInterface|null $plugin
      */
-    public function __construct()
+    public function __construct(/*?*/ PluginInterface $plugin = null)
     {
-        self::init();
+        self::init($plugin);
     }
 
 
     /**
-     *
+     * @param PluginInterface|null $plugin
      */
-    public static function init()/*: void*/
+    public static function init(/*?*/ PluginInterface $plugin = null)/*: void*/
     {
         if (self::$init === false) {
             self::$init = true;
 
-            Waiter::init(Waiter::TYPE_WAITER);
+            $version_parameter = PluginVersionParameter::getInstance();
+            if ($plugin !== null) {
+                $version_parameter = $version_parameter->withPlugin($plugin);
+            }
+
+            Waiter::init(Waiter::TYPE_WAITER, null, $plugin);
 
             $dir = __DIR__;
             $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
 
-            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/js/ajax_checkbox.min.js");
+            self::dic()->ui()->mainTemplate()->addJavaScript($version_parameter->appendToUrl($dir . "/js/ajax_checkbox.min.js", $dir . "/js/ajax_checkbox.js"));
         }
     }
 

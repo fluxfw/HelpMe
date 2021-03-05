@@ -60,17 +60,17 @@
     },
     {
         "name": "srag/custominputguis",
-        "version": "0.42.1",
-        "version_normalized": "0.42.1.0",
+        "version": "0.42.3",
+        "version_normalized": "0.42.3.0",
         "source": {
             "type": "git",
             "url": "https://github.com/fluxfw/CustomInputGUIs.git",
-            "reference": "c76dd4471c4a4b712614eab257a7f697ab45cec5"
+            "reference": "43cbf30e200613aac2eb01f641773bb670c61230"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fluxfw/CustomInputGUIs/zipball/c76dd4471c4a4b712614eab257a7f697ab45cec5",
-            "reference": "c76dd4471c4a4b712614eab257a7f697ab45cec5",
+            "url": "https://api.github.com/repos/fluxfw/CustomInputGUIs/zipball/43cbf30e200613aac2eb01f641773bb670c61230",
+            "reference": "43cbf30e200613aac2eb01f641773bb670c61230",
             "shasum": ""
         },
         "require": {
@@ -80,7 +80,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-03-03T09:42:36+00:00",
+        "time": "2021-03-05T11:08:03+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
@@ -249,17 +249,17 @@
     },
     {
         "name": "srag/dic",
-        "version": "0.31.5",
-        "version_normalized": "0.31.5.0",
+        "version": "0.32.1",
+        "version_normalized": "0.32.1.0",
         "source": {
             "type": "git",
             "url": "https://github.com/fluxfw/DIC.git",
-            "reference": "cb78c7a3db369b434e29d65e873df9c6e05ec6ef"
+            "reference": "d12c2fb65081ea9b277606c44c5b15e4cc11e017"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fluxfw/DIC/zipball/cb78c7a3db369b434e29d65e873df9c6e05ec6ef",
-            "reference": "cb78c7a3db369b434e29d65e873df9c6e05ec6ef",
+            "url": "https://api.github.com/repos/fluxfw/DIC/zipball/d12c2fb65081ea9b277606c44c5b15e4cc11e017",
+            "reference": "d12c2fb65081ea9b277606c44c5b15e4cc11e017",
             "shasum": ""
         },
         "require": {
@@ -268,7 +268,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-03-03T09:46:07+00:00",
+        "time": "2021-03-05T11:06:12+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {
