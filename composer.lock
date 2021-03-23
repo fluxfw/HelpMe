@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8ab131e2479c6a87abbf65428e21f6f0",
+    "content-hash": "656b4ff8d28b91f676a3dcc34de95c66",
     "packages": [
         {
             "name": "srag/activerecordconfig",
-            "version": "0.20.3",
+            "version": "0.20.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/ActiveRecordConfig.git",
-                "reference": "358df38d014e2538dd439a128e26674769b22f81"
+                "reference": "40b7ae496598fafd12b0f91b63b875ded1ecac73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/ActiveRecordConfig/zipball/358df38d014e2538dd439a128e26674769b22f81",
-                "reference": "358df38d014e2538dd439a128e26674769b22f81",
+                "url": "https://api.github.com/repos/fluxfw/ActiveRecordConfig/zipball/40b7ae496598fafd12b0f91b63b875ded1ecac73",
+                "reference": "40b7ae496598fafd12b0f91b63b875ded1ecac73",
                 "shasum": ""
             },
             "require": {
@@ -34,12 +34,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
+                    "srag\\ActiveRecordConfig\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -61,20 +61,20 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2021-03-03T09:52:27+00:00"
+            "time": "2021-03-23T12:48:34+00:00"
         },
         {
             "name": "srag/custominputguis",
-            "version": "0.42.3",
+            "version": "0.42.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/CustomInputGUIs.git",
-                "reference": "43cbf30e200613aac2eb01f641773bb670c61230"
+                "reference": "84e73ffa3dfd9bd906ef8fe48e1c3199338b5d83"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/CustomInputGUIs/zipball/43cbf30e200613aac2eb01f641773bb670c61230",
-                "reference": "43cbf30e200613aac2eb01f641773bb670c61230",
+                "url": "https://api.github.com/repos/fluxfw/CustomInputGUIs/zipball/84e73ffa3dfd9bd906ef8fe48e1c3199338b5d83",
+                "reference": "84e73ffa3dfd9bd906ef8fe48e1c3199338b5d83",
                 "shasum": ""
             },
             "require": {
@@ -90,12 +90,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
+                    "srag\\CustomInputGUIs\\": "src/"
                 },
                 "classmap": [
                     "src/MultiSelectSearchNewInputGUI/class.ObjectChildrenAjaxAutoCompleteCtrl.php",
@@ -125,20 +125,20 @@
                 "input",
                 "table"
             ],
-            "time": "2021-03-05T11:08:03+00:00"
+            "time": "2021-03-23T12:49:24+00:00"
         },
         {
             "name": "srag/datatable",
-            "version": "0.31.1",
+            "version": "0.31.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/DataTableUI.git",
-                "reference": "60db05a7c94fa24e9f23d81cea4d432d64604138"
+                "reference": "eff4e18b6968ccdad11514a61f42ce95dbbdf236"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/DataTableUI/zipball/60db05a7c94fa24e9f23d81cea4d432d64604138",
-                "reference": "60db05a7c94fa24e9f23d81cea4d432d64604138",
+                "url": "https://api.github.com/repos/fluxfw/DataTableUI/zipball/eff4e18b6968ccdad11514a61f42ce95dbbdf236",
+                "reference": "eff4e18b6968ccdad11514a61f42ce95dbbdf236",
                 "shasum": ""
             },
             "require": {
@@ -156,12 +156,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DataTableUI\\HelpMe\\": "src/"
+                    "srag\\DataTableUI\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -183,20 +183,20 @@
                 "table",
                 "ui"
             ],
-            "time": "2021-03-03T09:50:53+00:00"
+            "time": "2021-03-23T12:49:59+00:00"
         },
         {
             "name": "srag/devtools",
-            "version": "1.2.6",
+            "version": "1.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/DevTools.git",
-                "reference": "39731508c607a0b7b4800d998cc6a0cb336f1ab0"
+                "reference": "73de451e2e4f05e36381977e3f1da51ba7175e53"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/DevTools/zipball/39731508c607a0b7b4800d998cc6a0cb336f1ab0",
-                "reference": "39731508c607a0b7b4800d998cc6a0cb336f1ab0",
+                "url": "https://api.github.com/repos/fluxfw/DevTools/zipball/73de451e2e4f05e36381977e3f1da51ba7175e53",
+                "reference": "73de451e2e4f05e36381977e3f1da51ba7175e53",
                 "shasum": ""
             },
             "require": {
@@ -213,12 +213,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DevTools\\HelpMe\\": "src/"
+                    "srag\\DevTools\\": "src/"
                 },
                 "classmap": [
                     "src/class.DevToolsCtrl.php"
@@ -244,20 +244,20 @@
                 "plugin",
                 "tools"
             ],
-            "time": "2021-03-03T09:47:36+00:00"
+            "time": "2021-03-23T12:50:24+00:00"
         },
         {
             "name": "srag/dic",
-            "version": "0.32.1",
+            "version": "0.32.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/DIC.git",
-                "reference": "d12c2fb65081ea9b277606c44c5b15e4cc11e017"
+                "reference": "0f16b0d52193cb7b094b8631e9c3b2367a061cac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/DIC/zipball/d12c2fb65081ea9b277606c44c5b15e4cc11e017",
-                "reference": "d12c2fb65081ea9b277606c44c5b15e4cc11e017",
+                "url": "https://api.github.com/repos/fluxfw/DIC/zipball/0f16b0d52193cb7b094b8631e9c3b2367a061cac",
+                "reference": "0f16b0d52193cb7b094b8631e9c3b2367a061cac",
                 "shasum": ""
             },
             "require": {
@@ -272,12 +272,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\HelpMe\\": "src/"
+                    "srag\\DIC\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -300,20 +300,20 @@
                 "globals",
                 "trait"
             ],
-            "time": "2021-03-05T11:06:12+00:00"
+            "time": "2021-03-23T12:50:35+00:00"
         },
         {
             "name": "srag/generateplugininfoshelper",
-            "version": "2.10.1",
+            "version": "2.10.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/GeneratePluginInfosHelper.git",
-                "reference": "fe1a056d91a98442b8dd777aa2a9b0e8d00bd203"
+                "reference": "53b1ad2d1ccf3e90182262b9421024fe11ee00f9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/GeneratePluginInfosHelper/zipball/fe1a056d91a98442b8dd777aa2a9b0e8d00bd203",
-                "reference": "fe1a056d91a98442b8dd777aa2a9b0e8d00bd203",
+                "url": "https://api.github.com/repos/fluxfw/GeneratePluginInfosHelper/zipball/53b1ad2d1ccf3e90182262b9421024fe11ee00f9",
+                "reference": "53b1ad2d1ccf3e90182262b9421024fe11ee00f9",
                 "shasum": ""
             },
             "require": {
@@ -321,7 +321,7 @@
             },
             "type": "library",
             "extra": {
-                "generate_plugin_readme_template": "SRAG_LIBRARY",
+                "generate_plugin_readme_template": "LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
@@ -349,20 +349,20 @@
                 "helper",
                 "plugin"
             ],
-            "time": "2021-03-05T14:06:43+00:00"
+            "time": "2021-03-23T12:25:52+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "0.11.4",
+            "version": "0.11.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/JiraCurl.git",
-                "reference": "4d63c9c60b848f403eaa5d5fb105dc72955566c0"
+                "reference": "050c3ddf6d370ea400403809c2f042dd1cc13dd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/JiraCurl/zipball/4d63c9c60b848f403eaa5d5fb105dc72955566c0",
-                "reference": "4d63c9c60b848f403eaa5d5fb105dc72955566c0",
+                "url": "https://api.github.com/repos/fluxfw/JiraCurl/zipball/050c3ddf6d370ea400403809c2f042dd1cc13dd1",
+                "reference": "050c3ddf6d370ea400403809c2f042dd1cc13dd1",
                 "shasum": ""
             },
             "require": {
@@ -378,12 +378,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\HelpMe\\": "src/"
+                    "srag\\JiraCurl\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -405,20 +405,20 @@
                 "curl",
                 "jira"
             ],
-            "time": "2021-03-03T09:48:29+00:00"
+            "time": "2021-03-23T12:50:18+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
-            "version": "0.15.1",
+            "version": "0.15.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/LibrariesNamespaceChanger.git",
-                "reference": "4d9567c0e83f325849e948960382c9cde612d474"
+                "reference": "cd3b0b6340fdc12ba7bfde0bcab3079d3b740483"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/LibrariesNamespaceChanger/zipball/4d9567c0e83f325849e948960382c9cde612d474",
-                "reference": "4d9567c0e83f325849e948960382c9cde612d474",
+                "url": "https://api.github.com/repos/fluxfw/LibrariesNamespaceChanger/zipball/cd3b0b6340fdc12ba7bfde0bcab3079d3b740483",
+                "reference": "cd3b0b6340fdc12ba7bfde0bcab3079d3b740483",
                 "shasum": ""
             },
             "require": {
@@ -429,7 +429,7 @@
             },
             "type": "library",
             "extra": {
-                "generate_plugin_readme_template": "SRAG_LIBRARY",
+                "generate_plugin_readme_template": "LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
@@ -456,20 +456,20 @@
                 "libraries",
                 "namespace"
             ],
-            "time": "2021-03-03T09:56:22+00:00"
+            "time": "2021-03-23T12:47:58+00:00"
         },
         {
             "name": "srag/librarylanguageinstaller",
-            "version": "1.1.3",
+            "version": "1.1.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/LibraryLanguageInstaller.git",
-                "reference": "0de37a9ae176e8b086d83d6b564902f08f1b81c7"
+                "reference": "9c047ae156e503186169dc91a0c4a5910a0cccb0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/LibraryLanguageInstaller/zipball/0de37a9ae176e8b086d83d6b564902f08f1b81c7",
-                "reference": "0de37a9ae176e8b086d83d6b564902f08f1b81c7",
+                "url": "https://api.github.com/repos/fluxfw/LibraryLanguageInstaller/zipball/9c047ae156e503186169dc91a0c4a5910a0cccb0",
+                "reference": "9c047ae156e503186169dc91a0c4a5910a0cccb0",
                 "shasum": ""
             },
             "require": {
@@ -485,12 +485,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\LibraryLanguageInstaller\\HelpMe\\": "src/"
+                    "srag\\LibraryLanguageInstaller\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -513,20 +513,20 @@
                 "language",
                 "library"
             ],
-            "time": "2021-03-03T09:55:23+00:00"
+            "time": "2021-03-23T12:48:08+00:00"
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "5.6.4",
+            "version": "5.6.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/Notifications4Plugin.git",
-                "reference": "56f51c880aed033b0f19852e694e5209121d18ed"
+                "reference": "066533a0ccf895208573bd2a2c28d103c94f10dd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/Notifications4Plugin/zipball/56f51c880aed033b0f19852e694e5209121d18ed",
-                "reference": "56f51c880aed033b0f19852e694e5209121d18ed",
+                "url": "https://api.github.com/repos/fluxfw/Notifications4Plugin/zipball/066533a0ccf895208573bd2a2c28d103c94f10dd",
+                "reference": "066533a0ccf895208573bd2a2c28d103c94f10dd",
                 "shasum": ""
             },
             "require": {
@@ -546,12 +546,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\Notifications4Plugin\\HelpMe\\": "src/"
+                    "srag\\Notifications4Plugin\\": "src/"
                 },
                 "classmap": [
                     "src/Notification/class.NotificationsCtrl.php",
@@ -576,20 +576,20 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2021-03-03T09:53:09+00:00"
+            "time": "2021-03-23T12:48:27+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
-            "version": "0.7.3",
+            "version": "0.7.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/RemovePluginDataConfirm.git",
-                "reference": "f15f2fa7da7b7f3336bf166c12fc2eaccc5b510c"
+                "reference": "0b41f6670381ff1b79518f087d73f5b3a0c97ca2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/RemovePluginDataConfirm/zipball/f15f2fa7da7b7f3336bf166c12fc2eaccc5b510c",
-                "reference": "f15f2fa7da7b7f3336bf166c12fc2eaccc5b510c",
+                "url": "https://api.github.com/repos/fluxfw/RemovePluginDataConfirm/zipball/0b41f6670381ff1b79518f087d73f5b3a0c97ca2",
+                "reference": "0b41f6670381ff1b79518f087d73f5b3a0c97ca2",
                 "shasum": ""
             },
             "require": {
@@ -606,12 +606,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\RemovePluginDataConfirm\\HelpMe\\": "src/"
+                    "srag\\RemovePluginDataConfirm\\": "src/"
                 },
                 "classmap": [
                     "src/class.RemovePluginDataConfirmCtrl.php"
@@ -638,20 +638,20 @@
                 "plugin",
                 "uninstall"
             ],
-            "time": "2021-03-03T09:54:44+00:00"
+            "time": "2021-03-23T12:48:13+00:00"
         },
         {
             "name": "srag/requireddata",
-            "version": "0.14.6",
+            "version": "0.14.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/RequiredData.git",
-                "reference": "65b4ef6adce97f475e66d0cf588257eb75cbba87"
+                "reference": "a2ff78ef609f40663c3e27a9cf2a99c9a512e47f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/RequiredData/zipball/65b4ef6adce97f475e66d0cf588257eb75cbba87",
-                "reference": "65b4ef6adce97f475e66d0cf588257eb75cbba87",
+                "url": "https://api.github.com/repos/fluxfw/RequiredData/zipball/a2ff78ef609f40663c3e27a9cf2a99c9a512e47f",
+                "reference": "a2ff78ef609f40663c3e27a9cf2a99c9a512e47f",
                 "shasum": ""
             },
             "require": {
@@ -670,12 +670,12 @@
                     "ilias_min_version": "5.4.0",
                     "ilias_max_version": "6.999"
                 },
-                "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+                "generate_plugin_readme_template": "ILIAS_LIBRARY",
                 "long_description_template": "src/LONG_DESCRIPTION.md"
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\HelpMe\\": "src/"
+                    "srag\\RequiredData\\": "src/"
                 },
                 "classmap": [
                     "src/Field/class.FieldsCtrl.php",
@@ -705,7 +705,7 @@
                 "field",
                 "required"
             ],
-            "time": "2021-03-03T09:51:37+00:00"
+            "time": "2021-03-23T12:49:30+00:00"
         },
         {
             "name": "twig/twig",

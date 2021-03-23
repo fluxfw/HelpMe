@@ -98,7 +98,7 @@ composer du
 ```
 
 ```bash
-composer run generate-plugin-php-and-xml
+composer generate-plugin-php-and-xml
 ```
 
 #### In code
@@ -157,7 +157,7 @@ composer du
 ```
 
 ```bash
-composer run generate-plugin-readme
+composer generate-plugin-readme
 ```
 
 #### In code
@@ -193,7 +193,7 @@ Auto update version in `composer.json` and `CHANGELOG.md`
 ```
 
 ```bash
-composer run update-version [update_type] [todo_changelog]
+composer update-version [update_type] [todo_changelog]
 ```
 
 #### In code
@@ -209,9 +209,3 @@ UpdateVersion::getInstance()->doGeneratePluginReadme(string $project_root, int $
 ## Requirements
 
 * PHP >=7.0
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LGENPLUGINFHELP
-
-There is no guarantee this can be fixed or implemented

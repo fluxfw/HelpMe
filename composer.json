@@ -1,7 +1,7 @@
 {
   "name": "srag/helpme",
   "description": "HelpMe",
-  "version": "6.1.6",
+  "version": "6.1.7",
   "extra": {
     "ilias_plugin": {
       "id": "srsu",
@@ -11,7 +11,7 @@
       "slot": "Services/UIComponent/UserInterfaceHook",
       "supports_cli_setup": true
     },
-    "generate_plugin_readme_template": "SRAG_ILIAS_PLUGIN",
+    "generate_plugin_readme_template": "ILIAS_PLUGIN",
     "long_description_template": "src/LONG_DESCRIPTION.md"
   },
   "type": "project",
@@ -33,9 +33,6 @@
       "role": "Developer"
     }
   ],
-  "support": {
-    "issues": "https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLHM"
-  },
   "require": {
     "php": ">=7.2",
     "srag/activerecordconfig": ">=0.1.0",

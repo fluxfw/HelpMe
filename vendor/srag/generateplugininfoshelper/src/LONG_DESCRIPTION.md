@@ -88,7 +88,7 @@ composer du
 ```
 
 ```bash
-composer run generate-plugin-php-and-xml
+composer generate-plugin-php-and-xml
 ```
 
 #### In code
@@ -147,7 +147,7 @@ composer du
 ```
 
 ```bash
-composer run generate-plugin-readme
+composer generate-plugin-readme
 ```
 
 #### In code
@@ -183,7 +183,7 @@ Auto update version in `composer.json` and `CHANGELOG.md`
 ```
 
 ```bash
-composer run update-version [update_type] [todo_changelog]
+composer update-version [update_type] [todo_changelog]
 ```
 
 #### In code

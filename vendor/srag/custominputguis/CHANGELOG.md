@@ -1,5 +1,8 @@
 # Changelog
 
+## [0.42.4]
+- Update readme
+
 ## [0.42.3]
 - Use `PluginVersionParameter`
 

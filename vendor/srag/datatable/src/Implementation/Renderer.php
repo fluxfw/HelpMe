@@ -36,9 +36,9 @@ class Renderer extends AbstractComponentRenderer
         $dir = __DIR__;
         $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1) . "/../..";
 
-        $registry->register($dir . "/css/datatableui.css");
+        $registry->register($dir . "/css/datatableui.css"); // TODO: Use PluginVersionParameter
 
-        $registry->register($dir . "/js/datatableui.min.js");
+        $registry->register($dir . "/js/datatableui.min.js"); // TODO: Use PluginVersionParameter
     }
 
 

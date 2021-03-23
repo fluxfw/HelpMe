@@ -36,9 +36,3 @@ You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/li
 
 * ILIAS 5.4.0 - 6.999
 * PHP >=7.2
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL
-
-There is no guarantee this can be fixed or implemented

@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.10.2]
+- Update readme
+
 ## [2.10.1]
 - `UpdateVersion`
 
