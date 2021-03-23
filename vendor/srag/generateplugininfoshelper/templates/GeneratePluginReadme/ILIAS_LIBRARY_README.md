@@ -1,4 +1,4 @@
-# __NAME__ Library
+# __NAME__ Library for ILIAS Plugins
 
 __SHORT_DESCRIPTION__
 
@@ -10,10 +10,5 @@ __LONG_DESCRIPTION__
 
 ## Requirements
 
+* ILIAS __ILIAS_PLUGIN_MIN_ILIAS_VERSION__ - __ILIAS_PLUGIN_MAX_ILIAS_VERSION__
 * PHP __PHP_VERSION__
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at __SUPPORT_LINK__
-
-There is no guarantee this can be fixed or implemented

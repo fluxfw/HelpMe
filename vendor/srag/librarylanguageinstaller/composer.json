@@ -1,13 +1,13 @@
 {
   "name": "srag/librarylanguageinstaller",
   "description": "Install additional and external lang files for a plugin",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
       "ilias_max_version": "6.999"
     },
-    "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+    "generate_plugin_readme_template": "ILIAS_LIBRARY",
     "long_description_template": "src/LONG_DESCRIPTION.md"
   },
   "type": "library",
@@ -27,9 +27,6 @@
       "role": "Developer"
     }
   ],
-  "support": {
-    "issues": "https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LLANGINST"
-  },
   "require": {
     "php": ">=7.0",
     "srag/dic": ">=0.1.0"
@@ -50,6 +47,9 @@
   "scripts": {
     "generate-plugin-readme": [
       "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme::generatePluginReadme"
+    ],
+    "update-version": [
+      "srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion::updateVersion"
     ]
   }
 }

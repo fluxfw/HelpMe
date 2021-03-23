@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.10.2]
+- Update readme
+
+## [2.10.1]
+- `UpdateVersion`
+
+## [2.10.0]
+- `UpdateVersion`
+
 ## [2.9.4]
 - Update project url
 

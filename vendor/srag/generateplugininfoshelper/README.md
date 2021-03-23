@@ -98,7 +98,7 @@ composer du
 ```
 
 ```bash
-composer run generate-plugin-php-and-xml
+composer generate-plugin-php-and-xml
 ```
 
 #### In code
@@ -157,7 +157,7 @@ composer du
 ```
 
 ```bash
-composer run generate-plugin-readme
+composer generate-plugin-readme
 ```
 
 #### In code
@@ -170,12 +170,42 @@ GeneratePluginReadme::getInstance()->doGeneratePluginReadme(string $project_root
 ...
 ```
 
+### UpdateVersion
+
+Auto update version in `composer.json` and `CHANGELOG.md`
+
+- If the latest version in `CHANGELOG.md` is newer than the version in `composer.json`
+  - It just sets the version in `CHANGELOG.md` to the version in `composer.json` and skip updating version
+- If the version in `composer.json` is missing
+  - It just sets the version to `1.0.0` and skip updating version
+- If available a `x` version in `CHANGELOG.md`, it will be replaced with the new version
+  - Otherwise a new version is added to `CHANGELOG.md` (With `TODO`)
+
+#### Composer script
+
+```json
+  ...
+  "update-version": [
+    ...,
+     "srag\\GeneratePluginInfosHelper\\HelpMe\\x\\UpdateVersion::updateVersion"
+    ]
+  ...
+```
+
+```bash
+composer update-version [update_type] [todo_changelog]
+```
+
+#### In code
+
+```php
+...
+use srag\GeneratePluginInfosHelper\HelpMe\x\UpdateVersion; 
+...
+UpdateVersion::getInstance()->doGeneratePluginReadme(string $project_root, int $update_type = UpdateVersion::UPDATE_TYPE_PATCH|UpdateVersion::UPDATE_TYPE_MINOR|UpdateVersion::UPDATE_TYPE_MAJOR, ?string $todo_changelog = null, bool $log = false);
+...
+```
+
 ## Requirements
 
 * PHP >=7.0
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LGENPLUGINFHELP
-
-There is no guarantee this can be fixed or implemented

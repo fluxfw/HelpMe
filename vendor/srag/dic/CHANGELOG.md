@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.32.2]
+- Update readme
+
+## [0.32.1]
+- `PluginVersionParameter`
+
+## [0.32.0]
+- `PluginVersionParameter`
+
 ## [0.31.5]
 - Update project url
 

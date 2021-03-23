@@ -82,9 +82,3 @@ It uses the https://github.com/ondrejbouda/php7backport.git repo, but provides i
 ## Requirements
 
 * PHP >=7.0
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LNAMESPACECHANGER
-
-There is no guarantee this can be fixed or implemented

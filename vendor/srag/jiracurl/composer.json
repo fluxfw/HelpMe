@@ -1,13 +1,13 @@
 {
   "name": "srag/jiracurl",
   "description": "Connect to Jira via Curl",
-  "version": "0.11.4",
+  "version": "0.11.5",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
       "ilias_max_version": "6.999"
     },
-    "generate_plugin_readme_template": "SRAG_ILIAS_LIBRARY",
+    "generate_plugin_readme_template": "ILIAS_LIBRARY",
     "long_description_template": "src/LONG_DESCRIPTION.md"
   },
   "type": "library",
@@ -26,9 +26,6 @@
       "role": "Developer"
     }
   ],
-  "support": {
-    "issues": "https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LJIRACURL"
-  },
   "require": {
     "php": ">=7.2",
     "srag/dic": ">=0.1.0"
@@ -49,6 +46,9 @@
   "scripts": {
     "generate-plugin-readme": [
       "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme::generatePluginReadme"
+    ],
+    "update-version": [
+      "srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion::updateVersion"
     ]
   }
 }

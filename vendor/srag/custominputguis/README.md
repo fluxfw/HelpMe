@@ -63,9 +63,3 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 
 * ILIAS 5.4.0 - 6.999
 * PHP >=7.0
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_LINP
-
-There is no guarantee this can be fixed or implemented

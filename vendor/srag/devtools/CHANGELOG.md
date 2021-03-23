@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.2.7]
+- Update readme
+
 ## [1.2.6]
 - Update project url
 

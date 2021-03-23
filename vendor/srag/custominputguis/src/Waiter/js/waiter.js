@@ -90,8 +90,15 @@ il.waiter = {
      * @param {number} total
      */
     setBytes: function (loaded, total) {
-        this.setPercentage(loaded / total * 100);
-        $('#srag_waiter_progress_text').text(this.humanFileSize(loaded, true) + " / " + this.humanFileSize(total, true));
+        const percentage = loaded / total * 100;
+        this.setPercentage(percentage);
+        let loadedHuman = this.humanFileSize(loaded, true);
+        let totalHuman = this.humanFileSize(total, true);
+        if (loadedHuman === totalHuman) { /* add decimals  */
+            loadedHuman = this.humanFileSize(loaded, true, 3);
+            totalHuman = this.humanFileSize(total, true, 3);
+        }
+        $('#srag_waiter_progress_text').text(loadedHuman + " / " + totalHuman);
     },
 
     /**

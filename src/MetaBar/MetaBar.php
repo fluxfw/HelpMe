@@ -12,6 +12,7 @@ use srag\CustomInputGUIs\HelpMe\MultiSelectSearchNewInputGUI\MultiSelectSearchNe
 use srag\CustomInputGUIs\HelpMe\ScreenshotsInputGUI\ScreenshotsInputGUI;
 use srag\CustomInputGUIs\HelpMe\TabsInputGUI\TabsInputGUI;
 use srag\DIC\HelpMe\DICTrait;
+use srag\DIC\HelpMe\Version\PluginVersionParameter;
 use srag\Plugins\HelpMe\RequiredData\Field\IssueType\Form\IssueTypeSelectInputGUI;
 use srag\Plugins\HelpMe\RequiredData\Field\Project\Form\ProjectSelectInputGUI;
 use srag\Plugins\HelpMe\Support\Repository;
@@ -104,12 +105,15 @@ class MetaBar extends AbstractStaticMetaBarPluginProvider
                     $screenshot->withPlugin(self::plugin());
                     $screenshot->init();
 
-                    MultiSelectSearchNewInputGUI::init();
-                    TabsInputGUI::init();
+                    MultiSelectSearchNewInputGUI::init(self::plugin());
+                    TabsInputGUI::init(self::plugin());
 
-                    self::dic()->ui()->mainTemplate()->addCss(substr(self::plugin()->directory(), 2) . "/css/HelpMe.css");
+                    $version_parameter = PluginVersionParameter::getInstance()->withPlugin(self::plugin());
 
-                    self::dic()->ui()->mainTemplate()->addJavaScript(substr(self::plugin()->directory(), 2) . "/js/HelpMe.min.js", false);
+                    self::dic()->ui()->mainTemplate()->addCss($version_parameter->appendToUrl(self::plugin()->directory() . "/css/HelpMe.css"));
+
+                    self::dic()->ui()->mainTemplate()->addJavaScript($version_parameter->appendToUrl(self::plugin()->directory() . "/js/HelpMe.min.js", self::plugin()->directory() . "/js/HelpMe.js"),
+                        false);
 
                     return 'il.HelpMe.BUTTON_ID = ' . json_encode($id) . '
 il.HelpMe.MODAL_TEMPLATE = ' . json_encode($this->getModal()) . ';

@@ -237,9 +237,3 @@ self::notifications4plugin()->parser()->addParser(new CustomParser());
 
 * ILIAS 5.4.0 - 6.999
 * PHP >=7.2
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLNOTIFICATION
-
-There is no guarantee this can be fixed or implemented

@@ -87,17 +87,3 @@ or both mixed like:
 ```
 
 Note: For safety reasons Jira API does not supports HTML and will escape HTML
-
-## Adjustment suggestions
-
-You can report bugs or suggestions at https://plugins.studer-raimann.ch/goto.php?target=uihk_srsu_PLHM
-
-There is no guarantee this can be fixed or implemented
-
-## ILIAS Plugin SLA
-
-We love and live the philosophy of Open Source Software! Most of our developments, which we develop on behalf of customers or on our own account, are publicly available free of charge to all interested parties at https://github.com/studer-raimann.
-
-Do you use one of our plugins professionally? Secure the timely availability of this plugin for the upcoming ILIAS versions via SLA. Please inform yourself under https://studer-raimann.ch/produkte/ilias-plugins/plugin-sla.
-
-Please note that we only guarantee support and release maintenance for institutions that sign a SLA.

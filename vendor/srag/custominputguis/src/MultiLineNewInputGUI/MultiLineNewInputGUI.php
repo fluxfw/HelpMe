@@ -10,6 +10,8 @@ use ilToolbarItem;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
 use srag\CustomInputGUIs\HelpMe\Template\Template;
 use srag\DIC\HelpMe\DICTrait;
+use srag\DIC\HelpMe\Plugin\PluginInterface;
+use srag\DIC\HelpMe\Version\PluginVersionParameter;
 
 /**
  * Class MultiLineNewInputGUI
@@ -70,7 +72,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     {
         parent::__construct($title, $post_var);
 
-        self::init();
+        self::init(); // TODO: Pass $plugin
 
         if (self::version()->is6()) {
             $this->glyph_factory = self::dic()->ui()->factory()->symbol()->glyph();
@@ -81,19 +83,24 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
 
 
     /**
-     *
+     * @param PluginInterface|null $plugin
      */
-    public static function init()/*: void*/
+    public static function init(/*?*/ PluginInterface $plugin = null)/*: void*/
     {
         if (self::$init === false) {
             self::$init = true;
 
+            $version_parameter = PluginVersionParameter::getInstance();
+            if ($plugin !== null) {
+                $version_parameter = $version_parameter->withPlugin($plugin);
+            }
+
             $dir = __DIR__;
             $dir = "./" . substr($dir, strpos($dir, "/Customizing/") + 1);
 
-            self::dic()->ui()->mainTemplate()->addCss($dir . "/css/multi_line_new_input_gui.css");
+            self::dic()->ui()->mainTemplate()->addCss($version_parameter->appendToUrl($dir . "/css/multi_line_new_input_gui.css"));
 
-            self::dic()->ui()->mainTemplate()->addJavaScript($dir . "/js/multi_line_new_input_gui.min.js");
+            self::dic()->ui()->mainTemplate()->addJavaScript($version_parameter->appendToUrl($dir . "/js/multi_line_new_input_gui.min.js", $dir . "/js/multi_line_new_input_gui.js"));
         }
     }
 
