@@ -1,7 +1,7 @@
 {
   "name": "srag/datatable",
   "description": "ILIAS Data Table UI Component",
-  "version": "0.31.2",
+  "version": "0.31.4",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",

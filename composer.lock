@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "656b4ff8d28b91f676a3dcc34de95c66",
+    "content-hash": "a735edfaaf0430467879763e8ccf08f6",
     "packages": [
         {
             "name": "srag/activerecordconfig",
@@ -39,7 +39,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\": "src/"
+                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -65,16 +65,16 @@
         },
         {
             "name": "srag/custominputguis",
-            "version": "0.42.4",
+            "version": "0.42.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/CustomInputGUIs.git",
-                "reference": "84e73ffa3dfd9bd906ef8fe48e1c3199338b5d83"
+                "reference": "879ffdedfd47d799914b4c1e2ce6b5887dfee2b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/CustomInputGUIs/zipball/84e73ffa3dfd9bd906ef8fe48e1c3199338b5d83",
-                "reference": "84e73ffa3dfd9bd906ef8fe48e1c3199338b5d83",
+                "url": "https://api.github.com/repos/fluxfw/CustomInputGUIs/zipball/879ffdedfd47d799914b4c1e2ce6b5887dfee2b8",
+                "reference": "879ffdedfd47d799914b4c1e2ce6b5887dfee2b8",
                 "shasum": ""
             },
             "require": {
@@ -125,20 +125,20 @@
                 "input",
                 "table"
             ],
-            "time": "2021-03-23T12:49:24+00:00"
+            "time": "2021-03-29T07:11:05+00:00"
         },
         {
             "name": "srag/datatable",
-            "version": "0.31.2",
+            "version": "0.31.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/DataTableUI.git",
-                "reference": "eff4e18b6968ccdad11514a61f42ce95dbbdf236"
+                "reference": "352c6649f291372c1b753152291b5279f36f436f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/DataTableUI/zipball/eff4e18b6968ccdad11514a61f42ce95dbbdf236",
-                "reference": "eff4e18b6968ccdad11514a61f42ce95dbbdf236",
+                "url": "https://api.github.com/repos/fluxfw/DataTableUI/zipball/352c6649f291372c1b753152291b5279f36f436f",
+                "reference": "352c6649f291372c1b753152291b5279f36f436f",
                 "shasum": ""
             },
             "require": {
@@ -183,20 +183,20 @@
                 "table",
                 "ui"
             ],
-            "time": "2021-03-23T12:49:59+00:00"
+            "time": "2021-03-29T07:11:23+00:00"
         },
         {
             "name": "srag/devtools",
-            "version": "1.2.7",
+            "version": "1.2.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/DevTools.git",
-                "reference": "73de451e2e4f05e36381977e3f1da51ba7175e53"
+                "reference": "664fb2a6166909b6d8366b1cc643fc236b2c80f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/DevTools/zipball/73de451e2e4f05e36381977e3f1da51ba7175e53",
-                "reference": "73de451e2e4f05e36381977e3f1da51ba7175e53",
+                "url": "https://api.github.com/repos/fluxfw/DevTools/zipball/664fb2a6166909b6d8366b1cc643fc236b2c80f4",
+                "reference": "664fb2a6166909b6d8366b1cc643fc236b2c80f4",
                 "shasum": ""
             },
             "require": {
@@ -244,7 +244,7 @@
                 "plugin",
                 "tools"
             ],
-            "time": "2021-03-23T12:50:24+00:00"
+            "time": "2021-03-29T07:11:30+00:00"
         },
         {
             "name": "srag/dic",
@@ -277,7 +277,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -326,7 +326,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\GeneratePluginInfosHelper\\": "src/"
+                    "srag\\GeneratePluginInfosHelper\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -383,7 +383,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\": "src/"
+                    "srag\\JiraCurl\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -490,7 +490,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\LibraryLanguageInstaller\\": "src/"
+                    "srag\\LibraryLanguageInstaller\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -517,16 +517,16 @@
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "5.6.5",
+            "version": "5.6.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/Notifications4Plugin.git",
-                "reference": "066533a0ccf895208573bd2a2c28d103c94f10dd"
+                "reference": "90e6d8c87a9a01db74452305b1496b08a7b3f546"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/Notifications4Plugin/zipball/066533a0ccf895208573bd2a2c28d103c94f10dd",
-                "reference": "066533a0ccf895208573bd2a2c28d103c94f10dd",
+                "url": "https://api.github.com/repos/fluxfw/Notifications4Plugin/zipball/90e6d8c87a9a01db74452305b1496b08a7b3f546",
+                "reference": "90e6d8c87a9a01db74452305b1496b08a7b3f546",
                 "shasum": ""
             },
             "require": {
@@ -576,20 +576,20 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2021-03-23T12:48:27+00:00"
+            "time": "2021-03-29T07:10:55+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
-            "version": "0.7.4",
+            "version": "0.7.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/RemovePluginDataConfirm.git",
-                "reference": "0b41f6670381ff1b79518f087d73f5b3a0c97ca2"
+                "reference": "c9ef8dde2b8db1814c195cef620fb26d36703225"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/RemovePluginDataConfirm/zipball/0b41f6670381ff1b79518f087d73f5b3a0c97ca2",
-                "reference": "0b41f6670381ff1b79518f087d73f5b3a0c97ca2",
+                "url": "https://api.github.com/repos/fluxfw/RemovePluginDataConfirm/zipball/c9ef8dde2b8db1814c195cef620fb26d36703225",
+                "reference": "c9ef8dde2b8db1814c195cef620fb26d36703225",
                 "shasum": ""
             },
             "require": {
@@ -638,20 +638,20 @@
                 "plugin",
                 "uninstall"
             ],
-            "time": "2021-03-23T12:48:13+00:00"
+            "time": "2021-03-29T07:10:46+00:00"
         },
         {
             "name": "srag/requireddata",
-            "version": "0.14.7",
+            "version": "0.14.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxfw/RequiredData.git",
-                "reference": "a2ff78ef609f40663c3e27a9cf2a99c9a512e47f"
+                "reference": "97384e32d9526c0ee301d1a718bcbc647dc937b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxfw/RequiredData/zipball/a2ff78ef609f40663c3e27a9cf2a99c9a512e47f",
-                "reference": "a2ff78ef609f40663c3e27a9cf2a99c9a512e47f",
+                "url": "https://api.github.com/repos/fluxfw/RequiredData/zipball/97384e32d9526c0ee301d1a718bcbc647dc937b0",
+                "reference": "97384e32d9526c0ee301d1a718bcbc647dc937b0",
                 "shasum": ""
             },
             "require": {
@@ -705,7 +705,7 @@
                 "field",
                 "required"
             ],
-            "time": "2021-03-23T12:49:30+00:00"
+            "time": "2021-03-29T07:11:13+00:00"
         },
         {
             "name": "twig/twig",

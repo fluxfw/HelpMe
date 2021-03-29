@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.42.6]
+- Ignore not supported languages
+
+## [0.42.5]
+- Ignore not supported languages
+
 ## [0.42.4]
 - Update readme
 
