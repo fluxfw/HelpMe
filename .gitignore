@@ -1,4 +1,7 @@
 .idea
+**/lang/*
+!**/lang/ilias_de.lang
+!**/lang/ilias_en.lang
 #LuceneObjectDefinition.xml
 #node_modules
 #plugin.php
