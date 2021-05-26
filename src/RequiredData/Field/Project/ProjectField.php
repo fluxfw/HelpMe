@@ -11,8 +11,6 @@ use srag\RequiredData\HelpMe\Field\AbstractField;
  * Class ProjectField
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\Project
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ProjectField extends AbstractField
 {

@@ -10,8 +10,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * Class Repository
  *
  * @package srag\Plugins\HelpMe\Support\Recipient
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Repository
 {

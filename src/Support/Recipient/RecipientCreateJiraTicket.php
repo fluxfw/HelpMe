@@ -15,8 +15,6 @@ use srag\Plugins\HelpMe\Support\Support;
  * Class RecipientCreateJiraTicket
  *
  * @package srag\Plugins\HelpMe\Support\Recipient
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class RecipientCreateJiraTicket extends Recipient
 {

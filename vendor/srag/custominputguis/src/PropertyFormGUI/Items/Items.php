@@ -27,8 +27,6 @@ use TypeError;
  *
  * @package srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @access  namespace
  */
 final class Items

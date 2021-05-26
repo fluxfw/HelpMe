@@ -12,8 +12,6 @@ use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
  * Class ProjectFieldFormBuilder
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\Project\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ProjectFieldFormBuilder extends AbstractFieldFormBuilder
 {

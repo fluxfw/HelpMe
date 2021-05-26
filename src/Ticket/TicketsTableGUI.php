@@ -13,8 +13,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * Class TicketsTableGUI
  *
  * @package srag\Plugins\HelpMe\Ticket
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class TicketsTableGUI extends TableGUI
 {

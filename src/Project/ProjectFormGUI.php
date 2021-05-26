@@ -14,8 +14,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * Class ProjectFormGUI
  *
  * @package srag\Plugins\HelpMe\Project
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ProjectFormGUI extends PropertyFormGUI
 {

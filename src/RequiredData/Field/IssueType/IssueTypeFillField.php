@@ -13,8 +13,6 @@ use srag\RequiredData\HelpMe\Fill\AbstractFillField;
  * Class IssueTypeFillField
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\IssueType
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class IssueTypeFillField extends AbstractFillField
 {

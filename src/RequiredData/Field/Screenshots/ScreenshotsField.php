@@ -11,8 +11,6 @@ use srag\RequiredData\HelpMe\Field\AbstractField;
  * Class ScreenshotsField
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\Screenshots
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ScreenshotsField extends AbstractField
 {

@@ -15,9 +15,6 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  * Class Notification
  *
  * @package srag\Notifications4Plugin\HelpMe\Notification
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
 class Notification extends ActiveRecord implements NotificationInterface
 {

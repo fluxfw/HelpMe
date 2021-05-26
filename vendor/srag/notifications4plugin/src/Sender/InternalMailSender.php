@@ -17,9 +17,6 @@ use Throwable;
  * Sends the notification internal in ILIAS. Based on the settings, the mail is also forwarded to the users external e-mail address
  *
  * @package srag\Notifications4Plugin\HelpMe\Sender
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
 class InternalMailSender implements Sender
 {

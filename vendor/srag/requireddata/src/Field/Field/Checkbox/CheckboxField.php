@@ -8,8 +8,6 @@ use srag\RequiredData\HelpMe\Field\AbstractField;
  * Class CheckboxField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Checkbox
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class CheckboxField extends AbstractField
 {

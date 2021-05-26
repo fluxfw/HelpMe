@@ -19,8 +19,6 @@ use srag\DIC\HelpMe\Plugin\PluginInterface;
  * Class Table
  *
  * @package srag\DataTableUI\HelpMe\Implementation
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class Table implements TableInterface
 {

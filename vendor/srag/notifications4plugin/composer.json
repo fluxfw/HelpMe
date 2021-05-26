@@ -1,7 +1,7 @@
 {
   "name": "srag/notifications4plugin",
   "description": "This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the config screen of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic",
-  "version": "5.6.7",
+  "version": "5.6.8",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -15,13 +15,13 @@
     "ilias",
     "notifications"
   ],
-  "homepage": "https://github.com/fluxfw/Notifications4Plugin",
+  "homepage": "https://github.com/fluxapps/Notifications4Plugin",
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "studer + raimann ag - Team Custom 1",
-      "email": "support-custom1@studer-raimann.ch",
-      "homepage": "https://studer-raimann.ch",
+      "name": "fluxlabs",
+      "email": "support@fluxlabs.ch",
+      "homepage": "https://fluxlabs.ch",
       "role": "Developer"
     }
   ],

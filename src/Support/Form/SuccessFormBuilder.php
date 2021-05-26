@@ -8,8 +8,6 @@ use srag\Plugins\HelpMe\Support\SupportGUI;
  * Class SuccessFormBuilder
  *
  * @package srag\Plugins\HelpMe\Support\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SuccessFormBuilder extends SupportFormBuilder
 {

@@ -1,4 +1,4 @@
-If you want to use the show tickets feature, you need to install the [HelpMeCron](https://github.com/studer-raimann/HelpMeCron) plugin
+If you want to use the show tickets feature, you need to install the [HelpMeCron](https://github.com/fluxapps/HelpMeCron) plugin
 
 If yout want use the Jira recipient with oAuth authorization you can find a guide to config your Jira installation: https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/
 

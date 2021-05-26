@@ -16,8 +16,6 @@ use srag\DIC\HelpMe\Version\PluginVersionParameter;
  * Class TabsInputGUI
  *
  * @package srag\CustomInputGUIs\HelpMe\TabsInputGUI
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class TabsInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToolbarItem
 {

@@ -16,8 +16,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * Class SupportFormBuilder
  *
  * @package srag\Plugins\HelpMe\Support\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SupportFormBuilder extends AbstractFormBuilder
 {

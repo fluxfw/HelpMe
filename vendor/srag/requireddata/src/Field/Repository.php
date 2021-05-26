@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
  * Class Repository
  *
  * @package srag\RequiredData\HelpMe\Field
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Repository
 {

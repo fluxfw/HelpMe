@@ -10,8 +10,6 @@ use srag\DataTableUI\HelpMe\Component\Table;
  * Interface BrowserFormat
  *
  * @package srag\DataTableUI\HelpMe\Component\Format\Browser
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface BrowserFormat extends Format
 {

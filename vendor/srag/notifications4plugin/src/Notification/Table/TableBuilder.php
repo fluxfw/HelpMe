@@ -12,8 +12,6 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  * Class TableBuilder
  *
  * @package srag\Notifications4Plugin\HelpMe\Notification\Table
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class TableBuilder extends AbstractTableBuilder
 {

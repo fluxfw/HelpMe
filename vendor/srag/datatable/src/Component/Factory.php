@@ -14,8 +14,6 @@ use srag\DIC\HelpMe\Plugin\PluginInterface;
  * Interface Factory
  *
  * @package srag\DataTableUI\HelpMe\Component
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface Factory
 {

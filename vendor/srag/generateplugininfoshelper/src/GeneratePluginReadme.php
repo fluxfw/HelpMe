@@ -12,8 +12,6 @@ use Exception;
  *
  * @package srag\GeneratePluginInfosHelper\HelpMe
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @internal
  */
 final class GeneratePluginReadme

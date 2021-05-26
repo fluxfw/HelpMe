@@ -12,8 +12,6 @@ use srag\RequiredData\HelpMe\Fill\AbstractFillField;
  * Class DynamicValueFillField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\DynamicValue
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 abstract class DynamicValueFillField extends AbstractFillField
 {

@@ -12,8 +12,6 @@ use srag\DIC\HelpMe\DICTrait;
  * Class Data
  *
  * @package srag\DataTableUI\HelpMe\Implementation\Data
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class Data implements DataInterface
 {

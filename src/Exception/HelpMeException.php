@@ -8,8 +8,6 @@ use ilException;
  * Class HelpMeException
  *
  * @package srag\Plugins\HelpMe\Exception
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class HelpMeException extends ilException
 {

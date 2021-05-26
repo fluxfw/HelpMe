@@ -6,8 +6,6 @@ namespace srag\DataTableUI\HelpMe\Component\Data\Row;
  * Interface Factory
  *
  * @package srag\DataTableUI\HelpMe\Component\Data\Row
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface Factory
 {

@@ -10,8 +10,6 @@ use srag\DataTableUI\HelpMe\Component\Format\Format;
  * Class ImageFormatter
  *
  * @package srag\DataTableUI\HelpMe\Implementation\Column\Formatter
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ImageFormatter extends DefaultFormatter
 {

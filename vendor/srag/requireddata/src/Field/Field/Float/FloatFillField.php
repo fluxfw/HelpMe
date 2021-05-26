@@ -9,8 +9,6 @@ use srag\RequiredData\HelpMe\Field\Field\Integer\IntegerFillField;
  * Class FloatFillField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Float
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class FloatFillField extends IntegerFillField
 {

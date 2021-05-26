@@ -12,8 +12,6 @@ use srag\DIC\HelpMe\DICTrait;
  *
  * @package    srag\ActiveRecordConfig\HelpMe
  *
- * @author     studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @deprecated Please use ilPluginConfigGUI from ILIAS core instead
  */
 abstract class ActiveRecordConfigGUI extends ilPluginConfigGUI

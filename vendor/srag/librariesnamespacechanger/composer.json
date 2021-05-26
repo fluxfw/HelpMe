@@ -1,7 +1,7 @@
 {
   "name": "srag/librariesnamespacechanger",
   "description": "Change namespace of libraries to plugin namespace",
-  "version": "0.15.2",
+  "version": "0.15.3",
   "extra": {
     "generate_plugin_readme_template": "LIBRARY",
     "long_description_template": "src/LONG_DESCRIPTION.md"
@@ -12,13 +12,13 @@
     "libraries",
     "namespace"
   ],
-  "homepage": "https://github.com/fluxfw/LibrariesNamespaceChanger",
+  "homepage": "https://github.com/fluxapps/LibrariesNamespaceChanger",
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "studer + raimann ag - Team Custom 1",
-      "email": "support-custom1@studer-raimann.ch",
-      "homepage": "https://studer-raimann.ch",
+      "name": "fluxlabs",
+      "email": "support@fluxlabs.ch",
+      "homepage": "https://fluxlabs.ch",
       "role": "Developer"
     }
   ],

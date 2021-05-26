@@ -8,8 +8,6 @@ use srag\RequiredData\HelpMe\Field\Field\Integer\IntegerField;
  * Class FloatField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Float
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class FloatField extends IntegerField
 {

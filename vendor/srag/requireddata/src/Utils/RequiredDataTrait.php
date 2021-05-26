@@ -8,8 +8,6 @@ use srag\RequiredData\HelpMe\Repository as RequiredDataRepository;
  * Trait RequiredDataTrait
  *
  * @package srag\RequiredData\HelpMe\Utils
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 trait RequiredDataTrait
 {

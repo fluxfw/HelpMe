@@ -12,8 +12,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * Class Ticket
  *
  * @package srag\Plugins\HelpMe\Ticket
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class Ticket extends ActiveRecord
 {

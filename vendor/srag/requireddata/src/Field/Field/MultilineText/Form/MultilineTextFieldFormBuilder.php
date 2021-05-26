@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Field\FieldCtrl;
  * Class MultilineTextFieldFormBuilder
  *
  * @package srag\RequiredData\HelpMe\Field\Field\MultilineText\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class MultilineTextFieldFormBuilder extends TextFieldFormBuilder
 {

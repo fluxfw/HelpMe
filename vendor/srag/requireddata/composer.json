@@ -1,7 +1,7 @@
 {
   "name": "srag/requireddata",
   "description": "Config and fill required data",
-  "version": "0.14.9",
+  "version": "0.14.10",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -17,13 +17,13 @@
     "ilias",
     "required"
   ],
-  "homepage": "https://github.com/fluxfw/RequiredData",
+  "homepage": "https://github.com/fluxapps/RequiredData",
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "studer + raimann ag - Team Custom 1",
-      "email": "support-custom1@studer-raimann.ch",
-      "homepage": "https://studer-raimann.ch",
+      "name": "fluxlabs",
+      "email": "support@fluxlabs.ch",
+      "homepage": "https://fluxlabs.ch",
       "role": "Developer"
     }
   ],

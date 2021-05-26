@@ -12,8 +12,6 @@ use stdClass;
  * Class StaticDataFetcher
  *
  * @package srag\DataTableUI\HelpMe\Implementation\Data\Fetcher
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class StaticDataFetcher extends AbstractDataFetcher
 {

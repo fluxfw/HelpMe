@@ -1,7 +1,7 @@
 {
   "name": "srag/librarylanguageinstaller",
   "description": "Install additional and external lang files for a plugin",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "5.4.0",
@@ -17,13 +17,13 @@
     "language",
     "library"
   ],
-  "homepage": "https://github.com/fluxfw/LibraryLanguageInstaller",
+  "homepage": "https://github.com/fluxapps/LibraryLanguageInstaller",
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "studer + raimann ag - Team Custom 1",
-      "email": "support-custom1@studer-raimann.ch",
-      "homepage": "https://studer-raimann.ch",
+      "name": "fluxlabs",
+      "email": "support@fluxlabs.ch",
+      "homepage": "https://fluxlabs.ch",
       "role": "Developer"
     }
   ],

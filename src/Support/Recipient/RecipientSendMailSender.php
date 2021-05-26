@@ -17,8 +17,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * @since   ILIAS 5.3
  *
  * @package srag\Plugins\HelpMe\Support\Recipient
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class RecipientSendMailSender extends ilMailMimeSenderUser
 {

@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
  * Class DynamicValueField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\DynamicValue
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 abstract class DynamicValueField extends AbstractField
 {

@@ -15,8 +15,6 @@ use Throwable;
  * Class JiraCurl
  *
  * @package srag\JiraCurl\HelpMe
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class JiraCurl
 {

@@ -16,8 +16,6 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  * Sends the notification to an external E-Mail with calendar dates
  *
  * @package srag\Notifications4Plugin\HelpMe\Sender
- *
- * @author  Martin Studer <ms@studer-raimann.ch>
  */
 class vcalendarSender implements Sender
 {

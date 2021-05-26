@@ -12,8 +12,6 @@ use stdClass;
  * Class SortField
  *
  * @package srag\DataTableUI\HelpMe\Implementation\Settings\Sort
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SortField implements SortFieldInterface
 {

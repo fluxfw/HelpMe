@@ -9,8 +9,6 @@ use srag\Notifications4Plugin\HelpMe\RepositoryInterface as Notifications4Plugin
  * Trait Notifications4PluginTrait
  *
  * @package srag\Notifications4Plugin\HelpMe\Utils
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 trait Notifications4PluginTrait
 {

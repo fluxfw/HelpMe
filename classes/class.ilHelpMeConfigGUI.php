@@ -14,8 +14,6 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
 /**
  * Class ilHelpMeConfigGUI
  *
- * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @ilCtrl_isCalledBy srag\Notifications4Plugin\HelpMe\Notification\NotificationsCtrl: ilHelpMeConfigGUI
  * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\FieldsCtrl: ilHelpMeConfigGUI
  * @ilCtrl_isCalledBy srag\DevTools\HelpMe\DevToolsCtrl: ilHelpMeConfigGUI

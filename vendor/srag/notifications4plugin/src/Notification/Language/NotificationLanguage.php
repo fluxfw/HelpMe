@@ -13,9 +13,6 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  *
  * @package srag\Notifications4Plugin\HelpMe\Notification\Language
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  Stefan Wanzenried <sw@studer-raimann.ch>
- *
  * @deprecated
  */
 class NotificationLanguage extends ActiveRecord

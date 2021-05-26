@@ -19,8 +19,6 @@ use srag\DIC\HelpMe\Version\VersionInterface;
  * Class DICStatic
  *
  * @package srag\DIC\HelpMe
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class DICStatic implements DICStaticInterface
 {

@@ -8,8 +8,6 @@ use srag\RequiredData\HelpMe\Field\AbstractField;
  * Class DateField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Date
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class DateField extends AbstractField
 {

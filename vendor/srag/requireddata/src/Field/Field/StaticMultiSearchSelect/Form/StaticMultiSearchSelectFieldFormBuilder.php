@@ -15,8 +15,6 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
  * Class StaticMultiSearchSelectFieldFormBuilder
  *
  * @package srag\RequiredData\HelpMe\Field\Field\StaticMultiSearchSelect\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 abstract class StaticMultiSearchSelectFieldFormBuilder extends MultiSearchSelectFieldFormBuilder
 {

@@ -24,8 +24,6 @@ function advanced() : string
 
 /**
  * Class AdvancedExampleDataFetcher
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class AdvancedExampleDataFetcher extends AbstractDataFetcher
 {
@@ -118,8 +116,6 @@ class AdvancedExampleDataFetcher extends AbstractDataFetcher
 
 /**
  * Class AdvancedExampleFormatter
- *
- * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class AdvancedExampleFormatter extends DefaultFormatter
 {
@@ -148,8 +144,6 @@ class AdvancedExampleFormatter extends DefaultFormatter
 
 /**
  * Class AdvancedExampleTableBuilder
- *
- * @author studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class AdvancedExampleTableBuilder extends AbstractTableBuilder
 {

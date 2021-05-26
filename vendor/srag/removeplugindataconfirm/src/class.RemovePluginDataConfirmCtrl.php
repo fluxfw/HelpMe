@@ -17,8 +17,6 @@ use srag\DIC\HelpMe\DICTrait;
  *
  * @package           srag\RemovePluginDataConfirm\HelpMe
  *
- * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @ilCtrl_isCalledBy srag\RemovePluginDataConfirm\HelpMe\RemovePluginDataConfirmCtrl: ilUIPluginRouterGUI
  */
 class RemovePluginDataConfirmCtrl

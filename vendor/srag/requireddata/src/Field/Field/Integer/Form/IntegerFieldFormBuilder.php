@@ -11,8 +11,6 @@ use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
  * Class IntegerFieldFormBuilder
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Integer\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
 {

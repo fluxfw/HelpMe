@@ -9,8 +9,6 @@ use srag\DataTableUI\HelpMe\Component\Table;
  * Class PdfFormat
  *
  * @package srag\DataTableUI\HelpMe\Implementation\Format
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class PdfFormat extends HtmlFormat
 {
