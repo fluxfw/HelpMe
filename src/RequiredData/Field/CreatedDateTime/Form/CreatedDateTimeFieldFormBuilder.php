@@ -12,8 +12,6 @@ use srag\RequiredData\HelpMe\Field\FieldCtrl;
  * Class CreatedDateTimeFieldFormBuilder
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\CreatedDateTime\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class CreatedDateTimeFieldFormBuilder extends DynamicValueFieldFormBuilder
 {

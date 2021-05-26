@@ -12,8 +12,6 @@ use srag\DIC\HelpMe\Exception\DICException;
  *
  * @package srag\DIC\HelpMe\Database
  *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @internal
  */
 final class PdoContextHelper extends ilDBPdo

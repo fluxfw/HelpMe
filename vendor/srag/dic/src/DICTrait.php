@@ -12,8 +12,6 @@ use srag\DIC\HelpMe\Version\VersionInterface;
  * Trait DICTrait
  *
  * @package srag\DIC\HelpMe
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 trait DICTrait
 {

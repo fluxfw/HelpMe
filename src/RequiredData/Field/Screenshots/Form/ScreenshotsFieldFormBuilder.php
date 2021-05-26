@@ -12,8 +12,6 @@ use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
  * Class ScreenshotsFieldFormBuilder
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\Screenshots\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class ScreenshotsFieldFormBuilder extends AbstractFieldFormBuilder
 {

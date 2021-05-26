@@ -8,8 +8,6 @@ use ilDateTime;
  * Interface NotificationInterface
  *
  * @package srag\Notifications4Plugin\HelpMe\Notification
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface NotificationInterface
 {

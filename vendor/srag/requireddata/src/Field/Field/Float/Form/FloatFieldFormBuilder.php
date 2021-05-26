@@ -11,8 +11,6 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
  * Class FloatFieldFormBuilder
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Float\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class FloatFieldFormBuilder extends IntegerFieldFormBuilder
 {

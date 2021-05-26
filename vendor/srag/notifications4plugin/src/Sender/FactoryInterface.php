@@ -8,8 +8,6 @@ use ilObjUser;
  * Interface FactoryInterface
  *
  * @package srag\Notifications4Plugin\HelpMe\Sender
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface FactoryInterface
 {

@@ -9,8 +9,6 @@ use srag\RequiredData\HelpMe\Fill\AbstractFillField;
  * Class GroupFillField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Group
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class GroupFillField extends AbstractFillField
 {

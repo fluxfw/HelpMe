@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Field\Field\DynamicValue\DynamicValueFillField;
  * Class PageReferenceFillField
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\PageReference
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class PageReferenceFillField extends DynamicValueFillField
 {

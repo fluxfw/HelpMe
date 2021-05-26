@@ -19,8 +19,6 @@ use Throwable;
  * Class UIInputComponentWrapperInputGUI
  *
  * @package srag\CustomInputGUIs\HelpMe\UIInputComponentWrapperInputGUI
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class UIInputComponentWrapperInputGUI extends ilFormPropertyGUI implements ilTableFilterItem, ilToolbarItem
 {

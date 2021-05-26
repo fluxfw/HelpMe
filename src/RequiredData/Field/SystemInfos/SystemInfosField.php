@@ -11,8 +11,6 @@ use srag\RequiredData\HelpMe\Field\Field\DynamicValue\DynamicValueField;
  * Class SystemInfosField
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\SystemInfos
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SystemInfosField extends DynamicValueField
 {

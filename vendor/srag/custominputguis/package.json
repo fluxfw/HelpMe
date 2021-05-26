@@ -9,7 +9,7 @@
   ],
   "license": "GPL-3.0-only",
   "contributors": [
-    "srag <support-custom1@studer-raimann.ch> (https://studer-raimann.ch)"
+    "fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
   ],
   "dependencies": {
     "babel-polyfill": "6.26.0",

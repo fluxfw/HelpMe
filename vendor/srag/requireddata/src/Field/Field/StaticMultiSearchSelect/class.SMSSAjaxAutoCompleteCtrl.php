@@ -13,8 +13,6 @@ use srag\RequiredData\HelpMe\Utils\RequiredDataTrait;
  *
  * @package           srag\RequiredData\HelpMe\Field\Field\StaticMultiSearchSelect
  *
- * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl: srag\RequiredData\HelpMe\Field\FieldCtrl
  * @ilCtrl_isCalledBy srag\RequiredData\HelpMe\Field\Field\StaticMultiSearchSelect\SMSSAjaxAutoCompleteCtrl: srag\RequiredData\HelpMe\Field\Field\Group\GroupCtrl
  */

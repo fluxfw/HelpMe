@@ -8,8 +8,6 @@ use ilException;
  * Class JiraCurlException
  *
  * @package srag\JiraCurl\HelpMe\Exception
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class JiraCurlException extends ilException
 {

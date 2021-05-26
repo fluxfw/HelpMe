@@ -4,8 +4,6 @@
 
 Add some dev tools to ILIAS plugin config, if core dev mode is enabled, like reload ctrl structure
 
-This is an OpenSource project by studer + raimann ag, CH-Burgdorf (https://studer-raimann.ch)
-
 This project is licensed under the GPL-3.0-only license
 
 ## Usage

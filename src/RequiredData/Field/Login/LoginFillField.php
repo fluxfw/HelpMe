@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Field\Field\DynamicValue\DynamicValueFillField;
  * Class LoginFillField
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\Login
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class LoginFillField extends DynamicValueFillField
 {

@@ -16,8 +16,6 @@ use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
  * Class SelectFieldFormBuilder
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Select\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SelectFieldFormBuilder extends AbstractFieldFormBuilder
 {

@@ -9,8 +9,6 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  * Class AbstractParser
  *
  * @package srag\Notifications4Plugin\HelpMe\Parser
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 abstract class AbstractParser implements Parser
 {

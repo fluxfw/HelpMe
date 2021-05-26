@@ -8,8 +8,6 @@ use srag\RequiredData\HelpMe\Field\Field\MultiSearchSelect\MultiSearchSelectFiel
  * Class SearchSelectField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\SearchSelect
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class SearchSelectField extends MultiSearchSelectField
 {

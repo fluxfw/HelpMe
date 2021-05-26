@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Field\Field\Select\SelectFillField;
  * Class RadioFillField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Radio
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class RadioFillField extends SelectFillField
 {

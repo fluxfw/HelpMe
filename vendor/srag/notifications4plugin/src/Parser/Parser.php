@@ -9,9 +9,6 @@ use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
  * Interface Parser
  *
  * @package srag\Notifications4Plugin\HelpMe\Parser
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
 interface Parser
 {

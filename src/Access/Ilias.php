@@ -10,8 +10,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  * Class Ilias
  *
  * @package srag\Plugins\HelpMe\Access
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Ilias
 {

@@ -8,8 +8,6 @@ use ilException;
  * Class Notifications4PluginException
  *
  * @package srag\Notifications4Plugin\HelpMe\Exception
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class Notifications4PluginException extends ilException
 {

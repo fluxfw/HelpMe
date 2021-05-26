@@ -9,8 +9,6 @@ use srag\Notifications4Plugin\HelpMe\Utils\Notifications4PluginTrait;
  * Class Factory
  *
  * @package srag\Notifications4Plugin\HelpMe\Sender
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 final class Factory implements FactoryInterface
 {

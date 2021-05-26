@@ -4,8 +4,6 @@
  * GUI-Overlay
  *
  * @type {Object}
- *
- * @author Fabian Schmid <fs@studer-raimann.ch>
  */
 il.waiter = {
     /**

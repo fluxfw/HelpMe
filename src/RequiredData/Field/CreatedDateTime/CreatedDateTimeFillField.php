@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Field\Field\DynamicValue\DynamicValueFillField;
  * Class CreatedDateTimeFillField
  *
  * @package srag\Plugins\HelpMe\RequiredData\Field\CreatedDateTime
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class CreatedDateTimeFillField extends DynamicValueFillField
 {

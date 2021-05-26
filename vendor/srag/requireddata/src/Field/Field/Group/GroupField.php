@@ -10,8 +10,6 @@ use srag\RequiredData\HelpMe\Field\FieldsCtrl;
  * Class GroupField
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Group
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class GroupField extends AbstractField
 {

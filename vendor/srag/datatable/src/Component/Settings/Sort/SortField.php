@@ -9,8 +9,6 @@ use stdClass;
  * Interface SortField
  *
  * @package srag\DataTableUI\HelpMe\Component\Settings\Sort
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface SortField extends JsonSerializable
 {

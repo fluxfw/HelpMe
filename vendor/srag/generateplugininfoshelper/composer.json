@@ -1,7 +1,7 @@
 {
   "name": "srag/generateplugininfoshelper",
   "description": "Automatic generate plugin infos such README.md, plugin.php, plugin.xml, ... from composer.json",
-  "version": "2.10.2",
+  "version": "2.10.3",
   "extra": {
     "generate_plugin_readme_template": "LIBRARY",
     "long_description_template": "src/LONG_DESCRIPTION.md"
@@ -13,13 +13,13 @@
     "infos",
     "plugin"
   ],
-  "homepage": "https://github.com/fluxfw/GeneratePluginInfosHelper",
+  "homepage": "https://github.com/fluxapps/GeneratePluginInfosHelper",
   "license": "GPL-3.0-only",
   "authors": [
     {
-      "name": "studer + raimann ag - Team Custom 1",
-      "email": "support-custom1@studer-raimann.ch",
-      "homepage": "https://studer-raimann.ch",
+      "name": "fluxlabs",
+      "email": "support@fluxlabs.ch",
+      "homepage": "https://fluxlabs.ch",
       "role": "Developer"
     }
   ],

@@ -11,8 +11,6 @@ use srag\DIC\HelpMe\Exception\DICException;
  * Interface PluginInterface
  *
  * @package srag\DIC\HelpMe\Plugin
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 interface PluginInterface
 {

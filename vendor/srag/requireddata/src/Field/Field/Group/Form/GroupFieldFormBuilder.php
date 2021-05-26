@@ -11,8 +11,6 @@ use srag\RequiredData\HelpMe\Field\Form\AbstractFieldFormBuilder;
  * Class GroupFieldFormBuilder
  *
  * @package srag\RequiredData\HelpMe\Field\Field\Group\Form
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class GroupFieldFormBuilder extends AbstractFieldFormBuilder
 {

@@ -16,8 +16,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * @package           srag\Plugins\HelpMe\RequiredData\Field\Project\Form
  *
- * @author            studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- *
  * @ilCtrl_isCalledBy srag\Plugins\HelpMe\RequiredData\Field\Project\Form\ProjectSelectInputGUI: srag\Plugins\HelpMe\Support\SupportGUI
  */
 class ProjectSelectInputGUI extends ilSelectInputGUI

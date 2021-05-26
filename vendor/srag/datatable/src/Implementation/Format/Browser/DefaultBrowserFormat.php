@@ -26,8 +26,6 @@ use Throwable;
  * Class DefaultBrowserFormat
  *
  * @package srag\DataTableUI\HelpMe\Implementation\Format\Browser
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
 {

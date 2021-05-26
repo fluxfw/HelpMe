@@ -11,9 +11,6 @@ use Twig_Loader_String;
  * Class twigParser
  *
  * @package srag\Notifications4Plugin\HelpMe\Parser
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
- * @author  Stefan Wanzenried <sw@studer-raimann.ch>
  */
 class twigParser extends AbstractParser
 {

@@ -14,8 +14,6 @@ use srag\DIC\HelpMe\DICTrait;
  * Class AbstractSettingsStorage
  *
  * @package srag\DataTableUI\HelpMe\Implementation\Settings\Storage
- *
- * @author  studer + raimann ag - Team Custom 1 <support-custom1@studer-raimann.ch>
  */
 abstract class AbstractSettingsStorage implements SettingsStorage
 {
