@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a3ec85508a980b1aa6aff658104357eb",
+    "content-hash": "49bbb63f9cea929548cb81f39681906f",
     "packages": [
         {
             "name": "srag/activerecordconfig",
-            "version": "0.20.5",
+            "version": "0.20.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/ActiveRecordConfig.git",
-                "reference": "a505e856ac7cbbd2f64252f8b82c99193ebf3dd1"
+                "reference": "6c482f01d0bccf1d918bb4fdee9fbded2f9326e5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/ActiveRecordConfig/zipball/a505e856ac7cbbd2f64252f8b82c99193ebf3dd1",
-                "reference": "a505e856ac7cbbd2f64252f8b82c99193ebf3dd1",
+                "url": "https://api.github.com/repos/fluxapps/ActiveRecordConfig/zipball/6c482f01d0bccf1d918bb4fdee9fbded2f9326e5",
+                "reference": "6c482f01d0bccf1d918bb4fdee9fbded2f9326e5",
                 "shasum": ""
             },
             "require": {
@@ -61,20 +61,20 @@
                 "activerecord",
                 "config"
             ],
-            "time": "2021-05-26T08:59:31+00:00"
+            "time": "2021-06-04T08:20:11+00:00"
         },
         {
             "name": "srag/custominputguis",
-            "version": "0.42.7",
+            "version": "0.42.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/CustomInputGUIs.git",
-                "reference": "aeffdba9ba10ca9e924f7ec15d699b3b9a0d3e66"
+                "reference": "31e9f653647690a51bee8993c5ba8460cb46ebaa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/CustomInputGUIs/zipball/aeffdba9ba10ca9e924f7ec15d699b3b9a0d3e66",
-                "reference": "aeffdba9ba10ca9e924f7ec15d699b3b9a0d3e66",
+                "url": "https://api.github.com/repos/fluxapps/CustomInputGUIs/zipball/31e9f653647690a51bee8993c5ba8460cb46ebaa",
+                "reference": "31e9f653647690a51bee8993c5ba8460cb46ebaa",
                 "shasum": ""
             },
             "require": {
@@ -125,20 +125,20 @@
                 "input",
                 "table"
             ],
-            "time": "2021-05-26T09:02:42+00:00"
+            "time": "2021-06-04T08:20:40+00:00"
         },
         {
             "name": "srag/datatable",
-            "version": "0.31.5",
+            "version": "0.31.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/DataTableUI.git",
-                "reference": "1ace9b009a0600e9d41ec5a85f48abf662077e9c"
+                "reference": "2b353424566af67a737b040adefd6276108fecee"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/DataTableUI/zipball/1ace9b009a0600e9d41ec5a85f48abf662077e9c",
-                "reference": "1ace9b009a0600e9d41ec5a85f48abf662077e9c",
+                "url": "https://api.github.com/repos/fluxapps/DataTableUI/zipball/2b353424566af67a737b040adefd6276108fecee",
+                "reference": "2b353424566af67a737b040adefd6276108fecee",
                 "shasum": ""
             },
             "require": {
@@ -183,20 +183,20 @@
                 "table",
                 "ui"
             ],
-            "time": "2021-05-26T09:01:49+00:00"
+            "time": "2021-06-04T08:21:00+00:00"
         },
         {
             "name": "srag/devtools",
-            "version": "1.2.10",
+            "version": "1.2.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/DevTools.git",
-                "reference": "cb3debea983b9f978a8d628d63c151c7925a7995"
+                "reference": "b2b05099ca3c5d7aa0d9c7767bfd9d0368225085"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/DevTools/zipball/cb3debea983b9f978a8d628d63c151c7925a7995",
-                "reference": "cb3debea983b9f978a8d628d63c151c7925a7995",
+                "url": "https://api.github.com/repos/fluxapps/DevTools/zipball/b2b05099ca3c5d7aa0d9c7767bfd9d0368225085",
+                "reference": "b2b05099ca3c5d7aa0d9c7767bfd9d0368225085",
                 "shasum": ""
             },
             "require": {
@@ -244,20 +244,20 @@
                 "plugin",
                 "tools"
             ],
-            "time": "2021-05-26T09:04:47+00:00"
+            "time": "2021-06-04T08:21:18+00:00"
         },
         {
             "name": "srag/dic",
-            "version": "0.32.3",
+            "version": "0.32.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/DIC.git",
-                "reference": "3bc4b45dc538e65bccd21d808e7dc44f4f860fbc"
+                "reference": "12ad676887c10a76128415471f393a1051fb8fbb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/DIC/zipball/3bc4b45dc538e65bccd21d808e7dc44f4f860fbc",
-                "reference": "3bc4b45dc538e65bccd21d808e7dc44f4f860fbc",
+                "url": "https://api.github.com/repos/fluxapps/DIC/zipball/12ad676887c10a76128415471f393a1051fb8fbb",
+                "reference": "12ad676887c10a76128415471f393a1051fb8fbb",
                 "shasum": ""
             },
             "require": {
@@ -300,20 +300,20 @@
                 "globals",
                 "trait"
             ],
-            "time": "2021-05-26T09:04:38+00:00"
+            "time": "2021-06-04T08:21:42+00:00"
         },
         {
             "name": "srag/generateplugininfoshelper",
-            "version": "2.10.3",
+            "version": "2.10.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/GeneratePluginInfosHelper.git",
-                "reference": "ada645adb5b9afd7728b08273a47c4048fecb711"
+                "reference": "fe5871f8f3881aea30ad290819a724824e304792"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/GeneratePluginInfosHelper/zipball/ada645adb5b9afd7728b08273a47c4048fecb711",
-                "reference": "ada645adb5b9afd7728b08273a47c4048fecb711",
+                "url": "https://api.github.com/repos/fluxapps/GeneratePluginInfosHelper/zipball/fe5871f8f3881aea30ad290819a724824e304792",
+                "reference": "fe5871f8f3881aea30ad290819a724824e304792",
                 "shasum": ""
             },
             "require": {
@@ -349,20 +349,20 @@
                 "helper",
                 "plugin"
             ],
-            "time": "2021-05-26T09:04:16+00:00"
+            "time": "2021-06-04T08:21:59+00:00"
         },
         {
             "name": "srag/jiracurl",
-            "version": "0.11.6",
+            "version": "0.11.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/JiraCurl.git",
-                "reference": "02ee5d748fb75e83f53d07bc2c7c84239f7a5d63"
+                "reference": "9f4fa12441151ec175dc10644162f47f36b929c1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/JiraCurl/zipball/02ee5d748fb75e83f53d07bc2c7c84239f7a5d63",
-                "reference": "02ee5d748fb75e83f53d07bc2c7c84239f7a5d63",
+                "url": "https://api.github.com/repos/fluxapps/JiraCurl/zipball/9f4fa12441151ec175dc10644162f47f36b929c1",
+                "reference": "9f4fa12441151ec175dc10644162f47f36b929c1",
                 "shasum": ""
             },
             "require": {
@@ -405,20 +405,20 @@
                 "curl",
                 "jira"
             ],
-            "time": "2021-05-26T09:03:56+00:00"
+            "time": "2021-06-04T08:22:29+00:00"
         },
         {
             "name": "srag/librariesnamespacechanger",
-            "version": "0.15.3",
+            "version": "0.15.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/LibrariesNamespaceChanger.git",
-                "reference": "2512c9f78690e99605b7a6a04f769dffff5679c9"
+                "reference": "c9dba49e7f13cc2bd4d3b0ff3d5016c756212a97"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/LibrariesNamespaceChanger/zipball/2512c9f78690e99605b7a6a04f769dffff5679c9",
-                "reference": "2512c9f78690e99605b7a6a04f769dffff5679c9",
+                "url": "https://api.github.com/repos/fluxapps/LibrariesNamespaceChanger/zipball/c9dba49e7f13cc2bd4d3b0ff3d5016c756212a97",
+                "reference": "c9dba49e7f13cc2bd4d3b0ff3d5016c756212a97",
                 "shasum": ""
             },
             "require": {
@@ -456,20 +456,20 @@
                 "libraries",
                 "namespace"
             ],
-            "time": "2021-05-26T09:03:36+00:00"
+            "time": "2021-06-04T08:23:01+00:00"
         },
         {
             "name": "srag/librarylanguageinstaller",
-            "version": "1.1.5",
+            "version": "1.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/LibraryLanguageInstaller.git",
-                "reference": "8a43c949412bbea33c80db5671d5d08bbc66eb3c"
+                "reference": "d1836820739a6eb9610b4a54460ec3484aff6ea8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/LibraryLanguageInstaller/zipball/8a43c949412bbea33c80db5671d5d08bbc66eb3c",
-                "reference": "8a43c949412bbea33c80db5671d5d08bbc66eb3c",
+                "url": "https://api.github.com/repos/fluxapps/LibraryLanguageInstaller/zipball/d1836820739a6eb9610b4a54460ec3484aff6ea8",
+                "reference": "d1836820739a6eb9610b4a54460ec3484aff6ea8",
                 "shasum": ""
             },
             "require": {
@@ -513,20 +513,20 @@
                 "language",
                 "library"
             ],
-            "time": "2021-05-26T09:03:25+00:00"
+            "time": "2021-06-04T08:23:14+00:00"
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "5.6.8",
+            "version": "5.6.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/Notifications4Plugin.git",
-                "reference": "f4ea31827f5a9ad4f1c99bee322c71182c20b992"
+                "reference": "3fb48b2c937e5032d06b550aa2227fc8e0698f24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/Notifications4Plugin/zipball/f4ea31827f5a9ad4f1c99bee322c71182c20b992",
-                "reference": "f4ea31827f5a9ad4f1c99bee322c71182c20b992",
+                "url": "https://api.github.com/repos/fluxapps/Notifications4Plugin/zipball/3fb48b2c937e5032d06b550aa2227fc8e0698f24",
+                "reference": "3fb48b2c937e5032d06b550aa2227fc8e0698f24",
                 "shasum": ""
             },
             "require": {
@@ -576,20 +576,20 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2021-05-26T09:03:15+00:00"
+            "time": "2021-06-04T08:23:28+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
-            "version": "0.7.7",
+            "version": "0.7.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/RemovePluginDataConfirm.git",
-                "reference": "d7a4b83f024610ce3ec39aed21d302e5b53bfacd"
+                "reference": "8aff5878054c8b79843701929aaab70a4fe6b9d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/RemovePluginDataConfirm/zipball/d7a4b83f024610ce3ec39aed21d302e5b53bfacd",
-                "reference": "d7a4b83f024610ce3ec39aed21d302e5b53bfacd",
+                "url": "https://api.github.com/repos/fluxapps/RemovePluginDataConfirm/zipball/8aff5878054c8b79843701929aaab70a4fe6b9d5",
+                "reference": "8aff5878054c8b79843701929aaab70a4fe6b9d5",
                 "shasum": ""
             },
             "require": {
@@ -638,20 +638,20 @@
                 "plugin",
                 "uninstall"
             ],
-            "time": "2021-05-26T09:03:02+00:00"
+            "time": "2021-06-04T08:23:38+00:00"
         },
         {
             "name": "srag/requireddata",
-            "version": "0.14.10",
+            "version": "0.14.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/RequiredData.git",
-                "reference": "8fb4909a266e2fdc8cb7b94a1c2a347973831a64"
+                "reference": "053b556057783ed0f0ee00ff6ae07323cd46e12b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/RequiredData/zipball/8fb4909a266e2fdc8cb7b94a1c2a347973831a64",
-                "reference": "8fb4909a266e2fdc8cb7b94a1c2a347973831a64",
+                "url": "https://api.github.com/repos/fluxapps/RequiredData/zipball/053b556057783ed0f0ee00ff6ae07323cd46e12b",
+                "reference": "053b556057783ed0f0ee00ff6ae07323cd46e12b",
                 "shasum": ""
             },
             "require": {
@@ -705,7 +705,7 @@
                 "field",
                 "required"
             ],
-            "time": "2021-05-26T09:02:52+00:00"
+            "time": "2021-06-04T08:23:56+00:00"
         },
         {
             "name": "twig/twig",
