@@ -8,8 +8,7 @@
       "name": "HelpMe",
       "ilias_min_version": "6.0",
       "ilias_max_version": "6.999",
-      "slot": "Services/UIComponent/UserInterfaceHook",
-      "supports_cli_setup": true
+      "slot": "Services/UIComponent/UserInterfaceHook"
     },
     "generate_plugin_readme_template": "ILIAS_PLUGIN",
     "long_description_template": "src/LONG_DESCRIPTION.md"
