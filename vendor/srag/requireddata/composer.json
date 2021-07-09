@@ -1,10 +1,10 @@
 {
   "name": "srag/requireddata",
   "description": "Config and fill required data",
-  "version": "0.14.11",
+  "version": "0.15.0",
   "extra": {
     "ilias_plugin": {
-      "ilias_min_version": "5.4.0",
+      "ilias_min_version": "6.0",
       "ilias_max_version": "6.999"
     },
     "generate_plugin_readme_template": "ILIAS_LIBRARY",

@@ -6,7 +6,6 @@ use CURLFile;
 use ilCurlConnection;
 use ilCurlConnectionException;
 use ILIAS\FileUpload\DTO\UploadResult;
-use ilProxySettings;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use Throwable;
@@ -726,21 +725,6 @@ class JiraCurl
         $curlConnection = new ilCurlConnection($url);
 
         $curlConnection->init();
-
-        if (!self::version()->is6()) {
-            $proxy = ilProxySettings::_getInstance();
-            if ($proxy->isActive()) {
-                $curlConnection->setOpt(CURLOPT_HTTPPROXYTUNNEL, true);
-
-                if (!empty($proxy->getHost())) {
-                    $curlConnection->setOpt(CURLOPT_PROXY, $proxy->getHost());
-                }
-
-                if (!empty($proxy->getPort())) {
-                    $curlConnection->setOpt(CURLOPT_PROXYPORT, $proxy->getPort());
-                }
-            }
-        }
 
         switch ($this->jira_authorization) {
             case self::AUTHORIZATION_USERNAMEPASSWORD:

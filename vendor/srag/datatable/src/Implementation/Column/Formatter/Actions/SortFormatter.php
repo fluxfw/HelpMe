@@ -23,14 +23,8 @@ class SortFormatter extends DefaultFormatter implements ActionsFormatter
      */
     public function formatRowCell(Format $format, $actions, Column $column, RowData $row, string $table_id) : string
     {
-        if (self::version()->is6()) {
-            $glyph_factory = self::dic()->ui()->factory()->symbol()->glyph();
-        } else {
-            $glyph_factory = self::dic()->ui()->factory()->glyph();
-        }
-
         return self::output()->getHTML([
-            $glyph_factory->sortAscending()->withAdditionalOnLoadCode(function (string $id) use ($format, $row, $column, $table_id) : string {
+            self::dic()->ui()->factory()->symbol()->glyph()->sortAscending()->withAdditionalOnLoadCode(function (string $id) use ($format, $row, $column, $table_id) : string {
                 Waiter::init(Waiter::TYPE_WAITER/*, null, $component->getPlugin()*/); // TODO: Pass $component
 
                 return '
@@ -47,7 +41,7 @@ class SortFormatter extends DefaultFormatter implements ActionsFormatter
                 });
             });';
             }),
-            $glyph_factory->sortDescending()->withAdditionalOnLoadCode(function (string $id) use ($format, $row, $column, $table_id) : string {
+            self::dic()->ui()->factory()->symbol()->glyph()->sortDescending()->withAdditionalOnLoadCode(function (string $id) use ($format, $row, $column, $table_id) : string {
                 return '
             $("#' . $id . '").click(function () {
                 il.waiter.show();

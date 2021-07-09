@@ -10,7 +10,6 @@ namespace srag\DIC\HelpMe\Version;
 interface VersionInterface
 {
 
-    const ILIAS_VERSION_5_4 = "5.4.0";
     const ILIAS_VERSION_6 = "6.0";
     const ILIAS_VERSION_7 = "7.0";
 
@@ -19,12 +18,6 @@ interface VersionInterface
      * @return string
      */
     public function getILIASVersion() : string;
-
-
-    /**
-     * @return bool
-     */
-    public function is54() : bool;
 
 
     /**

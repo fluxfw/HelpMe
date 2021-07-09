@@ -118,30 +118,18 @@ interface DICInterface
 
     /**
      * @return ilBookingManagerService
-     *
-     * @throws DICException ilBookingManagerService not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function bookingManager() : ilBookingManagerService;
 
 
     /**
      * @return ilObjUseBookDBRepository
-     *
-     * @throws DICException ilObjUseBookDBRepository not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function bookingObjUseBook() : ilObjUseBookDBRepository;
 
 
     /**
      * @return ilBookingReservationDBRepositoryFactory
-     *
-     * @throws DICException ilBookingReservationDBRepositoryFactory not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function bookingReservation() : ilBookingReservationDBRepositoryFactory;
 
@@ -222,20 +210,12 @@ interface DICInterface
 
     /**
      * @return ilExerciseFactory
-     *
-     * @throws DICException ilExerciseFactory not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function exercise() : ilExerciseFactory;
 
 
     /**
      * @return ilFavouritesDBRepository
-     *
-     * @throws DICException ilExerciseFactory not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function favourites() : ilFavouritesDBRepository;
 
@@ -314,8 +294,6 @@ interface DICInterface
 
     /**
      * @return LoggingServices
-     *
-     * @since ILIAS 5.2
      */
     public function logger() : LoggingServices;
 
@@ -390,10 +368,6 @@ interface DICInterface
 
     /**
      * @return ilAsqFactory
-     *
-     * @throws DICException ilAsqFactory not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function question() : ilAsqFactory;
 
@@ -430,10 +404,6 @@ interface DICInterface
 
     /**
      * @return RefineryFactory
-     *
-     * @throws DICException RefineryFactory not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function refinery() : RefineryFactory;
 
@@ -482,10 +452,6 @@ interface DICInterface
 
     /**
      * @return ilTaskService
-     *
-     * @throws DICException ilTaskService not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function task() : ilTaskService;
 
@@ -512,18 +478,12 @@ interface DICInterface
 
     /**
      * @return UIServices
-     *
-     * @since ILIAS 5.2
      */
     public function ui() : UIServices;
 
 
     /**
      * @return ilUIService
-     *
-     * @throws DICException ilUIService not exists in ILIAS 5.4 or below!
-     *
-     * @since ILIAS 6
      */
     public function uiService() : ilUIService;
 

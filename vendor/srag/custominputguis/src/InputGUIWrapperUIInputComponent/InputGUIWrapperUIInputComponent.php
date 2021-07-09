@@ -6,10 +6,8 @@ use Closure;
 use ilCheckboxInputGUI;
 use ilDateTimeInputGUI;
 use ilFormPropertyGUI;
-use ILIAS\Transformation\Factory as TransformationFactory;
 use ILIAS\UI\Implementation\Component\Input\Field\Input;
 use ILIAS\UI\Implementation\Component\Input\NameSource;
-use ILIAS\Validation\Factory as ValidationFactory;
 use ilRepositorySelector2InputGUI;
 use srag\CustomInputGUIs\HelpMe\PropertyFormGUI\Items\Items;
 use srag\DIC\HelpMe\DICTrait;
@@ -37,11 +35,7 @@ class InputGUIWrapperUIInputComponent extends Input
     {
         $this->input = $input;
 
-        if (self::version()->is6()) {
-            parent::__construct(self::dic()->data(), self::dic()->refinery(), "", null);
-        } else {
-            parent::__construct($data_factory = self::dic()->data(), new ValidationFactory($data_factory, self::dic()->language()), new TransformationFactory(), "", null);
-        }
+        parent::__construct(self::dic()->data(), self::dic()->refinery(), "", null);
     }
 
 
@@ -246,11 +240,7 @@ class InputGUIWrapperUIInputComponent extends Input
      */
     protected function getConstraintForRequirement()/*:?Constraint*/
     {
-        if (self::version()->is6()) {
-            return new InputGUIWrapperConstraint($this->input, $this->data_factory, self::dic()->language());
-        } else {
-            return new InputGUIWrapperConstraint54($this->input, $this->data_factory, self::dic()->language());
-        }
+        return new InputGUIWrapperConstraint($this->input, $this->data_factory, self::dic()->language());
     }
 
 

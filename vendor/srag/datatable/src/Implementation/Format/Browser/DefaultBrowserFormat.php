@@ -3,9 +3,7 @@
 namespace srag\DataTableUI\HelpMe\Implementation\Format\Browser;
 
 use ILIAS\UI\Component\Component;
-use ILIAS\UI\Component\Glyph\Factory as GlyphFactory54;
 use ILIAS\UI\Component\Input\Container\Filter\Standard as FilterStandard;
-use ILIAS\UI\Component\Symbol\Glyph\Factory as GlyphFactory;
 use ilUtil;
 use LogicException;
 use srag\CustomInputGUIs\HelpMe\FormBuilder\FormBuilder;
@@ -34,10 +32,6 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
      * @var FilterStandard|FormBuilder|null
      */
     protected $filter_form = null;
-    /**
-     * @var GlyphFactory|GlyphFactory54
-     */
-    protected $glyph_factory;
 
 
     /**
@@ -46,12 +40,6 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
     public function __construct()
     {
         parent::__construct();
-
-        if (self::version()->is6()) {
-            $this->glyph_factory = self::dic()->ui()->factory()->symbol()->glyph();
-        } else {
-            $this->glyph_factory = self::dic()->ui()->factory()->glyph();
-        }
     }
 
 
@@ -187,20 +175,12 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
 
                 $this->initFilterForm($component, $settings);
 
-                if (self::version()->is6()) {
-                    try {
-                        $settings->withFilterFieldValues(self::dic()->uiService()->filter()->getData($this->filter_form) ?? []);
+                try {
+                    $settings->withFilterFieldValues(self::dic()->uiService()->filter()->getData($this->filter_form) ?? []);
 
-                        $this->filter_form = null;
-                    } catch (Throwable $ex) {
+                    $this->filter_form = null;
+                } catch (Throwable $ex) {
 
-                    }
-                } else {
-                    if ($this->filter_form->storeForm()) {
-                        $settings = $this->filter_form->getSettings();
-
-                        $this->filter_form = null;
-                    }
                 }
 
                 if (!empty(array_filter($settings->getFilterFieldValues()))) {
@@ -245,7 +225,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
         return self::dic()->ui()->factory()->dropdown()
             ->standard(array_map(function (Column $column) use ($component, $settings) : Component {
                 return self::dic()->ui()->factory()->link()->standard(self::output()->getHTML([
-                    str_replace(["<a ", "</a>"], ["<span ", "</span>"], self::output()->getHTML($this->glyph_factory->add())),
+                    str_replace(["<a ", "</a>"], ["<span ", "</span>"], self::output()->getHTML(self::dic()->ui()->factory()->symbol()->glyph()->add())),
                     self::dic()->ui()->factory()->legacy($column->getTitle())
                 ]), $this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_SELECT_COLUMN => $column->getKey()], $component->getTableId()));
             }, array_filter($component->getColumns(), function (Column $column) use ($settings) : bool {
@@ -294,7 +274,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
             ->standard(array_map(function (int $count) use ($component, $settings) : Component {
                 if ($settings->getRowsCount() === $count) {
                     return self::dic()->ui()->factory()->legacy(self::output()->getHTML([
-                        $this->glyph_factory->apply(),
+                        self::dic()->ui()->factory()->symbol()->glyph()->apply(),
                         self::dic()->ui()->factory()->legacy(strval($count))
                     ]));
                 } else {
@@ -338,7 +318,8 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
         $remove_sort_button = self::dic()->ui()->factory()->legacy("");
 
         if ($column->isSelectable()) {
-            $deselect_button = $this->glyph_factory->remove($this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_DESELECT_COLUMN => $column->getKey()],
+            $deselect_button = self::dic()->ui()->factory()->symbol()->glyph()->remove($this->getActionUrlWithParams($component->getActionUrl(),
+                [SettingsStorage::VAR_DESELECT_COLUMN => $column->getKey()],
                 $component->getTableId()));
         }
 
@@ -349,7 +330,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
                 if ($sort_field->getSortFieldDirection() === SortField::SORT_DIRECTION_DOWN) {
                     $sort_button = self::dic()->ui()->factory()->link()->standard(self::output()->getHTML([
                         self::dic()->ui()->factory()->legacy($sort_button),
-                        $this->glyph_factory->sortDescending()
+                        self::dic()->ui()->factory()->symbol()->glyph()->sortDescending()
                     ]), $this->getActionUrlWithParams($component->getActionUrl(), [
                         SettingsStorage::VAR_SORT_FIELD           => $column->getKey(),
                         SettingsStorage::VAR_SORT_FIELD_DIRECTION => SortField::SORT_DIRECTION_UP
@@ -357,7 +338,7 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
                 } else {
                     $sort_button = self::dic()->ui()->factory()->link()->standard(self::output()->getHTML([
                         self::dic()->ui()->factory()->legacy($sort_button),
-                        $this->glyph_factory->sortAscending()
+                        self::dic()->ui()->factory()->symbol()->glyph()->sortAscending()
                     ]), $this->getActionUrlWithParams($component->getActionUrl(), [
                         SettingsStorage::VAR_SORT_FIELD           => $column->getKey(),
                         SettingsStorage::VAR_SORT_FIELD_DIRECTION => SortField::SORT_DIRECTION_DOWN
@@ -508,15 +489,11 @@ class DefaultBrowserFormat extends HtmlFormat implements BrowserFormat
         if ($this->filter_form === null) {
             $filter_fields = $component->getFilterFields();
 
-            if (self::version()->is6()) {
-                $this->filter_form = self::dic()->uiService()->filter()
-                    ->standard($component->getTableId(), $this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_FILTER_FIELD_VALUES => true], $component->getTableId()),
-                        $filter_fields,
-                        array_fill(0, count($filter_fields), false),
-                        true, true);
-            } else {
-                $this->filter_form = self::dataTableUI()->format()->browser()->filter()->formBuilder($this, $component, $settings);
-            }
+            $this->filter_form = self::dic()->uiService()->filter()
+                ->standard($component->getTableId(), $this->getActionUrlWithParams($component->getActionUrl(), [SettingsStorage::VAR_FILTER_FIELD_VALUES => true], $component->getTableId()),
+                    $filter_fields,
+                    array_fill(0, count($filter_fields), false),
+                    true, true);
         }
     }
 

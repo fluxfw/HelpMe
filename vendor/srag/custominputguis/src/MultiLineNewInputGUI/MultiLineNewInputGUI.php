@@ -3,7 +3,6 @@
 namespace srag\CustomInputGUIs\HelpMe\MultiLineNewInputGUI;
 
 use ilFormPropertyGUI;
-use ILIAS\UI\Component\Glyph\Factory as GlyphFactory54;
 use ilTableFilterItem;
 use ilTemplate;
 use ilToolbarItem;
@@ -34,10 +33,6 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
      * @var bool
      */
     protected static $init = false;
-    /**
-     * @var GlyphFactory|GlyphFactory54
-     */
-    protected $glyph_factory;
     /**
      * @var ilFormPropertyGUI[]
      */
@@ -71,12 +66,6 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
         parent::__construct($title, $post_var);
 
         self::init(); // TODO: Pass $plugin
-
-        if (self::version()->is6()) {
-            $this->glyph_factory = self::dic()->ui()->factory()->symbol()->glyph();
-        } else {
-            $this->glyph_factory = self::dic()->ui()->factory()->glyph();
-        }
     }
 
 
@@ -319,7 +308,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
                 $tpl->setVariable("HIDE_ADD_FIRST_LINE", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
             }
 
-            $tpl->setVariable("ADD_FIRST_LINE", self::output()->getHTML($this->glyph_factory->add()->withAdditionalOnLoadCode(function (string $id) use ($counter) : string {
+            $tpl->setVariable("ADD_FIRST_LINE", self::output()->getHTML(self::dic()->ui()->factory()->symbol()->glyph()->add()->withAdditionalOnLoadCode(function (string $id) use ($counter) : string {
                 return 'il.MultiLineNewInputGUI.init(' . $counter . ', $("#' . $id . '").parent().parent().parent(), true)';
             })));
 
@@ -338,12 +327,12 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
             if ($this->isShowSort()) {
                 $sort_tpl = new Template(__DIR__ . "/templates/multi_line_new_input_gui_sort.html");
 
-                $sort_tpl->setVariable("UP", self::output()->getHTML($this->glyph_factory->sortAscending()));
+                $sort_tpl->setVariable("UP", self::output()->getHTML(self::dic()->ui()->factory()->symbol()->glyph()->sortAscending()));
                 if ($i === 0) {
                     $sort_tpl->setVariable("HIDE_UP", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
                 }
 
-                $sort_tpl->setVariable("DOWN", self::output()->getHTML($this->glyph_factory->sortDescending()));
+                $sort_tpl->setVariable("DOWN", self::output()->getHTML(self::dic()->ui()->factory()->symbol()->glyph()->sortDescending()));
                 if ($i === (count($this->getInputs()) - 1)) {
                     $sort_tpl->setVariable("HIDE_DOWN", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
                 }
@@ -351,14 +340,14 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
                 $tpl->setVariable("SORT", self::output()->getHTML($sort_tpl));
             }
 
-            $tpl->setVariable("ADD", self::output()->getHTML($this->glyph_factory->add()->withAdditionalOnLoadCode(function (string $id) use ($i, $counter) : string {
+            $tpl->setVariable("ADD", self::output()->getHTML(self::dic()->ui()->factory()->symbol()->glyph()->add()->withAdditionalOnLoadCode(function (string $id) use ($i, $counter) : string {
                 return 'il.MultiLineNewInputGUI.init(' . $counter . ', $("#' . $id . '").parent().parent().parent())' . ($i === (count($this->getInputs()) - 1) ? ';il.MultiLineNewInputGUI.update('
                         . $counter . ', $("#'
                         . $id
                         . '").parent().parent().parent().parent())' : '');
             })));
 
-            $tpl->setVariable("REMOVE", self::output()->getHTML($this->glyph_factory->remove()));
+            $tpl->setVariable("REMOVE", self::output()->getHTML(self::dic()->ui()->factory()->symbol()->glyph()->remove()));
             if ($this->getRequired() && count($this->getInputs()) < 2) {
                 $tpl->setVariable("HIDE_REMOVE", self::output()->getHTML(new Template(__DIR__ . "/templates/multi_line_new_input_gui_hide.html", false, false)));
             }

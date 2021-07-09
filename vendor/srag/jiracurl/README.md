@@ -32,5 +32,5 @@ You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/li
 
 ## Requirements
 
-* ILIAS 5.4.0 - 6.999
+* ILIAS 6.0 - 6.999
 * PHP >=7.2

@@ -81,11 +81,6 @@ final class Plugin implements PluginInterface
      */
     public function reloadCtrlStructure()/* : void*/
     {
-        if (!self::version()->is6()) {
-            // Stupid core, why not in autoload too?!
-            require_once "./setup/classes/class.ilCtrlStructureReader.php";
-        }
-
         // https://github.com/ILIAS-eLearning/ILIAS/blob/release_6/Services/Component/classes/class.ilPlugin.php#L1078-L1091
         $structure_reader = new ilCtrlStructureReader();
         $structure_reader->readStructure(

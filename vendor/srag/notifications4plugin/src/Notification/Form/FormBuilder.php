@@ -3,7 +3,6 @@
 namespace srag\Notifications4Plugin\HelpMe\Notification\Form;
 
 use ILIAS\UI\Component\Input\Field\Group;
-use ILIAS\UI\Component\Input\Field\Radio;
 use ilNonEditableValueGUI;
 use ilTextInputGUI;
 use srag\CustomInputGUIs\HelpMe\FormBuilder\AbstractFormBuilder;
@@ -135,20 +134,11 @@ class FormBuilder extends AbstractFormBuilder
             ];
         }
 
-        if (self::version()->is6()) {
-            $parser = self::dic()->ui()->factory()->input()->field()->switchableGroup(array_map(function (Parser $parser) : Group {
-                return self::dic()->ui()->factory()->input()->field()->group($parser->getOptionsFields(), $parser->getName() . "<br>" . self::output()->getHTML(self::dic()->ui()->factory()->link()
-                        ->standard($parser->getDocLink(), $parser->getDocLink())->withOpenInNewViewport(true)))->withByline(self::output()->getHTML(self::dic()->ui()->factory()->link()
-                    ->standard($parser->getDocLink(), $parser->getDocLink())->withOpenInNewViewport(true))); // TODO `withByline` not work in ILIAS 6 group (radio), so temporary in label
-            }, self::notifications4plugin()->parser()->getPossibleParsers()), self::notifications4plugin()->getPlugin()->translate("parser", NotificationsCtrl::LANG_MODULE))->withRequired(true);
-        } else {
-            $parser = array_reduce(self::notifications4plugin()->parser()->getPossibleParsers(), function (Radio $radio, Parser $parser) : Radio {
-                $radio = $radio->withOption(get_class($parser), $parser->getName(), self::output()->getHTML(self::dic()->ui()->factory()->link()
-                    ->standard($parser->getDocLink(), $parser->getDocLink())->withOpenInNewViewport(true)), $parser->getOptionsFields());
-
-                return $radio;
-            }, self::dic()->ui()->factory()->input()->field()->radio(self::notifications4plugin()->getPlugin()->translate("parser", NotificationsCtrl::LANG_MODULE))->withRequired(true));
-        }
+        $parser = self::dic()->ui()->factory()->input()->field()->switchableGroup(array_map(function (Parser $parser) : Group {
+            return self::dic()->ui()->factory()->input()->field()->group($parser->getOptionsFields(), $parser->getName() . "<br>" . self::output()->getHTML(self::dic()->ui()->factory()->link()
+                    ->standard($parser->getDocLink(), $parser->getDocLink())->withOpenInNewViewport(true)))->withByline(self::output()->getHTML(self::dic()->ui()->factory()->link()
+                ->standard($parser->getDocLink(), $parser->getDocLink())->withOpenInNewViewport(true))); // TODO `withByline` not work in ILIAS 6 group (radio), so temporary in label
+        }, self::notifications4plugin()->parser()->getPossibleParsers()), self::notifications4plugin()->getPlugin()->translate("parser", NotificationsCtrl::LANG_MODULE))->withRequired(true);
 
         $fields += [
             "title"       => self::dic()->ui()->factory()->input()->field()->text(self::notifications4plugin()->getPlugin()->translate("title", NotificationsCtrl::LANG_MODULE))->withRequired(true),
@@ -202,18 +192,10 @@ class FormBuilder extends AbstractFormBuilder
                     break;
 
                 case "parser":
-                    if (self::version()->is6()) {
-                        Items::setter($this->notification, $key, $data[$key][0]);
+                    Items::setter($this->notification, $key, $data[$key][0]);
 
-                        foreach (array_keys($this->notification->getParserOptions()) as $parser_option_key) {
-                            $this->notification->setParserOption($parser_option_key, $data[$key][1][$parser_option_key]);
-                        }
-                    } else {
-                        Items::setter($this->notification, $key, $data[$key]["value"]);
-
-                        foreach (array_keys($this->notification->getParserOptions()) as $parser_option_key) {
-                            $this->notification->setParserOption($parser_option_key, $data[$key]["group_values"][$parser_option_key]);
-                        }
+                    foreach (array_keys($this->notification->getParserOptions()) as $parser_option_key) {
+                        $this->notification->setParserOption($parser_option_key, $data[$key][1][$parser_option_key]);
                     }
                     break;
 
