@@ -87,5 +87,5 @@ In ILIAS 5.4 a default container form ui is used for the filter, in ILIAS 6, the
 
 ## Requirements
 
-* ILIAS 6.0 - 6.999
+* ILIAS 6.0 - 7.999
 * PHP >=7.2

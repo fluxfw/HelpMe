@@ -1,6 +1,7 @@
 # Changelog
 
 ## [0.12.0]
+- ILIAS 7 support
 - Remove ILIAS 5.4 support
 
 ## [0.11.7]

@@ -1,7 +1,6 @@
 # Changelog
 
 ## [2.11.0]
-- Remove ILIAS 5.4 support
 - Min PHP 7.2
 
 ## [2.10.4]

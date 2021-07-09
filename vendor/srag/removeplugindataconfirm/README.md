@@ -78,5 +78,5 @@ Notice to also adjust `dbupdate.php` so it can be reinstalled if the data should
 
 ## Requirements
 
-* ILIAS 6.0 - 6.999
+* ILIAS 6.0 - 7.999
 * PHP >=7.2
