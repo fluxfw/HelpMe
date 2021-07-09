@@ -41,30 +41,3 @@ use srag\LibrariesNamespaceChanger\x\LibrariesNamespaceChanger;
 LibrariesNamespaceChanger::getInstance()->doRewriteLibrariesNamespaces(string $project_root)
 ...
 ```
-
-## PHP72Backport
-
-PHP72Backport is deprecated and will be removed!
-
-If your plugin needs a PHP 7.0 compatible of version of a PHP 7.2/7.1 library, you can also add additionally the follow composer script:
-
-```json
-  "pre-autoload-dump": [
-    ...,
-      "srag\\LibrariesNamespaceChanger\\PHP72Backport::PHP72Backport"
-    ]
-```
-
-It works with RegExp and affects your whole plugin workspace (`classes`, `src`, `vendor`, ...)
-
-## php7backport
-
-PHP7Backport is deprecated and will be removed!
-
-If your plugin needs a PHP 5.6 compatible of version of a PHP 7.0 library, you can also add additionally the follow composer script:
-
-```json
- "post-update-cmd": "srag\\LibrariesNamespaceChanger\\PHP7Backport::PHP7Backport"
-```
-
-It uses the https://github.com/ondrejbouda/php7backport.git repo, but provides it as a composer script and patches it, amongst other things, it fix interfaces

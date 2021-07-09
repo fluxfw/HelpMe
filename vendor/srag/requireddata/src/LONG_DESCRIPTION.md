@@ -18,10 +18,6 @@ Tip: Because of multiple autoloaders of plugins, it could be, that different ver
 
 So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
-### PHP 7.0
-
-You can use this library with PHP 7.0 by using the `PHP72Backport` from [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger)
-
 ## Using trait
 
 Your class in this you want to use RequiredData needs to use the trait `RequiredDataTrait`
