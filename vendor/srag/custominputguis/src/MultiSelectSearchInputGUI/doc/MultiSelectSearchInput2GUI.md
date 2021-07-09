@@ -1,3 +1,0 @@
-### MultiSelectSearchInput2GUI
-
-TODO: 

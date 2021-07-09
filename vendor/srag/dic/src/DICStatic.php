@@ -51,20 +51,6 @@ final class DICStatic implements DICStaticInterface
 
     /**
      * @inheritDoc
-     *
-     * @deprecated
-     */
-    public static function clearCache()/*: void*/
-    {
-        self::$dic = null;
-        self::$output = null;
-        self::$plugins = [];
-        self::$version = null;
-    }
-
-
-    /**
-     * @inheritDoc
      */
     public static function dic() : DICInterface
     {

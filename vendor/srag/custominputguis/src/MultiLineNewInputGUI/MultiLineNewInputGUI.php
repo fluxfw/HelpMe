@@ -72,7 +72,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param PluginInterface|null $plugin
      */
-    public static function init(/*?*/ PluginInterface $plugin = null)/*: void*/
+    public static function init(/*?*/ PluginInterface $plugin = null) : void
     {
         if (self::$init === false) {
             self::$init = true;
@@ -95,7 +95,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param ilFormPropertyGUI $input
      */
-    public function addInput(ilFormPropertyGUI $input)/*: void*/
+    public function addInput(ilFormPropertyGUI $input) : void
     {
         $this->inputs[] = $input;
         $this->inputs_generated = null;
@@ -181,7 +181,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param ilFormPropertyGUI[] $inputs
      */
-    public function setInputs(array $inputs)/*: void*/
+    public function setInputs(array $inputs) : void
     {
         $this->inputs = $inputs;
         $this->inputs_generated = null;
@@ -200,7 +200,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param int $show_input_label
      */
-    public function setShowInputLabel(int $show_input_label)/* : void*/
+    public function setShowInputLabel(int $show_input_label) : void
     {
         $this->show_input_label = $show_input_label;
     }
@@ -244,7 +244,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param array $value
      */
-    public function setValue(/*array*/ $value)/*: void*/
+    public function setValue(/*array*/ $value) : void
     {
         if (is_array($value)) {
             $this->value = $value;
@@ -257,7 +257,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param ilTemplate $tpl
      */
-    public function insert(ilTemplate $tpl)/*: void*/
+    public function insert(ilTemplate $tpl) : void
     {
         $html = $this->render();
 
@@ -279,7 +279,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param bool $show_sort
      */
-    public function setShowSort(bool $show_sort)/* : void*/
+    public function setShowSort(bool $show_sort) : void
     {
         $this->show_sort = $show_sort;
     }
@@ -362,7 +362,7 @@ class MultiLineNewInputGUI extends ilFormPropertyGUI implements ilTableFilterIte
     /**
      * @param array $values
      */
-    public function setValueByArray(/*array*/ $values)/*: void*/
+    public function setValueByArray(/*array*/ $values) : void
     {
         $this->setValue($values[$this->getPostVar()]);
     }

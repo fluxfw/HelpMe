@@ -86,7 +86,7 @@ final class Output implements OutputInterface
     /**
      * @inheritDoc
      */
-    public function output($value, bool $show = false, bool $main_template = true)/*: void*/
+    public function output($value, bool $show = false, bool $main_template = true) : void
     {
         $html = $this->getHTML($value);
 
@@ -115,7 +115,7 @@ final class Output implements OutputInterface
     /**
      * @inheritDoc
      */
-    public function outputJSON($value)/*: void*/
+    public function outputJSON($value) : void
     {
         switch (true) {
             case (is_string($value)):

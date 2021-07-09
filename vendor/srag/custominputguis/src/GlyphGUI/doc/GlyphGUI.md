@@ -1,3 +1,0 @@
-### GlyphGUI
-
-TODO: 

@@ -336,12 +336,12 @@ abstract class AbstractFormBuilder implements FormBuilder
                                             }
                                         }
                                     }
-                                    Closure::bind(function (array $inputs3)/* : void*/ {
+                                    Closure::bind(function (array $inputs3) : void {
                                         $this->inputs = $inputs3;
                                     }, $field2, Group::class)($inputs3);
                                 }
                             }
-                            Closure::bind(function (array $inputs2)/* : void*/ {
+                            Closure::bind(function (array $inputs2) : void {
                                 $this->inputs = $inputs2;
                             }, $field, Group::class)($inputs2);
                         }

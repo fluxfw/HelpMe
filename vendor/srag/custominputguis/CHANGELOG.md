@@ -2,6 +2,10 @@
 
 ## [0.43.0]
 - Remove ILIAS 5.4 support
+- Min PHP 7.2
+- Remove deprecated MultiLineInputGUI
+- Remove deprecated MultiSelectSearchInputGUI
+- Remove deprecated GlyphGUI
 
 ## [0.42.9]
 - Hide HiddenInputGUI in MultiLineNewInputGUI

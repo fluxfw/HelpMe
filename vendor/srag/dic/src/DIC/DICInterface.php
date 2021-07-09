@@ -20,7 +20,6 @@ use ilDBInterface;
 use ilErrorHandling;
 use ilExerciseFactory;
 use ilFavouritesDBRepository;
-use ilGlobalTemplateInterface;
 use ilHelpGUI;
 use ILIAS;
 use ILIAS\Data\Factory as DataFactory;
@@ -55,14 +54,10 @@ use ilObjectService;
 use ilObjUseBookDBRepository;
 use ilObjUser;
 use ilPluginAdmin;
-use ilRbacAdmin;
-use ilRbacReview;
-use ilRbacSystem;
 use ilSetting;
 use ilStyleDefinition;
 use ilTabsGUI;
 use ilTaskService;
-use ilTemplate;
 use ilToolbarGUI;
 use ilTree;
 use ilUIService;
@@ -329,14 +324,6 @@ interface DICInterface
 
 
     /**
-     * @return ilTemplate|ilGlobalTemplateInterface
-     *
-     * @deprecated Please use `self::dic()->ui()->mainTemplate()`
-     */
-    public function mainTemplate();
-
-
-    /**
      * @return ilNewsService
      */
     public function news() : ilNewsService;
@@ -376,30 +363,6 @@ interface DICInterface
      * @return RBACServices
      */
     public function rbac() : RBACServices;
-
-
-    /**
-     * @return ilRbacAdmin
-     *
-     * @deprecated Please use `self::dic()->rba()->admin()`
-     */
-    public function rbacadmin() : ilRbacAdmin;
-
-
-    /**
-     * @return ilRbacReview
-     *
-     * @deprecated Please use `self::dic()->rba()->review()`
-     */
-    public function rbacreview() : ilRbacReview;
-
-
-    /**
-     * @return ilRbacSystem
-     *
-     * @deprecated Please use `self::dic()->rba()->system()`
-     */
-    public function rbacsystem() : ilRbacSystem;
 
 
     /**
@@ -466,14 +429,6 @@ interface DICInterface
      * @return ilToolbarGUI
      */
     public function toolbar() : ilToolbarGUI;
-
-
-    /**
-     * @return ilTree
-     *
-     * @deprecated Please use `self::dic()->repositoryTree()`
-     */
-    public function tree() : ilTree;
 
 
     /**

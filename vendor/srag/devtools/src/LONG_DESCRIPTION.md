@@ -29,7 +29,7 @@ use srag\DevTools\HelpMe\x\DevToolsCtrl;
     /**
      * @inheritDoc
      */
-    public function updateLanguages(/*?array*/ $a_lang_keys = null)/* : void*/
+    public function updateLanguages(/*?array*/ $a_lang_keys = null) : void
     {
         parent::updateLanguages($a_lang_keys);
         ...
@@ -53,7 +53,7 @@ class ...
     /**
      * @inheritDoc
      */
-    public function performCommand(/*string*/ $cmd)/*:void*/
+    public function performCommand(/*string*/ $cmd) : void
     {
         ...
         switch (strtolower($next_class)) {
@@ -69,7 +69,7 @@ class ...
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs() : void
     {
         ...
         DevToolsCtrl::addTabs(self::plugin());

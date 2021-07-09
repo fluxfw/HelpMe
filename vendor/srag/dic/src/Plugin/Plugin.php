@@ -79,7 +79,7 @@ final class Plugin implements PluginInterface
     /**
      * @inheritDoc
      */
-    public function reloadCtrlStructure()/* : void*/
+    public function reloadCtrlStructure() : void
     {
         // https://github.com/ILIAS-eLearning/ILIAS/blob/release_6/Services/Component/classes/class.ilPlugin.php#L1078-L1091
         $structure_reader = new ilCtrlStructureReader();
@@ -107,7 +107,7 @@ final class Plugin implements PluginInterface
     /**
      * @inheritDoc
      */
-    public function reloadDatabase()/* : void*/
+    public function reloadDatabase() : void
     {
         $this->plugin_object->updateDatabase();
     }
@@ -116,7 +116,7 @@ final class Plugin implements PluginInterface
     /**
      * @inheritDoc
      */
-    public function reloadLanguages()/* : void*/
+    public function reloadLanguages() : void
     {
         $this->plugin_object->updateLanguages();
     }
@@ -125,9 +125,9 @@ final class Plugin implements PluginInterface
     /**
      * @inheritDoc
      */
-    public function reloadPluginXml()/* : void*/
+    public function reloadPluginXml() : void
     {
-        Closure::bind(function ()/* : void*/ {
+        Closure::bind(function () : void {
             $this->readEventListening();
         }, $this->plugin_object, ilPlugin::class)();
     }

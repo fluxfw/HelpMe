@@ -125,7 +125,7 @@ abstract class ObjectPropertyFormGUI extends PropertyFormGUI
      *
      * @deprecated
      */
-    protected function storeValue(string $key, $value)/*: void*/
+    protected function storeValue(string $key, $value) : void
     {
         switch ($key) {
             default:

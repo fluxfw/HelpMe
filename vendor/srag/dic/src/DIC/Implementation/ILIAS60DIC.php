@@ -20,7 +20,6 @@ use ilDBInterface;
 use ilErrorHandling;
 use ilExerciseFactory;
 use ilFavouritesDBRepository;
-use ilGlobalTemplateInterface;
 use ilHelpGUI;
 use ILIAS;
 use ILIAS\Data\Factory as DataFactory;
@@ -55,9 +54,6 @@ use ilObjectService;
 use ilObjUseBookDBRepository;
 use ilObjUser;
 use ilPluginAdmin;
-use ilRbacAdmin;
-use ilRbacReview;
-use ilRbacSystem;
 use ilSetting;
 use ilStyleDefinition;
 use ilTabsGUI;
@@ -439,17 +435,6 @@ final class ILIAS60DIC extends AbstractDIC
 
     /**
      * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->ui()->mainTemplate()`
-     */
-    public function mainTemplate() : ilGlobalTemplateInterface
-    {
-        return $this->dic->ui()->mainTemplate();
-    }
-
-
-    /**
-     * @inheritDoc
      */
     public function news() : ilNewsService
     {
@@ -508,39 +493,6 @@ final class ILIAS60DIC extends AbstractDIC
     public function rbac() : RBACServices
     {
         return $this->dic->rbac();
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->rba()->admin()`
-     */
-    public function rbacadmin() : ilRbacAdmin
-    {
-        return $this->rbac()->admin();
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->rba()->review()`
-     */
-    public function rbacreview() : ilRbacReview
-    {
-        return $this->rbac()->review();
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->rba()->system()`
-     */
-    public function rbacsystem() : ilRbacSystem
-    {
-        return $this->rbac()->system();
     }
 
 
@@ -640,17 +592,6 @@ final class ILIAS60DIC extends AbstractDIC
     public function toolbar() : ilToolbarGUI
     {
         return $this->dic->toolbar();
-    }
-
-
-    /**
-     * @inheritDoc
-     *
-     * @deprecated Please use `self::dic()->repositoryTree()`
-     */
-    public function tree() : ilTree
-    {
-        return $this->repositoryTree();
     }
 
 

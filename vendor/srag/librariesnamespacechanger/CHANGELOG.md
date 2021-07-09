@@ -2,7 +2,9 @@
 
 ## [0.16.0]
 - Remove ILIAS 5.4 support
-- Remove PHP7XBackport
+- Min PHP 7.2
+- Remove deprecated PHP7Backport
+- Remove deprecated PHP72Backport
 
 ## [0.15.4]
 - Change utils url

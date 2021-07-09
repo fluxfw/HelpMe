@@ -39,7 +39,7 @@ use PluginUninstallTrait;
 /**
  * @inheritDoc
  */
-protected function deleteData()/*: void*/ {
+protected function deleteData() : void {
     // TODO: Delete your plugin data in this method
 }
 //...
@@ -66,7 +66,7 @@ Expand you plugin class for installing languages of the library to your plugin
 	/**
      * @inheritDoc
      */
-    public function updateLanguages(/*?array*/ $a_lang_keys = null)/*:void*/ {
+    public function updateLanguages(/*?array*/ $a_lang_keys = null) : void {
 		parent::updateLanguages($a_lang_keys);
 
 		$this->installRemovePluginDataConfirmLanguages();
@@ -79,4 +79,4 @@ Notice to also adjust `dbupdate.php` so it can be reinstalled if the data should
 ## Requirements
 
 * ILIAS 6.0 - 6.999
-* PHP >=7.0
+* PHP >=7.2

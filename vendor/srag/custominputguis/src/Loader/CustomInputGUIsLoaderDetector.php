@@ -76,7 +76,7 @@ class CustomInputGUIsLoaderDetector extends AbstractLoaderDetector
     /**
      *
      */
-    private static function fixCtrlNamespaceCurrentUrl()/*:void*/
+    private static function fixCtrlNamespaceCurrentUrl() : void
     {
         if (!self::$has_fix_ctrl_namespace_current_url) {
             self::$has_fix_ctrl_namespace_current_url = true;

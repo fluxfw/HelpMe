@@ -37,7 +37,7 @@ use srag\LibraryLanguageInstaller\HelpMe\x\LibraryLanguageInstaller;
 	/**
      * @inheritDoc
      */
-    public function updateLanguages(/*?array*/ $a_lang_keys = null)/*:void*/ {
+    public function updateLanguages(/*?array*/ $a_lang_keys = null) : void {
 		parent::updateLanguages($a_lang_keys);
 
 		LibraryLanguageInstaller::getInstance()->withPlugin(self::plugin())->withLibraryLanguageDirectory(__DIR__ . "/../vendor/srag/x/lang")
@@ -49,4 +49,4 @@ use srag\LibraryLanguageInstaller\HelpMe\x\LibraryLanguageInstaller;
 ## Requirements
 
 * ILIAS 6.0 - 6.999
-* PHP >=7.0
+* PHP >=7.2

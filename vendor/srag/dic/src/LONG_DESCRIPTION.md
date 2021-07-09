@@ -97,7 +97,7 @@ For output HTML or GUI use:
  *
  * @throws DICException
  */
-self::output()->output($value, bool $show = false, bool $main_template = true)/*: void*/
+self::output()->output($value, bool $show = false, bool $main_template = true) : void
 ```
 
 For output JSON:
@@ -110,7 +110,7 @@ For output JSON:
  *
  * @throws DICException
  */
-self::output()->outputJSON($value)/*: void*/;
+self::output()->outputJSON($value) : void;
 ```
 
 For get HTML of GUI:

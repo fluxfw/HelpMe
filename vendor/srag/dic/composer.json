@@ -28,7 +28,7 @@
     }
   ],
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.2"
   },
   "require-dev": {
     "srag/generateplugininfoshelper": ">=0.1.0"

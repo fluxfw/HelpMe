@@ -33,15 +33,11 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 * [CheckboxInputGUI](./src/CheckboxInputGUI/doc/CheckboxInputGUI.md)
 * [ColorPickerInputGUI](./src/ColorPickerInputGUI/doc/ColorPickerInputGUI.md)
 * [DateDurationInputGUI](./src/DateDurationInputGUI/doc/DateDurationInputGUI.md)
-* [GlyphGUI](./src/GlyphGUI/doc/GlyphGUI.md)
 * [HiddenInputGUI](./src/HiddenInputGUI/doc/HiddenInputGUI.md)
 * [InputGUIWrapperUIInputComponent](./src/InputGUIWrapperUIInputComponent/doc/InputGUIWrapperUIInputComponent.md)
 * [MultilangualTabsInputGUI](./src/TabsInputGUI/doc/MultilangualTabsInputGUI.md)
 * [MultiLineNewInputGUI](./src/MultiLineNewInputGUI/doc/MultiLineNewInputGUI.md)
-* [MultiLineInputGUI](./src/MultiLineInputGUI/doc/MultiLineInputGUI.md)
 * [MultiSelectSearchNewInputGUI](./src/MultiSelectSearchNewInputGUI/doc/MultiSelectSearchNewInputGUI.md)
-* [MultiSelectSearchInputGUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInputGUI.md)
-* [MultiSelectSearchInput2GUI](./src/MultiSelectSearchInputGUI/doc/MultiSelectSearchInput2GUI.md)
 * [NumberInputGUI](./src/NumberInputGUI/doc/NumberInputGUI.md)
 * [PropertyFormGUI](./src/PropertyFormGUI/doc/PropertyFormGUI.md)
 * [ScreenshotsInputGUI](./src/ScreenshotsInputGUI/doc/ScreenshotsInputGUI.md)
@@ -60,4 +56,4 @@ So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/pac
 ## Requirements
 
 * ILIAS 6.0 - 6.999
-* PHP >=7.0
+* PHP >=7.2
