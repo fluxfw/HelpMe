@@ -52,7 +52,7 @@ class InputGUIWrapperUIInputComponent extends Input
     /**
      * @inheritDoc
      */
-    public function getError() : string
+    public function getError() : ?string
     {
         return $this->input->getAlert();
     }
