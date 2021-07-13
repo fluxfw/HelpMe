@@ -12,6 +12,7 @@ interface VersionInterface
 
     const ILIAS_VERSION_6 = "6.0";
     const ILIAS_VERSION_7 = "7.0";
+    const ILIAS_VERSION_8 = "8.0";
 
 
     /**
@@ -30,6 +31,12 @@ interface VersionInterface
      * @return bool
      */
     public function is7() : bool;
+
+
+    /**
+     * @return bool
+     */
+    public function is8() : bool;
 
 
     /**

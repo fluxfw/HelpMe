@@ -66,14 +66,13 @@ use ilTree;
 use ilUIService;
 use Session;
 use srag\DIC\HelpMe\DIC\AbstractDIC;
-use srag\DIC\HelpMe\Exception\DICException;
 
 /**
- * Class ILIAS60DIC
+ * Class ILIAS70DIC
  *
  * @package srag\DIC\HelpMe\DIC\Implementation
  */
-final class ILIAS60DIC extends AbstractDIC
+final class ILIAS70DIC extends AbstractDIC
 {
 
     /**
@@ -339,7 +338,7 @@ final class ILIAS60DIC extends AbstractDIC
      */
     public function imagePathResolver() : ImagePathResolver
     {
-        throw new DICException("ImagePathResolver not exists in ILIAS 6 or below!");
+        return $this->dic["ui.pathresolver"];
     }
 
 
@@ -550,7 +549,7 @@ final class ILIAS60DIC extends AbstractDIC
      */
     public function resourceStorage() : ResourceStorageServices
     {
-        throw new DICException("ResourceStorageServices not exists in ILIAS 6 or below!");
+        return $this->dic()->resourceStorage();
     }
 
 
@@ -577,7 +576,7 @@ final class ILIAS60DIC extends AbstractDIC
      */
     public function skills() : SkillService
     {
-        throw new DICException("SkillService not exists in ILIAS 6 or below!");
+        return $this->dic()->skills();
     }
 
 

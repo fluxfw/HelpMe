@@ -105,8 +105,13 @@ class CustomInputGUIsLoaderDetector extends AbstractLoaderDetector
 
         if ($renderer === null) {
             if ($component instanceof InputGUIWrapperUIInputComponent) {
-                $renderer = new InputGUIWrapperUIInputComponentRenderer(self::dic()->ui()->factory(), self::dic()->templateFactory(), self::dic()->language(),
-                    self::dic()->javaScriptBinding(), self::dic()->refinery());
+                if (self::version()->is7()) {
+                    $renderer = new InputGUIWrapperUIInputComponentRenderer(self::dic()->ui()->factory(), self::dic()->templateFactory(), self::dic()->language(), self::dic()->javaScriptBinding(),
+                        self::dic()->refinery(), self::dic()->imagePathResolver());
+                } else {
+                    $renderer = new InputGUIWrapperUIInputComponentRenderer(self::dic()->ui()->factory(), self::dic()->templateFactory(), self::dic()->language(), self::dic()->javaScriptBinding(),
+                        self::dic()->refinery());
+                }
             } else {
                 $renderer = parent::getRendererFor($component, $contexts);
             }

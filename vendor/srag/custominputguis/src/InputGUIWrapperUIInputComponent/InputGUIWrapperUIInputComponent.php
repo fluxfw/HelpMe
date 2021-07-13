@@ -43,7 +43,7 @@ class InputGUIWrapperUIInputComponent extends Input
     /**
      * @inheritDoc
      */
-    public function getByline() : string
+    public function getByline() : ?string
     {
         return $this->input->getInfo();
     }

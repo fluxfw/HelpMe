@@ -33,6 +33,9 @@ use ILIAS\Filesystem\Filesystems;
 use ILIAS\FileUpload\FileUpload;
 use ILIAS\GlobalScreen\Services as GlobalScreenService;
 use ILIAS\Refinery\Factory as RefineryFactory;
+use ILIAS\ResourceStorage\Services as ResourceStorageServices;
+use ILIAS\Skill\Service\SkillService;
+use ILIAS\UI\Implementation\Render\ImagePathResolver;
 use ILIAS\UI\Implementation\Render\JavaScriptBinding;
 use ILIAS\UI\Implementation\Render\Loader;
 use ILIAS\UI\Implementation\Render\ResourceRegistry;
@@ -258,6 +261,14 @@ interface DICInterface
 
 
     /**
+     * @return ImagePathResolver
+     *
+     * @throws DICException ImagePathResolver not exists in ILIAS 6 or below!
+     */
+    public function imagePathResolver() : ImagePathResolver;
+
+
+    /**
      * @return JavaScriptBinding
      */
     public function javaScriptBinding() : JavaScriptBinding;
@@ -390,6 +401,14 @@ interface DICInterface
 
 
     /**
+     * @return ResourceStorageServices
+     *
+     * @throws DICException ResourceStorageServices not exists in ILIAS 6 or below!
+     */
+    public function resourceStorage() : ResourceStorageServices;
+
+
+    /**
      * @return Session
      */
     public function session() : Session;
@@ -399,6 +418,14 @@ interface DICInterface
      * @return ilSetting
      */
     public function settings() : ilSetting;
+
+
+    /**
+     * @return SkillService
+     *
+     * @throws DICException SkillService not exists in ILIAS 6 or below!"
+     */
+    public function skills() : SkillService;
 
 
     /**
