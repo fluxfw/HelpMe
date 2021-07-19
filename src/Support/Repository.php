@@ -4,7 +4,6 @@ namespace srag\Plugins\HelpMe\Support;
 
 use ilHelpMePlugin;
 use ilLink;
-use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\JiraCurl\HelpMe\JiraCurl;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
@@ -234,8 +233,6 @@ final class Repository
 
     /**
      * @return JiraCurl
-     *
-     * @throws ActiveRecordConfigException
      */
     public function initJiraCurl() : JiraCurl
     {

@@ -4,7 +4,6 @@ namespace srag\Plugins\HelpMe\Support\Recipient;
 
 use ilMimeMail;
 use PHPMailer\PHPMailer\Exception as phpmailerException;
-use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
 use srag\Plugins\HelpMe\Config\ConfigFormGUI;
@@ -44,7 +43,6 @@ class RecipientSendMail extends Recipient
     /**
      * Send support email
      *
-     * @throws ActiveRecordConfigException
      * @throws DICException
      * @throws HelpMeException
      * @throws Notifications4PluginException
