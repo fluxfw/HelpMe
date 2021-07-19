@@ -7,6 +7,8 @@
 - Remove deprecated MultiLineInputGUI
 - Remove deprecated MultiSelectSearchInputGUI
 - Remove deprecated GlyphGUI
+- Remove deprecated ConfigPropertyFormGUI
+- Remove deprecated ObjectPropertyFormGUI
 
 ## [0.42.9]
 - Hide HiddenInputGUI in MultiLineNewInputGUI
