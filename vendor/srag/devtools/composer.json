@@ -1,14 +1,12 @@
 {
   "name": "srag/devtools",
   "description": "Add some dev tools to ILIAS plugin config, if core dev mode is enabled, like reload ctrl structure",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "6.0",
       "ilias_max_version": "7.999"
-    },
-    "generate_plugin_readme_template": "ILIAS_LIBRARY",
-    "long_description_template": "src/LONG_DESCRIPTION.md"
+    }
   },
   "type": "library",
   "keywords": [
@@ -49,9 +47,6 @@
     "sort-packages": true
   },
   "scripts": {
-    "generate-plugin-readme": [
-      "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme::generatePluginReadme"
-    ],
     "update-version": [
       "srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion::updateVersion"
     ]

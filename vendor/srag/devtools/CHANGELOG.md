@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.3.1]
+- Not use GeneratePluginReadme
+
 ## [1.3.0]
 - ILIAS 7 support
 - Remove ILIAS 5.4 support

@@ -1,14 +1,12 @@
 {
   "name": "srag/activerecordconfig",
   "description": "Simple ActiveRecord config for ILIAS plugins",
-  "version": "0.21.0",
+  "version": "0.21.1",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "6.0",
       "ilias_max_version": "7.999"
-    },
-    "generate_plugin_readme_template": "ILIAS_LIBRARY",
-    "long_description_template": "src/LONG_DESCRIPTION.md"
+    }
   },
   "type": "library",
   "keywords": [
@@ -45,9 +43,6 @@
     "sort-packages": true
   },
   "scripts": {
-    "generate-plugin-readme": [
-      "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginReadme::generatePluginReadme"
-    ],
     "update-version": [
       "srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion::updateVersion"
     ]

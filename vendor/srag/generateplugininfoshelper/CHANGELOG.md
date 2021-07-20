@@ -1,5 +1,8 @@
 # Changelog
 
+## [2.12.0]
+- Deprecate GeneratePluginReadme
+
 ## [2.11.0]
 - Min PHP 7.2
 
