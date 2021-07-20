@@ -3,7 +3,6 @@
 namespace srag\DataTableUI\HelpMe\Implementation;
 
 use ILIAS\UI\Component\Input\Field\FilterInput;
-use ILIAS\UI\Component\Input\Field\Input as FilterInput54;
 use ILIAS\UI\Implementation\Component\ComponentHelper;
 use srag\DataTableUI\HelpMe\Component\Column\Column;
 use srag\DataTableUI\HelpMe\Component\Data\Fetcher\DataFetcher;
@@ -44,7 +43,7 @@ class Table implements TableInterface
      */
     protected $data_fetcher;
     /**
-     * @var FilterInput[]|FilterInput54[]
+     * @var FilterInput[]
      */
     protected $filter_fields = [];
     /**
@@ -265,12 +264,7 @@ class Table implements TableInterface
      */
     public function withFilterFields(array $filter_fields) : TableInterface
     {
-        if (self::version()->is6()) {
-            $classes = [FilterInput::class];
-        } else {
-
-            $classes = [FilterInput54::class];
-        }
+        $classes = [FilterInput::class];
         $this->checkArgListElements("filter_fields", $filter_fields, $classes);
 
         $clone = clone $this;

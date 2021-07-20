@@ -3,7 +3,6 @@
 namespace srag\Plugins\HelpMe\Support\Recipient;
 
 use ilHelpMePlugin;
-use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\Plugins\HelpMe\Support\Support;
 use srag\Plugins\HelpMe\Utils\HelpMeTrait;
@@ -53,8 +52,6 @@ final class Factory
      * @param Support $support
      *
      * @return Recipient|null
-     *
-     * @throws ActiveRecordConfigException
      */
     public function newInstance(string $recipient, Support $support) : ?Recipient
     {

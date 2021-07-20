@@ -2,8 +2,10 @@
 
 namespace srag\DataTableUI\HelpMe\Implementation\Settings;
 
-use ILIAS\UI\Component\ViewControl\Pagination;
+use Closure;
+use ILIAS\UI\Component\ViewControl\Pagination as PaginationInterface;
 use ILIAS\UI\Implementation\Component\ComponentHelper;
+use ILIAS\UI\Implementation\Component\ViewControl\Pagination;
 use srag\DataTableUI\HelpMe\Component\Data\Data;
 use srag\DataTableUI\HelpMe\Component\Settings\Settings as SettingsInterface;
 use srag\DataTableUI\HelpMe\Component\Settings\Sort\SortField;
@@ -31,7 +33,7 @@ class Settings implements SettingsInterface
      */
     protected $filter_set = false;
     /**
-     * @var Pagination
+     * @var PaginationInterface
      */
     protected $pagination;
     /**
@@ -47,9 +49,9 @@ class Settings implements SettingsInterface
     /**
      * Settings constructor
      *
-     * @param Pagination $pagination
+     * @param PaginationInterface $pagination
      */
-    public function __construct(Pagination $pagination)
+    public function __construct(PaginationInterface $pagination)
     {
         $this->pagination = $pagination->withPageSize(self::DEFAULT_ROWS_COUNT);
     }
@@ -127,7 +129,16 @@ class Settings implements SettingsInterface
      */
     public function getOffset() : int
     {
-        return $this->pagination->getOffset();
+        if (self::version()->is7()) {
+            // TODO: Start must be a positive number (or 0)
+            //return $this->pagination->getRange()->getStart();
+
+            return Closure::bind(function () : int {
+                return $this->getOffset();
+            }, $this->pagination, Pagination::class)();
+        } else {
+            return $this->pagination->getOffset();
+        }
     }
 
 
@@ -136,7 +147,7 @@ class Settings implements SettingsInterface
      *
      * @internal
      */
-    public function getPagination(?Data $data) : Pagination
+    public function getPagination(?Data $data) : PaginationInterface
     {
         return $this->pagination->withTotalEntries($data === null ? 0 : $data->getMaxCount());
     }

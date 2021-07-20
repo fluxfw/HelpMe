@@ -5,7 +5,6 @@ namespace srag\Plugins\HelpMe\Support\Recipient;
 use ilHelpMePlugin;
 use ilMimeMail;
 use PHPMailer\PHPMailer\Exception as phpmailerException;
-use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\DICTrait;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\Notifications4Plugin\HelpMe\Exception\Notifications4PluginException;
@@ -51,7 +50,6 @@ abstract class Recipient
      *
      * @return string
      *
-     * @throws ActiveRecordConfigException
      * @throws DICException
      * @throws Notifications4PluginException
      */
@@ -80,7 +78,6 @@ abstract class Recipient
      *
      * @return string
      *
-     * @throws ActiveRecordConfigException
      * @throws Notifications4PluginException
      */
     public function getSubject(string $template_name) : string
@@ -96,7 +93,6 @@ abstract class Recipient
     /**
      * Send support to recipient
      *
-     * @throws ActiveRecordConfigException
      * @throws DICException
      * @throws HelpMeException
      * @throws Notifications4PluginException
@@ -108,7 +104,6 @@ abstract class Recipient
     /**
      * Send confirmation email
      *
-     * @throws ActiveRecordConfigException
      * @throws DICException
      * @throws HelpMeException
      * @throws Notifications4PluginException

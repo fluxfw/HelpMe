@@ -58,7 +58,7 @@ class DevToolsCtrl
     /**
      * @param PluginInterface $plugin
      */
-    public static function addTabs(PluginInterface $plugin)/*: void*/
+    public static function addTabs(PluginInterface $plugin) : void
     {
         if (self::isDevMode()) {
             self::dic()->tabs()->addTab(self::TAB_DEV_TOOLS, $plugin->translate("dev_tools", self::LANG_MODULE), self::dic()->ctrl()->getLinkTargetByClass(static::class));
@@ -69,7 +69,7 @@ class DevToolsCtrl
     /**
      * @param PluginInterface $plugin
      */
-    public static function installLanguages(PluginInterface $plugin)/*:void*/
+    public static function installLanguages(PluginInterface $plugin) : void
     {
         LibraryLanguageInstaller::getInstance()->withPlugin($plugin)->withLibraryLanguageDirectory(__DIR__ . "/../lang")->updateLanguages();
     }
@@ -87,7 +87,7 @@ class DevToolsCtrl
     /**
      *
      */
-    public function executeCommand()/*:void*/
+    public function executeCommand() : void
     {
         if (!self::isDevMode()) {
             ilUtil::sendFailure($this->plugin->translate("no_dev_mode", self::LANG_MODULE), true);
@@ -126,7 +126,7 @@ class DevToolsCtrl
     /**
      *
      */
-    protected function listDevTools()/*: void*/
+    protected function listDevTools() : void
     {
         self::dic()->tabs()->activateTab(self::TAB_DEV_TOOLS);
 
@@ -149,7 +149,7 @@ class DevToolsCtrl
     /**
      *
      */
-    protected function reloadCtrlStructure()/*: void*/
+    protected function reloadCtrlStructure() : void
     {
         $this->plugin->reloadCtrlStructure();
 
@@ -176,7 +176,7 @@ class DevToolsCtrl
     /**
      *
      */
-    protected function reloadDatabase()/*: void*/
+    protected function reloadDatabase() : void
     {
         $this->plugin->reloadDatabase();
 
@@ -191,7 +191,7 @@ class DevToolsCtrl
     /**
      *
      */
-    protected function reloadLanguages()/*: void*/
+    protected function reloadLanguages() : void
     {
         $this->plugin->reloadLanguages();
 
@@ -204,7 +204,7 @@ class DevToolsCtrl
     /**
      *
      */
-    protected function reloadPluginXml()/*: void*/
+    protected function reloadPluginXml() : void
     {
         $this->plugin->reloadPluginXml();
 
@@ -217,7 +217,7 @@ class DevToolsCtrl
     /**
      *
      */
-    protected function setTabs()/*: void*/
+    protected function setTabs() : void
     {
 
     }

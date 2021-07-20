@@ -14,8 +14,6 @@ use srag\Plugins\HelpMe\Utils\HelpMeTrait;
  *
  * Send email with reply name and email in ILIAS 5.3
  *
- * @since   ILIAS 5.3
- *
  * @package srag\Plugins\HelpMe\Support\Recipient
  */
 class RecipientSendMailSender extends ilMailMimeSenderUser

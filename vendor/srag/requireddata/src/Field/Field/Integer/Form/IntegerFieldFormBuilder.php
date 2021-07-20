@@ -95,44 +95,20 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
             "max_value" => self::dic()->ui()->factory()->input()->field()->numeric(self::requiredData()->getPlugin()->translate("max_value", FieldsCtrl::LANG_MODULE))
         ];
 
-        if (self::version()->is6()) {
-            $fields += [
-                "min_value" => self::dic()
-                    ->ui()
-                    ->factory()
-                    ->input()
-                    ->field()
-                    ->optionalGroup($min_value_fields, self::requiredData()->getPlugin()->translate("min_value", FieldsCtrl::LANG_MODULE)),
-                "max_value" => self::dic()
-                    ->ui()
-                    ->factory()
-                    ->input()
-                    ->field()
-                    ->optionalGroup($max_value_fields, self::requiredData()->getPlugin()->translate("max_value", FieldsCtrl::LANG_MODULE))
-            ];
-        } else {
-            $fields += [
-                "min_value" => self::dic()
-                    ->ui()
-                    ->factory()
-                    ->input()
-                    ->field()
-                    ->checkbox(self::requiredData()->getPlugin()->translate("min_value", FieldsCtrl::LANG_MODULE))
-                    ->withDependantGroup(self::dic()->ui()->factory()->input()->field()->dependantGroup($min_value_fields)),
-                "max_value" => self::dic()
-                    ->ui()
-                    ->factory()
-                    ->input()
-                    ->field()
-                    ->checkbox(self::requiredData()->getPlugin()->translate("max_value", FieldsCtrl::LANG_MODULE))
-                    ->withDependantGroup(self::dic()
-                        ->ui()
-                        ->factory()
-                        ->input()
-                        ->field()
-                        ->dependantGroup($max_value_fields))
-            ];
-        }
+        $fields += [
+            "min_value" => self::dic()
+                ->ui()
+                ->factory()
+                ->input()
+                ->field()
+                ->optionalGroup($min_value_fields, self::requiredData()->getPlugin()->translate("min_value", FieldsCtrl::LANG_MODULE)),
+            "max_value" => self::dic()
+                ->ui()
+                ->factory()
+                ->input()
+                ->field()
+                ->optionalGroup($max_value_fields, self::requiredData()->getPlugin()->translate("max_value", FieldsCtrl::LANG_MODULE))
+        ];
 
         return $fields;
     }
@@ -143,30 +119,16 @@ class IntegerFieldFormBuilder extends AbstractFieldFormBuilder
      */
     protected function storeData(array $data) : void
     {
-        if (self::version()->is6()) {
-            if (!empty($data["min_value"]["value"])) {
-                $data["min_value"] = intval($data["min_value"]["min_value"]);
-            } else {
-                $data["min_value"] = null;
-            }
-
-            if (!empty($data["max_value"]["value"])) {
-                $data["max_value"] = intval($data["max_value"]["max_value"]);
-            } else {
-                $data["max_value"] = null;
-            }
+        if (!empty($data["min_value"]["value"])) {
+            $data["min_value"] = intval($data["min_value"]["min_value"]);
         } else {
-            if (boolval($data["min_value"]["value"])) {
-                $data["min_value"] = intval($data["min_value"]["group_values"]["dependant_group"]["min_value"]);
-            } else {
-                $data["min_value"] = null;
-            }
+            $data["min_value"] = null;
+        }
 
-            if (boolval($data["max_value"]["value"])) {
-                $data["max_value"] = intval($data["max_value"]["group_values"]["dependant_group"]["max_value"]);
-            } else {
-                $data["max_value"] = null;
-            }
+        if (!empty($data["max_value"]["value"])) {
+            $data["max_value"] = intval($data["max_value"]["max_value"]);
+        } else {
+            $data["max_value"] = null;
         }
 
         parent::storeData($data);

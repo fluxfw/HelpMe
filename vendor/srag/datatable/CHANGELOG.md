@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.32.1]
+- Not use GeneratePluginReadme
+
+## [0.32.0]
+- ILIAS 7 support
+- Remove ILIAS 5.4 support
+
 ## [0.31.6]
 - Change utils url
 

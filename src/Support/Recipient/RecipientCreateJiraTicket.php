@@ -3,7 +3,6 @@
 namespace srag\Plugins\HelpMe\Support\Recipient;
 
 use ilCurlConnectionException;
-use srag\ActiveRecordConfig\HelpMe\Exception\ActiveRecordConfigException;
 use srag\DIC\HelpMe\Exception\DICException;
 use srag\JiraCurl\HelpMe\Exception\JiraCurlException;
 use srag\JiraCurl\HelpMe\JiraCurl;
@@ -45,8 +44,6 @@ class RecipientCreateJiraTicket extends Recipient
      * RecipientCreateJiraTicket constructor
      *
      * @param Support $support
-     *
-     * @throws ActiveRecordConfigException
      */
     public function __construct(Support $support)
     {
@@ -124,7 +121,6 @@ class RecipientCreateJiraTicket extends Recipient
     /**
      * Create Jira ticket
      *
-     * @throws ActiveRecordConfigException
      * @throws DICException
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
@@ -143,7 +139,6 @@ class RecipientCreateJiraTicket extends Recipient
     /**
      * Create service desk request
      *
-     * @throws ActiveRecordConfigException
      * @throws DICException
      * @throws ilCurlConnectionException
      * @throws JiraCurlException
@@ -171,7 +166,6 @@ class RecipientCreateJiraTicket extends Recipient
     /**
      * Link service desk and project ticket
      *
-     * @throws ActiveRecordConfigException
      * @throws DICException
      * @throws ilCurlConnectionException
      * @throws JiraCurlException

@@ -66,7 +66,7 @@ final class UpdateVersion
      *
      * @internal
      */
-    public static function updateVersion(Event $event)/*: void*/
+    public static function updateVersion(Event $event) : void
     {
         $project_root = rtrim(Closure::bind(function () : string {
             return $this->baseDir;
@@ -82,7 +82,7 @@ final class UpdateVersion
      * @param string|null $todo_changelog
      * @param bool        $log
      */
-    public function doUpdateVersion(string $project_root, int $update_type = self::UPDATE_TYPE_AUTO, /*?*/ string $todo_changelog = null, bool $log = false)/*: void*/
+    public function doUpdateVersion(string $project_root, int $update_type = self::UPDATE_TYPE_AUTO, /*?*/ string $todo_changelog = null, bool $log = false) : void
     {
         $old_composer_json = file_get_contents($project_root . "/" . self::COMPOSER_JSON);
         $composer_json = json_decode($old_composer_json, true);
