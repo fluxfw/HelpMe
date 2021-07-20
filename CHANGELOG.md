@@ -1,6 +1,7 @@
 # Changelog
 
 ## [6.2.0]
+- Switched to main branch
 - ILIAS 7 support
 
 ## [6.1.10]
