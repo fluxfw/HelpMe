@@ -1,7 +1,7 @@
 {
   "name": "srag/helpme",
   "description": "HelpMe",
-  "version": "6.2.0",
+  "version": "6.2.1",
   "extra": {
     "ilias_plugin": {
       "id": "srsu",
@@ -69,7 +69,8 @@
   "scripts": {
     "pre-autoload-dump": [
       "srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger::rewriteLibrariesNamespaces",
-      "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginPhpAndXml::generatePluginPhpAndXml"
+      "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginPhpAndXml::generatePluginPhpAndXml",
+      "vendor/srag/notifications4plugin/bin/twig_php74_patch.php"
     ],
     "update-version": [
       "srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion::updateVersion"
