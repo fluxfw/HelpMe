@@ -1,7 +1,7 @@
 {
   "name": "srag/notifications4plugin",
   "description": "This library offers a quick and easy way to create and send notifications in any language. The notifications are usually configured in the config screen of Notifications4Plugin and can then be sent for instance as an email by other plugins dynamic",
-  "version": "5.7.1",
+  "version": "5.7.3",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "6.0",
@@ -49,6 +49,9 @@
     "sort-packages": true
   },
   "scripts": {
+    "pre-autoload-dump": [
+      "bin/twig_php74_patch.php"
+    ],
     "update-version": [
       "srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion::updateVersion"
     ]

@@ -1,5 +1,11 @@
 # Changelog
 
+## [5.7.3]
+- Twig PHP 7.4 patch
+
+## [5.7.2]
+- Twig PHP 7.4 patch
+
 ## [5.7.1]
 - Not use GeneratePluginReadme
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f39e143e5eaa00c30b4a23a454a91228",
+    "content-hash": "11ca4d0d73a6c98a32b757d1dd6c7667",
     "packages": [
         {
             "name": "srag/activerecordconfig",
@@ -37,7 +37,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\ActiveRecordConfig\\": "src/"
+                    "srag\\ActiveRecordConfig\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -91,7 +91,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\CustomInputGUIs\\": "src/"
+                    "srag\\CustomInputGUIs\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/MultiSelectSearchNewInputGUI/class.ObjectChildrenAjaxAutoCompleteCtrl.php",
@@ -155,7 +155,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DataTableUI\\": "src/"
+                    "srag\\DataTableUI\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -210,7 +210,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DevTools\\": "src/"
+                    "srag\\DevTools\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/class.DevToolsCtrl.php"
@@ -267,7 +267,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\DIC\\": "src/"
+                    "srag\\DIC\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -312,7 +312,7 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "srag\\GeneratePluginInfosHelper\\": "src/"
+                    "srag\\GeneratePluginInfosHelper\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -367,7 +367,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\JiraCurl\\": "src/"
+                    "srag\\JiraCurl\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -468,7 +468,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\LibraryLanguageInstaller\\": "src/"
+                    "srag\\LibraryLanguageInstaller\\HelpMe\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -495,16 +495,16 @@
         },
         {
             "name": "srag/notifications4plugin",
-            "version": "5.7.1",
+            "version": "5.7.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/fluxapps/Notifications4Plugin.git",
-                "reference": "85a4ca8953ccf5d238b20d46abce89b09a112fe9"
+                "reference": "65e47f79ffbbbe1e1eea3d517edffe4282555525"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fluxapps/Notifications4Plugin/zipball/85a4ca8953ccf5d238b20d46abce89b09a112fe9",
-                "reference": "85a4ca8953ccf5d238b20d46abce89b09a112fe9",
+                "url": "https://api.github.com/repos/fluxapps/Notifications4Plugin/zipball/65e47f79ffbbbe1e1eea3d517edffe4282555525",
+                "reference": "65e47f79ffbbbe1e1eea3d517edffe4282555525",
                 "shasum": ""
             },
             "require": {
@@ -552,7 +552,7 @@
                 "ILIAS",
                 "notifications"
             ],
-            "time": "2021-07-20T08:31:03+00:00"
+            "time": "2021-08-20T07:12:50+00:00"
         },
         {
             "name": "srag/removeplugindataconfirm",
@@ -585,7 +585,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\RemovePluginDataConfirm\\": "src/"
+                    "srag\\RemovePluginDataConfirm\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/class.RemovePluginDataConfirmCtrl.php"
@@ -647,7 +647,7 @@
             },
             "autoload": {
                 "psr-4": {
-                    "srag\\RequiredData\\": "src/"
+                    "srag\\RequiredData\\HelpMe\\": "src/"
                 },
                 "classmap": [
                     "src/Field/class.FieldsCtrl.php",

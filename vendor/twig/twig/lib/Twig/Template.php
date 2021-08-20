@@ -334,7 +334,7 @@ abstract class Twig_Template implements Twig_TemplateInterface
      */
     final protected function getContext($context, $item, $ignoreStrictCheck = false)
     {
-        if (!array_key_exists($item, $context)) {
+        if (!array_key_exists((array)$item, $context)) {
             if ($ignoreStrictCheck || !$this->env->isStrictVariables()) {
                 return;
             }
@@ -365,7 +365,7 @@ abstract class Twig_Template implements Twig_TemplateInterface
         if (Twig_Template::METHOD_CALL !== $type) {
             $arrayItem = is_bool($item) || is_float($item) ? (int) $item : $item;
 
-            if ((is_array($object) && array_key_exists($arrayItem, $object))
+            if ((is_array($object) && array_key_exists((array)$arrayItem, $object))
                 || ($object instanceof ArrayAccess && isset($object[$arrayItem]))
             ) {
                 if ($isDefinedTest) {
