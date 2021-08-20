@@ -1,7 +1,7 @@
 {
   "name": "srag/helpme",
   "description": "HelpMe",
-  "version": "6.2.1",
+  "version": "6.2.2",
   "extra": {
     "ilias_plugin": {
       "id": "srsu",
