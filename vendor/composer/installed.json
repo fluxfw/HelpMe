@@ -506,17 +506,17 @@
     },
     {
         "name": "srag/notifications4plugin",
-        "version": "5.7.3",
-        "version_normalized": "5.7.3.0",
+        "version": "5.7.4",
+        "version_normalized": "5.7.4.0",
         "source": {
             "type": "git",
             "url": "https://github.com/fluxapps/Notifications4Plugin.git",
-            "reference": "65e47f79ffbbbe1e1eea3d517edffe4282555525"
+            "reference": "253f7d0a8e01a2e71240ece8e6343b5a8be181c3"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/fluxapps/Notifications4Plugin/zipball/65e47f79ffbbbe1e1eea3d517edffe4282555525",
-            "reference": "65e47f79ffbbbe1e1eea3d517edffe4282555525",
+            "url": "https://api.github.com/repos/fluxapps/Notifications4Plugin/zipball/253f7d0a8e01a2e71240ece8e6343b5a8be181c3",
+            "reference": "253f7d0a8e01a2e71240ece8e6343b5a8be181c3",
             "shasum": ""
         },
         "require": {
@@ -530,7 +530,7 @@
         "require-dev": {
             "srag/generateplugininfoshelper": ">=0.1.0"
         },
-        "time": "2021-08-20T07:12:50+00:00",
+        "time": "2021-08-20T07:51:57+00:00",
         "type": "library",
         "extra": {
             "ilias_plugin": {

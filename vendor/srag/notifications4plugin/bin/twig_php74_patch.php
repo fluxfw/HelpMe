@@ -9,7 +9,7 @@
     foreach ([$twig_root . "/lib/Twig/Template.php"] as $file) {
         $code = $code_old = file_get_contents($file);
 
-        $code = preg_replace("/(array_key_exists\s*\(\s*)(\\\$[A-Za-z0-9_]+\s*,\s*\\\$[A-Za-z0-9_]+\s*\))/", "$1(array)$2", $code);
+        $code = preg_replace("/(array_key_exists\s*\(\s*[A-Za-z0-9_\$()\s]+\s*,\s*)(\\\$[A-Za-z0-9_]+\s*\))/", "$1(array)$2", $code);
 
         if ($code !== $code_old) {
             echo "Apply patch for " . $file . "\n";
