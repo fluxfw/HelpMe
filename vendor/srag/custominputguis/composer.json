@@ -1,7 +1,7 @@
 {
   "name": "srag/custominputguis",
   "description": "Custom Input-GUI's",
-  "version": "0.43.1",
+  "version": "0.43.2",
   "extra": {
     "ilias_plugin": {
       "ilias_min_version": "6.0",

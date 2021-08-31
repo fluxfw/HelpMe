@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.2.3]
+- Update html2canvas
+
 ## [6.2.2]
 - Twig PHP 7.4 patch
 
