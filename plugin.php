@@ -4,7 +4,7 @@
 require_once __DIR__ . "/vendor/autoload.php";
 
 $id = "srsu";
-$version = "6.2.2";
+$version = "6.2.3";
 $ilias_min_version = "6.0";
 $ilias_max_version = "7.999";
 $responsible = "fluxlabs";
