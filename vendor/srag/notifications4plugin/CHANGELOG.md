@@ -1,5 +1,8 @@
 # Changelog
 
+## [5.7.5]
+- Twig PHP 7.4 patch
+
 ## [5.7.4]
 - Twig PHP 7.4 patch
 

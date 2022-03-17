@@ -1,5 +1,6 @@
 #!/usr/bin/env php
 <?php
+
 (function () : void {
     $twig_root = __DIR__ . "/../../../twig/twig";
     if (!file_exists($twig_root)) {

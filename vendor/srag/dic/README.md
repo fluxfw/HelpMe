@@ -24,6 +24,16 @@ Tip: Because of multiple autoloaders of plugins, it could be, that different ver
 
 So I recommand to use [srag/librariesnamespacechanger](https://packagist.org/packages/srag/librariesnamespacechanger) in your plugin.
 
+## ILIAS 7 core ilCtrl patch
+
+For make some plugins work with ilCtrl in ILIAS 7, you may need to patch the core, before you update the plugin (At your own risk)
+
+Start at the plugin directory
+
+```shell
+./vendor/srag/dic/bin/ilias7_core_apply_ilctrl_patch.sh
+```
+
 ## Use trait
 
 Declare your class like follow:
