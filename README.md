@@ -21,15 +21,14 @@ git clone https://github.com/fluxapps/HelpMe.git HelpMe
 
 Update, activate and config the plugin in the ILIAS Plugin Administration
 
-### ILIAS 7
+## ILIAS 7 core ilCtrl patch
 
 For make this plugin work with ilCtrl in ILIAS 7, you may need to patch the core, before you update the plugin (At your own risk)
 
 Start at the plugin directory
 
-```bash
-chmod +x bin/ilias7_apply_ilctrl_patch.sh
-bin/ilias7_apply_ilctrl_patch.sh
+```shell
+./vendor/srag/dic/bin/ilias7_core_apply_ilctrl_patch.sh
 ```
 
 ## Description

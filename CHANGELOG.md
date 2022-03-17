@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.2.4]
+- Move `ilias7_core_apply_ilctrl_patch.sh`
+
 ## [6.2.3]
 - Update html2canvas
 

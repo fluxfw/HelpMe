@@ -1,0 +1,80 @@
+diff --git a/Services/UICore/classes/Setup/class.ilCtrlStructureReader.php b/Services/UICore/classes/Setup/class.ilCtrlStructureReader.php
+index 9a374b30f04f..2bef038825a2 100755
+--- a/Services/UICore/classes/Setup/class.ilCtrlStructureReader.php
++++ b/Services/UICore/classes/Setup/class.ilCtrlStructureReader.php
+@@ -311,7 +311,7 @@ protected function setClassFileIdsInDB() : void
+      */
+     protected function parseFileTo(\ilCtrlStructure $cs, string $full_path, string $content) : \ilCtrlStructure
+     {
+-        list($parent, $children) = $this->getIlCtrlCalls($content);
++        foreach ($this->getIlCtrlCalls($content) ?? [] as [$parent, $children]) {
+         if ($parent) {
+             $cs = $cs->withClassScript($parent, $full_path);
+         }
+@@ -320,8 +320,9 @@ protected function parseFileTo(\ilCtrlStructure $cs, string $full_path, string $
+                 $cs = $cs->withClassChild($parent, $child);
+             }
+         }
++        }
+ 
+-        list($child, $parents) = $this->getIlCtrlIsCalledBy($content);
++        foreach ($this->getIlCtrlIsCalledBy($content) ?? [] as [$child, $parents]) {
+         if ($child) {
+             $cs = $cs->withClassScript($child, $full_path);
+         }
+@@ -330,6 +331,7 @@ protected function parseFileTo(\ilCtrlStructure $cs, string $full_path, string $
+                 $cs = $cs->withClassChild($parent, $child);
+             }
+         }
++        }
+ 
+         $cl = $this->getGUIClassNameFromClassPath($full_path);
+         if ($cl && $this->containsClassDefinitionFor($cl, $content)) {
+@@ -394,21 +396,16 @@ protected function getIlCtrlDeclarations(string $content, string $which) : ?arra
+             return null;
+         }
+ 
+-        $class_names = array_unique($res[1]);
+-        if (count($class_names) != 1) {
+-            throw new \LogicException(
+-                "Found different class names in ilctrl_calls: " . join(",", $class_names)
+-            );
+-        }
+-
++        $declarations = [];
++        foreach ($res[1] as $i => $class_name) {
+         $declaration = [];
+-        foreach ($res[2] as $ls) {
+-            foreach (explode(",", $ls) as $l) {
++            foreach (explode(",", $res[2][$i]) as $l) {
+                 $declaration[] = strtolower(trim($l));
+             }
++        $declarations[] = [strtolower(trim($class_name)), $declaration];
+         }
+ 
+-        return [strtolower(trim($class_names[0])), $declaration];
++        return $declarations;
+     }
+ 
+ 
+diff --git a/Services/UICore/classes/class.ilCtrlStructure.php b/Services/UICore/classes/class.ilCtrlStructure.php
+index fee94c6f795a..d2de025b68ad 100644
+--- a/Services/UICore/classes/class.ilCtrlStructure.php
++++ b/Services/UICore/classes/class.ilCtrlStructure.php
+@@ -75,14 +75,14 @@ protected function addClassScript(string $class, string $file_path) : void
+             );
+         }
+ 
+-        if (isset($this->class_scripts[$class]) && $this->class_scripts[$class] != $file_path) {
++        /*if (isset($this->class_scripts[$class]) && $this->class_scripts[$class] != $file_path) {
+             $e = new \RuntimeException(
+                 "Can't add script '$file_path' for class '$class', a script for that class already exists."
+             );
+             $e->file_path = $file_path;
+             $e->class = $class;
+             throw $e;
+-        }
++        }*/
+ 
+         $this->class_scripts[$class] = $file_path;
+     }
