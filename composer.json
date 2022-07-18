@@ -1,6 +1,7 @@
 {
   "name": "srag/helpme",
   "description": "HelpMe",
+  "version": "6.3.0",
   "type": "project",
   "keywords": [
     "help",
