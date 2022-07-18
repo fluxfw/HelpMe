@@ -16,7 +16,7 @@ Start at your ILIAS root directory
 ```bash
 mkdir -p Customizing/global/plugins/Services/UIComponent/UserInterfaceHook
 cd Customizing/global/plugins/Services/UIComponent/UserInterfaceHook
-git clone https://github.com/fluxapps/HelpMe.git HelpMe
+git clone https://github.com/fluxfw/HelpMe.git HelpMe
 ```
 
 Update, activate and config the plugin in the ILIAS Plugin Administration
@@ -33,7 +33,7 @@ Start at the plugin directory
 
 ## Description
 
-If you want to use the show tickets feature, you need to install the [HelpMeCron](https://github.com/fluxapps/HelpMeCron) plugin
+If you want to use the show tickets feature, you need to install the [HelpMeCron](https://github.com/fluxfw/HelpMeCron) plugin
 
 If yout want use the Jira recipient with oAuth authorization you can find a guide to config your Jira installation: https://developer.atlassian.com/cloud/jira/platform/jira-rest-api-oauth-authentication/
 
