@@ -1,16 +1,6 @@
 {
   "name": "srag/helpme",
   "description": "HelpMe",
-  "version": "6.2.4",
-  "extra": {
-    "ilias_plugin": {
-      "id": "srsu",
-      "name": "HelpMe",
-      "ilias_min_version": "6.0",
-      "ilias_max_version": "7.999",
-      "slot": "Services/UIComponent/UserInterfaceHook"
-    }
-  },
   "type": "project",
   "keywords": [
     "help",
@@ -20,23 +10,13 @@
     "support",
     "user"
   ],
-  "homepage": "https://github.com/fluxapps/HelpMe",
   "license": "GPL-3.0-only",
-  "authors": [
-    {
-      "name": "fluxlabs",
-      "email": "support@fluxlabs.ch",
-      "homepage": "https://fluxlabs.ch",
-      "role": "Developer"
-    }
-  ],
   "require": {
     "php": ">=7.2",
     "srag/activerecordconfig": ">=0.1.0",
     "srag/custominputguis": ">=0.1.0",
     "srag/devtools": ">=0.1.0",
     "srag/dic": ">=0.1.0",
-    "srag/generateplugininfoshelper": ">=0.1.0",
     "srag/jiracurl": ">=0.1.0",
     "srag/librariesnamespacechanger": ">=0.1.0",
     "srag/notifications4plugin": ">=0.1.0",
@@ -69,11 +49,7 @@
   "scripts": {
     "pre-autoload-dump": [
       "srag\\LibrariesNamespaceChanger\\LibrariesNamespaceChanger::rewriteLibrariesNamespaces",
-      "srag\\GeneratePluginInfosHelper\\HelpMe\\GeneratePluginPhpAndXml::generatePluginPhpAndXml",
       "vendor/srag/notifications4plugin/bin/twig_php74_patch.php"
-    ],
-    "update-version": [
-      "srag\\GeneratePluginInfosHelper\\HelpMe\\UpdateVersion::updateVersion"
     ]
   }
 }

@@ -13,7 +13,6 @@ return array(
     'srag\\LibraryLanguageInstaller\\HelpMe\\' => array($vendorDir . '/srag/librarylanguageinstaller/src'),
     'srag\\LibrariesNamespaceChanger\\' => array($vendorDir . '/srag/librariesnamespacechanger/src'),
     'srag\\JiraCurl\\HelpMe\\' => array($vendorDir . '/srag/jiracurl/src'),
-    'srag\\GeneratePluginInfosHelper\\HelpMe\\' => array($vendorDir . '/srag/generateplugininfoshelper/src'),
     'srag\\DevTools\\HelpMe\\' => array($vendorDir . '/srag/devtools/src'),
     'srag\\DataTableUI\\HelpMe\\' => array($vendorDir . '/srag/datatable/src'),
     'srag\\DIC\\HelpMe\\' => array($vendorDir . '/srag/dic/src'),
